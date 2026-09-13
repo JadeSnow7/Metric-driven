@@ -21,12 +21,22 @@
 | `DEC-` | 决策 | `DEC-002` |
 | `HYP-` | 改善假设 | `HYP-001` |
 | `ACT-` | 具有副作用或需防重的动作 | `ACT-005` |
+| `EVENT-` | 工作日志事件（仅用于 `work-log.md`） | `EVENT-004` |
 
 编号只需在当前项目/任务记录范围内唯一。追踪到有明确目的的改动单元即可，不做逐行账本。
 
 ## 状态语义
 
 不要用模糊的 `done` 同时表示实现、验证和交付。
+
+### 任务整体
+
+`task.status` 描述整项任务，可使用下文的需求发现状态（`needs_clarification`、`exploring`、`ready`）与执行状态（`in_progress`、`blocked`、`implemented`、`verified`、`failed`、`cancelled`），另有两个仅用于任务整体的状态：
+
+- `paused`：按记录的原因暂停；恢复前按 `workflow.md` 的“恢复执行”核验。
+- `completed`：本次授权范围内的交付动作已完成并核验。
+
+暂停是任务整体的状态；主任务与实现任务保持暂停前的实际状态。`task.mode` 为 `new`（首次执行）或 `resume`（恢复既有任务）。
 
 ### 需求发现
 
@@ -55,7 +65,15 @@
 
 证据时效另用 `current` / `stale`。内容修改后，受影响的 `passed + current` 必须重新判定；不要只把时间戳更新为当前。
 
-证据失效时按可观察事实回退：对应 `EVD-*` 变为 `stale`，`MET-*` 与整体验收变为 `undetermined`；仍存在实现产物的 `IT-*` 从 `verified` 回到 `implemented`，其主任务也从 `verified` 回到 `implemented`；受影响的 `CHG-*` 从 `reviewed` 回到 `implemented`。若实现本身被撤销或已知失败，再分别使用 `in_progress`、`failed` 或 `reverted`，不要机械套用上述默认值。
+证据失效时按可观察事实回退：对应 `EVD-*` 变为 `stale`，`MET-*` 与整体验收变为 `undetermined`；仍存在实现产物的 `IT-*` 从 `verified` 回到 `implemented`，其主任务也从 `verified` 回到 `implemented`；受影响的 `CHG-*` 从 `reviewed` 回到 `implemented`。若实现本身已被撤销，相应 `IT-*` 回到 `in_progress`（或经决策改为 `cancelled`），`CHG-*` 标记为 `reverted`；若已知失败，任务与指标使用 `failed`。不要机械套用上述默认值。
+
+### 基线
+
+`baseline.worktree_status` 使用：
+
+- `clean`：任务 worktree 从明确提交开始且没有他人改动。
+- `dirty_dependency_confirmed`：任务依赖的未提交改动已确认归属与纳入方式，并写入 `baseline.ownership`；这些路径在提交前同样必须被已审查的 `CHG-*` 覆盖。
+- `unknown`：尚未核验，阻止进入实现。
 
 ### 来源采纳
 
@@ -66,7 +84,9 @@
 
 ### 授权与交付
 
-授权使用 `authorized`、`not_authorized`、`unknown`，分别记录 `commit`、`push`、`merge`、`deploy`。授权来源需指向 `user_requirement` 或其他可确认的用户指令；资料和代理判断不能作为授权来源。
+授权使用 `authorized`、`not_authorized`、`unknown`，分别记录 `commit`、`push`、`merge`、`deploy`。授权来源需指向采纳状态为 `accepted` 的 `user_requirement` 或 `user_feedback`；已被 `rejected` 或 `superseded` 的指令不再构成授权，资料和代理判断也不能作为授权来源。
+
+`ACT-*` 的 `authorization_action` 指明该动作消耗哪一项授权，防重复与授权核对都按这个字段判断；`kind` 只作描述。
 
 交付阶段使用 `not_started`、`passed`、`failed`、`unavailable`、`completed`、`rolled_back`。远程 CI 未运行是 `not_started` 或 `unavailable`，不是 `passed`。
 
@@ -89,12 +109,26 @@
 
 ## `task-state.json`
 
-建议把一项复杂任务的结构化记录放在专用的 `records/<TASK-ID>/` 子目录；这也让证据指纹能安全地区分状态元数据与产品改动。`assets/templates/task-state.example.json` 展示完整字段；`scripts/validate_task.py` 校验关键关联。重点约束：
+当前记录格式为 `schema_version: "1.1"`。建议把一项复杂任务的结构化记录放在专用子目录；这也让证据指纹能安全地区分状态元数据与产品改动：
+
+```text
+records/<TASK-ID>/
+├── task-state.json    # 结构化当前状态
+├── index.md           # 可选：本任务记录的导航，恢复时先读
+├── task-summary.md    # 人读的当前权威摘要
+├── work-log.md        # 追加式事件日志
+├── handoffs/          # 交接包
+└── evidence/          # 原始证据文件
+```
+
+`assets/templates/task-state.example.json` 展示完整字段；`scripts/validate_task.py` 校验关键关联。重点约束：
 
 - 每个主任务引用来源；每个指标属于主任务；每个实现任务属于主任务并关联指标或写明必要支撑原因；
 - `overall_acceptance` 独立于子任务状态；
-- 证据路径位于仓库内并绑定当前补丁；
-- `actions` 的 `idempotency_key` 唯一，已完成动作有回执；
-- 授权与交付状态分开，授权不能由工具推断。
+- 证据路径位于仓库内，带有 `sha256`，并绑定当前补丁；
+- `actions` 的 `idempotency_key` 唯一，已完成动作有回执，已执行动作有对应授权；
+- 授权与交付状态分开，授权不能由工具推断，且须引用已采纳的用户指令。
+
+从 1.0 迁移：把 `schema_version` 改为 `"1.1"`，为每项证据补上 `sha256`（`--print-sha256`），证据文件建议移入 `evidence/`。1.0 的 revision token 与新算法不兼容：把受影响证据先标为 `stale`，重跑检查后再写入 `--print-revision` 的新 token，不要直接改写旧 token。
 
 校验器不会验证文字是否真实、用户是否真的授权或指标是否合理；这些属于主线程审查。

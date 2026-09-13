@@ -13,9 +13,9 @@ skill/evidence-driven-development/
 ├── references/                      # 按需读取的详细流程
 ├── assets/templates/                # 可复制、可裁剪的任务与交接模板
 ├── scripts/validate_task.py         # 只读任务记录/门槛校验器
-├── scripts/validate_repository.py   # 仓库结构与内部链接检查
-└── tests/test_scenarios.py          # 隔离临时仓库中的关键反例
-.github/workflows/ci.yml             # 运行仓库已有检查
+└── tests/test_scenarios.py          # 隔离临时仓库中的关键反例与放行路径
+tools/validate_repository.py         # 仓库结构与内部链接检查（不属于 skill 本体）
+.github/workflows/ci.yml             # 在 Python 3.11–3.13 上运行仓库已有检查
 ```
 
 ## 安装
@@ -62,19 +62,30 @@ Use $evidence-driven-development to implement this feature and leave verifiable 
 仓库自检：
 
 ```bash
-python3 skill/evidence-driven-development/scripts/validate_repository.py
+python3 tools/validate_repository.py
 python3 -m unittest discover -s skill/evidence-driven-development/tests -v
 ```
 
 检查一个结构化任务记录：
 
 ```bash
-python3 skill/evidence-driven-development/scripts/validate_task.py path/to/task-state.json --repo . --gate record
-python3 skill/evidence-driven-development/scripts/validate_task.py path/to/task-state.json --repo . --print-revision
-python3 skill/evidence-driven-development/scripts/validate_task.py path/to/task-state.json --repo . --gate local-commit
+python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-001/task-state.json --repo . --gate record
+python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-001/task-state.json --repo . --print-revision
+python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-001/task-state.json --repo . --print-sha256 records/TASK-001/evidence/unit-tests.txt
+python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-001/task-state.json --repo . --gate local-commit
 ```
 
-`validate_task.py` 只读取文件和 Git 状态。它能检查字段、ID 引用、门槛状态、证据文件存在性、证据是否仍绑定当前补丁，以及授权记录的一致性。它不能证明需求真实、数字合理、测试覆盖充分、授权来源真实或产品已经成功；这些仍由主线程审查。
+`validate_task.py` 只读取文件和 Git 状态。它能检查字段、ID 引用、门槛状态、证据文件存在性与 sha256、证据是否仍绑定当前补丁、改动路径是否经过审查，以及授权与已执行动作的一致性。输出为 JSON，退出码 `0` 无错误、`1` 记录或门槛错误、`2` 运行错误。它不能证明需求真实、数字合理、测试覆盖充分、授权来源真实或产品已经成功；这些仍由主线程审查。
+
+## 记录格式版本
+
+当前 `task-state.json` 格式为 `1.1`。相对 `1.0`：
+
+- 证据新增 `sha256`，从 `local-commit` 门槛起必填；
+- revision token 改为内容指纹（`revision-v2`），暂存或提交改动不再使证据过期，也不受本地 diff 配置影响；
+- `records/<TASK-ID>/evidence/` 不计入指纹，新增证据不会让已有证据失效。
+
+`1.0` 记录的迁移步骤见 [records.md](skill/evidence-driven-development/references/records.md) 的 `task-state.json` 一节。
 
 ## 能力边界
 

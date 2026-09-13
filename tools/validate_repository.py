@@ -3,10 +3,12 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import sys
 from pathlib import Path
+from types import ModuleType
 
 
 REQUIRED = (
@@ -27,14 +29,26 @@ REQUIRED = (
     "skill/evidence-driven-development/assets/templates/writing-handoff.md",
     "skill/evidence-driven-development/scripts/validate_task.py",
     "skill/evidence-driven-development/tests/test_scenarios.py",
+    "tools/validate_repository.py",
 )
+TASK_VALIDATOR = "skill/evidence-driven-development/scripts/validate_task.py"
 
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
 UNFINISHED = re.compile(r"\[(?:TODO|PLACEHOLDER):|Briefly describe|Add the task-specific", re.IGNORECASE)
 
 
 def repository_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+    return Path(__file__).resolve().parents[1]
+
+
+def load_task_validator(root: Path) -> ModuleType:
+    spec = importlib.util.spec_from_file_location("validate_task", root / TASK_VALIDATOR)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"cannot load {TASK_VALIDATOR}")
+    module = importlib.util.module_from_spec(spec)
+    sys.dont_write_bytecode = True  # keep the shipped skill directory free of __pycache__
+    spec.loader.exec_module(module)
+    return module
 
 
 def main() -> int:
@@ -62,34 +76,20 @@ def main() -> int:
                 )
 
     template = root / "skill/evidence-driven-development/assets/templates/task-state.example.json"
-    if template.is_file():
+    if template.is_file() and (root / TASK_VALIDATOR).is_file():
+        validator = load_task_validator(root)
         try:
             data = json.loads(template.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             errors.append(f"task-state template is invalid JSON: {exc}")
         else:
-            expected = {
-                "schema_version",
-                "task",
-                "discovery",
-                "sources",
-                "main_tasks",
-                "metrics",
-                "implementation_tasks",
-                "evidence",
-                "changes",
-                "overall_acceptance",
-                "baseline",
-                "authorization",
-                "delivery",
-                "actions",
-                "decisions",
-                "hypotheses",
-                "recovery_strategy",
-            }
-            missing = sorted(expected - set(data))
+            missing = sorted(set(validator.ROOT_FIELDS) - set(data))
             if missing:
                 errors.append(f"task-state template missing keys: {', '.join(missing)}")
+            if data.get("schema_version") != validator.SCHEMA_VERSION:
+                errors.append(
+                    f"task-state template schema_version must be {validator.SCHEMA_VERSION!r}"
+                )
 
     openai_yaml = root / "skill/evidence-driven-development/agents/openai.yaml"
     if openai_yaml.is_file():

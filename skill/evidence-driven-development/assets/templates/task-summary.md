@@ -3,8 +3,8 @@
 > 当前状态的权威人读摘要；历史事件写入 `work-log.md`，不要堆在这里。
 
 - 标题：
-- 模式：首次执行 / 恢复
-- 状态：needs_clarification / exploring / ready / in_progress / blocked / implemented / verified / failed / paused / completed
+- 模式：首次执行（new）/ 恢复（resume）
+- 状态：needs_clarification / exploring / ready / in_progress / blocked / implemented / verified / failed / paused / completed / cancelled
 - 基线提交：
 - worktree 与改动所有权：
 - 最近核验时间与环境：
