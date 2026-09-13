@@ -14,6 +14,6 @@
 - 已采纳决策：`DEC-000`
 - 未决问题：
 - 必要失败经验：
-- 当前状态：planned / in_progress / blocked / implemented / verified / failed / paused
+- 当前状态：proposed / defined / planned / in_progress / blocked / implemented / verified / failed / cancelled（暂停记入任务摘要的 paused）
 - 下一步：
 - 停止条件：
