@@ -1,6 +1,7 @@
 ---
 name: evidence-driven-development
 description: 将不确定的软件开发请求转化为边界清晰、指标可核验、证据可追踪且权限受控的交付。适用于复杂功能、缺陷修复、探索性验证、多人或多 Agent 协作，以及需要恢复既有任务的工程工作；不替代产品判断、测试框架或发布授权。
+license: Apache-2.0
 ---
 
 # Evidence-Driven Development
