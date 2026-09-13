@@ -95,6 +95,6 @@ python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-
 - 不保证节省 token，也不要求每个小修复生成全套记录。
 - 自动化检查只覆盖它实际读取到的结构和状态，不替代人类对产品结果的判断。
 
-## 许可状态
+## 许可证
 
-本仓库尚未选择开放源代码许可。具体含义见 [LICENSE.md](LICENSE.md)。在权利人明确选择许可之前，不应把本仓库视为已获授权的开源项目。
+本仓库采用 [Apache License 2.0](LICENSE)。再分发时需保留许可证文本并说明所做修改；提交到本仓库的贡献默认按同一许可证授权（许可证第 5 条）。

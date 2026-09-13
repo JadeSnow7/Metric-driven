@@ -13,7 +13,7 @@ from types import ModuleType
 
 REQUIRED = (
     "README.md",
-    "LICENSE.md",
+    "LICENSE",
     ".github/workflows/ci.yml",
     "skill/evidence-driven-development/SKILL.md",
     "skill/evidence-driven-development/agents/openai.yaml",
