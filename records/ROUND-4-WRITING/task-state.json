@@ -259,7 +259,7 @@
       "EVD-004"
     ],
     "status": "passed",
-    "scope_note": "仅本地skill修订和本轮小规模验证；已知失败已记录，脏依赖报告经定向审查修正。无外部动作。"
+    "scope_note": "本地skill修订和小规模验证已完成；按后续用户指令提交并推送。未合并或发布，远程CI未核实。"
   },
   "baseline": {
     "git_ref": "599c380a8dfeaadeff3a4d542b34071800996a29",
@@ -287,8 +287,8 @@
   },
   "delivery": {
     "local_validation": "passed",
-    "local_commit": "not_started",
-    "push": "not_started",
+    "local_commit": "completed",
+    "push": "completed",
     "remote_ci": "not_started",
     "merge": "not_started",
     "deploy": "not_started"
@@ -310,5 +310,15 @@
       "仅修本轮差异并重验受影响项"
     ],
     "owner": "main-thread"
+  },
+  "delivery_receipts": {
+    "observed_at": "2026-09-14T05:18:46.874656+00:00",
+    "implementation_commit": "5ffe4e40bc3f1ba535f9369a491beb32befe0f53",
+    "remote": "origin",
+    "url": "https://github.com/JadeSnow7/Metric-driven.git",
+    "branch": "feat/skill-entry-round-2",
+    "push_exit_code": 0,
+    "tracking_ref_after_success": "5ffe4e40bc3f1ba535f9369a491beb32befe0f53",
+    "note": "Receipt refers to implementation commit. Following documentation-only commit records this completed push; it does not alter tested skill. Remote CI not checked."
   }
 }
