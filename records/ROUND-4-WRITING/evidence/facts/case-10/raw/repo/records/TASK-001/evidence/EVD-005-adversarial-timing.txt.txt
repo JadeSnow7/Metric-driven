@@ -1,0 +1,38 @@
+$ date -u
+2026-09-13T23:22:59Z
+# script (scratchpad, not committed):
+import sys, time
+sys.dont_write_bytecode = True
+sys.path.insert(0, sys.argv[1])
+from inventory import _parse_stock_row
+N = 200_000
+cases = {
+  "odd quotes": '"' * (N + 1),
+  "quotes,comma,quotes": '"' * N + "," + '"' * N,
+  "doubled pairs both fields": '""' * (N // 2) + "," + '""' * (N // 2),
+  "quoted doubled then junk": '"' + '""' * (N // 2) + 'x,3',
+  "no comma long": "a" * N,
+  "spaces+quote no close": " " * N + '"abc,3',
+  "quote-comma alternating": '",' * N,
+  "valid long quoted": '"' + "a" * N + '",3',
+  "padding tabs around quoted": "\t" * N + '"a"' + "\t" * N + ",3",
+}
+worst = 0.0
+for label, line in cases.items():
+    t = time.perf_counter(); r = _parse_stock_row(line + "\n"); dt = time.perf_counter() - t
+    worst = max(worst, dt)
+    print(f"{label:28s} len={len(line):>7} -> {('ok qty=' + str(r[1])) if r else 'skipped':10s} {dt*1000:8.2f} ms")
+print(f"worst={worst*1000:.2f} ms; limit=1000 ms; {'PASS' if worst < 1.0 else 'FAIL'}")
+sys.exit(0 if worst < 1.0 else 1)
+$ python3 adversarial_timing.py <repo>
+odd quotes                   len= 200001 -> skipped        7.73 ms
+quotes,comma,quotes          len= 400001 -> skipped       19.32 ms
+doubled pairs both fields    len= 400001 -> skipped       16.03 ms
+quoted doubled then junk     len= 200004 -> skipped        7.83 ms
+no comma long                len= 200000 -> skipped        3.48 ms
+spaces+quote no close        len= 200006 -> skipped        4.37 ms
+quote-comma alternating      len= 400000 -> skipped        0.06 ms
+valid long quoted            len= 200004 -> ok qty=3       0.21 ms
+padding tabs around quoted   len= 400005 -> ok qty=3       7.38 ms
+worst=19.32 ms; limit=1000 ms; PASS
+exit=0

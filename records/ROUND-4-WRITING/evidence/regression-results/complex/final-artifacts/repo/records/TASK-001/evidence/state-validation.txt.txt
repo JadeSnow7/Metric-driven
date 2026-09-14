@@ -1,0 +1,25 @@
+{
+  "ok": false,
+  "gate": "record",
+  "current_revision": null,
+  "errors": [
+    {
+      "code": "FIELD_MISSING",
+      "message": "CHG-001.implementation_task_ids is required"
+    },
+    {
+      "code": "FIELD_MISSING",
+      "message": "CHG-001.revision is required"
+    },
+    {
+      "code": "CHANGE_IMPLEMENTATION_MISSING",
+      "message": "CHG-001 needs an implementation task"
+    },
+    {
+      "code": "CHANGE_STALE",
+      "message": "CHG-001 revision does not match current repository state"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}

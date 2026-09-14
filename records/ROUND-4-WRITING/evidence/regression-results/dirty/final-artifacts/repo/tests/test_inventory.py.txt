@@ -1,0 +1,37 @@
+import unittest
+
+from inventory import Inventory
+
+
+class InventoryTests(unittest.TestCase):
+    def test_add_and_count(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("apple", 3)
+        inventory.add_item("apple", 2)
+        self.assertEqual(inventory.count("apple"), 5)
+
+    def test_unknown_item_count_is_zero(self) -> None:
+        self.assertEqual(Inventory().count("pear"), 0)
+
+    def test_rejects_non_positive_quantity(self) -> None:
+        with self.assertRaises(ValueError):
+            Inventory().add_item("apple", 0)
+
+    def test_names_sorted(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("pear", 1)
+        inventory.add_item("apple", 1)
+        self.assertEqual(inventory.names(), ["apple", "pear"])
+
+    def test_low_stock_items_are_strictly_below_configured_threshold_and_sorted(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("pear", 1)
+        inventory.add_item("apple", 4)
+        inventory.add_item("banana", 5)
+        inventory.add_item("orange", 6)
+
+        self.assertEqual(inventory.low_stock_items(), ["apple", "pear"])
+
+
+if __name__ == "__main__":
+    unittest.main()

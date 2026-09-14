@@ -1,0 +1,88 @@
+--- frozen-input/inventory.py
++++ final/inventory.py
+@@ -2,7 +2,6 @@
+ 
+ from __future__ import annotations
+ 
+-import csv
+ import os
+ import re
+ 
+@@ -12,6 +11,7 @@
+ _FIELD = r'([^",]*|[ \t]*"[^"]*(?:""[^"]*)*"[ \t]*)'
+ _TWO_FIELD_LINE = re.compile(_FIELD + "," + _FIELD)
+ _QUANTITY = re.compile(r"[0-9]+")
++_MAX_QUANTITY_DIGITS = 4300
+ 
+ 
+ class Inventory:
+@@ -31,20 +31,44 @@
+         return sorted(self._items)
+ 
+     def import_csv(self, path: str | os.PathLike[str]) -> tuple[int, list[int]]:
+-        """Import using one whole-file csv.reader stream (fixture defect)."""
++        """Add stock from a UTF-8 CSV file whose header is ``name,quantity``.
++
++        Each physical line is one record and is parsed on its own, so a broken
++        line (for example an unclosed quote) never affects the lines after it.
++        Line numbers count the header as line 1. A data line is imported when it
++        has exactly two well-formed CSV fields, a non-blank name and a quantity
++        made only of ASCII digits with a value above zero; whitespace around
++        either value is ignored. Any other non-blank line is skipped, including
++        a quote inside an unquoted field and both halves of a record whose
++        quoted field spans lines. Blank lines are ignored. Repeated names add
++        up, as with ``add_item``.
++
++        Returns ``(imported, skipped)``: the number of imported lines and the
++        line numbers of skipped lines. Raises ``ValueError`` if the file is empty
++        or its first line is not the expected header; errors opening or decoding
++        the file propagate. When an exception is raised nothing is imported.
++        """
+         with open(path, encoding="utf-8-sig", newline="") as handle:
+-            rows = list(csv.reader(handle))
+-        if not rows or [field.strip() for field in rows[0]] != ["name", "quantity"]:
++            lines = handle.readlines()
++
++        header = _split_two_fields(lines[0]) if lines else None
++        if header is None or (header[0].strip(), header[1].strip()) != ("name", "quantity"):
+             raise ValueError("CSV must start with the header 'name,quantity'")
+-        pending=[]; skipped=[]
+-        for line_number,row in enumerate(rows[1:],start=2):
+-            if not row or not any(field.strip() for field in row): continue
+-            if len(row)!=2: skipped.append(line_number); continue
+-            name, quantity_text=(field.strip() for field in row)
+-            if not name or not quantity_text.isdigit() or int(quantity_text)<=0: skipped.append(line_number); continue
+-            pending.append((name,int(quantity_text)))
+-        for name, quantity in pending: self.add_item(name,quantity)
+-        return len(pending), skipped
++
++        rows: list[tuple[str, int]] = []
++        skipped: list[int] = []
++        for line_number, line in enumerate(lines[1:], start=2):
++            if not line.strip():
++                continue
++            row = _parse_stock_row(line)
++            if row is None:
++                skipped.append(line_number)
++            else:
++                rows.append(row)
++
++        for name, quantity in rows:
++            self.add_item(name, quantity)
++        return len(rows), skipped
+ 
+     def low_stock(self, threshold: int = 5) -> list[str]:
+         """Return names of items whose quantity is below ``threshold``, sorted."""
+@@ -74,9 +98,11 @@
+     name, quantity_text = (field.strip() for field in fields)
+     if not name or not _QUANTITY.fullmatch(quantity_text):
+         return None
++    if len(quantity_text) > _MAX_QUANTITY_DIGITS:
++        return None
+     try:
+         quantity = int(quantity_text)
+-    except ValueError:  # more digits than Python's int conversion limit
++    except ValueError:  # defensive for runtimes with a lower conversion limit
+         return None
+     if quantity <= 0:
+         return None

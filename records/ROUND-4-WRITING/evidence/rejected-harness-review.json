@@ -1,0 +1,14 @@
+{
+  "event": "harness-pre-freeze-review",
+  "at": "2026-09-14T04:13:00.889992+00:00",
+  "status": "rejected",
+  "reason": "Test functions not executed; task states not schema-valid; missing logs incorrectly counted passed; dependency fixture not absent from baseline. Not used for acceptance.",
+  "source_observations": [
+    "test_inventory.py contained def test_zero_quantity_is_removed without invocation; oracle ran python test_inventory.py",
+    "--skill was accepted but not used",
+    "initial_files_preserved ignored deleted files and disallowed authorized implementation edits"
+  ],
+  "archive_note": "Attempt to copy initial script encountered FileNotFoundError during coder replacement; original tool read is in task history, this note preserves the observed defects, not a claimed full source snapshot.",
+  "tokens": null,
+  "usage_note": "无数据"
+}

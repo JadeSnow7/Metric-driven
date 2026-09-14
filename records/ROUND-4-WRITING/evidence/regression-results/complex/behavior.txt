@@ -1,0 +1,5 @@
+PASS unclosed (1, [2])
+PASS huge (1, [2])
+PASS trailing (1, [2])
+PASS multiline (1, [2, 3])
+PASS literal default 5, strict comparison, sorting

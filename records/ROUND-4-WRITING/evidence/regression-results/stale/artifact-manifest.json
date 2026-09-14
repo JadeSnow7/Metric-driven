@@ -1,0 +1,95 @@
+{
+  "captured_at": "2026-09-14T04:41:53.580257+00:00",
+  "source_root": "/private/tmp/edd-r4-fixtures-8gys1wek/stale",
+  "files": {
+    "BASELINE.json": {
+      "archive": "regression-results/stale/final-artifacts/BASELINE.json.txt",
+      "sha256": "cfb711f8521225251b8a31399f182fcd012173a6968add7e91ea01a52ade10af"
+    },
+    "REQUEST.txt": {
+      "archive": "regression-results/stale/final-artifacts/REQUEST.txt.txt",
+      "sha256": "80ff12e7075514fc89ec061ab791627413b04b68c20d7539ea4f0a197e73d995"
+    },
+    "final_reply.md": {
+      "archive": "regression-results/stale/final-artifacts/final_reply.md.txt",
+      "sha256": "9fbec7097da6902be2be592ecc3f204237a09f4d674e9884b910e413943bd286"
+    },
+    "git-trace.log": {
+      "archive": "regression-results/stale/final-artifacts/git-trace.log.txt",
+      "sha256": "9f686cbd75f3688ecd92dff0d5fc4b32b1050270a220470c4b4eb3de12851284"
+    },
+    "precheck/stale-validator-implementation.txt": {
+      "archive": "regression-results/stale/final-artifacts/precheck/stale-validator-implementation.txt.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6"
+    },
+    "precheck/stale-validator-record.txt": {
+      "archive": "regression-results/stale/final-artifacts/precheck/stale-validator-record.txt.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17"
+    },
+    "precheck/stale.txt": {
+      "archive": "regression-results/stale/final-artifacts/precheck/stale.txt.txt",
+      "sha256": "cecc5ae63c636cc93500cd4942dae6cb9e65a264883098bd6589d6102cc86401"
+    },
+    "repo/.gitignore": {
+      "archive": "regression-results/stale/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b"
+    },
+    "repo/README.md": {
+      "archive": "regression-results/stale/final-artifacts/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d"
+    },
+    "repo/config.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844"
+    },
+    "repo/inventory.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/inventory.py.txt",
+      "sha256": "883d9a36f9dccaa0404c91bda690cfd8bd9396dcb846621f6691f4a924f46c3a"
+    },
+    "repo/pricing.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b"
+    },
+    "repo/records/TASK-001/evidence/current-tests.exit": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "repo/records/TASK-001/evidence/current-tests.stderr": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stderr.txt",
+      "sha256": "0dc3621737011a5e80a3f6854c6a006adcc91d3ec0f9d694ea3e82115f5a522f"
+    },
+    "repo/records/TASK-001/evidence/current-tests.stdout": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "repo/records/TASK-001/evidence/old-tests.txt": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "812b7b5587ffa178cf17c86d90dce1eccf47b636040e7bc8ad41f5f3f195a2a8"
+    },
+    "repo/records/TASK-001/task-state.json": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+      "sha256": "1ddb17997686576cf6abf8d7451b0d51a0d567371c0ba5294c0ba1b4ae8f2223"
+    },
+    "repo/records/TASK-001/task-summary.md": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+      "sha256": "5b8ef438083fbec9c281460c6c55a8a1efc0651492bd6c7687526b77f988dcfd"
+    },
+    "repo/records/TASK-001/work-log.md": {
+      "archive": "regression-results/stale/final-artifacts/repo/records/TASK-001/work-log.md.txt",
+      "sha256": "a0eeb65b23180f4f9d86dad6e090ac7975bc101f35ea07d3b431fd0ef24ed929"
+    },
+    "repo/tests/__init__.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "repo/tests/test_inventory.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea"
+    },
+    "repo/tests/test_pricing.py": {
+      "archive": "regression-results/stale/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac"
+    }
+  },
+  "note": "Complete text artifacts, excluding Git object database/cache. Original paths documented; .txt suffix prevents interpreting fixture-relative Markdown links in main repository."
+}

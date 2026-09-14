@@ -1,0 +1,314 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "ROUND-4-WRITING",
+    "title": "交付写作流程与小规模验证",
+    "mode": "resume",
+    "status": "completed",
+    "source_ids": [
+      "SRC-001"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "skill使用者和交接维护者",
+    "scenario": "在证据准确前提下理解交付结果",
+    "problem": "固定模板造成重复与记录负担",
+    "expected_outcome": "报告清晰完整、流程关键约束保持",
+    "scope": "写作流程、相关模板、四类报告对照及四类回归",
+    "acceptable_result": "冻结报告门槛和相关回归均可核验"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-14-approved-round4-plan",
+      "summary": "批准本地文档修改、冻结对照、相关回归；禁止提交推送合并发布",
+      "adoption": "accepted"
+    },
+    {
+      "id": "SRC-002",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-14-commit-push",
+      "summary": "用户追加指令：先提交推送。授权本任务本地提交与推送，未授权合并或发布。",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "每次交付有清晰准确的报告且减少重复",
+      "scope": [
+        "写作规则和记录分工",
+        "报告对照与相关流程回归"
+      ],
+      "non_goals": [
+        "重跑全部30组",
+        "外部发布"
+      ],
+      "dependencies": [],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001",
+        "MET-002"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "事实与流程不退步",
+      "baseline": "第三轮快照及当前30项测试通过",
+      "target": "四类报告准确完整且四类相关流程回归通过",
+      "method": "冻结双评与临时仓库检查",
+      "environment_data": "evidence/evaluation-spec.json",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "status": "passed",
+      "result_note": "完成当前限定样本的最终验收；保留首次失败及人工补正，不是无审查自主交付保证"
+    },
+    {
+      "id": "MET-002",
+      "main_task_id": "MT-001",
+      "kind": "improvement_target",
+      "name": "清晰度与阅读负担",
+      "baseline": "同事实按当前规则重生成报告",
+      "target": "至少一例可定位改善、无未解决理解或负担退步",
+      "method": "匿名双评及必读总量统计",
+      "environment_data": "四例两配置",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "status": "passed",
+      "result_note": "四例双评符合冻结标准；澄清字数和复杂记录行数增加已披露，不宣称稳定成本收益"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "写作流程和配套模板修订及验证",
+      "file_scope": [
+        "skill/evidence-driven-development",
+        "records/ROUND-4-WRITING"
+      ],
+      "interface_constraints": [
+        "保持schema1.1、权限与证据规则"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001",
+        "MET-002"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "owner": "coder-docs; main-review",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/ROUND-4-WRITING/evidence/report-gate.json",
+      "kind": "review_and_execution_record",
+      "supports": [
+        "MET-001",
+        "MET-002"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T04:44:20.366522+00:00",
+      "sha256": "49c3482a0089ae9617cca61e4ba1d4d07195bdaf22e3904cbd9959b38d04b4e6",
+      "summary": "冻结报告对照通过；残余重复和样本限制保留"
+    },
+    {
+      "id": "EVD-002",
+      "path": "records/ROUND-4-WRITING/evidence/regression-gate.json",
+      "kind": "review_and_execution_record",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T04:44:20.366522+00:00",
+      "sha256": "e416c8b07eab44a486f21430b60441e1295d52ac04cc6b95a18716cb6906259d",
+      "summary": "四例核心行为/状态通过；脏依赖首次报告失败与补正均保留，不代表首次无缺陷交付"
+    },
+    {
+      "id": "EVD-003",
+      "path": "records/ROUND-4-WRITING/evidence/checks/results.json",
+      "kind": "review_and_execution_record",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T04:44:20.366522+00:00",
+      "sha256": "1b602e6ca00fc8f97f18b8fc54af233671d5ab74f9addfe722bdf6f5e4e83d7e",
+      "summary": "结构、30项测试、编译、隔离skill校验及diff检查通过"
+    },
+    {
+      "id": "EVD-004",
+      "path": "records/ROUND-4-WRITING/evidence/final-integrity.json",
+      "kind": "review_and_execution_record",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T04:44:20.366522+00:00",
+      "sha256": "4b55126f2e5e5a5726be90f5cc248b7b972103ede6221cbd37f198e5ee408bfa",
+      "summary": "历史、冻结输入、其他改动和候选一致性核对通过"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-001",
+      "implementation_task_ids": [
+        "IT-001"
+      ],
+      "paths": [
+        "skill/evidence-driven-development/SKILL.md",
+        "skill/evidence-driven-development/assets/templates/task-summary.md",
+        "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+        "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+        "skill/evidence-driven-development/references/examples.md",
+        "skill/evidence-driven-development/references/records.md",
+        "skill/evidence-driven-development/references/workflow.md",
+        "skill/evidence-driven-development/references/writing.md"
+      ],
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "reviewed",
+      "summary": "相对接手未提交工作树的8份文档增量；未改校验器/schema/测试"
+    },
+    {
+      "id": "CHG-002",
+      "implementation_task_ids": [
+        "IT-001"
+      ],
+      "paths": [
+        "README.md",
+        "review-iteration-2.md"
+      ],
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "reviewed",
+      "summary": "接手已有的同任务说明和历史评审，已审阅，本次保持内容原样纳入；不将旧评审结论当作本轮实测。"
+    },
+    {
+      "id": "CHG-003",
+      "implementation_task_ids": [
+        "IT-001"
+      ],
+      "paths": [
+        "records/ROUND-4-WRITING"
+      ],
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+      "status": "reviewed",
+      "summary": "本轮已核对的摘要、状态、评测材料与原始证据归档；仅记录元数据，不改变行为指纹。"
+    }
+  ],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001",
+      "MET-002"
+    ],
+    "evidence_ids": [
+      "EVD-001",
+      "EVD-002",
+      "EVD-003",
+      "EVD-004"
+    ],
+    "status": "passed",
+    "scope_note": "仅本地skill修订和本轮小规模验证；已知失败已记录，脏依赖报告经定向审查修正。无外部动作。"
+  },
+  "baseline": {
+    "git_ref": "599c380a8dfeaadeff3a4d542b34071800996a29",
+    "worktree_status": "dirty_dependency_confirmed",
+    "ownership": "用户明确批准基于当前未提交skill修订继续；README与review-iteration-2保留；baseline.json与patch记录起点",
+    "prepared_at": "2026-09-14T03:56:58.417093+00:00"
+  },
+  "authorization": {
+    "commit": {
+      "status": "authorized",
+      "source_id": "SRC-002"
+    },
+    "push": {
+      "status": "authorized",
+      "source_id": "SRC-002"
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": "SRC-001"
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": "SRC-001"
+    }
+  },
+  "delivery": {
+    "local_validation": "passed",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [],
+  "decisions": [],
+  "hypotheses": [
+    {
+      "id": "HYP-001",
+      "mechanism": "以阅读目的组织报告并单处维护事实可减少重复",
+      "budget": "四例两配置一次生成，失败仅定向重试；之后四个窄回归",
+      "exit_condition": "冻结门槛可判定；成本或环境阻塞则保留未完成与证据"
+    }
+  ],
+  "recovery_strategy": {
+    "trigger": "候选引入事实遗漏或关键流程回归",
+    "steps": [
+      "保留失败产物",
+      "仅修本轮差异并重验受影响项"
+    ],
+    "owner": "main-thread"
+  }
+}

@@ -1,0 +1,47 @@
+import unittest
+
+from inventory import Inventory
+
+
+class InventoryTests(unittest.TestCase):
+    def test_add_and_count(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("apple", 3)
+        inventory.add_item("apple", 2)
+        self.assertEqual(inventory.count("apple"), 5)
+
+    def test_unknown_item_count_is_zero(self) -> None:
+        self.assertEqual(Inventory().count("pear"), 0)
+
+    def test_rejects_non_positive_quantity(self) -> None:
+        with self.assertRaises(ValueError):
+            Inventory().add_item("apple", 0)
+
+    def test_names_sorted(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("pear", 1)
+        inventory.add_item("apple", 1)
+        self.assertEqual(inventory.names(), ["apple", "pear"])
+
+    def test_remove_item_partial(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("apple", 5)
+        inventory.remove_item("apple", 2)
+        self.assertEqual(inventory.count("apple"), 3)
+
+    def test_remove_item_to_zero_deletes(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("apple", 2)
+        inventory.remove_item("apple", 2)
+        self.assertEqual(inventory.names(), [])
+
+    def test_remove_item_insufficient(self) -> None:
+        inventory = Inventory()
+        inventory.add_item("apple", 1)
+        with self.assertRaises(ValueError):
+            inventory.remove_item("apple", 2)
+        self.assertEqual(inventory.count("apple"), 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

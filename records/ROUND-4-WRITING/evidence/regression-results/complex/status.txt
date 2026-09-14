@@ -1,0 +1,6 @@
+ M inventory.py
+?? records/TASK-001/evidence/current-tests.txt
+?? records/TASK-001/evidence/old-tests.txt
+?? records/TASK-001/evidence/state-validation.txt
+?? records/TASK-001/task-state.json
+?? records/TASK-001/task-summary.md
