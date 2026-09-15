@@ -1,0 +1,1 @@
+{"finding":"document npm script is absent or obsolete","acceptable":"document an available test command","assertions":[{"file":"README.md","contains_any":["npm test","npm run test"],"reference":"package.json:scripts.test","require_retained_body":true},{"file":"README.md","does_not_contain":"old-test"},{"file":"README.md","contains":"tests"}]}

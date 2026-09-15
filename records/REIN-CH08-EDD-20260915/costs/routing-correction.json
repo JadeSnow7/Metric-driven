@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-09-15T04:07:32.573223+00:00",
+  "earlier_interpretation": "initial turn_context header meant preparation ran parent model",
+  "correction": "both collaboration agent logs have thread_settings_applied and gpt-5.6-luna/medium turn_context before first reasoning/tool output",
+  "skill_agent_sequence": {
+    "initial_header": "2026-09-15T03:11:35.502Z gpt-6-astra/high",
+    "applied_context": "2026-09-15T03:11:40.781Z gpt-5.6-luna/medium",
+    "first_reasoning": "2026-09-15T03:11:44.070Z",
+    "first_tool": "2026-09-15T03:11:46.884Z"
+  },
+  "scope": "fresh formal CLI remains useful for context isolation and available collaboration slot limitations, not because observed coder execution used the wrong model"
+}

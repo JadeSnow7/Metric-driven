@@ -1,0 +1,8 @@
+{
+  "event": "artifact-location-correction",
+  "case": "dirty",
+  "at": "2026-09-14T04:33:42.988655+00:00",
+  "observation": "Agent wrote final_reply.md and run-evidence one level above its assigned fixture directory. Main thread archived originals and moved them into dirty/. No report wording or product source was changed.",
+  "validation_limit": "Output-path adherence was not clean on first attempt; not evidence of perfect scope control.",
+  "tokens": null
+}

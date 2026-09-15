@@ -1,0 +1,13 @@
+{
+  "kind": "pre-ch08-tool-main-review",
+  "source_path": "/private/tmp/rein-pre-ch08-tool-main-review",
+  "files": [
+    {
+      "path": "tests.json",
+      "sha256": "1f916417b824c0457a04e1506dab1ee46e0855e48e96b94534b9272f47509ec3",
+      "mode": "0644"
+    }
+  ],
+  "sha256_verified": true,
+  "chapter_runtime_started": false
+}

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--test",
+    "loop"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/rust",
+  "start": "2026-09-14T14:42:30.694452+00:00",
+  "end": "2026-09-14T14:42:32.761527+00:00",
+  "elapsed": 2.0670552253723145,
+  "exit": 0,
+  "stdout": "\nrunning 9 tests\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\ntest ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch ... ok\ntest ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history ... ok\ntest nested_arguments_are_canonical_for_duplicate_detection ... ok\ntest unknown_badargs_missing_file_are_feedback_and_can_recover ... ok\ntest model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok\ntest two_workspaces_search_then_read_and_pair_multiple_calls ... ok\ntest observer_cancels_between_tools_and_pending_model_is_dropped ... ok\ntest controls_stop_pending_model_and_zero_budget_without_dispatch ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.20s\n     Running tests/loop.rs (/private/tmp/rein-candidate03-build/debug/deps/loop-8ce302fc995cc4fc)\n"
+}

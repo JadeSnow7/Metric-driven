@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T05:42:46.562546+00:00",
+  "file_count": 183,
+  "archive_sha256": "f73ec529a5d61bef59ecac4b020ee22592516305cf8dbb9f8b3178acd08cdf65",
+  "mismatches": [],
+  "note": "Central loose-file readback encountered filesystem TimeoutError(60). Archive created from unchanged terminal live files that exactly match original seal manifest, then every archived member hash independently matched. Original loose-file snapshot retained, no formal rerun or file edit."
+}

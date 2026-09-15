@@ -1,0 +1,888 @@
+   1 use serde::{Deserialize, Serialize};
+   2 use std::future::Future;
+   3 use std::path::{Path, PathBuf};
+   4 use std::pin::Pin;
+   5 use std::time::Duration;
+   6 
+   7 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+   8 pub struct Message {
+   9     pub role: String,
+  10     pub content: String,
+  11     #[serde(rename = "toolCallId", skip_serializing_if = "Option::is_none")]
+  12     pub tool_call_id: Option<String>,
+  13     #[serde(rename = "toolCalls", default, skip_serializing_if = "Vec::is_empty")]
+  14     pub tool_calls: Vec<ToolCall>,
+  15 }
+  16 
+  17 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  18 pub struct ToolCall {
+  19     pub id: String,
+  20     pub name: String,
+  21     pub arguments: serde_json::Value,
+  22 }
+  23 
+  24 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  25 pub struct ToolError {
+  26     pub code: String,
+  27     pub message: String,
+  28 }
+  29 
+  30 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  31 pub struct ToolResult {
+  32     #[serde(rename = "toolCallId")]
+  33     pub tool_call_id: String,
+  34     pub ok: bool,
+  35     #[serde(skip_serializing_if = "Option::is_none")]
+  36     pub output: Option<String>,
+  37     #[serde(skip_serializing_if = "Option::is_none")]
+  38     pub error: Option<ToolError>,
+  39 }
+  40 
+  41 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  42 #[serde(rename_all = "camelCase")]
+  43 pub struct Turn {
+  44     pub messages: Vec<Message>,
+  45     pub tool_calls: Vec<ToolCall>,
+  46     pub tool_results: Vec<ToolResult>,
+  47 }
+  48 
+  49 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  50 pub struct ToolDefinition {
+  51     pub name: String,
+  52     pub description: String,
+  53     #[serde(rename = "inputSchema")]
+  54     pub input_schema: serde_json::Value,
+  55 }
+  56 
+  57 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+  58 pub struct ModelTurn {
+  59     pub message: Message,
+  60     #[serde(rename = "toolCalls")]
+  61     pub tool_calls: Vec<ToolCall>,
+  62 }
+  63 
+  64 pub trait OpenAiHttp {
+  65     fn post<'a>(
+  66         &'a self,
+  67         url: &'a str,
+  68         api_key: &'a str,
+  69         body: serde_json::Value,
+  70     ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>>;
+  71 }
+  72 
+  73 pub struct ReqwestHttp {
+  74     client: reqwest::Client,
+  75     timeout: Duration,
+  76 }
+  77 
+  78 impl ReqwestHttp {
+  79     pub fn new(timeout: Duration) -> Result<Self, ToolError> {
+  80         let client = reqwest::Client::builder()
+  81             .timeout(timeout)
+  82             .build()
+  83             .map_err(|_| ToolError {
+  84                 code: "transport_config".into(),
+  85                 message: "could not configure HTTP client".into(),
+  86             })?;
+  87         Ok(Self { client, timeout })
+  88     }
+  89     pub fn timeout(&self) -> Duration {
+  90         self.timeout
+  91     }
+  92 }
+  93 
+  94 impl OpenAiHttp for ReqwestHttp {
+  95     fn post<'a>(
+  96         &'a self,
+  97         url: &'a str,
+  98         api_key: &'a str,
+  99         body: serde_json::Value,
+ 100     ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>> {
+ 101         Box::pin(async move {
+ 102             let response = self
+ 103                 .client
+ 104                 .post(url)
+ 105                 .bearer_auth(api_key)
+ 106                 .json(&body)
+ 107                 .send()
+ 108                 .await
+ 109                 .map_err(|error| ToolError {
+ 110                     code: if error.is_timeout() {
+ 111                         "timeout"
+ 112                     } else {
+ 113                         "network"
+ 114                     }
+ 115                     .into(),
+ 116                     message: "HTTP request failed".into(),
+ 117                 })?;
+ 118             let status = response.status();
+ 119             let text = response.text().await.map_err(|_| ToolError {
+ 120                 code: "network".into(),
+ 121                 message: "could not read HTTP response".into(),
+ 122             })?;
+ 123             if !status.is_success() {
+ 124                 return Err(ToolError {
+ 125                     code: format!("http_{}", status.as_u16()),
+ 126                     message: "OpenAI HTTP request failed".into(),
+ 127                 });
+ 128             }
+ 129             Ok(text)
+ 130         })
+ 131     }
+ 132 }
+ 133 
+ 134 pub async fn openai_complete<H: OpenAiHttp>(
+ 135     http: &H,
+ 136     base_url: &str,
+ 137     api_key: &str,
+ 138     model: &str,
+ 139     messages: &[Message],
+ 140     tools: &[ToolDefinition],
+ 141 ) -> Result<ModelTurn, ToolError> {
+ 142     let wire_messages: Vec<_> = messages.iter().map(|message| {
+ 143         if message.role == "tool" { serde_json::json!({"role":"tool","tool_call_id":message.tool_call_id,"content":message.content}) }
+ 144         else if message.role == "assistant" && !message.tool_calls.is_empty() { serde_json::json!({"role":"assistant","content":message.content,"tool_calls":message.tool_calls.iter().map(|call| serde_json::json!({"id":call.id,"type":"function","function":{"name":call.name,"arguments":call.arguments.to_string()}})).collect::<Vec<_>>()}) }
+ 145         else { serde_json::json!({"role":message.role,"content":message.content}) }
+ 146     }).collect();
+ 147     let body = serde_json::json!({ "model": model, "messages": wire_messages, "tools": tools.iter().map(|tool| serde_json::json!({"type":"function","function":{"name":tool.name,"description":tool.description,"parameters":tool.input_schema}})).collect::<Vec<_>>() });
+ 148     let response = http
+ 149         .post(
+ 150             &format!("{}/chat/completions", base_url.trim_end_matches('/')),
+ 151             api_key,
+ 152             body,
+ 153         )
+ 154         .await?;
+ 155     parse_openai_turn(&response)
+ 156 }
+ 157 
+ 158 pub fn parse_openai_turn(body: &str) -> Result<ModelTurn, ToolError> {
+ 159     let root: serde_json::Value = serde_json::from_str(body).map_err(|_| ToolError {
+ 160         code: "response_format".into(),
+ 161         message: "invalid JSON".into(),
+ 162     })?;
+ 163     let message = root
+ 164         .get("choices")
+ 165         .and_then(|v| v.as_array())
+ 166         .and_then(|a| a.first())
+ 167         .and_then(|v| v.get("message"))
+ 168         .ok_or_else(|| ToolError {
+ 169             code: "response_format".into(),
+ 170             message: "missing message".into(),
+ 171         })?;
+ 172     let content = match message.get("content") {
+ 173         None | Some(serde_json::Value::Null) => String::new(),
+ 174         Some(value) => value
+ 175             .as_str()
+ 176             .ok_or_else(|| ToolError {
+ 177                 code: "response_format".into(),
+ 178                 message: "message content must be string or null".into(),
+ 179             })?
+ 180             .to_owned(),
+ 181     };
+ 182     if let Some(value) = message.get("tool_calls") {
+ 183         if !value.is_array() {
+ 184             return Err(ToolError {
+ 185                 code: "response_format".into(),
+ 186                 message: "tool_calls must be an array".into(),
+ 187             });
+ 188         }
+ 189     }
+ 190     let mut calls = Vec::new();
+ 191     for call in message
+ 192         .get("tool_calls")
+ 193         .and_then(|v| v.as_array())
+ 194         .into_iter()
+ 195         .flatten()
+ 196     {
+ 197         let id = call
+ 198             .get("id")
+ 199             .and_then(|v| v.as_str())
+ 200             .filter(|v| !v.is_empty())
+ 201             .ok_or_else(|| ToolError {
+ 202                 code: "response_format".into(),
+ 203                 message: "tool call lacks id".into(),
+ 204             })?;
+ 205         let function = call.get("function").ok_or_else(|| ToolError {
+ 206             code: "response_format".into(),
+ 207             message: "missing tool function".into(),
+ 208         })?;
+ 209         let arguments: serde_json::Value = serde_json::from_str(
+ 210             function
+ 211                 .get("arguments")
+ 212                 .and_then(|v| v.as_str())
+ 213                 .ok_or_else(|| ToolError {
+ 214                     code: "arguments_invalid".into(),
+ 215                     message: "tool arguments must be JSON text".into(),
+ 216                 })?,
+ 217         )
+ 218         .map_err(|_| ToolError {
+ 219             code: "arguments_invalid".into(),
+ 220             message: "tool arguments are not JSON".into(),
+ 221         })?;
+ 222         if !arguments.is_object() {
+ 223             return Err(ToolError {
+ 224                 code: "arguments_invalid".into(),
+ 225                 message: "tool arguments must be an object".into(),
+ 226             });
+ 227         }
+ 228         let name = function
+ 229             .get("name")
+ 230             .and_then(|v| v.as_str())
+ 231             .filter(|v| !v.is_empty())
+ 232             .ok_or_else(|| ToolError {
+ 233                 code: "response_format".into(),
+ 234                 message: "tool call lacks name".into(),
+ 235             })?;
+ 236         calls.push(ToolCall {
+ 237             id: id.into(),
+ 238             name: function
+ 239                 .get("name")
+ 240                 .and_then(|v| v.as_str())
+ 241                 .unwrap_or(name)
+ 242                 .into(),
+ 243             arguments,
+ 244         });
+ 245     }
+ 246     let message = Message {
+ 247         role: "assistant".into(),
+ 248         content,
+ 249         tool_call_id: None,
+ 250         tool_calls: calls.clone(),
+ 251     };
+ 252     Ok(ModelTurn {
+ 253         message,
+ 254         tool_calls: calls,
+ 255     })
+ 256 }
+ 257 
+ 258 pub fn anthropic_request(messages: &[Message], model: &str) -> serde_json::Value {
+ 259     let system = messages
+ 260         .iter()
+ 261         .find(|m| m.role == "system")
+ 262         .map(|m| m.content.clone());
+ 263     let mut filtered: Vec<serde_json::Value> = Vec::new();
+ 264     for m in messages.iter().filter(|m| m.role != "system") {
+ 265         if m.role == "tool" {
+ 266             let block = serde_json::json!({"type":"tool_result","tool_use_id":m.tool_call_id,"content":m.content});
+ 267             if filtered
+ 268                 .last()
+ 269                 .and_then(|v| v.get("role"))
+ 270                 .and_then(|v| v.as_str())
+ 271                 == Some("user")
+ 272                 && filtered
+ 273                     .last()
+ 274                     .and_then(|v| v.get("content"))
+ 275                     .and_then(|v| v.as_array())
+ 276                     .is_some()
+ 277             {
+ 278                 filtered.last_mut().unwrap()["content"]
+ 279                     .as_array_mut()
+ 280                     .unwrap()
+ 281                     .push(block);
+ 282             } else {
+ 283                 filtered.push(serde_json::json!({"role":"user","content":[block]}));
+ 284             }
+ 285         } else if m.role == "assistant" && !m.tool_calls.is_empty() {
+ 286             let mut content = Vec::new();
+ 287             if !m.content.is_empty() {
+ 288                 content.push(serde_json::json!({"type":"text","text":m.content}));
+ 289             }
+ 290             content.extend(m.tool_calls.iter().map(|c| serde_json::json!({"type":"tool_use","id":c.id,"name":c.name,"input":c.arguments})));
+ 291             filtered.push(serde_json::json!({"role":"assistant","content":content}));
+ 292         } else {
+ 293             filtered.push(serde_json::json!({"role": if m.role == "assistant" { "assistant" } else { "user" }, "content": m.content}));
+ 294         }
+ 295     }
+ 296     let mut request = serde_json::json!({"model": model, "max_tokens": 1024, "messages": filtered});
+ 297     if let Some(system) = system {
+ 298         request["system"] = system.into();
+ 299     }
+ 300     request
+ 301 }
+ 302 
+ 303 pub fn anthropic_response_to_message(body: &str) -> Result<Message, ToolError> {
+ 304     Ok(parse_anthropic_turn(body)?.message)
+ 305 }
+ 306 
+ 307 pub fn parse_anthropic_turn(body: &str) -> Result<ModelTurn, ToolError> {
+ 308     let value: serde_json::Value = serde_json::from_str(body).map_err(|_| ToolError {
+ 309         code: "response_format".into(),
+ 310         message: "invalid JSON".into(),
+ 311     })?;
+ 312     let blocks = value
+ 313         .get("content")
+ 314         .and_then(|v| v.as_array())
+ 315         .ok_or_else(|| ToolError {
+ 316             code: "response_format".into(),
+ 317             message: "missing content".into(),
+ 318         })?;
+ 319     let content = blocks
+ 320         .iter()
+ 321         .filter(|b| b.get("type").and_then(|t| t.as_str()) == Some("text"))
+ 322         .filter_map(|b| b.get("text").and_then(|t| t.as_str()))
+ 323         .collect::<Vec<_>>()
+ 324         .join("");
+ 325     let mut calls = Vec::new();
+ 326     for block in blocks
+ 327         .iter()
+ 328         .filter(|b| b.get("type").and_then(|t| t.as_str()) == Some("tool_use"))
+ 329     {
+ 330         let id = block
+ 331             .get("id")
+ 332             .and_then(|v| v.as_str())
+ 333             .filter(|s| !s.is_empty())
+ 334             .ok_or_else(|| ToolError {
+ 335                 code: "response_format".into(),
+ 336                 message: "tool_use lacks id".into(),
+ 337             })?;
+ 338         let name = block
+ 339             .get("name")
+ 340             .and_then(|v| v.as_str())
+ 341             .filter(|s| !s.is_empty())
+ 342             .ok_or_else(|| ToolError {
+ 343                 code: "response_format".into(),
+ 344                 message: "tool_use lacks name".into(),
+ 345             })?;
+ 346         let arguments = block
+ 347             .get("input")
+ 348             .filter(|v| v.is_object())
+ 349             .cloned()
+ 350             .ok_or_else(|| ToolError {
+ 351                 code: "arguments_invalid".into(),
+ 352                 message: "tool input must be an object".into(),
+ 353             })?;
+ 354         calls.push(ToolCall {
+ 355             id: id.into(),
+ 356             name: name.into(),
+ 357             arguments,
+ 358         });
+ 359     }
+ 360     for block in blocks {
+ 361         if block.get("type").and_then(|v| v.as_str()) == Some("text")
+ 362             && block.get("text").and_then(|v| v.as_str()).is_none()
+ 363         {
+ 364             return Err(ToolError {
+ 365                 code: "response_format".into(),
+ 366                 message: "text block is invalid".into(),
+ 367             });
+ 368         }
+ 369         if !matches!(
+ 370             block.get("type").and_then(|v| v.as_str()),
+ 371             Some("text") | Some("tool_use")
+ 372         ) {
+ 373             return Err(ToolError {
+ 374                 code: "response_format".into(),
+ 375                 message: "content block is invalid".into(),
+ 376             });
+ 377         }
+ 378     }
+ 379     if calls.is_empty() && content.is_empty() {
+ 380         return Err(ToolError {
+ 381             code: "response_format".into(),
+ 382             message: "Anthropic response lacks text content".into(),
+ 383         });
+ 384     }
+ 385     Ok(ModelTurn {
+ 386         message: Message {
+ 387             role: "assistant".into(),
+ 388             content,
+ 389             tool_call_id: None,
+ 390             tool_calls: calls.clone(),
+ 391         },
+ 392         tool_calls: calls,
+ 393     })
+ 394 }
+ 395 
+ 396 pub fn replay(responses: &[String], index: &mut usize) -> Result<ModelTurn, ToolError> {
+ 397     let body = responses.get(*index).ok_or_else(|| ToolError {
+ 398         code: "replay_exhausted".into(),
+ 399         message: "replay exhausted".into(),
+ 400     })?;
+ 401     *index += 1;
+ 402     parse_anthropic_turn(body)
+ 403 }
+ 404 
+ 405 #[derive(Clone, Debug, PartialEq, Eq)]
+ 406 pub struct Workspace {
+ 407     pub root: PathBuf,
+ 408 }
+ 409 
+ 410 fn safe_path(workspace: &Workspace, input: &str) -> Result<PathBuf, ToolError> {
+ 411     let root = workspace.root.canonicalize().map_err(|_| ToolError {
+ 412         code: "workspace_invalid".into(),
+ 413         message: "workspace unavailable".into(),
+ 414     })?;
+ 415     let mut components = Vec::new();
+ 416     for component in Path::new(input).components() {
+ 417         match component {
+ 418             std::path::Component::RootDir | std::path::Component::Prefix(_) => {
+ 419                 return Err(ToolError {
+ 420                     code: "path_escape".into(),
+ 421                     message: "path escapes workspace".into(),
+ 422                 });
+ 423             }
+ 424             std::path::Component::ParentDir => {
+ 425                 if components.pop().is_none() {
+ 426                     return Err(ToolError {
+ 427                         code: "path_escape".into(),
+ 428                         message: "path escapes workspace".into(),
+ 429                     });
+ 430                 }
+ 431             }
+ 432             std::path::Component::Normal(value) => components.push(value),
+ 433             std::path::Component::CurDir => {}
+ 434         }
+ 435     }
+ 436     let requested = root.join(input);
+ 437     let candidate = requested.canonicalize().map_err(|_| ToolError {
+ 438         code: "path_invalid".into(),
+ 439         message: "path unavailable".into(),
+ 440     })?;
+ 441     if !candidate.starts_with(&root) {
+ 442         return Err(ToolError {
+ 443             code: "path_escape".into(),
+ 444             message: "path escapes workspace".into(),
+ 445         });
+ 446     }
+ 447     Ok(candidate)
+ 448 }
+ 449 
+ 450 pub fn read_file(workspace: &Workspace, path: &str) -> ToolResult {
+ 451     match safe_path(workspace, path).and_then(|path| {
+ 452         std::fs::read_to_string(path).map_err(|_| ToolError {
+ 453             code: "read_failed".into(),
+ 454             message: "read failed".into(),
+ 455         })
+ 456     }) {
+ 457         Ok(output) => ToolResult {
+ 458             tool_call_id: "read_file".into(),
+ 459             ok: true,
+ 460             output: Some(output),
+ 461             error: None,
+ 462         },
+ 463         Err(error) => ToolResult {
+ 464             tool_call_id: "read_file".into(),
+ 465             ok: false,
+ 466             output: None,
+ 467             error: Some(error),
+ 468         },
+ 469     }
+ 470 }
+ 471 
+ 472 pub fn search_files(workspace: &Workspace, needle: &str) -> ToolResult {
+ 473     fn walk(root: &Path, dir: &Path, needle: &str, found: &mut Vec<String>) -> std::io::Result<()> {
+ 474         for entry in std::fs::read_dir(dir)? {
+ 475             let entry = entry?;
+ 476             let name = entry.file_name();
+ 477             if matches!(name.to_str(), Some(".git" | "target" | "node_modules")) {
+ 478                 continue;
+ 479             }
+ 480             let path = entry.path();
+ 481             let metadata = std::fs::symlink_metadata(&path)?;
+ 482             if metadata.file_type().is_symlink() {
+ 483                 continue;
+ 484             }
+ 485             if metadata.is_dir() {
+ 486                 walk(root, &path, needle, found)?;
+ 487             } else if path.is_file()
+ 488                 && std::fs::read_to_string(&path)
+ 489                     .map(|s| s.contains(needle))
+ 490                     .unwrap_or(false)
+ 491             {
+ 492                 found.push(
+ 493                     path.strip_prefix(root)
+ 494                         .unwrap_or(&path)
+ 495                         .display()
+ 496                         .to_string(),
+ 497                 );
+ 498             }
+ 499         }
+ 500         Ok(())
+ 501     }
+ 502     let root = match workspace.root.canonicalize() {
+ 503         Ok(root) => root,
+ 504         Err(_) => {
+ 505             return ToolResult {
+ 506                 tool_call_id: "search_files".into(),
+ 507                 ok: false,
+ 508                 output: None,
+ 509                 error: Some(ToolError {
+ 510                     code: "workspace_invalid".into(),
+ 511                     message: "workspace unavailable".into(),
+ 512                 }),
+ 513             }
+ 514         }
+ 515     };
+ 516     let mut found = Vec::new();
+ 517     match walk(&root, &root, needle, &mut found) {
+ 518         Ok(()) => {
+ 519             found.sort();
+ 520             ToolResult {
+ 521                 tool_call_id: "search_files".into(),
+ 522                 ok: true,
+ 523                 output: Some(found.join("\n")),
+ 524                 error: None,
+ 525             }
+ 526         }
+ 527         Err(_) => ToolResult {
+ 528             tool_call_id: "search_files".into(),
+ 529             ok: false,
+ 530             output: None,
+ 531             error: Some(ToolError {
+ 532                 code: "search_failed".into(),
+ 533                 message: "search failed".into(),
+ 534             }),
+ 535         },
+ 536     }
+ 537 }
+ 538 
+ 539 pub fn dispatch_readonly(call: &ToolCall, workspace: &Workspace) -> ToolResult {
+ 540     match call.name.as_str() {
+ 541         "read_file" => match call.arguments.get("path").and_then(|v| v.as_str()) {
+ 542             Some(path) => {
+ 543                 let mut result = read_file(workspace, path);
+ 544                 result.tool_call_id = call.id.clone();
+ 545                 result
+ 546             }
+ 547             None => invalid_result(&call.id, "read_file requires string path"),
+ 548         },
+ 549         "search_files" => match call.arguments.get("needle").and_then(|v| v.as_str()) {
+ 550             Some(needle) => {
+ 551                 let mut result = search_files(workspace, needle);
+ 552                 result.tool_call_id = call.id.clone();
+ 553                 result
+ 554             }
+ 555             None => invalid_result(&call.id, "search_files requires string needle"),
+ 556         },
+ 557         _ => ToolResult {
+ 558             tool_call_id: call.id.clone(),
+ 559             ok: false,
+ 560             output: None,
+ 561             error: Some(ToolError {
+ 562                 code: "unknown_tool".into(),
+ 563                 message: format!("unknown tool: {}", call.name),
+ 564             }),
+ 565         },
+ 566     }
+ 567 }
+ 568 
+ 569 pub use dispatch_readonly as execute_tool;
+ 570 pub use dispatch_readonly as execute_tool_call;
+ 571 
+ 572 fn invalid_result(id: &str, message: &str) -> ToolResult {
+ 573     ToolResult {
+ 574         tool_call_id: id.into(),
+ 575         ok: false,
+ 576         output: None,
+ 577         error: Some(ToolError {
+ 578             code: "arguments_invalid".into(),
+ 579             message: message.into(),
+ 580         }),
+ 581     }
+ 582 }
+ 583 
+ 584 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+ 585 #[serde(tag = "type", rename_all = "camelCase")]
+ 586 pub enum LoopEvent {
+ 587     Started {
+ 588         round: usize,
+ 589     },
+ 590     Model {
+ 591         round: usize,
+ 592         tool_call_ids: Vec<String>,
+ 593         text: String,
+ 594     },
+ 595     Tool {
+ 596         round: usize,
+ 597         tool_call_id: String,
+ 598         name: String,
+ 599         result: ToolResult,
+ 600     },
+ 601     Stopped {
+ 602         reason: StopReason,
+ 603     },
+ 604 }
+ 605 
+ 606 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+ 607 #[serde(rename_all = "snake_case")]
+ 608 pub enum StopReason {
+ 609     Completed,
+ 610     EmptyFinal,
+ 611     ModelError,
+ 612     MaxRounds,
+ 613 }
+ 614 
+ 615 #[derive(Clone, Debug, PartialEq, Eq)]
+ 616 pub struct LoopResult {
+ 617     pub ok: bool,
+ 618     pub answer: Option<String>,
+ 619     pub reason: StopReason,
+ 620     pub messages: Vec<Message>,
+ 621     pub events: Vec<LoopEvent>,
+ 622 }
+ 623 
+ 624 pub trait LoopAdapter {
+ 625     fn complete<'a>(
+ 626         &'a mut self,
+ 627         messages: &'a [Message],
+ 628         tools: &'a [ToolDefinition],
+ 629     ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>>;
+ 630 }
+ 631 
+ 632 pub async fn run_agent_loop<A: LoopAdapter>(
+ 633     adapter: &mut A,
+ 634     initial: &[Message],
+ 635     workspace: &Workspace,
+ 636     tools: &[ToolDefinition],
+ 637     max_rounds: usize,
+ 638 ) -> LoopResult {
+ 639     let mut messages = initial.to_vec();
+ 640     let mut events = vec![LoopEvent::Started { round: 0 }];
+ 641     for round in 1..=max_rounds {
+ 642         let turn = match adapter.complete(&messages, tools).await {
+ 643             Ok(turn) => turn,
+ 644             Err(_) => {
+ 645                 events.push(LoopEvent::Stopped {
+ 646                     reason: StopReason::ModelError,
+ 647                 });
+ 648                 return LoopResult {
+ 649                     ok: false,
+ 650                     answer: None,
+ 651                     reason: StopReason::ModelError,
+ 652                     messages,
+ 653                     events,
+ 654                 };
+ 655             }
+ 656         };
+ 657         let ids = turn.tool_calls.iter().map(|call| call.id.clone()).collect();
+ 658         events.push(LoopEvent::Model {
+ 659             round,
+ 660             tool_call_ids: ids,
+ 661             text: turn.message.content.clone(),
+ 662         });
+ 663         let final_text = turn.message.content.clone();
+ 664         messages.push(turn.message);
+ 665         if turn.tool_calls.is_empty() {
+ 666             if final_text.trim().is_empty() {
+ 667                 events.push(LoopEvent::Stopped {
+ 668                     reason: StopReason::EmptyFinal,
+ 669                 });
+ 670                 return LoopResult {
+ 671                     ok: false,
+ 672                     answer: None,
+ 673                     reason: StopReason::EmptyFinal,
+ 674                     messages,
+ 675                     events,
+ 676                 };
+ 677             }
+ 678             let answer = final_text;
+ 679             events.push(LoopEvent::Stopped {
+ 680                 reason: StopReason::Completed,
+ 681             });
+ 682             return LoopResult {
+ 683                 ok: true,
+ 684                 answer: Some(answer),
+ 685                 reason: StopReason::Completed,
+ 686                 messages,
+ 687                 events,
+ 688             };
+ 689         }
+ 690         for call in turn.tool_calls {
+ 691             let result = dispatch_readonly(&call, workspace);
+ 692             let content = if result.ok {
+ 693                 result.output.clone().unwrap_or_default()
+ 694             } else {
+ 695                 serde_json::json!({"error": result.error}).to_string()
+ 696             };
+ 697             messages.push(Message {
+ 698                 role: "tool".into(),
+ 699                 content,
+ 700                 tool_call_id: Some(result.tool_call_id.clone()),
+ 701                 tool_calls: Vec::new(),
+ 702             });
+ 703             events.push(LoopEvent::Tool {
+ 704                 round,
+ 705                 tool_call_id: call.id,
+ 706                 name: call.name,
+ 707                 result,
+ 708             });
+ 709         }
+ 710     }
+ 711     events.push(LoopEvent::Stopped {
+ 712         reason: StopReason::MaxRounds,
+ 713     });
+ 714     LoopResult {
+ 715         ok: false,
+ 716         answer: None,
+ 717         reason: StopReason::MaxRounds,
+ 718         messages,
+ 719         events,
+ 720     }
+ 721 }
+ 722 
+ 723 #[cfg(test)]
+ 724 mod tests {
+ 725     use super::*;
+ 726     #[test]
+ 727     fn anthropic_round_trip_shape() {
+ 728         let input = vec![Message {
+ 729             role: "user".into(),
+ 730             content: "hi".into(),
+ 731             tool_call_id: None,
+ 732             tool_calls: Vec::new(),
+ 733         }];
+ 734         assert_eq!(
+ 735             anthropic_request(&input, "claude-test")["model"],
+ 736             "claude-test"
+ 737         );
+ 738         assert_eq!(
+ 739             anthropic_response_to_message(r#"{"content":[{"type":"text","text":"hello"}]}"#)
+ 740                 .unwrap()
+ 741                 .content,
+ 742             "hello"
+ 743         );
+ 744     }
+ 745     #[test]
+ 746     fn read_file_rejects_escape() {
+ 747         let result = read_file(
+ 748             &Workspace {
+ 749                 root: std::env::current_dir().unwrap(),
+ 750             },
+ 751             "../../outside",
+ 752         );
+ 753         assert!(!result.ok);
+ 754         assert!(result.error.is_some());
+ 755     }
+ 756 
+ 757     struct Replay {
+ 758         turns: Vec<Result<ModelTurn, ToolError>>,
+ 759         index: usize,
+ 760     }
+ 761 
+ 762     impl LoopAdapter for Replay {
+ 763         fn complete<'a>(
+ 764             &'a mut self,
+ 765             _messages: &'a [Message],
+ 766             _tools: &'a [ToolDefinition],
+ 767         ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
+ 768             let result = self.turns.get(self.index).cloned().unwrap_or_else(|| {
+ 769                 Err(ToolError {
+ 770                     code: "exhausted".into(),
+ 771                     message: "exhausted".into(),
+ 772                 })
+ 773             });
+ 774             self.index += 1;
+ 775             Box::pin(async move { result })
+ 776         }
+ 777     }
+ 778 
+ 779     fn model(text: &str, calls: Vec<ToolCall>) -> ModelTurn {
+ 780         ModelTurn {
+ 781             message: Message {
+ 782                 role: "assistant".into(),
+ 783                 content: text.into(),
+ 784                 tool_call_id: None,
+ 785                 tool_calls: calls.clone(),
+ 786             },
+ 787             tool_calls: calls,
+ 788         }
+ 789     }
+ 790 
+ 791     #[tokio::test]
+ 792     async fn loop_reads_real_content_and_pairs_multiple_results() {
+ 793         let root = std::env::temp_dir().join(format!("rein-loop-{}", std::process::id()));
+ 794         let _ = std::fs::remove_dir_all(&root);
+ 795         std::fs::create_dir_all(&root).unwrap();
+ 796         std::fs::write(root.join("a.txt"), "真实 Rust 内容").unwrap();
+ 797         let calls = vec![
+ 798             ToolCall {
+ 799                 id: "a".into(),
+ 800                 name: "search_files".into(),
+ 801                 arguments: serde_json::json!({"needle":"真实"}),
+ 802             },
+ 803             ToolCall {
+ 804                 id: "b".into(),
+ 805                 name: "read_file".into(),
+ 806                 arguments: serde_json::json!({"path":"a.txt"}),
+ 807             },
+ 808         ];
+ 809         let mut adapter = Replay {
+ 810             turns: vec![Ok(model("", calls)), Ok(model("完成", vec![]))],
+ 811             index: 0,
+ 812         };
+ 813         let result = run_agent_loop(
+ 814             &mut adapter,
+ 815             &[],
+ 816             &Workspace { root: root.clone() },
+ 817             &[],
+ 818             32,
+ 819         )
+ 820         .await;
+ 821         assert!(result.ok);
+ 822         assert_eq!(
+ 823             result
+ 824                 .events
+ 825                 .iter()
+ 826                 .filter_map(
+ 827                     |event| if let LoopEvent::Tool { tool_call_id, .. } = event {
+ 828                         Some(tool_call_id.as_str())
+ 829                     } else {
+ 830                         None
+ 831                     }
+ 832                 )
+ 833                 .collect::<Vec<_>>(),
+ 834             vec!["a", "b"]
+ 835         );
+ 836         assert!(result
+ 837             .messages
+ 838             .iter()
+ 839             .any(|message| message.content.contains("真实 Rust 内容")));
+ 840         let _ = std::fs::remove_dir_all(root);
+ 841     }
+ 842 
+ 843     #[tokio::test]
+ 844     async fn loop_records_failures_and_stops_explicitly() {
+ 845         let root = std::env::temp_dir().join(format!("rein-loop-failure-{}", std::process::id()));
+ 846         std::fs::create_dir_all(&root).unwrap();
+ 847         let call = ToolCall {
+ 848             id: "bad".into(),
+ 849             name: "unknown".into(),
+ 850             arguments: serde_json::json!({}),
+ 851         };
+ 852         let mut adapter = Replay {
+ 853             turns: vec![Ok(model("", vec![call]))],
+ 854             index: 0,
+ 855         };
+ 856         let result =
+ 857             run_agent_loop(&mut adapter, &[], &Workspace { root: root.clone() }, &[], 1).await;
+ 858         assert_eq!(result.reason, StopReason::MaxRounds);
+ 859         assert!(result.events.iter().any(|event| matches!(event, LoopEvent::Tool { result, .. } if result.error.as_ref().map(|error| error.code.as_str()) == Some("unknown_tool"))));
+ 860         let _ = std::fs::remove_dir_all(root);
+ 861     }
+ 862 
+ 863     #[tokio::test]
+ 864     async fn loop_distinguishes_model_error_and_empty_final() {
+ 865         let root = Workspace {
+ 866             root: std::env::current_dir().unwrap(),
+ 867         };
+ 868         let mut error = Replay {
+ 869             turns: vec![Err(ToolError {
+ 870                 code: "model".into(),
+ 871                 message: "down".into(),
+ 872             })],
+ 873             index: 0,
+ 874         };
+ 875         assert_eq!(
+ 876             run_agent_loop(&mut error, &[], &root, &[], 32).await.reason,
+ 877             StopReason::ModelError
+ 878         );
+ 879         let mut empty = Replay {
+ 880             turns: vec![Ok(model("", vec![]))],
+ 881             index: 0,
+ 882         };
+ 883         assert_eq!(
+ 884             run_agent_loop(&mut empty, &[], &root, &[], 32).await.reason,
+ 885             StopReason::EmptyFinal
+ 886         );
+ 887     }
+ 888 }

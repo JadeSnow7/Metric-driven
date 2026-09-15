@@ -1,0 +1,7 @@
+argv=zsh -lc ps\ -axo\ pid=,ppid=,user=,stat=,lstart=,command=\ \|\ awk\ /\'rein-production-build-20260914\|rein-production-rereview-build\|rein-ch05-final-text-evidence\|cargo-target\'/ 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:06:21Z
+end=2026-09-14T13:06:22Z
+exit=0
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/27-ps-escalated.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/27-ps-escalated.stderr

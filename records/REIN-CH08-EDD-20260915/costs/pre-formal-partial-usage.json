@@ -1,0 +1,91 @@
+{
+  "captured_at": "2026-09-15T04:06:43.374709+00:00",
+  "stage": "preparation still running; not final cost",
+  "inclusion": "cached input is part of input; reasoning output is part of output; last is part of total; no addition across these fields",
+  "sessions": [
+    {
+      "id": "01a0a30b-34e0-72e0-9759-25600c652723",
+      "path": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+      "latest_token_event": {
+        "timestamp": "2026-09-15T04:06:00.045Z",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 22588084,
+            "cached_input_tokens": 22216448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 64667,
+            "reasoning_output_tokens": 27823,
+            "total_tokens": 22652751
+          },
+          "last_token_usage": {
+            "input_tokens": 122580,
+            "cached_input_tokens": 121856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 190,
+            "reasoning_output_tokens": 122,
+            "total_tokens": 122770
+          },
+          "model_context_window": 258400
+        }
+      },
+      "model": "gpt-6-astra",
+      "effort": "high"
+    },
+    {
+      "id": "01a0a30c-6c16-7543-804b-feeaaac459e7",
+      "path": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-11-35-01a0a30c-6c16-7543-804b-feeaaac459e7.jsonl",
+      "latest_token_event": {
+        "timestamp": "2026-09-15T04:03:24.336Z",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 17153669,
+            "cached_input_tokens": 16913920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 56354,
+            "reasoning_output_tokens": 7103,
+            "total_tokens": 17210023
+          },
+          "last_token_usage": {
+            "input_tokens": 165081,
+            "cached_input_tokens": 163584,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 456,
+            "reasoning_output_tokens": 9,
+            "total_tokens": 165537
+          },
+          "model_context_window": 258400
+        }
+      },
+      "model": "gpt-5.6-luna",
+      "effort": "medium"
+    },
+    {
+      "id": "01a0a30d-0624-7582-9eb0-061ef558946c",
+      "path": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-12-14-01a0a30d-0624-7582-9eb0-061ef558946c.jsonl",
+      "latest_token_event": {
+        "timestamp": "2026-09-15T04:06:41.751Z",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 14566948,
+            "cached_input_tokens": 14358272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 56951,
+            "reasoning_output_tokens": 7871,
+            "total_tokens": 14623899
+          },
+          "last_token_usage": {
+            "input_tokens": 173768,
+            "cached_input_tokens": 172800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 161,
+            "reasoning_output_tokens": 6,
+            "total_tokens": 173929
+          },
+          "model_context_window": 258400
+        }
+      },
+      "model": "gpt-5.6-luna",
+      "effort": "medium"
+    }
+  ]
+}

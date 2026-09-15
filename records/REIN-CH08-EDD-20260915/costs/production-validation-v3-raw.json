@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "owner": "validation_v3",
+  "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-51-42-01a0a3d5-f1ff-7953-9060-45cd57a19f34.jsonl",
+  "method": "last turn_token_usage per turn; preserve public usage/cache fields; no encrypted reasoning; cargo 14 tests is one independent test run; verify rerun is not counted as another 14",
+  "turns": [
+    {
+      "turn_id": "01a0a3d5-f2a2-7073-8275-bb77aae7b5a4",
+      "started_at": 1789455102,
+      "completed_at": 1789456211,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 110106,
+        "cached_input_tokens": 109312,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 605,
+        "reasoning_output_tokens": 172,
+        "total_tokens": 110711
+      },
+      "turn_token_usage": {
+        "input_tokens": 3975288,
+        "cached_input_tokens": 3877888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19114,
+        "reasoning_output_tokens": 2461,
+        "total_tokens": 3994402
+      }
+    },
+    {
+      "turn_id": "01a0a3e7-a852-7bc0-8417-84bbf63168a2",
+      "started_at": 1789456263,
+      "completed_at": 1789456513,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 117731,
+        "cached_input_tokens": 117504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 386,
+        "reasoning_output_tokens": 44,
+        "total_tokens": 118117
+      },
+      "turn_token_usage": {
+        "input_tokens": 1275083,
+        "cached_input_tokens": 1260800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2444,
+        "reasoning_output_tokens": 242,
+        "total_tokens": 1277527
+      }
+    }
+  ]
+}

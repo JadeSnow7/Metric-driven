@@ -1,0 +1,17 @@
+{
+  "label": "p42-ts-demo-two-workspaces",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/ts",
+  "argv": [
+    "node",
+    "--import",
+    "tsx",
+    "/private/tmp/rein-ch05-review-evidence-1/probe-demo-ts.mts"
+  ],
+  "started_utc": "2026-09-14T11:21:03Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "{\"variant\":\"AZURE\",\"root\":\"/private/tmp/rein-ch05-review-evidence-1/demo-ts-3r8idk\"}\n{\n  \"state\": \"completed\",\n  \"reason\": \"final_answer\",\n  \"answer\": \"已完成读取与搜索。\",\n  \"events\": [\n    {\n      \"type\": \"model_requested\",\n      \"turn\": 1,\n      \"messageCount\": 1\n    },\n    {\n      \"type\": \"model_received\",\n      \"turn\": 1,\n      \"toolCallIds\": [\n        \"anthropic-1\",\n        \"anthropic-2\"\n      ],\n      \"text\": \"hello\"\n    },\n    {\n      \"type\": \"tool_result\",\n      \"turn\": 1,\n      \"toolCallId\": \"anthropic-1\",\n      \"result\": {\n        \"toolCallId\": \"anthropic-1\",\n        \"ok\": true,\n        \"output\": \"前置 AZURE README\"\n      }\n    },\n    {\n      \"type\": \"tool_result\",\n      \"turn\": 1,\n      \"toolCallId\": \"anthropic-2\",\n      \"result\": {\n        \"toolCallId\": \"anthropic-2\",\n        \"ok\": true,\n        \"output\": \"README.md\\nextra.md\"\n      }\n    },\n    {\n      \"type\": \"model_requested\",\n      \"turn\": 2,\n      \"messageCount\": 4\n    },\n    {\n      \"type\": \"model_received\",\n      \"turn\": 2,\n      \"toolCallIds\": [],\n      \"text\": \"已完成读取与搜索。\"\n    },\n    {\n      \"type\": \"stopped\",\n      \"state\": \"completed\",\n      \"reason\": \"final_answer\"\n    }\n  ]\n}\n{\"variant\":\"OCHRE\",\"root\":\"/private/tmp/rein-ch05-review-evidence-1/demo-ts-Q4vaJc\"}\n{\n  \"state\": \"completed\",\n  \"reason\": \"final_answer\",\n  \"answer\": \"已完成读取与搜索。\",\n  \"events\": [\n    {\n      \"type\": \"model_requested\",\n      \"turn\": 1,\n      \"messageCount\": 1\n    },\n    {\n      \"type\": \"model_received\",\n      \"turn\": 1,\n      \"toolCallIds\": [\n        \"anthropic-1\",\n        \"anthropic-2\"\n      ],\n      \"text\": \"hello\"\n    },\n    {\n      \"type\": \"tool_result\",\n      \"turn\": 1,\n      \"toolCallId\": \"anthropic-1\",\n      \"result\": {\n        \"toolCallId\": \"anthropic-1\",\n        \"ok\": true,\n        \"output\": \"前置 OCHRE README\"\n      }\n    },\n    {\n      \"type\": \"tool_result\",\n      \"turn\": 1,\n      \"toolCallId\": \"anthropic-2\",\n      \"result\": {\n        \"toolCallId\": \"anthropic-2\",\n        \"ok\": true,\n        \"output\": \"README.md\\nextra.md\"\n      }\n    },\n    {\n      \"type\": \"model_requested\",\n      \"turn\": 2,\n      \"messageCount\": 4\n    },\n    {\n      \"type\": \"model_received\",\n      \"turn\": 2,\n      \"toolCallIds\": [],\n      \"text\": \"已完成读取与搜索。\"\n    },\n    {\n      \"type\": \"stopped\",\n      \"state\": \"completed\",\n      \"reason\": \"final_answer\"\n    }\n  ]\n}\n"
+}

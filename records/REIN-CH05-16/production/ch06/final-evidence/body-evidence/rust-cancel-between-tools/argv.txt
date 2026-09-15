@@ -1,0 +1,1 @@
+env CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch06_loop -- cancel-between-tools /private/tmp/rein-ch06-input.T2o0nG

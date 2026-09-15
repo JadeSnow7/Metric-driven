@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "cargo",
+    "build",
+    "--example",
+    "ch07_context"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/rust",
+  "start": "2026-09-14T14:41:50.806721+00:00",
+  "end": "2026-09-14T14:41:53.279454+00:00",
+  "elapsed": 2.4727110862731934,
+  "exit": 0,
+  "stdout": "",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.40s\n"
+}

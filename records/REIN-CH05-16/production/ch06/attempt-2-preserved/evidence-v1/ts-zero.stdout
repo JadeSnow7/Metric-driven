@@ -1,0 +1,25 @@
+
+> @rein/ts@0.0.0 ch06:offline
+> node --import tsx examples/ch06-loop.ts zero
+
+{
+  "mode": "zero",
+  "requests": 0,
+  "result": {
+    "state": "failed",
+    "reason": "max_turns",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md"
+      }
+    ],
+    "events": [
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "max_turns"
+      }
+    ]
+  }
+}

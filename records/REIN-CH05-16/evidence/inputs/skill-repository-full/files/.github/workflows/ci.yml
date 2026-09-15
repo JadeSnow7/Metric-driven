@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate repository structure and links
+        run: python3 tools/validate_repository.py
+      - name: Compile Python helpers
+        run: python3 -m py_compile tools/*.py skill/evidence-driven-development/scripts/*.py skill/evidence-driven-development/tests/*.py
+      - name: Run isolated workflow scenarios
+        run: python3 -m unittest discover -s skill/evidence-driven-development/tests -v

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "cargo",
+    "fmt",
+    "--check"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/rust",
+  "start": "2026-09-14T14:42:30.540619+00:00",
+  "end": "2026-09-14T14:42:30.672032+00:00",
+  "elapsed": 0.13138604164123535,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

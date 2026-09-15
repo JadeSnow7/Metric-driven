@@ -1,0 +1,62 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/tests",
+        "-v"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "test_comments_cannot_hide_bad_visible_content (test_rein_dataset.ReinDatasetTests.test_comments_cannot_hide_bad_visible_content) ... ok\ntest_independent_correct_candidates_satisfy_all_oracles (test_rein_dataset.ReinDatasetTests.test_independent_correct_candidates_satisfy_all_oracles) ... ok\ntest_link_oracle_accepts_any_nonempty_label_and_normalizes_dot_and_encoding (test_rein_dataset.ReinDatasetTests.test_link_oracle_accepts_any_nonempty_label_and_normalizes_dot_and_encoding) ... ok\ntest_original_api_name_in_comment_is_still_rejected (test_rein_dataset.ReinDatasetTests.test_original_api_name_in_comment_is_still_rejected) ... ok\ntest_original_faults_are_nine_failures_and_three_no_change_passes (test_rein_dataset.ReinDatasetTests.test_original_faults_are_nine_failures_and_three_no_change_passes) ... ok\ntest_parameter_change_fixtures_bind_real_argparse_names (test_rein_dataset.ReinDatasetTests.test_parameter_change_fixtures_bind_real_argparse_names) ... usage: python3.14 -m unittest [-h] [--model MODEL]\n                              [--timeout-seconds TIMEOUT_SECONDS]\npython3.14 -m unittest: error: unrecognized arguments: --timeout 5\nusage: python3.14 -m unittest [-h] [--workspace WORKSPACE]\npython3.14 -m unittest: error: unrecognized arguments: --root-dir src\nok\ntest_all_skipped_unittest_does_not_pass (test_rein_evaluate.ReinEvaluateTests.test_all_skipped_unittest_does_not_pass) ... ok\ntest_disabled_required_command_is_not_run_and_fails_gate (test_rein_evaluate.ReinEvaluateTests.test_disabled_required_command_is_not_run_and_fails_gate) ... ok\ntest_empty_and_no_required_commands_fail (test_rein_evaluate.ReinEvaluateTests.test_empty_and_no_required_commands_fail) ... ok\ntest_fake_pass_zero_tests_and_bad_artifact_fail (test_rein_evaluate.ReinEvaluateTests.test_fake_pass_zero_tests_and_bad_artifact_fail) ... ok\ntest_quality_review_never_auto_passes (test_rein_evaluate.ReinEvaluateTests.test_quality_review_never_auto_passes) ... ok\ntest_real_unittest_failure_is_not_counted_as_passed (test_rein_evaluate.ReinEvaluateTests.test_real_unittest_failure_is_not_counted_as_passed) ... ok\ntest_required_manual_review_is_undetermined_not_failed (test_rein_evaluate.ReinEvaluateTests.test_required_manual_review_is_undetermined_not_failed) ... ok\ntest_runner_bound_counts_accumulate_cargo_harnesses (test_rein_evaluate.ReinEvaluateTests.test_runner_bound_counts_accumulate_cargo_harnesses) ... ok\ntest_source_mutation_makes_old_report_stale (test_rein_evaluate.ReinEvaluateTests.test_source_mutation_makes_old_report_stale) ... ok\ntest_stale_hash_fails (test_rein_evaluate.ReinEvaluateTests.test_stale_hash_fails) ... ok\ntest_success_records_streams_duration_and_artifact (test_rein_evaluate.ReinEvaluateTests.test_success_records_streams_duration_and_artifact) ... ok\ntest_summary_parsers_use_runner_specific_final_lines (test_rein_evaluate.ReinEvaluateTests.test_summary_parsers_use_runner_specific_final_lines) ... ok\ntest_unittest_executed_excludes_skipped (test_rein_evaluate.ReinEvaluateTests.test_unittest_executed_excludes_skipped) ... ok\ntest_unittest_failures_errors_and_skips_are_not_passed (test_rein_evaluate.ReinEvaluateTests.test_unittest_failures_errors_and_skips_are_not_passed) ... ok\ntest_unittest_zero_tests_does_not_pass (test_rein_evaluate.ReinEvaluateTests.test_unittest_zero_tests_does_not_pass) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 0.304s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_rein_experiment.py",
+        "-v"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "test_clone_seal_and_manifest_comparison (test_rein_experiment.SnapshotToolTests.test_clone_seal_and_manifest_comparison) ... ok\ntest_nul_paths_and_external_symlink_are_safe (test_rein_experiment.SnapshotToolTests.test_nul_paths_and_external_symlink_are_safe) ... ok\ntest_seal_excludes_generated_trees_and_metadata (test_rein_experiment.SnapshotToolTests.test_seal_excludes_generated_trees_and_metadata) ... ok\ntest_snapshot_inventory_filters_and_preserves_mode (test_rein_experiment.SnapshotToolTests.test_snapshot_inventory_filters_and_preserves_mode) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.496s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/validate_repository.py"
+      ],
+      "exit": 0,
+      "stdout": "repository validation passed (18 required files, local links checked)\nnote: this proves repository consistency, not workflow behavior or delivery authorization\n",
+      "stderr": ""
+    }
+  ],
+  "cargo_skipped_probe": {
+    "expected": {
+      "executed": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 3
+    },
+    "actual": {
+      "executed": 11,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 3
+    }
+  },
+  "sha256": {
+    "tools/rein_evaluate.py": "c31b2489d2a11be635252015dd942750989b158ce35e739d950946f0802f3d7a",
+    "tools/tests/test_rein_dataset.py": "c4ec1d475878d1b20354626adcd85fac5c07b2d5e5d38b5cba0788f2afdee9aa",
+    "tools/validate_repository.py": "7f4c95319f8bf6a1e861c62e73a511862a9dbcc205e3271c5fea8a04c5f03bdf"
+  }
+}

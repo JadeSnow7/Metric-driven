@@ -1,0 +1,8 @@
+test_estimate_constants_and_tool_fields (test_supplemental.SupplementalTests.test_estimate_constants_and_tool_fields) ... ok
+test_full_run_and_required_failures (test_supplemental.SupplementalTests.test_full_run_and_required_failures) ... ok
+test_real_wire_sample_is_171_and_changed_value_is_174 (test_supplemental.SupplementalTests.test_real_wire_sample_is_171_and_changed_value_is_174) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.517s
+
+OK

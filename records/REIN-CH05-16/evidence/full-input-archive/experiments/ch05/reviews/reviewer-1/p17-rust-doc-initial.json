@@ -1,0 +1,19 @@
+{
+  "label": "p17-rust-doc-initial",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/rust",
+  "argv": [
+    "cargo",
+    "run",
+    "--locked",
+    "--offline",
+    "--bin",
+    "ch05_loop"
+  ],
+  "started_utc": "2026-09-14T11:14:41Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 101,
+  "output": "error: failed to parse manifest at `/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/rust/Cargo.toml`\n\nCaused by:\n  default-run target `rein-ch01-helloworld` not found\n"
+}

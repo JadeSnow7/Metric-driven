@@ -1,0 +1,13 @@
+{
+  "source": "records/REIN-CH05-16/snapshots/pre-ch05/files",
+  "adjacent_manifest": "records/REIN-CH05-16/snapshots/pre-ch05/manifest.json",
+  "declared_file_count": 114,
+  "actual_file_count": 0,
+  "declared_source": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production",
+  "action": "stopped; no alternate source selected",
+  "invalid_outputs_created": [
+    "records/REIN-CH05-16/snapshots/pre-ch05-portable",
+    "records/REIN-CH05-16/snapshots/ch05"
+  ],
+  "note": "Outputs must not be accepted as valid snapshots until input mismatch is resolved."
+}

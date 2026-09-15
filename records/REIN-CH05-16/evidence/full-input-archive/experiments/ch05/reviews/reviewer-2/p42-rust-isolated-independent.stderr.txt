@@ -1,0 +1,5 @@
+     Locking 185 packages to latest compatible versions
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust)
+   Compiling review-probe-42 v0.1.0 (/private/tmp/rein-ch05-review-evidence-2/rust-probe-42)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.07s
+     Running `/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42/debug/review-probe-42`

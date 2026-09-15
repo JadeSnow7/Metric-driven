@@ -1,0 +1,13 @@
+{
+  "checked": 2185,
+  "failures": [],
+  "selfTest": {
+    "knownvalidpage": true,
+    "missingpage": true,
+    "validhash": true,
+    "missinghash": true,
+    "encodedhash": true,
+    "relativeURL": true,
+    "externalURL": true
+  }
+}

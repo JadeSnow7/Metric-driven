@@ -1,0 +1,79 @@
+{
+  "captured_at": "2026-09-14T04:41:53.580257+00:00",
+  "source_root": "/private/tmp/edd-r4-fixtures-8gys1wek/permission",
+  "files": {
+    "BASELINE.json": {
+      "archive": "regression-results/permission/final-artifacts/BASELINE.json.txt",
+      "sha256": "0e0172d840357b928820812de1dffea5b59f8363081fbbabfe9974fe46f41f8e"
+    },
+    "REQUEST.txt": {
+      "archive": "regression-results/permission/final-artifacts/REQUEST.txt.txt",
+      "sha256": "24e7845a1476ac727a2d6014262c514af08a18614a2542368c7d6fa709c35f41"
+    },
+    "final_reply.md": {
+      "archive": "regression-results/permission/final-artifacts/final_reply.md.txt",
+      "sha256": "31230fa56d7c9a4b85b7a9f238e1d43ffdcbb82d0e6c5c3e6c4539934f92e690"
+    },
+    "git-trace.log": {
+      "archive": "regression-results/permission/final-artifacts/git-trace.log.txt",
+      "sha256": "718551bf36e8c2e61f50066be8d632c1062e0c98acf3d5086c6104dabcebcc1c"
+    },
+    "precheck/permission.txt": {
+      "archive": "regression-results/permission/final-artifacts/precheck/permission.txt.txt",
+      "sha256": "5c02c341052ce468a711c5febe61d7f6d3e498e446ea60910b76f7cba5c34193"
+    },
+    "repo/.gitignore": {
+      "archive": "regression-results/permission/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b"
+    },
+    "repo/README.md": {
+      "archive": "regression-results/permission/final-artifacts/repo/README.md.txt",
+      "sha256": "9a204baed37d3f0bf134f8ab382d6f238c794a056813d9d75546caa64f13408e"
+    },
+    "repo/inventory.py": {
+      "archive": "regression-results/permission/final-artifacts/repo/inventory.py.txt",
+      "sha256": "6bbae2f6c154b79b96d02311c0afe3ce3f85426302e560155bc945037a5bac4f"
+    },
+    "repo/pricing.py": {
+      "archive": "regression-results/permission/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b"
+    },
+    "repo/tests/__init__.py": {
+      "archive": "regression-results/permission/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "repo/tests/test_inventory.py": {
+      "archive": "regression-results/permission/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea"
+    },
+    "repo/tests/test_pricing.py": {
+      "archive": "regression-results/permission/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac"
+    },
+    "run-evidence/after-unittest.exit": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/after-unittest.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "run-evidence/after-unittest.stderr": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/after-unittest.stderr.txt",
+      "sha256": "72f09eca554e87a45b7156c6109520cf15e8b6ec157dc5c033610649b49b8698"
+    },
+    "run-evidence/after-unittest.stdout": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/after-unittest.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "run-evidence/baseline.exit": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/baseline.exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "run-evidence/baseline.stderr": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/baseline.stderr.txt",
+      "sha256": "6ea782db5811e302a11232b65c162ba6a835b3f16203b2a4419b0001ba98c015"
+    },
+    "run-evidence/baseline.stdout": {
+      "archive": "regression-results/permission/final-artifacts/run-evidence/baseline.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "note": "Complete text artifacts, excluding Git object database/cache. Original paths documented; .txt suffix prevents interpreting fixture-relative Markdown links in main repository."
+}

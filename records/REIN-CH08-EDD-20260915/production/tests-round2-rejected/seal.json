@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-15T06:50:55.641484+00:00",
+  "status": "interrupted_for_repeated_test_method_defects",
+  "files": {
+    "rust/tests/ch08_context.rs": "a095c45813b6a0ac15703f33c8828a34b99805aa4ed5490c5dc9d144739b05fc",
+    "scripts/ch08-verify.mjs": "d547c8fbdb05dc1c2fe9ae6915bdbc05c5b78ebc32e633bb50ec1cf9b6b25773"
+  },
+  "sessionSource": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-18-36-01a0a3b7-a2b8-7bc0-879a-deabfe05da4c.jsonl",
+  "reason": "unknown fixture patch failed then old nine tests rerun; window role mismatch and missing planned discriminating coverage; no final acceptance"
+}

@@ -1,0 +1,28 @@
+{
+  "sealedAt": "2026-09-15T06:01:22.548329+00:00",
+  "sourceIntegrity": {
+    "Quartz": {
+      "files": 179,
+      "mismatches": []
+    },
+    "Larch": {
+      "files": 177,
+      "mismatches": []
+    },
+    "Slate": {
+      "files": 179,
+      "mismatches": []
+    }
+  },
+  "reviewerFollowupTurn": {
+    "startedAt": 1789451461,
+    "completedAt": 1789452020,
+    "durationMs": 558410
+  },
+  "limitations": [
+    "Larch fact-change followup not recorded due ENOSPC",
+    "escalated network attempt failed to create records due ENOSPC",
+    "GUI not run",
+    "followup final paragraph retains stale Larch failure wording; valid readme-correct-root exit0 supersedes it"
+  ]
+}

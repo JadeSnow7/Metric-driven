@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-14T13:07:11.042349+00:00",
+  "snapshots": [
+    {
+      "snapshot": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/pre-ch05-restored",
+      "files": 114,
+      "manifest_sha256": "3adc9a10adbd828f94634b8348832fa7f732d5d5539634926ed6c7b54d731ba2",
+      "matched": true
+    },
+    {
+      "snapshot": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch05-accepted",
+      "files": 127,
+      "manifest_sha256": "b0b8fd29880fa92f74af8a65b8db04c1fc5ac52bf5401872ddcfa32e8b624f50",
+      "matched": true
+    }
+  ],
+  "current_source_matches_snapshot": true,
+  "patch_argv": [
+    "git",
+    "apply",
+    "--binary",
+    "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch05-accepted/baseline.patch"
+  ],
+  "patch_exit": 0,
+  "patch_stdout": "",
+  "patch_stderr": "",
+  "patch_restored_files": 127,
+  "both_portable_tar_restorations": "passed"
+}

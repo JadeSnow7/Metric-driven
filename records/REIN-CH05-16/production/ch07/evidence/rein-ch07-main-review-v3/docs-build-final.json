@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "--silent",
+    "build"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T15:14:44.189298+00:00",
+  "end": "2026-09-14T15:14:49.648909+00:00",
+  "elapsedSeconds": 5.459576790919527,
+  "exit": 0,
+  "stdout": "\n  vitepress v1.6.4\n\nbuild complete in 2.79s.\n",
+  "stderr": "- building client + server bundles...\n\u001b[32m✓\u001b[0m building client + server bundles...\n- rendering pages...\n\u001b[32m✓\u001b[0m rendering pages...\n"
+}

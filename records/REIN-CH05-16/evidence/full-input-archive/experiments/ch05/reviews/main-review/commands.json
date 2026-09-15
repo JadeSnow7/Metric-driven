@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-09-14T11:16:45.668403+00:00",
+  "results": [
+    {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck",
+        "--workspace",
+        "ts"
+      ],
+      "cwd": "/private/tmp/rein-ch05-pair-ready-20260914/b",
+      "exit": 0,
+      "elapsed_seconds": 1.0033953749807552,
+      "stdout": "command-0.stdout",
+      "stderr": "command-0.stderr"
+    },
+    {
+      "argv": [
+        "npm",
+        "test",
+        "--workspace",
+        "ts",
+        "--",
+        "--run",
+        "tests/loop.test.ts"
+      ],
+      "cwd": "/private/tmp/rein-ch05-pair-ready-20260914/b",
+      "exit": 0,
+      "elapsed_seconds": 0.5010122079402208,
+      "stdout": "command-1.stdout",
+      "stderr": "command-1.stderr"
+    },
+    {
+      "argv": [
+        "npm",
+        "run",
+        "ch05:offline",
+        "--workspace",
+        "ts"
+      ],
+      "cwd": "/private/tmp/rein-ch05-pair-ready-20260914/b",
+      "exit": 0,
+      "elapsed_seconds": 0.14207695797085762,
+      "stdout": "command-2.stdout",
+      "stderr": "command-2.stderr"
+    },
+    {
+      "argv": [
+        "npm",
+        "run",
+        "ch05:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "single"
+      ],
+      "cwd": "/private/tmp/rein-ch05-pair-ready-20260914/b",
+      "exit": 0,
+      "elapsed_seconds": 0.12403700000140816,
+      "stdout": "command-3.stdout",
+      "stderr": "command-3.stderr"
+    }
+  ]
+}

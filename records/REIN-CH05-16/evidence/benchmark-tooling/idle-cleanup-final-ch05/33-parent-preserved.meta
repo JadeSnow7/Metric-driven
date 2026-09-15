@@ -1,0 +1,7 @@
+argv=find /private/tmp/rein-ch05-final-text-evidence -maxdepth 1 -mindepth 1 -print 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:07:01Z
+end=2026-09-14T13:07:01Z
+exit=0
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/33-parent-preserved.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/33-parent-preserved.stderr

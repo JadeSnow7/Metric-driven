@@ -1,0 +1,16 @@
+{
+  "report": "/private/tmp/rein-ch05-review-evidence-2/review-report.md",
+  "recorded_commands": 36,
+  "checked_evidence_references": 21,
+  "missing_evidence_references": [],
+  "source_unchanged": {
+    "17": {
+      "compared_source_files": 78,
+      "changed_files": []
+    },
+    "42": {
+      "compared_source_files": 79,
+      "changed_files": []
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-09-15T04:24:52.925106+00:00",
+  "files": {
+    "toy_cli.py": "3afe4a15a7fb0a8297a20422dac25cdf5dfe0f08f4f69d9e84e20f5076b455f0",
+    "toy-command.json": "4477b402d1ab1712dc6ddeef4dff16b647b1bde354c739401ab1844660f9a538",
+    "review-checks.md": "3373f4b3a30c1cc30d2862fd1d1e0888d28178906c05d6ae0a58bba9c3c966fa",
+    "evaluator.py": "6ed1a9d09fd40871b8e4e0bfed7cb2d2f64a4a3eb9f5ff762bb0566cda6fe86b",
+    "test_eval.py": "088a9bbc50bec55762431f37b1e4d36deb90a7c49652974897abdf16dc096ff6"
+  },
+  "review": "Main reviewed source and independently executed 5 tests: positive protocol and 11 specific mutant checks passed; no formal product has been evaluated.",
+  "scope": "External protocol calibration; real Rust/Node/algorithm/tutorial evidence requires independent artifact review.",
+  "score_policy": "Frozen evaluator identical across A/B/C. No scoring before all first deliveries are sealed."
+}

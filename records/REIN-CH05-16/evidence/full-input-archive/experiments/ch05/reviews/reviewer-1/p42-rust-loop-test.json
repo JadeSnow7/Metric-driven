@@ -1,0 +1,19 @@
+{
+  "label": "p42-rust-loop-test",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--test",
+    "loop"
+  ],
+  "started_utc": "2026-09-14T11:23:40Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s\n     Running tests/loop.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/deps/loop-8ce302fc995cc4fc)\n\nrunning 1 test\ntest tools_are_real_and_results_are_paired_in_order ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+}

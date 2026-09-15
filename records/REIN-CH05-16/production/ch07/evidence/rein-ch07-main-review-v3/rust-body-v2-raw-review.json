@@ -1,0 +1,174 @@
+[
+  {
+    "run": "practice-07-3",
+    "exit": 0,
+    "cases": [
+      {
+        "id": "unmanaged-overflow",
+        "reason": "model_error",
+        "answer": null,
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "required-overflow",
+        "reason": "context_budget_exhausted",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "multi-tool-boundary",
+        "reason": "final_answer",
+        "answer": "new-a-result\nnew-b-result",
+        "requests": 1
+      },
+      {
+        "id": "invalid-orphan",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "invalid-missing",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "unicode-content",
+        "reason": "final_answer",
+        "answer": "你好 🌏",
+        "requests": 1
+      }
+    ]
+  },
+  {
+    "run": "practice-07-2",
+    "exit": 0,
+    "cases": [
+      {
+        "id": "managed-window",
+        "reason": "final_answer",
+        "answer": "最新事实 A\n最新事实 B",
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "context_budget_exhausted",
+        "answer": null,
+        "requests": 0
+      }
+    ]
+  },
+  {
+    "run": "failure-filter-fixed",
+    "exit": 0,
+    "cases": []
+  },
+  {
+    "run": "normal",
+    "exit": 0,
+    "cases": [
+      {
+        "id": "unmanaged-overflow",
+        "reason": "model_error",
+        "answer": null,
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "final_answer",
+        "answer": "最新事实 A\n最新事实 B",
+        "requests": 1
+      },
+      {
+        "id": "required-overflow",
+        "reason": "context_budget_exhausted",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "multi-tool-boundary",
+        "reason": "final_answer",
+        "answer": "new-a-result\nnew-b-result",
+        "requests": 1
+      },
+      {
+        "id": "invalid-orphan",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "invalid-missing",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "unicode-content",
+        "reason": "final_answer",
+        "answer": "你好 🌏",
+        "requests": 1
+      }
+    ]
+  },
+  {
+    "run": "practice-07-1",
+    "exit": 0,
+    "cases": [
+      {
+        "id": "unmanaged-overflow",
+        "reason": "model_error",
+        "answer": null,
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "final_answer",
+        "answer": "最新事实 A\n最新事实 A（已更正）",
+        "requests": 1
+      },
+      {
+        "id": "required-overflow",
+        "reason": "context_budget_exhausted",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "multi-tool-boundary",
+        "reason": "final_answer",
+        "answer": "new-a-result\nnew-b-result",
+        "requests": 1
+      },
+      {
+        "id": "invalid-orphan",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "invalid-missing",
+        "reason": "invalid_context_history",
+        "answer": null,
+        "requests": 0
+      },
+      {
+        "id": "unicode-content",
+        "reason": "final_answer",
+        "answer": "你好 🌏",
+        "requests": 1
+      }
+    ]
+  },
+  {
+    "run": "failure-filter",
+    "exit": 1,
+    "cases": []
+  }
+]

@@ -1,0 +1,1 @@
+["./node_modules/.bin/tsc", "--strict", "--noEmit", "--target", "ES2022", "--module", "commonjs", "ts/examples/a2-state.ts"]

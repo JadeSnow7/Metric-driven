@@ -1,0 +1,760 @@
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/docs/chapters/05-rust.md /private/tmp/rein-production-candidate-03/docs/chapters/05-rust.md
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/docs/chapters/05-rust.md	2026-09-14 20:12:43
++++ /private/tmp/rein-production-candidate-03/docs/chapters/05-rust.md	2026-09-14 20:21:17
+@@ -5,14 +5,13 @@
+ 
+ # 05 Rust：用 Result 把工具结果送回模型
+ 
+-本章沿用前置 Rust crate 的 `Message`、`ToolCall`、`ToolResult` 和 `OpenAiHttp`。它们只是接入基础，不代表前四章已经完整实现。我们要构造的是一个小而可观察的循环：搜索工作区，读取搜索命中的两个文件，再把真实内容交给下一轮。
++本章用 Rust 写同一个只读循环：搜索 `marker:`，读取搜索结果中的两个文件，再把内容交给下一轮。`Message`、`ToolCall`、`ToolResult` 和 `OpenAiHttp` 是接入基础，并不表示前四章已经完整交付。
+ 
+-<span id="loop-entry"></span>
+-<span id="search-read"></span>
++<span id="loop-entry"></span><span id="search-read"></span>
+ 
+-## 准备并运行
++## 运行准备
+ 
+-在仓库根目录执行：
++从仓库根目录执行：
+ 
+ ```bash
+ cargo fmt --manifest-path rust/Cargo.toml -- --check
+@@ -20,32 +19,66 @@
+ cargo run --manifest-path rust/Cargo.toml --example ch05_loop --offline -- single
+ ```
+ 
+-示例中的 `Replay` 实现 `OpenAiHttp`。它从请求 JSON 的 `messages` 中读取搜索结果，第二轮动态生成两个 `read_file` 调用，第三轮用收到的文件内容生成离线答案。回放耗尽会返回 `replay_exhausted`，不会对空数组调用 `remove` 而 panic。
++默认是三次请求：`search-1`、两个 read、最终回答；single 两次请求。自建目录与 TS 相同：
+ 
+-## 读懂实现
++```bash
++mkdir -p /tmp/rein-ch05-azure
++printf 'marker: AZURE alpha\n' > /tmp/rein-ch05-azure/alpha.md
++printf 'marker: AZURE beta\n' > /tmp/rein-ch05-azure/beta.md
++cargo run --manifest-path rust/Cargo.toml --example ch05_loop --offline -- workspace /tmp/rein-ch05-azure multi
++```
+ 
+-`rust/src/rein/mod.rs` 的 `run_agent_loop` 保留可变 `Vec<Message>`，每一轮借用它调用 `openai_complete`，拿到 `ModelTurn` 后再取得所有权追加消息。`LoopState`、`StopReason` 和 `LoopEvent` 是枚举；`Result<T, ToolError>` 强迫模型错误沿着 `ModelError` 分支返回。`serde(rename = ...)` 将 Rust 内部的 `tool_call_id` 映射为共享 wire 的 `toolCallId`，工具 schema 明确声明 `path`、`needle` 及 `required`。`rust/src/rein/loop.rs` 是本章独立再导出的循环模块，旧路径继续兼容。
++预期答案含两条 AZURE 文本；改文件后重跑，答案随文件改变。
+ 
+-每个 `ModelRequested` 事件保存完整 messages 与 tools；`ModelReceived` 保存完整模型消息；`ToolResult` 保存调用参数和结果。这样可以核查实际请求、调用 ID 与错误顺序。它是观察轨迹，不是第13章的恢复机制。
++## Rust 如何承载循环
+ 
+-## 失败实验与测试
++`rust/src/rein/mod.rs` 的数据结构是可序列化的拥有型数据：`Message` 持有 `String` 和 `Vec<ToolCall>`，`ToolCall` 持有 JSON `Value`，`ToolResult` 以 `tool_call_id` 配对结果。`serde(rename = "toolCallId")` 把 Rust 字段映射到共享 wire 名称。
+ 
+-```bash
+-CARGO_TARGET_DIR=/private/tmp/rein-production-build-20260914 cargo test --manifest-path rust/Cargo.toml --offline
++`rust/src/rein/loop.rs` 把模型接入抽象成 trait：
++
++```rust
++pub trait ModelAdapter {
++    fn complete<'a>(&'a self, messages: &'a [Message], tools: &'a [ToolDefinition])
++      -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>>;
++}
+ ```
+ 
+-测试覆盖两套工作区、多调用顺序、搜索后读取、未知工具、错误参数、缺失文件、模型错误、空答案、轮数上限和回放耗尽。将示例的第二轮响应移除，运行会得到结构化 `model_error`，已有搜索事件仍保留。
++`&[Message]` 是本轮借用的只读视图；返回 `ModelTurn` 后循环取得拥有权追加到 `Vec<Message>`。`Result` 强迫调用者处理模型错误。枚举 `LoopState`、`StopReason`、`LoopEvent` 分别表达状态、停止原因和事件，并由 serde 输出 `final_answer` 等 wire 名称。
+ 
+-真实调用必须由显式 `--live` 入口开启，并从 `REIN_BASE_URL`、`REIN_API_KEY`、`REIN_MODEL` 构造 `ReqwestHttp` 与 `run_agent_loop(..., 4)`；离线示例不加载个人配置，不自动重试。本章只验证本地 HTTP 接线，不调用真实服务。
++循环先建 user 消息，每轮克隆快照后调用 adapter；模型消息追加，若无 tool call 就在非空文本时 `FinalAnswer`，空白时 `EmptyFinal`。有调用则按顺序 dispatch：
+ 
+-<span id="practice-05-1"></span>
+-<span id="practice-05-2"></span>
+-<span id="practice-05-3"></span>
++```rust
++for call in response.tool_calls {
++    let result = dispatch_readonly(&call, workspace);
++    events.push(LoopEvent::ToolResult { turn, call: call.clone(),
++        tool_call_id: call.id.clone(), result: result.clone() });
++    let content = if result.ok { result.output.unwrap_or_default() }
++        else { serde_json::json!({"ok":false,"error":result.error}).to_string() };
++    messages.push(Message { role: "tool".into(), content,
++        tool_call_id: Some(result.tool_call_id), tool_calls: vec![] });
++}
++```
+ 
+-## 练习
++Rust 的工具 schema 与 TS 同样要求 `path` 或 `needle` 且禁止额外字段。第三次请求中，`search-1` 的输出先决定两个 `read_file` 调用；两个 tool 消息按 ID 配对，不能只按数组位置猜测。
+ 
+-**05-1：多文件读取。** 新增两份含不同 `marker:` 的文档。验收：搜索结果驱动第二轮的两个读取调用，第三轮答案含两份真实内容。
++事件是本次运行的观察轨迹，包含完整消息、工具定义、模型消息和结果；不是跨进程恢复。正常停止序列化为 `FinalAnswer`；空回答、适配器错误、轮数上限分别是 `EmptyFinal`、`ModelError`、`MaxTurns`。默认示例 32 轮，live 入口 4 轮且不自动重试。
+ 
+-**05-2：失败后恢复。** 先返回 `missing.md`，再返回真实路径。验收：`path_invalid` 与调用 ID 出现在事件中，下一轮成功读取并完成；不能用固定答案代替工具结果。
++## 失败实验、live 与练习
+ 
+-**05-3：停止边界。** 连续返回工具调用或返回空白文本。验收：原因分别为 `max_turns`、`empty_final`，末尾事件是 `stopped`，进程不 panic。
++让适配器请求不存在的 `missing.md`，`ToolResult` 为 `ok: false`、错误码 `path_invalid`，下一轮可根据错误改请求。让适配器返回 `Err(ToolError { ... })` 得到结构化 `ModelError`；让它连续返回工具调用并把 `max_turns` 设为 2 得 `MaxTurns`；返回空白文本且无工具调用得 `EmptyFinal`。当前示例的 `Replay` 按请求内容动态生成，不存在可以删除的“第二项响应”；不要把回放耗尽写成已有入口行为。
++
++真实服务显式开启：
++
++```bash
++cargo run --manifest-path rust/Cargo.toml --example ch05_loop --offline -- --live workspace . multi "请搜索 marker: 并读取命中文件"
++```
++
++实际 live 参数由 `REIN_BASE_URL`、`REIN_API_KEY`、`REIN_MODEL` 提供；本轮不调用真实模型，状态为 `not_run`。
++
++<span id="practice-05-1"></span><span id="practice-05-2"></span><span id="practice-05-3"></span>
++
++**05-1：多文件读取。** 自建两文件目录运行 workspace multi。验收第三次模型输入含两个真实 tool 结果，答案含两份内容。
++
++**05-2：失败后恢复。** 先请求 `missing.md`，再请求真实路径。验收 `path_invalid` 与调用 ID 保留，后续读取成功且没有固定答案。
++
++**05-3：停止边界。** 分别构造连续工具调用和空白最终回答，`max_turns=2`。验收 JSON 原因精确为 `MaxTurns`、`EmptyFinal`，末尾事件 `stopped`，进程不 panic。
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/docs/chapters/05.md /private/tmp/rein-production-candidate-03/docs/chapters/05.md
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/docs/chapters/05.md	2026-09-14 20:12:43
++++ /private/tmp/rein-production-candidate-03/docs/chapters/05.md	2026-09-14 20:20:44
+@@ -5,49 +5,100 @@
+ 
+ # 05 让工具结果推动下一轮
+ 
+-在前几章我们已经看过消息和只读工具的最小合同。本章补齐一个接入基础：模型可以先搜索工作区，再根据搜索结果选择文件，工具结果会原样进入下一次请求。这里的“前置工程”只指本仓库已有的 `ts/src/rein/contracts.ts`、`readonly.ts` 和 `adapters.ts`；00–04 的全部内容仍不是本章的实现前提。
++模型只能看到请求中的消息，不能自行读取磁盘。本章把搜索与读取接成一个可观察循环：模型请求 `search_files`，程序执行它，把结果送回模型；模型再请求两个 `read_file`，两个真实文件内容进入第三次请求。这里补充的是最小接入工程，00–04 不因此成为已完整交付。
+ 
+-<span id="loop-entry"></span>
+-<span id="search-read"></span>
++<span id="loop-entry"></span><span id="search-read"></span>
+ 
+-## 先跑两个真实输入实验
++## 先做离线实验
+ 
+-在仓库根目录执行：
++需要 Node.js 22+、npm 和锁定依赖。若依赖已安装，直接从仓库根运行：
+ 
+ ```bash
+-npm ci
+ npm run typecheck
+ cd ts
+ npm run ch05:offline
+ npm run ch05:offline -- single
+ ```
+ 
+-默认实验的回放适配器先调用 `search_files({"needle":"marker:"})`，收到真实搜索结果后才生成两个 `read_file` 调用；第三轮把两个真实文件内容拼成答案。`ts/examples/ch05-loop.ts` 中的适配器每轮都读取上一轮的 `messages`，所以改动 `fixtures/workspaces/prerequisites/README.md` 或 `notes.md` 会改变下一次请求和答案。`single` 只读取 README，用来比较单文件边界。
++默认模式是三轮：搜索 `marker:`，按搜索输出读取前两条相对路径，再回答。fixture 中是 `README.md` 与 `notes.md`；single 只读取 `README.md`。
+ 
+-## 从接口到循环
++建立只含两份文件的输入，答案才不会被其他文件的排序影响：
+ 
+-打开 `ts/src/rein/loop.ts`。`ChatAdapter.complete` 是可替换的单轮接口；回放、离线确定性适配器和 `createOpenAIAdapter` 都实现它。循环先把用户消息放入数组，再按轮次调用适配器；收到 `toolCalls` 时按声明顺序执行，每个结果带回原调用 ID。TypeScript 的判别联合让 `model_requested`、`model_received`、`tool_result` 和 `stopped` 的字段在分支中保持准确。
++```bash
++mkdir -p /tmp/rein-ch05-azure
++printf 'marker: AZURE alpha\n' > /tmp/rein-ch05-azure/alpha.md
++printf 'marker: AZURE beta\n' > /tmp/rein-ch05-azure/beta.md
++npm run ch05:offline -- workspace /tmp/rein-ch05-azure multi
++```
+ 
+-事件保存了完整的请求消息、工具 schema、模型消息、调用参数与工具结果，因此可核查“这一轮实际送了什么”。它是当前章的观察轨迹，不承担第13章的副作用恢复。
++预期答案含 `AZURE alpha` 和 `AZURE beta`。修改 beta 内容后重跑，答案随输入变化；这证明内容来自 `read_file` 结果。
+ 
+-## 失败实验
++## 接口与状态
+ 
+-```bash
+-npm run test --workspace ts -- loop.test.ts
++`ts/src/rein/contracts.ts` 用接口描述消息、一轮模型结果和可替换适配器：
++
++```ts
++export interface Message { readonly role: Role; readonly content: string; readonly toolCallId?: string; readonly toolCalls?: readonly ToolCall[] }
++export interface ToolCall { readonly id: string; readonly name: string; readonly arguments: Readonly<Record<string, unknown>> }
++export interface ModelTurn { readonly message: Message; readonly toolCalls: readonly ToolCall[] }
++export interface ChatAdapter { complete(messages: readonly Message[], tools?: readonly ToolDefinition[]): Promise<ModelTurn> }
+ ```
+ 
+-测试覆盖未知工具、参数错误、缺失文件、工具失败后继续、模型错误、空回答、回放耗尽、32轮保护和两套不同工作区。把测试中的 `path` 改为 `missing.md`，你会在下一轮消息中看到 `path_invalid`；把 `needle` 改成不存在的词，搜索仍成功但结果为空，适配器必须据此决定下一步。
++`Promise<ModelTurn>` 让同一个循环接离线回放或真实 HTTP。`readonlyToolDefinitions` 的两个 schema 分别要求字符串 `needle`、`path`，并拒绝额外字段。`dispatchReadonly` 检查工具名和参数；缺失文件返回 `path_invalid`，越界返回 `path_escape`。
+ 
+-真实入口需要显式 `--live`，并复用 `REIN_BASE_URL`、`REIN_API_KEY`、`REIN_MODEL`。本章离线示例不读取个人 `.env`。生产接线使用 `createOpenAIAdapter(config, transport)`，把 `runAgentLoop(adapter, workspace, prompt, { maxTurns: 4 })` 放在入口中；默认不重试，最多四轮。只在确认地址、凭据和费用后运行该入口。
++`ts/src/rein/loop.ts` 先建立首条 user 消息，每轮保存请求快照并调用适配器：
+ 
+-<span id="practice-05-1"></span>
+-<span id="practice-05-2"></span>
+-<span id="practice-05-3"></span>
++```ts
++const messages: Message[] = [{ role: 'user', content: prompt }]
++for (let turn = 1; turn <= maxTurns; turn++) {
++  events.push({ type: 'model_requested', turn, messages: structuredClone(messages), tools: structuredClone(tools) })
++  let model: ModelTurn
++  try { model = await adapter.complete(messages, tools) }
++  catch (error) { return finish(messages, events, 'failed', 'model_error', undefined, String(error)) }
++  messages.push(model.message)
++  events.push({ type: 'model_received', turn, message: structuredClone(model.message), toolCallIds: model.toolCalls.map(c => c.id), text: model.message.content })
++```
+ 
++没有工具调用时，非空内容结束为 `final_answer`，空白内容为 `empty_final`。有工具调用时，按声明顺序执行并以同一 ID 追加 tool 消息：
++
++```ts
++for (const call of model.toolCalls) {
++  const result = await dispatchReadonly(call, workspace)
++  events.push({ type: 'tool_result', turn, call: structuredClone(call), toolCallId: call.id, result })
++  messages.push({ role: 'tool', toolCallId: result.toolCallId,
++    content: result.ok ? result.output ?? '' : JSON.stringify({ ok: false, error: result.error }) })
++}
++```
++
++因此第二次请求只有 `search-1` 的结果，第二轮执行两个 read，第三次请求才同时有 `read-1`、`read-2`：
++
++```json
++{"role":"tool","toolCallId":"search-1","content":"alpha.md\nbeta.md"}
++{"role":"assistant","toolCalls":[{"id":"read-1","name":"read_file","arguments":{"path":"alpha.md"}},{"id":"read-2","name":"read_file","arguments":{"path":"beta.md"}}]}
++{"role":"tool","toolCallId":"read-1","content":"marker: AZURE alpha"}
++{"role":"tool","toolCallId":"read-2","content":"marker: AZURE beta"}
++```
++
++事件保存完整 messages、tools、模型消息、调用参数和结果，足够检查当前请求；它不是持久恢复系统。默认最多 32 轮；适配器错误、空回答和上限分别得到 `model_error`、`empty_final`、`max_turns`，末尾都有 `stopped`。
++
++## 失败实验与 live
++
++临时在 `ts/examples/ch05-loop.ts` 的 multi 分支把 read 调用的 path 改成 `missing.md`，再运行 workspace 命令。第二轮结果必须是 `ok: false`、`error.code: "path_invalid"`，且保留原调用 ID。持续返回工具调用并设置 `{ maxTurns: 2 }` 得 `max_turns`；返回空白且无工具调用得 `empty_final`。这些是循环结果，不以进程退出码替代。
++
++真实调用从 `ts/` 显式开启：
++
++```bash
++npm run ch05:live -- --live . "请搜索 marker: 并读取命中文件"
++```
++
++它读取 `REIN_BASE_URL`、`REIN_API_KEY`、`REIN_MODEL`，最多四轮且不自动重试，会产生服务费用；本章离线跟做不发送真实模型请求，live 为 `not_run`。
++
++<span id="practice-05-1"></span><span id="practice-05-2"></span><span id="practice-05-3"></span>
++
+ ## 练习
+ 
+-**05-1：多文件读取。** 在工作区新增两份含不同 `marker:` 的文档。验收：搜索结果包含两条相对路径，第二次模型输入含两条对应的 `tool` 消息，答案同时包含两份内容；少一份即失败。
++**05-1：多文件读取。** 从只含 alpha、beta 的目录运行 workspace multi。验收：搜索两条路径；第三次模型输入有两个与真实内容配对的 tool 消息；答案同时含两份文本。
+ 
+-**05-2：失败后恢复。** 先让模型请求 `missing.md`，再让它请求真实路径。验收：事件保留 `path_invalid` 及原 ID，下一轮仍能读取真实内容并完成；不存在答案则失败。
++**05-2：失败后恢复。** 让一次 read 请求 `missing.md`，下一次请求真实路径。验收：事件保留 `path_invalid` 和原 ID，后续读取成功，答案不凭空添加内容。
+ 
+-**05-3：停止边界。** 让适配器连续返回工具调用，或返回空白文本。验收：分别得到 `max_turns` 和 `empty_final`，事件末尾是 `stopped`，没有凭空生成答案。
++**05-3：停止边界。** 分别让适配器连续返回工具调用、返回空白文本。用 `{ maxTurns: 2 }` 运行。验收：原因是 `max_turns`、`empty_final`，最后事件是 `stopped` 且没有 `answer`。
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/fixtures/cases/ch05-loop.json /private/tmp/rein-production-candidate-03/fixtures/cases/ch05-loop.json
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/fixtures/cases/ch05-loop.json	1970-01-01 08:00:00
++++ /private/tmp/rein-production-candidate-03/fixtures/cases/ch05-loop.json	2026-09-14 20:19:21
+@@ -0,0 +1,13 @@
++{
++  "workspaceFiles": {
++    "first.txt": "marker: first\nalpha",
++    "second.txt": "marker: second\nbeta"
++  },
++  "prompt": "搜索 marker:，读取命中的两个文件并总结",
++  "modelTurns": [
++    {"content": "", "toolCalls": [{"id":"search-1","name":"search_files","arguments":{"needle":"marker:"}}]},
++    {"content": "", "toolCalls": [{"id":"read-1","name":"read_file","arguments":{"path":"first.txt"}},{"id":"read-2","name":"read_file","arguments":{"path":"second.txt"}}]},
++    {"content": "marker: first\nalpha | marker: second\nbeta", "toolCalls": []}
++  ],
++  "expected": {"state":"completed","reason":"final_answer","answer":"marker: first\nalpha | marker: second\nbeta","readPaths":["first.txt","second.txt"]}
++}
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/package.json /private/tmp/rein-production-candidate-03/package.json
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/package.json	2026-09-14 18:44:23
++++ /private/tmp/rein-production-candidate-03/package.json	2026-09-14 20:26:17
+@@ -12,6 +12,7 @@
+     "preview": "vitepress preview docs",
+     "test": "npm run test --workspace ts",
+     "typecheck": "npm run typecheck --workspace ts"
++    ,"ch05:compare-all": "node scripts/ch05-compare.mjs"
+   },
+   "devDependencies": {
+     "vitepress": "1.6.4"
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/examples/ch05_compare.rs /private/tmp/rein-production-candidate-03/rust/examples/ch05_compare.rs
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/examples/ch05_compare.rs	1970-01-01 08:00:00
++++ /private/tmp/rein-production-candidate-03/rust/examples/ch05_compare.rs	2026-09-14 20:20:12
+@@ -0,0 +1,88 @@
++use rein_ch01_helloworld::rein::{
++    run_agent_loop_with_adapter, Message, ModelAdapter, ModelTurn, ToolCall, ToolDefinition,
++    ToolError, Workspace,
++};
++use std::{
++    future::Future,
++    pin::Pin,
++    sync::{Arc, Mutex},
++};
++
++struct Replay {
++    turns: Arc<Mutex<Vec<ModelTurn>>>,
++}
++impl ModelAdapter for Replay {
++    fn complete<'a>(
++        &'a self,
++        _: &'a [Message],
++        _: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        let value = self.turns.lock().unwrap().remove(0);
++        Box::pin(async move { Ok(value) })
++    }
++}
++#[tokio::main]
++async fn main() {
++    let path = std::env::args()
++        .nth(1)
++        .unwrap_or_else(|| "../fixtures/cases/ch05-loop.json".into());
++    let fixture: serde_json::Value =
++        serde_json::from_str(&std::fs::read_to_string(path).unwrap()).unwrap();
++    let root = std::env::temp_dir().join(format!("rein-ch05-compare-{}", std::process::id()));
++    let _ = std::fs::remove_dir_all(&root);
++    std::fs::create_dir_all(&root).unwrap();
++    for (name, content) in fixture["workspaceFiles"].as_object().unwrap() {
++        std::fs::write(root.join(name), content.as_str().unwrap()).unwrap();
++    }
++    let turns = fixture["modelTurns"]
++        .as_array()
++        .unwrap()
++        .iter()
++        .map(|turn| {
++            let calls: Vec<ToolCall> = turn["toolCalls"]
++                .as_array()
++                .unwrap()
++                .iter()
++                .map(|call| ToolCall {
++                    id: call["id"].as_str().unwrap().into(),
++                    name: call["name"].as_str().unwrap().into(),
++                    arguments: call["arguments"].clone(),
++                })
++                .collect();
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: turn["content"].as_str().unwrap().into(),
++                    tool_call_id: None,
++                    tool_calls: calls.clone(),
++                },
++                tool_calls: calls,
++            }
++        })
++        .collect();
++    let result = run_agent_loop_with_adapter(
++        &Replay {
++            turns: Arc::new(Mutex::new(turns)),
++        },
++        &Workspace { root: root.clone() },
++        fixture["prompt"].as_str().unwrap(),
++        32,
++    )
++    .await;
++    let expected = &fixture["expected"];
++    assert_eq!(
++        serde_json::to_value(&result.state).unwrap(),
++        expected["state"]
++    );
++    assert_eq!(
++        serde_json::to_value(&result.reason).unwrap(),
++        expected["reason"]
++    );
++    assert_eq!(result.answer.as_deref(), expected["answer"].as_str());
++    assert!(result.events.iter().any(|event| matches!(
++        event,
++        rein_ch01_helloworld::rein::LoopEvent::ToolResult { .. }
++    )));
++    println!("{}", serde_json::to_string(&result).unwrap());
++    let _ = std::fs::remove_dir_all(root);
++}
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/examples/ch05_loop.rs /private/tmp/rein-production-candidate-03/rust/examples/ch05_loop.rs
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/examples/ch05_loop.rs	2026-09-14 20:15:24
++++ /private/tmp/rein-production-candidate-03/rust/examples/ch05_loop.rs	2026-09-14 20:26:25
+@@ -14,6 +14,7 @@
+ struct Replay {
+     calls: Arc<Mutex<usize>>,
+     single: bool,
++    mode: String,
+ }
+ impl ModelAdapter for Replay {
+     fn complete<'a>(
+@@ -29,13 +30,99 @@
+             .filter(|m| m.role == "tool")
+             .map(|m| m.content.clone())
+             .collect();
+-        let response = if self.single && n == 1 {
++        let response = if self.mode == "empty" {
+             ModelTurn {
+                 message: Message {
+                     role: "assistant".into(),
++                    content: "   ".into(),
++                    tool_call_id: None,
++                    tool_calls: vec![],
++                },
++                tool_calls: vec![],
++            }
++        } else if self.mode == "exhausted" && !tool_messages.is_empty() {
++            return Box::pin(async {
++                Err(ToolError {
++                    code: "replay_exhausted".into(),
++                    message: "replay exhausted".into(),
++                })
++            });
++        } else if self.mode == "limit" {
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
+                     content: String::new(),
+                     tool_call_id: None,
+                     tool_calls: vec![ToolCall {
++                        id: "limit-1".into(),
++                        name: "unknown".into(),
++                        arguments: serde_json::json!({}),
++                    }],
++                },
++                tool_calls: vec![ToolCall {
++                    id: "limit-1".into(),
++                    name: "unknown".into(),
++                    arguments: serde_json::json!({}),
++                }],
++            }
++        } else if self.mode == "recovery" && tool_messages.is_empty() {
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: String::new(),
++                    tool_call_id: None,
++                    tool_calls: vec![ToolCall {
++                        id: "missing-1".into(),
++                        name: "read_file".into(),
++                        arguments: serde_json::json!({"path":"missing.md"}),
++                    }],
++                },
++                tool_calls: vec![ToolCall {
++                    id: "missing-1".into(),
++                    name: "read_file".into(),
++                    arguments: serde_json::json!({"path":"missing.md"}),
++                }],
++            }
++        } else if self.mode == "recovery"
++            && tool_messages
++                .last()
++                .is_some_and(|text| text.contains("path_invalid"))
++        {
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: String::new(),
++                    tool_call_id: None,
++                    tool_calls: vec![ToolCall {
++                        id: "ok-1".into(),
++                        name: "read_file".into(),
++                        arguments: serde_json::json!({"path":"README.md"}),
++                    }],
++                },
++                tool_calls: vec![ToolCall {
++                    id: "ok-1".into(),
++                    name: "read_file".into(),
++                    arguments: serde_json::json!({"path":"README.md"}),
++                }],
++            }
++        } else if self.mode == "recovery" {
++            let text = tool_messages.last().cloned().unwrap_or_default();
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: format!("恢复内容：{}", text.trim()),
++                    tool_call_id: None,
++                    tool_calls: vec![],
++                },
++                tool_calls: vec![],
++            }
++        } else if self.single && n == 1 {
++            ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: String::new(),
++                    tool_call_id: None,
++                    tool_calls: vec![ToolCall {
+                         id: "read-1".into(),
+                         name: "read_file".into(),
+                         arguments: serde_json::json!({"path":"README.md"}),
+@@ -142,6 +229,10 @@
+         .and_then(|index| args.get(index + 1))
+         .map(|mode| mode == "single")
+         .unwrap_or_else(|| args.first().map(|mode| mode == "single").unwrap_or(false));
++    let mode = workspace_at
++        .and_then(|index| args.get(index + 1))
++        .cloned()
++        .unwrap_or_else(|| args.first().cloned().unwrap_or_else(|| "multi".into()));
+     if live {
+         let config = load_config().expect("REIN_BASE_URL/REIN_API_KEY/REIN_MODEL are required");
+         let http = ReqwestHttp::new(std::time::Duration::from_secs(30)).expect("HTTP client");
+@@ -174,6 +265,7 @@
+         &Replay {
+             calls: Arc::new(Mutex::new(0)),
+             single,
++            mode: mode.clone(),
+         },
+         &Workspace { root },
+         if single {
+@@ -181,7 +273,7 @@
+         } else {
+             "先搜索 marker:，再读取命中的两个文件"
+         },
+-        32,
++        if mode == "limit" { 2 } else { 32 },
+     )
+     .await;
+     println!("{}", serde_json::to_string_pretty(&result).unwrap());
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/tests/loop.rs /private/tmp/rein-production-candidate-03/rust/tests/loop.rs
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/rust/tests/loop.rs	2026-09-14 20:15:38
++++ /private/tmp/rein-production-candidate-03/rust/tests/loop.rs	2026-09-14 20:21:27
+@@ -43,6 +43,54 @@
+         Box::pin(async move { value })
+     }
+ }
++
++struct SearchReplay {
++    requests: Arc<Mutex<Vec<Vec<Message>>>>,
++}
++impl ModelAdapter for SearchReplay {
++    fn complete<'a>(
++        &'a self,
++        messages: &'a [Message],
++        _: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        self.requests.lock().unwrap().push(messages.to_vec());
++        let tool_messages: Vec<&Message> = messages.iter().filter(|m| m.role == "tool").collect();
++        let response = if tool_messages.is_empty() {
++            turn(
++                "",
++                vec![call(
++                    "search",
++                    "search_files",
++                    serde_json::json!({"needle":"marker:"}),
++                )],
++            )
++        } else if tool_messages.len() == 1 {
++            let calls = tool_messages[0]
++                .content
++                .lines()
++                .enumerate()
++                .map(|(i, path)| {
++                    call(
++                        &format!("read-{i}"),
++                        "read_file",
++                        serde_json::json!({"path":path}),
++                    )
++                })
++                .collect();
++            turn("", calls)
++        } else {
++            turn(
++                &tool_messages[1..]
++                    .iter()
++                    .map(|m| m.content.trim())
++                    .collect::<Vec<_>>()
++                    .join(" | "),
++                vec![],
++            )
++        };
++        Box::pin(async move { Ok(response) })
++    }
++}
+ fn workspace(label: &str, files: &[(&str, &str)]) -> Workspace {
+     let root = std::env::temp_dir().join(format!("rein-ch05-{label}-{}", std::process::id()));
+     let _ = std::fs::remove_dir_all(&root);
+@@ -58,43 +106,26 @@
+     for (label, files, expected) in [
+         (
+             "blue",
+-            vec![("a.txt", "marker: blue"), ("b.txt", "other")],
+-            "marker: blue",
++            vec![("a.txt", "marker: blue"), ("b.txt", "marker: sea")],
++            "marker: blue | marker: sea",
+         ),
+         (
+             "gold",
+             vec![("x.txt", "marker: gold"), ("y.txt", "marker: wind")],
+-            "marker: gold",
++            "marker: gold | marker: wind",
+         ),
+     ] {
+         let ws = workspace(label, &files);
+-        let replay = Replay(Arc::new(Mutex::new(VecDeque::from([
+-            Ok(turn(
+-                "",
+-                vec![call(
+-                    "search",
+-                    "search_files",
+-                    serde_json::json!({"needle":"marker:"}),
+-                )],
+-            )),
+-            Ok(turn(
+-                "",
+-                vec![
+-                    call(
+-                        "read",
+-                        "read_file",
+-                        serde_json::json!({"path": format!("{}.txt", if label == "blue" { "a" } else { "x" })}),
+-                    ),
+-                    call(
+-                        "bad",
+-                        "read_file",
+-                        serde_json::json!({"path":"missing.txt"}),
+-                    ),
+-                ],
+-            )),
+-            Ok(turn(expected, vec![])),
+-        ]))));
+-        let result = run_agent_loop_with_adapter(&replay, &ws, "inspect", 32).await;
++        let requests = Arc::new(Mutex::new(Vec::new()));
++        let result = run_agent_loop_with_adapter(
++            &SearchReplay {
++                requests: requests.clone(),
++            },
++            &ws,
++            "inspect",
++            32,
++        )
++        .await;
+         assert_eq!(result.reason, StopReason::FinalAnswer);
+         assert_eq!(result.answer.as_deref(), Some(expected));
+         assert_eq!(
+@@ -106,9 +137,33 @@
+                     _ => None,
+                 })
+                 .collect::<Vec<_>>(),
+-            vec!["search", "read", "bad"]
++            vec!["search", "read-0", "read-1"]
+         );
+         assert!(result.messages.iter().any(|m| m.content == expected));
++        let captured = requests.lock().unwrap();
++        assert_eq!(captured.len(), 3);
++        let third_tools: Vec<_> = captured[2]
++            .iter()
++            .filter(|m| m.role == "tool")
++            .skip(1)
++            .collect();
++        assert_eq!(
++            third_tools
++                .iter()
++                .map(|m| m.tool_call_id.as_deref())
++                .collect::<Vec<_>>(),
++            vec![Some("read-0"), Some("read-1")]
++        );
++        assert_eq!(
++            third_tools
++                .iter()
++                .map(|m| m.content.as_str())
++                .collect::<Vec<_>>(),
++            files
++                .iter()
++                .map(|(_, content)| *content)
++                .collect::<Vec<_>>()
++        );
+         let _ = std::fs::remove_dir_all(ws.root);
+     }
+ }
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/scripts/ch05-compare.mjs /private/tmp/rein-production-candidate-03/scripts/ch05-compare.mjs
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/scripts/ch05-compare.mjs	1970-01-01 08:00:00
++++ /private/tmp/rein-production-candidate-03/scripts/ch05-compare.mjs	2026-09-14 20:26:38
+@@ -0,0 +1,28 @@
++import { execFileSync } from 'node:child_process'
++import { deepStrictEqual } from 'node:assert'
++import { resolve } from 'node:path'
++const root = process.cwd()
++const fixture = 'fixtures/cases/ch05-loop.json'
++const lastJson = text => JSON.parse(text.trim().split('\n').filter(Boolean).at(-1))
++const ts = lastJson(execFileSync('npm', ['run', 'ch05:compare', '--workspace', 'ts', '--', `../${fixture}`], { cwd: root, encoding: 'utf8' }))
++const rust = lastJson(execFileSync('cargo', ['run', '--quiet', '--manifest-path', 'rust/Cargo.toml', '--example', 'ch05_compare', '--', fixture], { cwd: root, encoding: 'utf8', env: { ...process.env, CARGO_TARGET_DIR: '/private/tmp/rein-candidate03-build' } }))
++const message = m => ({ role: m.role, content: m.content, toolCallId: m.toolCallId ?? null, toolCalls: (m.toolCalls ?? []).map(call) })
++const call = c => ({ id: c.id, name: c.name, arguments: c.arguments })
++const normalize = result => ({
++  state: result.state, reason: result.reason, answer: result.answer ?? null,
++  messages: result.messages.map(message),
++  events: result.events.map(event => event.type === 'model_requested'
++    ? { type: event.type, turn: event.turn, messages: event.messages.map(message), tools: event.tools.map(tool => ({ name: tool.name, description: tool.description, inputSchema: tool.inputSchema ?? tool.input_schema })) }
++    : event.type === 'model_received'
++      ? { type: event.type, turn: event.turn, message: message(event.message), toolCallIds: event.toolCallIds ?? event.tool_call_ids, text: event.text }
++      : event.type === 'tool_result'
++        ? { type: event.type, turn: event.turn, call: call(event.call), toolCallId: event.toolCallId ?? event.tool_call_id, ok: event.ok ?? event.result?.ok, errorCode: event.errorCode ?? event.result?.error?.code ?? null }
++        : { type: event.type, state: event.state, reason: event.reason })
++})
++const tsNormalized = normalize(ts)
++const rustNormalized = normalize(rust)
++deepStrictEqual(rustNormalized, tsNormalized)
++const expected = JSON.parse(await (await import('node:fs/promises')).readFile(resolve(root, fixture), 'utf8')).expected
++const readPaths = tsNormalized.events.filter(event => event.type === 'tool_result' && event.call.name === 'read_file').map(event => event.call.arguments.path)
++deepStrictEqual({ state: tsNormalized.state, reason: tsNormalized.reason, answer: tsNormalized.answer, readPaths }, expected)
++console.log(JSON.stringify({ equal: true, normalized: tsNormalized }))
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/examples/ch05-compare.ts /private/tmp/rein-production-candidate-03/ts/examples/ch05-compare.ts
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/examples/ch05-compare.ts	1970-01-01 08:00:00
++++ /private/tmp/rein-production-candidate-03/ts/examples/ch05-compare.ts	2026-09-14 20:21:06
+@@ -0,0 +1,18 @@
++import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises'
++import { join, resolve } from 'node:path'
++import { tmpdir } from 'node:os'
++import { runAgentLoop } from '../src/rein/loop'
++import type { ChatAdapter, ModelTurn, ToolCall } from '../src/rein/contracts'
++
++const fixture = JSON.parse(await readFile(resolve(process.argv[2] ?? '../fixtures/cases/ch05-loop.json'), 'utf8'))
++const root = await mkdtemp(join(tmpdir(), 'rein-ch05-compare-'))
++try {
++  for (const [path, content] of Object.entries(fixture.workspaceFiles)) await writeFile(join(root, path), content as string)
++  let index = 0
++  const adapter: ChatAdapter = { async complete() { const turn = fixture.modelTurns[index++] as { content: string; toolCalls: ToolCall[] }; return { message: { role: 'assistant', content: turn.content, toolCalls: turn.toolCalls }, toolCalls: turn.toolCalls } } }
++  const result = await runAgentLoop(adapter, { root }, fixture.prompt)
++  const normalized = { state: result.state, reason: result.reason, answer: result.answer, messages: result.messages, events: result.events.map((event: any) => event.type === 'tool_result' ? { type: event.type, turn: event.turn, call: event.call, toolCallId: event.toolCallId, ok: event.result.ok, errorCode: event.result.error?.code } : event) }
++  if (normalized.state !== fixture.expected.state || normalized.reason !== fixture.expected.reason || normalized.answer !== fixture.expected.answer) throw new Error('fixture expected mismatch')
++  if (JSON.stringify(normalized.answer) === JSON.stringify(fixture.modelTurns.at(-1)?.content) && result.events.filter(e => e.type === 'tool_result').length === 0) throw new Error('answer was not produced after tool execution')
++  console.log(JSON.stringify(normalized))
++} finally { await rm(root, { recursive: true, force: true }) }
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/examples/ch05-loop.ts /private/tmp/rein-production-candidate-03/ts/examples/ch05-loop.ts
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/examples/ch05-loop.ts	2026-09-14 20:13:17
++++ /private/tmp/rein-production-candidate-03/ts/examples/ch05-loop.ts	2026-09-14 20:25:13
+@@ -5,10 +5,19 @@
+ const args = process.argv.slice(2)
+ const mode = args[0] === 'workspace' ? args[2] ?? 'multi' : args[0] ?? 'multi'
+ const root = resolve(args[0] === 'workspace' ? args[1] ?? '.' : '../fixtures/workspaces/prerequisites')
+-if (!['single', 'multi'].includes(mode)) throw new Error('用法：ch05:offline workspace <目录> [single|multi]')
++if (!['single', 'multi', 'recovery', 'empty', 'exhausted', 'limit'].includes(mode)) throw new Error('用法：ch05:offline workspace <目录> [single|multi|recovery|empty|exhausted|limit]')
+ const single = mode === 'single'
+ const adapter: ChatAdapter = { async complete(messages): Promise<ModelTurn> {
++  if (mode === 'empty') return turn('   ')
++  if (mode === 'exhausted' && messages.filter(m => m.role === 'tool').length > 0) throw new Error('replay exhausted')
++  if (mode === 'limit') return turn('', [{ id: 'limit-1', name: 'unknown', arguments: {} }])
+   const tools = messages.filter(m => m.role === 'tool')
++  if (mode === 'recovery') {
++    const last = tools.at(-1)
++    if (!last) return turn('', [{ id: 'missing-1', name: 'read_file', arguments: { path: 'missing.md' } }])
++    if (last.content.includes('path_invalid')) return turn('', [{ id: 'ok-1', name: 'read_file', arguments: { path: 'README.md' } }])
++    return turn(`恢复内容：${last.content.trim()}`)
++  }
+   if (single) {
+     if (tools.length === 0) return turn('', [{ id: 'read-1', name: 'read_file', arguments: { path: 'README.md' } }])
+     return turn(`单文件内容：${tools[0]?.content.trim()}`)
+@@ -23,5 +32,5 @@
+   return turn(`多文件摘要：${tools.slice(1).map(m => m.content.trim()).join(' | ')}`)
+ } }
+ function turn(content: string, toolCalls: ModelTurn['toolCalls'] = []): ModelTurn { const message: Message = { role: 'assistant', content, toolCalls }; return { message, toolCalls } }
+-const result = await runAgentLoop(adapter, { root }, single ? '请读取 README.md。' : '请搜索 marker:，再读取命中的两个文件并总结。')
++const result = await runAgentLoop(adapter, { root }, single ? '请读取 README.md。' : mode === 'recovery' ? '请先读取 missing.md，失败后读取 README.md。' : '请搜索 marker:，再读取命中的两个文件并总结。', { maxTurns: mode === 'limit' ? 2 : 32 })
+ console.log(JSON.stringify({ state: result.state, reason: result.reason, answer: result.answer, events: result.events }, null, 2))
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/package.json /private/tmp/rein-production-candidate-03/ts/package.json
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/package.json	2026-09-14 20:12:43
++++ /private/tmp/rein-production-candidate-03/ts/package.json	2026-09-14 20:19:36
+@@ -9,6 +9,7 @@
+     "test:watch": "vitest",
+     "typecheck": "tsc --noEmit",
+     "ch05:offline": "node --import tsx examples/ch05-loop.ts",
++    "ch05:compare": "node --import tsx examples/ch05-compare.ts",
+     "ch05:live": "node --import tsx examples/ch05-live.ts"
+   },
+   "devDependencies": {
+diff -ruN --exclude=node_modules --exclude=target /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/tests/loop.test.ts /private/tmp/rein-production-candidate-03/ts/tests/loop.test.ts
+--- /private/tmp/rein-ch05-trace-recovery-20260914/product-v2/ts/tests/loop.test.ts	2026-09-14 20:13:17
++++ /private/tmp/rein-production-candidate-03/ts/tests/loop.test.ts	2026-09-14 20:21:19
+@@ -38,8 +38,10 @@
+     try {
+       await writeFile(join(root, 'ok.txt'), 'recovered')
+       let turnNumber = 0
+-      const adapter: ChatAdapter = { async complete() {
++      const received: any[][] = []
++      const adapter: ChatAdapter = { async complete(messages) {
+         turnNumber++
++        received.push(structuredClone(messages) as any)
+         if (turnNumber === 1) return turn('', [tool('u', 'unknown', {}), tool('a', 'read_file', { path: 3 }), tool('m', 'read_file', { path: 'missing.txt' })])
+         if (turnNumber === 2) return turn('', [tool('r', 'read_file', { path: 'ok.txt' })])
+         return turn('recovered')
+@@ -47,6 +49,8 @@
+       const result = await runAgentLoop(adapter, { root }, 'recover')
+       expect(result).toMatchObject({ state: 'completed', reason: 'final_answer', answer: 'recovered' })
+       expect(result.events.filter(e => e.type === 'tool_result').map(e => e.result.error?.code)).toEqual(['unknown_tool', 'arguments_invalid', 'path_invalid', undefined])
++      expect(received[1]?.filter(m => m.role === 'tool').map(m => JSON.parse(m.content).error.code)).toEqual(['unknown_tool', 'arguments_invalid', 'path_invalid'])
++      expect(received[2]?.filter(m => m.role === 'tool').slice(-1).map(m => m.toolCallId)).toEqual(['r'])
+     } finally { await rm(root, { recursive: true, force: true }) }
+   })
+ 

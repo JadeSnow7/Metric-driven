@@ -1,0 +1,1399 @@
+{
+  "source_root": "/private/tmp/rein-stage1-support-evidence",
+  "destination_root": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/production/support-stage1-a2/evidence",
+  "file_count": 232,
+  "files": [
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/README.txt",
+      "relative_path": "README.txt",
+      "sha256": "763d1c67de8ae99c9b54340549588ac77b6bfda9e1ee8f9fe054446ec55c16fc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/draft-hashes.txt",
+      "relative_path": "draft-hashes.txt",
+      "sha256": "a5eb6fd993384a8690bd9f6d2445749e38292d20bb2d88fecdedd95eb88b08b4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/main-v2-run-review.json",
+      "relative_path": "main-v2-run-review.json",
+      "sha256": "1b442d5cf7ac047996c885d01ac8368150b8f69bdbc7d37255d84c3e9474b3d1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/provenance.txt",
+      "relative_path": "provenance.txt",
+      "sha256": "ee30f2a3d9811a3b0d44c4815f03ad4070aba087f298eabcc17726fb7d0680c8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/source-hashes.txt",
+      "relative_path": "source-hashes.txt",
+      "sha256": "c519eacc685b2ac3d922ff2517dff406acf1cb0fdf41afdb57550bce23043c5f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/a2-v1.md",
+      "relative_path": "v2/a2-v1.md",
+      "sha256": "5336bdb9bed13eae2c44ff736e97ff464ff8eead1b9546cb652d72941fb0e233",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/final-draft-hashes.txt",
+      "relative_path": "v2/final-draft-hashes.txt",
+      "sha256": "2ed3c3f3b6d7629e9475dd12c1535fb68a897779d26b88a2651322cf66e3c775",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/milestones-02-v1.md",
+      "relative_path": "v2/milestones-02-v1.md",
+      "sha256": "bf0643a4f247123f75cac2593277ea283100d4e62a5121446f13ac05f504d846",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/revision-note.txt",
+      "relative_path": "v2/revision-note.txt",
+      "sha256": "c841549c168d0a5804814e3b97f85a5a0bebc97f7458d3158a6ef922d15c5c58",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/argv.json",
+      "relative_path": "v2/runs/rust-ch05-multi/argv.json",
+      "sha256": "814f18b6976aa097ede23836007b39fd63fe56017b4a5e7c34715d71428ea898",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/cwd.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/end.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/end.txt",
+      "sha256": "67920277588dc1fd866a9f5243c5ff83e55f7d9cbe08a4e01a2ae499d864d177",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/exit.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/start.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/start.txt",
+      "sha256": "60df29f553559adedcdba2254f0e2f25ed77123a11d6d3cf28f43291cc942dee",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/stderr.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-multi/stdout.txt",
+      "relative_path": "v2/runs/rust-ch05-multi/stdout.txt",
+      "sha256": "8a4e5fb92b3402cb8b3c0881645f5111e09297a0e50260488d6f46c41f01d428",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/argv.json",
+      "relative_path": "v2/runs/rust-ch05-single/argv.json",
+      "sha256": "f02538420808a9e431062e130fa16965f76fe0e1f7c765d32839704c6f7ffc5a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/cwd.txt",
+      "relative_path": "v2/runs/rust-ch05-single/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/end.txt",
+      "relative_path": "v2/runs/rust-ch05-single/end.txt",
+      "sha256": "6284ccdbda33dfe0c9020049253263c7b41698311a6361b45376dbe9e6c735d6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/exit.txt",
+      "relative_path": "v2/runs/rust-ch05-single/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/start.txt",
+      "relative_path": "v2/runs/rust-ch05-single/start.txt",
+      "sha256": "2cdf528b7ec3a78ae005422e1f3286782477190a263389062b2b713fc01e203f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/stderr.txt",
+      "relative_path": "v2/runs/rust-ch05-single/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch05-single/stdout.txt",
+      "relative_path": "v2/runs/rust-ch05-single/stdout.txt",
+      "sha256": "70c87f34973f554f4a308f59138b02f2f53154a537b076506da063c4c05963e1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/argv.json",
+      "relative_path": "v2/runs/rust-ch06-empty/argv.json",
+      "sha256": "fa7271f0c24ca6156288d6d1a63309d6093528d37e606619cbb82b99d64564f9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/cwd.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/end.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/end.txt",
+      "sha256": "390dcd7a197fb15559bcb24e7daab218df216bd5433019fd1b77ff7919319e9d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/exit.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/start.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/start.txt",
+      "sha256": "f00d330f73ba1375414a300c0255a4d8eb004d151edfd500a2e42f8258fc4616",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/stderr.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-empty/stdout.txt",
+      "relative_path": "v2/runs/rust-ch06-empty/stdout.txt",
+      "sha256": "69580e03801069444556f738e0e7cf33f639dc6f54cf87d8a8cf3429e5cf39ec",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/argv.json",
+      "relative_path": "v2/runs/rust-ch06-normal/argv.json",
+      "sha256": "a6b4751ed0946a51b16262ceae9369000d3be093eb07c2b317c47c5a92341b09",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/cwd.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/end.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/end.txt",
+      "sha256": "fd1466c77c5c4098a49342277418feee4aad8491108dbb3b6ca7fd367fd2da05",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/exit.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/start.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/start.txt",
+      "sha256": "701e4d787b42e2cf465747c6fab92c404250cd1b4f120b502616974e1aed742f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/stderr.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/rust-ch06-normal/stdout.txt",
+      "relative_path": "v2/runs/rust-ch06-normal/stdout.txt",
+      "sha256": "b4c5889fcdd35a11febb076fe5a7757a962838a3428d9f94186d88b28eb074fd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/argv.json",
+      "relative_path": "v2/runs/ts-ch05-multi/argv.json",
+      "sha256": "46be167c4b2256d6941835876afb286f8aec33fd100f34be1a3621fb1713c923",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/cwd.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/end.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/end.txt",
+      "sha256": "37b1a217c08fe1327f9aa48d160fe4ad85ba477400cc5208f6385c324774b3bf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/exit.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/start.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/start.txt",
+      "sha256": "1a7e0eb1fd3d2300e589dbd168d27de58d554d3c93393dbac1a8b5af6ef89beb",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/stderr.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-multi/stdout.txt",
+      "relative_path": "v2/runs/ts-ch05-multi/stdout.txt",
+      "sha256": "17cb19ed6fa653894900ed72257c7870a66c56b35c9bdc987471ad1c2fae9652",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/argv.json",
+      "relative_path": "v2/runs/ts-ch05-single/argv.json",
+      "sha256": "c2654ec10f48e78d34561b45ba5484f8762b76b24d2f83adb2a25fd76e9d8ff2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/cwd.txt",
+      "relative_path": "v2/runs/ts-ch05-single/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/end.txt",
+      "relative_path": "v2/runs/ts-ch05-single/end.txt",
+      "sha256": "0c87a41fdc39459d37b3eabbf653da6187cd535404d146a4be7d41a2870121b7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/exit.txt",
+      "relative_path": "v2/runs/ts-ch05-single/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/start.txt",
+      "relative_path": "v2/runs/ts-ch05-single/start.txt",
+      "sha256": "282d8dc2687c0e7fc4b0f9a8c4ea42dc2bf0a66f02e64a4f8175ee65f18075f3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/stderr.txt",
+      "relative_path": "v2/runs/ts-ch05-single/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch05-single/stdout.txt",
+      "relative_path": "v2/runs/ts-ch05-single/stdout.txt",
+      "sha256": "70c5babf42ff9e1a4af141978d8d9491f06ced8f8c4f86fabdc2ca6ad5ffff9b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/argv.json",
+      "relative_path": "v2/runs/ts-ch06-empty/argv.json",
+      "sha256": "63728fa1201c4a0c6f01355705a7d16cfb438d9130af5008b9ae87b88c31b7e5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/cwd.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/end.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/end.txt",
+      "sha256": "6501e4456e1e96be8c98a1e0cecff3e8cf487520592948db339d8d8703d51571",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/exit.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/start.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/start.txt",
+      "sha256": "8f26b1f53cb492737d9385548ea337a78d238a3a51a03c8cad2d3de2ced7472f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/stderr.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-empty/stdout.txt",
+      "relative_path": "v2/runs/ts-ch06-empty/stdout.txt",
+      "sha256": "21a5b0c40ad32950bd0fd76b5e0c62fb9d0fdb7ad418e192c48c7e2b0f5156c4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/argv.json",
+      "relative_path": "v2/runs/ts-ch06-normal/argv.json",
+      "sha256": "30caca31852c9a05b9fa29ff821e7e72d46150d937655cdaf6eff2950e5e4160",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/cwd.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/cwd.txt",
+      "sha256": "c266af825ed23bfe3612c0492d371c0efcf821d06e3934776f46e1ec65569d38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/end.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/end.txt",
+      "sha256": "dcacd3441f8c18ea63969af6097185ded4f5545b51ef75943c85a5dca96a3843",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/exit.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/start.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/start.txt",
+      "sha256": "e58b08f10dc82117511ca799c973484d4cd4b238ec0e36674eef81fe4a24b52e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/stderr.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/runs/ts-ch06-normal/stdout.txt",
+      "relative_path": "v2/runs/ts-ch06-normal/stdout.txt",
+      "sha256": "4c7d107cffa4532e5202c48059778a1adcd564f748397c386533028d8c8d1727",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v2/v1-hashes.txt",
+      "relative_path": "v2/v1-hashes.txt",
+      "sha256": "69932e48168c2ddaec0a89d3bcf97d8f616d7aa06bcd5bfd36ff32d59e139fc2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/candidate-hashes.txt",
+      "relative_path": "v3/candidate-hashes.txt",
+      "sha256": "1dd1eb02c9cd7f01c9c71ae62392c49da4716b38d40f1c980590bd1764637e15",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/argv.json",
+      "relative_path": "v3/docs-build/argv.json",
+      "sha256": "05b3a1339571df23a8b4ebfdb3318789b1d516334f4476d9faee58f205076e45",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/cwd.txt",
+      "relative_path": "v3/docs-build/cwd.txt",
+      "sha256": "fe6b539ce4e0054533f5007bdc0f095cf018af3f47dd1f46cb0a5b4d67e7d541",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/end.txt",
+      "relative_path": "v3/docs-build/end.txt",
+      "sha256": "1b77c89500dc79a9b9d0fe2ecbb2abd9a467506f15892b8528cb424a02d76c01",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/exit.txt",
+      "relative_path": "v3/docs-build/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/start.txt",
+      "relative_path": "v3/docs-build/start.txt",
+      "sha256": "9c17e302db9bd03f3a82650aee83a72ea384b4698ef6aa051da75a934661903b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/stderr.txt",
+      "relative_path": "v3/docs-build/stderr.txt",
+      "sha256": "fc7c6405aac8fbf4c47ba4c22feb0b41275820b184b493e71c8b989328869cf8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/docs-build/stdout.txt",
+      "relative_path": "v3/docs-build/stdout.txt",
+      "sha256": "cbe67d9be86c7077520d73877a8bb980219e7e30eead3b473cf6b2f9cdd48082",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v3/draft-hashes.txt",
+      "relative_path": "v3/draft-hashes.txt",
+      "sha256": "b9ec79eb89fb3b31866eaecdd97c5b2caeba8a4489d43fcc085fba1cf9e03402",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/before/02.md",
+      "relative_path": "v4/before/02.md",
+      "sha256": "e40f81e99bdf52d4309d9e620537b698672d253c5fa56eda631cd5eac10bc9bc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/before/a2.md",
+      "relative_path": "v4/before/a2.md",
+      "sha256": "e3c3c620ae154709f573d3a07b74e7716111da7fbbf3d2c5b2697b07be22f19a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/before/hashes.txt",
+      "relative_path": "v4/before/hashes.txt",
+      "sha256": "c48df77ee4c818d56929f305472c2c95e855c4953eb3f5ebc409d7a9d0961f51",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/argv.json",
+      "relative_path": "v4/compile-run/rust-original/argv.json",
+      "sha256": "de740317df9e05294024c9d9e68b930ca41f18305c351c35bbed73ed7f7c53c2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/cwd.txt",
+      "relative_path": "v4/compile-run/rust-original/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/end.txt",
+      "relative_path": "v4/compile-run/rust-original/end.txt",
+      "sha256": "a0eb1565abf7f2240a24db3b419b23e88927a6dca85660682756b702419e2936",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/exit.txt",
+      "relative_path": "v4/compile-run/rust-original/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/start.txt",
+      "relative_path": "v4/compile-run/rust-original/start.txt",
+      "sha256": "01eb630b05071490bc9f5538132b109c914ca81d570276e2ffa3655be8e46509",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/stderr.txt",
+      "relative_path": "v4/compile-run/rust-original/stderr.txt",
+      "sha256": "9348c5e3bda888d035a7a675bbda1a05e6d0510bacd0b8d908bf20f6300d166c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-original/stdout.txt",
+      "relative_path": "v4/compile-run/rust-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/argv.json",
+      "relative_path": "v4/compile-run/rust-paused-handled/argv.json",
+      "sha256": "de740317df9e05294024c9d9e68b930ca41f18305c351c35bbed73ed7f7c53c2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/cwd.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/end.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/end.txt",
+      "sha256": "21efc8973fec0f16f1f1d6c0815b023c0d952a54b465e275156512ef1f3bf7cd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/exit.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/start.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/start.txt",
+      "sha256": "6efbdc860a38385a9e9399dea56ced6ef78f7b645ab7319394ddf272d3819280",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/stderr.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/stderr.txt",
+      "sha256": "9348c5e3bda888d035a7a675bbda1a05e6d0510bacd0b8d908bf20f6300d166c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-handled/stdout.txt",
+      "relative_path": "v4/compile-run/rust-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/argv.json",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/argv.json",
+      "sha256": "de740317df9e05294024c9d9e68b930ca41f18305c351c35bbed73ed7f7c53c2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/cwd.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/end.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/end.txt",
+      "sha256": "ed201fb53b53d1aab54cda44edfb1299c4b81a4b747ed120fd87e5ff016b7c7a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/exit.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/start.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/start.txt",
+      "sha256": "a320d0a417d405307e11017a317304a97d82b4d5e745a5775e7c17c07e22652c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/stderr.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/stderr.txt",
+      "sha256": "44168bf7680c48a4c6e60f8d3119d1e47f6a07a932770c5a695a1b4e3cb4c4a3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/rust-paused-unhandled/stdout.txt",
+      "relative_path": "v4/compile-run/rust-paused-unhandled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/argv.json",
+      "relative_path": "v4/compile-run/ts-original/argv.json",
+      "sha256": "09d98458adb85b6eaa7cf8d23e1962f509573d8bf551296508b5f1d5163aca2a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/cwd.txt",
+      "relative_path": "v4/compile-run/ts-original/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/end.txt",
+      "relative_path": "v4/compile-run/ts-original/end.txt",
+      "sha256": "fa6f9542b56e85aca9baa3098c9f25caa786bc2d693d34328c9ccef60a09375a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/exit.txt",
+      "relative_path": "v4/compile-run/ts-original/exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/start.txt",
+      "relative_path": "v4/compile-run/ts-original/start.txt",
+      "sha256": "18f66619ea71efd9a8a6f1f4ef9ed50197e5ec91b16db313aba5323748c3c6aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/stderr.txt",
+      "relative_path": "v4/compile-run/ts-original/stderr.txt",
+      "sha256": "04c73b02ac1f25cfc120c67a747e40d02078ef1c27523ebddf202dc800f5ba4f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-original/stdout.txt",
+      "relative_path": "v4/compile-run/ts-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/argv.json",
+      "relative_path": "v4/compile-run/ts-paused-handled/argv.json",
+      "sha256": "2f486f09521494723a015399734fba7d2c531aa49e79f5a002a65082d90b3caf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/cwd.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/end.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/end.txt",
+      "sha256": "65f5376806031da6b5eb79d39aa0cb90cdb335cbfe2fb57b3621224361b910e2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/exit.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/start.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/start.txt",
+      "sha256": "cb142489c3be083c741882061d9a6da38c486e700e48627e956b64c3bf6c23c6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/stderr.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-handled/stdout.txt",
+      "relative_path": "v4/compile-run/ts-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/argv.json",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/argv.json",
+      "sha256": "09d98458adb85b6eaa7cf8d23e1962f509573d8bf551296508b5f1d5163aca2a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/cwd.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/end.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/end.txt",
+      "sha256": "1ed00c936ce9d06e4e7b29390a5bc2520310e9a15d0a4fb5e9ae8ddc02fb0457",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/exit.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/exit.txt",
+      "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/start.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/start.txt",
+      "sha256": "1e19a91450837d02c66356e471d7a59cb874803b585d897bd0c70ddff9b147d8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/stderr.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run/ts-paused-unhandled/stdout.txt",
+      "relative_path": "v4/compile-run/ts-paused-unhandled/stdout.txt",
+      "sha256": "78666604c59feff84825b14ea34d1ac84d9db63d24d84e239d3d1a449332dc4e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/argv.json",
+      "relative_path": "v4/compile-run-final/rust-original/argv.json",
+      "sha256": "b4e1015da89ab0221cbdb7b53c755d37f3c7162c9db7a4408871fc299a436a13",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/cwd.txt",
+      "relative_path": "v4/compile-run-final/rust-original/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/end.txt",
+      "relative_path": "v4/compile-run-final/rust-original/end.txt",
+      "sha256": "630ba6061151d1acdcc72a658b6b59980a67db929b92e4fbac32ba90050056e2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/exit.txt",
+      "relative_path": "v4/compile-run-final/rust-original/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/start.txt",
+      "relative_path": "v4/compile-run-final/rust-original/start.txt",
+      "sha256": "0054b7b2d60e8c90f5a3df60c6d782cc0ee4079b9dba33fef18086ee0ce92075",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/stderr.txt",
+      "relative_path": "v4/compile-run-final/rust-original/stderr.txt",
+      "sha256": "8b7ba103e32378fb4abc1df9789eaf971adbb3d8cf6d47b308ec10d5e61a5f68",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-original/stdout.txt",
+      "relative_path": "v4/compile-run-final/rust-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/argv.json",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/argv.json",
+      "sha256": "b4e1015da89ab0221cbdb7b53c755d37f3c7162c9db7a4408871fc299a436a13",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/cwd.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/end.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/end.txt",
+      "sha256": "3dd579dc7d753fddf26ffdb2996b71d213199ca575939dc3a1dc69937d19d8a2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/exit.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/start.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/start.txt",
+      "sha256": "abcf4803bb6e773b80a662271a7126c4874c76e765e76f9f671ee6749b7dc698",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/stderr.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/stderr.txt",
+      "sha256": "9348c5e3bda888d035a7a675bbda1a05e6d0510bacd0b8d908bf20f6300d166c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-handled/stdout.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/argv.json",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/argv.json",
+      "sha256": "b4e1015da89ab0221cbdb7b53c755d37f3c7162c9db7a4408871fc299a436a13",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/cwd.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/end.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/end.txt",
+      "sha256": "958bbe57c5457407f889e6d3f4995ea24ffd6b5e84f878870142d7b52cc3c635",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/exit.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/start.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/start.txt",
+      "sha256": "0a34977de7b3b418c51c3dfa1e17893e8befee0aef70bbee0bace0d326ef977b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/stderr.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/stderr.txt",
+      "sha256": "0a56e6e60007b4a9fc6b531918cb80c74aea53cb0fba59d707ac9c12781bb6ee",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/rust-paused-unhandled/stdout.txt",
+      "relative_path": "v4/compile-run-final/rust-paused-unhandled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/argv.json",
+      "relative_path": "v4/compile-run-final/ts-original/argv.json",
+      "sha256": "2f486f09521494723a015399734fba7d2c531aa49e79f5a002a65082d90b3caf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/cwd.txt",
+      "relative_path": "v4/compile-run-final/ts-original/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/end.txt",
+      "relative_path": "v4/compile-run-final/ts-original/end.txt",
+      "sha256": "bef320d12b1e445836e5b7cb0c38ca1a7b5abbdc9fa9ef2dbe9d65e8a2174f8b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/exit.txt",
+      "relative_path": "v4/compile-run-final/ts-original/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/start.txt",
+      "relative_path": "v4/compile-run-final/ts-original/start.txt",
+      "sha256": "1262d9f05b82602e83e14b0274962383914778531d81d0205e3599160abde736",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/stderr.txt",
+      "relative_path": "v4/compile-run-final/ts-original/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-original/stdout.txt",
+      "relative_path": "v4/compile-run-final/ts-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/argv.json",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/argv.json",
+      "sha256": "2f486f09521494723a015399734fba7d2c531aa49e79f5a002a65082d90b3caf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/cwd.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/end.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/end.txt",
+      "sha256": "3b5f7f66fd96b02768f560d1c80b01f7cad5bd734c1a36c13a72029e69a7941a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/exit.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/start.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/start.txt",
+      "sha256": "74e15a7a21cfe5f14df8772fb2b2ce866ef8aa93634346992be572aad48915f1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/stderr.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-handled/stdout.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/argv.json",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/argv.json",
+      "sha256": "2f486f09521494723a015399734fba7d2c531aa49e79f5a002a65082d90b3caf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/cwd.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/cwd.txt",
+      "sha256": "9a80d74ee263fb0ca8965f2343f2695bee002e92d86dc4f708352a9d399a7888",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/end.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/end.txt",
+      "sha256": "3f8d3f80a7d26d99c856f867f51cf68deb2c5095419a587c732476aaad1f9540",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/exit.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/exit.txt",
+      "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/start.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/start.txt",
+      "sha256": "f8a057bc9f9ed338ee3c69dc1bdfe2b42641c819f0e4ab7e314581ea7c62889e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/stderr.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/compile-run-final/ts-paused-unhandled/stdout.txt",
+      "relative_path": "v4/compile-run-final/ts-paused-unhandled/stdout.txt",
+      "sha256": "be7c0f696759d4a0ba94cccc1057d29808ffcf3b2a5cc1d850222cdd9108f14d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/argv.json",
+      "relative_path": "v4/docs-build/argv.json",
+      "sha256": "05b3a1339571df23a8b4ebfdb3318789b1d516334f4476d9faee58f205076e45",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/cwd.txt",
+      "relative_path": "v4/docs-build/cwd.txt",
+      "sha256": "fe6b539ce4e0054533f5007bdc0f095cf018af3f47dd1f46cb0a5b4d67e7d541",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/end.txt",
+      "relative_path": "v4/docs-build/end.txt",
+      "sha256": "028e8b8f81e41beeb2c41cebcca0be7eb5fb10a97f1cfd80d8202ace2ab2e166",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/exit.txt",
+      "relative_path": "v4/docs-build/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/start.txt",
+      "relative_path": "v4/docs-build/start.txt",
+      "sha256": "0fc59eaac24187e0bae6aec89e41da63c7c9d4102a6a51672ee5a935f4f55693",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/stderr.txt",
+      "relative_path": "v4/docs-build/stderr.txt",
+      "sha256": "fc7c6405aac8fbf4c47ba4c22feb0b41275820b184b493e71c8b989328869cf8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build/stdout.txt",
+      "relative_path": "v4/docs-build/stdout.txt",
+      "sha256": "69e211f96b1da17a4f49f4c658c2011029fe8bdd6dc818cd58055ad27c7d860e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/argv.json",
+      "relative_path": "v4/docs-build-final/argv.json",
+      "sha256": "05b3a1339571df23a8b4ebfdb3318789b1d516334f4476d9faee58f205076e45",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/cwd.txt",
+      "relative_path": "v4/docs-build-final/cwd.txt",
+      "sha256": "fe6b539ce4e0054533f5007bdc0f095cf018af3f47dd1f46cb0a5b4d67e7d541",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/end.txt",
+      "relative_path": "v4/docs-build-final/end.txt",
+      "sha256": "c4a8ead77d71aec285799fc063ffeecbdc6e645d16334c1d6d18901af7d8f1eb",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/exit.txt",
+      "relative_path": "v4/docs-build-final/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/start.txt",
+      "relative_path": "v4/docs-build-final/start.txt",
+      "sha256": "46225e3c5d22767f9f7e86c3c9a45205e32a7c1da692c3ff8943f166736ff6d5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/stderr.txt",
+      "relative_path": "v4/docs-build-final/stderr.txt",
+      "sha256": "fc7c6405aac8fbf4c47ba4c22feb0b41275820b184b493e71c8b989328869cf8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/docs-build-final/stdout.txt",
+      "relative_path": "v4/docs-build-final/stdout.txt",
+      "sha256": "96414dc6a462cbfd537a23c634c2cc56bc96c92821d66de3d1931ae225d262f1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v4/final-hashes.txt",
+      "relative_path": "v4/final-hashes.txt",
+      "sha256": "b67bf535c5a21d2142cb418061f20eaa756a9a1f79bf184f316d712abcaa1851",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/before/02.md",
+      "relative_path": "v5/before/02.md",
+      "sha256": "e40f81e99bdf52d4309d9e620537b698672d253c5fa56eda631cd5eac10bc9bc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/before/a2.md",
+      "relative_path": "v5/before/a2.md",
+      "sha256": "6dad1421c6a7b4fcdc837465c5ce9f85c6dc9438f0aaa0445f4b378482c20f3f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/before/hashes.txt",
+      "relative_path": "v5/before/hashes.txt",
+      "sha256": "0d33ebf92a989bf61f393590c1c2f36cf61e4847708f55e238461f8b980c96fd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/argv.json",
+      "relative_path": "v5/docs-build/argv.json",
+      "sha256": "05b3a1339571df23a8b4ebfdb3318789b1d516334f4476d9faee58f205076e45",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/cwd.txt",
+      "relative_path": "v5/docs-build/cwd.txt",
+      "sha256": "fe6b539ce4e0054533f5007bdc0f095cf018af3f47dd1f46cb0a5b4d67e7d541",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/end.txt",
+      "relative_path": "v5/docs-build/end.txt",
+      "sha256": "5cf7afd177901f51260277c2a01a98ab66a6adb4e94e7be321a38a86b93d9604",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/exit.txt",
+      "relative_path": "v5/docs-build/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/start.txt",
+      "relative_path": "v5/docs-build/start.txt",
+      "sha256": "4b03cc7204836eb366c0a3046e2374c1ff6d5aee87876c6a932488cf87163d27",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/stderr.txt",
+      "relative_path": "v5/docs-build/stderr.txt",
+      "sha256": "fc7c6405aac8fbf4c47ba4c22feb0b41275820b184b493e71c8b989328869cf8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/docs-build/stdout.txt",
+      "relative_path": "v5/docs-build/stdout.txt",
+      "sha256": "dbcf72ba8fa605d3dac9cf4f38d3ef4356df38e556566312b2f474d1e7bfb286",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/extracted/rust/examples/a2_state.rs",
+      "relative_path": "v5/extracted/rust/examples/a2_state.rs",
+      "sha256": "318c5cb2e79ef0a4ebd81bf483b498f8559dbdd0bc1cba0e11ba0f19b94795c6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/extracted/ts/examples/a2-state.ts",
+      "relative_path": "v5/extracted/ts/examples/a2-state.ts",
+      "sha256": "75560edc6ee376c5656f8f2c5a6a0dcf593ab02c72b5ed9a70bb14886b1c03a6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/final-hashes.txt",
+      "relative_path": "v5/final-hashes.txt",
+      "sha256": "1efbc360baef94acee0afb472b94e4c7d90a1b0f229f1b2ded4060cb92e7e703",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/argv.json",
+      "relative_path": "v5/runs/rust-original/argv.json",
+      "sha256": "8e006fb8f35de56de1f987e2e55ff76c5204a2328451004af2b6643517a26de3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/cwd.txt",
+      "relative_path": "v5/runs/rust-original/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/end.txt",
+      "relative_path": "v5/runs/rust-original/end.txt",
+      "sha256": "dfb29c2919bf7ebe13266085670be765f7843833f64e576ec2b024567e28e35f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/exit.txt",
+      "relative_path": "v5/runs/rust-original/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/start.txt",
+      "relative_path": "v5/runs/rust-original/start.txt",
+      "sha256": "bfa852808f2f5a07414b64a91ba88c22b6d2ad38d6ecddaec9d1f539be0ec869",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/stderr.txt",
+      "relative_path": "v5/runs/rust-original/stderr.txt",
+      "sha256": "1af7e3e8d04dd2de906827e2b4c36d1b01e2c1b733d8ad62594b29faf45c5c9b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-original/stdout.txt",
+      "relative_path": "v5/runs/rust-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/argv.json",
+      "relative_path": "v5/runs/rust-paused-handled/argv.json",
+      "sha256": "8e006fb8f35de56de1f987e2e55ff76c5204a2328451004af2b6643517a26de3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/cwd.txt",
+      "relative_path": "v5/runs/rust-paused-handled/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/end.txt",
+      "relative_path": "v5/runs/rust-paused-handled/end.txt",
+      "sha256": "652474db6e64083e1f06a3fbb4cccb1a5f77a491bab9aea75c58f9c244ecab8c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/exit.txt",
+      "relative_path": "v5/runs/rust-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/start.txt",
+      "relative_path": "v5/runs/rust-paused-handled/start.txt",
+      "sha256": "2b4c1906dd45b0c254335180315b01710340c240d3e10b85fa48f1ec9b65f52e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/stderr.txt",
+      "relative_path": "v5/runs/rust-paused-handled/stderr.txt",
+      "sha256": "1750f6f7e0ff5084b7a7f312087a9fc0283315b799da1adf8b1646a1d0b0c2a9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-handled/stdout.txt",
+      "relative_path": "v5/runs/rust-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/argv.json",
+      "relative_path": "v5/runs/rust-paused-unhandled/argv.json",
+      "sha256": "8e006fb8f35de56de1f987e2e55ff76c5204a2328451004af2b6643517a26de3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/cwd.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/end.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/end.txt",
+      "sha256": "5b76fa68306405b1489d23160d1ecb875c2fb377bbbbf4970e84b9bbf21052b4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/exit.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/start.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/start.txt",
+      "sha256": "5e3b6549c7218dc740d8bf4dbecca261a987da5e3f4ac8e311030ba57a4555c8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/stderr.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/stderr.txt",
+      "sha256": "989dfe12ea1227333639e8951c413a3c37fb41643690cb473ab9414e32720f63",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/rust-paused-unhandled/stdout.txt",
+      "relative_path": "v5/runs/rust-paused-unhandled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/argv.json",
+      "relative_path": "v5/runs/ts-original/argv.json",
+      "sha256": "b9592f8ba641c599a68b3402653e9b7d8129488d2503c31805a54b621ebc1706",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/cwd.txt",
+      "relative_path": "v5/runs/ts-original/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/end.txt",
+      "relative_path": "v5/runs/ts-original/end.txt",
+      "sha256": "a00905c049a53ee775377eab1c383820f14dc2a5e090762ac83a36edb3f1a070",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/exit.txt",
+      "relative_path": "v5/runs/ts-original/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/start.txt",
+      "relative_path": "v5/runs/ts-original/start.txt",
+      "sha256": "88e38442eccd0388c92232ccb8d7c80a1f9d47c8bf143909259e0a932704adf5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/stderr.txt",
+      "relative_path": "v5/runs/ts-original/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-original/stdout.txt",
+      "relative_path": "v5/runs/ts-original/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/argv.json",
+      "relative_path": "v5/runs/ts-paused-handled/argv.json",
+      "sha256": "b9592f8ba641c599a68b3402653e9b7d8129488d2503c31805a54b621ebc1706",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/cwd.txt",
+      "relative_path": "v5/runs/ts-paused-handled/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/end.txt",
+      "relative_path": "v5/runs/ts-paused-handled/end.txt",
+      "sha256": "3fc9b79cf154b0fa320137361b8d0944f5fe0dbd83003746419ab17970901e81",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/exit.txt",
+      "relative_path": "v5/runs/ts-paused-handled/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/start.txt",
+      "relative_path": "v5/runs/ts-paused-handled/start.txt",
+      "sha256": "7a3d45d449c2c194c13f56cd0b1af9ad2c80b17d633e36521b4c2a9daa05cb85",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/stderr.txt",
+      "relative_path": "v5/runs/ts-paused-handled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-handled/stdout.txt",
+      "relative_path": "v5/runs/ts-paused-handled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/argv.json",
+      "relative_path": "v5/runs/ts-paused-unhandled/argv.json",
+      "sha256": "b9592f8ba641c599a68b3402653e9b7d8129488d2503c31805a54b621ebc1706",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/cwd.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/cwd.txt",
+      "sha256": "152ced7958eea8cd7f4b8fe1699f1c2bf4a2a882bda900dce9e9c69a41035498",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/end.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/end.txt",
+      "sha256": "d2b594022a65d3fec9e56cbc76e29d49e64247da5b0230854a53953a0a85b2f8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/exit.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/exit.txt",
+      "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/start.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/start.txt",
+      "sha256": "7d2e8c8cb23ae6a4cc418452f959a1d850419c2846c593f40f07553dc69c174d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/stderr.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-stage1-support-evidence/v5/runs/ts-paused-unhandled/stdout.txt",
+      "relative_path": "v5/runs/ts-paused-unhandled/stdout.txt",
+      "sha256": "d47bb6d35e9abfacae490d8fdbfcd4f3f62fd315b85505ef494c2bcfb13bb282",
+      "mode": "0o644"
+    }
+  ]
+}

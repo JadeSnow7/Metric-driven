@@ -1,0 +1,47 @@
+{
+  "product_source_changes_during_review": [],
+  "findings": {
+    "F1": "passed",
+    "F2": "passed",
+    "F3": "passed",
+    "F4": "passed",
+    "F5": "failed",
+    "F6": "passed",
+    "F7": "failed",
+    "F8": "failed",
+    "F9": "failed"
+  },
+  "external_model_service": "not_run",
+  "environment_blocker": false,
+  "ts_independent_checks": {
+    "AZURE-real-search-read-next-request": "passed",
+    "OCHRE-real-search-read-next-request": "passed",
+    "structured-tool-failure-feedback": "passed",
+    "model-error-keeps-events-no-answer": "passed",
+    "empty-final": "passed",
+    "normal-final": "passed",
+    "default-32-model-rounds": "passed",
+    "events-retain-call-inputs": "passed"
+  },
+  "rust_independent_checks": {
+    "AZURE-real-search-read-next-request": "passed",
+    "OCHRE-real-search-read-next-request": "passed",
+    "events-retain-call-inputs": "passed"
+  },
+  "anchors": {
+    "05.md": [
+      "loop-entry",
+      "search-read",
+      "practice-05-1",
+      "practice-05-2",
+      "practice-05-3"
+    ],
+    "05-rust.md": [
+      "loop-entry",
+      "search-read",
+      "practice-05-1",
+      "practice-05-2",
+      "practice-05-3"
+    ]
+  }
+}

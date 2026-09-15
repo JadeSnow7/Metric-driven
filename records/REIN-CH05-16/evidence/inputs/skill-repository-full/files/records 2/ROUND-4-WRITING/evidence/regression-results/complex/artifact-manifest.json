@@ -1,0 +1,99 @@
+{
+  "captured_at": "2026-09-14T04:41:53.580257+00:00",
+  "source_root": "/private/tmp/edd-r4-fixtures-8gys1wek/complex",
+  "files": {
+    "BASELINE.json": {
+      "archive": "regression-results/complex/final-artifacts/BASELINE.json.txt",
+      "sha256": "8bc7d3343df502b33d59aea665bc55f64f7e9707b2c29f66084ef281818a2d09"
+    },
+    "REQUEST.txt": {
+      "archive": "regression-results/complex/final-artifacts/REQUEST.txt.txt",
+      "sha256": "7ae6ed77e74bf8478bcf6568ccadaca3eb12f73ee43bcf3d2bf6b797b57af3ee"
+    },
+    "final_reply.md": {
+      "archive": "regression-results/complex/final-artifacts/final_reply.md.txt",
+      "sha256": "5cd0d48abc25c574f2dbc8109299475e604162e6c771da2a369b82f803c60364"
+    },
+    "git-trace.log": {
+      "archive": "regression-results/complex/final-artifacts/git-trace.log.txt",
+      "sha256": "8d83ceee95169dba82cec6c5e6065be9aea2971423ca451f5ac35a09ba4ee2cf"
+    },
+    "precheck/complex-validator-implementation.txt": {
+      "archive": "regression-results/complex/final-artifacts/precheck/complex-validator-implementation.txt.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6"
+    },
+    "precheck/complex-validator-record.txt": {
+      "archive": "regression-results/complex/final-artifacts/precheck/complex-validator-record.txt.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17"
+    },
+    "precheck/complex.txt": {
+      "archive": "regression-results/complex/final-artifacts/precheck/complex.txt.txt",
+      "sha256": "cbba298eda1a4526b2464854f875db4fa42f75e8978a7445014e4a8959e80fce"
+    },
+    "repo/.gitignore": {
+      "archive": "regression-results/complex/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b"
+    },
+    "repo/README.md": {
+      "archive": "regression-results/complex/final-artifacts/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d"
+    },
+    "repo/config.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844"
+    },
+    "repo/inventory.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/inventory.py.txt",
+      "sha256": "9f409e87835619f1896dab7fddccddeee1b93dd82ee504a7ee597320c85a0e33"
+    },
+    "repo/pricing.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b"
+    },
+    "repo/records/TASK-001/evidence/current-tests.txt": {
+      "archive": "regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/current-tests.txt.txt",
+      "sha256": "1fee7ff4ab0288d30942cbd9d4a18a52776c9443e6fe028d9078ff3f478dcdea"
+    },
+    "repo/records/TASK-001/evidence/old-tests.txt": {
+      "archive": "regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147"
+    },
+    "repo/records/TASK-001/evidence/state-validation.txt": {
+      "archive": "regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/state-validation.txt.txt",
+      "sha256": "cf7735f12804bb03a9179aa39a5160d9b8aa9964f3551c459e96e66e53872f11"
+    },
+    "repo/records/TASK-001/task-state.json": {
+      "archive": "regression-results/complex/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+      "sha256": "bb8b60345dbb32a65fd44b4732158c8a7345ebdef24dfbbae50c7a15f0c5c014"
+    },
+    "repo/records/TASK-001/task-summary.md": {
+      "archive": "regression-results/complex/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+      "sha256": "709fd4ec41fcc2b51e74ef4bad24478129c94b67bcfed369b752431f4790ead3"
+    },
+    "repo/tests/__init__.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "repo/tests/test_inventory.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "550e4c9e6436850541b5edc394fae19475f1f8fe7c19e897da9fff3913cbf5a5"
+    },
+    "repo/tests/test_pricing.py": {
+      "archive": "regression-results/complex/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac"
+    },
+    "run-evidence/current-tests.exit": {
+      "archive": "regression-results/complex/final-artifacts/run-evidence/current-tests.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "run-evidence/state-validation-final.exit": {
+      "archive": "regression-results/complex/final-artifacts/run-evidence/state-validation-final.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "run-evidence/state-validation-final.txt": {
+      "archive": "regression-results/complex/final-artifacts/run-evidence/state-validation-final.txt.txt",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa"
+    }
+  },
+  "note": "Complete text artifacts, excluding Git object database/cache. Original paths documented; .txt suffix prevents interpreting fixture-relative Markdown links in main repository."
+}

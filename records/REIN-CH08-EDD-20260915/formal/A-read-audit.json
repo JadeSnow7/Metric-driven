@@ -1,0 +1,13 @@
+{
+  "artifact": "A",
+  "source_session_sha256": "5e74a6cd1e43bdf85ecbe969021ab0462f6d7c2be661d45aebde06c7ab6f18fe",
+  "contexts": [
+    {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "cwd": "/private/tmp/rein-ch08-formal-20260915/A/book"
+    }
+  ],
+  "matching_tool_calls": [],
+  "limitation": "keyword audit of visible tool arguments; not OS-enforced read isolation; does not score product"
+}

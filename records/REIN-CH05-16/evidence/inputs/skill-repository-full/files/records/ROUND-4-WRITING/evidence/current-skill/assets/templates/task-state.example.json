@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "TASK-001",
+    "title": "为查询路径增加可核验缓存",
+    "mode": "new",
+    "status": "ready",
+    "source_ids": ["SRC-001"]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "调用查询 API 的应用",
+    "scenario": "重复读取相同且允许短暂缓存的数据",
+    "problem": "现有重复查询造成可观察的延迟和后端负载",
+    "expected_outcome": "命中缓存时减少后端查询且保持接口语义",
+    "scope": "单一查询端点与对应缓存适配层",
+    "acceptable_result": "正确性与兼容门槛通过，性能目标完成测量"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:replace-with-stable-reference",
+      "summary": "增加缓存并以正确性、兼容性和测量结果验收",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": ["SRC-001"],
+      "goal": "重复查询可复用结果且调用方观察到的语义不变",
+      "scope": ["缓存命中、失效和旁路"],
+      "non_goals": ["替换持久化数据库"],
+      "dependencies": [],
+      "assumptions": ["数据允许按已确认的 TTL 缓存"],
+      "status": "defined",
+      "metric_ids": ["MET-001", "MET-002"],
+      "implementation_task_ids": ["IT-001"]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "缓存命中、失效和旁路行为正确",
+      "baseline": "现有实现无缓存；先保存固定 fixture 的响应",
+      "target": "固定 fixture 下响应与基线一致，失效后读取新值",
+      "method": "运行缓存行为测试并检查原始报告",
+      "environment_data": "固定测试配置与仓库 fixture",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-002",
+      "main_task_id": "MT-001",
+      "kind": "improvement_target",
+      "name": "重复查询减少后端访问",
+      "baseline": "未知；先统计固定查询序列的后端访问次数",
+      "target": "命中缓存的请求不新增后端访问",
+      "method": "对固定查询序列记录后端访问计数",
+      "environment_data": "与 MET-001 相同的 fixture 和配置",
+      "evidence_ids": [],
+      "status": "undetermined"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": ["SRC-001"],
+      "scope": "实现缓存适配、失效和测试观测",
+      "file_scope": ["replace/with/owned/paths"],
+      "interface_constraints": ["保持现有响应结构和错误语义"],
+      "dependencies": [],
+      "acceptance": ["MET-001", "MET-002"],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "main-thread",
+      "status": "planned"
+    }
+  ],
+  "evidence": [],
+  "changes": [],
+  "overall_acceptance": {
+    "metric_ids": ["MET-001", "MET-002"],
+    "evidence_ids": [],
+    "status": "undetermined"
+  },
+  "baseline": {
+    "git_ref": "REPLACE_WITH_BASE_COMMIT",
+    "worktree_status": "clean",
+    "ownership": "仅修改 IT-001 的 file_scope；其他改动归原作者",
+    "prepared_at": "0000-00-00T00:00:00Z"
+  },
+  "authorization": {
+    "commit": {"status": "unknown", "source_id": null},
+    "push": {"status": "not_authorized", "source_id": null},
+    "merge": {"status": "not_authorized", "source_id": null},
+    "deploy": {"status": "not_authorized", "source_id": null}
+  },
+  "delivery": {
+    "local_validation": "not_started",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [],
+  "decisions": [],
+  "hypotheses": [
+    {
+      "id": "HYP-001",
+      "mechanism": "复用允许缓存的重复查询结果会减少后端访问",
+      "budget": "一次基线测量和最多两轮实现/测量",
+      "exit_condition": "MET-002 可判定，或两轮后仍无改善则停止并重新决策"
+    }
+  ],
+  "recovery_strategy": {
+    "trigger": "部署后关键查询错误率或结果一致性门槛失败",
+    "steps": ["禁用缓存开关", "重新运行关键查询核验"],
+    "owner": "replace-with-owner"
+  }
+}

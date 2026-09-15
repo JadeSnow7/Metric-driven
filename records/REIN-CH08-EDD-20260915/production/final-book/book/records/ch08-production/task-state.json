@@ -1,0 +1,651 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "REIN-CH08-PRODUCTION-20260915",
+    "title": "Chapter 08 production acceptance preparation",
+    "mode": "resume",
+    "status": "implemented",
+    "source_ids": [
+      "SRC-CH08-PROD"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "primary agent",
+    "scenario": "审查生产 Chapter 08 交付并按 manifest 逐路径回写",
+    "problem": "生产 worktree 含章节、实现、示例、fixture 与导航差异，且依赖作者 dirty 状态",
+    "expected_outcome": "建立可复查的 production acceptance 记录与逐路径回写边界",
+    "scope": "production book records/ch08-production 与 batch production/delivery、costs/production-*.json",
+    "acceptable_result": "产品功能、回归、正文复现及导航、原作者改动保留分别可判定；未有证据时保持 undetermined"
+  },
+  "sources": [
+    {
+      "id": "SRC-CH08-PROD",
+      "kind": "user_requirement",
+      "reference": "conversation:production-acceptance-preparation-20260915",
+      "summary": "生产 Chapter 08 已完成终版复审；允许进入有界本地整合，原书回写仍需独立 checkpoint，禁止 commit/push/deploy。",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-CH08-PROD",
+      "source_ids": [
+        "SRC-CH08-PROD"
+      ],
+      "goal": "生产验收与逐文件回写准备",
+      "scope": [
+        "功能",
+        "回归",
+        "最终正文复现及导航",
+        "原作者 dirty 保留"
+      ],
+      "non_goals": [
+        "原书回写前的目标漂移处理",
+        "commit/push/deploy"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "终版复审与原始 run_check 记录已归档并绑定当前 revision"
+      ],
+      "status": "verified",
+      "metric_ids": [
+        "MET-PROD-FUNCTION",
+        "MET-PROD-REGRESSION",
+        "MET-PROD-DOCS",
+        "MET-PROD-DIRTY"
+      ],
+      "implementation_task_ids": [
+        "IT-PROD-RECORDS"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-PROD-FUNCTION",
+      "main_task_id": "MT-CH08-PROD",
+      "kind": "mandatory_gate",
+      "name": "Chapter 08 产品功能",
+      "baseline": "未知；待 root-final 真实 argv/exit/raw 证据",
+      "target": "功能路径及边界行为由当前生产代码和完整证据支持",
+      "method": "核对 root-final execution records 与实际 diff",
+      "environment_data": "/private/tmp/rein-ch08-production-20260915/root-final",
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-02",
+        "EVD-PROD-03"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-PROD-REGRESSION",
+      "main_task_id": "MT-CH08-PROD",
+      "kind": "non_regression",
+      "name": "回归与既有行为",
+      "baseline": "共同 book 169 文件；生产 179 文件；原始 dirty 需保留",
+      "target": "回归检查覆盖明确路径且无未解释回归",
+      "method": "运行 tests owner 提供的原始输出并审查 changed_paths 全覆盖",
+      "environment_data": "production book, common book, fixtures",
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-02",
+        "EVD-PROD-03",
+        "EVD-PROD-04"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-PROD-DOCS",
+      "main_task_id": "MT-CH08-PROD",
+      "kind": "mandatory_gate",
+      "name": "最终正文复现及导航",
+      "baseline": "Chapter 08 与导航存在生产差异，docs owner 尚未封 final",
+      "target": "最终正文、示例、导航与可运行路径一致",
+      "method": "docs/validation owner 提供 final evidence 后复核",
+      "environment_data": "production book",
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-05",
+        "EVD-PROD-06"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-PROD-DIRTY",
+      "main_task_id": "MT-CH08-PROD",
+      "kind": "non_regression",
+      "name": "原作者改动保留",
+      "baseline": "root HEAD 1dfa82b9d90196c2294f61914d2017449e5548e3，dirty_dependency_confirmed",
+      "target": "回写只覆盖 manifest 精确路径，其他 dirty 文件哈希保持",
+      "method": "比较 preparation/book-initial.sha256、回写前状态与审查清单",
+      "environment_data": "original book worktree",
+      "evidence_ids": [
+        "EVD-PROD-01"
+      ],
+      "status": "passed"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-PROD-RECORDS",
+      "main_task_id": "MT-CH08-PROD",
+      "source_ids": [
+        "SRC-CH08-PROD"
+      ],
+      "scope": "创建本记录、逐路径回写 manifest、成本原始 token usage 记录",
+      "file_scope": [
+        "records/ch08-production/**",
+        "records/REIN-CH08-EDD-20260915/production/delivery/**",
+        "records/REIN-CH08-EDD-20260915/costs/production-*.json"
+      ],
+      "interface_constraints": [
+        "root/HEAD/per-file sha/path exact checks",
+        "不改原 book、不改 docs/chapters/01.md"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-PROD-FUNCTION",
+        "MET-PROD-REGRESSION",
+        "MET-PROD-DOCS",
+        "MET-PROD-DIRTY"
+      ],
+      "support_reason": "记录与整合边界是后续 acceptance 的可复查输入",
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-02",
+        "EVD-PROD-03",
+        "EVD-PROD-04",
+        "EVD-PROD-05",
+        "EVD-PROD-06"
+      ],
+      "owner": "production_delivery",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-PROD-01",
+      "path": "records/ch08-production/evidence/root-final-review/final-review.json",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-FUNCTION",
+        "MET-PROD-REGRESSION",
+        "MET-PROD-DOCS",
+        "MET-PROD-DIRTY"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "c73839587a0c4f3e8ea6994e8a493d8bfcf830d72c940d983dc368ba5bf9012c",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    },
+    {
+      "id": "EVD-PROD-02",
+      "path": "records/ch08-production/evidence/root-final-review/reviewed-final.patch",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-FUNCTION",
+        "MET-PROD-REGRESSION"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "bc2de1f0f824e3b58d5019b92de97c98289ca039a0ac08f2e0dfaed8f962d2c4",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    },
+    {
+      "id": "EVD-PROD-03",
+      "path": "records/ch08-production/evidence/root-final-stable/rust-tests/run.json",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-FUNCTION",
+        "MET-PROD-REGRESSION"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "b143a776b72a838f7db7f4ca6f3519b7c2bd60bab299de61b7be954432fb07fe",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    },
+    {
+      "id": "EVD-PROD-04",
+      "path": "records/ch08-production/evidence/root-final-stable/ts-tests/run.json",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-REGRESSION"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "22bfd6636d9e964040afc9169229a652e78436dfd972d5666a0396b2d832d859",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    },
+    {
+      "id": "EVD-PROD-05",
+      "path": "records/ch08-production/evidence/root-final-stable/markdown-block-10/run.json",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-DOCS"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "c716590888166c2982b67fdb8e4850c474fc42792acdd9a69e6c434729158489",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    },
+    {
+      "id": "EVD-PROD-06",
+      "path": "records/ch08-production/evidence/root-final-stable/docs-links/run.json",
+      "kind": "review",
+      "supports": [
+        "MET-PROD-DOCS"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-15T11:07:41Z",
+      "sha256": "df9c96ae5ada1e0ddc3a88061cc68eaf80f33e1425d8da763508772a98465ebc",
+      "summary": "主线程终版复审或其绑定的原始 run_check 证据；run_check 原始 JSON 保持原样，结果由 review 逐项核对。"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-PROD-001",
+      "implementation_task_ids": [
+        "IT-PROD-RECORDS"
+      ],
+      "paths": [
+        "MIGRATIONS.md",
+        "README.md",
+        "docs/.vitepress/config.mts",
+        "docs/chapters/08.md",
+        "docs/index.md",
+        "docs/toc.md",
+        "examples/ch08-context-methods/README.md",
+        "examples/ch08-context-methods/docs/demo.md",
+        "examples/ch08-context-methods/entry.mjs",
+        "examples/ch08-context-methods/input/index.json",
+        "examples/ch08-context-methods/input/tasks.json",
+        "package.json",
+        "rust/examples/ch08_context.rs",
+        "rust/src/rein/context_methods.rs",
+        "rust/src/rein/mod.rs",
+        "rust/tests/ch08_context.rs",
+        "scripts/ch08-compare.mjs",
+        "scripts/ch08-verify.mjs"
+      ],
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-02",
+        "EVD-PROD-03",
+        "EVD-PROD-04",
+        "EVD-PROD-05",
+        "EVD-PROD-06"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "reviewed",
+      "summary": "18 个相对 common 的产品实现、正文、示例与导航路径，按终版复审逐项检查。"
+    },
+    {
+      "id": "CHG-PROD-002",
+      "implementation_task_ids": [
+        "IT-PROD-RECORDS"
+      ],
+      "paths": [
+        "fixtures/ch08-context/docs/approval.md",
+        "fixtures/ch08-context/docs/cache.md",
+        "fixtures/ch08-context/docs/early-runtime.md",
+        "fixtures/ch08-context/docs/failure.md",
+        "fixtures/ch08-context/docs/indexing.md",
+        "fixtures/ch08-context/docs/release.md",
+        "fixtures/ch08-context/index.json",
+        "fixtures/ch08-context/tasks.json"
+      ],
+      "evidence_ids": [
+        "EVD-PROD-01",
+        "EVD-PROD-02",
+        "EVD-PROD-03",
+        "EVD-PROD-04",
+        "EVD-PROD-05",
+        "EVD-PROD-06"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "reviewed",
+      "summary": "8 个 ch08 fixture 新增路径，按终版源哈希与产品复审检查。"
+    },
+    {
+      "id": "CHG-PROD-003",
+      "implementation_task_ids": [
+        "IT-PROD-RECORDS"
+      ],
+      "paths": [
+        ".github/workflows/test.yml",
+        "DECISIONS.md",
+        "MIGRATIONS.md",
+        "README.md",
+        "chapter-snapshots/README.md",
+        "chapter-snapshots/ch05-to-ch06.patch",
+        "chapter-snapshots/ch06-to-ch07.patch",
+        "chapter-snapshots/pre-ch05-to-ch05.patch",
+        "chapter-snapshots/rein-ch05.manifest.json",
+        "chapter-snapshots/rein-ch05.tar.gz",
+        "chapter-snapshots/rein-ch06.manifest.json",
+        "chapter-snapshots/rein-ch06.tar.gz",
+        "chapter-snapshots/rein-ch07.manifest.json",
+        "chapter-snapshots/rein-ch07.tar.gz",
+        "chapter-snapshots/rein-pre-ch05.manifest.json",
+        "chapter-snapshots/rein-pre-ch05.tar.gz",
+        "contracts/README.md",
+        "contracts/extension-v0.1.md",
+        "docs/.vitepress/config.mts",
+        "docs/.vitepress/theme/SourceVersionSwitch.vue",
+        "docs/.vitepress/theme/custom.css",
+        "docs/.vitepress/theme/sourceVersionState.test.ts",
+        "docs/.vitepress/theme/sourceVersionState.ts",
+        "docs/about.md",
+        "docs/appendices/a2.md",
+        "docs/chapters/01-rust.md",
+        "docs/chapters/01-ts-advanced.md",
+        "docs/chapters/01-ts.md",
+        "docs/chapters/01.md",
+        "docs/chapters/02.md",
+        "docs/chapters/03.md",
+        "docs/chapters/04.md",
+        "docs/chapters/05-rust.md",
+        "docs/chapters/05.md",
+        "docs/chapters/06-plugin.md",
+        "docs/chapters/06-rust.md",
+        "docs/chapters/06.md",
+        "docs/chapters/07-rust.md",
+        "docs/chapters/07.md",
+        "docs/chapters/08.md",
+        "docs/chapters/15.md",
+        "docs/chapters/16.md",
+        "docs/index.md",
+        "docs/milestones/02.md",
+        "docs/readings/00-ts.md",
+        "docs/readings/00.md",
+        "docs/readings/02.md",
+        "docs/toc.md",
+        "examples/ch08-context-methods/README.md",
+        "examples/ch08-context-methods/docs/demo.md",
+        "examples/ch08-context-methods/entry.mjs",
+        "examples/ch08-context-methods/input/index.json",
+        "examples/ch08-context-methods/input/tasks.json",
+        "fixtures/cases/ch05-loop.json",
+        "fixtures/cases/ch06-control.json",
+        "fixtures/cases/ch07-context.json",
+        "fixtures/cases/prerequisites.json",
+        "fixtures/ch08-context/docs/approval.md",
+        "fixtures/ch08-context/docs/cache.md",
+        "fixtures/ch08-context/docs/early-runtime.md",
+        "fixtures/ch08-context/docs/failure.md",
+        "fixtures/ch08-context/docs/indexing.md",
+        "fixtures/ch08-context/docs/release.md",
+        "fixtures/ch08-context/index.json",
+        "fixtures/ch08-context/tasks.json",
+        "fixtures/hybrid-marker.txt",
+        "fixtures/workspaces/prerequisites/README.md",
+        "fixtures/workspaces/prerequisites/notes.md",
+        "package.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-build/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-build/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-build/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-links/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-links/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/docs-links/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-01.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-02.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-03.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-04.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-05.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-06.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-07.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-08.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-09.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-blocks/block-10.sh",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-01/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-01/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-01/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-02/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-02/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-02/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-03/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-03/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-03/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-04/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-04/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-04/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-05/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-05/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-05/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-06/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-06/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-06/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-07/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-07/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-07/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-08/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-08/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-08/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-09/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-09/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-09/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-10/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-10/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/markdown-runs/block-10/stdout.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/readme-entry/run.json",
+        "records/ch08-production/evidence/evidence-docs-final-v2/readme-entry/stderr.bin",
+        "records/ch08-production/evidence/evidence-docs-final-v2/readme-entry/stdout.bin",
+        "records/ch08-production/evidence/local-commit-gate.raw.txt",
+        "records/ch08-production/evidence/root-final-review/final-review.json",
+        "records/ch08-production/evidence/root-final-review/reviewed-final.patch",
+        "records/ch08-production/evidence/root-final-stable/ch05/run.json",
+        "records/ch08-production/evidence/root-final-stable/ch05/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ch05/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ch06-loopback/run.json",
+        "records/ch08-production/evidence/root-final-stable/ch06-loopback/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ch06-loopback/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ch06/run.json",
+        "records/ch08-production/evidence/root-final-stable/ch06/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ch06/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ch07/run.json",
+        "records/ch08-production/evidence/root-final-stable/ch07/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ch07/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/diff-check/run.json",
+        "records/ch08-production/evidence/root-final-stable/diff-check/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/diff-check/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/docs-build/run.json",
+        "records/ch08-production/evidence/root-final-stable/docs-build/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/docs-build/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/docs-links/run.json",
+        "records/ch08-production/evidence/root-final-stable/docs-links/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/docs-links/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-cancel/run.json",
+        "records/ch08-production/evidence/root-final-stable/hybrid-cancel/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-cancel/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-crash/run.json",
+        "records/ch08-production/evidence/root-final-stable/hybrid-crash/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-crash/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-normal/run.json",
+        "records/ch08-production/evidence/root-final-stable/hybrid-normal/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/hybrid-normal/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-01/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-01/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-01/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-02/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-02/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-02/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-03/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-03/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-03/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-04/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-04/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-04/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-05/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-05/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-05/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-06/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-06/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-06/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-07/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-07/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-07/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-08/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-08/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-08/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-09/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-09/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-09/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-10/run.json",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-10/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/markdown-block-10/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-check/run.json",
+        "records/ch08-production/evidence/root-final-stable/rust-check/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-check/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-fmt/run.json",
+        "records/ch08-production/evidence/root-final-stable/rust-fmt/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-fmt/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-tests/run.json",
+        "records/ch08-production/evidence/root-final-stable/rust-tests/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/rust-tests/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ts-tests/run.json",
+        "records/ch08-production/evidence/root-final-stable/ts-tests/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ts-tests/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ts-typecheck/run.json",
+        "records/ch08-production/evidence/root-final-stable/ts-typecheck/stderr.bin",
+        "records/ch08-production/evidence/root-final-stable/ts-typecheck/stdout.bin",
+        "records/ch08-production/evidence/root-final-stable/ui/review.json",
+        "records/ch08-production/history/task-state-pre-final-20260915.json",
+        "records/ch08-production/work-log.md",
+        "reports/ch01-author-style.md",
+        "reports/ch01-writing-plan.md",
+        "rust/Cargo.lock",
+        "rust/Cargo.toml",
+        "rust/examples/ch05_compare.rs",
+        "rust/examples/ch05_loop.rs",
+        "rust/examples/ch06_loop.rs",
+        "rust/examples/ch07_context.rs",
+        "rust/examples/ch08_context.rs",
+        "rust/examples/hybrid_stdio.rs",
+        "rust/src/lib.rs",
+        "rust/src/rein/context_methods.rs",
+        "rust/src/rein/loop.rs",
+        "rust/src/rein/mod.rs",
+        "rust/src/rein/stdio_executor.rs",
+        "rust/tests/ch08_context.rs",
+        "rust/tests/loop.rs",
+        "rust/tests/prerequisites.rs",
+        "rust/tests/stdio_host.rs",
+        "scripts/ch05-compare.mjs",
+        "scripts/ch06-compare.mjs",
+        "scripts/ch07-compare.mjs",
+        "scripts/ch08-compare.mjs",
+        "scripts/ch08-verify.mjs",
+        "scripts/check-book-links.mjs",
+        "ts/examples/ch05-compare.ts",
+        "ts/examples/ch05-live.ts",
+        "ts/examples/ch05-loop.ts",
+        "ts/examples/ch06-loop.ts",
+        "ts/examples/ch07-context.ts",
+        "ts/package.json",
+        "ts/src/hybrid-host.ts",
+        "ts/src/rein/adapters.ts",
+        "ts/src/rein/contracts.ts",
+        "ts/src/rein/loop.ts",
+        "ts/src/rein/readonly.ts",
+        "ts/src/transport.ts",
+        "ts/tests/ch07-context.test.ts",
+        "ts/tests/fixtures/hybrid-fault-host.ts",
+        "ts/tests/hybrid-host.test.ts",
+        "ts/tests/loop.test.ts",
+        "ts/tests/rein-prerequisites.test.ts"
+      ],
+      "evidence_ids": [
+        "EVD-PROD-01"
+      ],
+      "revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+      "status": "reviewed",
+      "summary": "生产副本中继承的作者 dirty 与记录/证据路径仅做保留性审查；此项不声称对既有内容做语义复审。"
+    }
+  ],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-PROD-FUNCTION",
+      "MET-PROD-REGRESSION",
+      "MET-PROD-DOCS",
+      "MET-PROD-DIRTY"
+    ],
+    "evidence_ids": [
+      "EVD-PROD-01"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+    "worktree_status": "dirty_dependency_confirmed",
+    "ownership": "生产准备仅写本记录范围；原 book 作者 dirty 由 preparation/book-initial.sha256 与 status 保留，未经语义审查",
+    "prepared_at": "2026-09-15T10:54:06Z",
+    "prepared_at_note": "此时间表示本次记录修订的实际 UTC 时间；历史副本中的 2026-09-15T00:00:00+08:00 是占位值，不作为执行时间或证据。"
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "completed",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [],
+  "decisions": [
+    {
+      "id": "DEC-PROD-001",
+      "summary": "本轮只准备记录与边界；所有四项 acceptance 保持 undetermined，待真实证据绑定",
+      "status": "accepted",
+      "source_ids": [
+        "SRC-CH08-PROD"
+      ]
+    },
+    {
+      "id": "DEC-PROD-002",
+      "summary": "主线程 final-review 已批准进入有界本地整合；原书回写仍是独立后续步骤。",
+      "status": "accepted",
+      "source_ids": [
+        "SRC-CH08-PROD"
+      ]
+    }
+  ],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "来源/目标漂移或冲突",
+    "steps": [
+      "保留双方状态",
+      "停止整合",
+      "重新生成逐文件 manifest"
+    ],
+    "owner": "primary-agent"
+  }
+}

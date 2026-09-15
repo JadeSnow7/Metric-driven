@@ -1,0 +1,142 @@
+[
+  {
+    "case": 1,
+    "configuration": "candidate-v1",
+    "final_reply_chars": 1008,
+    "final_reply_chars_without_fenced_code": 953,
+    "required_reading_chars": 1008,
+    "record_lines": 0,
+    "files": {
+      "final_reply.md": {
+        "chars": 1008,
+        "lines": 13,
+        "sha256": "01f33f0e90a234c8aae258f8579fae4b493e308257df90e37e1b96a554537a16"
+      }
+    }
+  },
+  {
+    "case": 1,
+    "configuration": "current",
+    "final_reply_chars": 1126,
+    "final_reply_chars_without_fenced_code": 1126,
+    "required_reading_chars": 1126,
+    "record_lines": 0,
+    "files": {
+      "final_reply.md": {
+        "chars": 1126,
+        "lines": 13,
+        "sha256": "ccdfaf25e0e48f6bc9d80245d61ee9318af8ee0b50bd49a94e4068bfb24db2cd"
+      }
+    }
+  },
+  {
+    "case": 2,
+    "configuration": "candidate-v1",
+    "final_reply_chars": 821,
+    "final_reply_chars_without_fenced_code": 821,
+    "required_reading_chars": 821,
+    "record_lines": 0,
+    "files": {
+      "final_reply.md": {
+        "chars": 821,
+        "lines": 14,
+        "sha256": "42804e13f76e437a7fd596f0b819e651a8e1959632047cfd589987fdaa23df89"
+      }
+    }
+  },
+  {
+    "case": 2,
+    "configuration": "current",
+    "final_reply_chars": 718,
+    "final_reply_chars_without_fenced_code": 718,
+    "required_reading_chars": 718,
+    "record_lines": 0,
+    "files": {
+      "final_reply.md": {
+        "chars": 718,
+        "lines": 14,
+        "sha256": "c87d0c8361cda910350a22aac1530608fc9cb8425f9acc16b00ff723554c970d"
+      }
+    }
+  },
+  {
+    "case": 6,
+    "configuration": "current",
+    "final_reply_chars": 1222,
+    "final_reply_chars_without_fenced_code": 1222,
+    "required_reading_chars": 2784,
+    "record_lines": 28,
+    "files": {
+      "final_reply.md": {
+        "chars": 1222,
+        "lines": 30,
+        "sha256": "fc4c262ee396e599b41f02664e28bd965dd7c3a417503bb9382ea49d85ce5460"
+      },
+      "task-summary.md": {
+        "chars": 1562,
+        "lines": 28,
+        "sha256": "f61e262c909983689d061a9c36fcbf3873b3a9bd666aa7340eb0f08f3f0b797f"
+      }
+    }
+  },
+  {
+    "case": 6,
+    "configuration": "candidate-v1",
+    "final_reply_chars": 592,
+    "final_reply_chars_without_fenced_code": 592,
+    "required_reading_chars": 1710,
+    "record_lines": 26,
+    "files": {
+      "final_reply.md": {
+        "chars": 592,
+        "lines": 5,
+        "sha256": "28cf6e7f22793f1a7de5dda63e4cdaa5aac27fffd2fa08f605d9d3c25958e7ee"
+      },
+      "task-summary.md": {
+        "chars": 1118,
+        "lines": 26,
+        "sha256": "4061b64b721b8668f789438a967bcf2eaed87d5800f3b4b70a54baea9804ac86"
+      }
+    }
+  },
+  {
+    "case": 10,
+    "configuration": "candidate-v1",
+    "final_reply_chars": 345,
+    "final_reply_chars_without_fenced_code": 345,
+    "required_reading_chars": 3403,
+    "record_lines": 57,
+    "files": {
+      "final_reply.md": {
+        "chars": 345,
+        "lines": 5,
+        "sha256": "be523a02cd9023915a9d9c8ce6a12ea1994058b01d75a4c147493bbbe6921c32"
+      },
+      "task-summary.md": {
+        "chars": 3058,
+        "lines": 57,
+        "sha256": "33daeac803de11aff92c2dbba4728f6e03c25a5f6e8689dc2e27ac5c9cfbe618"
+      }
+    }
+  },
+  {
+    "case": 10,
+    "configuration": "current",
+    "final_reply_chars": 1326,
+    "final_reply_chars_without_fenced_code": 1326,
+    "required_reading_chars": 4545,
+    "record_lines": 45,
+    "files": {
+      "final_reply.md": {
+        "chars": 1326,
+        "lines": 27,
+        "sha256": "3ca1bdc653a0a7680c3e32cfa416fabc0fdd65c369fb05ddb2245728fdfd6f93"
+      },
+      "task-summary.md": {
+        "chars": 3219,
+        "lines": 45,
+        "sha256": "0c80c2b780858c8d61c9e9d31e622e2ca213256ef25d51f800fd51762ad97188"
+      }
+    }
+  }
+]

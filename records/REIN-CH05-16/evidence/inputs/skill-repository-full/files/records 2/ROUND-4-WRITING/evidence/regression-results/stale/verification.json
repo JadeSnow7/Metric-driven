@@ -1,0 +1,135 @@
+{
+  "case": "stale",
+  "checks": {
+    "tests": {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        ".",
+        "-v"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok\ntest_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok\ntest_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok\ntest_remove_item_insufficient (tests.test_inventory.InventoryTests.test_remove_item_insufficient) ... ok\ntest_remove_item_partial (tests.test_inventory.InventoryTests.test_remove_item_partial) ... ok\ntest_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests.test_remove_item_to_zero_deletes) ... FAIL\ntest_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok\ntest_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok\ntest_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok\ntest_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok\ntest_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok\ntest_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok\n\n======================================================================\nFAIL: test_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests.test_remove_item_to_zero_deletes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/edd-r4-fixtures-8gys1wek/stale/repo/tests/test_inventory.py\", line 36, in test_remove_item_to_zero_deletes\n    self.assertEqual(inventory.names(), [])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['apple'] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n'apple'\n\n- ['apple']\n+ []\n\n----------------------------------------------------------------------\nRan 12 tests in 0.001s\n\nFAILED (failures=1)\n"
+    },
+    "record": {
+      "argv": [
+        "python3",
+        "/Users/huaodong/Documents/evidence-driven-development/records/ROUND-4-WRITING/evidence/candidate-v1/scripts/validate_task.py",
+        "records/TASK-001/task-state.json",
+        "--repo",
+        "/private/tmp/edd-r4-fixtures-8gys1wek/stale/repo",
+        "--gate",
+        "record"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"gate\": \"record\",\n  \"current_revision\": null,\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    },
+    "diff": {
+      "argv": [
+        "git",
+        "diff",
+        "--no-ext-diff"
+      ],
+      "exit_code": 0,
+      "stdout": "diff --git a/inventory.py b/inventory.py\nindex 50ca4e5..b2e6de5 100644\n--- a/inventory.py\n+++ b/inventory.py\n@@ -24,7 +24,7 @@ class Inventory:\n         if quantity > current:\n             raise ValueError(f\"not enough {name!r} in stock\")\n         remaining = current - quantity\n-        if remaining == 0:\n+        if remaining < 0:\n             del self._items[name]\n         else:\n             self._items[name] = remaining\n",
+      "stderr": ""
+    },
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": " M inventory.py\n?? records/TASK-001/evidence/current-tests.exit\n?? records/TASK-001/evidence/current-tests.stderr\n?? records/TASK-001/evidence/current-tests.stdout\n?? records/TASK-001/evidence/old-tests.txt\n?? records/TASK-001/task-state.json\n?? records/TASK-001/task-summary.md\n?? records/TASK-001/work-log.md\n",
+      "stderr": ""
+    },
+    "head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "ec38cd36e4855f47a868dce7d6e56df525810932\n",
+      "stderr": ""
+    },
+    "refs": {
+      "argv": [
+        "git",
+        "show-ref"
+      ],
+      "exit_code": 0,
+      "stdout": "ec38cd36e4855f47a868dce7d6e56df525810932 refs/heads/main\n",
+      "stderr": ""
+    },
+    "stash": {
+      "argv": [
+        "git",
+        "stash",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "worktrees": {
+      "argv": [
+        "git",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "worktree /private/tmp/edd-r4-fixtures-8gys1wek/stale/repo\nHEAD ec38cd36e4855f47a868dce7d6e56df525810932\nbranch refs/heads/main\n\n",
+      "stderr": ""
+    },
+    "remotes": {
+      "argv": [
+        "git",
+        "remote",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "invariants": {
+    "source_and_tests_unchanged": true,
+    "old_evidence_preserved": true,
+    "old_stale": true,
+    "task_not_verified": true,
+    "metric_and_overall_not_passed": true,
+    "current_failed_evidence": true,
+    "head": true,
+    "refs": true,
+    "stash": true,
+    "worktrees": true
+  },
+  "expected_failure_detected": true,
+  "record_gate_passed": true,
+  "primary_diff_review": {
+    "result": "passed",
+    "observations": [
+      "No source or tests changed relative to frozen input.",
+      "Old evidence retained stale, current failure hashed and task/metrics/overall failed."
+    ]
+  },
+  "primary_report_review": {
+    "result": "passed",
+    "observations": [
+      "Actual 12 tests / one failure clearly reported; structural record pass distinguished from behavior failure.",
+      "Cause consistent with unchanged zero-removal defect; no repair claimed.",
+      "Long revision and repeated state details remain readability limitations."
+    ]
+  }
+}

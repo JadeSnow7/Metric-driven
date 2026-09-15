@@ -1,0 +1,1 @@
+Sources were read from /private/tmp/rein-production-candidate-03 and previously reviewed ch06 raw outputs; no claim here is a new runtime validation.

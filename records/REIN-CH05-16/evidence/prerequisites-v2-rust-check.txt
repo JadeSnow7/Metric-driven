@@ -1,0 +1,2 @@
+    Checking rein-ch01-helloworld v0.1.0 (/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/rust)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.07s

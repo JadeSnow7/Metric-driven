@@ -1,0 +1,77 @@
+[
+  {
+    "name": "build",
+    "argv": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/Users/huaodong/workspace/Agent-Learning",
+    "startedAt": "2026-09-14T16:47:37.321Z",
+    "endedAt": "2026-09-14T16:47:40.504Z",
+    "exit": 0,
+    "signal": null,
+    "stdout": "\n> rein-book@0.1.0 build\n> vitepress build docs\n\n\n  vitepress v1.6.4\n\nbuild complete in 2.80s.\n",
+    "stderr": "- building client + server bundles...\n\u001b[32m✓\u001b[0m building client + server bundles...\n- rendering pages...\n\u001b[32m✓\u001b[0m rendering pages...\n"
+  },
+  {
+    "name": "checker",
+    "argv": [
+      "node",
+      "scripts/check-book-links.mjs"
+    ],
+    "cwd": "/Users/huaodong/workspace/Agent-Learning",
+    "startedAt": "2026-09-14T16:47:40.504Z",
+    "endedAt": "2026-09-14T16:47:40.594Z",
+    "exit": 0,
+    "signal": null,
+    "stdout": "{\n  \"checked\": 2189,\n  \"failures\": [],\n  \"selfTest\": {\n    \"knownvalidpage\": true,\n    \"missingpage\": true,\n    \"validhash\": true,\n    \"missinghash\": true,\n    \"encodedhash\": true,\n    \"relativeURL\": true,\n    \"externalURL\": true\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "name": "typecheck",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/Users/huaodong/workspace/Agent-Learning",
+    "startedAt": "2026-09-14T16:47:40.594Z",
+    "endedAt": "2026-09-14T16:47:41.390Z",
+    "exit": 0,
+    "signal": null,
+    "stdout": "\n> rein-book@0.1.0 typecheck\n> npm run typecheck --workspace ts\n\n\n> @rein/ts@0.0.0 typecheck\n> tsc --noEmit\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "nav5",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts"
+    ],
+    "cwd": "/Users/huaodong/workspace/Agent-Learning",
+    "startedAt": "2026-09-14T16:47:41.390Z",
+    "endedAt": "2026-09-14T16:47:42.241Z",
+    "exit": 0,
+    "signal": null,
+    "stdout": "\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests\n\n\n RUN  v2.1.9 /Users/huaodong/workspace/Agent-Learning/ts\n\n ✓ tests/chat.test.ts (17 tests) 4ms\n ✓ tests/config.test.ts (13 tests) 5ms\n ✓ tests/recorded.test.ts (3 tests) 6ms\n ✓ tests/ch07-context.test.ts (8 tests) 10ms\n ✓ tests/rein-prerequisites.test.ts (7 tests) 23ms\n ✓ tests/hello.test.ts (18 tests) 31ms\n ✓ tests/record.test.ts (6 tests) 2ms\n ✓ tests/loop.test.ts (16 tests) 155ms\n ✓ tests/transport.test.ts (8 tests) 281ms\n ✓ tests/hybrid-host.test.ts (4 tests) 341ms\n\n Test Files  10 passed (10)\n      Tests  100 passed (100)\n   Start at  00:47:41\n   Duration  579ms (transform 199ms, setup 0ms, collect 520ms, tests 857ms, environment 1ms, prepare 540ms)\n\n",
+    "stderr": "stderr | tests/hello.test.ts > hello SDK entry points > 安全 CLI 缺配置时返回退出码 1，且不打印密钥\n失败（config）：REIN_BASE_URL 未设置。参考 ts/.env.example，复制为 ts/.env 后填写。\n\n"
+  },
+  {
+    "name": "hybrid-verify",
+    "argv": [
+      "npm",
+      "run",
+      "hybrid:verify"
+    ],
+    "cwd": "/Users/huaodong/workspace/Agent-Learning",
+    "startedAt": "2026-09-14T16:47:42.241Z",
+    "endedAt": "2026-09-14T16:48:04.656Z",
+    "exit": 0,
+    "signal": null,
+    "stdout": "\n> rein-book@0.1.0 hybrid:verify\n> npm run typecheck --workspace ts && npm test --workspace ts && cargo fmt --manifest-path rust/Cargo.toml -- --check && cargo check --locked --manifest-path rust/Cargo.toml && cargo test --locked --manifest-path rust/Cargo.toml && cargo run --quiet --locked --manifest-path rust/Cargo.toml --example hybrid_stdio -- normal\n\n\n> @rein/ts@0.0.0 typecheck\n> tsc --noEmit\n\n\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests\n\n\n RUN  v2.1.9 /Users/huaodong/workspace/Agent-Learning/ts\n\n ✓ tests/config.test.ts (13 tests) 4ms\n ✓ tests/chat.test.ts (17 tests) 7ms\n ✓ tests/recorded.test.ts (3 tests) 6ms\n ✓ tests/ch07-context.test.ts (8 tests) 16ms\n ✓ tests/rein-prerequisites.test.ts (7 tests) 24ms\n ✓ tests/hello.test.ts (18 tests) 38ms\n ✓ tests/loop.test.ts (16 tests) 171ms\n ✓ tests/record.test.ts (6 tests) 2ms\n ✓ tests/transport.test.ts (8 tests) 278ms\n ✓ tests/hybrid-host.test.ts (4 tests) 298ms\n\n Test Files  10 passed (10)\n      Tests  100 passed (100)\n   Start at  00:47:43\n   Duration  541ms (transform 286ms, setup 0ms, collect 658ms, tests 844ms, environment 1ms, prepare 469ms)\n\n\nrunning 9 tests\ntest tests::status_classification_keeps_key_out_of_public_error ... ok\ntest rein::tests::read_file_rejects_escape ... ok\ntest rein::tests::anthropic_round_trip_shape ... ok\ntest tests::config_requires_all_values_and_strips_trailing_slash ... ok\ntest tests::local_http_server_receives_one_openai_request ... ok\ntest tests::provider_errors_are_classified_without_echoing_messages ... ok\ntest tests::timeout_returns_without_waiting_for_the_server ... ok\ntest tests::malformed_or_empty_sdk_responses_are_failures ... ok\ntest tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 13 tests\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\ntest ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch ... ok\ntest ch07_context_rejects_unsafe_integer_budget_as_invalid_context_config ... ok\ntest ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history ... ok\ntest ch07_context_stops_when_new_latest_group_does_not_fit ... ok\ntest ch07_context_tracks_latest_group_across_real_tool_rounds ... ok\ntest nested_arguments_are_canonical_for_duplicate_detection ... ok\ntest ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id ... ok\ntest unknown_badargs_missing_file_are_feedback_and_can_recover ... ok\ntest model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok\ntest two_workspaces_search_then_read_and_pair_multiple_calls ... ok\ntest observer_cancels_between_tools_and_pending_model_is_dropped ... ok\ntest controls_stop_pending_model_and_zero_budget_without_dispatch ... ok\n\ntest result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n\nrunning 5 tests\ntest tools_use_real_fixture_and_bind_actual_ids ... ok\ntest symlink_escape_is_rejected ... ok\ntest malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok\ntest shared_fixture_and_replay_are_structured ... ok\ntest concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s\n\n\nrunning 12 tests\ntest predispatched_calls_have_no_child ... ok\ntest fault_host_normal_control_reaches_fixture_final ... ok\ntest zero_tool_budget_never_starts_host ... ok\ntest production_host_reads_real_file_and_reaches_fixture_final ... ok\ntest cancellation_wait_is_observed_after_started ... ok\ntest disconnect_after_effect_records_one_ledger_line_and_is_unknown ... ok\ntest crash_modes_have_no_followup_model_call ... ok\ntest evidence_and_stale_target_faults_are_unknown ... ok\ntest malformed_and_identity_faults_stop_without_second_model_call ... ok\ntest ignored_cancel_becomes_unknown ... ok\ntest cancel_ack_variants_are_classified_after_started ... ok\ntest bounded_host_failures_are_reaped ... ok\n\ntest result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.15s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n{\"answer\":\"fixture final: hybrid-m1-marker-20260914\\n\",\"events\":[{\"messages\":[{\"content\":\"read fixture\",\"role\":\"user\"}],\"tools\":[{\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"type\":\"object\"},\"name\":\"search_files\"},{\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"},\"name\":\"read_file\"}],\"turn\":1,\"type\":\"model_requested\"},{\"message\":{\"content\":\"\",\"role\":\"assistant\",\"toolCalls\":[{\"arguments\":{\"path\":\"fixtures/hybrid-marker.txt\"},\"id\":\"call-1\",\"name\":\"read_file\"}]},\"text\":\"\",\"toolCallIds\":[\"call-1\"],\"turn\":1,\"type\":\"model_received\"},{\"call\":{\"arguments\":{\"path\":\"fixtures/hybrid-marker.txt\"},\"id\":\"call-1\",\"name\":\"read_file\"},\"result\":{\"ok\":true,\"output\":\"hybrid-m1-marker-20260914\\n\",\"toolCallId\":\"call-1\"},\"toolCallId\":\"call-1\",\"turn\":1,\"type\":\"tool_result\"},{\"messages\":[{\"content\":\"read fixture\",\"role\":\"user\"},{\"content\":\"\",\"role\":\"assistant\",\"toolCalls\":[{\"arguments\":{\"path\":\"fixtures/hybrid-marker.txt\"},\"id\":\"call-1\",\"name\":\"read_file\"}]},{\"content\":\"hybrid-m1-marker-20260914\\n\",\"role\":\"tool\",\"toolCallId\":\"call-1\"}],\"tools\":[{\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"type\":\"object\"},\"name\":\"search_files\"},{\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"},\"name\":\"read_file\"}],\"turn\":2,\"type\":\"model_requested\"},{\"message\":{\"content\":\"fixture final: hybrid-m1-marker-20260914\\n\",\"role\":\"assistant\"},\"text\":\"fixture final: hybrid-m1-marker-20260914\\n\",\"toolCallIds\":[],\"turn\":2,\"type\":\"model_received\"},{\"reason\":\"final_answer\",\"state\":\"completed\",\"type\":\"stopped\"}],\"ledgerPath\":null,\"modelCalls\":2,\"reason\":\"final_answer\",\"records\":[{\"call_id\":\"call-1\",\"child_pid\":89731,\"dispatched\":true,\"exit_code\":0,\"prepared\":true,\"reaped\":true,\"reason\":\"succeeded\",\"request_id\":\"request-1\",\"task_id\":\"task-89642-0-1789404484577727000\",\"terminal\":\"succeeded\"}],\"status\":\"completed\"}\n",
+    "stderr": "stderr | tests/hello.test.ts > hello SDK entry points > 安全 CLI 缺配置时返回退出码 1，且不打印密钥\n失败（config）：REIN_BASE_URL 未设置。参考 ts/.env.example，复制为 ts/.env 后填写。\n\n    Checking rein-ch01-helloworld v0.1.0 (/Users/huaodong/workspace/Agent-Learning/rust)\nwarning: unused variable: `workspace`\n   --> src/rein/loop.rs:326:5\n    |\n326 |     workspace: &Workspace,\n    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.33s\n   Compiling rein-ch01-helloworld v0.1.0 (/Users/huaodong/workspace/Agent-Learning/rust)\nwarning: unused variable: `workspace`\n   --> src/rein/loop.rs:326:5\n    |\n326 |     workspace: &Workspace,\n    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)\nwarning: `rein-ch01-helloworld` (lib test) generated 1 warning (1 duplicate)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.90s\n     Running unittests src/lib.rs (/private/tmp/rein-hybrid-target/debug/deps/rein_ch01_helloworld-dff73a8251df3167)\n     Running unittests src/bin/hello.rs (/private/tmp/rein-hybrid-target/debug/deps/hello-967d0cd280761429)\n     Running unittests src/main.rs (/private/tmp/rein-hybrid-target/debug/deps/rein_ch01_helloworld-000840ef4925888a)\n     Running tests/loop.rs (/private/tmp/rein-hybrid-target/debug/deps/loop-623134f98a430063)\n     Running tests/prerequisites.rs (/private/tmp/rein-hybrid-target/debug/deps/prerequisites-2a7b0dc6cfa79ace)\n     Running tests/stdio_host.rs (/private/tmp/rein-hybrid-target/debug/deps/stdio_host-a1a48f56b31380c9)\n   Doc-tests rein_ch01_helloworld\nwarning: unused variable: `workspace`\n   --> src/rein/loop.rs:326:5\n    |\n326 |     workspace: &Workspace,\n    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\n"
+  }
+]

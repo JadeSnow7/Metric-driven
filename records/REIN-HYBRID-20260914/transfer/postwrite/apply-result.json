@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "node",
+    "/Users/huaodong/Documents/evidence-driven-development/records/REIN-HYBRID-20260914/transfer/backwrite-plan.mjs",
+    "--apply"
+  ],
+  "cwd": "/private/tmp/rein-hybrid-work-20260914",
+  "exit": 0,
+  "stdout": "{\n  \"checkedHead\": \"1dfa82b9d90196c2294f61914d2017449e5548e3\",\n  \"checkedFiles\": 124,\n  \"preflightEntries\": 81,\n  \"conflicts\": 0,\n  \"apply\": true\n}\n",
+  "stderr": "",
+  "time": {
+    "source": "filesystem evidence bounds; command runner did not expose wall-clock timestamps",
+    "lowerBound": "2026-09-15T00:45:50+08:00",
+    "upperBound": "2026-09-15T00:46:11+08:00"
+  },
+  "result": {
+    "preflightEntries": 81,
+    "conflicts": 0,
+    "wroteOriginal": true
+  }
+}

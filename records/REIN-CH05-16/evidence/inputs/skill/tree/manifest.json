@@ -1,0 +1,119 @@
+{
+  "kind": "rein-working-tree-snapshot",
+  "created_at": "2026-09-14T09:46:02.151211+00:00",
+  "source": "/Users/huaodong/Documents/evidence-driven-development/skill/evidence-driven-development",
+  "head": "1a10fca5d408004a354da5f61e6f449c09801f23",
+  "branch": "feat/skill-entry-round-2",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "524145d492222373faeb2b21daa9626e9dd5e26d6b5402c5619d23e5161350ff",
+      "mode": 420
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+      "mode": 436
+    },
+    {
+      "path": "assets/templates/handoff.md",
+      "sha256": "9f6e58631627885c91180ab0868f00f2178460675676c5cb32bb0e01640e9f45",
+      "mode": 420
+    },
+    {
+      "path": "assets/templates/task-state.example.json",
+      "sha256": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+      "mode": 420
+    },
+    {
+      "path": "assets/templates/task-summary.md",
+      "sha256": "e628e02810da77776603cf9382350c1eb2f2931ba94b5cf05ab6a2c28c5c021f",
+      "mode": 420
+    },
+    {
+      "path": "assets/templates/work-log.md",
+      "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+      "mode": 436
+    },
+    {
+      "path": "assets/templates/writing-handoff.md",
+      "sha256": "4da5b99c6c4bd6350184574a9ce2955e3c514686d7dac17e2de260ee74e0d6bf",
+      "mode": 420
+    },
+    {
+      "path": "references/delegation-and-handoffs.md",
+      "sha256": "4ba5583903e29af181ec78eb5daa69ee89611d526035d0ac9c6cdcd0017d6066",
+      "mode": 436
+    },
+    {
+      "path": "references/examples.md",
+      "sha256": "3a8d7ed4d35d6bfe521d1fbedb9de17557d431e7a62d1a7b65a597bdfec121cc",
+      "mode": 436
+    },
+    {
+      "path": "references/metrics-and-evidence.md",
+      "sha256": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+      "mode": 420
+    },
+    {
+      "path": "references/records.md",
+      "sha256": "d6706b854d53daf13ad5e11377c8787769d41c2473230018be91f5cab937c884",
+      "mode": 420
+    },
+    {
+      "path": "references/workflow.md",
+      "sha256": "732f6e765349a1d2f36a87d544da7d1f18af1197d6fc8a544bbea6928063cc27",
+      "mode": 436
+    },
+    {
+      "path": "references/writing.md",
+      "sha256": "d56e009c2817e0b39e5a2604b1aeb358e14a24afff0c474b75be50e8c7ca9fad",
+      "mode": 420
+    },
+    {
+      "path": "scripts/validate_task.py",
+      "sha256": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+      "mode": 493
+    },
+    {
+      "path": "tests/test_scenarios.py",
+      "sha256": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+      "mode": 420
+    }
+  ],
+  "git_inventory": [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "assets/templates/handoff.md",
+    "assets/templates/task-state.example.json",
+    "assets/templates/task-summary.md",
+    "assets/templates/work-log.md",
+    "assets/templates/writing-handoff.md",
+    "references/delegation-and-handoffs.md",
+    "references/examples.md",
+    "references/metrics-and-evidence.md",
+    "references/records.md",
+    "references/workflow.md",
+    "references/writing.md",
+    "scripts/validate_task.py",
+    "tests/test_scenarios.py"
+  ],
+  "deleted_tracked": [],
+  "excluded_policy": {
+    "directories": [
+      ".git",
+      ".vitepress/cache",
+      ".vitepress/dist",
+      "build",
+      "dist",
+      "node_modules",
+      "target"
+    ],
+    "secret_names": [
+      ".env",
+      ".env.development",
+      ".env.local",
+      ".env.production"
+    ]
+  }
+}

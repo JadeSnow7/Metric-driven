@@ -1,0 +1,17 @@
+   1 import { mkdtemp, writeFile, rm } from 'node:fs/promises'
+   2 import { join } from 'node:path'
+   3 import { tmpdir } from 'node:os'
+   4 import { replayAdapter, runAgentLoop } from '../src/rein/loop'
+   5 import type { ModelTurn } from '../src/rein/contracts'
+   6 
+   7 const turn = (content: string, toolCalls: ModelTurn['toolCalls'] = []): ModelTurn => ({ message: { role: 'assistant', content, toolCalls }, toolCalls })
+   8 const root = await mkdtemp(join(tmpdir(), 'rein-ch05-demo-'))
+   9 try {
+  10   await writeFile(join(root, 'guide.md'), '# Loop\n工具结果会进入下一轮。\n')
+  11   const result = await runAgentLoop(replayAdapter([
+  12     turn('', [{ id: 'search-1', name: 'search_files', arguments: { needle: '工具结果' } }]),
+  13     turn('', [{ id: 'read-1', name: 'read_file', arguments: { path: 'guide.md' } }]),
+  14     turn('读取完成：工具结果会进入下一轮。'),
+  15   ]), [{ role: 'user', content: '搜索并读取 guide.md' }], { root })
+  16   console.log(JSON.stringify({ answer: result.answer, reason: result.reason, events: result.events }, null, 2))
+  17 } finally { await rm(root, { recursive: true, force: true }) }

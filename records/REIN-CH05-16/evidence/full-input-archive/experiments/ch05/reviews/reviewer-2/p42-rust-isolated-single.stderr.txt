@@ -1,0 +1,2 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42/debug/examples/ch05_loop single`

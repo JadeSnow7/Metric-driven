@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-09-14T11:36:32.885051+00:00",
+  "archive_count": 399,
+  "hash_errors": [],
+  "baseline_tar_files": 390,
+  "computed_tree": "ac803ca5e39d6e0c59e7f708c92ddd26028d93c7",
+  "expected_tree": "ac803ca5e39d6e0c59e7f708c92ddd26028d93c7",
+  "baseline_tree_match": true,
+  "late_collection_fields": [
+    "This is a source-reconstructed input file tree, not a new Git commit.",
+    "README and ROUND-5-WRITING are late collections; their equality with the first status moment is not asserted.",
+    "No .env or authentication files archived."
+  ]
+}

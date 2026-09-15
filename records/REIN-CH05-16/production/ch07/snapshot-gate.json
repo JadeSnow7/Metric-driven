@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-09-14T15:18:21.372986+00:00",
+  "raw": "/private/tmp/rein-ch07-main-snapshot-review/verification.json",
+  "file_count": 138,
+  "manifest_sha256": "958af5f16530efe6a049414de2423c2d0c97f0dfdbf20f504b2be4012b684d75",
+  "tar_sha256": "e1505e5fd700c8d203c8f00e51fd1c61164adf0de27546fd7fa820b0affb237e",
+  "patch_sha256": "e5f1d3d9d8fc5e075dcf40a7da5bb50093d20cfc46083f62aa3eb139c8f0b06f",
+  "review": [
+    "Read actual single snapshot command raw: exit0 at 15:16:09Z.",
+    "Independently extracted tar and compared all138 content hashes and executable bits; no missing/extra.",
+    "Independently applied ch06-to-ch07 Git binary patch to previously verified ch06 tree and compared all138 files; no missing/extra.",
+    "Compared all138 snapshot content hashes to current production tree."
+  ],
+  "accepted_dependency_root": "/private/tmp/rein-ch07-main-snapshot-review/tar-recovered/rein-ch07",
+  "evidence_archive_status": "in_progress"
+}

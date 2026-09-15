@@ -1,0 +1,1 @@
+{"scenarios": [{"name": "default", "rows": 16}, {"name": "budget0", "rows": 16}, {"name": "mutated", "rows": 16}, {"name": "duplicate", "exit_code": 1}]}

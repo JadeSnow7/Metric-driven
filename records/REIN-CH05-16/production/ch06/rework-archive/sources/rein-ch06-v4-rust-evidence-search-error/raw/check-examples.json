@@ -1,0 +1,16 @@
+{
+  "name": "check-examples",
+  "argv": [
+    "cargo",
+    "check",
+    "--manifest-path",
+    "/private/tmp/rein-production-candidate-03/rust/Cargo.toml",
+    "--examples"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T13:53:44Z",
+  "end": "2026-09-14T13:53:44Z",
+  "exit": 0,
+  "stdout": "",
+  "stderr": "    Checking rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.12s\n"
+}

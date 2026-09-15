@@ -1,0 +1,14 @@
+usage: rein_experiment.py [-h] {snapshot,clone,seal,compare-manifests} ...
+
+Reproducible Rein working-tree snapshots and sealed manifests.
+
+positional arguments:
+  {snapshot,clone,seal,compare-manifests}
+    snapshot            copy tracked and nonignored untracked files into a
+                        manifest snapshot
+    clone               clone snapshot files into a new independent directory
+    seal                hash a final source/document tree
+    compare-manifests   compare two seal or snapshot manifests
+
+options:
+  -h, --help            show this help message and exit

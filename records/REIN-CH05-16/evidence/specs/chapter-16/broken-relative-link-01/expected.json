@@ -1,0 +1,1 @@
+{"finding":"relative target does not exist","acceptable":"link to an existing equivalent document or remove stale reference","assertions":[{"file":"README.md","visible_link_target":"docs/guide.md","link_target":"docs/guide.md","must_exist":true},{"file":"README.md","require_retained_body":true}]}

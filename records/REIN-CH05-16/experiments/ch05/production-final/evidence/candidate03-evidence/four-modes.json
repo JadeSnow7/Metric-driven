@@ -1,0 +1,120 @@
+{
+  "workspace_shape": {
+    "README.md": "mode README",
+    "notes.md": "marker: notes"
+  },
+  "commands": [
+    {
+      "language": "ts",
+      "mode": "recovery",
+      "argv": "(cd ts && npm run ch05:offline -- workspace <temp> recovery)",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "ts-recovery.json",
+      "stderr_file": "ts-recovery.stderr",
+      "result": {
+        "state": "completed",
+        "reason": "final_answer",
+        "answer": "恢复内容：mode README"
+      }
+    },
+    {
+      "language": "rust",
+      "mode": "recovery",
+      "argv": "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch05_loop -- workspace <temp> recovery",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "rust-recovery.json",
+      "stderr_file": "rust-recovery.stderr",
+      "result": {
+        "state": "completed",
+        "reason": "final_answer",
+        "answer": "恢复内容：mode README"
+      }
+    },
+    {
+      "language": "ts",
+      "mode": "empty",
+      "argv": "(cd ts && npm run ch05:offline -- workspace <temp> empty)",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "ts-empty.json",
+      "stderr_file": "ts-empty.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "empty_final",
+        "answer": null
+      }
+    },
+    {
+      "language": "rust",
+      "mode": "empty",
+      "argv": "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch05_loop -- workspace <temp> empty",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "rust-empty.json",
+      "stderr_file": "rust-empty.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "empty_final",
+        "answer": null
+      }
+    },
+    {
+      "language": "ts",
+      "mode": "exhausted",
+      "argv": "(cd ts && npm run ch05:offline -- workspace <temp> exhausted)",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "ts-exhausted.json",
+      "stderr_file": "ts-exhausted.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "model_error",
+        "answer": null
+      }
+    },
+    {
+      "language": "rust",
+      "mode": "exhausted",
+      "argv": "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch05_loop -- workspace <temp> exhausted",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "rust-exhausted.json",
+      "stderr_file": "rust-exhausted.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "model_error",
+        "answer": null
+      }
+    },
+    {
+      "language": "ts",
+      "mode": "limit",
+      "argv": "(cd ts && npm run ch05:offline -- workspace <temp> limit)",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "ts-limit.json",
+      "stderr_file": "ts-limit.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "max_turns",
+        "answer": null
+      }
+    },
+    {
+      "language": "rust",
+      "mode": "limit",
+      "argv": "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch05_loop -- workspace <temp> limit",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "exit": 0,
+      "stdout_file": "rust-limit.json",
+      "stderr_file": "rust-limit.stderr",
+      "result": {
+        "state": "failed",
+        "reason": "max_turns",
+        "answer": null
+      }
+    }
+  ]
+}

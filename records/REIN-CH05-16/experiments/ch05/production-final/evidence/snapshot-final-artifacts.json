@@ -1,0 +1,53 @@
+{
+  "kind": "ch05-snapshot-final-artifacts",
+  "timestamp": "2026-09-14T13:05:15.050648+00:00",
+  "files": [
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/README.md",
+      "sha256": "61b8952825fcb6606dc6241b24f85575e0bee96bb46d417beb04a6c5d78776b0",
+      "bytes": 499
+    },
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/pre-ch05-to-ch05.patch",
+      "sha256": "2475a58da8d0d8e51eca7cd5745e076a1385120905670ad95511d8a1df9a7d73",
+      "bytes": 79224
+    },
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.manifest.json",
+      "sha256": "b0b8fd29880fa92f74af8a65b8db04c1fc5ac52bf5401872ddcfa32e8b624f50",
+      "bytes": 23031
+    },
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.tar.gz",
+      "sha256": "c0beaa58d1a162d7ad7dcd1e32c58bc73df51c1772154b53bcb91a57c966fb5d",
+      "bytes": 199115
+    },
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-pre-ch05.manifest.json",
+      "sha256": "3adc9a10adbd828f94634b8348832fa7f732d5d5539634926ed6c7b54d731ba2",
+      "bytes": 20653
+    },
+    {
+      "path": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-pre-ch05.tar.gz",
+      "sha256": "c7bb154311018756fac09b9646f81ebb083631c984b00baa074b2837cb5a1ebd",
+      "bytes": 180476
+    }
+  ],
+  "manifests": [
+    {
+      "path": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/pre-ch05-restored/manifest.json",
+      "file_count": 114,
+      "sha256": "3adc9a10adbd828f94634b8348832fa7f732d5d5539634926ed6c7b54d731ba2"
+    },
+    {
+      "path": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch05-accepted/manifest.json",
+      "file_count": 127,
+      "sha256": "b0b8fd29880fa92f74af8a65b8db04c1fc5ac52bf5401872ddcfa32e8b624f50"
+    }
+  ],
+  "patch": {
+    "path": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch05-accepted/baseline.patch",
+    "bytes": 79224,
+    "sha256": "2475a58da8d0d8e51eca7cd5745e076a1385120905670ad95511d8a1df9a7d73"
+  }
+}

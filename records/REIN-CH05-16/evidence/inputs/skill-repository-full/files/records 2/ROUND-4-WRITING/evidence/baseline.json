@@ -1,0 +1,28 @@
+{
+  "captured_at": "2026-09-14T03:52:08.558870+00:00",
+  "head": "599c380a8dfeaadeff3a4d542b34071800996a29",
+  "branch": "feat/skill-entry-round-2",
+  "status": " M README.md\n M skill/evidence-driven-development/SKILL.md\n M skill/evidence-driven-development/references/examples.md\n M skill/evidence-driven-development/references/records.md\n M skill/evidence-driven-development/references/workflow.md\n?? records/\n?? review-iteration-2.md\n",
+  "files": {
+    ".github/workflows/ci.yml": "02e46324cab0cbf3646f605a857cb2ed745f66d7ec7e4488f6da725475573e58",
+    ".gitignore": "f8c3c5b079332d5a21b3d8894bc6e1b61ab21436aaabd368939dbab8c86daff4",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "5fc78657694466ea89db80ae2e55be0db9988da03153571d4e747671b609b440",
+    "skill/evidence-driven-development/SKILL.md": "2c24dd9113191fc02aa054eabab3ada1d86e06bf79d16b48a8edf5c8873108b4",
+    "skill/evidence-driven-development/agents/openai.yaml": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+    "skill/evidence-driven-development/assets/templates/handoff.md": "6b68dceed660a29326a5c0155e3095da5a6b75b6d426222196f83ac66cbff179",
+    "skill/evidence-driven-development/assets/templates/task-state.example.json": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+    "skill/evidence-driven-development/assets/templates/task-summary.md": "ca00d0b2d102052296b616c79ebfd07be1cffe62d092224eb3b90ea3c632ce77",
+    "skill/evidence-driven-development/assets/templates/work-log.md": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+    "skill/evidence-driven-development/assets/templates/writing-handoff.md": "9e20afa9624eb8ba77ca96efc88105683964d824453ff8720b36a3f66bef5bf8",
+    "skill/evidence-driven-development/references/delegation-and-handoffs.md": "cf2d2751ab83ac5f830116f6ca8ab1fde83b347fa9ce185ffc744e1271c12716",
+    "skill/evidence-driven-development/references/examples.md": "0d3832f9b8a77355edc709d14a6380455c697859eaf6e9eafba6de8f1acb4b6b",
+    "skill/evidence-driven-development/references/metrics-and-evidence.md": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+    "skill/evidence-driven-development/references/records.md": "1e522a1973e08e944c417eca4e23959e577635ed5b8aadc8fadf0a5ef31fcbdc",
+    "skill/evidence-driven-development/references/workflow.md": "c7dade9a4a5904332c60819d57fdafa7d80ba9f549dfd65c4b987eb2b9c1c4a9",
+    "skill/evidence-driven-development/scripts/validate_task.py": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+    "skill/evidence-driven-development/tests/test_scenarios.py": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+    "tools/validate_repository.py": "9b26980a52c241c13b0ac5f3510f9abfef73163f49be7b24690c91cb9c73324f",
+    "review-iteration-2.md": "061a8147b4182146ab287eea7c3e59c141b98f140c7cf7057033d72cfb9b75d4"
+  }
+}

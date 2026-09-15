@@ -1,0 +1,1824 @@
+{
+  "sealed_at": "2026-09-15T04:54:58.954247+00:00",
+  "argv": [
+    "/private/tmp/rein-ch08-orchestration/seal.py",
+    "--source",
+    "/private/tmp/rein-ch08-common-20260915/book",
+    "--work",
+    "/private/tmp/rein-ch08-formal-20260915/B/book",
+    "--run",
+    "/private/tmp/rein-ch08-formal-20260915/B/run",
+    "--output",
+    "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH08-EDD-20260915/formal/seals/B",
+    "--source-manifest",
+    "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH08-EDD-20260915/preparation/common/common-manifest.json",
+    "--session-path",
+    "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T12-38-57-01a0a35c-6946-7842-97be-72aaf935cb74.jsonl",
+    "--thread-id",
+    "01a0a35c-6946-7842-97be-72aaf935cb74"
+  ],
+  "session": {
+    "thread_id": "01a0a35c-6946-7842-97be-72aaf935cb74",
+    "token_events": [
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 18211,
+            "cached_input_tokens": 9984,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 237,
+            "reasoning_output_tokens": 60,
+            "total_tokens": 18448
+          },
+          "last_token_usage": {
+            "input_tokens": 18211,
+            "cached_input_tokens": 9984,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 237,
+            "reasoning_output_tokens": 60,
+            "total_tokens": 18448
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 38516,
+            "cached_input_tokens": 27136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 437,
+            "reasoning_output_tokens": 92,
+            "total_tokens": 38953
+          },
+          "last_token_usage": {
+            "input_tokens": 20305,
+            "cached_input_tokens": 17152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 200,
+            "reasoning_output_tokens": 32,
+            "total_tokens": 20505
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 59912,
+            "cached_input_tokens": 46336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 544,
+            "reasoning_output_tokens": 100,
+            "total_tokens": 60456
+          },
+          "last_token_usage": {
+            "input_tokens": 21396,
+            "cached_input_tokens": 19200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 107,
+            "reasoning_output_tokens": 8,
+            "total_tokens": 21503
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 81468,
+            "cached_input_tokens": 67584,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 658,
+            "reasoning_output_tokens": 108,
+            "total_tokens": 82126
+          },
+          "last_token_usage": {
+            "input_tokens": 21556,
+            "cached_input_tokens": 21248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 114,
+            "reasoning_output_tokens": 8,
+            "total_tokens": 21670
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 106722,
+            "cached_input_tokens": 88832,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 937,
+            "reasoning_output_tokens": 132,
+            "total_tokens": 107659
+          },
+          "last_token_usage": {
+            "input_tokens": 25254,
+            "cached_input_tokens": 21248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 279,
+            "reasoning_output_tokens": 24,
+            "total_tokens": 25533
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 139964,
+            "cached_input_tokens": 113152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1174,
+            "reasoning_output_tokens": 148,
+            "total_tokens": 141138
+          },
+          "last_token_usage": {
+            "input_tokens": 33242,
+            "cached_input_tokens": 24320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 237,
+            "reasoning_output_tokens": 16,
+            "total_tokens": 33479
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 183331,
+            "cached_input_tokens": 145664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1421,
+            "reasoning_output_tokens": 165,
+            "total_tokens": 184752
+          },
+          "last_token_usage": {
+            "input_tokens": 43367,
+            "cached_input_tokens": 32512,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 247,
+            "reasoning_output_tokens": 17,
+            "total_tokens": 43614
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 234383,
+            "cached_input_tokens": 188416,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1635,
+            "reasoning_output_tokens": 177,
+            "total_tokens": 236018
+          },
+          "last_token_usage": {
+            "input_tokens": 51052,
+            "cached_input_tokens": 42752,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 214,
+            "reasoning_output_tokens": 12,
+            "total_tokens": 51266
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 292405,
+            "cached_input_tokens": 238336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1854,
+            "reasoning_output_tokens": 253,
+            "total_tokens": 294259
+          },
+          "last_token_usage": {
+            "input_tokens": 58022,
+            "cached_input_tokens": 49920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 219,
+            "reasoning_output_tokens": 76,
+            "total_tokens": 58241
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 356229,
+            "cached_input_tokens": 295424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4583,
+            "reasoning_output_tokens": 393,
+            "total_tokens": 360812
+          },
+          "last_token_usage": {
+            "input_tokens": 63824,
+            "cached_input_tokens": 57088,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2729,
+            "reasoning_output_tokens": 140,
+            "total_tokens": 66553
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 422806,
+            "cached_input_tokens": 358656,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5849,
+            "reasoning_output_tokens": 459,
+            "total_tokens": 428655
+          },
+          "last_token_usage": {
+            "input_tokens": 66577,
+            "cached_input_tokens": 63232,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1266,
+            "reasoning_output_tokens": 66,
+            "total_tokens": 67843
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 490673,
+            "cached_input_tokens": 424960,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 8441,
+            "reasoning_output_tokens": 492,
+            "total_tokens": 499114
+          },
+          "last_token_usage": {
+            "input_tokens": 67867,
+            "cached_input_tokens": 66304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2592,
+            "reasoning_output_tokens": 33,
+            "total_tokens": 70459
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 561248,
+            "cached_input_tokens": 492288,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9284,
+            "reasoning_output_tokens": 509,
+            "total_tokens": 570532
+          },
+          "last_token_usage": {
+            "input_tokens": 70575,
+            "cached_input_tokens": 67328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 843,
+            "reasoning_output_tokens": 17,
+            "total_tokens": 71418
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 632690,
+            "cached_input_tokens": 562688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 10772,
+            "reasoning_output_tokens": 518,
+            "total_tokens": 643462
+          },
+          "last_token_usage": {
+            "input_tokens": 71442,
+            "cached_input_tokens": 70400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1488,
+            "reasoning_output_tokens": 9,
+            "total_tokens": 72930
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 705679,
+            "cached_input_tokens": 633088,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 12300,
+            "reasoning_output_tokens": 546,
+            "total_tokens": 717979
+          },
+          "last_token_usage": {
+            "input_tokens": 72989,
+            "cached_input_tokens": 70400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1528,
+            "reasoning_output_tokens": 28,
+            "total_tokens": 74517
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 780221,
+            "cached_input_tokens": 705536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 12524,
+            "reasoning_output_tokens": 562,
+            "total_tokens": 792745
+          },
+          "last_token_usage": {
+            "input_tokens": 74542,
+            "cached_input_tokens": 72448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 224,
+            "reasoning_output_tokens": 16,
+            "total_tokens": 74766
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 856674,
+            "cached_input_tokens": 779008,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 12564,
+            "reasoning_output_tokens": 569,
+            "total_tokens": 869238
+          },
+          "last_token_usage": {
+            "input_tokens": 76453,
+            "cached_input_tokens": 73472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 40,
+            "reasoning_output_tokens": 7,
+            "total_tokens": 76493
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 933490,
+            "cached_input_tokens": 854528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 13142,
+            "reasoning_output_tokens": 706,
+            "total_tokens": 946632
+          },
+          "last_token_usage": {
+            "input_tokens": 76816,
+            "cached_input_tokens": 75520,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 578,
+            "reasoning_output_tokens": 137,
+            "total_tokens": 77394
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1010908,
+            "cached_input_tokens": 931072,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 13312,
+            "reasoning_output_tokens": 752,
+            "total_tokens": 1024220
+          },
+          "last_token_usage": {
+            "input_tokens": 77418,
+            "cached_input_tokens": 76544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 170,
+            "reasoning_output_tokens": 46,
+            "total_tokens": 77588
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1091713,
+            "cached_input_tokens": 1007616,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 13998,
+            "reasoning_output_tokens": 1187,
+            "total_tokens": 1105711
+          },
+          "last_token_usage": {
+            "input_tokens": 80805,
+            "cached_input_tokens": 76544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 686,
+            "reasoning_output_tokens": 435,
+            "total_tokens": 81491
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1173281,
+            "cached_input_tokens": 1088256,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14105,
+            "reasoning_output_tokens": 1196,
+            "total_tokens": 1187386
+          },
+          "last_token_usage": {
+            "input_tokens": 81568,
+            "cached_input_tokens": 80640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 107,
+            "reasoning_output_tokens": 9,
+            "total_tokens": 81675
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1255528,
+            "cached_input_tokens": 1168896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14369,
+            "reasoning_output_tokens": 1196,
+            "total_tokens": 1269897
+          },
+          "last_token_usage": {
+            "input_tokens": 82247,
+            "cached_input_tokens": 80640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 264,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 82511
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1338063,
+            "cached_input_tokens": 1250560,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14573,
+            "reasoning_output_tokens": 1272,
+            "total_tokens": 1352636
+          },
+          "last_token_usage": {
+            "input_tokens": 82535,
+            "cached_input_tokens": 81664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 204,
+            "reasoning_output_tokens": 76,
+            "total_tokens": 82739
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1422154,
+            "cached_input_tokens": 1332224,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14889,
+            "reasoning_output_tokens": 1375,
+            "total_tokens": 1437043
+          },
+          "last_token_usage": {
+            "input_tokens": 84091,
+            "cached_input_tokens": 81664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 316,
+            "reasoning_output_tokens": 103,
+            "total_tokens": 84407
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1506585,
+            "cached_input_tokens": 1415936,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 15032,
+            "reasoning_output_tokens": 1390,
+            "total_tokens": 1521617
+          },
+          "last_token_usage": {
+            "input_tokens": 84431,
+            "cached_input_tokens": 83712,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 143,
+            "reasoning_output_tokens": 15,
+            "total_tokens": 84574
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1591443,
+            "cached_input_tokens": 1499648,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 15416,
+            "reasoning_output_tokens": 1527,
+            "total_tokens": 1606859
+          },
+          "last_token_usage": {
+            "input_tokens": 84858,
+            "cached_input_tokens": 83712,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 384,
+            "reasoning_output_tokens": 137,
+            "total_tokens": 85242
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1676709,
+            "cached_input_tokens": 1584384,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 15941,
+            "reasoning_output_tokens": 1761,
+            "total_tokens": 1692650
+          },
+          "last_token_usage": {
+            "input_tokens": 85266,
+            "cached_input_tokens": 84736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 525,
+            "reasoning_output_tokens": 234,
+            "total_tokens": 85791
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1762813,
+            "cached_input_tokens": 1669120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16149,
+            "reasoning_output_tokens": 1772,
+            "total_tokens": 1778962
+          },
+          "last_token_usage": {
+            "input_tokens": 86104,
+            "cached_input_tokens": 84736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 208,
+            "reasoning_output_tokens": 11,
+            "total_tokens": 86312
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1849438,
+            "cached_input_tokens": 1754880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16317,
+            "reasoning_output_tokens": 1788,
+            "total_tokens": 1865755
+          },
+          "last_token_usage": {
+            "input_tokens": 86625,
+            "cached_input_tokens": 85760,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 168,
+            "reasoning_output_tokens": 16,
+            "total_tokens": 86793
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 1938924,
+            "cached_input_tokens": 1840640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16721,
+            "reasoning_output_tokens": 1961,
+            "total_tokens": 1955645
+          },
+          "last_token_usage": {
+            "input_tokens": 89486,
+            "cached_input_tokens": 85760,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 404,
+            "reasoning_output_tokens": 173,
+            "total_tokens": 89890
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2029638,
+            "cached_input_tokens": 1929472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16917,
+            "reasoning_output_tokens": 2001,
+            "total_tokens": 2046555
+          },
+          "last_token_usage": {
+            "input_tokens": 90714,
+            "cached_input_tokens": 88832,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 196,
+            "reasoning_output_tokens": 40,
+            "total_tokens": 90910
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2130969,
+            "cached_input_tokens": 2019328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16960,
+            "reasoning_output_tokens": 2011,
+            "total_tokens": 2147929
+          },
+          "last_token_usage": {
+            "input_tokens": 101331,
+            "cached_input_tokens": 89856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 43,
+            "reasoning_output_tokens": 10,
+            "total_tokens": 101374
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2234443,
+            "cached_input_tokens": 2120448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 17313,
+            "reasoning_output_tokens": 2090,
+            "total_tokens": 2251756
+          },
+          "last_token_usage": {
+            "input_tokens": 103474,
+            "cached_input_tokens": 101120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 353,
+            "reasoning_output_tokens": 79,
+            "total_tokens": 103827
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2338293,
+            "cached_input_tokens": 2223616,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 18361,
+            "reasoning_output_tokens": 2328,
+            "total_tokens": 2356654
+          },
+          "last_token_usage": {
+            "input_tokens": 103850,
+            "cached_input_tokens": 103168,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1048,
+            "reasoning_output_tokens": 238,
+            "total_tokens": 104898
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2443215,
+            "cached_input_tokens": 2326784,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 18495,
+            "reasoning_output_tokens": 2336,
+            "total_tokens": 2461710
+          },
+          "last_token_usage": {
+            "input_tokens": 104922,
+            "cached_input_tokens": 103168,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 134,
+            "reasoning_output_tokens": 8,
+            "total_tokens": 105056
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2549369,
+            "cached_input_tokens": 2430976,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 19009,
+            "reasoning_output_tokens": 2382,
+            "total_tokens": 2568378
+          },
+          "last_token_usage": {
+            "input_tokens": 106154,
+            "cached_input_tokens": 104192,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 514,
+            "reasoning_output_tokens": 46,
+            "total_tokens": 106668
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2656060,
+            "cached_input_tokens": 2536192,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 19308,
+            "reasoning_output_tokens": 2394,
+            "total_tokens": 2675368
+          },
+          "last_token_usage": {
+            "input_tokens": 106691,
+            "cached_input_tokens": 105216,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 299,
+            "reasoning_output_tokens": 12,
+            "total_tokens": 106990
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2763459,
+            "cached_input_tokens": 2642432,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 19548,
+            "reasoning_output_tokens": 2436,
+            "total_tokens": 2783007
+          },
+          "last_token_usage": {
+            "input_tokens": 107399,
+            "cached_input_tokens": 106240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 240,
+            "reasoning_output_tokens": 42,
+            "total_tokens": 107639
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2872555,
+            "cached_input_tokens": 2749696,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20292,
+            "reasoning_output_tokens": 2489,
+            "total_tokens": 2892847
+          },
+          "last_token_usage": {
+            "input_tokens": 109096,
+            "cached_input_tokens": 107264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 744,
+            "reasoning_output_tokens": 53,
+            "total_tokens": 109840
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 2982419,
+            "cached_input_tokens": 2857984,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20586,
+            "reasoning_output_tokens": 2560,
+            "total_tokens": 3003005
+          },
+          "last_token_usage": {
+            "input_tokens": 109864,
+            "cached_input_tokens": 108288,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 294,
+            "reasoning_output_tokens": 71,
+            "total_tokens": 110158
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 3092601,
+            "cached_input_tokens": 2967296,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20845,
+            "reasoning_output_tokens": 2571,
+            "total_tokens": 3113446
+          },
+          "last_token_usage": {
+            "input_tokens": 110182,
+            "cached_input_tokens": 109312,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 259,
+            "reasoning_output_tokens": 11,
+            "total_tokens": 110441
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 3203204,
+            "cached_input_tokens": 3076608,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 21578,
+            "reasoning_output_tokens": 2731,
+            "total_tokens": 3224782
+          },
+          "last_token_usage": {
+            "input_tokens": 110603,
+            "cached_input_tokens": 109312,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 733,
+            "reasoning_output_tokens": 160,
+            "total_tokens": 111336
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      },
+      {
+        "type": "token_count",
+        "info": {
+          "total_token_usage": {
+            "input_tokens": 3314836,
+            "cached_input_tokens": 3186944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22023,
+            "reasoning_output_tokens": 2906,
+            "total_tokens": 3336859
+          },
+          "last_token_usage": {
+            "input_tokens": 111632,
+            "cached_input_tokens": 110336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 445,
+            "reasoning_output_tokens": 175,
+            "total_tokens": 112077
+          },
+          "model_context_window": 258400
+        },
+        "rate_limits": {
+          "limit_id": "codex",
+          "limit_name": null,
+          "primary": {
+            "used_percent": 58.0,
+            "window_minutes": 10080,
+            "resets_at": 1789805390
+          },
+          "secondary": null,
+          "credits": {
+            "has_credits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individual_limit": null,
+          "spend_control_reached": null,
+          "plan_type": "pro",
+          "rate_limit_reached_type": null
+        }
+      }
+    ],
+    "token_count": {
+      "total_token_usage": {
+        "input_tokens": 3314836,
+        "cached_input_tokens": 3186944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 22023,
+        "reasoning_output_tokens": 2906,
+        "total_tokens": 3336859
+      },
+      "last_token_usage": {
+        "input_tokens": 111632,
+        "cached_input_tokens": 110336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 445,
+        "reasoning_output_tokens": 175,
+        "total_tokens": 112077
+      },
+      "model_context_window": 258400
+    },
+    "turn_context": [
+      {
+        "model": "gpt-5.6-luna",
+        "effort": "medium"
+      }
+    ],
+    "elapsed": 918.3525687910151
+  },
+  "exclusions": [
+    ".cache",
+    ".git",
+    "build",
+    "cache",
+    "cargo-target",
+    "dist",
+    "node_modules",
+    "target"
+  ]
+}

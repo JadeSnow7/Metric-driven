@@ -1,0 +1,33 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-production-20260914/ts
+
+ ✓ tests/config.test.ts (13 tests) 2ms
+ ✓ tests/chat.test.ts (17 tests) 3ms
+ ✓ tests/record.test.ts (6 tests) 3ms
+ ✓ tests/recorded.test.ts (3 tests) 5ms
+ ❯ tests/transport.test.ts (8 tests | 5 failed) 10ms
+   × createFetchTransport > 原样搬运状态码、状态文本与响应体，不解释内容 5ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 把请求体送到服务端 2ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 连接不上时抛 NetworkError，消息里带上 URL 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 服务端不响应时抛 TimeoutError，消息里带上超时值 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 响应头已到但响应体悬挂时也抛 TimeoutError 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 17ms
+ ❯ tests/loop.test.ts (5 tests | 1 failed) 29ms
+   × ch05 agent loop > uses the search result to choose reads in either workspace and records reconstructable events 9ms
+     → expected [ 'a.md\nb.md', 'marker: blue', …(1) ] to deeply equal [ 'marker: blue', 'marker: sea' ]
+ ✓ tests/hello.test.ts (18 tests) 27ms
+
+ Test Files  2 failed | 6 passed (8)
+      Tests  6 failed | 71 passed (77)
+   Start at  19:41:12
+   Duration  280ms (transform 195ms, setup 0ms, collect 450ms, tests 97ms, environment 1ms, prepare 282ms)
+

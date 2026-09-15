@@ -1,0 +1,67 @@
+{
+  "at": "2026-09-14T14:03:48.721355+00:00",
+  "checks": [
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/production-evidence-v1.json",
+      "files": 41,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/production-evidence-v2.json",
+      "files": 40,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-main-review-v3.json",
+      "files": 2,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-main-review-v4.json",
+      "files": 5,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-rust-evidence.json",
+      "files": 1,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-rust-preserved.json",
+      "files": 4,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-ts-evidence.json",
+      "files": 46,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-ts-preserved.json",
+      "files": 7,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-rust-evidence-search-error.json",
+      "files": 7,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-rust-evidence.json",
+      "files": 49,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-ts-evidence.json",
+      "files": 45,
+      "status": "passed"
+    },
+    {
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-ts-final-evidence.json",
+      "files": 30,
+      "status": "passed"
+    }
+  ],
+  "reading02_files": 3,
+  "status": "passed"
+}

@@ -1,0 +1,13 @@
+{
+  "rust/src/rein/mod.rs": "121e80f0f04874d0ec9190c687543abcc6d573095f212a8f25e365d1f029c29d",
+  "rust/src/rein/loop.rs": "ef6a149454b596dfad1587e43395aefd6cbc7e331dbbd7dadf226ec754bb59f2",
+  "rust/tests/loop.rs": "3dbcc875e08f31bb51b0f4ae2acff39a3e0757165e281a6636dfc513854a1f6f",
+  "rust/examples/ch05_loop.rs": "680b91616e6045bf2d5dc53e038c94ef06147dfd07a999a26c2f2d42b45443f1",
+  "rust/examples/ch05_compare.rs": "44b2098e13424d681f590bf9e34a7d87cbc5eff6b0546d5c22cd3a387dbc3251",
+  "ts/src/rein/loop.ts": "636d8f8420ba2f8e833ee072f0cdd80df8e003bc2d0ab9207e339c15b794f3d6",
+  "ts/tests/loop.test.ts": "9e705c2791967907c8c6954cd30b9fd7bb7a6bb40ea45c2ae09428418e7bc7f8",
+  "ts/examples/ch05-loop.ts": "7558e5dc8db12b0edf613f4a8c5b3da3196030db61319fd4f3cb1d0916516db1",
+  "ts/examples/ch05-compare.ts": "a2a962278014df6b90f963dcf0b582267a9f133370032afc127fdd7a59a6a85e",
+  "ts/package.json": "52db79d8852ceeffb26c96e81473404965dbf872040098377ac1d2e5efe644d3",
+  "fixtures/cases/ch05-loop.json": "b5493a24edcf23c8cbe7d942863acf1bfa7d5c7b7f598b0784f9349569dbdce2"
+}

@@ -1,0 +1,49 @@
+{
+  "config_keys_present": {
+    "REIN_BASE_URL": true,
+    "REIN_API_KEY": true,
+    "REIN_MODEL": true
+  },
+  "usage": null,
+  "workspace_files": {
+    "README.md": "6d7b4c98b025c34eee353a0a5fc18ab436dcdfabafadef628a7bf3eaadd45a3c",
+    "notes.md": "fa2152ed81fbb2c9f015aeeea75cf59d03807972233885fc685642c067e40152"
+  },
+  "source_hashes": {
+    "ts/examples/ch05-live.ts": "6446dff268e6976a7d6c586f35adb2236cdc9b96228d5ef5eacdd1323a95c222",
+    "rust/examples/ch05_loop.rs": "529e448444cbf9f2a8c9a77b1fac35a3d065ddfda297546b975109f526fa5276",
+    "ts/src/rein/loop.ts": "636d8f8420ba2f8e833ee072f0cdd80df8e003bc2d0ab9207e339c15b794f3d6",
+    "rust/src/rein/loop.rs": "ef6a149454b596dfad1587e43395aefd6cbc7e331dbbd7dadf226ec754bb59f2"
+  },
+  "results": {
+    "ts": {
+      "state": "failed",
+      "reason": "model_error",
+      "answer": null,
+      "model_calls": 1,
+      "tool_calls": 0,
+      "read_files": [],
+      "answer_basis_ok": false,
+      "stdout_file": "ts-live.stdout",
+      "stderr_file": "ts-live.stderr",
+      "argv_file": "ts-live.argv",
+      "cwd_file": "ts-live.cwd",
+      "status_file": "ts-live.status"
+    },
+    "rust": {
+      "state": "failed",
+      "reason": "model_error",
+      "answer": null,
+      "model_calls": 1,
+      "tool_calls": 0,
+      "read_files": [],
+      "answer_basis_ok": false,
+      "stdout_file": "rust-live.stdout",
+      "stderr_file": "rust-live.stderr",
+      "argv_file": "rust-live.argv",
+      "cwd_file": "rust-live.cwd",
+      "status_file": "rust-live.status"
+    }
+  },
+  "boundary": "真实服务失败后按语言停止，未重试；CLI exit 0 不代表冒烟成功"
+}

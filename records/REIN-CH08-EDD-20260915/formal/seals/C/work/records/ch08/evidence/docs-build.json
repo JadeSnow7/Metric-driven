@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "--silent",
+    "build"
+  ],
+  "cwd": "/private/tmp/rein-ch08-formal-20260915/C/book",
+  "started_at": "2026-09-15T05:04:35.526496Z",
+  "ended_at": "2026-09-15T05:04:38.933405Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "\n  vitepress v1.6.4\n\nbuild complete in 3.11s.\n",
+  "stderr": "- building client + server bundles...\n\u001b[32m✓\u001b[0m building client + server bundles...\n- rendering pages...\n\u001b[32m✓\u001b[0m rendering pages...\n",
+  "stdout_base64": "CiAgdml0ZXByZXNzIHYxLjYuNAoKYnVpbGQgY29tcGxldGUgaW4gMy4xMXMuCg==",
+  "stderr_base64": "LSBidWlsZGluZyBjbGllbnQgKyBzZXJ2ZXIgYnVuZGxlcy4uLgobWzMybeKckxtbMG0gYnVpbGRpbmcgY2xpZW50ICsgc2VydmVyIGJ1bmRsZXMuLi4KLSByZW5kZXJpbmcgcGFnZXMuLi4KG1szMm3inJMbWzBtIHJlbmRlcmluZyBwYWdlcy4uLgo=",
+  "stdout_present": true,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-formal-20260915/C/book/docs/chapters/08.md": {
+      "kind": "source",
+      "sha256": "34ec669983d887af8cdf0e928f2e978cfaff0365b824be82bc761aa59950a6a4"
+    }
+  },
+  "result": "passed"
+}

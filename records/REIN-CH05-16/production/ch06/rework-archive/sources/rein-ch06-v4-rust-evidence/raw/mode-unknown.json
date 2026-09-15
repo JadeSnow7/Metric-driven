@@ -1,0 +1,22 @@
+{
+  "name": "mode-unknown",
+  "argv": [
+    "env",
+    "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build",
+    "cargo",
+    "run",
+    "--quiet",
+    "--manifest-path",
+    "/private/tmp/rein-production-candidate-03/rust/Cargo.toml",
+    "--example",
+    "ch06_loop",
+    "--",
+    "unknown"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T13:47:56Z",
+  "end": "2026-09-14T13:47:57Z",
+  "exit": 2,
+  "stdout": "",
+  "stderr": "unknown ch06 mode: unknown\n"
+}

@@ -1,0 +1,37 @@
+test_accepts_str_path (tests.test_inventory.ImportCsvTests.test_accepts_str_path) ... ok
+test_bad_header_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_bad_header_raises_and_imports_nothing) ... ok
+test_blank_lines_are_ignored_but_keep_line_numbers (tests.test_inventory.ImportCsvTests.test_blank_lines_are_ignored_but_keep_line_numbers) ... ok
+test_crlf_line_endings (tests.test_inventory.ImportCsvTests.test_crlf_line_endings) ... ok
+test_header_only_imports_nothing (tests.test_inventory.ImportCsvTests.test_header_only_imports_nothing) ... ok
+test_header_with_bom_and_spaces_is_accepted (tests.test_inventory.ImportCsvTests.test_header_with_bom_and_spaces_is_accepted) ... ok
+test_imports_valid_rows (tests.test_inventory.ImportCsvTests.test_imports_valid_rows) ... ok
+test_long_values_do_not_affect_other_lines (tests.test_inventory.ImportCsvTests.test_long_values_do_not_affect_other_lines) ... ok
+test_malformed_rows_are_skipped_by_line_number (tests.test_inventory.ImportCsvTests.test_malformed_rows_are_skipped_by_line_number) ... ok
+test_missing_file_raises (tests.test_inventory.ImportCsvTests.test_missing_file_raises) ... ok
+test_quantity_must_be_positive_ascii_integer (tests.test_inventory.ImportCsvTests.test_quantity_must_be_positive_ascii_integer) ... ok
+test_quoted_fields (tests.test_inventory.ImportCsvTests.test_quoted_fields) ... ok
+test_quoted_newline_record_is_skipped_entirely (tests.test_inventory.ImportCsvTests.test_quoted_newline_record_is_skipped_entirely) ... ok
+test_repeated_names_add_up (tests.test_inventory.ImportCsvTests.test_repeated_names_add_up) ... ok
+test_stray_quotes_are_malformed (tests.test_inventory.ImportCsvTests.test_stray_quotes_are_malformed) ... ok
+test_unclosed_quote_only_skips_its_own_line (tests.test_inventory.ImportCsvTests.test_unclosed_quote_only_skips_its_own_line) ... ok
+test_undecodable_file_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_undecodable_file_raises_and_imports_nothing) ... ok
+test_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok
+test_custom_threshold_boundaries (tests.test_inventory.LowStockTests.test_custom_threshold_boundaries) ... ok
+test_default_threshold_is_five_and_exclusive (tests.test_inventory.LowStockTests.test_default_threshold_is_five_and_exclusive) ... ok
+test_empty_results (tests.test_inventory.LowStockTests.test_empty_results) ... ok
+test_result_is_sorted_regardless_of_insertion_order (tests.test_inventory.LowStockTests.test_result_is_sorted_regardless_of_insertion_order) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.012s
+
+OK
+
+EXIT_CODE=0

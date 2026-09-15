@@ -1,0 +1,9 @@
+# Tutorial review, 2026-09-15
+
+06-plugin.md is still not accepted as a follow-along chapter. The revised prose retained the invalid old JSON examples (missing sessionId and targetVersion), describes the wrong side of the invalid-response scenario, and omits four full runnable scenario commands. It incorrectly lists reason values as status values and still contains the exercise claiming that a ledger prevents replay. The ledger in this milestone is an actual temporary file written by a fault host to demonstrate one side effect; it is not the core's memory call record or a replay-prevention mechanism. The final CLI output does not expose a raw evidence object or SHA field, so exercises must check actual output or explicitly calculate the file hash rather than promise nonexistent fields.
+
+Required final tutorial order: carry forward the real Rust loop and reuse the early TS read tool; prepare dependencies and a file; run normal and explain actual two fixture-model calls; show complete wire identities and started/terminal order; run four explicit fault commands and compare reason/modelCalls/answer/call records/ledger file; explain evidence adoption, trusted-process limits and cancellation versus unknown; provide concrete exercises that use existing commands and temporary inputs. No management approval wording should be placed in the reader's status line.
+
+MIGRATIONS.md must actually change the ch13 dependency cell that still says approval,journal; adding a paragraph declaring the opposite is not sufficient. Preserve the old ch05 section as a dated historical baseline without guessing an unsupported earlier date. Do not imply a Git commit was made.
+
+Author chapter 01 remains protected. Full paragraphs and concrete operational order are the style basis; migration bookkeeping belongs in project records.

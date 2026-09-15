@@ -1,0 +1,1 @@
+/bin/zsh -lc cd /private/tmp/rein-production-candidate-03 && CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --quiet --manifest-path rust/Cargo.toml --example ch05_loop -- --live workspace '/private/tmp/rein-ch05-live-evidence/workspace' '请搜索 marker:，读取命中的两个文件，并给出事实A、事实B及各自来源文件。'

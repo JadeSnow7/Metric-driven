@@ -1,0 +1,222 @@
+[
+  {
+    "check": "ten-mode-shared-fixture-and-parity",
+    "passed": true
+  },
+  {
+    "check": "dynamic-zero",
+    "passed": true,
+    "languages": [
+      {
+        "reason": "model_error",
+        "answer": null,
+        "requests": 2,
+        "calls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          }
+        ]
+      },
+      {
+        "reason": "model_error",
+        "answer": null,
+        "requests": 2,
+        "calls": [
+          {
+            "arguments": {
+              "needle": "marker: ch06"
+            },
+            "id": "search-1",
+            "name": "search_files"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "check": "dynamic-one",
+    "passed": true,
+    "languages": [
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 Changed-One",
+        "requests": 3,
+        "calls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          },
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "single.md"
+            }
+          }
+        ]
+      },
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 Changed-One",
+        "requests": 3,
+        "calls": [
+          {
+            "arguments": {
+              "needle": "marker: ch06"
+            },
+            "id": "search-1",
+            "name": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "single.md"
+            },
+            "id": "read-1",
+            "name": "read_file"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "check": "dynamic-three",
+    "passed": true,
+    "languages": [
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 A-new | marker: ch06 B-new | marker: ch06 C-new",
+        "requests": 3,
+        "calls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          },
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "a.md"
+            }
+          },
+          {
+            "id": "read-2",
+            "name": "read_file",
+            "arguments": {
+              "path": "b.md"
+            }
+          },
+          {
+            "id": "read-3",
+            "name": "read_file",
+            "arguments": {
+              "path": "c.md"
+            }
+          }
+        ]
+      },
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 A-new | marker: ch06 B-new | marker: ch06 C-new",
+        "requests": 3,
+        "calls": [
+          {
+            "arguments": {
+              "needle": "marker: ch06"
+            },
+            "id": "search-1",
+            "name": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "a.md"
+            },
+            "id": "read-1",
+            "name": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "b.md"
+            },
+            "id": "read-2",
+            "name": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "c.md"
+            },
+            "id": "read-3",
+            "name": "read_file"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "check": "dynamic-numeric",
+    "passed": true,
+    "languages": [
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 Numeric-new",
+        "requests": 3,
+        "calls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          },
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "123"
+            }
+          }
+        ]
+      },
+      {
+        "reason": "final_answer",
+        "answer": "完成：marker: ch06 Numeric-new",
+        "requests": 3,
+        "calls": [
+          {
+            "arguments": {
+              "needle": "marker: ch06"
+            },
+            "id": "search-1",
+            "name": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "123"
+            },
+            "id": "read-1",
+            "name": "read_file"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "check": "ts-missing-workspace",
+    "passed": true,
+    "error": "ENOENT: no such file or directory, realpath '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/rein-main06-missing-jgdqtpif/absent'"
+  },
+  {
+    "check": "rust-missing-workspace",
+    "passed": true,
+    "error": "search failed"
+  }
+]

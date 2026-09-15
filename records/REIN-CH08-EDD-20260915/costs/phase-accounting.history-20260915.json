@@ -1,0 +1,36 @@
+{
+  "updatedAt": "2026-09-15T06:06:18.778759+00:00",
+  "currencyCosts": null,
+  "savingsPercent": null,
+  "phases": {
+    "commonPreparation": {
+      "raw": "../preparation",
+      "implementationTokens": null,
+      "writingTokens": null,
+      "validationTokens": null,
+      "note": "Preformal shared source/prerequisite/evaluator/skill preparation is excluded from formal scores; command-level timestamps retained, no invented split."
+    },
+    "formal": {
+      "raw": "formal-runs.json",
+      "implementationWritingVerificationSeparated": false,
+      "note": "Per-run total wall/token records include autonomous implementation, prose, tests and fixes. Separate substage costs unknown/null."
+    },
+    "independentReview": {
+      "raw": "review-costs.json",
+      "note": "Includes interrupted initial reviewer turns and followups; independent review method corrections retained."
+    },
+    "primaryReviewAndDirectedIntervention": {
+      "seconds": null,
+      "tokens": null,
+      "evidence": "../reviews/ADJUDICATION.md; parent raw conversation",
+      "note": "No reliable per-stage meter; do not estimate. Formal coder first runs received no directed solution feedback."
+    },
+    "productionRepair": {
+      "state": "running",
+      "raw": "../production",
+      "sourceAndProseOwners": "custom coder /root/skill_update and /root/production_docs",
+      "note": "Starts after adjudication seal; own work directories and feedback. Concurrent source/prose phase durations overlap and must not be added as elapsed time."
+    }
+  },
+  "tokenSemantics": "Retain raw token fields. Cached input is contained in input; reasoning output retained as reported, not added to output. Missing fields remain null."
+}

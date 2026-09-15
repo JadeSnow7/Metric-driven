@@ -1,0 +1,5 @@
+b4278fcae46163e94e3238a786bc36cec6ff634243465021481be93c41a5e6eb  /private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts
+497f64b474dcf12cf20d2cd1009becf88ca6da1a40f064bc35f22bfd64efca50  /private/tmp/rein-production-candidate-03/ts/src/rein/adapters.ts
+9a99d77fef5acfb8112a7fbbcbf9c139e7735e6d58c2c721ab8c1e81492e1ead  /private/tmp/rein-production-candidate-03/ts/src/transport.ts
+d11dec91ce06af8938c002796448bc86848319a73fcc3f14ec09519df395d7c8  /private/tmp/rein-production-candidate-03/rust/src/rein/loop.rs
+7ce4463186cc6085292a80a636e68161e22b1b02faa01a4f99cf9159ec0ed9d2  /private/tmp/rein-production-candidate-03/rust/tests/loop.rs

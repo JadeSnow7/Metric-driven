@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-15T06:19:01.750167+00:00",
+  "core": "/root/production_core_v2",
+  "tests": "/root/production_contract_tests",
+  "docs": "/root/production_docs (draft waiting)",
+  "previousOwner": "/root/skill_update completed; no further assignment",
+  "note": "No simultaneous writers to any product file; source/tests compile serialized on one production target."
+}

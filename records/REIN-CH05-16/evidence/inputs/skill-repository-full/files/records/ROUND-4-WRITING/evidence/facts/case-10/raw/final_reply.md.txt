@@ -1,0 +1,76 @@
+两个方法都做好了，都有测试，已经本地提交，没有推送。这次按 L2 流程处理，因为有两个结果、还要分几次会话做完。
+
+## 结果
+
+`Inventory.import_csv(path)` 和 `Inventory.low_stock(threshold=5)` 已实现，测试和端到端检查都通过。有 5 条边界规则是我自己定的，需要你确认（见“未完成与风险”）。所以记录里任务状态是 `verified`，不是 `completed`。
+
+## 改动
+
+- `inventory.py`：新增两个方法。
+  - `import_csv`（MT-001 / IT-001 / CHG-001）：每一行单独解析，所以一行坏了不会影响其他行。返回 `(imported, skipped)`，表头算第 1 行。
+  - `low_stock`（MT-002 / IT-002 / CHG-002）：返回库存严格小于阈值的商品名，用 `sorted()` 排序，和已有的 `names()` 一致。
+- `tests/test_inventory.py`：新增 `ImportCsvTests`（17 个）和 `LowStockTests`（4 个），原有测试没有改。
+- `records/TASK-001/`（CHG-003）：给下次接手用。
+  - `task-summary.md`：当前状态。
+  - `handoffs/HANDOFF-001.md`：下次从这里开始看。
+  - 另有 `task-state.json`、`work-log.md`、原始证据，以及端到端脚本 `e2e_check.py`。
+- 提交前改过一次方案：第一版逐行用标准库 `csv` 解析。我实测发现，引号里有换行的记录（如 `"Widget` 下一行 `large",3`）的第二行会被当成商品 `large"` 导入。`strict=True` 也拦不住。现在改用按 RFC 4180 引号规则写的两字段正则，这种记录的两行都会被跳过。
+
+## 验证
+
+| 检查 | 命令或方法 | 结果 |
+| --- | --- | --- |
+| 单元测试（新增 21 个 + 原有 9 个） | `python3 -m unittest discover -s tests -t . -v` | passed：30/30（改动前基线 9/9） |
+| 测试能否抓到错误实现 | 在临时副本里逐个注入 8 种错误写法（`<=`、宽松 `int()`、改回 csv 宽松解析、未加引号字段允许引号等） | passed：8 个都被至少 1 个测试抓到；只覆盖这 8 种 |
+| 端到端 | `python3 records/TASK-001/e2e_check.py`：从磁盘读混合样本 CSV，导入后查 low_stock | passed |
+| 超长恶意行耗时 | 9 种 20–40 万字符的构造行 | passed：最慢 19 ms；只在本机测过一次，不代表没有其他慢输入 |
+| 记录与提交门槛 | 仓库外的 skill 校验脚本 `validate_task.py`，`--gate local-commit` | passed（提交前）；提交后 `--gate push` 被拦下，原因只有 push 未授权 |
+| 远程 CI | — | 没有运行：仓库里没有 CI 配置 |
+
+## 未完成与风险
+
+**请确认以下默认规则**（都已实现并用测试固定；要改的话，改一处判断和对应测试即可）：
+
+1. **空行**：只含空白的行直接忽略，不算进 skipped，但仍然占一个行号。要不要把空行也列进 skipped？
+2. **哪些行算格式错误**：
+   - 字段数不是 2，或 name 为空；
+   - quantity 为 0 或负数（沿用 `add_item` 的规则）；
+   - quantity 写成 `3.0`、`+3`、`1_000`、非 ASCII 数字（如 `٣`），或超过 4300 位。
+   - 另外，name 和 quantity 两侧的空白会被去掉。
+3. **引号**：
+   - 没加引号的字段里出现双引号算格式错误，所以 `12" pizza,3` 会被跳过，要写成 `"12"" pizza",3`；
+   - 不支持引号内换行。
+4. **表头不对或文件读不了**：
+   - 表头不是 `name,quantity` 或文件为空时，抛 `ValueError`。表头区分大小写，允许 BOM 和字段两侧空白。
+   - 文件不存在或不是 UTF-8 时，原异常直接抛出。
+   - 这些情况下一行都不导入。
+5. **low_stock**：
+   - 默认值直接写成 5，没有接 `config.py` 里的 `LOW_STOCK_THRESHOLD`（这个配置目前没有代码在用）；
+   - 排序区分大小写，`"Widget"` 会排在 `"apple"` 前面。
+
+**其他超出需求的行为变化**：
+- 同名的多行会累加数量，`imported` 按行数计，不按商品数；
+- 路径参数可以是 `str` 或 `Path`；
+- 文件会整个读进内存。
+
+**限制**：
+- 只在 Python 3.14.6 上跑过。测试没有用 3.10 及以后才有的 API，但更早的版本没验证过；
+- 代码由我实现，也由我审查，没有经过独立审查。
+
+**下次继续**：先看 `records/TASK-001/handoffs/HANDOFF-001.md`。确认 `git log` 里已经有这两个提交，不要重复提交。
+
+## 交付动作
+
+- commit：已提交两次（你在对话中授权）：
+  - `6d1d31b`：代码、测试、记录；
+  - `6bf18c2`：只含记录里的提交回执。
+- push：未执行，你要求不推送。`main` 领先 `origin/main` 2 个提交，远端 `main` 仍是 `547ce4e`。
+- merge / deploy：未执行，未获授权。
+
+复查命令（都是只读的，在仓库根目录运行）：
+
+```bash
+git log --oneline -3 && git status -sb
+python3 -m unittest discover -s tests -t . -v
+python3 records/TASK-001/e2e_check.py
+```

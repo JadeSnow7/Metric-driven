@@ -1,0 +1,9 @@
+arm_a_complete_file_count 117
+arm_b_complete_file_count 117
+arm_source_hashes_equal True
+task_input_file_count_a 3
+task_input_file_count_b 3
+task_input_hashes_equal True
+combined_hashes_equal True
+removed_cargo_target_conf_a True
+removed_cargo_target_conf_b True

@@ -1,0 +1,1 @@
+库存扣到0后names还保留商品，请修复并验证，仅允许本地修改，禁止commit/push/merge/deploy/stash/worktree。Git仅允许只读命令，不新建分支、不暂存；初始化Git动作只由准备者执行。

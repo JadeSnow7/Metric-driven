@@ -1,0 +1,1504 @@
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/src/rein/contracts.ts b/private/tmp/rein-production-candidate-03/ts/src/rein/contracts.ts
+index 153c795..b45f76e 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/src/rein/contracts.ts
++++ b/private/tmp/rein-production-candidate-03/ts/src/rein/contracts.ts
+@@ -7,6 +7,13 @@ export interface Message {
+   readonly toolCalls?: readonly ToolCall[]
+ }
+ 
++export interface ContextConfig {
++  readonly rules: readonly string[]
++  readonly history: readonly Message[]
++  readonly budget: number
++  readonly manage?: boolean
++}
++
+ export interface ToolCall {
+   readonly id: string
+   readonly name: string
+
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/src/rein/loop.ts b/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts
+index 46528f7..c1db6c8 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/src/rein/loop.ts
++++ b/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts
+@@ -1,13 +1,15 @@
+-import type { ChatAdapter, Message, ToolCall, ToolDefinition, ToolResult } from './contracts'
++import type { ChatAdapter, ContextConfig, Message, ToolCall, ToolDefinition, ToolResult } from './contracts'
+ import type { Workspace } from './readonly'
+ import { dispatchReadonly } from './readonly'
+ 
+ export type LoopState = 'running' | 'completed' | 'failed'
+-export type StopReason = 'final_answer' | 'empty_final' | 'model_error' | 'max_turns' | 'tool_budget_exhausted' | 'duplicate_action' | 'cancelled' | 'timeout'
++export type StopReason = 'final_answer' | 'empty_final' | 'model_error' | 'max_turns' | 'tool_budget_exhausted' | 'duplicate_action' | 'cancelled' | 'timeout' | 'context_budget_exhausted' | 'invalid_context_history'
+ export type LoopEvent =
+   | { readonly type: 'model_requested'; readonly turn: number; readonly messages: readonly Message[]; readonly tools: readonly ToolDefinition[] }
+   | { readonly type: 'model_received'; readonly turn: number; readonly message: Message; readonly toolCallIds: readonly string[]; readonly text: string }
+   | { readonly type: 'tool_result'; readonly turn: number; readonly call: ToolCall; readonly toolCallId: string; readonly result: ToolResult }
++  | { readonly type: 'context_prepared'; readonly turn: number; readonly unit: 'estimated-bytes-v1'; readonly budget: number; readonly beforeUnits: number; readonly afterUnits: number; readonly requiredUnits: number; readonly keptGroups: readonly string[]; readonly removedGroups: readonly string[]; readonly requiredGroups: readonly string[]; readonly mode: 'managed' | 'unmanaged' }
++  | { readonly type: 'context_rejected'; readonly turn: number; readonly reason: 'context_budget_exhausted' | 'invalid_context_history'; readonly unit: 'estimated-bytes-v1'; readonly budget?: number; readonly beforeUnits?: number; readonly requiredUnits?: number; readonly mode: 'managed' | 'unmanaged'; readonly errorCode?: string }
+   | { readonly type: 'action_skipped'; readonly turn: number; readonly action: 'model' | 'tool'; readonly callId?: string; readonly reason: StopReason }
+   | { readonly type: 'stopped'; readonly state: Exclude<LoopState, 'running'>; readonly reason: StopReason }
+ 
+@@ -23,6 +25,7 @@ export interface LoopOptions {
+   readonly tools?: readonly ToolDefinition[]
+   /** Trusted local observation hook, called after each real tool result. */
+   readonly onToolResult?: (call: ToolCall, result: ToolResult) => void
++  readonly context?: ContextConfig
+ }
+ 
+ export interface LoopResult {
+@@ -39,13 +42,107 @@ export const readonlyToolDefinitions: readonly ToolDefinition[] = [
+   { name: 'read_file', description: 'Read one UTF-8 file in the workspace.', inputSchema: { type: 'object', properties: { path: { type: 'string' } }, required: ['path'], additionalProperties: false } },
+ ]
+ 
++export function estimateMessages(messages: readonly Message[]): number {
++  return messages.reduce((sum, message) => sum + estimateMessage(message), 0)
++}
++
++function utf8(value: string): number { return new TextEncoder().encode(value).byteLength }
++function validJson(value: unknown): boolean {
++  if (value === null || typeof value === 'string' || typeof value === 'boolean') return true
++  if (typeof value === 'number') return Number.isFinite(value)
++  if (Array.isArray(value)) return value.every(validJson)
++  if (typeof value === 'object') return Object.entries(value as Record<string, unknown>).every(([key, item]) => typeof key === 'string' && validJson(item))
++  return false
++}
++function estimateJson(value: unknown): number {
++  if (value === null) return 4
++  if (typeof value === 'boolean') return value ? 4 : 5
++  if (typeof value === 'number') return 8
++  if (typeof value === 'string') return 2 + utf8(value)
++  if (Array.isArray(value)) return 2 + value.reduce((n, item) => n + estimateJson(item), 0) + Math.max(0, value.length - 1)
++  if (typeof value === 'object') { const entries = Object.entries(value as Record<string, unknown>); return 2 + entries.reduce((n, [key, item]) => n + 2 + utf8(key) + 1 + estimateJson(item), 0) + Math.max(0, entries.length - 1) }
++  return 0
++}
++function estimateMessage(message: Message): number {
++  return 8 + utf8(message.role) + utf8(message.content) + (message.toolCallId ? utf8(message.toolCallId) : 0) + (message.toolCalls ?? []).reduce((n, call) => n + 8 + utf8(call.id) + utf8(call.name) + estimateJson(call.arguments), 0)
++}
++
++type Group = { id: string; start: number; end: number; messages: Message[] }
++function validateHistory(history: readonly Message[]): string | undefined {
++  const ids = new Set<string>()
++  for (let i = 0; i < history.length; i++) {
++    const message = history[i]!
++    if (!['user', 'assistant', 'tool'].includes(message.role)) return 'invalid_context_history'
++    if (typeof message.content !== 'string' || (message.toolCalls !== undefined && (!Array.isArray(message.toolCalls) || !validJson(message.toolCalls)))) return 'invalid_context_history'
++    if ((message.toolCalls ?? []).some(call => !call || typeof call !== 'object' || !call.id || !call.name || !validJson(call.arguments))) return 'invalid_context_history'
++    if (message.role === 'tool') {
++      if ((message.toolCalls ?? []).length) return 'invalid_context_history'
++      if (!message.toolCallId || ids.has(message.toolCallId)) return 'invalid_context_history'
++      const previous = history[i - 1]
++      if (!previous || previous.role !== 'assistant' || !(previous.toolCalls ?? []).some(call => call.id === message.toolCallId)) return 'invalid_context_history'
++      ids.add(message.toolCallId)
++      continue
++    }
++    if (message.role === 'user' && ((message.toolCalls ?? []).length || message.toolCallId)) return 'invalid_context_history'
++    if (message.role === 'assistant') {
++      if (message.toolCallId) return 'invalid_context_history'
++      const calls = message.toolCalls ?? []
++      const callIds = calls.map(call => call.id)
++      if (new Set(callIds).size !== callIds.length || callIds.some(id => !id || ids.has(id))) return 'invalid_context_history'
++      if (calls.length) {
++        const results = history.slice(i + 1, i + 1 + calls.length)
++        if (results.length !== calls.length || results.some(result => result.role !== 'tool' || !result.toolCallId || typeof result.content !== 'string' || (result.toolCalls ?? []).length || !callIds.includes(result.toolCallId)) || new Set(results.map(result => result.toolCallId)).size !== calls.length) return 'invalid_context_history'
++        callIds.forEach(id => ids.add(id))
++        i += calls.length
++      }
++    }
++  }
++  return undefined
++}
++
++function makeGroups(messages: readonly Message[]): Group[] {
++  const groups: Group[] = []
++  for (let i = 0; i < messages.length; i++) {
++    const message = messages[i]!
++    if (message.role === 'tool') continue
++    const end = message.role === 'assistant' && (message.toolCalls ?? []).length ? i + (message.toolCalls ?? []).length : i
++    groups.push({ id: `g${i}`, start: i, end, messages: messages.slice(i, end + 1) as Message[] })
++    i = end
++  }
++  return groups
++}
++
++function prepareContext(messages: readonly Message[], context: ContextConfig, currentGoalIndex: number): { messages: Message[]; beforeUnits: number; afterUnits: number; requiredUnits: number; keptGroups: string[]; removedGroups: string[]; requiredGroups: string[]; mode: 'managed' | 'unmanaged'; rejected?: boolean } {
++  const groups = makeGroups(messages)
++  const goal = groups.find(group => group.start === currentGoalIndex) ?? groups.at(-1)
++  const latestTool = [...groups].reverse().find(group => group.messages.some(message => message.role === 'assistant' && (message.toolCalls ?? []).length))
++  const required = new Set([goal?.id, latestTool?.id].filter((id): id is string => Boolean(id)))
++  const rulesMessages = context.rules.map(content => ({ role: 'system' as const, content }))
++  const beforeUnits = estimateMessages([...rulesMessages, ...messages])
++  const requiredUnits = estimateMessages(rulesMessages) + groups.filter(group => required.has(group.id)).reduce((n, group) => n + estimateMessages(group.messages), 0)
++  const mode = context.manage === false ? 'unmanaged' : 'managed'
++  if (mode === 'managed' && requiredUnits > context.budget) return { messages: [], beforeUnits, afterUnits: beforeUnits, requiredUnits, keptGroups: [], removedGroups: [], requiredGroups: [...required].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1))), mode, rejected: true }
++  const kept = new Set(groups.map(group => group.id))
++  if (mode === 'managed') for (const group of groups) {
++    if (estimateMessages(rulesMessages) + groups.filter(candidate => kept.has(candidate.id)).reduce((n, candidate) => n + estimateMessages(candidate.messages), 0) <= context.budget) break
++    if (!required.has(group.id)) kept.delete(group.id)
++  }
++  const keptGroups = groups.filter(group => kept.has(group.id))
++  const removedGroups = groups.filter(group => !kept.has(group.id))
++  const audit = keptGroups.flatMap(group => group.messages)
++  const sent = [...rulesMessages, ...audit]
++  return { messages: sent, beforeUnits, afterUnits: mode === 'unmanaged' ? beforeUnits : estimateMessages(sent), requiredUnits, keptGroups: keptGroups.map(group => group.id), removedGroups: removedGroups.map(group => group.id), requiredGroups: [...required].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1))), mode }
++}
++
+ /** Runs the small, replayable tool loop. One model turn may produce many tools. */
+ export async function runAgentLoop(adapter: ChatAdapter, workspace: Workspace, prompt: string, options: LoopOptions = {}): Promise<LoopResult> {
+   const maxTurns = options.maxTurns ?? 32
+   const maxToolCalls = options.maxToolCalls ?? Number.POSITIVE_INFINITY
+   const duplicateLimit = options.duplicateLimit ?? Number.POSITIVE_INFINITY
+   const tools = options.tools ?? readonlyToolDefinitions
+-  const messages: Message[] = [{ role: 'user', content: prompt }]
++  const context = options.context ? structuredClone(options.context) : undefined
++  const contextGoalIndex = context?.history.length
++  const messages: Message[] = context ? structuredClone(context.history).concat({ role: 'user', content: prompt }) : [{ role: 'user', content: prompt }]
+   const events: LoopEvent[] = []
+   const startedAt = Date.now()
+   const deadline = options.timeoutMs === undefined ? undefined : startedAt + Math.max(0, options.timeoutMs)
+@@ -56,17 +153,35 @@ export async function runAgentLoop(adapter: ChatAdapter, workspace: Workspace, p
+   }
+   let toolStarted = 0
+   const seen = new Map<string, number>()
++  if (context) {
++    const invalid = validateHistory(context.history)
++    const mode = context.manage === false ? 'unmanaged' : 'managed'
++    if (invalid) { events.push({ type: 'context_rejected', turn: 0, reason: 'invalid_context_history', unit: 'estimated-bytes-v1', mode, errorCode: invalid }); return finish(messages, events, 'failed', 'invalid_context_history', undefined, invalid) }
++    if (!Number.isSafeInteger(context.budget) || context.budget < 0 || context.rules.some(rule => typeof rule !== 'string')) { events.push({ type: 'context_rejected', turn: 0, reason: 'invalid_context_history', unit: 'estimated-bytes-v1', mode, errorCode: 'invalid_context_config' }); return finish(messages, events, 'failed', 'invalid_context_history', undefined, 'invalid_context_config') }
++  }
+   if (maxTurns <= 0) return finish(messages, events, 'failed', 'max_turns')
+   const initialReason = controlReason()
+   if (initialReason) return finish(messages, events, 'failed', initialReason)
+   for (let turn = 1; turn <= maxTurns; turn++) {
+     const beforeModel = controlReason()
+     if (beforeModel) return finish(messages, events, 'failed', beforeModel)
+-    events.push({ type: 'model_requested', turn, messages: structuredClone(messages), tools: structuredClone(tools) })
++    let sentMessages = messages
++    if (context) {
++      const invalid = validateHistory(messages)
++      if (invalid) { events.push({ type: 'context_rejected', turn, reason: 'invalid_context_history', unit: 'estimated-bytes-v1', mode: context.manage === false ? 'unmanaged' : 'managed', errorCode: invalid }); return finish(messages, events, 'failed', 'invalid_context_history', undefined, invalid) }
++      const prepared = prepareContext(messages, context, contextGoalIndex!)
++      if (prepared.rejected) {
++        events.push({ type: 'context_rejected', turn, reason: 'context_budget_exhausted', unit: 'estimated-bytes-v1', budget: context.budget, beforeUnits: prepared.beforeUnits, requiredUnits: prepared.requiredUnits, mode: prepared.mode })
++        return finish(messages, events, 'failed', 'context_budget_exhausted')
++      }
++      sentMessages = prepared.messages
++      events.push({ type: 'context_prepared', turn, unit: 'estimated-bytes-v1', budget: context.budget, beforeUnits: prepared.beforeUnits, afterUnits: prepared.afterUnits, requiredUnits: prepared.requiredUnits, keptGroups: prepared.keptGroups, removedGroups: prepared.removedGroups, requiredGroups: prepared.requiredGroups, mode: prepared.mode })
++    }
++    events.push({ type: 'model_requested', turn, messages: structuredClone(sentMessages), tools: structuredClone(tools) })
+     let model
+     try {
+       const remaining = deadline === undefined ? undefined : Math.max(0, deadline - Date.now())
+-      model = await raceControl(() => adapter.complete(messages, tools, { timeoutMs: remaining, signal: options.signal }), options.signal, remaining)
++      model = await raceControl(() => adapter.complete(structuredClone(sentMessages), tools, { timeoutMs: remaining, signal: options.signal }), options.signal, remaining)
+     }
+     catch (error) {
+       const reason = controlReason()
+
+diff --git a/private/tmp/rein-production-candidate-03/ts/examples/ch07-context.ts b/private/tmp/rein-production-candidate-03/ts/examples/ch07-context.ts
+new file mode 100644
+index 0000000..a7e6b13
+--- /dev/null
++++ b/private/tmp/rein-production-candidate-03/ts/examples/ch07-context.ts
+@@ -0,0 +1,31 @@
++import { readFile } from 'node:fs/promises'
++import { fileURLToPath } from 'node:url'
++import { resolve } from 'node:path'
++import { runAgentLoop, estimateMessages } from '../src/rein/loop'
++import type { ChatAdapter, Message, ModelTurn } from '../src/rein/contracts'
++import { createHash } from 'node:crypto'
++
++const fixturePath = process.argv[2] ? resolve(process.argv[2]) : fileURLToPath(new URL('../../fixtures/cases/ch07-context.json', import.meta.url))
++const fixture = JSON.parse(await readFile(fixturePath, 'utf8')) as { unit: string; cases: any[] }
++const outputs = []
++for (const scenario of fixture.cases) {
++  const requests: Message[][] = []
++  const adapter: ChatAdapter = { async complete(messages) {
++    requests.push(structuredClone(messages) as Message[])
++    if (estimateMessages(messages) > scenario.budget) throw new Error('adapter_budget_exceeded')
++    const candidates: string[] = []
++    for (let i = 0; i < messages.length; i++) {
++      const message = messages[i]!
++      if (message.role !== 'assistant' || !message.toolCalls?.length) continue
++      const byId = new Map(messages.slice(i + 1).filter(item => item.role === 'tool').map(item => [item.toolCallId, item.content]))
++      if (message.toolCalls.every(call => byId.has(call.id))) candidates.push(message.toolCalls.map(call => byId.get(call.id)).join('\n'))
++    }
++    const content = candidates.at(-1) || messages.filter(message => message.role === 'user').at(-1)?.content || '无可用上下文'
++    return { message: { role: 'assistant', content }, toolCalls: [] } satisfies ModelTurn
++  } }
++  const result = await runAgentLoop(adapter, { root: process.cwd() }, scenario.goal, { context: { rules: scenario.rules, history: scenario.history, budget: scenario.budget, manage: scenario.managed } })
++  outputs.push({ id: scenario.id, result, requests: requests.length, sentMessages: requests })
++}
++const rendered = JSON.stringify({ unit: fixture.unit, cases: outputs })
++process.stdout.write(rendered + '\n')
++process.stderr.write(`fixture_sha256=${createHash('sha256').update(await readFile(fixturePath)).digest('hex')}\n`)
+
+diff --git a/private/tmp/rein-production-candidate-03/ts/tests/ch07-context.test.ts b/private/tmp/rein-production-candidate-03/ts/tests/ch07-context.test.ts
+new file mode 100644
+index 0000000..3c1ca01
+--- /dev/null
++++ b/private/tmp/rein-production-candidate-03/ts/tests/ch07-context.test.ts
+@@ -0,0 +1,88 @@
++import { describe, expect, it } from 'vitest'
++import { runAgentLoop, estimateMessages } from '../src/rein/loop'
++import type { ChatAdapter } from '../src/rein/contracts'
++import { mkdtemp, rm, writeFile } from 'node:fs/promises'
++import { join } from 'node:path'
++import { tmpdir } from 'node:os'
++
++const answer = (content: string) => ({ message: { role: 'assistant' as const, content }, toolCalls: [] })
++
++describe('ch07 context management', () => {
++  it('keeps rules, goal, and the complete latest multi-tool group while removing old groups', async () => {
++    const history = [
++      { role: 'user' as const, content: 'old' },
++      { role: 'assistant' as const, content: '', toolCalls: [{ id: 'a', name: 'read_file', arguments: { path: 'a' } }, { id: 'b', name: 'read_file', arguments: { path: 'b' } }] },
++      { role: 'tool' as const, toolCallId: 'a', content: 'A' }, { role: 'tool' as const, toolCallId: 'b', content: 'B' },
++    ]
++    let received: any[] = []
++    const adapter: ChatAdapter = { async complete(messages) { received = structuredClone(messages) as any; return answer('ok') } }
++    const result = await runAgentLoop(adapter, { root: process.cwd() }, 'goal', { context: { rules: ['rule'], history, budget: 139 } })
++    expect(result.reason).toBe('final_answer')
++    expect(received.filter(m => m.role === 'system').map(m => m.content)).toEqual(['rule'])
++    expect(received.filter(m => m.role === 'tool').map(m => m.toolCallId)).toEqual(['a', 'b'])
++    expect(result.messages).toHaveLength(history.length + 2)
++    expect(result.events.find(e => e.type === 'context_prepared')).toMatchObject({ removedGroups: ['g0'], requiredGroups: ['g1', 'g4'] })
++  })
++
++  it('does not dispatch when required content exceeds budget', async () => {
++    let calls = 0
++    const adapter: ChatAdapter = { async complete() { calls++; return answer('bad') } }
++    const result = await runAgentLoop(adapter, { root: process.cwd() }, 'goal', { context: { rules: ['rule'], history: [], budget: 1 } })
++    expect(result).toMatchObject({ reason: 'context_budget_exhausted', state: 'failed' })
++    expect(calls).toBe(0)
++  })
++
++  it('rejects malformed history and protects audit history from adapter mutation', async () => {
++    const malformed = await runAgentLoop({ async complete() { return answer('never') } }, { root: process.cwd() }, 'goal', { context: { rules: [], history: [{ role: 'tool', toolCallId: 'orphan', content: 'x' }], budget: 100 } })
++    expect(malformed.reason).toBe('invalid_context_history')
++    const history = [{ role: 'user' as const, content: 'source' }]
++    const result = await runAgentLoop({ async complete(messages) { (messages as any).push({ role: 'system', content: 'tampered' }); return answer('ok') } }, { root: process.cwd() }, 'goal', { context: { rules: [], history, budget: 100 } })
++    expect(result.messages.map(message => message.content)).toEqual(['source', 'goal', 'ok'])
++  })
++
++  it('counts UTF-8 bytes deterministically', () => {
++    expect(estimateMessages([{ role: 'user', content: '你好 🌏' }])).toBe(8 + 4 + 11)
++  })
++
++  it('runs two real tool rounds and replaces the latest required group', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-ch07-rounds-'))
++    try {
++      await writeFile(join(root, 'a.txt'), 'first real result')
++      await writeFile(join(root, 'b.txt'), 'second real result')
++      let calls = 0
++      const adapter: ChatAdapter = { async complete(messages) {
++        calls++
++        const tools = messages.filter(message => message.role === 'tool')
++        if (calls === 1) return { message: { role: 'assistant', content: '', toolCalls: [{ id: 'round-a', name: 'read_file', arguments: { path: 'a.txt' } }] }, toolCalls: [{ id: 'round-a', name: 'read_file', arguments: { path: 'a.txt' } }] }
++        if (calls === 2) return { message: { role: 'assistant', content: '', toolCalls: [{ id: 'round-b', name: 'read_file', arguments: { path: 'b.txt' } }] }, toolCalls: [{ id: 'round-b', name: 'read_file', arguments: { path: 'b.txt' } }] }
++        return answer(tools.at(-1)?.content ?? 'missing')
++      } }
++      const result = await runAgentLoop(adapter, { root }, 'inspect', { maxTurns: 3, context: { rules: [], history: [], budget: 200 } })
++      expect(result.answer).toBe('second real result')
++      expect(calls).toBe(3)
++      const prepared = result.events.filter(event => event.type === 'context_prepared')
++      expect(prepared.at(-1)).toMatchObject({ requiredGroups: ['g0', 'g3'], removedGroups: ['g1'] })
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('stops before the next model when a newly formed required group cannot fit', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-ch07-overflow-'))
++    try {
++      await writeFile(join(root, 'a.txt'), 'large tool result '.repeat(8))
++      let calls = 0
++      const adapter: ChatAdapter = { async complete() { calls++; return { message: { role: 'assistant', content: '', toolCalls: [{ id: 'overflow-a', name: 'read_file', arguments: { path: 'a.txt' } }] }, toolCalls: [{ id: 'overflow-a', name: 'read_file', arguments: { path: 'a.txt' } }] } } }
++      const result = await runAgentLoop(adapter, { root }, 'inspect', { maxTurns: 3, context: { rules: [], history: [], budget: 100 } })
++      expect(result.reason).toBe('context_budget_exhausted')
++      expect(calls).toBe(1)
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('rejects malformed declarations and repeated IDs in a later round', async () => {
++    const bad = await runAgentLoop({ async complete() { return answer('never') } }, { root: process.cwd() }, 'x', { context: { rules: [], history: [{ role: 'assistant', content: '', toolCalls: {} as any }], budget: 100 } })
++    expect(bad.reason).toBe('invalid_context_history')
++    let calls = 0
++    const repeated = await runAgentLoop({ async complete() { calls++; return { message: { role: 'assistant', content: '', toolCalls: [{ id: 'same', name: 'read_file', arguments: { path: 'missing' } }] }, toolCalls: [{ id: 'same', name: 'read_file', arguments: { path: 'missing' } }] } } }, { root: process.cwd() }, 'x', { maxTurns: 3, context: { rules: [], history: [], budget: 300 } })
++    expect(repeated.reason).toBe('invalid_context_history')
++    expect(calls).toBe(2)
++  })
++})
+
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/rust/src/rein/loop.rs b/private/tmp/rein-production-candidate-03/rust/src/rein/loop.rs
+index 29797a6..3239636 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/rust/src/rein/loop.rs
++++ b/private/tmp/rein-production-candidate-03/rust/src/rein/loop.rs
+@@ -44,10 +44,11 @@ impl ControlSignal {
+     }
+ }
+ 
+-/// A trusted observation point after a real tool has completed.
++/// A provided trusted local observer after a real tool has completed.
+ ///
+-/// The callback can only observe the call and result and can cancel the
+-/// existing run. It cannot enqueue a tool or mutate the workspace.
++/// This example only uses it to cancel a run; it provides no permission
++/// isolation, so a caller-supplied closure remains able to mutate its own
++/// captured state (including the workspace).
+ pub type ToolObserver = Arc<dyn Fn(&ToolCall, &ToolResult, &ControlSignal) + Send + Sync>;
+ 
+ pub struct OpenAiModelAdapter<'a, H: OpenAiHttp> {
+@@ -101,10 +102,46 @@ pub enum StopReason {
+     DuplicateAction,
+     Cancelled,
+     Timeout,
++    ContextBudgetExhausted,
++    InvalidContextHistory,
+ }
+ #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+ #[serde(tag = "type", rename_all = "snake_case")]
+ pub enum LoopEvent {
++    ContextPrepared {
++        turn: usize,
++        unit: String,
++        budget: usize,
++        #[serde(rename = "beforeUnits")]
++        before_units: usize,
++        #[serde(rename = "afterUnits")]
++        after_units: usize,
++        #[serde(rename = "requiredUnits")]
++        required_units: usize,
++        #[serde(rename = "keptGroups")]
++        kept_groups: Vec<String>,
++        #[serde(rename = "removedGroups")]
++        removed_groups: Vec<String>,
++        #[serde(rename = "requiredGroups")]
++        required_groups: Vec<String>,
++        mode: ContextMode,
++    },
++    ContextRejected {
++        turn: usize,
++        reason: String,
++        unit: String,
++        mode: ContextMode,
++        #[serde(rename = "errorCode", skip_serializing_if = "Option::is_none")]
++        error_code: Option<String>,
++        #[serde(skip_serializing_if = "Option::is_none")]
++        budget: Option<usize>,
++        #[serde(rename = "beforeUnits")]
++        #[serde(skip_serializing_if = "Option::is_none")]
++        before_units: Option<usize>,
++        #[serde(rename = "requiredUnits")]
++        #[serde(skip_serializing_if = "Option::is_none")]
++        required_units: Option<usize>,
++    },
+     ModelRequested {
+         turn: usize,
+         messages: Vec<Message>,
+@@ -136,6 +173,28 @@ pub enum LoopEvent {
+         reason: StopReason,
+     },
+ }
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(rename_all = "lowercase")]
++pub enum ContextMode {
++    Managed,
++    Unmanaged,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ContextConfig {
++    #[serde(default)]
++    pub rules: Vec<String>,
++    #[serde(default)]
++    pub history: Vec<Message>,
++    pub budget: usize,
++    #[serde(default = "default_manage")]
++    pub manage: bool,
++}
++
++fn default_manage() -> bool {
++    true
++}
+ #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+ pub struct LoopResult {
+     pub state: LoopState,
+@@ -195,6 +254,7 @@ pub struct LoopOptions {
+     pub timeout: Option<Duration>,
+     pub signal: Option<ControlSignal>,
+     pub tool_observer: Option<ToolObserver>,
++    pub context: Option<ContextConfig>,
+ }
+ impl Default for LoopOptions {
+     fn default() -> Self {
+@@ -205,6 +265,7 @@ impl Default for LoopOptions {
+             timeout: None,
+             signal: None,
+             tool_observer: None,
++            context: None,
+         }
+     }
+ }
+@@ -215,13 +276,69 @@ pub async fn run_agent_loop_with_options<A: ModelAdapter>(
+     prompt: &str,
+     options: LoopOptions,
+ ) -> LoopResult {
+-    let mut messages = vec![Message {
++    let context = options.context.clone();
++    let history_len = context.as_ref().map(|c| c.history.len()).unwrap_or(0);
++    let mut messages = context
++        .as_ref()
++        .map(|c| c.history.clone())
++        .unwrap_or_default();
++    let mut events = Vec::new();
++    messages.push(Message {
+         role: "user".into(),
+         content: prompt.into(),
+         tool_call_id: None,
+         tool_calls: vec![],
+-    }];
+-    let mut events = Vec::new();
++    });
++    if let Some(config) = &context {
++        if config.budget > 9_007_199_254_740_991 {
++            events.push(LoopEvent::ContextRejected {
++                turn: 0,
++                reason: "invalid_context_history".into(),
++                error_code: Some("invalid_context_config".into()),
++                unit: CONTEXT_UNIT.into(),
++                budget: None,
++                before_units: None,
++                required_units: None,
++                mode: if config.manage {
++                    ContextMode::Managed
++                } else {
++                    ContextMode::Unmanaged
++                },
++            });
++            return finish_loop(
++                messages,
++                events,
++                LoopState::Failed,
++                StopReason::InvalidContextHistory,
++                None,
++                Some("invalid_context_config".into()),
++            );
++        }
++        if let Err(code) = validate_context_history(&config.history) {
++            events.push(LoopEvent::ContextRejected {
++                turn: 0,
++                reason: "invalid_context_history".into(),
++                error_code: Some(code.into()),
++                unit: CONTEXT_UNIT.into(),
++                budget: None,
++                before_units: None,
++                required_units: None,
++                mode: if config.manage {
++                    ContextMode::Managed
++                } else {
++                    ContextMode::Unmanaged
++                },
++            });
++            return finish_loop(
++                messages,
++                events,
++                LoopState::Failed,
++                StopReason::InvalidContextHistory,
++                None,
++                Some(code.into()),
++            );
++        }
++    }
+     let definitions = READONLY_TOOLS.iter().map(|(name, description)| ToolDefinition { name: (*name).into(), description: (*description).into(), input_schema: match *name {
+         "read_file" => serde_json::json!({"type":"object","properties":{"path":{"type":"string"}},"required":["path"],"additionalProperties":false}),
+         "search_files" => serde_json::json!({"type":"object","properties":{"needle":{"type":"string"}},"required":["needle"],"additionalProperties":false}), _ => serde_json::json!({"type":"object"}),
+@@ -247,14 +364,46 @@ pub async fn run_agent_loop_with_options<A: ModelAdapter>(
+         if let Some(reason) = control_reason(&signal, deadline) {
+             return finish_loop(messages, events, LoopState::Failed, reason, None, None);
+         }
++        if context.is_some() && validate_context_history(&messages).is_err() {
++            let config = context.as_ref().unwrap();
++            events.push(LoopEvent::ContextRejected {
++                turn,
++                reason: "invalid_context_history".into(),
++                error_code: Some("invalid_context_history".into()),
++                unit: CONTEXT_UNIT.into(),
++                budget: None,
++                before_units: None,
++                required_units: None,
++                mode: if config.manage {
++                    ContextMode::Managed
++                } else {
++                    ContextMode::Unmanaged
++                },
++            });
++            return finish_loop(
++                messages,
++                events,
++                LoopState::Failed,
++                StopReason::InvalidContextHistory,
++                None,
++                Some("invalid_context_history".into()),
++            );
++        }
++        let sent_messages =
++            match prepare_context(&messages, history_len, context.as_ref(), turn, &mut events) {
++                Ok(value) => value,
++                Err(reason) => {
++                    return finish_loop(messages, events, LoopState::Failed, reason, None, None)
++                }
++            };
+         events.push(LoopEvent::ModelRequested {
+             turn,
+-            messages: messages.clone(),
++            messages: sent_messages.clone(),
+             tools: definitions.clone(),
+         });
+         let remaining = deadline.map(|d| d.saturating_duration_since(Instant::now()));
+         let response = match await_control(
+-            adapter.complete_controlled(&messages, &definitions, &signal),
++            adapter.complete_controlled(&sent_messages, &definitions, &signal),
+             &signal,
+             remaining,
+         )
+@@ -483,6 +632,282 @@ fn canonical_json(value: &serde_json::Value) -> String {
+         other => other.to_string(),
+     }
+ }
++
++const CONTEXT_UNIT: &str = "estimated-bytes-v1";
++
++#[derive(Clone)]
++struct ContextGroup {
++    id: String,
++    start: usize,
++    end: usize,
++    has_tool_result: bool,
++}
++
++fn validate_context_history(history: &[Message]) -> Result<(), &'static str> {
++    let mut used = std::collections::HashSet::new();
++    let mut index = 0;
++    while index < history.len() {
++        let message = &history[index];
++        match message.role.as_str() {
++            "user" => {
++                if message.tool_call_id.is_some() || !message.tool_calls.is_empty() {
++                    return Err("invalid_context_history");
++                }
++                index += 1;
++            }
++            "assistant" => {
++                if message.tool_call_id.is_some() {
++                    return Err("invalid_context_history");
++                }
++                if message.tool_calls.is_empty() {
++                    index += 1;
++                    continue;
++                }
++                let mut ids = std::collections::HashSet::new();
++                for call in &message.tool_calls {
++                    if call.id.is_empty()
++                        || !ids.insert(call.id.clone())
++                        || !used.insert(call.id.clone())
++                    {
++                        return Err("invalid_context_history");
++                    }
++                }
++                index += 1;
++                for _ in 0..message.tool_calls.len() {
++                    let result = history.get(index).ok_or("invalid_context_history")?;
++                    if result.role != "tool" || result.tool_calls.len() != 0 {
++                        return Err("invalid_context_history");
++                    }
++                    let id = result
++                        .tool_call_id
++                        .as_ref()
++                        .ok_or("invalid_context_history")?;
++                    if !ids.remove(id) {
++                        return Err("invalid_context_history");
++                    }
++                    index += 1;
++                }
++                if !ids.is_empty() {
++                    return Err("invalid_context_history");
++                }
++            }
++            "tool" => return Err("invalid_context_history"),
++            _ => return Err("invalid_context_history"),
++        }
++    }
++    Ok(())
++}
++
++fn context_groups(messages: &[Message]) -> Vec<ContextGroup> {
++    let mut groups = Vec::new();
++    let mut index = 0;
++    while index < messages.len() {
++        let start = index;
++        let mut has_tool_result = false;
++        index += 1;
++        if messages[start].role == "assistant" && !messages[start].tool_calls.is_empty() {
++            while index < messages.len() && messages[index].role == "tool" {
++                has_tool_result = true;
++                index += 1;
++            }
++        }
++        groups.push(ContextGroup {
++            id: format!("g{start}"),
++            start,
++            end: index,
++            has_tool_result,
++        });
++    }
++    groups
++}
++
++fn estimated_json(value: &serde_json::Value) -> usize {
++    match value {
++        serde_json::Value::Null => 4,
++        serde_json::Value::Bool(v) => {
++            if *v {
++                4
++            } else {
++                5
++            }
++        }
++        serde_json::Value::Number(_) => 8,
++        serde_json::Value::String(v) => 2 + v.as_bytes().len(),
++        serde_json::Value::Array(values) => {
++            2 + values.iter().map(estimated_json).sum::<usize>() + values.len().saturating_sub(1)
++        }
++        serde_json::Value::Object(values) => {
++            2 + values
++                .iter()
++                .map(|(key, value)| 2 + key.as_bytes().len() + 1 + estimated_json(value))
++                .sum::<usize>()
++                + values.len().saturating_sub(1)
++        }
++    }
++}
++
++fn estimated_message(message: &Message) -> usize {
++    8 + message.role.as_bytes().len()
++        + message.content.as_bytes().len()
++        + message
++            .tool_call_id
++            .as_ref()
++            .map_or(0, |id| id.as_bytes().len())
++        + message
++            .tool_calls
++            .iter()
++            .map(|call| {
++                8 + call.id.as_bytes().len()
++                    + call.name.as_bytes().len()
++                    + estimated_json(&call.arguments)
++            })
++            .sum::<usize>()
++}
++
++/// The deterministic teaching estimate used by the chapter's offline adapter.
++pub fn estimated_units(messages: &[Message]) -> usize {
++    messages.iter().map(estimated_message).sum()
++}
++
++fn prepare_context(
++    messages: &[Message],
++    goal_index: usize,
++    config: Option<&ContextConfig>,
++    turn: usize,
++    events: &mut Vec<LoopEvent>,
++) -> Result<Vec<Message>, StopReason> {
++    let Some(config) = config else {
++        return Ok(messages.to_vec());
++    };
++    let groups = context_groups(messages);
++    let rules_units = config
++        .rules
++        .iter()
++        .map(|rule| {
++            estimated_message(&Message {
++                role: "system".into(),
++                content: rule.clone(),
++                tool_call_id: None,
++                tool_calls: vec![],
++            })
++        })
++        .sum::<usize>();
++    let before_units = messages.iter().map(estimated_message).sum::<usize>() + rules_units;
++    let goal_id = format!("g{goal_index}");
++    let latest_tool = groups
++        .iter()
++        .rev()
++        .find(|group| group.has_tool_result)
++        .map(|group| group.id.clone());
++    let mut required = vec![goal_id];
++    if let Some(id) = latest_tool {
++        if !required.contains(&id) {
++            required.push(id);
++        }
++    }
++    required.sort_by_key(|id| id[1..].parse::<usize>().unwrap_or(usize::MAX));
++    let required_units = groups
++        .iter()
++        .filter(|group| required.contains(&group.id))
++        .flat_map(|group| messages[group.start..group.end].iter())
++        .map(estimated_message)
++        .sum::<usize>()
++        + rules_units;
++    let mode = if config.manage {
++        ContextMode::Managed
++    } else {
++        ContextMode::Unmanaged
++    };
++    if !config.manage {
++        events.push(LoopEvent::ContextPrepared {
++            turn,
++            unit: CONTEXT_UNIT.into(),
++            budget: config.budget,
++            before_units,
++            after_units: before_units,
++            required_units,
++            kept_groups: groups.iter().map(|g| g.id.clone()).collect(),
++            removed_groups: vec![],
++            required_groups: required,
++            mode,
++        });
++        return Ok(with_rules(messages, &config.rules));
++    }
++    if required_units > config.budget {
++        events.push(LoopEvent::ContextRejected {
++            turn,
++            reason: "context_budget_exhausted".into(),
++            error_code: None,
++            unit: CONTEXT_UNIT.into(),
++            budget: Some(config.budget),
++            before_units: Some(before_units),
++            required_units: Some(required_units),
++            mode,
++        });
++        return Err(StopReason::ContextBudgetExhausted);
++    }
++    let mut kept = vec![true; groups.len()];
++    let mut after_units = before_units;
++    let mut removed = Vec::new();
++    for (index, group) in groups.iter().enumerate() {
++        if after_units <= config.budget {
++            break;
++        }
++        if required.contains(&group.id) {
++            continue;
++        }
++        kept[index] = false;
++        let units = messages[group.start..group.end]
++            .iter()
++            .map(estimated_message)
++            .sum::<usize>();
++        after_units -= units;
++        removed.push(group.id.clone());
++    }
++    let kept_groups: Vec<String> = groups
++        .iter()
++        .enumerate()
++        .filter(|(i, _)| kept[*i])
++        .map(|(_, g)| g.id.clone())
++        .collect();
++    let mut sent = Vec::new();
++    sent.extend(with_rules_prefix(&config.rules));
++    for (index, group) in groups.iter().enumerate() {
++        if kept[index] {
++            sent.extend(messages[group.start..group.end].iter().cloned());
++        }
++    }
++    events.push(LoopEvent::ContextPrepared {
++        turn,
++        unit: CONTEXT_UNIT.into(),
++        budget: config.budget,
++        before_units,
++        after_units,
++        required_units,
++        kept_groups,
++        removed_groups: removed,
++        required_groups: required,
++        mode,
++    });
++    Ok(sent)
++}
++
++fn with_rules_prefix(rules: &[String]) -> Vec<Message> {
++    rules
++        .iter()
++        .map(|rule| Message {
++            role: "system".into(),
++            content: rule.clone(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        })
++        .collect()
++}
++fn with_rules(messages: &[Message], rules: &[String]) -> Vec<Message> {
++    let mut output = with_rules_prefix(rules);
++    output.extend(messages.iter().cloned());
++    output
++}
+ fn finish_loop(
+     messages: Vec<Message>,
+     mut events: Vec<LoopEvent>,
+
+diff --git a/private/tmp/rein-production-candidate-03/rust/examples/ch07_context.rs b/private/tmp/rein-production-candidate-03/rust/examples/ch07_context.rs
+new file mode 100644
+index 0000000..c21d4dc
+--- /dev/null
++++ b/private/tmp/rein-production-candidate-03/rust/examples/ch07_context.rs
+@@ -0,0 +1,158 @@
++use rein_ch01_helloworld::rein::{
++    estimated_units, run_agent_loop_with_options, ContextConfig, LoopOptions, Message,
++    ModelAdapter, ModelTurn, ToolDefinition, ToolError, Workspace,
++};
++use serde::{Deserialize, Serialize};
++use std::{
++    future::Future,
++    pin::Pin,
++    sync::{Arc, Mutex},
++};
++
++#[derive(Deserialize)]
++struct Input {
++    unit: String,
++    cases: Vec<Case>,
++}
++#[derive(Deserialize)]
++struct Case {
++    id: String,
++    rules: Vec<String>,
++    goal: String,
++    history: Vec<Message>,
++    budget: usize,
++    managed: bool,
++}
++#[derive(Serialize)]
++struct Output {
++    unit: String,
++    cases: Vec<CaseOutput>,
++}
++#[derive(Serialize)]
++struct CaseOutput {
++    id: String,
++    result: rein_ch01_helloworld::rein::LoopResult,
++    requests: usize,
++    #[serde(rename = "sentMessages")]
++    sent_messages: Vec<Vec<Message>>,
++}
++
++struct Offline {
++    requests: Arc<Mutex<Vec<Vec<Message>>>>,
++    budget: usize,
++}
++impl ModelAdapter for Offline {
++    fn complete<'a>(
++        &'a self,
++        messages: &'a [Message],
++        _: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        let snapshot = messages.to_vec();
++        let requests = self.requests.clone();
++        let budget = self.budget;
++        Box::pin(async move {
++            requests.lock().unwrap().push(snapshot.clone());
++            if estimated_units(&snapshot) > budget {
++                return Err(ToolError {
++                    code: "context_budget_exhausted".into(),
++                    message: "offline adapter budget exceeded".into(),
++                });
++            }
++            let tool_messages: Vec<&Message> = snapshot
++                .iter()
++                .rev()
++                .find(|m| m.role == "assistant" && !m.tool_calls.is_empty())
++                .map(|assistant| {
++                    assistant
++                        .tool_calls
++                        .iter()
++                        .filter_map(|call| {
++                            snapshot.iter().find(|m| {
++                                m.role == "tool"
++                                    && m.tool_call_id.as_deref() == Some(call.id.as_str())
++                            })
++                        })
++                        .collect()
++                })
++                .unwrap_or_default();
++            let answer = if tool_messages.is_empty() {
++                snapshot
++                    .iter()
++                    .rev()
++                    .find(|m| m.role == "user")
++                    .map(|m| m.content.clone())
++                    .unwrap_or_default()
++            } else {
++                tool_messages
++                    .iter()
++                    .map(|m| m.content.as_str())
++                    .collect::<Vec<_>>()
++                    .join("\n")
++            };
++            Ok(ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: answer,
++                    tool_call_id: None,
++                    tool_calls: vec![],
++                },
++                tool_calls: vec![],
++            })
++        })
++    }
++}
++
++#[tokio::main]
++async fn main() {
++    let path = std::env::args()
++        .nth(1)
++        .map(std::path::PathBuf::from)
++        .unwrap_or_else(|| {
++            std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++                .join("../fixtures/cases/ch07-context.json")
++        });
++    let input: Input =
++        serde_json::from_str(&std::fs::read_to_string(path).expect("read case file"))
++            .expect("valid case schema");
++    let mut cases = Vec::new();
++    for case in input.cases {
++        let requests = Arc::new(Mutex::new(Vec::new()));
++        let adapter = Offline {
++            requests: requests.clone(),
++            budget: case.budget,
++        };
++        let result = run_agent_loop_with_options(
++            &adapter,
++            &Workspace {
++                root: std::env::temp_dir(),
++            },
++            &case.goal,
++            LoopOptions {
++                max_turns: 2,
++                context: Some(ContextConfig {
++                    rules: case.rules,
++                    history: case.history,
++                    budget: case.budget,
++                    manage: case.managed,
++                }),
++                ..LoopOptions::default()
++            },
++        )
++        .await;
++        let sent = requests.lock().unwrap().clone();
++        cases.push(CaseOutput {
++            id: case.id,
++            result,
++            requests: sent.len(),
++            sent_messages: sent,
++        });
++    }
++    println!(
++        "{}",
++        serde_json::to_string(&Output {
++            unit: input.unit,
++            cases
++        })
++        .unwrap()
++    );
++}
+
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/rust/tests/loop.rs b/private/tmp/rein-production-candidate-03/rust/tests/loop.rs
+index d69270a..104135c 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/rust/tests/loop.rs
++++ b/private/tmp/rein-production-candidate-03/rust/tests/loop.rs
+@@ -1,7 +1,7 @@
+ use rein_ch01_helloworld::rein::{
+-    run_agent_loop_with_adapter, run_agent_loop_with_options, ControlSignal, LoopEvent,
+-    LoopOptions, LoopState, Message, ModelAdapter, ModelTurn, StopReason, ToolCall, ToolDefinition,
+-    ToolError, Workspace,
++    run_agent_loop_with_adapter, run_agent_loop_with_options, ContextConfig, ControlSignal,
++    LoopEvent, LoopOptions, LoopState, Message, ModelAdapter, ModelTurn, StopReason, ToolCall,
++    ToolDefinition, ToolError, Workspace,
+ };
+ use std::{
+     collections::VecDeque,
+@@ -508,3 +508,369 @@ fn loop_wire_values_are_snake_case_and_fields_camel_case() {
+     assert_eq!(value["type"], "model_received");
+     assert!(value.get("toolCallIds").is_some());
+ }
++
++struct ContextCapture(Arc<Mutex<Vec<Vec<Message>>>>);
++impl ModelAdapter for ContextCapture {
++    fn complete<'a>(
++        &'a self,
++        messages: &'a [Message],
++        _: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        self.0.lock().unwrap().push(messages.to_vec());
++        Box::pin(async { Ok(turn("答案", vec![])) })
++    }
++}
++
++#[tokio::test]
++async fn ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history() {
++    let ws = workspace("ch07-context", &[]);
++    let captured = Arc::new(Mutex::new(Vec::new()));
++    let history = vec![
++        Message {
++            role: "user".into(),
++            content: "old".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++        Message {
++            role: "assistant".into(),
++            content: "".into(),
++            tool_call_id: None,
++            tool_calls: vec![call(
++                "old-call",
++                "read_file",
++                serde_json::json!({"path":"a"}),
++            )],
++        },
++        Message {
++            role: "tool".into(),
++            content: "old-result".into(),
++            tool_call_id: Some("old-call".into()),
++            tool_calls: vec![],
++        },
++    ];
++    let result = run_agent_loop_with_options(
++        &ContextCapture(captured.clone()),
++        &ws,
++        "goal",
++        LoopOptions {
++            max_turns: 1,
++            context: Some(ContextConfig {
++                rules: vec!["rule".into()],
++                history,
++                budget: 125,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(result.answer.as_deref(), Some("答案"));
++    assert_eq!(result.messages.len(), 5);
++    let sent = &captured.lock().unwrap()[0];
++    assert!(sent
++        .iter()
++        .any(|m| m.role == "system" && m.content == "rule"));
++    assert!(sent.iter().any(|m| m.content == "goal"));
++    let prepared = result
++        .events
++        .iter()
++        .find_map(|e| {
++            if let LoopEvent::ContextPrepared {
++                kept_groups,
++                removed_groups,
++                ..
++            } = e
++            {
++                Some((kept_groups, removed_groups))
++            } else {
++                None
++            }
++        })
++        .unwrap();
++    assert!(prepared.0.contains(&"g3".into()));
++    assert!(prepared.1.contains(&"g0".into()));
++}
++
++#[tokio::test]
++async fn ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch() {
++    let ws = workspace("ch07-invalid", &[]);
++    let captured = Arc::new(Mutex::new(Vec::new()));
++    let orphan = Message {
++        role: "tool".into(),
++        content: "orphan".into(),
++        tool_call_id: Some("x".into()),
++        tool_calls: vec![],
++    };
++    let invalid = run_agent_loop_with_options(
++        &ContextCapture(captured.clone()),
++        &ws,
++        "goal",
++        LoopOptions {
++            context: Some(ContextConfig {
++                rules: vec![],
++                history: vec![orphan],
++                budget: 100,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(invalid.reason, StopReason::InvalidContextHistory);
++    assert!(captured.lock().unwrap().is_empty());
++    let overflow = run_agent_loop_with_options(
++        &ContextCapture(captured.clone()),
++        &ws,
++        "long goal",
++        LoopOptions {
++            context: Some(ContextConfig {
++                rules: vec!["large rule".repeat(20)],
++                history: vec![],
++                budget: 1,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(overflow.reason, StopReason::ContextBudgetExhausted);
++    assert!(captured.lock().unwrap().is_empty());
++}
++
++#[tokio::test]
++async fn ch07_context_rejects_unsafe_integer_budget_as_invalid_context_config() {
++    let ws = workspace("ch07-unsafe-budget", &[]);
++    let captured = Arc::new(Mutex::new(Vec::new()));
++    let result = run_agent_loop_with_options(
++        &ContextCapture(captured.clone()),
++        &ws,
++        "goal",
++        LoopOptions {
++            context: Some(ContextConfig {
++                rules: vec![],
++                history: vec![],
++                budget: 9_007_199_254_740_992,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++
++    assert_eq!(result.reason, StopReason::InvalidContextHistory);
++    assert_eq!(result.error.as_deref(), Some("invalid_context_config"));
++    assert!(captured.lock().unwrap().is_empty());
++    assert!(result.events.iter().any(|event| matches!(
++        event,
++        LoopEvent::ContextRejected {
++            reason,
++            error_code: Some(error_code),
++            budget: None,
++            before_units: None,
++            required_units: None,
++            ..
++        } if reason == "invalid_context_history" && error_code == "invalid_context_config"
++    )));
++}
++
++struct Ch07RoundAdapter {
++    requests: Arc<Mutex<Vec<Vec<Message>>>>,
++    duplicate_id: bool,
++}
++impl ModelAdapter for Ch07RoundAdapter {
++    fn complete<'a>(
++        &'a self,
++        messages: &'a [Message],
++        _: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        let requests = self.requests.clone();
++        let round = requests.lock().unwrap().len();
++        requests.lock().unwrap().push(messages.to_vec());
++        let tool_count = messages.iter().filter(|m| m.role == "tool").count();
++        let id = if self.duplicate_id {
++            "same-id"
++        } else if tool_count == 0 {
++            "first-id"
++        } else {
++            "second-id"
++        };
++        let response = if tool_count == 0 {
++            turn(
++                "",
++                vec![call(id, "read_file", serde_json::json!({"path":"a.txt"}))],
++            )
++        } else if tool_count == 1 && round < 2 {
++            turn(
++                "",
++                vec![call(id, "read_file", serde_json::json!({"path":"b.txt"}))],
++            )
++        } else {
++            turn(
++                &messages
++                    .iter()
++                    .rev()
++                    .find(|m| m.role == "tool")
++                    .map(|m| m.content.clone())
++                    .unwrap_or_default(),
++                vec![],
++            )
++        };
++        Box::pin(async move { Ok(response) })
++    }
++}
++
++#[tokio::test]
++async fn ch07_context_tracks_latest_group_across_real_tool_rounds() {
++    let ws = workspace(
++        "ch07-rounds",
++        &[("a.txt", "first fact"), ("b.txt", "second fact")],
++    );
++    let requests = Arc::new(Mutex::new(Vec::new()));
++    let result = run_agent_loop_with_options(
++        &Ch07RoundAdapter {
++            requests: requests.clone(),
++            duplicate_id: false,
++        },
++        &ws,
++        "read both",
++        LoopOptions {
++            max_turns: 4,
++            context: Some(ContextConfig {
++                rules: vec!["keep facts".into()],
++                history: vec![],
++                budget: 180,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(result.reason, StopReason::FinalAnswer);
++    assert!(result.answer.as_deref().unwrap().contains("second fact"));
++    let prepared: Vec<(Vec<String>, Vec<String>)> = result
++        .events
++        .iter()
++        .filter_map(|event| match event {
++            LoopEvent::ContextPrepared {
++                required_groups,
++                removed_groups,
++                ..
++            } => Some((required_groups.clone(), removed_groups.clone())),
++            _ => None,
++        })
++        .collect();
++    assert!(prepared.len() >= 3);
++    assert!(prepared[1].0.iter().any(|id| id == "g1"));
++    assert!(prepared[2].0.iter().any(|id| id == "g3"));
++    assert!(prepared[2].1.iter().any(|id| id == "g1"));
++    assert_eq!(
++        result.messages.iter().filter(|m| m.role == "tool").count(),
++        2
++    );
++}
++
++#[tokio::test]
++async fn ch07_context_stops_when_new_latest_group_does_not_fit() {
++    let ws = workspace(
++        "ch07-budget",
++        &[("a.txt", &"x".repeat(400)), ("b.txt", "unused")],
++    );
++    let requests = Arc::new(Mutex::new(Vec::new()));
++    let result = run_agent_loop_with_options(
++        &Ch07RoundAdapter {
++            requests: requests.clone(),
++            duplicate_id: false,
++        },
++        &ws,
++        "read",
++        LoopOptions {
++            max_turns: 4,
++            context: Some(ContextConfig {
++                rules: vec![],
++                history: vec![],
++                budget: 80,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(result.reason, StopReason::ContextBudgetExhausted);
++    assert_eq!(requests.lock().unwrap().len(), 1);
++    assert!(result.events.iter().any(|event| matches!(event, LoopEvent::ContextRejected { reason, .. } if reason == "context_budget_exhausted")));
++}
++
++#[tokio::test]
++async fn ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id() {
++    let seeded = vec![
++        Message {
++            role: "assistant".into(),
++            content: "".into(),
++            tool_call_id: None,
++            tool_calls: vec![call("a", "read_file", serde_json::json!({"path":"a.txt"}))],
++        },
++        Message {
++            role: "tool".into(),
++            content: "A".into(),
++            tool_call_id: Some("a".into()),
++            tool_calls: vec![],
++        },
++        Message {
++            role: "assistant".into(),
++            content: "".into(),
++            tool_call_id: None,
++            tool_calls: vec![call("b", "read_file", serde_json::json!({"path":"b.txt"}))],
++        },
++        Message {
++            role: "tool".into(),
++            content: "B".into(),
++            tool_call_id: Some("b".into()),
++            tool_calls: vec![],
++        },
++    ];
++    let ws = workspace("ch07-adjacent", &[("a.txt", "A"), ("b.txt", "B")]);
++    let ok_requests = Arc::new(Mutex::new(Vec::new()));
++    let ok = run_agent_loop_with_options(
++        &Ch07RoundAdapter {
++            requests: ok_requests.clone(),
++            duplicate_id: false,
++        },
++        &ws,
++        "goal",
++        LoopOptions {
++            max_turns: 1,
++            context: Some(ContextConfig {
++                rules: vec![],
++                history: seeded.clone(),
++                budget: 300,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(ok.reason, StopReason::FinalAnswer);
++    let duplicate_requests = Arc::new(Mutex::new(Vec::new()));
++    let duplicate = run_agent_loop_with_options(
++        &Ch07RoundAdapter {
++            requests: duplicate_requests.clone(),
++            duplicate_id: true,
++        },
++        &ws,
++        "goal",
++        LoopOptions {
++            max_turns: 3,
++            context: Some(ContextConfig {
++                rules: vec![],
++                history: vec![],
++                budget: 300,
++                manage: true,
++            }),
++            ..LoopOptions::default()
++        },
++    )
++    .await;
++    assert_eq!(duplicate.reason, StopReason::InvalidContextHistory);
++    assert_eq!(duplicate_requests.lock().unwrap().len(), 2);
++}
+
+diff --git a/private/tmp/rein-production-candidate-03/scripts/ch07-compare.mjs b/private/tmp/rein-production-candidate-03/scripts/ch07-compare.mjs
+new file mode 100644
+index 0000000..dd1b875
+--- /dev/null
++++ b/private/tmp/rein-production-candidate-03/scripts/ch07-compare.mjs
+@@ -0,0 +1,54 @@
++import { readFileSync } from 'node:fs'
++import { fileURLToPath } from 'node:url'
++import { spawnSync } from 'node:child_process'
++import { resolve } from 'node:path'
++import { isDeepStrictEqual } from 'node:util'
++const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
++const fixture = resolve(root, 'fixtures/cases/ch07-context.json')
++const run = (command, args, cwd) => { const result = spawnSync(command, args, { cwd, encoding: 'utf8' }); if (result.error) throw result.error; if (result.status !== 0) throw new Error(`${command} failed: ${result.stderr}`); return JSON.parse(result.stdout) }
++const ts = run('npm', ['run', '--silent', 'ch07:context', '--', fixture], root)
++const rust = run('cargo', ['run', '--quiet', '--manifest-path', resolve(root, 'rust/Cargo.toml'), '--example', 'ch07_context', '--', fixture], root)
++const normalize = (value, path = []) => {
++  if (Array.isArray(value)) return value.map((item, index) => normalize(item, [...path, index]))
++  if (!value || typeof value !== 'object') return value
++  const out = {}
++  for (const [key, child] of Object.entries(value)) {
++    const resultError = key === 'error' && path.at(-1) === 'result'
++    if (resultError && child && typeof child === 'object') out[key] = { code: child.code ?? null }
++    else if (resultError && typeof child === 'string') out[key] = null
++    else out[key] = normalize(child, [...path, key])
++  }
++  return out
++}
++const fixtureCases = JSON.parse(readFileSync(fixture, 'utf8')).cases
++const acceptedMetrics = new Map([['managed-window', { beforeUnits: 644, afterUnits: 239, requiredUnits: 239, keptGroups: ['g1', 'g4'], removedGroups: ['g0'] }], ['multi-tool-boundary', { beforeUnits: 382, afterUnits: 219, requiredUnits: 204, keptGroups: ['g4', 'g5', 'g8'], removedGroups: ['g0', 'g1'] }]])
++const caseIds = fixtureCases.map(item => item.id)
++if (new Set(caseIds).size !== caseIds.length || new Set(caseIds).size !== 7) throw new Error('fixture case IDs must be unique and complete')
++for (const implementation of [ts, rust]) {
++  if (implementation.unit !== 'estimated-bytes-v1' || implementation.cases.length !== fixtureCases.length) throw new Error('invalid ch07 output envelope')
++  const actualIds = implementation.cases.map(item => item.id)
++  if (new Set(actualIds).size !== actualIds.length || !isDeepStrictEqual([...actualIds].sort(), [...caseIds].sort())) throw new Error('implementation case IDs do not exactly match fixture')
++  for (const actual of implementation.cases) {
++    const expected = fixtureCases.find(item => item.id === actual.id)
++    if (!expected) throw new Error(`unknown case ${actual.id}`)
++    if (actual.result.reason !== expected.expected.reason || actual.requests !== expected.expected.requests) throw new Error(`${actual.id} does not satisfy fixture expectation`)
++    const requested = actual.result.events.filter(event => event.type === 'model_requested')
++    if (requested.length !== actual.requests || requested.length !== actual.sentMessages.length) throw new Error(`${actual.id} request/event mismatch`)
++    for (let i = 0; i < requested.length; i++) if (!isDeepStrictEqual(requested[i].messages, actual.sentMessages[i])) throw new Error(`${actual.id} sent message audit mismatch`)
++    const contextEvent = actual.result.events.find(event => event.type === 'context_prepared')
++    const metrics = acceptedMetrics.get(actual.id)
++    if (metrics && implementation === ts && (!contextEvent || !isDeepStrictEqual({ beforeUnits: contextEvent.beforeUnits, afterUnits: contextEvent.afterUnits, requiredUnits: contextEvent.requiredUnits, keptGroups: contextEvent.keptGroups, removedGroups: contextEvent.removedGroups }, metrics))) throw new Error(`${actual.id} context metrics differ from accepted values`)
++    if (actual.result.reason === 'final_answer' && actual.result.answer && contextEvent) {
++      const sent = actual.sentMessages.at(-1) ?? []
++      const groups = sent.map((message, index) => message.role === 'assistant' && message.toolCalls?.length ? { index, calls: message.toolCalls } : undefined).filter(Boolean)
++      const latest = groups.at(-1)
++      if (latest) {
++        const contentById = new Map(sent.filter(message => message.role === 'tool').map(message => [message.toolCallId, message.content]))
++        const derived = latest.calls.map(call => contentById.get(call.id)).join('\n')
++        if (derived !== actual.result.answer) throw new Error(`${actual.id} answer is not derived from latest tool group`)
++      }
++    }
++  }
++}
++if (!isDeepStrictEqual(normalize(ts), normalize(rust))) throw new Error('ch07 TypeScript/Rust behavior differs')
++process.stdout.write(JSON.stringify({ unit: ts.unit, cases: ts.cases.map(c => ({ id: c.id, reason: c.result.reason, requests: c.requests })) }) + '\n')
+
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/package.json b/private/tmp/rein-production-candidate-03/package.json
+index 377e53f..eed9aa4 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/package.json
++++ b/private/tmp/rein-production-candidate-03/package.json
+@@ -14,6 +14,8 @@
+     "typecheck": "npm run typecheck --workspace ts",
+     "ch05:compare-all": "node scripts/ch05-compare.mjs",
+     "ch06:compare-all": "node scripts/ch06-compare.mjs"
++    ,"ch07:context": "npm run ch07:context --workspace ts"
++    ,"ch07:compare-all": "node scripts/ch07-compare.mjs"
+   },
+   "devDependencies": {
+     "vitepress": "1.6.4"
+
+diff --git a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/package.json b/private/tmp/rein-production-candidate-03/ts/package.json
+index cea4a61..e2532fb 100644
+--- a/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06/ts/package.json
++++ b/private/tmp/rein-production-candidate-03/ts/package.json
+@@ -12,6 +12,7 @@
+     "ch05:compare": "node --import tsx examples/ch05-compare.ts",
+     "ch05:live": "node --import tsx examples/ch05-live.ts"
+     ,"ch06:offline": "node --import tsx examples/ch06-loop.ts"
++    ,"ch07:context": "node --import tsx examples/ch07-context.ts"
+   },
+   "devDependencies": {
+     "@types/node": "^22.10.2",
+
+diff --git a/private/tmp/rein-production-candidate-03/fixtures/cases/ch07-context.json b/private/tmp/rein-production-candidate-03/fixtures/cases/ch07-context.json
+new file mode 100644
+index 0000000..d5d087a
+--- /dev/null
++++ b/private/tmp/rein-production-candidate-03/fixtures/cases/ch07-context.json
+@@ -0,0 +1,12 @@
++{
++  "unit": "estimated-bytes-v1",
++  "cases": [
++    {"id":"unmanaged-overflow","rules":["依据保留上下文"],"goal":"请根据最新工具结果回答","history":[{"role":"user","content":"很长的旧历史材料 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"},{"role":"assistant","content":"","toolCalls":[{"id":"latest-a","name":"read_file","arguments":{"path":"a"}},{"id":"latest-b","name":"read_file","arguments":{"path":"b"}}]},{"role":"tool","toolCallId":"latest-a","content":"最新事实 A"},{"role":"tool","toolCallId":"latest-b","content":"最新事实 B"}],"budget":300,"managed":false,"expected":{"reason":"model_error","requests":1}},
++    {"id":"managed-window","rules":["依据保留上下文"],"goal":"请根据最新工具结果回答","history":[{"role":"user","content":"很长的旧历史材料 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"},{"role":"assistant","content":"","toolCalls":[{"id":"latest-a","name":"read_file","arguments":{"path":"a"}},{"id":"latest-b","name":"read_file","arguments":{"path":"b"}}]},{"role":"tool","toolCallId":"latest-a","content":"最新事实 A"},{"role":"tool","toolCallId":"latest-b","content":"最新事实 B"}],"budget":300,"managed":true,"expected":{"reason":"final_answer","requests":1}},
++    {"id":"required-overflow","rules":["规则必须保留且很长"],"goal":"必须保留的目标内容","history":[],"budget":10,"managed":true,"expected":{"reason":"context_budget_exhausted","requests":0}},
++    {"id":"multi-tool-boundary","rules":["使用工具结果"],"goal":"继续回答","history":[{"role":"user","content":"旧"},{"role":"assistant","content":"","toolCalls":[{"id":"old-a","name":"read_file","arguments":{"path":"old"}},{"id":"old-b","name":"read_file","arguments":{"path":"old2"}}]},{"role":"tool","toolCallId":"old-a","content":"old-a-result"},{"role":"tool","toolCallId":"old-b","content":"old-b-result"},{"role":"user","content":"新"},{"role":"assistant","content":"","toolCalls":[{"id":"new-a","name":"read_file","arguments":{"path":"new"}},{"id":"new-b","name":"read_file","arguments":{"path":"new2"}}]},{"role":"tool","toolCallId":"new-b","content":"new-b-result"},{"role":"tool","toolCallId":"new-a","content":"new-a-result"}],"budget":220,"managed":true,"expected":{"reason":"final_answer","requests":1}},
++    {"id":"invalid-orphan","rules":[],"goal":"检查","history":[{"role":"tool","toolCallId":"missing","content":"孤立"}],"budget":200,"managed":true,"expected":{"reason":"invalid_context_history","requests":0}},
++    {"id":"invalid-missing","rules":[],"goal":"检查","history":[{"role":"assistant","content":"","toolCalls":[{"id":"missing-result","name":"read_file","arguments":{"path":"x"}}]}],"budget":200,"managed":true,"expected":{"reason":"invalid_context_history","requests":0}},
++    {"id":"unicode-content","rules":["保留中文与 emoji"],"goal":"读取并回答","history":[{"role":"assistant","content":"","toolCalls":[{"id":"unicode-call","name":"read_file","arguments":{"path":"x"}}]},{"role":"tool","toolCallId":"unicode-call","content":"你好 🌏"}],"budget":300,"managed":true,"expected":{"reason":"final_answer","requests":1}}
++  ]
++}

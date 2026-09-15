@@ -1,0 +1,19 @@
+{
+  "source": "/private/tmp/rein-ch08-formal-20260915/C/book",
+  "source_manifest": "/private/tmp/rein-ch08-review-1/input-hashes.json",
+  "entries": 179,
+  "manifest_verified": true,
+  "writable_root": "/private/tmp/rein-ch08-production-20260915/book",
+  "allowed_paths": [
+    "rust/src/rein/context_methods.rs",
+    "rust/src/rein/mod.rs",
+    "rust/examples/ch08_context.rs",
+    "rust/tests/ch08_context.rs",
+    "scripts/ch08-compare.mjs",
+    "scripts/ch08-verify.mjs",
+    "examples/ch08-context-methods",
+    "package.json"
+  ],
+  "delivery_exit": "/private/tmp/rein-ch08-production-20260915/evidence-code",
+  "started_utc": "2026-09-15T06:04:39.565638+00:00"
+}

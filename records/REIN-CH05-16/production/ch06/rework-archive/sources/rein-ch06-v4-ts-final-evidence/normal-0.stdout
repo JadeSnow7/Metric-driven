@@ -1,0 +1,189 @@
+
+> @rein/ts@0.0.0 ch06:offline
+> node --import tsx examples/ch06-loop.ts normal /private/tmp/rein-ch06-final-workspace.u2tHA0
+
+{
+  "mode": "normal",
+  "requests": 2,
+  "settledRequests": 2,
+  "result": {
+    "state": "failed",
+    "reason": "model_error",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md 与 guide.md"
+      },
+      {
+        "role": "assistant",
+        "content": "",
+        "toolCalls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "toolCallId": "search-1",
+        "content": ""
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messages": [
+          {
+            "role": "user",
+            "content": "读取 README.md 与 guide.md"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "message": {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "search-1",
+              "name": "search_files",
+              "arguments": {
+                "needle": "marker: ch06"
+              }
+            }
+          ]
+        },
+        "toolCallIds": [
+          "search-1"
+        ],
+        "text": ""
+      },
+      {
+        "type": "tool_result",
+        "turn": 1,
+        "call": {
+          "id": "search-1",
+          "name": "search_files",
+          "arguments": {
+            "needle": "marker: ch06"
+          }
+        },
+        "toolCallId": "search-1",
+        "result": {
+          "toolCallId": "search-1",
+          "ok": true,
+          "output": ""
+        }
+      },
+      {
+        "type": "model_requested",
+        "turn": 2,
+        "messages": [
+          {
+            "role": "user",
+            "content": "读取 README.md 与 guide.md"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "search-1",
+                "name": "search_files",
+                "arguments": {
+                  "needle": "marker: ch06"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "search-1",
+            "content": ""
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "model_error"
+      }
+    ],
+    "error": "no files match marker: ch06"
+  }
+}

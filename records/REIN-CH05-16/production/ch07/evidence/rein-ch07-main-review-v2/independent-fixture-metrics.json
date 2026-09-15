@@ -1,0 +1,65 @@
+{
+  "fixture_sha256": "153cc601c4fd64b2b3d9fd467e744f90a34928788fc33851cdc087a16c3e9aa3",
+  "unit": "estimated-bytes-v1",
+  "rows": [
+    {
+      "id": "unmanaged-overflow",
+      "beforeUnits": 644,
+      "requiredUnits": 239,
+      "afterUnits": 644,
+      "removedGroups": [],
+      "requiredGroups": [
+        "g1",
+        "g4"
+      ]
+    },
+    {
+      "id": "managed-window",
+      "beforeUnits": 644,
+      "requiredUnits": 239,
+      "afterUnits": 239,
+      "removedGroups": [
+        "g0"
+      ],
+      "requiredGroups": [
+        "g1",
+        "g4"
+      ]
+    },
+    {
+      "id": "required-overflow",
+      "beforeUnits": 80,
+      "requiredUnits": 80,
+      "afterUnits": null,
+      "removedGroups": [],
+      "requiredGroups": [
+        "g0"
+      ]
+    },
+    {
+      "id": "multi-tool-boundary",
+      "beforeUnits": 382,
+      "requiredUnits": 204,
+      "afterUnits": 219,
+      "removedGroups": [
+        "g0",
+        "g1"
+      ],
+      "requiredGroups": [
+        "g5",
+        "g8"
+      ]
+    },
+    {
+      "id": "unicode-content",
+      "beforeUnits": 155,
+      "requiredUnits": 155,
+      "afterUnits": 155,
+      "removedGroups": [],
+      "requiredGroups": [
+        "g0",
+        "g2"
+      ]
+    }
+  ]
+}

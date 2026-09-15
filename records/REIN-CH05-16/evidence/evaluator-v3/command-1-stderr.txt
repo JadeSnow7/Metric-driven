@@ -1,0 +1,21 @@
+test_comments_cannot_hide_bad_visible_content (test_rein_dataset.ReinDatasetTests) ... ok
+test_independent_correct_candidates_satisfy_all_oracles (test_rein_dataset.ReinDatasetTests) ... ok
+test_original_api_name_in_comment_is_still_rejected (test_rein_dataset.ReinDatasetTests) ... ok
+test_original_faults_are_nine_failures_and_three_no_change_passes (test_rein_dataset.ReinDatasetTests) ... ok
+test_all_skipped_unittest_does_not_pass (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_disabled_required_command_is_not_run_and_fails_gate (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_empty_and_no_required_commands_fail (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_fake_pass_zero_tests_and_bad_artifact_fail (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_quality_review_never_auto_passes (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_real_unittest_failure_is_not_counted_as_passed (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_runner_bound_counts_accumulate_cargo_harnesses (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_source_mutation_makes_old_report_stale (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_stale_hash_fails (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_success_records_streams_duration_and_artifact (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_unittest_failures_errors_and_skips_are_not_passed (test_rein_evaluate.ReinEvaluateTests) ... ok
+test_unittest_zero_tests_does_not_pass (test_rein_evaluate.ReinEvaluateTests) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.244s
+
+OK

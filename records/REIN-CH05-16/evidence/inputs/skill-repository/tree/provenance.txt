@@ -1,0 +1,8 @@
+# Skill repository input carrier provenance
+
+- The tracked skill files were reconstructed from local Git object `1a10fca5d408004a354da5f61e6f449c09801f23`, the object named by `evidence/inputs/skill/source-head.txt`.
+- `evidence/inputs/skill/current.patch` was applied to that temporary reconstruction before the files were copied into `files/`.
+- The original frozen `evidence/inputs/skill/status.txt` lists seven modified tracked files and no untracked path. The reconstructed skill tree contains those seven patched files and the other eight skill files from the HEAD object.
+- The nine files under `records/ROUND-5-WRITING` were copied from their still-present original directory as a later collection. Their equality with the first collection moment cannot be proved; no initial hash or initial timestamp is asserted for them.
+- Later task outputs were not included: `tools/`, `records/REIN-CH05-16/`, and the existing input-freeze files remain outside this carrier. No `.env` or authentication configuration was archived.
+- The temporary Git work directory was disposable, had no commit or tag made for this reconstruction, and its Git metadata is not part of the carrier. The carrier is the recoverable `files/` tree plus `manifest.json`; `manifest.json` contains the complete file list, SHA-256 values, and modes.

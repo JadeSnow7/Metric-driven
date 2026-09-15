@@ -1,0 +1,158 @@
+{
+  "chapter": "06",
+  "status": "passed",
+  "scope": "two bodies and corresponding offline commands; snapshot still pending",
+  "reviewed_at": "2026-09-14T14:19:50.146114+00:00",
+  "source_unchanged": {
+    "ts/src/rein/loop.ts": true,
+    "ts/src/rein/contracts.ts": true,
+    "ts/src/rein/adapters.ts": true,
+    "ts/src/transport.ts": true,
+    "ts/tests/loop.test.ts": true,
+    "ts/examples/ch06-loop.ts": true,
+    "ts/package.json": true,
+    "rust/src/rein/loop.rs": true,
+    "rust/src/rein/mod.rs": true,
+    "rust/tests/loop.rs": true,
+    "rust/examples/ch06_loop.rs": true,
+    "scripts/ch06-compare.mjs": true,
+    "fixtures/cases/ch06-control.json": true,
+    "package.json": true
+  },
+  "bodies": {
+    "docs/chapters/06.md": {
+      "sha256": "617245778d599a3a306d279166609b1c12b647b21ded076400a030040114b3c1",
+      "anchors": [
+        "loop-entry",
+        "budget-and-stop",
+        "duplicate-action",
+        "cancellation",
+        "deadline",
+        "practice-06-1",
+        "practice-06-2",
+        "practice-06-3"
+      ]
+    },
+    "docs/chapters/06-rust.md": {
+      "sha256": "6822077094ccf0f0018b48904995d0bac1d1afdad829e12b5cd7ef08f66919f6",
+      "anchors": [
+        "loop-entry",
+        "budget-and-stop",
+        "duplicate-action",
+        "cancellation",
+        "deadline",
+        "practice-06-1",
+        "practice-06-2",
+        "practice-06-3"
+      ]
+    }
+  },
+  "review": "Both full bodies read in main thread; Rust content definition verified against actual source; 8 shared anchors; example and exercise raw outputs inspected. Production first-body failures remain preserved.",
+  "body_command_evidence": [
+    {
+      "name": "docs-build",
+      "exit": 0
+    },
+    {
+      "name": "docs-build-final",
+      "exit": 0
+    },
+    {
+      "name": "rust-06-2-cancel",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "rust-06-2-cancel-at-return",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "rust-06-2-cancel-before",
+      "exit": 0,
+      "requests": 0,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "rust-06-2-cancel-between-tools",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 1,
+      "skipped": 1
+    },
+    {
+      "name": "rust-06-3",
+      "exit": 0,
+      "requests": 2,
+      "reason": "tool_budget_exhausted",
+      "tools": 2,
+      "skipped": 2
+    },
+    {
+      "name": "rust-empty-real",
+      "exit": 0,
+      "requests": 2,
+      "reason": "model_error",
+      "tools": 1,
+      "skipped": 0
+    },
+    {
+      "name": "ts-06-2-cancel",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ts-06-2-cancel-at-return",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ts-06-2-cancel-before",
+      "exit": 0,
+      "requests": 0,
+      "reason": "cancelled",
+      "tools": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ts-06-2-cancel-between-tools",
+      "exit": 0,
+      "requests": 1,
+      "reason": "cancelled",
+      "tools": 1,
+      "skipped": 1
+    },
+    {
+      "name": "ts-06-3",
+      "exit": 0,
+      "requests": 2,
+      "reason": "tool_budget_exhausted",
+      "tools": 2,
+      "skipped": 2
+    },
+    {
+      "name": "ts-empty-real",
+      "exit": 0,
+      "requests": 2,
+      "reason": "model_error",
+      "tools": 1,
+      "skipped": 0
+    }
+  ],
+  "final_build_source": "/private/tmp/rein-ch06-body-evidence/v3-final"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "root": "/private/tmp/rein-pre-ch05-recovered-20260914",
+    "original_manifest_count": 114,
+    "original_manifest_timestamp": "2026-09-14T10:33:57.466317+00:00",
+    "mismatches": []
+  },
+  {
+    "root": "/private/tmp/rein-initial-input-recovered-20260914",
+    "original_manifest_count": 106,
+    "original_manifest_timestamp": "2026-09-14T09:46:02.302756+00:00",
+    "mismatches": []
+  }
+]

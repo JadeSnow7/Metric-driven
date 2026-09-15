@@ -1,0 +1,1 @@
+npm run ch05:compare --workspace ts -- ../fixtures/cases/ch05-loop.json

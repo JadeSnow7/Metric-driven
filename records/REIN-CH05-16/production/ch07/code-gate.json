@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-09-14T15:02:55.791951+00:00",
+  "files": {
+    "ts/src/rein/contracts.ts": "f02b84d389cd27b4780276a1c1097a77447a1d882af7cde9d3420ac33e852db8",
+    "ts/src/rein/loop.ts": "20a9a70b5bb9270d0a7684809e71b7f861e355b95fa0b1c0d66a3deaac3aa4dc",
+    "ts/examples/ch07-context.ts": "4937faae291d893fd95f96d985476e2a737b1f1ba1ad43a21025e1c48c4b55a1",
+    "ts/tests/ch07-context.test.ts": "1345b5eb16403234aea9a91587da61d716a751e5b1876e68a4cb827f1a3a268f",
+    "rust/src/rein/loop.rs": "15967f6f25a13d13c19fde65dbd9e19c3a3d09973a69d45a8bd5780488cd189c",
+    "rust/src/rein/mod.rs": "0984616b7f1f14696698bfa2fb473e163aff59eb694ac4b3082ce9f687171060",
+    "rust/examples/ch06_loop.rs": "710eb97f4b046a73a051e7c261881012e6c8f2ab349af5546d1c238866f074b7",
+    "rust/examples/ch07_context.rs": "53a3a688cdce887335f17d79cf24a33c8e71e9ea3997c505780e0f91b22f86e8",
+    "rust/tests/loop.rs": "c9ed10e3fde4b0973896115c554d81ea9cc3528a0a5f797cab7b2b287e27907c",
+    "fixtures/cases/ch07-context.json": "153cc601c4fd64b2b3d9fd467e744f90a34928788fc33851cdc087a16c3e9aa3",
+    "scripts/ch07-compare.mjs": "aeef3642267aa0ec8b016bd377a0944c4cd2724dae6fcd5c9466b7d502395104",
+    "package.json": "60936b248d4685541d4d9a14f03efc02eaacdcbd14a2eb68c8ff6e55fb3145fb",
+    "ts/package.json": "37101db5bb3e6104ae5713cfd4db66c945820d9f56cdf571c8914cc30a8a471f"
+  },
+  "raw_evidence": [
+    "/private/tmp/rein-ch07-ts-evidence",
+    "/private/tmp/rein-ch07-rust-evidence",
+    "/private/tmp/rein-ch07-rust-final-evidence",
+    "/private/tmp/rein-ch07-main-review-v1",
+    "/private/tmp/rein-ch07-main-review-v2",
+    "/private/tmp/rein-ch07-main-review-v3"
+  ],
+  "verification": {
+    "typescript": "typecheck-v8 exit0; full-v8 96/96",
+    "rust": "full run at unsafe budget fix 27/27; final --test loop 13/13 after empty tool name correction; root final fmt --check exit0",
+    "cross_language": "7 fixed cases fully compared by script; root independent 10 metric rows match; six extra well-typed failure/history cases match outcomes and dispatch counts",
+    "dynamic": "Changed latest fixture fact changes both actual answers; most recent tool group replaces prior; all six malformed TS probes now reject without new dispatch",
+    "regression": "Root ch05:compare-all and ch06:compare-all exit0",
+    "empty_text": "Root found latest empty result / empty goal disagreement in CLI after original code gate; TS fallback removed in v9, empty-v9 both empty_final with 1 request. typecheck-v9 and compare-v9 exit0; no runtime source change."
+  },
+  "review": [
+    "Reviewed loop and contracts diff against recovered ch06 snapshot plus complete new CLIs/tests/comparer.",
+    "Rust ch06 example only adds context:None to preserve existing behavior; mod reexports new context API.",
+    "Mapped root changed-input results and default fixture metrics to frozen fixture hash."
+  ],
+  "limitations": [
+    "Live model behavior is not claimed by these offline tests.",
+    "Custom estimated-bytes-v1 excludes tool schemas and transport encoding and is not actual token usage.",
+    "Rust final helper initial sandbox failure was reported, but retained standalone full.* files show successful rerun only; original failure is not independently archived there.",
+    "v7 cargo test loop filtered to one wire test; rejected as loop coverage and corrected by v8 --test loop 13/13."
+  ],
+  "body_status": "in_progress",
+  "snapshot_status": "not_started",
+  "updated_at": "2026-09-14T15:13:15.426807+00:00"
+}

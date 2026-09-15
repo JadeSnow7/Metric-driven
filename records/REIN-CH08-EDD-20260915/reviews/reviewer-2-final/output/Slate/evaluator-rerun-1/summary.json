@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "failed_checks": [
+    {
+      "check_id": "CHECK_ROOT_UNIT"
+    }
+  ]
+}

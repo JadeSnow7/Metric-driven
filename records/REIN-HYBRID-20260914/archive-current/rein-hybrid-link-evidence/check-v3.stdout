@@ -1,0 +1,18 @@
+start=2026-09-15T00:18:15+08:00
+cwd=/private/tmp/rein-hybrid-work-20260914
+argv=node scripts/check-book-links.mjs
+{
+  "checked": 2179,
+  "failures": [],
+  "selfTest": {
+    "knownvalidpage": true,
+    "missingpage": true,
+    "validhash": true,
+    "missinghash": true,
+    "encodedhash": true,
+    "relativeURL": true,
+    "externalURL": true
+  }
+}
+exit=0
+end=2026-09-15T00:18:15+08:00

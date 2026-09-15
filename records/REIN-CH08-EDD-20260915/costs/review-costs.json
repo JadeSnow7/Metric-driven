@@ -1,0 +1,93 @@
+{
+  "scope": "independent review only; excludes formal implementation and production",
+  "cacheNote": "cached_input_tokens is included in input_tokens; reasoning_output_tokens is retained as reported and not added again to output_tokens",
+  "money": null,
+  "stages": [
+    {
+      "name": "reviewer-1",
+      "turns": [
+        {
+          "turnId": "01a0a376-8ed1-77b0-ad32-fbaacc0d170d",
+          "tokens": {
+            "input_tokens": 688067,
+            "cached_input_tokens": 630528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4085,
+            "reasoning_output_tokens": 807,
+            "total_tokens": 692152
+          },
+          "completion": null
+        },
+        {
+          "turnId": "01a0a37b-c7c5-7ee3-b8d0-0d215616085a",
+          "tokens": {
+            "input_tokens": 7804127,
+            "cached_input_tokens": 7555840,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23248,
+            "reasoning_output_tokens": 4129,
+            "total_tokens": 7827375
+          },
+          "completion": {
+            "started_at": 1789449193,
+            "completed_at": 1789450126,
+            "duration_ms": 933513
+          }
+        }
+      ],
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T13-07-30-01a0a376-8deb-7c31-8b0a-cd90d81f357e.jsonl",
+      "rawUsageFile": "reviewer-1-raw-usage.json"
+    },
+    {
+      "name": "reviewer-2",
+      "turns": [
+        {
+          "turnId": "01a0a391-2e48-7da2-9beb-42c1e2ec18e7",
+          "tokens": {
+            "input_tokens": 508026,
+            "cached_input_tokens": 450304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3946,
+            "reasoning_output_tokens": 609,
+            "total_tokens": 511972
+          },
+          "completion": null
+        },
+        {
+          "turnId": "01a0a394-4f5a-7ec3-8ada-04e4e51480e3",
+          "tokens": {
+            "input_tokens": 2617716,
+            "cached_input_tokens": 2511360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 12616,
+            "reasoning_output_tokens": 1499,
+            "total_tokens": 2630332
+          },
+          "completion": {
+            "started_at": 1789450801,
+            "completed_at": 1789451308,
+            "duration_ms": 507246
+          }
+        },
+        {
+          "turnId": "01a0a39e-639f-7112-862e-c1a534cb627e",
+          "tokens": {
+            "input_tokens": 4772028,
+            "cached_input_tokens": 4721664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 13102,
+            "reasoning_output_tokens": 2127,
+            "total_tokens": 4785130
+          },
+          "completion": {
+            "started_at": 1789451461,
+            "completed_at": 1789452020,
+            "duration_ms": 558410
+          }
+        }
+      ],
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T13-36-35-01a0a391-2d7a-77f1-8c2b-b749249e84df.jsonl",
+      "rawUsageFile": "reviewer-2-raw-usage.json"
+    }
+  ]
+}

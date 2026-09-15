@@ -1,0 +1,14 @@
+{
+  "docs/chapters/05.md": "120026172af47ca2375cd8ab29c8d5d969972379a8ff9d415ea85def67aa409b",
+  "docs/chapters/05-rust.md": "c5b54fb616e79e1e7b3aee3592173bccfd2dfcaad5526941bbd6aaa34e32fa50",
+  "ts/src/rein/loop.ts": "636d8f8420ba2f8e833ee072f0cdd80df8e003bc2d0ab9207e339c15b794f3d6",
+  "ts/examples/ch05-loop.ts": "b73636419d282d037f2d5786909ff80090c99d77d2cbc80d032424b310788822",
+  "ts/examples/ch05-live.ts": "6446dff268e6976a7d6c586f35adb2236cdc9b96228d5ef5eacdd1323a95c222",
+  "ts/tests/loop.test.ts": "ec5b888fcc0168024eb4cb825b894aeae20689cb56efcc9b62f82b361e9cb169",
+  "rust/examples/ch05_loop.rs": "57286dba2d0b735d4fe291dcecf26bb19897b68b180e5887501d2182d982982a",
+  "rust/src/rein/mod.rs": "4c90ec0fc850d3e082c596d21017c861c058434899c8f74e6c25fa830b7ba8c0",
+  "rust/tests/loop.rs": "3649e101edcab54094022061a8f8a80f3968ecc75a993b175557860c0696f5d7",
+  "rust/Cargo.toml": "4cc3b2f235428f34d42e8914bb1458568d502504fd083cf7f4b267e8f547879c",
+  "ts/package.json": "17819ca1e2a58bcdc79b294d9668f0c07f86c195b95a372d214b94540aa0728b",
+  "package.json": "a8c8ce2cd2c9e9a811d2e66e6985180cdf11d01097863565266c2c3576554ace"
+}

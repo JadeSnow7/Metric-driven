@@ -1,0 +1,4 @@
+worktree /private/tmp/edd-r4-fixtures-8gys1wek/dirty/repo
+HEAD ec8b77e5b0c3fbbb79e6ac60a0fd23c4bfe6bfb4
+branch refs/heads/main
+

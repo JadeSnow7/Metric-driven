@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "cp",
+    "fixtures/cases/ch07-context.json",
+    "/private/tmp/rein-ch07-body-v2-3JobZj/practice.json"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T15:10:54.331Z",
+  "end": "2026-09-14T15:10:54.336Z",
+  "elapsedMs": 3.645375,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

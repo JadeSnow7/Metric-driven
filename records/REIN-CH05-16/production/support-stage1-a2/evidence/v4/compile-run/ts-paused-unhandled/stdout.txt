@@ -1,0 +1,4 @@
+ts/examples/a2-state.ts(2,35): error TS2366: Function lacks ending return statement and return type does not include 'undefined'.
+ts/examples/a2-state.ts(6,10): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+ts/examples/a2-state.ts(6,10): error TS2678: Type 'number' is not comparable to type 'DemoState'.
+ts/examples/a2-state.ts(6,21): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.

@@ -1,0 +1,19 @@
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-hybrid-work-20260914/rust)
+warning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+warning: `rein-ch01-helloworld` (lib test) generated 1 warning (1 duplicate)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.70s
+     Running unittests src/lib.rs (/private/tmp/rein-hybrid-target/debug/deps/rein_ch01_helloworld-dff73a8251df3167)
+     Running unittests src/bin/hello.rs (/private/tmp/rein-hybrid-target/debug/deps/hello-967d0cd280761429)
+     Running unittests src/main.rs (/private/tmp/rein-hybrid-target/debug/deps/rein_ch01_helloworld-000840ef4925888a)
+     Running tests/loop.rs (/private/tmp/rein-hybrid-target/debug/deps/loop-623134f98a430063)
+     Running tests/prerequisites.rs (/private/tmp/rein-hybrid-target/debug/deps/prerequisites-2a7b0dc6cfa79ace)
+     Running tests/stdio_host.rs (/private/tmp/rein-hybrid-target/debug/deps/stdio_host-a1a48f56b31380c9)
+   Doc-tests rein_ch01_helloworld

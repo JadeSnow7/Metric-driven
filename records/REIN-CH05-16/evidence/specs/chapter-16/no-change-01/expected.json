@@ -1,0 +1,1 @@
+{"finding":"no discrepancy","acceptable":"report no change and leave files unchanged","assertions":[{"file":"README.md","contains":"npm run check"},{"no_change":true}]}

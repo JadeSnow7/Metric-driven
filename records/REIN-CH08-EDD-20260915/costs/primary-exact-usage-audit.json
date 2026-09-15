@@ -1,0 +1,194 @@
+{
+  "reviewed_at": "2026-09-15T11:28:40.030006+00:00",
+  "method": "Match exact (source session, turn ID, archived usage timestamp), not the current latest record of a still-running turn",
+  "checks": [
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3ab-2fcf-7d93-bc20-2953787ff998",
+      "source_timestamp": "2026-09-15T06:12:42.284Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3b3-58e7-7610-a476-7b03f7b5bbd4",
+      "source_timestamp": "2026-09-15T06:16:11.566Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3c0-a88d-7733-9dfb-04d22ad71e10",
+      "source_timestamp": "2026-09-15T06:33:43.431Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3cf-47e6-7792-87fe-f2c813c5eeb4",
+      "source_timestamp": "2026-09-15T06:48:10.704Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3e5-ea60-75c1-a5cc-85ee0f4dcd39",
+      "source_timestamp": "2026-09-15T07:11:20.982Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "turn_id": "01a0a3e9-e973-7280-9d65-d7c9672cd70e",
+      "source_timestamp": "2026-09-15T07:17:39.550Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-55-06-01a0a3d9-0fbf-7160-870a-6404b6341b9f.jsonl",
+      "turn_id": "01a0a3d9-1057-78f1-af3e-6cd8c87af404",
+      "source_timestamp": "2026-09-15T07:08:42.794Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-55-06-01a0a3d9-0fbf-7160-870a-6404b6341b9f.jsonl",
+      "turn_id": "01a0a3e8-5df3-7131-bad3-2ce6c8490b68",
+      "source_timestamp": "2026-09-15T07:13:05.215Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-55-06-01a0a3d9-0fbf-7160-870a-6404b6341b9f.jsonl",
+      "turn_id": "01a0a3eb-f157-7302-8a96-4fde57b5e0d2",
+      "source_timestamp": "2026-09-15T07:16:56.257Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-20-01a0a4b2-3f2d-7771-b2c1-06a5e8b7d202.jsonl",
+      "turn_id": "01a0a4b2-3f6c-7a33-b310-fc7e8714cd2d",
+      "source_timestamp": "2026-09-15T11:00:21.520Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4b2-a8af-7ac3-b72c-d2ecd7a30eeb",
+      "source_timestamp": "2026-09-15T10:54:57.504Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4bb-1fdb-77e3-8544-e4553d81feac",
+      "source_timestamp": "2026-09-15T11:04:36.432Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4be-fa23-7672-84d5-24f23a617984",
+      "source_timestamp": "2026-09-15T11:15:04.932Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4c8-0e87-7222-a842-87f266ec1520",
+      "source_timestamp": "2026-09-15T11:19:08.905Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4b2-a8af-7ac3-b72c-d2ecd7a30eeb",
+      "source_timestamp": "2026-09-15T10:54:57.504Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4bb-1fdb-77e3-8544-e4553d81feac",
+      "source_timestamp": "2026-09-15T11:04:36.432Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4be-fa23-7672-84d5-24f23a617984",
+      "source_timestamp": "2026-09-15T11:15:04.932Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4c8-0e87-7222-a842-87f266ec1520",
+      "source_timestamp": "2026-09-15T11:19:37.957Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "production-final-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "turn_id": "01a0a4cc-9e7b-7fb1-895f-629982731ea9",
+      "source_timestamp": "2026-09-15T11:22:17.617Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "primary-asof-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+      "turn_id": "01a0a30b-3bc8-7f63-be35-84acc40fda52",
+      "source_timestamp": "2026-09-15T07:17:42.540Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "primary-asof-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+      "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+      "source_timestamp": "2026-09-15T11:19:11.073Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "primary-asof-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+      "turn_id": "01a0a30b-3bc8-7f63-be35-84acc40fda52",
+      "source_timestamp": "2026-09-15T07:17:42.540Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    },
+    {
+      "file": "primary-asof-completion-20260915.json",
+      "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+      "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+      "source_timestamp": "2026-09-15T11:23:31.825Z",
+      "exact_record_found": true,
+      "usage_fields_match": true
+    }
+  ],
+  "all_match": true,
+  "supersedes": "final-cost-metadata-audit-20260915.json comparison method; its primary mismatch compared against a later record, so it does not invalidate the as-of snapshot",
+  "costs_complete": false,
+  "reason": "primary task still running; phase-specific costs cannot be inferred from whole-turn usage; no money/savings estimate"
+}

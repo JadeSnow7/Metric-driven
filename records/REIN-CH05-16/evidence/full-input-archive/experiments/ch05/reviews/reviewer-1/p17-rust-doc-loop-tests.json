@@ -1,0 +1,18 @@
+{
+  "label": "p17-rust-doc-loop-tests",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "loop_"
+  ],
+  "started_utc": "2026-09-14T11:19:21Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s\n     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)\n\nrunning 3 tests\ntest rein::tests::loop_distinguishes_model_error_and_empty_final ... ok\ntest rein::tests::loop_records_failures_and_stops_explicitly ... ok\ntest rein::tests::loop_reads_real_content_and_pairs_multiple_results ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s\n\n     Running unittests src/bin/ch05_loop.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/ch05_loop-d17bb14cafdc38ad)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/bin/hello.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/hello-e891c8ec077baf1a)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/main.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/rein_ch01_helloworld-99d76be240253315)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/prerequisites.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/prerequisites-7d18e22f535783fc)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s\n\n"
+}

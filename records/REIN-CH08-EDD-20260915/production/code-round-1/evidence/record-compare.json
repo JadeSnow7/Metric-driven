@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "node",
+    "scripts/ch08-compare.mjs"
+  ],
+  "cwd": "/private/tmp/rein-ch08-production-20260915/book",
+  "started_at": "2026-09-15T06:12:25.839959Z",
+  "ended_at": "2026-09-15T06:12:25.956149Z",
+  "exit_code": 101,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "",
+  "stderr": "error: failed to create directory `/Volumes/Data`\n\nCaused by:\n  Operation not permitted (os error 1)\n",
+  "stdout_base64": "",
+  "stderr_base64": "ZXJyb3I6IGZhaWxlZCB0byBjcmVhdGUgZGlyZWN0b3J5IGAvVm9sdW1lcy9EYXRhYAoKQ2F1c2VkIGJ5OgogIE9wZXJhdGlvbiBub3QgcGVybWl0dGVkIChvcyBlcnJvciAxKQo=",
+  "stdout_present": false,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs": {
+      "kind": "source",
+      "sha256": "b0f856e4ec2d06c48cfb8c648e4eb676a667df7cb20dbdd3a6f7892efde99882"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/examples/ch08_context.rs": {
+      "kind": "source",
+      "sha256": "8bbe57c6b58087cad7ea40501c98190ef0b201524f846e9e898fbe23d9d1543b"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/tests/ch08_context.rs": {
+      "kind": "test",
+      "sha256": "fd46ba702cfc02e11a05b7648a44d8660b8d09aad49dbc41e7175498c176e6e6"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/index.json": {
+      "kind": "fixture",
+      "sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    }
+  },
+  "result": "failed"
+}

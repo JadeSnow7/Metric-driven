@@ -1,0 +1,25 @@
+{
+  "source_root":"/private/tmp/rein-ch08-production-20260915/book",
+  "target_root":"/Users/huaodong/workspace/Agent-Learning",
+  "source_revision":"1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "target_base":"1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "allowed_paths":["MIGRATIONS.md","README.md","docs/.vitepress/config.mts","docs/chapters/08.md","docs/index.md","docs/toc.md","examples/ch08-context-methods","package.json","rust/examples/ch08_context.rs","rust/src/rein/context_methods.rs","rust/src/rein/mod.rs","rust/tests/ch08_context.rs","scripts/ch08-compare.mjs","scripts/ch08-verify.mjs","fixtures/ch08-context"],
+  "files": {
+    "MIGRATIONS.md":{"source":"MIGRATIONS.md","source_sha256":"5979db32214111964ab3f03d5ecd6b535e877e31cd38493d77b5eedaafe4df26","target_sha256":"c23f3fcaafb1312c64eb74cc7cd80f679ce8d32a57b7053ba287300934f73f7e"},
+    "README.md":{"source":"README.md","source_sha256":"211cbc1a020fe786ee1c70690735cbd00ef549ab084c0561e44e1c5bd20c2eef","target_sha256":"c4969c1737653c68b501c93aec057e3c2f4e609a94efba6819f9cb6cf2013438"},
+    "docs/.vitepress/config.mts":{"source":"docs/.vitepress/config.mts","source_sha256":"fda320614f6efe262f2657c66fba807d9b22f6d7e266e473860add0c77156691","target_sha256":"78e28b2424c97c37f744fcc7ed5aa80461ce5008edf895713a79dcbb1a49d5bb"},
+    "docs/chapters/08.md":{"source":"docs/chapters/08.md","source_sha256":"84e0f072f89190043d1d553112763b66db2820081e525472768bd070c5ef4034","target_sha256":"26cc3c5d733b22e6c852d69b939f009af445ab0a008664413c63c491cc5bf929"},
+    "docs/index.md":{"source":"docs/index.md","source_sha256":"f366546f5ccb1edc62ac0804d9f3c4a95153cfe5069fe62fa21c0d3eb1d2098b","target_sha256":"fc1f9fdd7c3f092f00719da3d837e98af9c84fd589ca8cba540b78398a8da5c2"},
+    "docs/toc.md":{"source":"docs/toc.md","source_sha256":"47ea23485d6e61787487eb4c34d9bf1f5ac2668dc573f9afe9859c19fa5b34fb","target_sha256":"4487f428ee9099922f0f0a91e132dccc22871ccbd8e14b0ae811a9d8d7d123ea"},
+    "examples/ch08-context-methods":{"source":"examples/ch08-context-methods","source_sha256":null,"target_sha256":null},
+    "package.json":{"source":"package.json","source_sha256":"cd6956aa2a2fd2e24b06c13d5b860098cd70317c6101db95697d194cdd67258a","target_sha256":"0d5e105de39340d3fe24f8729345bd3628a302b20d37905a14e6e725d39569b7"},
+    "rust/examples/ch08_context.rs":{"source":"rust/examples/ch08_context.rs","source_sha256":"672707a25fb39bd6d6b28da9002d4c7633baabfda85a4817f6de9fa0b16bb481","target_sha256":null},
+    "rust/src/rein/context_methods.rs":{"source":"rust/src/rein/context_methods.rs","source_sha256":"39ca0d21503e20f9180dbe2170f36d25a8afa2a94108255a70d3004e2429c93d","target_sha256":null},
+    "rust/src/rein/mod.rs":{"source":"rust/src/rein/mod.rs","source_sha256":"75f3c5bf75031ffbccc69e21b61cb6d456d9a2a1b47bcd667f53a2f878445231","target_sha256":"b498eeb094366258897ca3bc637e6eb59c977ef807850d3"},
+    "rust/tests/ch08_context.rs":{"source":"rust/tests/ch08_context.rs","source_sha256":"d54faa646b72730d00ac40c74f54841ae95fae787b8f3eb538768c698bee6f18","target_sha256":null},
+    "scripts/ch08-compare.mjs":{"source":"scripts/ch08-compare.mjs","source_sha256":"25b8f04ac964db52562ad1381094ea34c0e459ad63a84df242f88d90c7119004","target_sha256":null},
+    "scripts/ch08-verify.mjs":{"source":"scripts/ch08-verify.mjs","source_sha256":"d547c8fbdb05dc1c2fe9ae6915bdbc05c5b78ebc32e633bb50ec1cf9b6b25773","target_sha256":null}
+  },
+  "fixture_paths":["fixtures/ch08-context/docs/approval.md","fixtures/ch08-context/docs/cache.md","fixtures/ch08-context/docs/early-runtime.md","fixtures/ch08-context/docs/failure.md","fixtures/ch08-context/docs/indexing.md","fixtures/ch08-context/docs/release.md","fixtures/ch08-context/index.json","fixtures/ch08-context/tasks.json"],
+  "status":"draft_not_authorized"
+}

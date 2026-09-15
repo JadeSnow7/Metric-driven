@@ -1,0 +1,7 @@
+   Compiling review-p42 v0.1.0 (/private/tmp/rein-ch05-review-evidence-1/p42-rust-probe)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s
+     Running `/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/exhausted`
+
+thread 'main' (38441364) panicked at src/exhausted.rs:18:51:
+removal index (is 0) should be < len (is 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,345 @@
+[
+  {
+    "id": "empty-wrong-role-id",
+    "reason": "final_answer",
+    "calls": 1,
+    "events": [
+      {
+        "type": "context_prepared",
+        "turn": 1,
+        "unit": "estimated-bytes-v1",
+        "budget": 200,
+        "beforeUnits": 47,
+        "afterUnits": 47,
+        "requiredUnits": 34,
+        "keptGroups": [
+          "g0",
+          "g1"
+        ],
+        "removedGroups": [],
+        "requiredGroups": [
+          "g1"
+        ],
+        "mode": "managed"
+      },
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messages": [
+          {
+            "role": "system",
+            "content": "rule"
+          },
+          {
+            "role": "user",
+            "content": "x",
+            "toolCallId": ""
+          },
+          {
+            "role": "user",
+            "content": "goal"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "message": {
+          "role": "assistant",
+          "content": "answer"
+        },
+        "toolCallIds": [],
+        "text": "answer"
+      },
+      {
+        "type": "stopped",
+        "state": "completed",
+        "reason": "final_answer"
+      }
+    ]
+  },
+  {
+    "id": "result-nonarray-calls",
+    "calls": 0,
+    "thrown": "TypeError: (message.toolCalls ?? []).reduce is not a function"
+  },
+  {
+    "id": "wrong-role-id",
+    "reason": "invalid_context_history",
+    "calls": 0,
+    "events": [
+      {
+        "type": "context_rejected",
+        "turn": 0,
+        "reason": "invalid_context_history",
+        "unit": "estimated-bytes-v1",
+        "mode": "managed",
+        "errorCode": "invalid_context_history"
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "invalid_context_history"
+      }
+    ]
+  },
+  {
+    "id": "result-declares-call",
+    "reason": "invalid_context_history",
+    "calls": 0,
+    "events": [
+      {
+        "type": "context_rejected",
+        "turn": 0,
+        "reason": "invalid_context_history",
+        "unit": "estimated-bytes-v1",
+        "mode": "managed",
+        "errorCode": "invalid_context_history"
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "invalid_context_history"
+      }
+    ]
+  },
+  {
+    "id": "nonfinite-json",
+    "reason": "invalid_context_history",
+    "calls": 0,
+    "events": [
+      {
+        "type": "context_rejected",
+        "turn": 0,
+        "reason": "invalid_context_history",
+        "unit": "estimated-bytes-v1",
+        "mode": "managed",
+        "errorCode": "invalid_context_history"
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "invalid_context_history"
+      }
+    ]
+  },
+  {
+    "id": "duplicate-next-round",
+    "reason": "invalid_context_history",
+    "calls": 1,
+    "events": [
+      {
+        "type": "context_prepared",
+        "turn": 1,
+        "unit": "estimated-bytes-v1",
+        "budget": 400,
+        "beforeUnits": 105,
+        "afterUnits": 105,
+        "requiredUnits": 105,
+        "keptGroups": [
+          "g0",
+          "g2"
+        ],
+        "removedGroups": [],
+        "requiredGroups": [
+          "g0",
+          "g2"
+        ],
+        "mode": "managed"
+      },
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messages": [
+          {
+            "role": "system",
+            "content": "rule"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "a",
+                "name": "read_file",
+                "arguments": {
+                  "path": "README.md"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "content": "old",
+            "toolCallId": "a"
+          },
+          {
+            "role": "user",
+            "content": "goal"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "message": {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "a",
+              "name": "read_file",
+              "arguments": {
+                "path": "README.md"
+              }
+            }
+          ]
+        },
+        "toolCallIds": [
+          "a"
+        ],
+        "text": ""
+      },
+      {
+        "type": "tool_result",
+        "turn": 1,
+        "call": {
+          "id": "a",
+          "name": "read_file",
+          "arguments": {
+            "path": "README.md"
+          }
+        },
+        "toolCallId": "a",
+        "result": {
+          "toolCallId": "a",
+          "ok": true,
+          "output": "current evidence"
+        }
+      },
+      {
+        "type": "context_rejected",
+        "turn": 2,
+        "reason": "invalid_context_history",
+        "unit": "estimated-bytes-v1",
+        "mode": "managed",
+        "errorCode": "invalid_context_history"
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "invalid_context_history"
+      }
+    ]
+  },
+  {
+    "id": "units-true",
+    "actualUnits": 34,
+    "prepared": {
+      "type": "context_prepared",
+      "turn": 1,
+      "unit": "estimated-bytes-v1",
+      "budget": 100,
+      "beforeUnits": 34,
+      "afterUnits": 34,
+      "requiredUnits": 34,
+      "keptGroups": [
+        "g0"
+      ],
+      "removedGroups": [],
+      "requiredGroups": [
+        "g0"
+      ],
+      "mode": "managed"
+    }
+  },
+  {
+    "id": "units-false",
+    "actualUnits": 34,
+    "prepared": {
+      "type": "context_prepared",
+      "turn": 1,
+      "unit": "estimated-bytes-v1",
+      "budget": 100,
+      "beforeUnits": 34,
+      "afterUnits": 34,
+      "requiredUnits": 34,
+      "keptGroups": [
+        "g0"
+      ],
+      "removedGroups": [],
+      "requiredGroups": [
+        "g0"
+      ],
+      "mode": "unmanaged"
+    }
+  }
+]

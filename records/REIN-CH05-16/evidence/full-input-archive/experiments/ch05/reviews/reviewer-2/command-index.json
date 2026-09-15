@@ -1,0 +1,637 @@
+[
+  {
+    "label": "p17-rust-demo",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--bin",
+      "ch05_loop"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.994
+  },
+  {
+    "label": "p17-rust-fmt",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "fmt",
+      "--",
+      "--check"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.14
+  },
+  {
+    "label": "p17-rust-independent",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--offline",
+      "--manifest-path",
+      "/private/tmp/rein-ch05-review-evidence-2/rust-probe-17/Cargo.toml",
+      "--features",
+      "p17"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 2.879
+  },
+  {
+    "label": "p17-rust-isolated-demo",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--bin",
+      "ch05_loop"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.774
+  },
+  {
+    "label": "p17-rust-isolated-independent",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--manifest-path",
+      "/private/tmp/rein-ch05-review-evidence-2/rust-probe-17/Cargo.toml",
+      "--features",
+      "p17"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 2.456
+  },
+  {
+    "label": "p17-rust-isolated-local-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--lib",
+      "tests::"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.742
+  },
+  {
+    "label": "p17-rust-isolated-loop",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "loop_"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 4.542
+  },
+  {
+    "label": "p17-rust-isolated-prerequisites-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--test",
+      "prerequisites"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.207
+  },
+  {
+    "label": "p17-rust-isolated-tests",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 47.31
+  },
+  {
+    "label": "p17-rust-local-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--lib",
+      "tests::"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.723
+  },
+  {
+    "label": "p17-rust-loop",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "loop_"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 4.579
+  },
+  {
+    "label": "p17-rust-prerequisites",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--test",
+      "prerequisites"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 0.151
+  },
+  {
+    "label": "p17-rust-tests",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 38.453
+  },
+  {
+    "label": "p17-ts-demo",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:offline",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 8.635
+  },
+  {
+    "label": "p17-ts-doc-test",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts",
+      "--",
+      "--run",
+      "tests/loop.test.ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.535
+  },
+  {
+    "label": "p17-ts-independent",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/ts",
+    "argv": [
+      "node",
+      "--import",
+      "tsx",
+      "/private/tmp/rein-ch05-review-evidence-2/probe-ts.mts",
+      "17"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.196
+  },
+  {
+    "label": "p17-ts-tests",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 1,
+    "wall_seconds": 20.04
+  },
+  {
+    "label": "p17-ts-transport-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts",
+      "--",
+      "tests/transport.test.ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.816
+  },
+  {
+    "label": "p17-ts-typecheck",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-17",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 6.319
+  },
+  {
+    "label": "p42-rust-doc-cd",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "zsh",
+      "-c",
+      "cd rust"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 1,
+    "wall_seconds": 0.006
+  },
+  {
+    "label": "p42-rust-fmt",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "fmt",
+      "--check"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.091
+  },
+  {
+    "label": "p42-rust-isolated-demo",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--example",
+      "ch05_loop"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.783
+  },
+  {
+    "label": "p42-rust-isolated-independent",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--offline",
+      "--manifest-path",
+      "/private/tmp/rein-ch05-review-evidence-2/rust-probe-42/Cargo.toml",
+      "--bin",
+      "review-probe-42"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 2.87
+  },
+  {
+    "label": "p42-rust-isolated-local-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--lib",
+      "tests::"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.568
+  },
+  {
+    "label": "p42-rust-isolated-loop",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--test",
+      "loop"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.782
+  },
+  {
+    "label": "p42-rust-isolated-prerequisites-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--test",
+      "prerequisites",
+      "concrete_reqwest_captures_two_openai_turns_and_tool_results",
+      "--",
+      "--exact"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.204
+  },
+  {
+    "label": "p42-rust-isolated-prerequisites",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--test",
+      "prerequisites"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 1.064
+  },
+  {
+    "label": "p42-rust-isolated-single",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--example",
+      "ch05_loop",
+      "--",
+      "single"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.615
+  },
+  {
+    "label": "p42-rust-isolated-tests",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 24.714
+  },
+  {
+    "label": "p42-rust-replay-exhaustion",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust",
+    "argv": [
+      "cargo",
+      "run",
+      "--locked",
+      "--offline",
+      "--manifest-path",
+      "/private/tmp/rein-ch05-review-evidence-2/rust-probe-42/Cargo.toml",
+      "--bin",
+      "replay_exhaustion"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42",
+      "REIN_*": "removed"
+    },
+    "exit_code": 101,
+    "wall_seconds": 1.049
+  },
+  {
+    "label": "p42-ts-demo",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:offline",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 9.245
+  },
+  {
+    "label": "p42-ts-independent",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/ts",
+    "argv": [
+      "node",
+      "--import",
+      "tsx",
+      "/private/tmp/rein-ch05-review-evidence-2/probe-ts.mts",
+      "42"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.187
+  },
+  {
+    "label": "p42-ts-single",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:offline",
+      "--workspace",
+      "ts",
+      "--",
+      "single"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 9.279
+  },
+  {
+    "label": "p42-ts-tests",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 1,
+    "wall_seconds": 20.656
+  },
+  {
+    "label": "p42-ts-transport-elevated",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42",
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts",
+      "--",
+      "tests/transport.test.ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 0.832
+  },
+  {
+    "label": "p42-ts-typecheck",
+    "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-2/package-42",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck",
+      "--workspace",
+      "ts"
+    ],
+    "environment_overrides": {
+      "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-2",
+      "REIN_*": "removed"
+    },
+    "exit_code": 0,
+    "wall_seconds": 5.759
+  }
+]

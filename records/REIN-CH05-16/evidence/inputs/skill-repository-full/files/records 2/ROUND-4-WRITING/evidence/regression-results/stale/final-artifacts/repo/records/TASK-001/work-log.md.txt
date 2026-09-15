@@ -1,0 +1,4 @@
+# TASK-001 工作日志
+
+- EVENT-001（2026-09-14）：恢复核验前检查确认 HEAD 为 `ec38cd36e4855f47a868dce7d6e56df525810932`，工作树有一处未提交的 `inventory.py` 改动；未修改该改动。
+- EVENT-002（2026-09-14）：重跑 `python3 -m unittest discover -s tests -t . -v`，12 个测试中 1 个失败，退出码 1；旧证据因 revision 不匹配标记 stale，当前摘要与结构化状态更新为 failed。

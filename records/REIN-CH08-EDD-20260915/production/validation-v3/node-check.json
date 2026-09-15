@@ -1,0 +1,47 @@
+{
+  "argv": [
+    "node",
+    "--check",
+    "scripts/ch08-verify.mjs"
+  ],
+  "cwd": "/private/tmp/rein-ch08-production-20260915/book",
+  "started_at": "2026-09-15T07:03:25.088276Z",
+  "ended_at": "2026-09-15T07:03:25.132665Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "",
+  "stderr": "",
+  "stdout_base64": "",
+  "stderr_base64": "",
+  "stdout_present": false,
+  "stderr_present": false,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-production-20260915/book/scripts/ch08-verify.mjs": {
+      "kind": "source",
+      "sha256": "15fb08143f604fe39b8aed2692479714345f547ba9407d87f4dab1d3b4995874"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/scripts/ch08-compare.mjs": {
+      "kind": "source",
+      "sha256": "25b8f04ac964db52562ad1381094ea34c0e459ad63a84df242f88d90c7119004"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/tests/ch08_context.rs": {
+      "kind": "test",
+      "sha256": "d3471999e099829e0a8a6c1d00686d1e4a4aff8d79bc232af6e82a0b368c5a6e"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/index.json": {
+      "kind": "fixture",
+      "sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/ts/tests/fixtures/hybrid-fault-host.ts": {
+      "kind": "fixture",
+      "sha256": "1eaf158c617f42074372c5acffd4762b531e7cf6b80277a89d8958edd1f70889"
+    }
+  },
+  "result": "passed"
+}

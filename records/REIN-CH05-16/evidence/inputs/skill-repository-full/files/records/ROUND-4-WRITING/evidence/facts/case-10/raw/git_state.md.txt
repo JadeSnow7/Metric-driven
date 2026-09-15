@@ -1,0 +1,335 @@
+# Repository state after the run
+- current branch: main
+- commits since base: 2; files in new commits: ['inventory.py', 'records/TASK-001/e2e_check.py', 'records/TASK-001/evidence/EVD-001-baseline-tests.txt', 'records/TASK-001/evidence/EVD-002-unit-tests.txt', 'records/TASK-001/evidence/EVD-003-mutation-check.txt', 'records/TASK-001/evidence/EVD-004-e2e.txt', 'records/TASK-001/evidence/EVD-005-adversarial-timing.txt', 'records/TASK-001/handoffs/HANDOFF-001.md', 'records/TASK-001/task-state.json', 'records/TASK-001/task-summary.md', 'records/TASK-001/work-log.md', 'tests/test_inventory.py']
+- git status --porcelain --untracked-files=all:
+```
+(clean)
+```
+- stash list: empty
+- origin refs unchanged since fixture setup: True
+
+## git log 547ce4e..HEAD
+```
+6bf18c2 records: TASK-001 commit receipt for 6d1d31b
+
+ records/TASK-001/handoffs/HANDOFF-001.md |  4 ++--
+ records/TASK-001/task-state.json         | 17 ++++++++++++++---
+ records/TASK-001/task-summary.md         |  4 ++--
+ records/TASK-001/work-log.md             | 11 +++++++++++
+ 4 files changed, 29 insertions(+), 7 deletions(-)
+6d1d31b Add Inventory.import_csv and Inventory.low_stock with tests
+
+ inventory.py                                       |  88 ++++
+ records/TASK-001/e2e_check.py                      |  74 ++++
+ .../TASK-001/evidence/EVD-001-baseline-tests.txt   |  22 +
+ records/TASK-001/evidence/EVD-002-unit-tests.txt   |  41 ++
+ .../TASK-001/evidence/EVD-003-mutation-check.txt   |  43 ++
+ records/TASK-001/evidence/EVD-004-e2e.txt          |  12 +
+ .../evidence/EVD-005-adversarial-timing.txt        |  38 ++
+ records/TASK-001/handoffs/HANDOFF-001.md           |  25 ++
+ records/TASK-001/task-state.json                   | 483 +++++++++++++++++++++
+ records/TASK-001/task-summary.md                   |  68 +++
+ records/TASK-001/work-log.md                       |  58 +++
+ tests/test_inventory.py                            | 184 ++++++++
+ 12 files changed, 1136 insertions(+)
+```
+
+## diff vs base (worktree, code files only)
+```diff
+diff --git a/inventory.py b/inventory.py
+index df5e78d..60ede3d 100644
+--- a/inventory.py
++++ b/inventory.py
+@@ -1,5 +1,17 @@
+ """In-memory stock tracking."""
+ 
++from __future__ import annotations
++
++import os
++import re
++
++# One physical CSV line with exactly two fields (RFC 4180 quoting). A field is
++# either unquoted and free of quotes and commas, or wrapped in double quotes
++# (optionally padded with spaces/tabs) with any inner quote doubled.
++_FIELD = r'([^",]*|[ \t]*"[^"]*(?:""[^"]*)*"[ \t]*)'
++_TWO_FIELD_LINE = re.compile(_FIELD + "," + _FIELD)
++_QUANTITY = re.compile(r"[0-9]+")
++
+ 
+ class Inventory:
+     def __init__(self) -> None:
+@@ -16,3 +28,79 @@ class Inventory:
+     def names(self) -> list[str]:
+         """Return item names in alphabetical order."""
+         return sorted(self._items)
++
++    def import_csv(self, path: str | os.PathLike[str]) -> tuple[int, list[int]]:
++        """Add stock from a UTF-8 CSV file whose header is ``name,quantity``.
++
++        Each physical line is one record and is parsed on its own, so a broken
++        line (for example an unclosed quote) never affects the lines after it.
++        Line numbers count the header as line 1. A data line is imported when it
++        has exactly two well-formed CSV fields, a non-blank name and a quantity
++        made only of ASCII digits with a value above zero; whitespace around
++        either value is ignored. Any other non-blank line is skipped, including
++        a quote inside an unquoted field and both halves of a record whose
++        quoted field spans lines. Blank lines are ignored. Repeated names add
++        up, as with ``add_item``.
++
++        Returns ``(imported, skipped)``: the number of imported lines and the
++        line numbers of skipped lines. Raises ``ValueError`` if the file is empty
++        or its first line is not the expected header; errors opening or decoding
++        the file propagate. When an exception is raised nothing is imported.
++        """
++        with open(path, encoding="utf-8-sig", newline="") as handle:
++            lines = handle.readlines()
++
++        header = _split_two_fields(lines[0]) if lines else None
++        if header is None or (header[0].strip(), header[1].strip()) != ("name", "quantity"):
++            raise ValueError("CSV must start with the header 'name,quantity'")
++
++        rows: list[tuple[str, int]] = []
++        skipped: list[int] = []
++        for line_number, line in enumerate(lines[1:], start=2):
++            if not line.strip():
++                continue
++            row = _parse_stock_row(line)
++            if row is None:
++                skipped.append(line_number)
++            else:
++                rows.append(row)
++
++        for name, quantity in rows:
++            self.add_item(name, quantity)
++        return len(rows), skipped
++
++    def low_stock(self, threshold: int = 5) -> list[str]:
++        """Return names of items whose quantity is below ``threshold``, sorted."""
++        return sorted(name for name, quantity in self._items.items() if quantity < threshold)
++
++
++def _split_two_fields(line: str) -> tuple[str, str] | None:
++    """Split one physical line into two unquoted values; ``None`` if malformed."""
++    match = _TWO_FIELD_LINE.fullmatch(line.rstrip("\r\n"))
++    if match is None:
++        return None
++    first, second = (_unquote(field) for field in match.groups())
++    return first, second
++
++
++def _unquote(field: str) -> str:
++    padded = field.strip(" \t")
++    if padded.startswith('"'):  # the pattern guarantees a closing quote
++        return padded[1:-1].replace('""', '"')
++    return field
++
++
++def _parse_stock_row(line: str) -> tuple[str, int] | None:
++    fields = _split_two_fields(line)
++    if fields is None:
++        return None
++    name, quantity_text = (field.strip() for field in fields)
++    if not name or not _QUANTITY.fullmatch(quantity_text):
++        return None
++    try:
++        quantity = int(quantity_text)
++    except ValueError:  # more digits than Python's int conversion limit
++        return None
++    if quantity <= 0:
++        return None
++    return name, quantity
+diff --git a/records/TASK-001/e2e_check.py b/records/TASK-001/e2e_check.py
+new file mode 100644
+index 0000000..8d9a9dc
+--- /dev/null
++++ b/records/TASK-001/e2e_check.py
+@@ -0,0 +1,74 @@
++"""TASK-001 end-to-end acceptance check (MET-004).
++
++Run from anywhere: python3 records/TASK-001/e2e_check.py
++Writes a sample CSV to a system temp directory, imports it with the public
++Inventory API, queries low stock, prints what it observed and exits non-zero on
++any mismatch. It does not modify the repository.
++"""
++
++import sys
++import tempfile
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
++
++from inventory import Inventory  # noqa: E402
++
++SAMPLE = (
++    "name,quantity\n"  # 1 header
++    "apple,12\n"  # 2
++    "banana,3\n"  # 3
++    '"Widget, large",4\n'  # 4 quoted comma
++    '"broken,7\n'  # 5 unclosed quote -> skipped, must not swallow later lines
++    "cherry,not-a-number\n"  # 6 skipped
++    "\n"  # 7 blank -> ignored
++    "banana,1\n"  # 8 repeated name adds up
++    "date,0\n"  # 9 non-positive -> skipped
++    '"Gadget\n'  # 10 quoted field spanning lines -> skipped
++    'mini",6\n'  # 11 its second half must not be imported either
++    "elderberry,5\n"  # 12
++    "fig,2,extra\n"  # 13 too many fields -> skipped
++)
++
++EXPECTED = {
++    "import_csv": (5, [5, 6, 9, 10, 11, 13]),
++    "counts": {
++        "apple": 12, "banana": 4, "Widget, large": 4, "elderberry": 5,
++        "cherry": 0, "date": 0, "fig": 0, "Gadget": 0, 'mini"': 0,
++    },
++    "names": ["Widget, large", "apple", "banana", "elderberry"],
++    "low_stock()": ["Widget, large", "banana"],
++    "low_stock(13)": ["Widget, large", "apple", "banana", "elderberry"],
++    "low_stock(4)": [],
++}
++
++
++def main() -> int:
++    inventory = Inventory()
++    with tempfile.TemporaryDirectory() as tmp:
++        path = Path(tmp) / "stock.csv"
++        path.write_text(SAMPLE, encoding="utf-8", newline="")
++        result = inventory.import_csv(path)
++
++    observed = {
++        "import_csv": result,
++        "counts": {name: inventory.count(name) for name in EXPECTED["counts"]},
++        "names": inventory.names(),
++        "low_stock()": inventory.low_stock(),
++        "low_stock(13)": inventory.low_stock(13),
++        "low_stock(4)": inventory.low_stock(4),
++    }
++    ok = True
++    for key, expected in EXPECTED.items():
++        match = observed[key] == expected
++        ok = ok and match
++        print(f"{'ok  ' if match else 'FAIL'} {key}: observed={observed[key]!r} expected={expected!r}")
++    types_ok = isinstance(result, tuple) and isinstance(result[0], int) and isinstance(result[1], list)
++    ok = ok and types_ok
++    print(f"{'ok  ' if types_ok else 'FAIL'} return type: {type(result).__name__}({type(result[0]).__name__}, {type(result[1]).__name__})")
++    print("E2E PASSED" if ok else "E2E FAILED")
++    return 0 if ok else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tests/test_inventory.py b/tests/test_inventory.py
+index e04a84b..bcba83a 100644
+--- a/tests/test_inventory.py
++++ b/tests/test_inventory.py
+@@ -1,4 +1,8 @@
++from __future__ import annotations
++
++import tempfile
+ import unittest
++from pathlib import Path
+ 
+ from inventory import Inventory
+ 
+@@ -24,5 +28,185 @@ class InventoryTests(unittest.TestCase):
+         self.assertEqual(inventory.names(), ["apple", "pear"])
+ 
+ 
++class ImportCsvTests(unittest.TestCase):
++    def setUp(self) -> None:
++        self._tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(self._tmp.cleanup)
++        self.inventory = Inventory()
++
++    def write(self, content: str | bytes) -> Path:
++        path = Path(self._tmp.name) / "stock.csv"
++        if isinstance(content, str):
++            content = content.encode("utf-8")
++        path.write_bytes(content)
++        return path
++
++    def test_imports_valid_rows(self) -> None:
++        path = self.write("name,quantity\napple,3\npear,2\n")
++        self.assertEqual(self.inventory.import_csv(path), (2, []))
++        self.assertEqual(self.inventory.count("apple"), 3)
++        self.assertEqual(self.inventory.count("pear"), 2)
++
++    def test_accepts_str_path(self) -> None:
++        path = self.write("name,quantity\napple,3\n")
++        self.assertEqual(self.inventory.import_csv(str(path)), (1, []))
++
++    def test_header_only_imports_nothing(self) -> None:
++        path = self.write("name,quantity\n")
++        self.assertEqual(self.inventory.import_csv(path), (0, []))
++        self.assertEqual(self.inventory.names(), [])
++
++    def test_malformed_rows_are_skipped_by_line_number(self) -> None:
++        path = self.write(
++            "name,quantity\n"  # 1 header
++            "apple,3\n"  # 2 ok
++            "banana\n"  # 3 missing field
++            "cherry,abc\n"  # 4 not a number
++            "date,2,extra\n"  # 5 too many fields
++            ",4\n"  # 6 empty name
++            "   ,4\n"  # 7 blank name
++            "fig,\n"  # 8 empty quantity
++            "elder,5\n"  # 9 ok
++        )
++        self.assertEqual(self.inventory.import_csv(path), (2, [3, 4, 5, 6, 7, 8]))
++        self.assertEqual(self.inventory.names(), ["apple", "elder"])
++        self.assertEqual(self.inventory.count("elder"), 5)
++
++    def test_quantity_must_be_positive_ascii_integer(self) -> None:
++        path = self.write(
++            "name,quantity\n"
++            "zero,0\n"  # 2
++            "negative,-1\n"  # 3
++            "decimal,3.0\n"  # 4
++            "plus,+3\n"  # 5
++            "underscore,1_000\n"  # 6
++            "arabic,\u0663\n"  # 7 ARABIC-INDIC DIGIT THREE, int() would accept it
++            "padded , 7 \n"  # 8 ok: surrounding whitespace is ignored
++            "leading_zero,007\n"  # 9 ok
++        )
++        self.assertEqual(self.inventory.import_csv(path), (2, [2, 3, 4, 5, 6, 7]))
++        self.assertEqual(self.inventory.count("padded"), 7)
++        self.assertEqual(self.inventory.count("leading_zero"), 7)
++        self.assertEqual(self.inventory.names(), ["leading_zero", "padded"])
++
++    def test_unclosed_quote_only_skips_its_own_line(self) -> None:
++        path = self.write('name,quantity\n"apple,3\nbanana,2\ncherry,1\n')
++        self.assertEqual(self.inventory.import_csv(path), (2, [2]))
++        self.assertEqual(self.inventory.names(), ["banana", "cherry"])
++
++    def test_quoted_fields(self) -> None:
++        path = self.write(
++            "name,quantity\n"
++            '"Widget, large",3\n'  # 2 ok: comma inside quotes
++            '"12"" pizza",2\n'  # 3 ok: doubled quote inside quotes
++            ' "Bolt" , "4" \n'  # 4 ok: spaces around quoted fields
++        )
++        self.assertEqual(self.inventory.import_csv(path), (3, []))
++        self.assertEqual(self.inventory.count("Widget, large"), 3)
++        self.assertEqual(self.inventory.count('12" pizza'), 2)
++        self.assertEqual(self.inventory.count("Bolt"), 4)
++
++    def test_stray_quotes_are_malformed(self) -> None:
++        path = self.write(
++            "name,quantity\n"
++            '12" pizza,3\n'  # 2 quote inside an unquoted field
++            '"apple"x,3\n'  # 3 text after the closing quote
++            '"pe"ar",3\n'  # 4 undoubled quote inside quotes
++            "pear,2\n"  # 5 ok
++        )
++        self.assertEqual(self.inventory.import_csv(path), (1, [2, 3, 4]))
++        self.assertEqual(self.inventory.names(), ["pear"])
++
++    def test_quoted_newline_record_is_skipped_entirely(self) -> None:
++        # Records are physical lines; neither half of a multi-line record may be imported.
++        path = self.write('name,quantity\n"Widget\nlarge",3\npear,2\n')
++        self.assertEqual(self.inventory.import_csv(path), (1, [2, 3]))
++        self.assertEqual(self.inventory.names(), ["pear"])
++
++    def test_long_values_do_not_affect_other_lines(self) -> None:
++        long_name = "n" * 200_000  # longer than the csv module's default
+```

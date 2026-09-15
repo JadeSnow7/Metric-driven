@@ -1,0 +1,10 @@
+
+ RUN  v2.1.9 /private/tmp/rein-hybrid-work-20260914/ts
+
+ ✓ tests/hybrid-host.test.ts (4 tests) 442ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  00:07:28
+   Duration  767ms (transform 33ms, setup 0ms, collect 29ms, tests 442ms, environment 0ms, prepare 74ms)
+

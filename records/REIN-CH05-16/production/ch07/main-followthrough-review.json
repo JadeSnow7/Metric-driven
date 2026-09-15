@@ -1,0 +1,135 @@
+[
+  {
+    "argv": [
+      "npm",
+      "test",
+      "--workspace",
+      "ts"
+    ],
+    "cwd": "/private/tmp/rein-ch07-followthrough/rein-ch07",
+    "start": "2026-09-14T15:24:06.575718+00:00",
+    "end": "2026-09-14T15:24:09.869478+00:00",
+    "exit": 0,
+    "file": "npm-test.json",
+    "stdout": "s/config.test.ts (13 tests) 7ms\n ✓ tests/chat.test.ts (17 tests) 8ms\n ✓ tests/record.test.ts (6 tests) 5ms\n ✓ tests/recorded.test.ts (3 tests) 9ms\n ✓ tests/ch07-context.test.ts (8 tests) 24ms\n ✓ tests/rein-prerequisites.test.ts (7 tests) 32ms\n ✓ tests/hello.test.ts (18 tests) 74ms\n ✓ tests/loop.test.ts (16 tests) 256ms\n ✓ tests/transport.test.ts (8 tests) 305ms\n\n Test Files  9 passed (9)\n      Tests  96 passed (96)\n   Start at  23:24:09\n   Duration  737ms (transform 390ms, setup 0ms, collect 945ms, tests 718ms, environment 1ms, prepare 960ms)\n\n"
+  },
+  {
+    "argv": [
+      "npm",
+      "run",
+      "--silent",
+      "ch07:context",
+      "--workspace",
+      "ts"
+    ],
+    "cwd": "/private/tmp/rein-ch07-followthrough/rein-ch07",
+    "start": "2026-09-14T15:24:04.920488+00:00",
+    "end": "2026-09-14T15:24:05.301488+00:00",
+    "exit": 0,
+    "file": "ts-cli.json",
+    "cases": [
+      {
+        "id": "unmanaged-overflow",
+        "reason": "model_error",
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "final_answer",
+        "requests": 1
+      },
+      {
+        "id": "required-overflow",
+        "reason": "context_budget_exhausted",
+        "requests": 0
+      },
+      {
+        "id": "multi-tool-boundary",
+        "reason": "final_answer",
+        "requests": 1
+      },
+      {
+        "id": "invalid-orphan",
+        "reason": "invalid_context_history",
+        "requests": 0
+      },
+      {
+        "id": "invalid-missing",
+        "reason": "invalid_context_history",
+        "requests": 0
+      },
+      {
+        "id": "unicode-content",
+        "reason": "final_answer",
+        "requests": 1
+      }
+    ]
+  },
+  {
+    "argv": [
+      "npm",
+      "ci",
+      "--workspace",
+      "ts"
+    ],
+    "cwd": "/private/tmp/rein-ch07-followthrough/rein-ch07",
+    "start": "2026-09-14T15:24:01.425574+00:00",
+    "end": "2026-09-14T15:24:04.919926+00:00",
+    "exit": 0,
+    "file": "npm-ci.json",
+    "stdout": "\nadded 87 packages, and audited 89 packages in 3s\n\n18 packages are looking for funding\n  run `npm fund` for details\n\n5 vulnerabilities (3 moderate, 1 high, 1 critical)\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n"
+  },
+  {
+    "argv": [
+      "cargo",
+      "run",
+      "--quiet",
+      "--manifest-path",
+      "rust/Cargo.toml",
+      "--example",
+      "ch07_context"
+    ],
+    "cwd": "/private/tmp/rein-ch07-followthrough/rein-ch07",
+    "start": "2026-09-14T15:24:05.302231+00:00",
+    "end": "2026-09-14T15:24:06.574515+00:00",
+    "exit": 0,
+    "file": "rust-cli.json",
+    "cases": [
+      {
+        "id": "unmanaged-overflow",
+        "reason": "model_error",
+        "requests": 1
+      },
+      {
+        "id": "managed-window",
+        "reason": "final_answer",
+        "requests": 1
+      },
+      {
+        "id": "required-overflow",
+        "reason": "context_budget_exhausted",
+        "requests": 0
+      },
+      {
+        "id": "multi-tool-boundary",
+        "reason": "final_answer",
+        "requests": 1
+      },
+      {
+        "id": "invalid-orphan",
+        "reason": "invalid_context_history",
+        "requests": 0
+      },
+      {
+        "id": "invalid-missing",
+        "reason": "invalid_context_history",
+        "requests": 0
+      },
+      {
+        "id": "unicode-content",
+        "reason": "final_answer",
+        "requests": 1
+      }
+    ]
+  }
+]

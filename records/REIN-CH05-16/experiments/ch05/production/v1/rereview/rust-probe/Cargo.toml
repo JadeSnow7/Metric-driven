@@ -1,0 +1,12 @@
+[package]
+name="production-rereview-one"
+version="0.1.0"
+edition="2021"
+[dependencies]
+rein-ch01-helloworld={path="/private/tmp/rein-production-20260914/rust"}
+serde_json="1"
+tokio={version="1",features=["macros","rt-multi-thread"]}
+
+[[bin]]
+name="exhausted"
+path="src/exhausted.rs"

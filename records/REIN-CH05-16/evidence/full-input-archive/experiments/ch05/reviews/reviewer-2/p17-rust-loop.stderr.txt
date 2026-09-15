@@ -1,0 +1,6 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)
+     Running unittests src/bin/ch05_loop.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/debug/deps/ch05_loop-d17bb14cafdc38ad)
+     Running unittests src/bin/hello.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/debug/deps/hello-e891c8ec077baf1a)
+     Running unittests src/main.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/debug/deps/rein_ch01_helloworld-99d76be240253315)
+     Running tests/prerequisites.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/debug/deps/prerequisites-7d18e22f535783fc)

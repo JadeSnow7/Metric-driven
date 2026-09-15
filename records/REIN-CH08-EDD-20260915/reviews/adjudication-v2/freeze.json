@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-15T05:37:52.600405+00:00",
+  "hashes": {
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf"
+  },
+  "frozen_path": "/private/tmp/rein-ch08-adjudication-frozen",
+  "root_verification": "2 bundled tests plus 6 independent recorded root cases; hand-computed tool-only-source estimate171 and changed value174. Wrong estimate/timeout/stale source/wrong quality rejected at expected IDs; correct changed value quality0 accepted.",
+  "limitation": "supplements two proven frozen evaluator mismatches; original scores/raw remain unchanged; does not prove algorithm/real process/tutorial correctness"
+}

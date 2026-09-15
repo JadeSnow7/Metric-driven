@@ -1,0 +1,13 @@
+[
+  {"artifact":"Slate","axis":"正文复现","requirement":"正文三项练习实际执行","status":"pass","evidence":"output/followup/Slate/checks/practice1/run.json; practice2/run.json; practice3/run.json","detail":"事实改写为 Unix socket、zero budget、retrieval query 改写均实际运行并保留最终 JSON。"},
+  {"artifact":"Slate","axis":"正文复现","requirement":"README真实入口","status":"pass","evidence":"output/followup/Slate/checks/readme/run.json","detail":"正文 README 指定的 run.mjs 实际通过。"},
+  {"artifact":"Slate","axis":"正文复现","requirement":"链接检查","status":"pass","evidence":"output/followup/Slate/checks/links/run.json","detail":"2197 checked，0 failures。"},
+  {"artifact":"Slate","axis":"功能/回归","requirement":"路径越界/重复元数据/提权网络测试","status":"unverified","evidence":"output/followup/Slate/checks/path-escape-2/run.json; output/followup/Slate/checks/duplicate-doc-id-2; output/followup/Slate/checks/network-*","detail":"路径越界退出2；重复 doc ID 与网络测试因 ENOSPC 无完整保存；提权调用未被权限拒绝而是资源耗尽。"},
+  {"artifact":"Larch","axis":"正文复现","requirement":"README真实入口","status":"pass","evidence":"output/followup/Larch/checks/readme-correct-root/run.json; output/followup/Larch/checks/readme/run.json","detail":"外层PWD展开偏差的旧记录保留；使用产品根绝对路径复跑后实际通过。"},
+  {"artifact":"Larch","axis":"正文复现","requirement":"正文练习与链接检查","status":"unverified","evidence":"output/followup/Larch/checks/practice2/run.json; practice3/run.json; links/run.json","detail":"zero、query改写和链接检查成功；事实改写练习因ENOSPC无run记录。链接2198 checked、0 failures。"},
+  {"artifact":"Larch","axis":"功能/回归","requirement":"hybrid normal/cancel/crash","status":"pass","evidence":"output/followup/Larch/checks/hybrid-normal/run.json; hybrid-cancel/run.json; hybrid-crash/run.json","detail":"normal成功；cancel/crash真实退出1并输出answer null事件。"},
+  {"artifact":"Quartz","axis":"正文复现","requirement":"正文三项练习与README真实入口","status":"pass","evidence":"output/followup/Quartz/checks/practice1/run.json; practice2/run.json; practice3-2/run.json; readme-2/run.json","detail":"三项练习与 entry.mjs 均实际运行成功。"},
+  {"artifact":"Quartz","axis":"正文复现","requirement":"链接检查","status":"pass","evidence":"output/followup/Quartz/checks/links-2/run.json","detail":"2198 checked，0 failures。"},
+  {"artifact":"Quartz","axis":"功能/回归","requirement":"hybrid normal/cancel/crash","status":"pass","evidence":"output/followup/Quartz/checks/hybrid-normal-2/run.json; hybrid-cancel-2/run.json; hybrid-crash-2/run.json","detail":"normal成功；cancel/crash真实退出1并输出answer null事件。"},
+  {"artifact":"Quartz","axis":"功能/回归","requirement":"重复元数据/路径越界/提权网络测试","status":"unverified","evidence":"output/followup/Quartz/checks","detail":"因磁盘耗尽未形成完整 run_check 记录；不是产品通过或失败。"}
+]

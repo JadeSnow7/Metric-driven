@@ -1,0 +1,1 @@
+{"unit":"estimated-bytes-v1","rows":16,"filteredRows":4,"checks":["default","filter","mutation","zero-budget","cli","metadata","example","rust-contract-tests"]}

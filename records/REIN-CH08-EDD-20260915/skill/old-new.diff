@@ -1,0 +1,221 @@
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/SKILL.md records/REIN-CH08-EDD-20260915/skill/new/SKILL.md
+--- records/REIN-CH08-EDD-20260915/skill/old/SKILL.md	2026-09-14 16:54:07
++++ records/REIN-CH08-EDD-20260915/skill/new/SKILL.md	2026-09-15 11:43:26
+@@ -65,7 +65,7 @@
+ - 没有子代理时自己完成，并如实说明“未经独立审查”。自己的第二遍阅读不算独立审查。
+ - 每个已经划分的子任务完成后立即汇报进度；主线程自做的子任务也适用。汇报写明结果、实际产物路径、验证状态与证据、文档同步状态和下一依赖。未核查的产物只能报告为“完成待审查”，不能假验收。
+ - 主线程核查子任务回报后，在当次进度更新中告知用户，并更新已有摘要或状态记录；不要积攒到全部子任务结束。进度汇报是工作状态，不自动提交、创建会话或扩大授权。
+-- 行为、接口、命令、配置、路径、章节约定或实现状态变化时，在同一子任务内同步受影响文档和示例；共享文档由指定所有者或主线程串行更新。未同步的相关文档属于未完成项，不能声称子任务完成。
++- 源码、正文、验证和封存可由不同 owner 分阶段完成；交接列出未同步依赖，整体交付在正文或验证未同步时仍未完成。共享文档由指定所有者或主线程串行更新。
+ 
+ ## 3. L1 / L2 的主线
+ 
+@@ -75,9 +75,11 @@
+ 2. **再定验收指标。** 每项写明基线、目标或门槛、测量方法、环境与数据、证据位置。没有依据时用可复现的定性门槛，不编百分比；不知道基线就先测基线。
+ 3. **需求变化先停下来。** 出现新行为、接口语义、验收或范围变化时，先更新主任务并说明影响，再继续实现。
+ 4. **探索要有边界。** 只有写清要验证的假设、预算和退出条件时才探索；产出是“降低了哪项不确定性”，不是产品完成。假设不成立就停止，保留失败证据，然后回退、缩小范围或重新决策。
+-5. **CI 是执行器，不是结论。** 让 CI 调用仓库里真实的检查；本地提交门槛不依赖尚未运行的远程 CI。流水线通过后仍要核验关键行为；未经明确授权不创建生产发布。
+-6. **交付前按顺序核对：** 需求已就绪 → 主任务边界和依赖成立 → 指标可以判定 → 起点和改动归属清楚 → 改动可追踪 → 本地门槛与端到端验收通过 → 当前授权允许下一步动作。
++5. **CI 是执行器，不是结论。** 让 CI 调用仓库里真实的检查；本地提交门槛不依赖尚未运行的远程 CI。流水线通过后仍要核验关键行为；未经明确授权不创建生产发布。用 `scripts/record_execution.py` 保存实际 argv、cwd、起止时间、退出码、原始 stdout/stderr，以及源码、测试、fixture 哈希；失败、超时和空输出保留原状。
++6. **交付前按顺序核对：** 需求已就绪 → 主任务边界和依赖成立 → 指标可以判定 → 起点和改动归属清楚 → 改动可追踪 → 独立 `acceptance` gate 与端到端验收通过 → 当前授权允许下一步动作。`acceptance` 复用产品、证据、改动审查和整体验收检查，不要求 commit 授权；`local-commit` 复用它后再检查 commit 授权和重复提交。
+ 
++交接整合必须绑定来源 revision、目标 base、允许路径和明确文件清单。用 `scripts/integrate_boundary.py` 做逐文件检查；来源/目标漂移、越界路径、缺失来源或冲突都失败并保留目标现状。该工具实际强制版本和路径检查；交接说明、评审和不覆盖约定仍需代理遵守。
++
+ L2 在开始、完成、阻塞、重大变更、交接、关键实验和暂停时更新 `task-summary.md` 并追加工作日志；子任务完成也要即时更新进度。摘要只写当前真相，项目知识只收录已核验的内容。
+ 
+ 记录是为下一次接手服务的，不求齐全：接手的人应该几分钟内就能读懂当前状态。同一内容不要在多个文件里重复，证据目录只放原始输出。还有待用户确认的决定时，把“已交付”和“待确认”分开记：推断出来的默认决定保持 `proposed`，任务整体不要标为 `completed`。
+@@ -96,6 +98,6 @@
+ 
+ ## 4. 文档写作与最终汇报
+ 
+-需要写给人看的教程、README、设计/接口说明、摘要或交付报告时，先分析文章类型、读者、用途和阅读方式，再按文档目的安排内容。教程的场景、问题、机制和实践组织只在适合的教学内容中使用，不推广为所有文稿的共同骨架；不套固定标题或流程。详细写作规则见 [references/writing.md](references/writing.md)。
++需要写给人看的教程、README、设计/接口说明、摘要或交付报告时，先分析文章类型、读者、用途和阅读方式；教程或正文任务开始前读取 [references/writing.md](references/writing.md)。再按文档目的安排内容。教程的场景、问题、机制和实践组织只在适合的教学内容中使用，不推广为所有文稿的共同骨架；不套固定标题或流程。
+ 
+ 停下来提问或报告进度时不套完整交付报告流程。简单任务直接在最终回复中报告；已有 `task-summary.md` 时复用并更新；复杂任务提供简明摘要并链接详细记录和原始证据。保留影响使用或判断的行为变化、失败或未运行的检查及需要用户决定的事项；通过、失败、无法判定和未运行要分开。内部编号、档位、权限字段和完整日志按需要留在记录中，重复事实只保留一处，空项省略。报告给出可直接复跑的检查命令，并说明目标之外的行为变化；复跑命令默认只读，有副作用的命令单独标明。远程 CI 未实际运行时写“未核实”；只有实际运行了对应本地检查，才可称为“本地等价检查”。最终由主线程审查实际 diff、证据、跨任务术语和文档一致性，再按读者任务汇总一份报告，不粘贴子代理日志。
+Only in records/REIN-CH08-EDD-20260915/skill/old: freeze-notes.md
+Only in records/REIN-CH08-EDD-20260915/skill/old: metadata-sha256.txt
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/references/delegation-and-handoffs.md records/REIN-CH08-EDD-20260915/skill/new/references/delegation-and-handoffs.md
+--- records/REIN-CH08-EDD-20260915/skill/old/references/delegation-and-handoffs.md	2026-09-14 16:48:38
++++ records/REIN-CH08-EDD-20260915/skill/new/references/delegation-and-handoffs.md	2026-09-15 11:43:26
+@@ -9,7 +9,7 @@
+ ## 写入所有权
+ 
+ - 一个文件同一时间只有一个写入所有者；共享状态文件由主线程维护。
+-- 子代理修改前获得明确的文件范围与基线。
++- 子代理修改前获得明确的文件范围与基线；源码、正文、验证和封存可以由不同 owner 分阶段完成，交接列出尚未同步的依赖。整体交付在正文或验证未同步时仍未完成，不要求每个源码 coder 同时承担全部教材和归档工作。
+ - 需要改共享接口时先向主线程提交建议，主线程更新约定后再分派。
+ - 代理完成后，主线程检查实际 diff、证据和接口影响；代理自报状态只作为线索。
+ 
+@@ -31,6 +31,10 @@
+ 8. 下一步、停止条件和相关路径。
+ 
+ 使用 `assets/templates/handoff.md`。交接包是上下文边界，不是完整历史转储；已在当前摘要或证据中的内容直接引用路径，不要复制。
++
++交接必须写明来源 revision、目标 base、可写路径和逐文件出口。整合前使用 `scripts/integrate_boundary.py` 校验并逐文件复制；路径越界、版本漂移、来源缺失和冲突应失败且不覆盖目标。工具强制的是这些可计算条件，评审结论和交接纪律仍由代理负责。
++
++最小调用示例：`python3 scripts/integrate_boundary.py --source-root /tmp/source --target-root /tmp/target --manifest manifest.json --source-revision REV --target-base BASE --allowed-path src`。manifest 必须包含 `source_root`、`target_root` 和 `files`；每个文件项必须包含 `source`、`source_sha256`、`target_sha256`。
+ 
+ ## 写作文档的附加信息
+ 
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/references/metrics-and-evidence.md records/REIN-CH08-EDD-20260915/skill/new/references/metrics-and-evidence.md
+--- records/REIN-CH08-EDD-20260915/skill/old/references/metrics-and-evidence.md	2026-09-13 17:47:48
++++ records/REIN-CH08-EDD-20260915/skill/new/references/metrics-and-evidence.md	2026-09-15 11:43:33
+@@ -100,3 +100,6 @@
+ 输出为 JSON。退出码 `0` 表示没有错误（可能有警告），`1` 表示记录或门槛错误，`2` 表示运行错误（例如 `--repo` 不是 Git 根目录或状态文件无法读取）。
+ 
+ 机器门槛失败时保留具体错误。不得通过删除指标、改状态或修改测试来迎合脚本；只有真实需求变化可经来源和决策记录调整门槛。
++# Actual execution records
++
++For command evidence, run `python3 scripts/record_execution.py --output records/TASK/evidence/run.json --cwd . --source src/app.py --test tests/test_app.py --fixture tests/fixtures/input.json -- python3 -m unittest tests.test_app`. The record stores the exact argv, cwd, timestamps, exit code, raw output and input hashes; an empty stdout is valid unless `--require-stdout` is supplied.
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/references/writing.md records/REIN-CH08-EDD-20260915/skill/new/references/writing.md
+--- records/REIN-CH08-EDD-20260915/skill/old/references/writing.md	2026-09-14 16:54:07
++++ records/REIN-CH08-EDD-20260915/skill/new/references/writing.md	2026-09-15 11:19:10
+@@ -39,3 +39,5 @@
+ 本 skill 的语言参考来自用户提供的 Agent-Learning 教程书手工稿：本次参考样本是 `/Users/huaodong/workspace/Agent-Learning/docs/chapters/04.md` 的 1–18 行与 `03.md` 的 1–47 行，旧的 `01.md`、`02.md` 仅作简短补充来源。它们作为来源说明，使用本 skill 无需访问这些路径。仅在适合的教学内容中借鉴其中承接前章、使用“我们/你”、安排实验并从观察引向理解的手法：ch04 先交代前三章使用 OpenAI 兼容 API，再解释中间层请求体，最后用将来时引出客户端与流式目标；ch03 从读代码工具场景和小实验出发，由观察推到 Harness，再落到具体文件与 `read_file`。这些教程手法不适用于所有文稿；样本中的未完段落、笔误、占位和技术论断不自动成为规则或事实。作者风格判断与事实核验分开，不刻意模仿口头禅，不制定机械禁词表，也不以 AI 检测分数验收。
+ 
+ 总阅读负担包含报告本身、链接后要求阅读的说明和必读记录；不能把重复内容搬进链接文件来掩盖负担。
++
++教程正文交付前，从最终 Markdown 提取关键命令并实际执行，核对参数、文件、输出和独立练习；用 `scripts/record_execution.py` 保存原始执行证据。若同类缺陷在返修再次出现，先复查任务合同、验收方法和拆分边界，再实施下一轮修复。代码、正文和封存可以分阶段完成，但正文未同步时整体交付仍未完成。
+Only in records/REIN-CH08-EDD-20260915/skill/new/scripts: integrate_boundary.py
+Only in records/REIN-CH08-EDD-20260915/skill/new/scripts: record_execution.py
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/scripts/validate_task.py records/REIN-CH08-EDD-20260915/skill/new/scripts/validate_task.py
+--- records/REIN-CH08-EDD-20260915/skill/old/scripts/validate_task.py	2026-09-13 17:47:51
++++ records/REIN-CH08-EDD-20260915/skill/new/scripts/validate_task.py	2026-09-15 11:39:36
+@@ -118,7 +118,7 @@
+     "merge",
+     "deploy",
+ )
+-GATES = ("record", "implementation", "local-commit", "push", "merge", "deploy")
++GATES = ("record", "implementation", "acceptance", "local-commit", "push", "merge", "deploy")
+ 
+ # Record files that live beside a task-state.json in records/<TASK-ID>/. They are
+ # excluded from behavioral fingerprints so saving status or evidence does not
+@@ -636,7 +636,7 @@
+             add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
+ 
+     evidence_directory = record_directory(repo, manifest)
+-    hash_bucket = errors if gate_reaches(gate, "local-commit") else warnings
++    hash_bucket = errors if gate in {"acceptance", "local-commit", "push", "merge", "deploy"} else warnings
+     for evidence_id, item in evidence.items():
+         require_fields(item, ("path", "kind", "supports", "revision", "status", "result", "observed_at"), evidence_id, errors)
+         require_refs(f"{evidence_id}.supports", item.get("supports", []), metrics, errors, "CROSSREF_METRIC")
+@@ -668,6 +668,38 @@
+                         f"{evidence_id} is outside {evidence_directory}/{EVIDENCE_DIRECTORY}/, so it is part of the "
+                         "revision fingerprint and adding or editing it invalidates other evidence",
+                     )
++            if item.get("kind") == "execution" and path is not None and path.is_file():
++                try:
++                    execution = json.loads(path.read_text(encoding="utf-8"))
++                except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
++                    add_issue(errors, "EXECUTION_RECORD_INVALID", f"{evidence_id} execution record is unreadable: {exc}")
++                else:
++                    required = ("argv", "cwd", "started_at", "ended_at", "exit_code", "timed_out", "stdout", "stderr")
++                    for field in required:
++                        if field not in execution:
++                            add_issue(errors, "EXECUTION_RECORD_FIELD", f"{evidence_id} missing execution field {field}")
++                    if execution.get("timed_out") and execution.get("result") != "timeout":
++                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} timeout does not have result=timeout")
++                    if execution.get("exit_code") == 0 and execution.get("result") != "passed":
++                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} exit_code 0 does not have result=passed")
++                    if isinstance(execution.get("exit_code"), int) and execution.get("exit_code") != 0 and not execution.get("timed_out") and execution.get("result") == "passed":
++                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} failed command is marked passed")
++                    if item.get("result") == "passed" and (execution.get("exit_code") != 0 or execution.get("timed_out") or execution.get("result") != "passed"):
++                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} outer passed result disagrees with actual execution")
++                    if execution.get("stdout_required") and not execution.get("stdout_present"):
++                        add_issue(errors, "EXECUTION_OUTPUT_MISSING", f"{evidence_id} requires stdout but captured none")
++                    for input_path, input_meta in as_dict(execution.get("inputs")).items():
++                        candidate = Path(input_path)
++                        if not candidate.is_absolute():
++                            candidate = Path(execution.get("cwd", "")) / candidate
++                        try:
++                            checked = candidate.resolve().relative_to(repo).as_posix()
++                        except (OSError, ValueError):
++                            checked = None
++                        checked_path = repo / checked if checked is not None else None
++                        expected = as_dict(input_meta).get("sha256")
++                        if checked_path is None or not checked_path.is_file() or not isinstance(expected, str) or sha256_file(checked_path) != expected:
++                            add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale or outside repository: {input_path}")
+         if not is_one_of(item.get("status"), EVIDENCE_STATES):
+             add_issue(errors, "EVIDENCE_STATUS", f"{evidence_id} has invalid status")
+         if not is_one_of(item.get("result"), VERIFY_STATES):
+@@ -889,6 +921,12 @@
+         item = evidence.get(evidence_id, {})
+         if item.get("status") != "current" or item.get("revision") != revision or item.get("result") != "passed":
+             add_issue(errors, "OVERALL_EVIDENCE_NOT_CURRENT", f"overall evidence {evidence_id} is not current and passed")
++    # Acceptance is deliberately independent of commit authorization.  The
++    # local-commit gate reuses these product/review checks and adds the side
++    # effect authorization below.
++    if gate == "acceptance":
++        return revision
++
+     if authorization_status(state, "commit") != "authorized":
+         add_issue(errors, "AUTH_COMMIT", "commit is not authorized")
+ 
+Only in records/REIN-CH08-EDD-20260915/skill/old: status-skill.txt
+Only in records/REIN-CH08-EDD-20260915/skill/new/tests: __pycache__
+diff -ru --exclude=source-sha256.txt --exclude=copy-sha256.txt --exclude=hash-check.txt --exclude=HEAD --exclude=*.patch records/REIN-CH08-EDD-20260915/skill/old/tests/test_scenarios.py records/REIN-CH08-EDD-20260915/skill/new/tests/test_scenarios.py
+--- records/REIN-CH08-EDD-20260915/skill/old/tests/test_scenarios.py	2026-09-13 17:47:52
++++ records/REIN-CH08-EDD-20260915/skill/new/tests/test_scenarios.py	2026-09-15 11:39:54
+@@ -13,6 +13,7 @@
+ 
+ SKILL_ROOT = Path(__file__).resolve().parents[1]
+ VALIDATOR = SKILL_ROOT / "scripts/validate_task.py"
++RECORDER = SKILL_ROOT / "scripts/record_execution.py"
+ TEMPLATE = SKILL_ROOT / "assets/templates/task-state.example.json"
+ RECORD_DIR = "records/TASK-001"
+ 
+@@ -198,6 +199,53 @@
+     @staticmethod
+     def warning_codes(result: dict[str, Any]) -> set[str]:
+         return {item["code"] for item in result["warnings"]}
++
++    def test_acceptance_gate_does_not_require_commit_authorization(self) -> None:
++        self.repo.make_completed()
++        self.repo.state["authorization"]["commit"] = {"status": "not_authorized", "source_id": "SRC-001"}
++        self.repo.write_state()
++        acceptance_process, acceptance = self.repo.validate("acceptance")
++        self.assertEqual(acceptance_process.returncode, 0, acceptance)
++        commit_process, commit = self.repo.validate("local-commit")
++        self.assertNotEqual(commit_process.returncode, 0)
++        self.assertIn("AUTH_COMMIT", self.codes(commit))
++
++    def test_execution_failure_cannot_be_claimed_passed_by_outer_record(self) -> None:
++        self.repo.make_completed()
++        evidence = self.repo.state["evidence"][0]
++        path = self.repo.root / evidence["path"]
++        path.write_text(json.dumps({"argv": ["false"], "cwd": str(self.repo.root), "started_at": "2026-01-01T01:00:00Z", "ended_at": "2026-01-01T01:00:01Z", "exit_code": 3, "timed_out": False, "stdout": "", "stderr": "boom", "result": "failed"}), encoding="utf-8")
++        evidence["kind"] = "execution"
++        evidence["sha256"] = sha256_file(path)
++        self.repo.write_state()
++        process, result = self.repo.validate("acceptance")
++        self.assertNotEqual(process.returncode, 0, result)
++        self.assertIn("EXECUTION_RESULT_MISMATCH", self.codes(result))
++
++    def test_real_execution_record_with_absolute_input_passes_then_stales(self) -> None:
++        self.repo.make_completed()
++        output = self.repo.root / f"{RECORD_DIR}/evidence/real-execution.json"
++        source = self.repo.root / "app.txt"
++        run = subprocess.run([sys.executable, str(RECORDER), "--output", str(output), "--source", str(source), "--", sys.executable, "-c", "print('ok')"], cwd=self.repo.root, capture_output=True, text=True)
++        self.assertEqual(run.returncode, 0, run.stderr)
++        self.repo.state["evidence"] = []
++        item = self.repo.write_evidence("EVD-REAL", f"{RECORD_DIR}/evidence/real-execution.json", output.read_text(), ["MET-001", "MET-002"])
++        item["kind"] = "execution"
++        item["result"] = "passed"
++        self.repo.state["implementation_tasks"][0]["evidence_ids"] = ["EVD-REAL"]
++        for metric in self.repo.state["metrics"]:
++            metric["evidence_ids"] = ["EVD-REAL"]
++        self.repo.state["changes"][0]["evidence_ids"] = ["EVD-REAL"]
++        self.repo.state["overall_acceptance"]["evidence_ids"] = ["EVD-REAL"]
++        self.repo.state["overall_acceptance"]["status"] = "passed"
++        self.repo.state["changes"][0]["revision"] = "pending"
++        self.repo.bind_current_revision()
++        process, result = self.repo.validate("acceptance")
++        self.assertEqual(process.returncode, 0, result)
++        source.write_text("changed\n", encoding="utf-8")
++        process, result = self.repo.validate("acceptance")
++        self.assertNotEqual(process.returncode, 0)
++        self.assertIn("EVIDENCE_STALE", self.codes(result))
+ 
+     # --- discovery, structure and baseline -------------------------------
+ 
+Only in records/REIN-CH08-EDD-20260915/skill/new/tests: test_tools.py

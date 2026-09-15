@@ -1,0 +1,65 @@
+{
+  "case": 6,
+  "title": "旧证据失效后的修复交付",
+  "as_of": "第三轮运行结束时；不代表本轮重新执行",
+  "reader": "请求开发工作的项目维护者；复杂交接兼顾下一会话接手者",
+  "purpose": "理解当前结果、原因、依据、限制与下一步；case 2 为澄清回复",
+  "provenance_note": "raw/transcript.md.txt 为当时代理整理的执行轨迹，不是完整工具原始日志。git_state 为历史采集输出，repo/ 为保留产物。不要把导入的历史测试说成你刚执行的测试；可统一用“记录显示”说明来源，不必每句重复。用户当时的请求见 raw/eval_metadata.json；其中 commit 授权不适用于本轮执行。",
+  "facts": [
+    {
+      "id": "F01",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "旧摘要声称12项通过，却无原始输出和版本绑定；不能据此证明当前代码通过，也不能凭时间戳推断它验证了哪一版本。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F02",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "当时重新检查：12项中 test_remove_item_to_zero_deletes 失败，exit1；降到0留下apple:0。库存不足此前已抛错，remaining<0 删除分支不会触发。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F03",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "inventory.py 将 remaining<0 改为 remaining==0；本次恢复未修改既有测试内容。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F04",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "历史记录显示修后完整12项通过exit0，命令python3 -m unittest discover -s tests -t . -v；手动检查剩1保留、归0删除、再入库以及不足/未知商品/数量0或-1异常且库存不变。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F05",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "未知商品和非正数量沿用ValueError；这两类只做手动检查，没有单元覆盖；未经独立审查。",
+      "source": "raw/final_reply.md.txt"
+    },
+    {
+      "id": "F06",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "历史本地提交b7a79dc包含inventory.py及tests/test_inventory.py；记录称提交内容与被测内容一致。未推送，origin/main停在de14e0b。",
+      "source": "raw/git_state.md.txt"
+    },
+    {
+      "id": "F07",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "已有TASK-008摘要已改为verified、旧证据stale；摘要仍未跟踪、未纳入提交。需要复用更新摘要并供审阅，而不是重复提交或建议无必要的回退。",
+      "source": "raw/records_snapshot.md.txt"
+    }
+  ],
+  "optional_context": [],
+  "output_contract": {
+    "final_reply.md": "给用户的本次交付回复；只写报告，不执行任务",
+    "task-summary.md": "case 6、10 已有摘要，更新这份；case 1、2 不新建",
+    "handoff.md": "仅 case 10 需要且摘要仍不足以接手时生成，可省略；缺失的详细状态用现有证据链接，不复制日志"
+  }
+}

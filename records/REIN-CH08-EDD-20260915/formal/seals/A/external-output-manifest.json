@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-09-15T04:38:08.781404+00:00",
+  "observed_explicit_paths": [
+    "/tmp/ch08-rust-check.err",
+    "/tmp/ch08-rust-check.out"
+  ],
+  "files": [
+    {
+      "original_path": "/tmp/ch08-rust-check.err",
+      "saved_as": "0-ch08-rust-check.err",
+      "sha256": "b09c1df92f8af165b55bfd3b378a9f47cb05b28a2178de1402c048265b7d8843",
+      "bytes": 571
+    },
+    {
+      "original_path": "/tmp/ch08-rust-check.out",
+      "saved_as": "1-ch08-rust-check.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "limitation": "A used some shared /tmp/ch08-* paths; these external logs were copied before B launch. Scoped working directories are not strict OS isolation."
+}

@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/README-v1.md",
+      "relativepath": "README-v1.md",
+      "sha256": "cea3ba4f9fa85f85ba692e4b3f5dee622f574c2bebbe5b75a7bf3ab9d3b46e1e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/README-v2-validation.json",
+      "relativepath": "README-v2-validation.json",
+      "sha256": "f4215f34bbfd59ba690bf6d2905b917d293de0bebe04b0c58b2f4117f5c67c7e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/README-v3-validation.json",
+      "relativepath": "README-v3-validation.json",
+      "sha256": "acc09c0333d2a319a525c6d58c81acb82675d6f56890196ac32e1e554cfa8f91",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/npm-ci.json",
+      "relativepath": "npm-ci.json",
+      "sha256": "378d7d3e1b1922b1ff71f87b1f320663491483bd5416cb13dfa924105d86b356",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/npm-test.json",
+      "relativepath": "npm-test.json",
+      "sha256": "50e5e236615ffc1f6402778312c1d022e0f16718de62f159234d8274dd3b230c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/rust-cli-parsed.json",
+      "relativepath": "rust-cli-parsed.json",
+      "sha256": "b00005ef8c359deafc2a4ad748bbb9b70990e6d847941290d0d9ca56fec73f43",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/rust-cli.json",
+      "relativepath": "rust-cli.json",
+      "sha256": "9b8df2eacb0fad8d22eb8d3c2986e21b43357692de18c58a9314110c1c1b50d2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/ts-cli-parsed.json",
+      "relativepath": "ts-cli-parsed.json",
+      "sha256": "b00005ef8c359deafc2a4ad748bbb9b70990e6d847941290d0d9ca56fec73f43",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-followthrough-evidence/ts-cli.json",
+      "relativepath": "ts-cli.json",
+      "sha256": "3f07e082886d34c3a42f38365fa42c7dcaf0178a2d408b696e1e9a93635e4555",
+      "mode": "0o644"
+    }
+  ],
+  "missing": []
+}

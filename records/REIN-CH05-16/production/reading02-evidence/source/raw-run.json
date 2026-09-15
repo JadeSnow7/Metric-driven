@@ -1,0 +1,66 @@
+{
+  "script": "/private/tmp/rein-reading02-record.sh",
+  "book_root": "/private/tmp/rein-production-candidate-03",
+  "steps": [
+    {
+      "name": "extract-ch05",
+      "argv": "tar -xzf /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.tar.gz -C /private/tmp/rein-reading02-run.qTOIVK/ch05",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "extract-pre",
+      "argv": "tar -xzf /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-pre-ch05.tar.gz -C /private/tmp/rein-reading02-run.qTOIVK/pre",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "hash-check",
+      "argv": "bash -c expected=\"$(node -e 'const fs=require(\"fs\"); const m=JSON.parse(fs.readFileSync(process.argv[1], \"utf8\")); console.log(m.files.find(f => f.path === \"docs/chapters/05.md\").sha256)' \"$1\")\"; actual=\"$(shasum -a 256 \"$2\" | awk '{print $1}')\"; test \"$expected\" = \"$actual\"; printf 'expected=%s\\nactual=%s\\n' \"$expected\" \"$actual\" _ /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.manifest.json /private/tmp/rein-reading02-run.qTOIVK/ch05/rein-ch05/docs/chapters/05.md",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "expected=16bb9258c31ce754ab119ee35d1e8f360ba8bcddc84f24d53756f6fcc5efea6a\nactual=16bb9258c31ce754ab119ee35d1e8f360ba8bcddc84f24d53756f6fcc5efea6a\n",
+      "stderr": ""
+    },
+    {
+      "name": "git-init",
+      "argv": "git init -q",
+      "cwd": "/private/tmp/rein-reading02-run.qTOIVK/pre/rein-pre-ch05",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "git-apply",
+      "argv": "git apply --binary -- /private/tmp/rein-production-candidate-03/chapter-snapshots/pre-ch05-to-ch05.patch",
+      "cwd": "/private/tmp/rein-reading02-run.qTOIVK/pre/rein-pre-ch05",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "result-check",
+      "argv": "bash -c test -f docs/chapters/05.md; test -f docs/chapters/05-rust.md; shasum -a 256 docs/chapters/05.md docs/chapters/05-rust.md",
+      "cwd": "/private/tmp/rein-reading02-run.qTOIVK/pre/rein-pre-ch05",
+      "start": "2026-09-14T13:26:53Z",
+      "end": "2026-09-14T13:26:53Z",
+      "exit": 0,
+      "stdout": "16bb9258c31ce754ab119ee35d1e8f360ba8bcddc84f24d53756f6fcc5efea6a  docs/chapters/05.md\nc444825584aec7f6869baea9b6132d12424530011cdc59984d17160cc5e4e9fc  docs/chapters/05-rust.md\n",
+      "stderr": ""
+    }
+  ]
+}

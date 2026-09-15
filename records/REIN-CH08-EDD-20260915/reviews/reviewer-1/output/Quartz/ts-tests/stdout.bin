@@ -1,0 +1,33 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch08-review-1/products/Quartz/ts
+
+ ✓ tests/chat.test.ts (17 tests) 4ms
+ ✓ tests/config.test.ts (13 tests) 6ms
+ ✓ tests/recorded.test.ts (3 tests) 9ms
+ ❯ tests/transport.test.ts (8 tests | 5 failed) 20ms
+   × createFetchTransport > 原样搬运状态码、状态文本与响应体，不解释内容 10ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 把请求体送到服务端 2ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 连接不上时抛 NetworkError，消息里带上 URL 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 服务端不响应时抛 TimeoutError，消息里带上超时值 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 响应头已到但响应体悬挂时也抛 TimeoutError 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+ ✓ tests/ch07-context.test.ts (8 tests) 22ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 29ms
+ ✓ tests/hello.test.ts (18 tests) 36ms
+ ✓ tests/loop.test.ts (16 tests) 148ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/hybrid-host.test.ts (4 tests) 344ms
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  5 failed | 95 passed (100)
+   Start at  13:10:55
+   Duration  599ms (transform 342ms, setup 0ms, collect 662ms, tests 619ms, environment 1ms, prepare 565ms)
+

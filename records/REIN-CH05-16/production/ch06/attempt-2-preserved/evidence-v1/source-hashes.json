@@ -1,0 +1,14 @@
+{
+  "ts/src/rein/contracts.ts": "541936da3959f8cbdb9e5d60a87b6f9e312a8b171deb24dd9bf9f80884dae3fa",
+  "ts/src/rein/loop.ts": "640a4157c94aec2e07c5582e84413f18696a79960f8f5ff47ee7d8f9c6a64a05",
+  "ts/tests/loop.test.ts": "b8765f491e986181ad3710fc5c449838e2b858bcd0457fca4d1e8e0a035a2f6c",
+  "ts/examples/ch06-loop.ts": "a4a2b25b493a3a48586fa2456f082449c03b1455bf6155114802aa2efbe12b02",
+  "rust/src/rein/loop.rs": "cefb78cfb43c33d07cc43764ee568f012cf62f473812a8e80b12b19d09ec666b",
+  "rust/src/rein/mod.rs": "7a694b37661fff177437d7fef95369b0a96b31d80179488c9b65e5c5410bf142",
+  "rust/tests/loop.rs": "c726ada02beae55c70b9ec4c9b9d2aafca613f73ce097b2c404753c929cb28cf",
+  "rust/examples/ch05_loop.rs": "ff0c728431d0676a59518edad27132a3b650118a6671332f93eb221d3b210d51",
+  "rust/examples/ch05_compare.rs": "8cded707017cd233f1ea649f104013cbd35c0707155f00cb0c3e277432bceb00",
+  "rust/examples/ch06_loop.rs": "a68a3925a383a7ce46bb6e132ff1ed1c1412c8a54734aa70bf5cf71404b6c4af",
+  "docs/chapters/06.md": "f034813b08e602451af84f197695acae35b97fe706ae4bff329b86341f7f7f6a",
+  "docs/chapters/06-rust.md": "9e66e1078d0fd47d75ac12d360c57aed55ab60d1376cfdc993d30ea9e4d6ba4c"
+}

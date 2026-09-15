@@ -1,0 +1,27 @@
+[
+  {"artifact":"Slate","axis":"完整性","requirement":"完整正文、Rust实现、独立入口、导航锚点","status":"pass","evidence":"products/Slate/docs/chapters/08.md:1-69; products/Slate/rust/src/rein/context_methods.rs; products/Slate/rust/examples/ch08_context.rs; products/Slate/docs/toc.md:114-116","detail":"静态存在性核对通过；运行证据见 output/Slate/checks/example-final/run.json。"},
+  {"artifact":"Slate","axis":"完整性","requirement":"冻结 evaluator","status":"fail","evidence":"output/Slate/checks/evaluator-final/run.json","detail":"有效 evaluator 失败 CHECK_CLAIM_GROUNDED。"},
+  {"artifact":"Slate","axis":"功能/回归","requirement":"ch08 16行、zero、verify、05/06/07、typecheck、fmt、docs build","status":"pass","evidence":"output/Slate/checks/ch08-compare-final/run.json; ch08-zero-final/run.json; ch08-verify-final/run.json; ch05-final/run.json; ch06-final/run.json; ch07-final/run.json; typecheck/run.json; fmt/run.json; docs-build-final/run.json","detail":"这些命令实际退出0。"},
+  {"artifact":"Slate","axis":"功能/回归","requirement":"未知题质量与证据按实际结果","status":"fail","evidence":"products/Slate/rust/src/rein/context_methods.rs:364-366","detail":"task-04 quality 硬编码为1.0。"},
+  {"artifact":"Slate","axis":"功能/回归","requirement":"Rust/TS全量测试","status":"unverified","evidence":"output/Slate/checks/cargo-test-2/run.json; output/Slate/checks/ts-test/run.json","detail":"Rust退出101；TS 95/100，失败是沙箱localhost listen EPERM。"},
+  {"artifact":"Slate","axis":"架构","requirement":"Rust authority真实Node read_file与records","status":"pass","evidence":"products/Slate/rust/src/rein/context_methods.rs:305-319; output/Slate/checks/example-final/run.json","detail":"存在真实 executor 调用和 records。"},
+  {"artifact":"Slate","axis":"架构","requirement":"窗口最近完整段落suffix与错误终态","status":"fail","evidence":"products/Slate/rust/src/rein/context_methods.rs:342-349; output/Slate/checks/evaluator-final/run.json","detail":"裁剪按tool消息删除；evaluator claim-grounded失败。"},
+  {"artifact":"Slate","axis":"正文复现","requirement":"三项练习逐项实际执行、链接/GUI验收","status":"unverified","evidence":"products/Slate/docs/chapters/08.md:39-67","detail":"正文静态核对通过，但练习与链接检查未全部执行；未做浏览器GUI。"},
+
+  {"artifact":"Larch","axis":"完整性","requirement":"完整正文、Rust实现、独立入口、导航锚点","status":"fail","evidence":"products/Larch/docs/chapters/08.md:1-66; output/Larch/checks/example-2/run.json","detail":"正文和源码存在，但独立示例入口实际运行失败。"},
+  {"artifact":"Larch","axis":"完整性","requirement":"冻结 evaluator","status":"fail","evidence":"output/Larch/checks/evaluator-1/run.json","detail":"失败 CHECK_ESTIMATE。"},
+  {"artifact":"Larch","axis":"功能/回归","requirement":"ch08、zero、verify、05/06/07、typecheck、fmt/check、docs build","status":"pass","evidence":"output/Larch/checks/ch08-compare-1/run.json; ch08-zero-1/run.json; verify-2/run.json; ch05-2/run.json; ch06-2/run.json; ch07-2/run.json; typecheck-1/run.json; fmt-2/run.json; check-2/run.json; build-2/run.json","detail":"这些命令实际退出0。"},
+  {"artifact":"Larch","axis":"功能/回归","requirement":"缺文件/宿主失败返回error且不调用回答器","status":"fail","evidence":"products/Larch/rust/src/rein/context_methods.rs:240-271","detail":"读取失败break后仍构造completed、answer Some、model_calls 1。"},
+  {"artifact":"Larch","axis":"功能/回归","requirement":"Rust全量测试","status":"unverified","evidence":"output/Larch/checks/test-2/run.json","detail":"退出101，包含环境监听阻塞；未将其归因产品。"},
+  {"artifact":"Larch","axis":"架构","requirement":"Rust summary真实输入与来源前缀","status":"pass","evidence":"products/Larch/rust/src/rein/context_methods.rs:220-239","detail":"源码从读取输出提取事实行并加来源。"},
+  {"artifact":"Larch","axis":"架构","requirement":"预算/错误终态/公开混合入口","status":"fail","evidence":"output/Larch/checks/evaluator-1/run.json; output/Larch/checks/example-2/run.json","detail":"estimate失败且公开独立入口失败。"},
+  {"artifact":"Larch","axis":"正文复现","requirement":"三项练习逐项实际执行、链接/GUI验收","status":"unverified","evidence":"products/Larch/docs/chapters/08.md:38-64","detail":"正文静态核对和根命令已做；练习、链接、GUI未完整执行。"},
+
+  {"artifact":"Quartz","axis":"完整性","requirement":"完整正文、Rust实现、独立入口、导航锚点","status":"fail","evidence":"products/Quartz/docs/chapters/08.md:1-73; output/Quartz/checks/example-1/run.json","detail":"正文/源码/锚点存在，但独立入口实际失败。"},
+  {"artifact":"Quartz","axis":"完整性","requirement":"冻结 evaluator","status":"fail","evidence":"output/Quartz/checks/evaluator-1/run.json","detail":"失败 CHECK_ESTIMATE。"},
+  {"artifact":"Quartz","axis":"功能/回归","requirement":"ch08、zero、verify、05/06/07、typecheck、fmt/check、docs build","status":"pass","evidence":"output/Quartz/checks/compare-2/run.json; zero-2/run.json; verify-2/run.json; ch05-2/run.json; ch06-2/run.json; ch07-2/run.json; typecheck-1/run.json; fmt-2/run.json; check-1/run.json; build-1/run.json","detail":"这些命令实际退出0。"},
+  {"artifact":"Quartz","axis":"功能/回归","requirement":"Rust全量与hybrid异常矩阵","status":"unverified","evidence":"output/Quartz/checks","detail":"Rust全量/部分hybrid命令未形成完整有效记录；不能据此判通过。"},
+  {"artifact":"Quartz","axis":"架构","requirement":"窗口最近完整段落suffix","status":"fail","evidence":"products/Quartz/rust/src/rein/context_methods.rs:315-325","detail":"按assistant/tool消息对删除，不是最近完整段落suffix。"},
+  {"artifact":"Quartz","axis":"架构","requirement":"Rust authority、真实Node、预算与公开入口","status":"fail","evidence":"output/Quartz/checks/evaluator-1/run.json; output/Quartz/checks/example-1/run.json","detail":"estimate evaluator失败，独立混合入口失败。"},
+  {"artifact":"Quartz","axis":"正文复现","requirement":"三项练习逐项实际执行、链接/GUI验收","status":"unverified","evidence":"products/Quartz/docs/chapters/08.md:39-73","detail":"正文静态核对和根命令已做；练习、链接、GUI未完整执行。"}
+]

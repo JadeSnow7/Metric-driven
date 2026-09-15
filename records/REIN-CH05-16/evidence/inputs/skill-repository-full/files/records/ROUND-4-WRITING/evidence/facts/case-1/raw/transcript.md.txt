@@ -1,0 +1,15 @@
+# Transcript
+
+1. 读取 skill：`skill-iteration-3/SKILL.md`，判定为 L0（已定位的单一 bug、无外部副作用），未读 references/。
+2. 查看仓库状态：`git status`、`git log --oneline -10`、`git remote -v`、列文件 —— 基线提交 `1ff2daf`，工作区干净（含未跟踪文件检查 `git status --porcelain --untracked-files=all` 为空）。
+3. 阅读 `README.md`、`pricing.py`、`tests/test_pricing.py`、`config.py`、`.gitignore`；`grep -rn "apply_discount\|pricing\|round" . --exclude-dir=.git` 确认除测试外无调用方。
+4. 修改前跑测试：`python3 -m unittest discover -s tests -t . -v` → 9 个测试，`test_half_cent_rounds_up` 失败（0.12 != 0.13），exit=1。
+5. 小计算核实成因：`round(0.125, 2)` → 0.12（半数取偶）；`2.01*0.5` 精确值 1.00499999999999989… → `round` 得 1.0（浮点表示误差）；floor(x*100+0.5)/100 同样得 1.0；记录旧实现边界行为（inf→inf、nan→nan、1e30→5e29、-0.125→-0.12）。
+6. 试探朴素 Decimal 方案：发现 1e30、inf、最大 float 会抛 `InvalidOperation`（旧实现不抛）。
+7. 修改 `pricing.py`：非有限 price 保持原浮点结果；`localcontext(prec=400)` 下用 `Decimal(str(...))` 计算并 `quantize(0.01, ROUND_HALF_UP)`，返回 float。
+8. 修改 `tests/test_pricing.py`：新增 2.01×0.5=1.01、0.2498×0.5=0.12、1e30/inf 不抛异常 三个测试（原有测试未改）。
+9. 修改后跑测试：`python3 -m unittest discover -s tests -t . -v` → 12 个测试全部通过，exit=0。
+10. 边界探测：0.625×0.5→0.31、10,0→10.0(float)、-0.25×0.5→-0.13、nan→nan、inf×(1-1)→nan、最大 float→8.988e307、17 位小数输入→0.11；确认旧实现 `round(10*(1-0),2)` 返回 int。
+11. 反向验证：`python3 -B -c ...` 在内存中加载 `git show HEAD:pricing.py` 并运行新测试文件 → `test_half_cent_rounds_up` 与 `test_half_cent_rounds_up_when_float_is_slightly_below` 失败，其余通过。
+12. `git status --porcelain --untracked-files=all` 与 `git diff` 复核：仅 `pricing.py`、`tests/test_pricing.py` 被修改；未提交、未推送。
+13. 写入 `outputs/final_reply.md` 与 `outputs/transcript.md`。

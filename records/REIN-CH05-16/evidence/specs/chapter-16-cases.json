@@ -1,0 +1,20 @@
+{
+  "schema_version": "rein-ch16-cases-v1",
+  "oracle": {"kind":"semantic","equivalent_patches_allowed":true,"byte_identical_patch_required":false},
+  "fixture_root":"chapter-16",
+  "fixture_layout":"<fixture_root>/<id>/workspace contains the original input; <fixture_root>/<id>/expected.json contains the independent semantic oracle",
+  "cases": [
+    {"id":"expired-command-01","category":"expired_command","input_fault":{"file":"README.md","content":"Run `npm run old-check` to validate the project."},"expected":{"finding":"document npm script does not exist","acceptable":"replace with the current validation command and preserve intent"}},
+    {"id":"expired-command-02","category":"expired_command","input_fault":{"file":"docs/run.md","content":"Execute `npm run old-build`."},"expected":{"finding":"document npm script is unavailable","acceptable":"document the current build command"}},
+    {"id":"expired-command-03","category":"expired_command","input_fault":{"file":"README.md","content":"Use `npm run old-test` for tests."},"expected":{"finding":"script is absent or obsolete","acceptable":"document an available test command"}},
+    {"id":"parameter-change-01","category":"parameter_change","input_fault":{"file":"docs/api.md","content":"Call `run --model gpt-4 --timeout 5`."},"expected":{"finding":"flag or value differs from current interface","acceptable":"update parameter spelling/value while retaining semantic request"}},
+    {"id":"parameter-change-02","category":"parameter_change","input_fault":{"file":"README.md","content":"Set `--root-dir ./src` before scanning."},"expected":{"finding":"parameter was renamed","acceptable":"use current workspace parameter and explain scope"}},
+    {"id":"parameter-change-03","category":"parameter_change","input_fault":{"file":"docs/config.md","content":"The config key is `API_URL`."},"expected":{"finding":"configuration key differs from current schema","acceptable":"use the current key and keep endpoint meaning"}},
+    {"id":"broken-relative-link-01","category":"broken_relative_link","input_fault":{"file":"README.md","content":"See [guide](docs/missing.md)."},"expected":{"finding":"relative target does not exist","acceptable":"link to an existing equivalent document or remove stale reference"}},
+    {"id":"broken-relative-link-02","category":"broken_relative_link","input_fault":{"file":"docs/index.md","content":"See [setup](../setup-old.md)."},"expected":{"finding":"relative target does not exist","acceptable":"repair link to current setup document"}},
+    {"id":"broken-relative-link-03","category":"broken_relative_link","input_fault":{"file":"docs/faq.md","content":"See [API](../api/v0.md)."},"expected":{"finding":"relative target does not exist","acceptable":"repair link to current API document"}},
+    {"id":"no-change-01","category":"no_change","input_fault":{"file":"README.md","content":"Run `rein check` to validate the project."},"expected":{"finding":"no discrepancy","acceptable":"report no change and leave files unchanged"}},
+    {"id":"no-change-02","category":"no_change","input_fault":{"file":"docs/run.md","content":"See [guide](guide.md)."},"expected":{"finding":"link resolves and content is current","acceptable":"report no change and leave files unchanged"}},
+    {"id":"no-change-03","category":"no_change","input_fault":{"file":"docs/api.md","content":"Call `run --model current --timeout 30`."},"expected":{"finding":"parameters match current interface","acceptable":"report no change and leave files unchanged"}}
+  ]
+}

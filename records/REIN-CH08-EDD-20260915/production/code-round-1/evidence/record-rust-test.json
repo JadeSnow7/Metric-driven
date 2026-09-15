@@ -1,0 +1,47 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--manifest-path",
+    "rust/Cargo.toml",
+    "--test",
+    "ch08_context"
+  ],
+  "cwd": "/private/tmp/rein-ch08-production-20260915/book",
+  "started_at": "2026-09-15T06:14:08.008173Z",
+  "ended_at": "2026-09-15T06:14:08.681939Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "\nrunning 2 tests\ntest zero_budget_does_not_dispatch ... ok\ntest reads_real_node_and_unknown_stays_empty ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s\n\n",
+  "stderr": "warning: unused variable: `workspace`\n   --> src/rein/loop.rs:326:5\n    |\n326 |     workspace: &Workspace,\n    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: function `words` is never used\n   --> src/rein/context_methods.rs:106:4\n    |\n106 | fn words(s: &str) -> Vec<String> {\n    |    ^^^^^\n    |\n    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `rein-ch01-helloworld` (lib) generated 2 warnings (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)\n    Finished `test` profile [unoptimized] target(s) in 0.23s\n     Running tests/ch08_context.rs (/private/tmp/rein-ch08-production-20260915/cargo-target/debug/deps/ch08_context-bf841b87d4c6dc5a)\n",
+  "stdout_base64": "CnJ1bm5pbmcgMiB0ZXN0cwp0ZXN0IHplcm9fYnVkZ2V0X2RvZXNfbm90X2Rpc3BhdGNoIC4uLiBvawp0ZXN0IHJlYWRzX3JlYWxfbm9kZV9hbmRfdW5rbm93bl9zdGF5c19lbXB0eSAuLi4gb2sKCnRlc3QgcmVzdWx0OiBvay4gMiBwYXNzZWQ7IDAgZmFpbGVkOyAwIGlnbm9yZWQ7IDAgbWVhc3VyZWQ7IDAgZmlsdGVyZWQgb3V0OyBmaW5pc2hlZCBpbiAwLjM4cwoK",
+  "stderr_base64": "d2FybmluZzogdW51c2VkIHZhcmlhYmxlOiBgd29ya3NwYWNlYAogICAtLT4gc3JjL3JlaW4vbG9vcC5yczozMjY6NQogICAgfAozMjYgfCAgICAgd29ya3NwYWNlOiAmV29ya3NwYWNlLAogICAgfCAgICAgXl5eXl5eXl5eIGhlbHA6IGlmIHRoaXMgaXMgaW50ZW50aW9uYWwsIHByZWZpeCBpdCB3aXRoIGFuIHVuZGVyc2NvcmU6IGBfd29ya3NwYWNlYAogICAgfAogICAgPSBub3RlOiBgI1t3YXJuKHVudXNlZF92YXJpYWJsZXMpXWAgKHBhcnQgb2YgYCNbd2Fybih1bnVzZWQpXWApIG9uIGJ5IGRlZmF1bHQKCndhcm5pbmc6IGZ1bmN0aW9uIGB3b3Jkc2AgaXMgbmV2ZXIgdXNlZAogICAtLT4gc3JjL3JlaW4vY29udGV4dF9tZXRob2RzLnJzOjEwNjo0CiAgICB8CjEwNiB8IGZuIHdvcmRzKHM6ICZzdHIpIC0+IFZlYzxTdHJpbmc+IHsKICAgIHwgICAgXl5eXl4KICAgIHwKICAgID0gbm90ZTogYCNbd2FybihkZWFkX2NvZGUpXWAgKHBhcnQgb2YgYCNbd2Fybih1bnVzZWQpXWApIG9uIGJ5IGRlZmF1bHQKCndhcm5pbmc6IGByZWluLWNoMDEtaGVsbG93b3JsZGAgKGxpYikgZ2VuZXJhdGVkIDIgd2FybmluZ3MgKHJ1biBgY2FyZ28gZml4IC0tbGliIC1wIHJlaW4tY2gwMS1oZWxsb3dvcmxkYCB0byBhcHBseSAxIHN1Z2dlc3Rpb24pCiAgICBGaW5pc2hlZCBgdGVzdGAgcHJvZmlsZSBbdW5vcHRpbWl6ZWRdIHRhcmdldChzKSBpbiAwLjIzcwogICAgIFJ1bm5pbmcgdGVzdHMvY2gwOF9jb250ZXh0LnJzICgvcHJpdmF0ZS90bXAvcmVpbi1jaDA4LXByb2R1Y3Rpb24tMjAyNjA5MTUvY2FyZ28tdGFyZ2V0L2RlYnVnL2RlcHMvY2gwOF9jb250ZXh0LWJmODQxYjg3ZDRjNmRjNWEpCg==",
+  "stdout_present": true,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs": {
+      "kind": "source",
+      "sha256": "b0f856e4ec2d06c48cfb8c648e4eb676a667df7cb20dbdd3a6f7892efde99882"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/examples/ch08_context.rs": {
+      "kind": "source",
+      "sha256": "8bbe57c6b58087cad7ea40501c98190ef0b201524f846e9e898fbe23d9d1543b"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/tests/ch08_context.rs": {
+      "kind": "test",
+      "sha256": "fd46ba702cfc02e11a05b7648a44d8660b8d09aad49dbc41e7175498c176e6e6"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/index.json": {
+      "kind": "fixture",
+      "sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    }
+  },
+  "result": "passed"
+}

@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-15T05:09:04.039596+00:00",
+  "runs": {
+    "A": {
+      "started_at": "2026-09-15T04:26:09.261173+00:00",
+      "ended_at": "2026-09-15T04:36:20.998996+00:00",
+      "elapsed_seconds": 611.6079999579815,
+      "exit_code": 0,
+      "classification": "completed",
+      "usage": {
+        "input_tokens": 2683917,
+        "cached_input_tokens": 2581248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 25333,
+        "reasoning_output_tokens": 2071
+      },
+      "split_costs": {
+        "implementation": null,
+        "writing": null,
+        "verification": null
+      }
+    },
+    "B": {
+      "started_at": "2026-09-15T04:38:57.161703+00:00",
+      "ended_at": "2026-09-15T04:54:15.458252+00:00",
+      "elapsed_seconds": 918.3525687910151,
+      "exit_code": 0,
+      "classification": "completed",
+      "usage": {
+        "input_tokens": 3314836,
+        "cached_input_tokens": 3186944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 22023,
+        "reasoning_output_tokens": 2906
+      },
+      "split_costs": {
+        "implementation": null,
+        "writing": null,
+        "verification": null
+      }
+    },
+    "C": {
+      "started_at": "2026-09-15T04:56:23.954915+00:00",
+      "ended_at": "2026-09-15T05:05:44.804106+00:00",
+      "elapsed_seconds": 560.8702387079829,
+      "exit_code": 0,
+      "classification": "completed",
+      "usage": {
+        "input_tokens": 3079966,
+        "cached_input_tokens": 2965504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19682,
+        "reasoning_output_tokens": 2362
+      },
+      "split_costs": {
+        "implementation": null,
+        "writing": null,
+        "verification": null
+      }
+    }
+  },
+  "interpretation": "Single formal run per group. First-terminal elapsed is not time to accepted completion. input includes cached_input, output includes reasoning_output; raw fields retained, do not add overlapping counts. Detailed phase cost unavailable, null. No money or savings estimate."
+}

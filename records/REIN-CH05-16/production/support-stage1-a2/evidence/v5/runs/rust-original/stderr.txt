@@ -1,0 +1,15 @@
+warning: variants `Running` and `Failed` are never constructed
+ --> rust/examples/a2_state.rs:2:5
+  |
+1 | enum DemoState {
+  |      --------- variants in this enum
+2 |     Running,
+  |     ^^^^^^^
+3 |     Completed,
+4 |     Failed,
+  |     ^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: 1 warning emitted
+

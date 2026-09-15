@@ -1,0 +1,2029 @@
+diff --git a/new/repo/.rein-snapshot.json b/new/repo/.rein-snapshot.json
+new file mode 100644
+index 0000000..09f498a
+--- /dev/null
++++ b/new/repo/.rein-snapshot.json
+@@ -0,0 +1,668 @@
++{
++  "source_manifest": {
++    "kind": "rein-working-tree-snapshot",
++    "created_at": "2026-09-14T09:46:02.302756+00:00",
++    "source": "/Users/huaodong/workspace/Agent-Learning",
++    "head": "1dfa82b9d90196c2294f61914d2017449e5548e3",
++    "branch": "codex/ch01-helloworld",
++    "files": [
++      {
++        "path": ".github/workflows/deploy.yml",
++        "sha256": "10266fb9d32274097a62c63a22b74a50e00e8cc44f7d4c78c6101675bd30028f",
++        "mode": 420
++      },
++      {
++        "path": ".github/workflows/test.yml",
++        "sha256": "bdb6b51e5175a981b4be8729a5a0156873c453642904396885f375116c322f80",
++        "mode": 420
++      },
++      {
++        "path": ".gitignore",
++        "sha256": "cd4288f5bdc7e1e8944d43da0e18fde98f4defe587046551dc2a16d5903d80fe",
++        "mode": 420
++      },
++      {
++        "path": "DECISIONS.md",
++        "sha256": "923594237de30bcdeb7cd2d07f03bd44458409e407d39db64bd2b1bcbf065149",
++        "mode": 420
++      },
++      {
++        "path": "MIGRATIONS.md",
++        "sha256": "d187faad2448485c7e7c0989012561a648452547aa17c6c4b4cb93e9e09862d6",
++        "mode": 420
++      },
++      {
++        "path": "README.md",
++        "sha256": "b25944bf8b9f3174bf885b1d59fc8d132554cdbce81ef39da7e6ab7787a02d1c",
++        "mode": 420
++      },
++      {
++        "path": "contracts/README.md",
++        "sha256": "f86e3f0e846104d8dd1fe8f9e82d514e0b6b9ba45dc2b047b9756fc218169006",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/config.mts",
++        "sha256": "48f60272e66cca7af504d90a3345eb8d1d603a68642558f53392b4067cef042e",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/theme/SourceVersionSwitch.vue",
++        "sha256": "2b9b08b71d38f3977eaedf09cc2afcf9eecad13bb1ff1b0b914a653b1d174008",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/theme/custom.css",
++        "sha256": "fcfd2ffd64336eb208e48fedc45d92efd66a90d0bb72b8cd63bf4f82d5ac24b9",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/theme/index.ts",
++        "sha256": "ccbec0f4812df9d1f84402a60e1828015ca11e7bde13ffd292f6b6ce27e814dc",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/theme/sourceVersionState.test.ts",
++        "sha256": "14e448e138ec7d8d6bc2ef140cbd5cccfb7028d1cd2f3e26a2cf36c29365aeb7",
++        "mode": 420
++      },
++      {
++        "path": "docs/.vitepress/theme/sourceVersionState.ts",
++        "sha256": "e9b0a9433b35471f255668620e7253ea54545ac90efb2353439682dd4d62e7e6",
++        "mode": 420
++      },
++      {
++        "path": "docs/about.md",
++        "sha256": "84ab55a95a49fc7a9652f574f51db2aa67536265eafa3f29aa57024f36e17ebb",
++        "mode": 420
++      },
++      {
++        "path": "docs/access.md",
++        "sha256": "97614a30c768e0368e55f568344f4e8443cf7af9b886fae834bc63de18ebc972",
++        "mode": 420
++      },
++      {
++        "path": "docs/appendices/a1.md",
++        "sha256": "1e70f1bea048c7484e545e17a2710011a4ce219d41c97238cbcc1290dcd872b4",
++        "mode": 420
++      },
++      {
++        "path": "docs/appendices/a2.md",
++        "sha256": "14464f0a5d159e510b2b6fdd0b2722e1238ae81319eb41a3d1a738585de03d40",
++        "mode": 420
++      },
++      {
++        "path": "docs/appendices/a3.md",
++        "sha256": "5f8d9da1c2af6a9b630850b1193e0ae7611d100e1d2f257b37485af3ff6c435a",
++        "mode": 420
++      },
++      {
++        "path": "docs/appendices/a4.md",
++        "sha256": "2cf62feb0faf6c3119a21b6df59d8c7a12854957035d3ce17e5cbede469a0f3f",
++        "mode": 420
++      },
++      {
++        "path": "docs/appendices/a5.md",
++        "sha256": "7112afa3d89741fe375fede81ec6f52966b532f041daff5ec45af91067c17ccd",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/00.md",
++        "sha256": "0d508db97992f1eee61347fd5cf43ee5aae8d2629c5ddf370b047701d63d035c",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/01-rust.md",
++        "sha256": "e7db4676bb59740729834e6dae26bd678291bdf67063bc0ecfbce4720a9b518f",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/01-ts-advanced.md",
++        "sha256": "a38e2bb61d763a1ed77d380b2e9cb2b8fc6fcca4704ef059b5d3cfa014c494ba",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/01-ts.md",
++        "sha256": "9fbcf9a11ab2ac0066abd6cf802ab160ebf9e9a0c68857f316c8b2d5b7ca165e",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/01.md",
++        "sha256": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/02.md",
++        "sha256": "018bbfafb8e4b14ff357fc746093c90458be67c26b4a2ddfd97bf3d313d45bac",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/03.md",
++        "sha256": "7681874675c3a46f51f6c8bab36019013aa7428be9495d96d85c501a29f19a16",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/04.md",
++        "sha256": "29161bbbc912f86dafb1be1c1b455a43740fa0d2075e9acca9e1b9768148e961",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/05.md",
++        "sha256": "bdd96564c65c112ad5911c942db8044c7e1fc79678c9e23a77add222d89f8e85",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/06.md",
++        "sha256": "9bdcf83ce5944c4c61bfaeb0f0cf922ceb372fd4ecaf10e543a6de638fbcee17",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/07.md",
++        "sha256": "1d3e745646557182a1e268d6c8e5a28c07aa82dc3aead9bb0876af1dbbd8ae2d",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/08.md",
++        "sha256": "26cc3c5d733b22e6c852d69b939f009af445ab0a008664413c63c491cc5bf929",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/09.md",
++        "sha256": "36a91e448be8273c76ec644c287b4cd6341d290613b9ff1b581be590e51b8ae1",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/10.md",
++        "sha256": "df14f83d233296efb8093c24392dd8c30747afdb232f7459f35009044a4a80df",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/11.md",
++        "sha256": "1bc879dbbebac0865fa28b2c76f426fe1b035dc5bc082aa04b2d198f9ec75305",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/12.md",
++        "sha256": "a132595d67095d9d62633960dd45b79206f96522d85d02baee1f8ee4302267b4",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/13.md",
++        "sha256": "5108e33e7332d38de1ee318d44310b86d74814b7a747c1e6ca316db327b7fb5c",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/14.md",
++        "sha256": "26a493b04e7797c0f52ab4727eb4ff0ab69ac29574ce3a8a16d072c89cf46b8a",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/15.md",
++        "sha256": "2873ce02e385710f2c839502f319a3b3058a3a1271771a44f20afd955299ecf4",
++        "mode": 420
++      },
++      {
++        "path": "docs/chapters/16.md",
++        "sha256": "8d6fd3661027e3dad35c74119942b7030dc14c8ac4ce843eca2ee61f9d7494bb",
++        "mode": 420
++      },
++      {
++        "path": "docs/index.md",
++        "sha256": "f203ff6e6c1dc86a3378e084dc34d04994ef475b7288e59e034155e4f4dc4afa",
++        "mode": 420
++      },
++      {
++        "path": "docs/milestones/01.md",
++        "sha256": "5e1a1e46faffda20f636cf3e449050a7cbdc69d78854afaa4611b42dda988afb",
++        "mode": 420
++      },
++      {
++        "path": "docs/milestones/02.md",
++        "sha256": "ac138f51864e9bb12f8cc43adc69eee2bac116f4d81c207d041d3a358da913aa",
++        "mode": 420
++      },
++      {
++        "path": "docs/milestones/03.md",
++        "sha256": "ee10fedb02070260249df7bcec705533375d7449ba83cfa4933ab79d9598a8c2",
++        "mode": 420
++      },
++      {
++        "path": "docs/milestones/04.md",
++        "sha256": "473df1bae71c57a6d2f2465f72812b8e1dcaf7eade30bfeae05073cb9299f32d",
++        "mode": 420
++      },
++      {
++        "path": "docs/public/mark.svg",
++        "sha256": "5331726b6b24c861b656c95382724202a60f170126dfe35e78724a64e512a5f5",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/00-rust.md",
++        "sha256": "0fa9ea9ff8aebed00393fc5402b30c8125dd5545ccc53a9256533e59436b974c",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/00-ts.md",
++        "sha256": "ef085b072eff439a76fbe321515e9620f8cf9b3ccc99d1adb97dfe084374d1c5",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/00.md",
++        "sha256": "eaec8c67f0b9954f1fb48aee1b4e84023af7b57fdb891849fc72f74e6abf86c6",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/01.md",
++        "sha256": "f99a8cde6bdd7b2a7d86dc6e567e1f279a9aabc1a9c7e0a24955d0a91601cd40",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/02.md",
++        "sha256": "c8fbac0fe9f83ee2768f76f003492dcd85cf95554ddfdab147532d7e9865dce2",
++        "mode": 420
++      },
++      {
++        "path": "docs/readings/03.md",
++        "sha256": "80e77c5c367b02e14410dc89bdd43d03d36e865146425c987e68c6ded94a42f2",
++        "mode": 420
++      },
++      {
++        "path": "docs/toc.md",
++        "sha256": "83df9a3fbb58ecd9a6d451c341554c874d94836212cca8a8ee70fd3b869b6d8f",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/README.md",
++        "sha256": "4f0e9d9c1146a8883fb3bc65041602c561c0b71b39481811ec1d1b6e92e79ec1",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/cases/.gitkeep",
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/responses/.gitkeep",
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/responses/openai/insufficient-quota-1.json",
++        "sha256": "69a580128778d58fd85c8d875710ca9c1d6322fae5b3015beeef609cb57a7c3c",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/responses/opencode-go/hello-1.json",
++        "sha256": "65e6ced4b5dd802f910b694c95bf905307b88f1d0e56a4d4e62fffb9be6276d1",
++        "mode": 420
++      },
++      {
++        "path": "fixtures/workspaces/.gitkeep",
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++        "mode": 420
++      },
++      {
++        "path": "package-lock.json",
++        "sha256": "5812c1dc780f4108e6c00f831626a5ecdff6b7b46907d9cc35ed802b68dd9ca9",
++        "mode": 420
++      },
++      {
++        "path": "package.json",
++        "sha256": "a8c8ce2cd2c9e9a811d2e66e6985180cdf11d01097863565266c2c3576554ace",
++        "mode": 420
++      },
++      {
++        "path": "reports/2026-09-13-chapter-alignment.md",
++        "sha256": "ab6420dd7d00d856fb95fea4db0391cc3bbb4b9aff940fa81d2c3f301577636e",
++        "mode": 420
++      },
++      {
++        "path": "reports/ch01-author-style.md",
++        "sha256": "08847f51836b2fb1f4f3e20481f95d9a64188d5c4b5985a0755a8bd14376c464",
++        "mode": 420
++      },
++      {
++        "path": "reports/ch01-rust-quality.md",
++        "sha256": "8bd985eca07389bd71fe23ba5bf580e158c737a30411f02f7de6d27aa0162d8a",
++        "mode": 420
++      },
++      {
++        "path": "reports/ch01-ts-quality.md",
++        "sha256": "db5160561024ebdeb4f878b177c6edacc7f50ce6282fb8a346f5f01c6c8bc4c0",
++        "mode": 420
++      },
++      {
++        "path": "reports/ch01-verification.md",
++        "sha256": "301e39dafc8955522a1990b2af3a566219a4020e10c709016960ffb0b08cfe33",
++        "mode": 420
++      },
++      {
++        "path": "reports/ch01-writing-plan.md",
++        "sha256": "5514fbfb8e25071c5c7c9c35eb8e344b6ddf458d7a81fb706d0d91b9f01eeb60",
++        "mode": 420
++      },
++      {
++        "path": "rust/.env.example",
++        "sha256": "d77f0ead5466f877f6ddbe3cb778d546a9f0401b443b8908068393bf803b92d5",
++        "mode": 420
++      },
++      {
++        "path": "rust/Cargo.lock",
++        "sha256": "c60d34eebf768cd314951872357262de489695d5ee8f9297a3044df7a8c4f090",
++        "mode": 420
++      },
++      {
++        "path": "rust/Cargo.toml",
++        "sha256": "44ec1406eb83d285a34a5725b98ca73a922e5ab67e69a96abc7e9e7a9cb01a65",
++        "mode": 420
++      },
++      {
++        "path": "rust/README.md",
++        "sha256": "733bf518cb018281ec18bb84b892add71cfbc1e69d72a635a7f563167167bf73",
++        "mode": 420
++      },
++      {
++        "path": "rust/examples/reading-00/.gitignore",
++        "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368",
++        "mode": 420
++      },
++      {
++        "path": "rust/examples/reading-00/Cargo.lock",
++        "sha256": "2521601119a8483a3d34612910b6772d160fe9bfff991506b0fcab595d172a68",
++        "mode": 420
++      },
++      {
++        "path": "rust/examples/reading-00/Cargo.toml",
++        "sha256": "6b0dba6107e8704f1f5737781a40ec46141c820473e4221902866429f91e17d5",
++        "mode": 420
++      },
++      {
++        "path": "rust/examples/reading-00/src/main.rs",
++        "sha256": "854f15e6eca1bb897ecad3018279f5e54879bb7a47224307e8233fed95cc75cc",
++        "mode": 420
++      },
++      {
++        "path": "rust/src/README.md",
++        "sha256": "6e80416a14dde96751869a049e5ce87b86b4a967760c7c395fe2c2871409bea2",
++        "mode": 420
++      },
++      {
++        "path": "rust/src/bin/hello.rs",
++        "sha256": "74337baef4504361e5296e473e1d54c24936e7bbe9eb89735b9d4187f00ac969",
++        "mode": 420
++      },
++      {
++        "path": "rust/src/lib.rs",
++        "sha256": "e708d5aa07e1e16285e8e306137146a5025f618e9245ea6fe4041928bcf5b91b",
++        "mode": 420
++      },
++      {
++        "path": "rust/src/main.rs",
++        "sha256": "0299ccf72449f18087ecae8d39f002e1e3aba1b6247d1198818ec2d9147066b7",
++        "mode": 420
++      },
++      {
++        "path": "rust/tests/README.md",
++        "sha256": "9992f9348ba5f31802ed3fa0e048cb4cc815a386fd86c275603050a458c07a6b",
++        "mode": 420
++      },
++      {
++        "path": "ts/.env.example",
++        "sha256": "8217e76df3e00b53f0bc22d41bc9ca1f3821dba1182616414f08972fddf01fd0",
++        "mode": 420
++      },
++      {
++        "path": "ts/README.md",
++        "sha256": "16cf4f68ded2208c98655c5a271c35f533e66554881c462887b4a8af3df9570d",
++        "mode": 420
++      },
++      {
++        "path": "ts/examples/README.md",
++        "sha256": "8677a665a556c5873967ddad587fbe785d86e07a2151f08c898399b2ba17da9b",
++        "mode": 420
++      },
++      {
++        "path": "ts/examples/reading-00/main.ts",
++        "sha256": "8fcae756e46ec8abcd2f15f56373fb2221d4f793c52bfe9dbaadee58e43fefc2",
++        "mode": 420
++      },
++      {
++        "path": "ts/examples/reading-00/reading-00.test.ts",
++        "sha256": "ede13d729c55be0e9081f81bba91b84b6629f0d3c83fd6bfe64db178676d475e",
++        "mode": 420
++      },
++      {
++        "path": "ts/examples/reading-00/reading-00.ts",
++        "sha256": "e4ddd1426476c2bcefc1d4611472a62f659526135e4c841698c608ec3da8c872",
++        "mode": 420
++      },
++      {
++        "path": "ts/examples/reading-00/vitest.config.ts",
++        "sha256": "37d7f862bd87920e9e70cd58fee97abb63e46cfd070e35a38231b844ec564f35",
++        "mode": 420
++      },
++      {
++        "path": "ts/package.json",
++        "sha256": "385c313115738a2d971e9638a29c9f43a12ff93bd3cbfc15d666e2ed01f0fec2",
++        "mode": 420
++      },
++      {
++        "path": "ts/scripts/record.ts",
++        "sha256": "3ca156af39201ff4b2f87b0abcb1b6b158c360c0ab22e8d8cb7b9fd302d80ac9",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/README.md",
++        "sha256": "80d6c15aa40c6776fb129aed31956a04a1af1d7aea14a05475181e22186d67d3",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/chat.ts",
++        "sha256": "d32d70ef5c89846e4a276c9e70544a0f384984045ce0b2a571591f60548e82b1",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/config.ts",
++        "sha256": "d868164a3b25e962fd2392a6ee7872bd0f471872bc4cb9ed4467f6605033231f",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/errors.ts",
++        "sha256": "27478d6b924e672e54bd11a5f0ed74b48318f5e1dc1e9e539934369f757e4fc1",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/hello-safe.ts",
++        "sha256": "566203e6d78f70600a1336ea4f9c679d4a2f04c2c1573eb0a1efb89263af5482",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/hello.ts",
++        "sha256": "27b4da939b41d2e7ca382deec6437e4071db9b3252024810aaf0efc60c958066",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/main.ts",
++        "sha256": "0e94c0e77b345b818df9e22a723f1ffd15221415b19bee24bf7073c9638e159d",
++        "mode": 420
++      },
++      {
++        "path": "ts/src/transport.ts",
++        "sha256": "a9f58da0f5cea2575c5ab06942008d28c742ff872531ff96d0b8376a3ade9244",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/README.md",
++        "sha256": "fccb7297d70e7855a839a7ec368bee36c8d19c6e75421f45794438eeb5480888",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/chat.test.ts",
++        "sha256": "5b93295f7024b1bfa02336310115a7fa759786fb0f649a57ba9ff089ba409575",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/config.test.ts",
++        "sha256": "5db52ee18d46fd3dcaf1c285105deb8c1b499b25086b982f6a13e5e4bbbe3f51",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/hello.test.ts",
++        "sha256": "c72fc83a770853edddad45dfaa6c8271f5baca39a61712c8966b41ae2747b79a",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/record.test.ts",
++        "sha256": "b425db8e6402c6652ca816747679033939db7978f52f0426ec105edf787ad747",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/recorded.test.ts",
++        "sha256": "a23eaf9a01cab64c599d4bb6cae6fef6485be0a9ea0e91c225763db18ae9f238",
++        "mode": 420
++      },
++      {
++        "path": "ts/tests/transport.test.ts",
++        "sha256": "8671a3a8eb866b57c5bd86a6a4ce77acd3519a6efc12feaf43e8b3879c57e67e",
++        "mode": 420
++      },
++      {
++        "path": "ts/tsconfig.json",
++        "sha256": "752cf2d6b1982d5359dded39fac4018f2cb3c0af626226aad2f48980115d15e8",
++        "mode": 420
++      },
++      {
++        "path": "ts/vitest.config.ts",
++        "sha256": "4e19e07c1d033c237eb8ad0cf525c3769c0d4d64bf8615b3aa448f7e5871679a",
++        "mode": 420
++      }
++    ],
++    "git_inventory": [
++      ".github/workflows/deploy.yml",
++      ".github/workflows/test.yml",
++      ".gitignore",
++      "DECISIONS.md",
++      "MIGRATIONS.md",
++      "README.md",
++      "contracts/README.md",
++      "docs/.vitepress/config.mts",
++      "docs/.vitepress/theme/SourceVersionSwitch.vue",
++      "docs/.vitepress/theme/custom.css",
++      "docs/.vitepress/theme/index.ts",
++      "docs/.vitepress/theme/sourceVersionState.test.ts",
++      "docs/.vitepress/theme/sourceVersionState.ts",
++      "docs/about.md",
++      "docs/access.md",
++      "docs/appendices/a1.md",
++      "docs/appendices/a2.md",
++      "docs/appendices/a3.md",
++      "docs/appendices/a4.md",
++      "docs/appendices/a5.md",
++      "docs/chapters/00.md",
++      "docs/chapters/01-rust.md",
++      "docs/chapters/01-ts-advanced.md",
++      "docs/chapters/01-ts.md",
++      "docs/chapters/01.md",
++      "docs/chapters/02.md",
++      "docs/chapters/03.md",
++      "docs/chapters/04.md",
++      "docs/chapters/05.md",
++      "docs/chapters/06.md",
++      "docs/chapters/07.md",
++      "docs/chapters/08.md",
++      "docs/chapters/09.md",
++      "docs/chapters/10.md",
++      "docs/chapters/11.md",
++      "docs/chapters/12.md",
++      "docs/chapters/13.md",
++      "docs/chapters/14.md",
++      "docs/chapters/15.md",
++      "docs/chapters/16.md",
++      "docs/index.md",
++      "docs/milestones/01.md",
++      "docs/milestones/02.md",
++      "docs/milestones/03.md",
++      "docs/milestones/04.md",
++      "docs/public/mark.svg",
++      "docs/readings/00-rust.md",
++      "docs/readings/00-ts.md",
++      "docs/readings/00.md",
++      "docs/readings/01.md",
++      "docs/readings/02.md",
++      "docs/readings/03.md",
++      "docs/toc.md",
++      "fixtures/README.md",
++      "fixtures/cases/.gitkeep",
++      "fixtures/responses/.gitkeep",
++      "fixtures/responses/openai/insufficient-quota-1.json",
++      "fixtures/responses/opencode-go/hello-1.json",
++      "fixtures/workspaces/.gitkeep",
++      "package-lock.json",
++      "package.json",
++      "reports/2026-09-13-chapter-alignment.md",
++      "reports/ch01-author-style.md",
++      "reports/ch01-rust-quality.md",
++      "reports/ch01-ts-quality.md",
++      "reports/ch01-verification.md",
++      "reports/ch01-writing-plan.md",
++      "rust/.env.example",
++      "rust/Cargo.lock",
++      "rust/Cargo.toml",
++      "rust/README.md",
++      "rust/examples/reading-00/.gitignore",
++      "rust/examples/reading-00/Cargo.lock",
++      "rust/examples/reading-00/Cargo.toml",
++      "rust/examples/reading-00/src/main.rs",
++      "rust/src/README.md",
++      "rust/src/bin/hello.rs",
++      "rust/src/lib.rs",
++      "rust/src/main.rs",
++      "rust/tests/README.md",
++      "ts/.env.example",
++      "ts/README.md",
++      "ts/examples/README.md",
++      "ts/examples/reading-00/main.ts",
++      "ts/examples/reading-00/reading-00.test.ts",
++      "ts/examples/reading-00/reading-00.ts",
++      "ts/examples/reading-00/vitest.config.ts",
++      "ts/package.json",
++      "ts/scripts/record.ts",
++      "ts/src/README.md",
++      "ts/src/chat.ts",
++      "ts/src/config.ts",
++      "ts/src/errors.ts",
++      "ts/src/hello-safe.ts",
++      "ts/src/hello.ts",
++      "ts/src/main.ts",
++      "ts/src/transport.ts",
++      "ts/tests/README.md",
++      "ts/tests/chat.test.ts",
++      "ts/tests/config.test.ts",
++      "ts/tests/hello.test.ts",
++      "ts/tests/record.test.ts",
++      "ts/tests/recorded.test.ts",
++      "ts/tests/transport.test.ts",
++      "ts/tsconfig.json",
++      "ts/vitest.config.ts"
++    ],
++    "deleted_tracked": [],
++    "excluded_policy": {
++      "directories": [
++        ".git",
++        ".vitepress/cache",
++        ".vitepress/dist",
++        "build",
++        "dist",
++        "node_modules",
++        "target"
++      ],
++      "secret_names": [
++        ".env",
++        ".env.development",
++        ".env.local",
++        ".env.production"
++      ]
++    }
++  },
++  "cloned_at": "2026-09-14T09:46:02.394529+00:00"
++}
+diff --git a/old/repo/contracts/README.md b/new/repo/contracts/README.md
+index 23ef2aa..58cce38 100644
+--- a/old/repo/contracts/README.md
++++ b/new/repo/contracts/README.md
+@@ -2,8 +2,11 @@
+ 
+ `ts/` 与 `rust/` 在重叠能力范围内共享的合同：消息、工具调用、工具结果的形状，以及兼容边界与版本。
+ 
+-**当前尚未定义。** 首个版本由第 04 章从已有调用代码中推导——读者需要先经历"两家响应对不上"的具体麻烦，抽象才有意义，因此不提前定稿。
++前置版本已定义并由两条 track 读取同一份 `fixtures/cases/prerequisites.json` 验收数据；它只提供模型 turn、工具调用和只读工具路由，不包含 Loop 控制。
+ 
+-已经冻结的是 [fixtures/](../fixtures/README.md) 的目录布局与命名，它属于合同的一部分：两条 track 读同一份验收数据。
++按本任务生成的可恢复快照及合同变化记录定位合同版本，变化记录在 [MIGRATIONS.md](../MIGRATIONS.md)。
++# ch05 前置合同
+ 
+-正式书版发布时固定 tag 并对合同显式版本化，变化记录在 [MIGRATIONS.md](../MIGRATIONS.md)。
++TypeScript 的 `ts/src/rein/contracts.ts` 与 Rust 的 `rust/src/rein/mod.rs` 共享四个可序列化概念：`Message` 表示对话消息，`ToolCall` 表示模型请求的工具动作，`ToolResult` 表示带 `ok` 与结构化错误的工具结果，`Turn` 把一轮消息、调用和结果成组保存。wire JSON 使用 camelCase（如 `toolCallId`、`toolCalls`、`toolResults`、`inputSchema`）；Rust 内部字段仍可使用 snake_case 并由 serde 映射。可选字段在 Rust 为 `None` 时省略，输入仍兼容缺失或 `null`，与 TS optional 对齐；`canonical_sample` 是两端共享的 canonical JSON 样例。`read_file` 与 `search_files` 只接受 workspace 内路径或关键词；工具错误码包括 `path_escape`、`path_invalid`、`read_failed`、`search_failed`、`workspace_invalid`、`arguments_invalid` 和 `unknown_tool`。TS 以 `ToolResult` 返回，Rust 也以 `ToolResult` 返回；解析与传输层错误则由 TS 抛出 `Error`、Rust 返回 `Result`。这不是对所有底层路径错误细节的隐藏承诺。
++
++OpenAI 适配器使用现有配置和 transport，单次非流式调用，不自动重试；它序列化完整 messages/tools，并保留多个 `tool_calls` 及其 JSON arguments。Anthropic 前置适配器转换 system、text、tool_use、tool_result；回放输入是 Anthropic wire JSON，不是 `ModelTurn` 对象，按输入顺序消费，用尽后 TS 抛出 `Error('replay exhausted')`，Rust 返回 `code='replay_exhausted'`。Rust 的具体 HTTP 入口是 `rein::openai_complete`，通过 `rein::OpenAiHttp`（生产实现为 `ReqwestHttp`）发送请求；TS 入口是 `createOpenAIAdapter`。例如模型返回 `{"tool_calls":[{"id":"call-1","name":"read_file","arguments":{"path":"README.md"}}]}`，工具执行后追加 `{"role":"tool","toolCallId":"call-1","content":"..."}`，下一轮仍携带同一 id。这些 API 是 ch05 Agent Loop 的输入，不包含循环控制。
+diff --git a/new/repo/fixtures/cases/prerequisites.json b/new/repo/fixtures/cases/prerequisites.json
+new file mode 100644
+index 0000000..6d1d56d
+--- /dev/null
++++ b/new/repo/fixtures/cases/prerequisites.json
+@@ -0,0 +1,27 @@
++{
++  "name": "anthropic-text-and-read-boundary",
++  "messages": [{"role": "user", "content": "hi"}],
++  "anthropic_response": {"content": [{"type": "text", "text": "hello"}, {"type": "tool_use", "id": "anthropic-1", "name": "read_file", "input": {"path": "README.md"}}, {"type": "tool_use", "id": "anthropic-2", "name": "search_files", "input": {"needle": "前置"}}]},
++  "openai_response": {"choices": [{"message": {"role": "assistant", "content": null, "tool_calls": [{"id": "call-1", "type": "function", "function": {"name": "read_file", "arguments": "{\"path\":\"README.md\"}"}}, {"id": "call-2", "type": "function", "function": {"name": "search_files", "arguments": "{\"needle\":\"前置\"}"}}]}}]},
++  "openai_followup_response": {"choices": [{"message": {"role": "assistant", "content": "done", "tool_calls": []}}]},
++  "canonical_sample": {"role": "user", "content": "canonical"},
++  "malformed_responses": [
++    {"provider": "openai", "body": {"choices": [{"message": {"content": 7}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"content": {}, "tool_calls": []}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"content": null, "tool_calls": {}}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": 1, "function": {"name": "read_file", "arguments": "{}"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "", "function": {"name": "read_file", "arguments": "{}"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "x", "function": {"name": 1, "arguments": "{}"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "x", "function": {"name": "", "arguments": "{}"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "x", "function": {"name": "read_file", "arguments": "[]"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "x", "function": {"name": "read_file", "arguments": "null"}}]}}]}},
++    {"provider": "openai", "body": {"choices": [{"message": {"tool_calls": [{"id": "x", "function": {"name": "read_file", "arguments": "not-json"}}]}}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "tool_use", "id": 1, "name": "read_file", "input": {}}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "tool_use", "id": "", "name": "read_file", "input": {}}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "tool_use", "id": "x", "name": 1, "input": {}}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "tool_use", "id": "x", "name": "", "input": {}}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "text", "text": 1}]}},
++    {"provider": "anthropic", "body": {"content": [{"type": "text", "text": null}]}}
++  ],
++  "expected": {"assistant_text": "hello", "escape_error_code": "path_escape", "anthropic_tool_ids": ["anthropic-1", "anthropic-2"], "openai_tool_ids": ["call-1", "call-2"]}
++}
+diff --git a/new/repo/fixtures/workspaces/prerequisites/README.md b/new/repo/fixtures/workspaces/prerequisites/README.md
+new file mode 100644
+index 0000000..5a0c0aa
+--- /dev/null
++++ b/new/repo/fixtures/workspaces/prerequisites/README.md
+@@ -0,0 +1,3 @@
++# 前置 workspace fixture
++
++该目录只作为 `read_file` 与 `search_files` 的离线根目录；测试不得读取根目录之外的文件。
+diff --git a/old/repo/rust/Cargo.lock b/new/repo/rust/Cargo.lock
+index ff8e46a..4fd50da 100644
+--- a/old/repo/rust/Cargo.lock
++++ b/new/repo/rust/Cargo.lock
+@@ -922,6 +922,8 @@ dependencies = [
+  "async-openai",
+  "backoff",
+  "dotenvy",
++ "reqwest",
++ "serde",
+  "serde_json",
+  "tokio",
+  "url",
+diff --git a/old/repo/rust/Cargo.toml b/new/repo/rust/Cargo.toml
+index 0fd3c56..c781e4d 100644
+--- a/old/repo/rust/Cargo.toml
++++ b/new/repo/rust/Cargo.toml
+@@ -11,6 +11,8 @@ backoff = "0.4"
+ url = "2"
+ dotenvy = "0.15"
+ tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
++serde = { version = "1", features = ["derive"] }
++serde_json = "1"
++reqwest = { version = "0.12.28", default-features = false, features = ["json", "rustls-tls-native-roots"] }
+ 
+ [dev-dependencies]
+-serde_json = "1"
+diff --git a/old/repo/rust/src/lib.rs b/new/repo/rust/src/lib.rs
+index 274f339..15fe4c5 100644
+--- a/old/repo/rust/src/lib.rs
++++ b/new/repo/rust/src/lib.rs
+@@ -8,6 +8,8 @@ use async_openai::{
+ };
+ use std::{env, time::Duration};
+ 
++pub mod rein;
++
+ pub const DEFAULT_TIMEOUT: Duration = Duration::from_secs(30);
+ 
+ #[derive(Clone, Debug, PartialEq, Eq)]
+diff --git a/new/repo/rust/src/rein/mod.rs b/new/repo/rust/src/rein/mod.rs
+new file mode 100644
+index 0000000..b72e288
+--- /dev/null
++++ b/new/repo/rust/src/rein/mod.rs
+@@ -0,0 +1,617 @@
++use serde::{Deserialize, Serialize};
++use std::future::Future;
++use std::path::{Path, PathBuf};
++use std::pin::Pin;
++use std::time::Duration;
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct Message {
++    pub role: String,
++    pub content: String,
++    #[serde(rename = "toolCallId", skip_serializing_if = "Option::is_none")]
++    pub tool_call_id: Option<String>,
++    #[serde(rename = "toolCalls", default, skip_serializing_if = "Vec::is_empty")]
++    pub tool_calls: Vec<ToolCall>,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ToolCall {
++    pub id: String,
++    pub name: String,
++    pub arguments: serde_json::Value,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ToolError {
++    pub code: String,
++    pub message: String,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ToolResult {
++    #[serde(rename = "toolCallId")]
++    pub tool_call_id: String,
++    pub ok: bool,
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub output: Option<String>,
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub error: Option<ToolError>,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(rename_all = "camelCase")]
++pub struct Turn {
++    pub messages: Vec<Message>,
++    pub tool_calls: Vec<ToolCall>,
++    pub tool_results: Vec<ToolResult>,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ToolDefinition {
++    pub name: String,
++    pub description: String,
++    #[serde(rename = "inputSchema")]
++    pub input_schema: serde_json::Value,
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++pub struct ModelTurn {
++    pub message: Message,
++    #[serde(rename = "toolCalls")]
++    pub tool_calls: Vec<ToolCall>,
++}
++
++pub trait OpenAiHttp {
++    fn post<'a>(
++        &'a self,
++        url: &'a str,
++        api_key: &'a str,
++        body: serde_json::Value,
++    ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>>;
++}
++
++pub struct ReqwestHttp {
++    client: reqwest::Client,
++    timeout: Duration,
++}
++
++impl ReqwestHttp {
++    pub fn new(timeout: Duration) -> Result<Self, ToolError> {
++        let client = reqwest::Client::builder()
++            .timeout(timeout)
++            .build()
++            .map_err(|_| ToolError {
++                code: "transport_config".into(),
++                message: "could not configure HTTP client".into(),
++            })?;
++        Ok(Self { client, timeout })
++    }
++    pub fn timeout(&self) -> Duration {
++        self.timeout
++    }
++}
++
++impl OpenAiHttp for ReqwestHttp {
++    fn post<'a>(
++        &'a self,
++        url: &'a str,
++        api_key: &'a str,
++        body: serde_json::Value,
++    ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>> {
++        Box::pin(async move {
++            let response = self
++                .client
++                .post(url)
++                .bearer_auth(api_key)
++                .json(&body)
++                .send()
++                .await
++                .map_err(|error| ToolError {
++                    code: if error.is_timeout() {
++                        "timeout"
++                    } else {
++                        "network"
++                    }
++                    .into(),
++                    message: "HTTP request failed".into(),
++                })?;
++            let status = response.status();
++            let text = response.text().await.map_err(|_| ToolError {
++                code: "network".into(),
++                message: "could not read HTTP response".into(),
++            })?;
++            if !status.is_success() {
++                return Err(ToolError {
++                    code: format!("http_{}", status.as_u16()),
++                    message: "OpenAI HTTP request failed".into(),
++                });
++            }
++            Ok(text)
++        })
++    }
++}
++
++pub async fn openai_complete<H: OpenAiHttp>(
++    http: &H,
++    base_url: &str,
++    api_key: &str,
++    model: &str,
++    messages: &[Message],
++    tools: &[ToolDefinition],
++) -> Result<ModelTurn, ToolError> {
++    let wire_messages: Vec<_> = messages.iter().map(|message| {
++        if message.role == "tool" { serde_json::json!({"role":"tool","tool_call_id":message.tool_call_id,"content":message.content}) }
++        else if message.role == "assistant" && !message.tool_calls.is_empty() { serde_json::json!({"role":"assistant","content":message.content,"tool_calls":message.tool_calls.iter().map(|call| serde_json::json!({"id":call.id,"type":"function","function":{"name":call.name,"arguments":call.arguments.to_string()}})).collect::<Vec<_>>()}) }
++        else { serde_json::json!({"role":message.role,"content":message.content}) }
++    }).collect();
++    let body = serde_json::json!({ "model": model, "messages": wire_messages, "tools": tools.iter().map(|tool| serde_json::json!({"type":"function","function":{"name":tool.name,"description":tool.description,"parameters":tool.input_schema}})).collect::<Vec<_>>() });
++    let response = http
++        .post(
++            &format!("{}/chat/completions", base_url.trim_end_matches('/')),
++            api_key,
++            body,
++        )
++        .await?;
++    parse_openai_turn(&response)
++}
++
++pub fn parse_openai_turn(body: &str) -> Result<ModelTurn, ToolError> {
++    let root: serde_json::Value = serde_json::from_str(body).map_err(|_| ToolError {
++        code: "response_format".into(),
++        message: "invalid JSON".into(),
++    })?;
++    let message = root
++        .get("choices")
++        .and_then(|v| v.as_array())
++        .and_then(|a| a.first())
++        .and_then(|v| v.get("message"))
++        .ok_or_else(|| ToolError {
++            code: "response_format".into(),
++            message: "missing message".into(),
++        })?;
++    let content = match message.get("content") {
++        None | Some(serde_json::Value::Null) => String::new(),
++        Some(value) => value
++            .as_str()
++            .ok_or_else(|| ToolError {
++                code: "response_format".into(),
++                message: "message content must be string or null".into(),
++            })?
++            .to_owned(),
++    };
++    if let Some(value) = message.get("tool_calls") {
++        if !value.is_array() {
++            return Err(ToolError {
++                code: "response_format".into(),
++                message: "tool_calls must be an array".into(),
++            });
++        }
++    }
++    let mut calls = Vec::new();
++    for call in message
++        .get("tool_calls")
++        .and_then(|v| v.as_array())
++        .into_iter()
++        .flatten()
++    {
++        let id = call
++            .get("id")
++            .and_then(|v| v.as_str())
++            .filter(|v| !v.is_empty())
++            .ok_or_else(|| ToolError {
++                code: "response_format".into(),
++                message: "tool call lacks id".into(),
++            })?;
++        let function = call.get("function").ok_or_else(|| ToolError {
++            code: "response_format".into(),
++            message: "missing tool function".into(),
++        })?;
++        let arguments: serde_json::Value = serde_json::from_str(
++            function
++                .get("arguments")
++                .and_then(|v| v.as_str())
++                .ok_or_else(|| ToolError {
++                    code: "arguments_invalid".into(),
++                    message: "tool arguments must be JSON text".into(),
++                })?,
++        )
++        .map_err(|_| ToolError {
++            code: "arguments_invalid".into(),
++            message: "tool arguments are not JSON".into(),
++        })?;
++        if !arguments.is_object() {
++            return Err(ToolError {
++                code: "arguments_invalid".into(),
++                message: "tool arguments must be an object".into(),
++            });
++        }
++        let name = function
++            .get("name")
++            .and_then(|v| v.as_str())
++            .filter(|v| !v.is_empty())
++            .ok_or_else(|| ToolError {
++                code: "response_format".into(),
++                message: "tool call lacks name".into(),
++            })?;
++        calls.push(ToolCall {
++            id: id.into(),
++            name: function
++                .get("name")
++                .and_then(|v| v.as_str())
++                .unwrap_or(name)
++                .into(),
++            arguments,
++        });
++    }
++    let message = Message {
++        role: "assistant".into(),
++        content,
++        tool_call_id: None,
++        tool_calls: calls.clone(),
++    };
++    Ok(ModelTurn {
++        message,
++        tool_calls: calls,
++    })
++}
++
++pub fn anthropic_request(messages: &[Message], model: &str) -> serde_json::Value {
++    let system = messages
++        .iter()
++        .find(|m| m.role == "system")
++        .map(|m| m.content.clone());
++    let mut filtered: Vec<serde_json::Value> = Vec::new();
++    for m in messages.iter().filter(|m| m.role != "system") {
++        if m.role == "tool" {
++            let block = serde_json::json!({"type":"tool_result","tool_use_id":m.tool_call_id,"content":m.content});
++            if filtered
++                .last()
++                .and_then(|v| v.get("role"))
++                .and_then(|v| v.as_str())
++                == Some("user")
++                && filtered
++                    .last()
++                    .and_then(|v| v.get("content"))
++                    .and_then(|v| v.as_array())
++                    .is_some()
++            {
++                filtered.last_mut().unwrap()["content"]
++                    .as_array_mut()
++                    .unwrap()
++                    .push(block);
++            } else {
++                filtered.push(serde_json::json!({"role":"user","content":[block]}));
++            }
++        } else if m.role == "assistant" && !m.tool_calls.is_empty() {
++            let mut content = Vec::new();
++            if !m.content.is_empty() {
++                content.push(serde_json::json!({"type":"text","text":m.content}));
++            }
++            content.extend(m.tool_calls.iter().map(|c| serde_json::json!({"type":"tool_use","id":c.id,"name":c.name,"input":c.arguments})));
++            filtered.push(serde_json::json!({"role":"assistant","content":content}));
++        } else {
++            filtered.push(serde_json::json!({"role": if m.role == "assistant" { "assistant" } else { "user" }, "content": m.content}));
++        }
++    }
++    let mut request = serde_json::json!({"model": model, "max_tokens": 1024, "messages": filtered});
++    if let Some(system) = system {
++        request["system"] = system.into();
++    }
++    request
++}
++
++pub fn anthropic_response_to_message(body: &str) -> Result<Message, ToolError> {
++    Ok(parse_anthropic_turn(body)?.message)
++}
++
++pub fn parse_anthropic_turn(body: &str) -> Result<ModelTurn, ToolError> {
++    let value: serde_json::Value = serde_json::from_str(body).map_err(|_| ToolError {
++        code: "response_format".into(),
++        message: "invalid JSON".into(),
++    })?;
++    let blocks = value
++        .get("content")
++        .and_then(|v| v.as_array())
++        .ok_or_else(|| ToolError {
++            code: "response_format".into(),
++            message: "missing content".into(),
++        })?;
++    let content = blocks
++        .iter()
++        .filter(|b| b.get("type").and_then(|t| t.as_str()) == Some("text"))
++        .filter_map(|b| b.get("text").and_then(|t| t.as_str()))
++        .collect::<Vec<_>>()
++        .join("");
++    let mut calls = Vec::new();
++    for block in blocks
++        .iter()
++        .filter(|b| b.get("type").and_then(|t| t.as_str()) == Some("tool_use"))
++    {
++        let id = block
++            .get("id")
++            .and_then(|v| v.as_str())
++            .filter(|s| !s.is_empty())
++            .ok_or_else(|| ToolError {
++                code: "response_format".into(),
++                message: "tool_use lacks id".into(),
++            })?;
++        let name = block
++            .get("name")
++            .and_then(|v| v.as_str())
++            .filter(|s| !s.is_empty())
++            .ok_or_else(|| ToolError {
++                code: "response_format".into(),
++                message: "tool_use lacks name".into(),
++            })?;
++        let arguments = block
++            .get("input")
++            .filter(|v| v.is_object())
++            .cloned()
++            .ok_or_else(|| ToolError {
++                code: "arguments_invalid".into(),
++                message: "tool input must be an object".into(),
++            })?;
++        calls.push(ToolCall {
++            id: id.into(),
++            name: name.into(),
++            arguments,
++        });
++    }
++    for block in blocks {
++        if block.get("type").and_then(|v| v.as_str()) == Some("text")
++            && block.get("text").and_then(|v| v.as_str()).is_none()
++        {
++            return Err(ToolError {
++                code: "response_format".into(),
++                message: "text block is invalid".into(),
++            });
++        }
++        if !matches!(
++            block.get("type").and_then(|v| v.as_str()),
++            Some("text") | Some("tool_use")
++        ) {
++            return Err(ToolError {
++                code: "response_format".into(),
++                message: "content block is invalid".into(),
++            });
++        }
++    }
++    if calls.is_empty() && content.is_empty() {
++        return Err(ToolError {
++            code: "response_format".into(),
++            message: "Anthropic response lacks text content".into(),
++        });
++    }
++    Ok(ModelTurn {
++        message: Message {
++            role: "assistant".into(),
++            content,
++            tool_call_id: None,
++            tool_calls: calls.clone(),
++        },
++        tool_calls: calls,
++    })
++}
++
++pub fn replay(responses: &[String], index: &mut usize) -> Result<ModelTurn, ToolError> {
++    let body = responses.get(*index).ok_or_else(|| ToolError {
++        code: "replay_exhausted".into(),
++        message: "replay exhausted".into(),
++    })?;
++    *index += 1;
++    parse_anthropic_turn(body)
++}
++
++#[derive(Clone, Debug, PartialEq, Eq)]
++pub struct Workspace {
++    pub root: PathBuf,
++}
++
++fn safe_path(workspace: &Workspace, input: &str) -> Result<PathBuf, ToolError> {
++    let root = workspace.root.canonicalize().map_err(|_| ToolError {
++        code: "workspace_invalid".into(),
++        message: "workspace unavailable".into(),
++    })?;
++    let mut components = Vec::new();
++    for component in Path::new(input).components() {
++        match component {
++            std::path::Component::RootDir | std::path::Component::Prefix(_) => {
++                return Err(ToolError {
++                    code: "path_escape".into(),
++                    message: "path escapes workspace".into(),
++                });
++            }
++            std::path::Component::ParentDir => {
++                if components.pop().is_none() {
++                    return Err(ToolError {
++                        code: "path_escape".into(),
++                        message: "path escapes workspace".into(),
++                    });
++                }
++            }
++            std::path::Component::Normal(value) => components.push(value),
++            std::path::Component::CurDir => {}
++        }
++    }
++    let requested = root.join(input);
++    let candidate = requested.canonicalize().map_err(|_| ToolError {
++        code: "path_invalid".into(),
++        message: "path unavailable".into(),
++    })?;
++    if !candidate.starts_with(&root) {
++        return Err(ToolError {
++            code: "path_escape".into(),
++            message: "path escapes workspace".into(),
++        });
++    }
++    Ok(candidate)
++}
++
++pub fn read_file(workspace: &Workspace, path: &str) -> ToolResult {
++    match safe_path(workspace, path).and_then(|path| {
++        std::fs::read_to_string(path).map_err(|_| ToolError {
++            code: "read_failed".into(),
++            message: "read failed".into(),
++        })
++    }) {
++        Ok(output) => ToolResult {
++            tool_call_id: "read_file".into(),
++            ok: true,
++            output: Some(output),
++            error: None,
++        },
++        Err(error) => ToolResult {
++            tool_call_id: "read_file".into(),
++            ok: false,
++            output: None,
++            error: Some(error),
++        },
++    }
++}
++
++pub fn search_files(workspace: &Workspace, needle: &str) -> ToolResult {
++    fn walk(root: &Path, dir: &Path, needle: &str, found: &mut Vec<String>) -> std::io::Result<()> {
++        for entry in std::fs::read_dir(dir)? {
++            let entry = entry?;
++            let name = entry.file_name();
++            if matches!(name.to_str(), Some(".git" | "target" | "node_modules")) {
++                continue;
++            }
++            let path = entry.path();
++            let metadata = std::fs::symlink_metadata(&path)?;
++            if metadata.file_type().is_symlink() {
++                continue;
++            }
++            if metadata.is_dir() {
++                walk(root, &path, needle, found)?;
++            } else if path.is_file()
++                && std::fs::read_to_string(&path)
++                    .map(|s| s.contains(needle))
++                    .unwrap_or(false)
++            {
++                found.push(
++                    path.strip_prefix(root)
++                        .unwrap_or(&path)
++                        .display()
++                        .to_string(),
++                );
++            }
++        }
++        Ok(())
++    }
++    let root = match workspace.root.canonicalize() {
++        Ok(root) => root,
++        Err(_) => {
++            return ToolResult {
++                tool_call_id: "search_files".into(),
++                ok: false,
++                output: None,
++                error: Some(ToolError {
++                    code: "workspace_invalid".into(),
++                    message: "workspace unavailable".into(),
++                }),
++            }
++        }
++    };
++    let mut found = Vec::new();
++    match walk(&root, &root, needle, &mut found) {
++        Ok(()) => {
++            found.sort();
++            ToolResult {
++                tool_call_id: "search_files".into(),
++                ok: true,
++                output: Some(found.join("\n")),
++                error: None,
++            }
++        }
++        Err(_) => ToolResult {
++            tool_call_id: "search_files".into(),
++            ok: false,
++            output: None,
++            error: Some(ToolError {
++                code: "search_failed".into(),
++                message: "search failed".into(),
++            }),
++        },
++    }
++}
++
++pub fn dispatch_readonly(call: &ToolCall, workspace: &Workspace) -> ToolResult {
++    match call.name.as_str() {
++        "read_file" => match call.arguments.get("path").and_then(|v| v.as_str()) {
++            Some(path) => {
++                let mut result = read_file(workspace, path);
++                result.tool_call_id = call.id.clone();
++                result
++            }
++            None => invalid_result(&call.id, "read_file requires string path"),
++        },
++        "search_files" => match call.arguments.get("needle").and_then(|v| v.as_str()) {
++            Some(needle) => {
++                let mut result = search_files(workspace, needle);
++                result.tool_call_id = call.id.clone();
++                result
++            }
++            None => invalid_result(&call.id, "search_files requires string needle"),
++        },
++        _ => ToolResult {
++            tool_call_id: call.id.clone(),
++            ok: false,
++            output: None,
++            error: Some(ToolError {
++                code: "unknown_tool".into(),
++                message: format!("unknown tool: {}", call.name),
++            }),
++        },
++    }
++}
++
++pub use dispatch_readonly as execute_tool;
++pub use dispatch_readonly as execute_tool_call;
++
++fn invalid_result(id: &str, message: &str) -> ToolResult {
++    ToolResult {
++        tool_call_id: id.into(),
++        ok: false,
++        output: None,
++        error: Some(ToolError {
++            code: "arguments_invalid".into(),
++            message: message.into(),
++        }),
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn anthropic_round_trip_shape() {
++        let input = vec![Message {
++            role: "user".into(),
++            content: "hi".into(),
++            tool_call_id: None,
++            tool_calls: Vec::new(),
++        }];
++        assert_eq!(
++            anthropic_request(&input, "claude-test")["model"],
++            "claude-test"
++        );
++        assert_eq!(
++            anthropic_response_to_message(r#"{"content":[{"type":"text","text":"hello"}]}"#)
++                .unwrap()
++                .content,
++            "hello"
++        );
++    }
++    #[test]
++    fn read_file_rejects_escape() {
++        let result = read_file(
++            &Workspace {
++                root: std::env::current_dir().unwrap(),
++            },
++            "../../outside",
++        );
++        assert!(!result.ok);
++        assert!(result.error.is_some());
++    }
++}
+diff --git a/new/repo/rust/tests/prerequisites.rs b/new/repo/rust/tests/prerequisites.rs
+new file mode 100644
+index 0000000..6ba0e7c
+--- /dev/null
++++ b/new/repo/rust/tests/prerequisites.rs
+@@ -0,0 +1,333 @@
++use rein_ch01_helloworld::rein::{
++    anthropic_request, anthropic_response_to_message, dispatch_readonly, openai_complete, replay,
++    Message, ReqwestHttp, ToolCall, Workspace,
++};
++use serde_json::Value;
++use std::time::Duration;
++
++const FIXTURE: &str = include_str!("../../fixtures/cases/prerequisites.json");
++
++#[test]
++fn shared_fixture_and_replay_are_structured() {
++    let fixture: Value = serde_json::from_str(FIXTURE).unwrap();
++    assert_eq!(fixture["expected"]["assistant_text"], "hello");
++    let mut index = 0;
++    let responses = vec![fixture["anthropic_response"].to_string()];
++    let turn = replay(&responses, &mut index).unwrap();
++    assert_eq!(turn.message.content, "hello");
++    assert_eq!(
++        turn.tool_calls
++            .iter()
++            .map(|call| call.id.as_str())
++            .collect::<Vec<_>>(),
++        vec!["anthropic-1", "anthropic-2"]
++    );
++    assert_eq!(
++        replay(&responses, &mut index).unwrap_err().code,
++        "replay_exhausted"
++    );
++    assert!(anthropic_response_to_message("{}").is_err());
++    let request = anthropic_request(
++        &[
++            Message {
++                role: "system".into(),
++                content: "rules".into(),
++                tool_call_id: None,
++                tool_calls: vec![],
++            },
++            Message {
++                role: "assistant".into(),
++                content: "hello".into(),
++                tool_call_id: None,
++                tool_calls: vec![
++                    ToolCall {
++                        id: "anthropic-1".into(),
++                        name: "read_file".into(),
++                        arguments: serde_json::json!({"path":"README.md"}),
++                    },
++                    ToolCall {
++                        id: "anthropic-2".into(),
++                        name: "search_files".into(),
++                        arguments: serde_json::json!({"needle":"前置"}),
++                    },
++                ],
++            },
++            Message {
++                role: "tool".into(),
++                content: "one".into(),
++                tool_call_id: Some("anthropic-1".into()),
++                tool_calls: vec![],
++            },
++            Message {
++                role: "tool".into(),
++                content: "two".into(),
++                tool_call_id: Some("anthropic-2".into()),
++                tool_calls: vec![],
++            },
++        ],
++        "claude",
++    );
++    assert_eq!(request["system"], "rules");
++    assert_eq!(
++        request["messages"][0]["content"]
++            .as_array()
++            .unwrap()
++            .iter()
++            .filter(|block| block["type"] == "tool_use")
++            .map(|block| block["id"].as_str().unwrap())
++            .collect::<Vec<_>>(),
++        vec!["anthropic-1", "anthropic-2"]
++    );
++    assert_eq!(
++        request["messages"][1]["content"]
++            .as_array()
++            .unwrap()
++            .iter()
++            .map(|block| block["tool_use_id"].as_str().unwrap())
++            .collect::<Vec<_>>(),
++        vec!["anthropic-1", "anthropic-2"]
++    );
++}
++
++#[test]
++fn malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical() {
++    let fixture: Value = serde_json::from_str(FIXTURE).unwrap();
++    for sample in fixture["malformed_responses"].as_array().unwrap() {
++        let body = sample["body"].to_string();
++        let result = if sample["provider"] == "openai" {
++            rein_ch01_helloworld::rein::parse_openai_turn(&body).map(|_| ())
++        } else {
++            rein_ch01_helloworld::rein::parse_anthropic_turn(&body).map(|_| ())
++        };
++        assert!(
++            result.is_err(),
++            "malformed sample unexpectedly accepted: {sample}"
++        );
++    }
++    let canonical = rein_ch01_helloworld::rein::Message {
++        role: "user".into(),
++        content: "canonical".into(),
++        tool_call_id: None,
++        tool_calls: vec![],
++    };
++    assert_eq!(
++        serde_json::to_value(canonical).unwrap(),
++        fixture["canonical_sample"]
++    );
++    let pure_tools =
++        rein_ch01_helloworld::rein::parse_openai_turn(&fixture["openai_response"].to_string())
++            .unwrap();
++    assert_eq!(pure_tools.tool_calls.len(), 2);
++}
++
++#[test]
++fn tools_use_real_fixture_and_bind_actual_ids() {
++    let workspace = Workspace {
++        root: std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++            .join("../fixtures/workspaces/prerequisites"),
++    };
++    let result = dispatch_readonly(
++        &ToolCall {
++            id: "call-real".into(),
++            name: "read_file".into(),
++            arguments: serde_json::json!({"path":"README.md"}),
++        },
++        &workspace,
++    );
++    assert_eq!(result.tool_call_id, "call-real");
++    assert!(result.output.unwrap().contains("前置 workspace"));
++    let escaped = dispatch_readonly(
++        &ToolCall {
++            id: "escape".into(),
++            name: "read_file".into(),
++            arguments: serde_json::json!({"path":"../README.md"}),
++        },
++        &workspace,
++    );
++    assert_eq!(escaped.error.unwrap().code, "path_escape");
++    let unknown = dispatch_readonly(
++        &ToolCall {
++            id: "unknown-id".into(),
++            name: "nope".into(),
++            arguments: serde_json::json!({}),
++        },
++        &workspace,
++    );
++    assert_eq!(unknown.tool_call_id, "unknown-id");
++    assert_eq!(unknown.error.unwrap().code, "unknown_tool");
++}
++
++#[test]
++fn symlink_escape_is_rejected() {
++    let root = std::env::temp_dir().join(format!("rein-prereq-{}", std::process::id()));
++    let _ = std::fs::remove_dir_all(&root);
++    std::fs::create_dir(&root).unwrap();
++    std::os::unix::fs::symlink(
++        std::env::current_dir().unwrap().join("README.md"),
++        root.join("outside.txt"),
++    )
++    .unwrap();
++    let result = dispatch_readonly(
++        &ToolCall {
++            id: "symlink".into(),
++            name: "read_file".into(),
++            arguments: serde_json::json!({"path":"outside.txt"}),
++        },
++        &Workspace { root: root.clone() },
++    );
++    assert_eq!(result.error.unwrap().code, "path_escape");
++    std::fs::remove_dir_all(root).unwrap();
++}
++
++#[tokio::test]
++async fn concrete_reqwest_captures_two_openai_turns_and_tool_results() {
++    use tokio::{
++        io::{AsyncReadExt, AsyncWriteExt},
++        net::TcpListener,
++    };
++    let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
++    let address = listener.local_addr().unwrap();
++    let fixture: Value = serde_json::from_str(FIXTURE).unwrap();
++    let first_body = fixture["openai_response"].to_string();
++    let second_body = fixture["openai_followup_response"].to_string();
++    let workspace_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++        .join("../fixtures/workspaces/prerequisites");
++    let expected_read = std::fs::read_to_string(workspace_root.join("README.md")).unwrap();
++    let expected_search = "README.md".to_string();
++    let server = tokio::spawn(async move {
++        for n in 0..2 {
++            let (mut socket, _) = listener.accept().await.unwrap();
++            let mut request = Vec::new();
++            let mut chunk = [0u8; 2048];
++            loop {
++                let count = socket.read(&mut chunk).await.unwrap();
++                assert!(count > 0);
++                request.extend_from_slice(&chunk[..count]);
++                if request.windows(b"\r\n\r\n".len()).any(|w| w == b"\r\n\r\n") {
++                    break;
++                }
++            }
++            let header_end = request.windows(4).position(|w| w == b"\r\n\r\n").unwrap() + 4;
++            let headers = String::from_utf8_lossy(&request[..header_end]);
++            let length = headers
++                .lines()
++                .find_map(|line| {
++                    line.to_ascii_lowercase()
++                        .strip_prefix("content-length:")
++                        .and_then(|v| v.trim().parse::<usize>().ok())
++                })
++                .unwrap();
++            while request.len() < header_end + length {
++                let count = socket.read(&mut chunk).await.unwrap();
++                request.extend_from_slice(&chunk[..count]);
++            }
++            let body = if n == 0 {
++                first_body.as_str()
++            } else {
++                second_body.as_str()
++            };
++            if n == 1 {
++                let sent: Value =
++                    serde_json::from_slice(&request[header_end..header_end + length]).unwrap();
++                let assistant = sent["messages"]
++                    .as_array()
++                    .unwrap()
++                    .iter()
++                    .find(|m| m["role"] == "assistant")
++                    .unwrap();
++                assert_eq!(
++                    assistant["tool_calls"]
++                        .as_array()
++                        .unwrap()
++                        .iter()
++                        .map(|c| c["id"].as_str().unwrap())
++                        .collect::<Vec<_>>(),
++                    vec!["call-1", "call-2"]
++                );
++                let tools: Vec<_> = sent["messages"]
++                    .as_array()
++                    .unwrap()
++                    .iter()
++                    .filter(|m| m["role"] == "tool")
++                    .collect();
++                assert_eq!(
++                    tools
++                        .iter()
++                        .map(|m| m["tool_call_id"].as_str().unwrap())
++                        .collect::<Vec<_>>(),
++                    vec!["call-1", "call-2"]
++                );
++                assert_eq!(tools[0]["content"], expected_read);
++                assert_eq!(tools[1]["content"], expected_search);
++            }
++            let response = format!("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}", body.len(), body);
++            socket.write_all(response.as_bytes()).await.unwrap();
++        }
++    });
++    let http = ReqwestHttp::new(Duration::from_secs(2)).unwrap();
++    let first = openai_complete(
++        &http,
++        &format!("http://{address}"),
++        "key",
++        "model",
++        &[Message {
++            role: "user".into(),
++            content: "inspect".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        }],
++        &[],
++    )
++    .await
++    .unwrap();
++    assert_eq!(
++        first
++            .tool_calls
++            .iter()
++            .map(|call| call.id.as_str())
++            .collect::<Vec<_>>(),
++        vec!["call-1", "call-2"]
++    );
++    let workspace = Workspace {
++        root: std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++            .join("../fixtures/workspaces/prerequisites"),
++    };
++    let results: Vec<_> = first
++        .tool_calls
++        .iter()
++        .map(|call| dispatch_readonly(call, &workspace))
++        .collect();
++    let messages = vec![
++        Message {
++            role: "user".into(),
++            content: "inspect".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++        first.message.clone(),
++        Message {
++            role: "tool".into(),
++            content: results[0].output.clone().unwrap(),
++            tool_call_id: Some(results[0].tool_call_id.clone()),
++            tool_calls: vec![],
++        },
++        Message {
++            role: "tool".into(),
++            content: results[1].output.clone().unwrap(),
++            tool_call_id: Some(results[1].tool_call_id.clone()),
++            tool_calls: vec![],
++        },
++    ];
++    let second = openai_complete(
++        &http,
++        &format!("http://{address}"),
++        "key",
++        "model",
++        &messages,
++        &[],
++    )
++    .await
++    .unwrap();
++    assert_eq!(second.message.content, "done");
++    server.await.unwrap();
++}
+diff --git a/new/repo/ts/src/rein/adapters.ts b/new/repo/ts/src/rein/adapters.ts
+new file mode 100644
+index 0000000..46193d2
+--- /dev/null
++++ b/new/repo/ts/src/rein/adapters.ts
+@@ -0,0 +1,76 @@
++import type { Config } from '../config'
++import type { Transport } from '../transport'
++import type { ChatAdapter, Message, ModelTurn, ToolCall, ToolDefinition } from './contracts'
++
++export function createOpenAIAdapter(config: Config, transport: Transport): ChatAdapter {
++  return {
++    async complete(messages, tools = [], options): Promise<ModelTurn> {
++      const response = await transport.send({ method: 'POST', url: `${config.baseUrl}/chat/completions`, headers: { 'content-type': 'application/json', authorization: `Bearer ${config.apiKey}` }, body: JSON.stringify({ model: config.model, messages: messages.map(serializeOpenAIMessage), tools: tools.map((tool) => ({ type: 'function', function: { name: tool.name, description: tool.description, parameters: tool.inputSchema } })) }) }, { timeoutMs: options?.timeoutMs ?? 30_000 })
++      if (response.status < 200 || response.status >= 300) throw new Error(`OpenAI HTTP ${response.status}`)
++      const root = JSON.parse(response.body) as unknown
++      if (!isRecord(root) || !Array.isArray(root.choices) || !isRecord(root.choices[0]) || !isRecord(root.choices[0].message)) throw new Error('OpenAI response lacks choices[0].message')
++      const raw = root.choices[0].message
++      const content = raw.content === undefined || raw.content === null ? '' : typeof raw.content === 'string' ? raw.content : (() => { throw new Error('OpenAI message content must be string or null') })()
++      if (raw.tool_calls !== undefined && !Array.isArray(raw.tool_calls)) throw new Error('OpenAI tool_calls must be an array')
++      const toolCalls: ToolCall[] = (raw.tool_calls ?? []).map((call: any) => {
++        if (!isRecord(call) || typeof call.id !== 'string' || call.id.length === 0 || !isRecord(call.function) || typeof call.function.name !== 'string' || call.function.name.length === 0) throw new Error('OpenAI tool call lacks id or name')
++        if (typeof call.function.arguments !== 'string') throw new Error('OpenAI tool arguments must be JSON text')
++        const args = JSON.parse(call.function.arguments) as unknown
++        if (!isRecord(args)) throw new Error('OpenAI tool arguments must be an object')
++        return { id: call.id, name: call.function.name, arguments: args }
++      })
++      return { message: { role: 'assistant', content, toolCalls }, toolCalls }
++    },
++  }
++}
++
++function serializeOpenAIMessage(message: Message): Record<string, unknown> {
++  if (message.role === 'tool') return { role: 'tool', tool_call_id: message.toolCallId, content: message.content }
++  if (message.role === 'assistant' && message.toolCalls?.length) return { role: 'assistant', content: message.content || null, tool_calls: message.toolCalls.map((call) => ({ id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) } })) }
++  return { role: message.role, content: message.content }
++}
++
++export function anthropicRequest(messages: readonly Message[], model: string): string {
++  const system = messages.find((message) => message.role === 'system')?.content
++  const converted: unknown[] = []
++  for (const message of messages.filter((m) => m.role !== 'system')) {
++    if (message.role === 'tool') {
++      const previous = converted.at(-1) as { role?: string; content?: unknown[] } | undefined
++      if (previous?.role === 'user' && Array.isArray(previous.content) && previous.content.every(block => (block as { type?: string }).type === 'tool_result')) previous.content.push({ type: 'tool_result', tool_use_id: message.toolCallId, content: message.content })
++      else converted.push({ role: 'user', content: [{ type: 'tool_result', tool_use_id: message.toolCallId, content: message.content }] })
++    } else if (message.role === 'assistant' && message.toolCalls?.length) {
++      const content: unknown[] = []
++      if (message.content) content.push({ type: 'text', text: message.content })
++      content.push(...message.toolCalls.map(call => ({ type: 'tool_use', id: call.id, name: call.name, input: call.arguments })))
++      converted.push({ role: 'assistant', content })
++    } else converted.push({ role: message.role === 'assistant' ? 'assistant' : 'user', content: message.content })
++  }
++  return JSON.stringify({ model, max_tokens: 1024, ...(system === undefined ? {} : { system }), messages: converted })
++}
++
++export function anthropicResponseToMessage(body: string): ModelTurn {
++  const payload = JSON.parse(body) as unknown
++  if (!isRecord(payload) || !Array.isArray(payload.content)) throw new Error('Anthropic response lacks content')
++  const blocks = payload.content
++  const toolCalls = blocks.filter((block): block is Record<string, unknown> => isRecord(block) && block.type === 'tool_use').map((block) => { if (typeof block.id !== 'string' || block.id.length === 0 || typeof block.name !== 'string' || block.name.length === 0 || !isRecord(block.input)) throw new Error('Anthropic tool_use lacks id/name or has invalid input'); return { id: block.id, name: block.name, arguments: block.input } })
++  for (const block of blocks) {
++    if (!isRecord(block) || (block.type !== 'text' && block.type !== 'tool_use')) throw new Error('Anthropic content block is invalid')
++    if (block.type === 'text' && typeof block.text !== 'string') throw new Error('Anthropic text block is invalid')
++    if (block.type === 'tool_use' && (typeof block.id !== 'string' || block.id.length === 0 || typeof block.name !== 'string' || block.name.length === 0 || !isRecord(block.input))) throw new Error('Anthropic tool_use lacks id/name or has invalid input')
++  }
++  if (!toolCalls.length && !blocks.some(block => block.type === 'text')) throw new Error('Anthropic response lacks text content')
++  return { message: { role: 'assistant', content: blocks.filter((block) => block.type === 'text').map((block) => block.text ?? '').join(''), toolCalls }, toolCalls }
++}
++
++export function createReplayAdapter(responses: readonly string[]): ChatAdapter & { readonly receivedMessages: readonly (readonly Message[])[] } {
++  let index = 0
++  const receivedMessages: (readonly Message[])[] = []
++  return { receivedMessages, async complete(messages) {
++    receivedMessages.push(structuredClone(messages))
++    const body = responses[index++]
++    if (body === undefined) throw new Error('replay exhausted')
++    return anthropicResponseToMessage(body)
++  } }
++}
++
++function isRecord(value: unknown): value is Record<string, any> { return typeof value === 'object' && value !== null && !Array.isArray(value) }
+diff --git a/new/repo/ts/src/rein/contracts.ts b/new/repo/ts/src/rein/contracts.ts
+new file mode 100644
+index 0000000..2e91e97
+--- /dev/null
++++ b/new/repo/ts/src/rein/contracts.ts
+@@ -0,0 +1,34 @@
++export type Role = 'system' | 'user' | 'assistant' | 'tool'
++
++export interface Message {
++  readonly role: Role
++  readonly content: string
++  readonly toolCallId?: string
++  readonly toolCalls?: readonly ToolCall[]
++}
++
++export interface ToolCall {
++  readonly id: string
++  readonly name: string
++  readonly arguments: Readonly<Record<string, unknown>>
++}
++
++export interface ToolResult {
++  readonly toolCallId: string
++  readonly ok: boolean
++  readonly output?: string
++  readonly error?: { readonly code: string; readonly message: string }
++}
++
++export interface Turn {
++  readonly messages: readonly Message[]
++  readonly toolCalls: readonly ToolCall[]
++  readonly toolResults: readonly ToolResult[]
++}
++
++export interface ChatAdapter {
++  complete(messages: readonly Message[], tools?: readonly ToolDefinition[], options?: { readonly timeoutMs?: number }): Promise<ModelTurn>
++}
++
++export interface ToolDefinition { readonly name: string; readonly description: string; readonly inputSchema: Readonly<Record<string, unknown>> }
++export interface ModelTurn { readonly message: Message; readonly toolCalls: readonly ToolCall[] }
+diff --git a/new/repo/ts/src/rein/readonly.ts b/new/repo/ts/src/rein/readonly.ts
+new file mode 100644
+index 0000000..f564f93
+--- /dev/null
++++ b/new/repo/ts/src/rein/readonly.ts
+@@ -0,0 +1,69 @@
++import { readdir, readFile, realpath, lstat } from 'node:fs/promises'
++import { resolve, relative, isAbsolute, sep } from 'node:path'
++import type { ToolCall, ToolResult } from './contracts'
++
++export interface Workspace { readonly root: string }
++
++function inside(root: string, candidate: string): boolean {
++  const rel = relative(root, candidate)
++  return rel === '' || (!isAbsolute(rel) && !rel.startsWith(`..${sep}`) && rel !== '..')
++}
++
++async function safePath(workspace: Workspace, input: string): Promise<string> {
++  const root = await realpath(workspace.root)
++  const candidate = resolve(root, input)
++  if (!inside(root, candidate)) throw new Error('path escapes workspace')
++  const actual = await realpath(candidate)
++  if (!inside(root, actual)) throw new Error('path escapes workspace')
++  if ((await lstat(actual)).isDirectory()) throw new Error('path is a directory')
++  return actual
++}
++
++function readResult(callId: string, path: Promise<string>): Promise<ToolResult> {
++  return path.then(file => readFile(file, 'utf8')).then(output => ({ toolCallId: callId, ok: true, output })).catch(error => ({
++    toolCallId: callId, ok: false,
++    error: { code: error instanceof Error && error.message === 'path escapes workspace' ? 'path_escape' : isNodeMissing(error) ? 'path_invalid' : 'read_failed', message: error instanceof Error ? error.message : 'read failed' },
++  }))
++}
++
++export function readFileTool(workspace: Workspace, path: string, toolCallId = 'read_file'): Promise<ToolResult> {
++  return readResult(toolCallId, safePath(workspace, path))
++}
++
++export async function searchFilesTool(workspace: Workspace, needle: string, toolCallId = 'search_files'): Promise<ToolResult> {
++  try {
++    const root = await realpath(workspace.root)
++    const found: string[] = []
++    async function walk(dir: string): Promise<void> {
++      for (const entry of (await readdir(dir, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
++        if (entry.name === 'node_modules' || entry.name === 'target' || entry.name === '.git') continue
++        const path = resolve(dir, entry.name)
++        if (entry.isSymbolicLink()) continue
++        if (entry.isDirectory()) await walk(path)
++        else if (entry.isFile() && (await readFile(path, 'utf8')).includes(needle)) found.push(relative(root, path))
++      }
++    }
++    await walk(root)
++    return { toolCallId, ok: true, output: found.sort().join('\n') }
++  } catch (error) {
++    return { toolCallId, ok: false, error: { code: 'search_failed', message: error instanceof Error ? error.message : 'search failed' } }
++  }
++}
++
++export async function dispatchReadonly(call: ToolCall, workspace: Workspace): Promise<ToolResult> {
++  if (call.name === 'read_file') {
++    if (!isObject(call.arguments) || typeof call.arguments.path !== 'string') return invalid(call.id, 'read_file requires string path')
++    return readFileTool(workspace, call.arguments.path, call.id)
++  }
++  if (call.name === 'search_files') {
++    if (!isObject(call.arguments) || typeof call.arguments.needle !== 'string') return invalid(call.id, 'search_files requires string needle')
++    return searchFilesTool(workspace, call.arguments.needle, call.id)
++  }
++  return { toolCallId: call.id, ok: false, error: { code: 'unknown_tool', message: `unknown tool: ${call.name}` } }
++}
++
++export const executeTool = dispatchReadonly
++export const execute_tool = dispatchReadonly
++function isObject(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value) }
++function invalid(id: string, message: string): ToolResult { return { toolCallId: id, ok: false, error: { code: 'arguments_invalid', message } } }
++function isNodeMissing(error: unknown): boolean { return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT' }
+diff --git a/new/repo/ts/tests/rein-prerequisites.test.ts b/new/repo/ts/tests/rein-prerequisites.test.ts
+new file mode 100644
+index 0000000..aaddefc
+--- /dev/null
++++ b/new/repo/ts/tests/rein-prerequisites.test.ts
+@@ -0,0 +1,89 @@
++import { describe, expect, it } from 'vitest'
++import { readFile, mkdtemp, symlink, rm } from 'node:fs/promises'
++import { tmpdir } from 'node:os'
++import { join } from 'node:path'
++import { anthropicRequest, anthropicResponseToMessage, createOpenAIAdapter, createReplayAdapter } from '../src/rein/adapters'
++import { dispatchReadonly, readFileTool, searchFilesTool } from '../src/rein/readonly'
++import type { Message, ToolCall } from '../src/rein/contracts'
++
++const fixture = JSON.parse(await readFile(join(process.cwd(), '../fixtures/cases/prerequisites.json'), 'utf8')) as any
++const workspace = { root: join(process.cwd(), '../fixtures/workspaces/prerequisites') }
++
++describe('ch05 prerequisites', () => {
++  it('reads shared fixture and handles Anthropic text, tools, system, and grouped results', () => {
++    const request = JSON.parse(anthropicRequest([
++      { role: 'system', content: 'rules' },
++      { role: 'assistant', content: '', toolCalls: [{ id: 'u1', name: 'read_file', arguments: { path: 'README.md' } }, { id: 'u2', name: 'search_files', arguments: { needle: 'workspace' } }] },
++      { role: 'tool', toolCallId: 'u1', content: 'one' }, { role: 'tool', toolCallId: 'u2', content: 'two' },
++    ], 'claude-test'))
++    expect(request.system).toBe('rules')
++    expect(request.messages[0]!.content).toHaveLength(2)
++    const turn = anthropicResponseToMessage(JSON.stringify(fixture.anthropic_response))
++    expect(turn.message.content).toBe(fixture.expected.assistant_text)
++    expect(turn.toolCalls.map(call => call.id)).toEqual(fixture.expected.anthropic_tool_ids)
++    expect(request.messages[1]!.content).toHaveLength(2)
++  })
++
++  it('dispatches real fixture tools with call ids and rejects unknown/invalid paths', async () => {
++    const call: ToolCall = { id: 'call-real', name: 'read_file', arguments: { path: 'README.md' } }
++    await expect(dispatchReadonly(call, workspace)).resolves.toMatchObject({ toolCallId: 'call-real', ok: true, output: expect.stringContaining('前置 workspace') })
++    await expect(dispatchReadonly({ id: 'unknown-1', name: 'nope', arguments: {} }, workspace)).resolves.toMatchObject({ toolCallId: 'unknown-1', error: { code: 'unknown_tool' } })
++    await expect(dispatchReadonly({ id: 'bad-1', name: 'read_file', arguments: { path: '../README.md' } }, workspace)).resolves.toMatchObject({ toolCallId: 'bad-1', error: { code: 'path_escape' } })
++    await expect(dispatchReadonly({ id: 'bad-2', name: 'read_file', arguments: { path: 'missing' } }, workspace)).resolves.toMatchObject({ toolCallId: 'bad-2', error: { code: 'path_invalid' } })
++    await expect(searchFilesTool(workspace, '前置')).resolves.toMatchObject({ ok: true, output: 'README.md' })
++    await expect(readFileTool(workspace, '.')).resolves.toMatchObject({ ok: false })
++  })
++
++  it('rejects a symlink that escapes the workspace', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-prereq-'))
++    try {
++      await symlink(join(process.cwd(), 'package.json'), join(root, 'outside.txt'))
++      await expect(readFileTool({ root }, 'outside.txt')).resolves.toMatchObject({ ok: false, error: { code: 'path_escape' } })
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('captures two OpenAI protocol requests and preserves multiple tool calls/results', async () => {
++    const bodies: string[] = []
++    const responses = [JSON.stringify(fixture.openai_response), JSON.stringify(fixture.openai_followup_response)]
++    const transport = { async send(request: { body: string }) { bodies.push(request.body); return { status: 200, statusText: 'OK', headers: {}, body: responses[bodies.length - 1]! } } }
++    const adapter = createOpenAIAdapter({ baseUrl: 'http://loopback.test', apiKey: 'key', model: 'model' }, transport)
++    const first = await adapter.complete([{ role: 'user', content: 'inspect fixture' }])
++    const results = await Promise.all(first.toolCalls.map(call => dispatchReadonly(call, workspace)))
++    const secondMessages: Message[] = [{ role: 'user', content: 'inspect fixture' }, { role: 'assistant', content: '', toolCalls: first.toolCalls }, ...results.map(result => ({ role: 'tool' as const, toolCallId: result.toolCallId, content: result.output ?? result.error?.message ?? '' }))]
++    await expect(adapter.complete(secondMessages)).resolves.toMatchObject({ message: { content: 'done' } })
++    expect(bodies).toHaveLength(2)
++    const sent = JSON.parse(bodies[1]!)
++    const assistant = sent.messages.find((message: { role: string }) => message.role === 'assistant')
++    const toolMessages = sent.messages.filter((message: { role: string }) => message.role === 'tool')
++    expect(assistant!.tool_calls).toEqual(first.toolCalls.map(call => ({ id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) } })))
++    expect(toolMessages.map((message: { tool_call_id: string }) => message.tool_call_id)).toEqual(first.toolCalls.map(call => call.id))
++    expect(toolMessages.map((message: { content: string }) => message.content)).toEqual(results.map(result => result.output))
++  })
++
++  it('replay records messages, supports pure tools, and exhausts explicitly', async () => {
++    const replay = createReplayAdapter([JSON.stringify(fixture.anthropic_response), JSON.stringify(fixture.anthropic_response)])
++    const turn = await replay.complete([{ role: 'user', content: 'read' }])
++    expect(turn.toolCalls.map(call => call.id)).toEqual(fixture.expected.anthropic_tool_ids)
++    expect(replay.receivedMessages).toHaveLength(1)
++    const firstHistory = replay.receivedMessages[0]!
++    const secondInput: Message[] = [{ role: 'user', content: 'second' }]
++    await replay.complete(secondInput)
++    secondInput.push({ role: 'user', content: 'mutated-after-call' })
++    expect(replay.receivedMessages[1]).toEqual([{ role: 'user', content: 'second' }])
++    expect(firstHistory).toEqual([{ role: 'user', content: 'read' }])
++    await expect(replay.complete([])).rejects.toThrow('replay exhausted')
++  })
++
++  it('rejects every malformed shared fixture response and preserves null tool content', async () => {
++    for (const sample of fixture.malformed_responses) {
++      const parse = sample.provider === 'openai' ? () => createOpenAIAdapter({ baseUrl: 'http://loopback.test', apiKey: 'key', model: 'model' }, { async send() { return { status: 200, statusText: 'OK', headers: {}, body: JSON.stringify(sample.body) } } }).complete([]) : () => Promise.resolve().then(() => anthropicResponseToMessage(JSON.stringify(sample.body)))
++      await expect(parse()).rejects.toThrow()
++    }
++    const pureTools = createOpenAIAdapter({ baseUrl: 'http://loopback.test', apiKey: 'key', model: 'model' }, { async send() { return { status: 200, statusText: 'OK', headers: {}, body: JSON.stringify(fixture.openai_response) } } })
++    await expect(pureTools.complete([])).resolves.toMatchObject({ toolCalls: [{ id: 'call-1' }, { id: 'call-2' }] })
++  })
++
++  it('serializes the canonical optional-field sample like Rust', () => {
++    expect(JSON.stringify(fixture.canonical_sample)).toBe(JSON.stringify({ role: 'user', content: 'canonical' }))
++  })
++})

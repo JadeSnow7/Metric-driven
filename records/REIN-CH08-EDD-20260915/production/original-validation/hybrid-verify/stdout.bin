@@ -1,0 +1,125 @@
+
+> rein-book@0.1.0 hybrid:verify
+> npm run typecheck --workspace ts && npm test --workspace ts && cargo fmt --manifest-path rust/Cargo.toml -- --check && cargo check --locked --manifest-path rust/Cargo.toml && cargo test --locked --manifest-path rust/Cargo.toml && cargo run --quiet --locked --manifest-path rust/Cargo.toml --example hybrid_stdio -- normal
+
+
+> @rein/ts@0.0.0 typecheck
+> tsc --noEmit
+
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /Users/huaodong/workspace/Agent-Learning/ts
+
+ ✓ tests/chat.test.ts (17 tests) 6ms
+ ✓ tests/config.test.ts (13 tests) 3ms
+ ✓ tests/recorded.test.ts (3 tests) 12ms
+ ✓ tests/ch07-context.test.ts (8 tests) 63ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 65ms
+ ✓ tests/hello.test.ts (18 tests) 45ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/loop.test.ts (16 tests) 232ms
+ ✓ tests/hybrid-host.test.ts (4 tests) 305ms
+ ✓ tests/transport.test.ts (8 tests) 295ms
+
+ Test Files  10 passed (10)
+      Tests  100 passed (100)
+   Start at  19:19:11
+   Duration  584ms (transform 329ms, setup 0ms, collect 853ms, tests 1.03s, environment 1ms, prepare 526ms)
+
+
+running 9 tests
+test tests::status_classification_keeps_key_out_of_public_error ... ok
+test rein::tests::read_file_rejects_escape ... ok
+test rein::tests::anthropic_round_trip_shape ... ok
+test tests::config_requires_all_values_and_strips_trailing_slash ... ok
+test tests::local_http_server_receives_one_openai_request ... ok
+test tests::provider_errors_are_classified_without_echoing_messages ... ok
+test tests::timeout_returns_without_waiting_for_the_server ... ok
+test tests::malformed_or_empty_sdk_responses_are_failures ... ok
+test tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.52s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 14 tests
+test budget_boundaries_are_empty_and_do_not_dispatch ... ok
+test oracle_errors_are_explicit_after_answering ... ok
+test direct_max_budget_and_zero_budget_skip_deleted_selected_file ... ok
+test symlink_escape_is_pre_dispatch_with_prepared_record ... ok
+test metadata_rejects_task_duplicates_orders_absolute_and_unsafe_budget ... ok
+test window_budget_keeps_exact_latest_two_complete_source_messages ... ok
+test node_faults_and_missing_files_keep_real_records ... ok
+test jsonl_mutation_flows_through_http_source_and_oracle ... ok
+test duplicate_bodies_keep_document_identity_and_retrieval_changes_with_body ... ok
+test unknown_oracle_still_scores_real_throughput_claim ... ok
+test retrieval_scores_body_only_and_unknown_query_is_empty ... ok
+test missing_oracle_id_and_ascii_word_boundaries ... ok
+test default_matrix_preserves_rules_and_exact_estimates ... ok
+test metadata_and_native_api_reject_unsafe_inputs ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.99s
+
+
+running 13 tests
+test loop_wire_values_are_snake_case_and_fields_camel_case ... ok
+test ch07_context_rejects_unsafe_integer_budget_as_invalid_context_config ... ok
+test ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch ... ok
+test ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history ... ok
+test ch07_context_stops_when_new_latest_group_does_not_fit ... ok
+test ch07_context_tracks_latest_group_across_real_tool_rounds ... ok
+test nested_arguments_are_canonical_for_duplicate_detection ... ok
+test ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id ... ok
+test unknown_badargs_missing_file_are_feedback_and_can_recover ... ok
+test model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok
+test two_workspaces_search_then_read_and_pair_multiple_calls ... ok
+test observer_cancels_between_tools_and_pending_model_is_dropped ... ok
+test controls_stop_pending_model_and_zero_budget_without_dispatch ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 5 tests
+test symlink_escape_is_rejected ... ok
+test shared_fixture_and_replay_are_structured ... ok
+test malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok
+test tools_use_real_fixture_and_bind_actual_ids ... ok
+test concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+
+running 12 tests
+test predispatched_calls_have_no_child ... ok
+test fault_host_normal_control_reaches_fixture_final ... ok
+test zero_tool_budget_never_starts_host ... ok
+test disconnect_after_effect_records_one_ledger_line_and_is_unknown ... ok
+test production_host_reads_real_file_and_reaches_fixture_final ... ok
+test cancellation_wait_is_observed_after_started ... ok
+test crash_modes_have_no_followup_model_call ... ok
+test evidence_and_stale_target_faults_are_unknown ... ok
+test malformed_and_identity_faults_stop_without_second_model_call ... ok
+test ignored_cancel_becomes_unknown ... ok
+test cancel_ack_variants_are_classified_after_started ... ok
+test bounded_host_failures_are_reaped ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.14s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+{"answer":"fixture final: hybrid-m1-marker-20260914\n","events":[{"messages":[{"content":"read fixture","role":"user"}],"tools":[{"description":"Search text in workspace files.","inputSchema":{"additionalProperties":false,"properties":{"needle":{"type":"string"}},"required":["needle"],"type":"object"},"name":"search_files"},{"description":"Read one UTF-8 file in the workspace.","inputSchema":{"additionalProperties":false,"properties":{"path":{"type":"string"}},"required":["path"],"type":"object"},"name":"read_file"}],"turn":1,"type":"model_requested"},{"message":{"content":"","role":"assistant","toolCalls":[{"arguments":{"path":"fixtures/hybrid-marker.txt"},"id":"call-1","name":"read_file"}]},"text":"","toolCallIds":["call-1"],"turn":1,"type":"model_received"},{"call":{"arguments":{"path":"fixtures/hybrid-marker.txt"},"id":"call-1","name":"read_file"},"result":{"ok":true,"output":"hybrid-m1-marker-20260914\n","toolCallId":"call-1"},"toolCallId":"call-1","turn":1,"type":"tool_result"},{"messages":[{"content":"read fixture","role":"user"},{"content":"","role":"assistant","toolCalls":[{"arguments":{"path":"fixtures/hybrid-marker.txt"},"id":"call-1","name":"read_file"}]},{"content":"hybrid-m1-marker-20260914\n","role":"tool","toolCallId":"call-1"}],"tools":[{"description":"Search text in workspace files.","inputSchema":{"additionalProperties":false,"properties":{"needle":{"type":"string"}},"required":["needle"],"type":"object"},"name":"search_files"},{"description":"Read one UTF-8 file in the workspace.","inputSchema":{"additionalProperties":false,"properties":{"path":{"type":"string"}},"required":["path"],"type":"object"},"name":"read_file"}],"turn":2,"type":"model_requested"},{"message":{"content":"fixture final: hybrid-m1-marker-20260914\n","role":"assistant"},"text":"fixture final: hybrid-m1-marker-20260914\n","toolCallIds":[],"turn":2,"type":"model_received"},{"reason":"final_answer","state":"completed","type":"stopped"}],"ledgerPath":null,"modelCalls":2,"reason":"final_answer","records":[{"call_id":"call-1","child_pid":20398,"dispatched":true,"exit_code":0,"prepared":true,"reaped":true,"reason":"succeeded","request_id":"request-1","task_id":"task-19205-0-1789471233328088000","terminal":"succeeded"}],"status":"completed"}

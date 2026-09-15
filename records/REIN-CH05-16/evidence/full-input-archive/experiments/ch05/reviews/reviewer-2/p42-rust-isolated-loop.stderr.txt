@@ -1,0 +1,2 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running tests/loop.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42/debug/deps/loop-8ce302fc995cc4fc)

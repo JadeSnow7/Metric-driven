@@ -1,0 +1,10 @@
+TS exit=0
+Rust exit=0
+sha256:
+76cfd0c7d5498f55d26b3c025f586e533f61886926bb1887befe9efafce5a63b  ts-full-output.log
+f2aca48549bc5a2653eb4089355aa55bac913b12b7fe989e387377db4cabdeb5  rust-full-output.log
+implementation files:
+deee1e2ee5b2981a499f1ad2044de7d9253ba853fe6a9af831387a2048e7eb0b  /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/ts/src/rein/adapters.ts
+98d11ad987075a6741df306e119d44ec1089267ed966fc6af1749a94d923ebd7  /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/rust/src/rein/mod.rs
+b12cd8ba9f4d082ef8d4d8185ca5f47ea5b706aa2932d0c4e411e783a361c6cb  /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/fixtures/cases/prerequisites.json
+ad6e529f6ad7eb29a5b87506e0f2db1768cd801f1e258a7cf3c2feacfbfd4ad5  /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/contracts/README.md

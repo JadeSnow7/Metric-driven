@@ -1,0 +1,23 @@
+{
+  "reviewed_at": "2026-09-14T14:37:49.583414+00:00",
+  "status": "failed",
+  "scope": "first production code versions before root-directed rework; not a formal paired benchmark",
+  "typescript_findings": [
+    "Wrong-role toolCallId, tool result declaring calls, and nonfinite argument accepted and dispatched",
+    "No revalidation of new repeated call IDs on subsequent rounds",
+    "Rules omitted from beforeUnits and unmanaged afterUnits",
+    "Comparison uses JSON key-order-sensitive strings, does not assert expected outcomes",
+    "Some command timestamps were recorded after execution; failed focused raw retained; reported final passes lack corresponding standalone raw"
+  ],
+  "rust_findings": [
+    "Rules omitted from beforeUnits and unmanaged afterUnits",
+    "Default example path panics from book root",
+    "Offline answer concatenates all retained tool results in arrival order instead of latest complete group in declared call order",
+    "Adjacent valid complete tool groups rejected",
+    "History not revalidated each round; initial rejection omits current goal and context_rejected event",
+    "Budget larger than JS safe integer accepted",
+    "Claimed standalone raw evidence directory absent at review"
+  ],
+  "root_evidence": "/private/tmp/rein-ch07-main-review-v1",
+  "next": "Same language owners preserve v1 and repair; require actual raw full tests and cross-language semantics before body authoring"
+}

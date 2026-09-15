@@ -1,0 +1,90 @@
+warning: value assigned to `records` is never read
+   --> src/rein/context_methods.rs:298:27
+    |
+298 |         let mut records = Vec::new();
+    |                           ^^^^^^^^^^ this value is reassigned later and never used
+...
+319 |         records = ex.records();
+    |         ------- `records` is overwritten here before the previous value is read
+    |
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: structure field `rawAnswer` should have a snake case name
+  --> src/rein/context_methods.rs:38:9
+   |
+38 |     pub rawAnswer: String,
+   |         ^^^^^^^^^ help: convert the identifier to snake case: `raw_answer`
+   |
+   = note: `#[warn(non_snake_case)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: structure field `insufficientEvidence` should have a snake case name
+  --> src/rein/context_methods.rs:40:9
+   |
+40 |     pub insufficientEvidence: bool,
+   |         ^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `insufficient_evidence`
+
+warning: structure field `taskId` should have a snake case name
+  --> src/rein/context_methods.rs:57:9
+   |
+57 |     pub taskId: String,
+   |         ^^^^^^ help: convert the identifier to snake case: `task_id`
+
+warning: structure field `estimatedUnits` should have a snake case name
+  --> src/rein/context_methods.rs:63:9
+   |
+63 |     pub estimatedUnits: usize,
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `estimated_units`
+
+warning: structure field `selectedSources` should have a snake case name
+  --> src/rein/context_methods.rs:64:9
+   |
+64 |     pub selectedSources: Vec<String>,
+   |         ^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `selected_sources`
+
+warning: structure field `unsupportedClaims` should have a snake case name
+  --> src/rein/context_methods.rs:68:9
+   |
+68 |     pub unsupportedClaims: Vec<Claim>,
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `unsupported_claims`
+
+warning: structure field `elapsedMs` should have a snake case name
+  --> src/rein/context_methods.rs:69:9
+   |
+69 |     pub elapsedMs: u128,
+   |         ^^^^^^^^^ help: convert the identifier to snake case: `elapsed_ms`
+
+warning: structure field `serviceTokens` should have a snake case name
+  --> src/rein/context_methods.rs:70:9
+   |
+70 |     pub serviceTokens: Option<usize>,
+   |         ^^^^^^^^^^^^^ help: convert the identifier to snake case: `service_tokens`
+
+warning: structure field `modelCalls` should have a snake case name
+  --> src/rein/context_methods.rs:71:9
+   |
+71 |     pub modelCalls: usize,
+   |         ^^^^^^^^^^ help: convert the identifier to snake case: `model_calls`
+
+warning: structure field `callRecords` should have a snake case name
+  --> src/rein/context_methods.rs:72:9
+   |
+72 |     pub callRecords: Vec<CallRecord>,
+   |         ^^^^^^^^^^^ help: convert the identifier to snake case: `call_records`
+
+warning: structure field `serviceTokens` should have a snake case name
+  --> src/rein/context_methods.rs:77:9
+   |
+77 |     pub serviceTokens: Option<usize>,
+   |         ^^^^^^^^^^^^^ help: convert the identifier to snake case: `service_tokens`
+
+warning: `rein-ch01-helloworld` (lib) generated 13 warnings (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+    Finished `test` profile [unoptimized] target(s) in 0.24s
+     Running tests/ch08_context.rs (/private/tmp/rein-ch08-formal-20260915/B/run/cargo-target/debug/deps/ch08_context-bf841b87d4c6dc5a)

@@ -1,0 +1,22 @@
+{
+  "stale": {
+    "baseline_behavior_exit": 0,
+    "initial_record_exit": 1,
+    "record_only_expected_stale": true,
+    "baseline_command": [
+      "python3",
+      "-c",
+      "import types,sys,subprocess,unittest\nsrc=subprocess.check_output(['git','show','HEAD:inventory.py'],text=True);m=types.ModuleType('inventory');exec(compile(src,'inventory.py@HEAD','exec'),m.__dict__);sys.modules['inventory']=m\nsuite=unittest.defaultTestLoader.discover('tests',top_level_dir='.');result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())"
+    ]
+  },
+  "complex": {
+    "baseline_behavior_exit": 0,
+    "initial_record_exit": 1,
+    "record_only_expected_stale": true,
+    "baseline_command": [
+      "python3",
+      "-c",
+      "import types,sys,subprocess,unittest\nsrc=subprocess.check_output(['git','show','HEAD:inventory.py'],text=True);m=types.ModuleType('inventory');exec(compile(src,'inventory.py@HEAD','exec'),m.__dict__);sys.modules['inventory']=m\nsuite=unittest.defaultTestLoader.discover('tests',top_level_dir='.');result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())"
+    ]
+  }
+}

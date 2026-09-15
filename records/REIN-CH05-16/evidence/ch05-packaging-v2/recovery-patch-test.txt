@@ -1,0 +1,12 @@
+git_diff_no_index_exit=1 patch_bytes=3269
+patch header:
+diff --git a/private/tmp/rein-ch05-recovery-audit-20260914/old/contracts/README.md b/private/tmp/rein-ch05-recovery-audit-20260914/new/contracts/README.md
+index 58cce38..281367a 100644
+--- a/private/tmp/rein-ch05-recovery-audit-20260914/old/contracts/README.md
++++ b/private/tmp/rein-ch05-recovery-audit-20260914/new/contracts/README.md
+@@ -9,4 +9,4 @@
+ 
+ TypeScript 的 `ts/src/rein/contracts.ts` 与 Rust 的 `rust/src/rein/mod.rs` 共享四个可序列化概念：`Message` 表示对话消息，`ToolCall` 表示模型请求的工具动作，`ToolResult` 表示带 `ok` 与结构化错误的工具结果，`Turn` 把一轮消息、调用和结果成组保存。wire JSON 使用 camelCase（如 `toolCallId`、`toolCalls`、`toolResults`、`inputSchema`）；Rust 内部字段仍可使用 snake_case 并由 serde 映射。可选字段在 Rust 为 `None` 时省略，输入仍兼容缺失或 `null`，与 TS optional 对齐；`canonical_sample` 是两端共享的 canonical JSON 样例。`read_file` 与 `search_files` 只接受 workspace 内路径或关键词；工具错误码包括 `path_escape`、`path_invalid`、`read_failed`、`search_failed`、`workspace_invalid`、`arguments_invalid` 和 `unknown_tool`。TS 以 `ToolResult` 返回，Rust 也以 `ToolResult` 返回；解析与传输层错误则由 TS 抛出 `Error`、Rust 返回 `Result`。这不是对所有底层路径错误细节的隐藏承诺。
+ 
+recovery_source=old_snapshot; patch_file=/private/tmp/rein-ch05-recovery-audit-20260914/ch05.patch; apply_command=git apply --directory=/private/tmp/rein-ch05-recovery-audit-20260914/recovered
+-rw-r--r--  1 huaodong  wheel  3269 Sep 14 18:46 /private/tmp/rein-ch05-recovery-audit-20260914/ch05.patch

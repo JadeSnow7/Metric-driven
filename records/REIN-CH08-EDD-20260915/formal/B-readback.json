@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T05:01:47.355244+00:00",
+  "files": 234,
+  "mismatches": [],
+  "mode": "escalated readback; sandbox read stalled at rust/tests/prerequisites.rs, same file sha256 read immediately with escalation",
+  "source_manifest_sha256": "b18d919bdf2905e85d90627e3fa07cc80aaeedb20c339dc6460b01ec54e386a3"
+}

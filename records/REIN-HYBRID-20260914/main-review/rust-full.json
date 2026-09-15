@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--manifest-path",
+    "rust/Cargo.toml"
+  ],
+  "cwd": "/private/tmp/rein-hybrid-work-20260914",
+  "started": "2026-09-14T16:41:42.378007+00:00",
+  "ended": "2026-09-14T16:42:04.164181+00:00",
+  "exit_code": 0,
+  "sources": {
+    "rust/src/rein/stdio_executor.rs": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7",
+    "rust/src/rein/loop.rs": "94716fbebc1c586941613b9e7b0d7a10115d2323ee4709393a5331602218b5b0",
+    "rust/tests/stdio_host.rs": "21f9ec89fcf89cbdb83c3d5220325dd0bd2fb096cdd8af3f1626862cac30c91a",
+    "ts/tests/fixtures/hybrid-fault-host.ts": "1eaf158c617f42074372c5acffd4762b531e7cf6b80277a89d8958edd1f70889"
+  }
+}

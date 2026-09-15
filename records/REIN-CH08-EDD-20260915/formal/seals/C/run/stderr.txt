@@ -1,0 +1,18 @@
+2026-09-15T05:00:04.555827Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/rust/src/rein/context_methods.rs:
+fn select(index: &Index, task: &Task, strategy: &str) -> Vec<Document> {
+    let q = words(&task.question);
+    let mut docs = index.documents.clone();
+    match strategy {
+        "on-demand" => docs.retain(|d| { let hay = format!("{} {}", d.title, d.keywords.join(" ")).to_lowercase(); q.iter().any(|w| hay.contains(w.as_str())) }),
+2026-09-15T05:01:18.599337Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/docs/.vitepress/config.mts:
+          { text: '08 上下文管理方法 · 计划', link: '/chapters/08.html' },
+2026-09-15T05:01:58.298425Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/docs/index.md:
+默认从[第 01 章 TypeScript 正文（修订中）](./chapters/01.md)开始理解真实调用，Rust hello 是可选准备。需要补充终端、HTTP、配置、类型、异步或错误处理知识时，再按需查阅[阅读 0 公共导读](./readings/00.md)及 [TS](./readings/00-ts.md) / [Rust](./readings/00-rust.md) 版。05–07 章沿 Rust core 与 TypeScript plugin 的混合路线推进，当前 M1 已完成离线实验核验；旧 TS 页面保留为历史对照。
+2026-09-15T05:02:07.833104Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/docs/.vitepress/config.mts:
+          { text: '07 上下文管理（Rust core）', link: '/chapters/07-rust.html' }, { text: '08 上下文管理方法 · 计划', link: '/chapters/08.html' }, { text: '09 验收条件与验证器 · 计划', link: '/chapters/09.html' },
+2026-09-15T05:02:51.388233Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=seatbelt reason=operation_not_permitted path=unknown
+2026-09-15T05:03:30.838797Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/rust/tests/ch08_context.rs:
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap().join("../fixtures/ch08-context");
+2026-09-15T05:04:03.981684Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/C/book/README.md:
+05–07 章已有 Rust core 与旧 TS 对照，06 plugin 教程已提供并完成离线实验核验，其余按混合路线规划
+2026-09-15T05:05:21.362154Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/1 in 181ms)... turn_id=01a0a374-9380-7723-b6fb-8213e9635e10 retries=1 max_retries=1 sampling_error=stream disconnected before completion: failed to send websocket request: Connection closed normally

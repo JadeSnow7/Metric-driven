@@ -1,0 +1,9 @@
+{
+  "package-17": "arm-a",
+  "package-42": "arm-b",
+  "reviewers": {
+    "reviewer-1": ["package-17", "package-42"],
+    "reviewer-2": ["package-17", "package-42"]
+  },
+  "note": "External mapping for review coordination; package directories contain no group labels."
+}

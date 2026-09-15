@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "node",
+    "--import",
+    "tsx",
+    "--input-type=module",
+    "-"
+  ],
+  "stdin": "import {runAgentLoop} from './ts/src/rein/loop.ts';\nconst c = new AbortController();\nconst result = await runAgentLoop({complete() {c.abort();throw new Error('sync after abort')}}, {root:'.'}, 'x', {signal:c.signal,timeoutMs:100});\nconsole.log(JSON.stringify(result));\nawait new Promise(resolve=>setTimeout(resolve,30));\n",
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T13:50:17.576291+00:00",
+  "end": "2026-09-14T13:50:17.732688+00:00",
+  "exit": 0,
+  "stdout": "{\"state\":\"failed\",\"reason\":\"cancelled\",\"messages\":[{\"role\":\"user\",\"content\":\"x\"}],\"events\":[{\"type\":\"model_requested\",\"turn\":1,\"messages\":[{\"role\":\"user\",\"content\":\"x\"}],\"tools\":[{\"name\":\"search_files\",\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"additionalProperties\":false}},{\"name\":\"read_file\",\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"additionalProperties\":false}}]},{\"type\":\"stopped\",\"state\":\"failed\",\"reason\":\"cancelled\"}]}\n",
+  "stderr": ""
+}

@@ -1,0 +1,9 @@
+{
+  "checked": 220,
+  "failures": [],
+  "selfTest": {
+    "validRoute": true,
+    "missingRoute": true,
+    "validFragment": true
+  }
+}

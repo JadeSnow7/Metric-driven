@@ -1,0 +1,11 @@
+repository validation failed:
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: docs/guide.md
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: docs/guide.md
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: ./docs/guide.md
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: ./docs/guide.md
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: docs/missing.md
+- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: docs/guide.md
+- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-01/workspace/README.md: docs/missing.md
+- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-02/workspace/docs/index.md: ../setup-old.md
+- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-03/workspace/docs/faq.md: ../api/v0.md
+- broken local link in records/REIN-CH05-16/handoffs/evaluation-repair-v3.md: ./docs/guide.md

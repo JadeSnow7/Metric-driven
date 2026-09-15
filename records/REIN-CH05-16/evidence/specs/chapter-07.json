@@ -1,0 +1,1 @@
+{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch07","title":"上下文管理","checks":[{"id":"segments","observable":"规则、目标、历史和工具结果分段组织"},{"id":"trim","observable":"预算裁剪记录过程且保留必要规则、目标和调用配对"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}

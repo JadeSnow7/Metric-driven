@@ -1,0 +1,1 @@
+env CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo test --manifest-path rust/Cargo.toml --test loop --offline

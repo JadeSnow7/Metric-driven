@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "archive validation"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T15:17:30.413437+00:00",
+  "end": "2026-09-14T15:17:30.423342+00:00",
+  "elapsedMs": 8.935749996453524,
+  "exit": 0,
+  "stdout": "{\"checks\": [[\"snapshot_manifest_copy\", true], [\"patch_copy\", true], [\"tar_root\", true], [\"tar_nonempty\", true], [\"evidence_manifest\", true]], \"snapshot_files\": 138, \"tar_members\": 174, \"evidence_files\": 249}\n",
+  "stderr": ""
+}

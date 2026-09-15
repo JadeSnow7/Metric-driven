@@ -1,0 +1,1 @@
+e6451a2766d9cbd846bad6de13c73cc60a23689f4b715dafed2de15588acf275  scripts/ch06-compare.mjs

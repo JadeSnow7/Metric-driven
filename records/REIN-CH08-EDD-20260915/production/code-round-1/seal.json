@@ -1,0 +1,19 @@
+{
+  "sealedAt": "2026-09-15T06:16:15.030332+00:00",
+  "owner": "custom coder /root/skill_update",
+  "status": "Partial implementation handoff; not accepted",
+  "files": {
+    "rust/src/rein/context_methods.rs": "b827f4ba047532d815937d903d1a043f92e0a599810d68b706704eaf5ff38457",
+    "rust/src/rein/mod.rs": "75f3c5bf75031ffbccc69e21b61cb6d456d9a2a1b47bcd667f53a2f878445231",
+    "rust/examples/ch08_context.rs": "8bbe57c6b58087cad7ea40501c98190ef0b201524f846e9e898fbe23d9d1543b",
+    "rust/tests/ch08_context.rs": "fd46ba702cfc02e11a05b7648a44d8660b8d09aad49dbc41e7175498c176e6e6",
+    "scripts/ch08-compare.mjs": "579aa16d7b0d0ba1038578868d238b3b9e94eac66b6ea4925c2de7bbac9f1951",
+    "scripts/ch08-verify.mjs": "63f38bbe5353dc89e9087bff0752eb90a2826525e3c93074d30ceda6d38e5f0a",
+    "package.json": "cd6956aa2a2fd2e24b06c13d5b860098cd70317c6101db95697d194cdd67258a",
+    "examples/ch08-context-methods/entry.mjs": "9d84e10796aa52036b1b1b15928364fdcfa56ea08d4d2bb1957e04caf3b8e7b2",
+    "examples/ch08-context-methods/README.md": "2bef447cb5393f30c6303b1427fda2603f57704c6dd1da109ab2e80fb2eddc87",
+    "examples/ch08-context-methods/input/tasks.json": "49d092ee12f89de0e96e8af895183a987719fda31d97d51afc4155093437fcb9",
+    "examples/ch08-context-methods/input/index.json": "e8d5ac55010c69cd3d4e9599d6ee9b90438be388f4ad4d9b34f2602e9f97ba89",
+    "examples/ch08-context-methods/docs/demo.md": "cb8bd12410959fff115be826746e23773f8ac5f659349e9aa31ca852e1595a4f"
+  }
+}

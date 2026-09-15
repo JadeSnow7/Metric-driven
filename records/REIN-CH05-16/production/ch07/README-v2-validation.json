@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "validate revised README and copied verification"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T15:22:13.728357+00:00",
+  "end": "2026-09-14T15:22:13.728930+00:00",
+  "elapsedMs": 0.36929105408489704,
+  "exit": 1,
+  "stdout": "{\"npm_ci_ch07\": true, \"errata\": true, \"reading_link\": false, \"verification_copy\": true}\n",
+  "stderr": ""
+}
