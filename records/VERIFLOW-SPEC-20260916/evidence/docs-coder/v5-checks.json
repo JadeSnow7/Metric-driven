@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-09-16T10:07:46.477788+00:00",
+  "scope": [
+    "skill/veriflow/SKILL.md",
+    "skill/veriflow/references/design.md",
+    "skill/veriflow/references/claude-code.md"
+  ],
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T10:07:46.455295+00:00",
+      "ended_at": "2026-09-16T10:07:46.470995+00:00",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "rg",
+        "-n",
+        "Spec 要求的正文、示例或运行产物",
+        "skill/veriflow/SKILL.md",
+        "skill/veriflow/references/claude-code.md"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T10:07:46.471007+00:00",
+      "ended_at": "2026-09-16T10:07:46.477771+00:00",
+      "stdout": "skill/veriflow/references/claude-code.md:46:5. **回报用户并同步记录。** 每个子任务核查后在当次进度更新里告诉用户，更新 `task-summary.md`；共享记录只由主线程写。报告前检查 Spec 的每项交付物、证据和未满足项，遗漏 Spec 要求的正文、示例或运行产物时不得写完整完成。\nskill/veriflow/SKILL.md:25:主线程维护 Spec。委派前须检查相关条目已经就绪，范围、约束和验证方法足以实施；完成前须逐项核对交付物、证据和未满足项，遗漏 Spec 要求的正文、示例或运行产物时不得宣称完整完成。Spec 演进记录来源、原因、影响和受影响证据：实现方法变化更新设计/计划，用户目标或接受标准变化更新 Spec，验证方法缺陷保留旧结果并重验，实现失败按契约修复。每次验收绑定 Spec 内容版本；版本字符串不能替代内容指纹。\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

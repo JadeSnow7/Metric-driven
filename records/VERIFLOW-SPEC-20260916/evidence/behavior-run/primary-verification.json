@@ -1,0 +1,81 @@
+{
+  "commands": [
+    {
+      "label": "normal",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "count_lines.py",
+        "sample.txt"
+      ],
+      "cwd": "/private/tmp/veriflow-behavior-20260916/tutorial",
+      "started_at_epoch": 1789554742.142821,
+      "ended_at_epoch": 1789554742.15233,
+      "exit_code": 0,
+      "stdout": "2\n",
+      "stderr": ""
+    },
+    {
+      "label": "empty",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "count_lines.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/behavior-primary-check-pvhl98cf/empty.txt"
+      ],
+      "cwd": "/private/tmp/veriflow-behavior-20260916/tutorial",
+      "started_at_epoch": 1789554742.1523368,
+      "ended_at_epoch": 1789554742.1615732,
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "label": "omitted",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "count_lines.py"
+      ],
+      "cwd": "/private/tmp/veriflow-behavior-20260916/tutorial",
+      "started_at_epoch": 1789554742.161577,
+      "ended_at_epoch": 1789554742.171391,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "用法：python3 count_lines.py <文本文件>\n"
+    },
+    {
+      "label": "missing",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "count_lines.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/behavior-primary-check-pvhl98cf/missing.txt"
+      ],
+      "cwd": "/private/tmp/veriflow-behavior-20260916/tutorial",
+      "started_at_epoch": 1789554742.171396,
+      "ended_at_epoch": 1789554742.181219,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "错误：找不到文件：/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/behavior-primary-check-pvhl98cf/missing.txt\n"
+    }
+  ],
+  "light_exact_edit": true,
+  "light_files": [
+    "README.md",
+    "request.txt"
+  ],
+  "tutorial_expected_files_present": true,
+  "tutorial_source_syntax": "passed",
+  "sample_and_result_bytes": "passed",
+  "artifacts": {
+    "light/README.md": "f99a32a7755d3648c9c15ff3c773356571644df50ffa47f5d7f7f80d8088836e",
+    "light/request.txt": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff",
+    "tutorial/result.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+    "tutorial/README.md": "19431686b0e8fbb7cf0af89082b6a172cab07f7270feaf27ff0abe2983fc6260",
+    "tutorial/count_lines.py": "78c343625a54e55ba9db3464b36ee4a1c8259cf469a3961075143b27df9e1bc0",
+    "tutorial/request.txt": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd",
+    "tutorial/sample.txt": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+  },
+  "limitations": [
+    "executor summaries are not original process logs",
+    "Spec formation timing and maintenance not independently observable from returned messages/artifacts",
+    "single coder-model run per case; no controlled baseline or universal efficiency conclusion"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "-c",
+    "import subprocess,sys,pathlib; p=subprocess.run([sys.executable,'app.py','sample.txt'],capture_output=True,text=True,check=True); assert p.stdout=='2\\n'; assert pathlib.Path('result.txt').read_text()==p.stdout; print(p.stdout,end='')"
+  ],
+  "cwd": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-primary-e2e-8jpq4x53",
+  "started_at": "2026-09-16T10:26:42.466263Z",
+  "ended_at": "2026-09-16T10:26:42.499495Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "2\n",
+  "stderr": "",
+  "stdout_base64": "Mgo=",
+  "stderr_base64": "",
+  "stdout_present": true,
+  "stderr_present": false,
+  "stdout_required": true,
+  "inputs": {
+    "app.py": {
+      "kind": "source",
+      "sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc",
+      "identity": "repository:app.py",
+      "reproduction": "read repository input app.py and verify sha256"
+    },
+    "sample.txt": {
+      "kind": "fixture",
+      "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e",
+      "identity": "repository:sample.txt",
+      "reproduction": "read repository input sample.txt and verify sha256"
+    }
+  },
+  "repo": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-primary-e2e-8jpq4x53",
+  "cwd_relative": ".",
+  "revision_before": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:30d5a629dc2bb45ab8e34abd115e9ad72697f7ad6f594bf2a149f688ff257825:spec:90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "revision_after": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:30d5a629dc2bb45ab8e34abd115e9ad72697f7ad6f594bf2a149f688ff257825:spec:90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:30d5a629dc2bb45ab8e34abd115e9ad72697f7ad6f594bf2a149f688ff257825:spec:90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "spec_version": "DEMO-1",
+  "spec_sha256": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "spec_before": {
+    "version": "DEMO-1",
+    "sha256": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a"
+  },
+  "spec_after": {
+    "version": "DEMO-1",
+    "sha256": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a"
+  },
+  "spec_version_before": "DEMO-1",
+  "spec_sha256_before": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "spec_version_after": "DEMO-1",
+  "spec_sha256_after": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+  "revision_changed_paths": [],
+  "input_changed_paths": [],
+  "result": "passed"
+}

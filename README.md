@@ -139,7 +139,17 @@ python3 skill/veriflow/scripts/validate_task.py records/TASK-001/task-state.json
 
 ## 记录格式版本
 
-当前 `task-state.json` 格式为 `1.2`，校验器仍接受 `1.1` 并给出 `SCHEMA_LEGACY` 警告。相对 `1.1`：
+当前 `task-state.json` 格式为 `1.3`。校验器仍接受 `1.1`/`1.2` 并保留各自旧语义；旧记录不会被补写成新的 Spec 绑定。
+
+相对 `1.2`，`1.3` 增加：
+
+- `state.spec` 的版本、权威位置、来源、复用的 `discovery` 引用、条件、契约和未决项；`state.binding.receipt_paths` 是运行回执的唯一正式位置；
+- 产品 revision 与 Spec 内容 digest 的组合绑定。完整 Spec、全部主任务和指标规范字段、契约文件字节哈希、交付物与外部输入声明均按精确位置进入摘要；运行状态和证据引用不进入摘要；
+- 每个条件独立关联至少一个 `mandatory_gate`/`non_regression` 指标和具体交付文件。契约文件必须存在并按字节哈希；交付物可在实现前缺失，验收时再检查。
+
+`deferred` 只保留 1.2 的“用户决定稍后验证”语义，不满足当前 Spec 或整体验收；旧记录迁移须保留 raw 与 stale 原因，不能补造历史绑定或授权快照。
+
+相对 `1.1`：
 
 - `actions[]` 新增 `target` 与 `revision`，重复检查按版本进行，审查后的追加提交和推送可以通过；`in_progress`、`unknown` 的动作在核验前阻断；
 - 授权可以带 `scope`，并可增加 `migrate` 等自定义动作，由 `--gate action` 检查；

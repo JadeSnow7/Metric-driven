@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "add",
+    "probe.py"
+  ],
+  "cwd": "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-1.3-e2e-qh6kz18_",
+  "started_at": "2026-09-16T10:07:18.974343Z",
+  "ended_at": "2026-09-16T10:07:18.984504Z",
+  "stdout": "",
+  "stderr": "",
+  "exit_code": 0
+}

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -20,8 +21,31 @@ import sys
 from pathlib import Path
 from typing import Any, Iterable
 
+try:
+    from spec_contract import contract_paths, deliverable_paths, receipt_paths, spec_digest, validate_spec
+    from authorization_snapshot import audit_snapshot
+except ImportError:  # pragma: no cover - import when loaded by an embedding test
+    def _load_sibling(name: str):
+        path = Path(__file__).resolve().with_name(f"{name}.py")
+        module_spec = importlib.util.spec_from_file_location(f"veriflow_{name}", path)
+        if module_spec is None or module_spec.loader is None:
+            raise ImportError(f"cannot load sibling module {path}")
+        module = importlib.util.module_from_spec(module_spec)
+        module_spec.loader.exec_module(module)
+        return module
 
-SCHEMA_VERSION = "1.2"
+    _spec_contract = _load_sibling("spec_contract")
+    _authorization_snapshot = _load_sibling("authorization_snapshot")
+    contract_paths = _spec_contract.contract_paths
+    deliverable_paths = _spec_contract.deliverable_paths
+    receipt_paths = _spec_contract.receipt_paths
+    spec_digest = _spec_contract.spec_digest
+    validate_spec = _spec_contract.validate_spec
+    audit_snapshot = _authorization_snapshot.audit_snapshot
+
+
+SCHEMA_VERSION = "1.3"
+SUPPORTED_SCHEMA_VERSIONS = {"1.1", "1.2", SCHEMA_VERSION}
 LEGACY_SCHEMA_VERSIONS = {"1.1"}
 # Keep the established domain so renaming the skill does not invalidate
 # revision tokens already stored in existing task records.
@@ -292,21 +316,29 @@ def fingerprint_entries(repo: Path, paths: list[str]) -> dict[str, bytes]:
     return entries
 
 
-def revision_paths(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = ()) -> tuple[str, list[str]]:
+def revision_paths(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = (), explicit: Iterable[str] = (), excluded_exact: Iterable[str] = ()) -> tuple[str, list[str]]:
     """Resolved base and the paths that contribute to the revision fingerprint."""
 
     base = resolve_base(repo, base_ref)
     excluded = revision_metadata_paths(repo, manifest)
     foreign = list(foreign)
+    exact_excluded = set(excluded_exact)
     paths = [
         path
         for path in worktree_changes(repo, base)
         if not is_revision_metadata(path, excluded) and not is_foreign(path, foreign)
+        and path not in exact_excluded
     ]
+    # Explicit Spec deliverables are product inputs even when ignored,
+    # committed, under record metadata, or currently absent.
+    for value in explicit:
+        if value not in paths:
+            paths.append(value)
+    paths.sort()
     return base, paths
 
 
-def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = ()) -> str:
+def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = (), explicit: Iterable[str] = (), excluded_exact: Iterable[str] = ()) -> str:
     """Fingerprint base-to-worktree content, excluding task-record metadata.
 
     Paths listed in ``foreign`` belong to someone else's unrelated uncommitted
@@ -317,7 +349,7 @@ def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterabl
     not depend on local diff settings such as prefixes, context, or algorithms.
     """
 
-    base, paths = revision_paths(repo, manifest, base_ref, foreign)
+    base, paths = revision_paths(repo, manifest, base_ref, foreign, explicit, excluded_exact)
     if not paths:
         return f"commit:{base}"
 
@@ -351,7 +383,13 @@ def revision_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> str
 
     baseline = state.get("baseline") if isinstance(state, dict) else None
     base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
-    return current_revision(repo, manifest, base_ref, foreign_paths(state))
+    spec = state.get("spec") if isinstance(state, dict) else None
+    explicit = deliverable_paths(spec) if isinstance(spec, dict) and state.get("schema_version") == SCHEMA_VERSION else []
+    excluded = receipt_paths(state) if state.get("schema_version") == SCHEMA_VERSION else []
+    product = current_revision(repo, manifest, base_ref, foreign_paths(state), explicit, excluded)
+    if state.get("schema_version") == SCHEMA_VERSION:
+        return f"{product}:spec:{spec_digest(state, repo)}"
+    return product
 
 
 def revision_entries_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> dict[str, bytes]:
@@ -359,7 +397,10 @@ def revision_entries_for_state(repo: Path, manifest: Path, state: dict[str, Any]
 
     baseline = state.get("baseline") if isinstance(state, dict) else None
     base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
-    _, paths = revision_paths(repo, manifest, base_ref, foreign_paths(state))
+    spec = state.get("spec") if isinstance(state, dict) else None
+    explicit = deliverable_paths(spec) if isinstance(spec, dict) and state.get("schema_version") == SCHEMA_VERSION else []
+    excluded_exact = receipt_paths(state) if state.get("schema_version") == SCHEMA_VERSION else []
+    _, paths = revision_paths(repo, manifest, base_ref, foreign_paths(state), explicit, excluded_exact)
     return fingerprint_entries(repo, paths)
 
 
@@ -515,6 +556,135 @@ def safe_repo_file(repo: Path, value: Any) -> Path | None:
     return resolved
 
 
+def external_input_paths(state: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Return complete declarations for exact, normalized absolute fixtures."""
+    values = as_dict(state.get("baseline")).get("external_inputs", [])
+    if not isinstance(values, list):
+        return {}
+    allowed: dict[str, dict[str, Any]] = {}
+    for value in values:
+        raw = value.get("path") if isinstance(value, dict) else value
+        if isinstance(value, dict) and isinstance(raw, str) and Path(raw).is_absolute():
+            normalized = str(Path(raw).resolve())
+            if normalized == raw and isinstance(value.get("sha256"), str) and SHA256_PATTERN.fullmatch(value["sha256"]) and all(isinstance(value.get(field), str) and value[field].strip() for field in ("identity", "reproduction")):
+                allowed[normalized] = value
+    return allowed
+
+
+def input_path(repo: Path, state: dict[str, Any], value: Any) -> tuple[Path | None, str | None]:
+    """Resolve an input and classify it as an in-repo or explicitly external path."""
+    if not isinstance(value, str) or not value.strip():
+        return None, None
+    raw = Path(value)
+    if raw.is_absolute():
+        resolved = raw.resolve()
+        try:
+            resolved.relative_to(repo)
+            return resolved, "repository"
+        except ValueError:
+            pass
+        if str(resolved) in external_input_paths(state):
+            return resolved, "external"
+        return None, "external"
+    resolved = (repo / raw).resolve()
+    try:
+        resolved.relative_to(repo)
+    except ValueError:
+        return None, "escape"
+    return resolved, "repository"
+
+
+def input_uses_repo_symlink(repo: Path, value: Any) -> bool:
+    """Reject lexical aliases through a repository symlink before resolving."""
+    if not isinstance(value, str):
+        return False
+    raw = Path(value)
+    if raw.is_absolute():
+        try:
+            raw.relative_to(repo)
+        except ValueError:
+            # macOS commonly exposes /private/var/... through /var/... . Find
+            # an equivalent lexical ancestor whose canonical path is repo so
+            # that this system alias is accepted while real repo symlinks stay
+            # visible for rejection.
+            ancestor = raw
+            relative_parts = None
+            while ancestor != ancestor.parent:
+                try:
+                    if ancestor.resolve() == repo:
+                        relative_parts = raw.relative_to(ancestor).parts
+                        break
+                except OSError:
+                    pass
+                ancestor = ancestor.parent
+            if relative_parts is None:
+                return False
+            parts = relative_parts
+        else:
+            parts = raw.relative_to(repo).parts
+    else:
+        raw = repo / raw
+        parts = raw.relative_to(repo).parts
+    cursor = repo
+    for part in parts:
+        cursor /= part
+        if cursor.is_symlink():
+            return True
+    return False
+
+
+def validate_input_declaration(
+    repo: Path, state: dict[str, Any], path_value: Any, metadata: Any,
+    *, historical: bool, evidence_id: str, errors: list[dict[str, str]]
+) -> None:
+    """Check input identity; historical evidence only gets an integrity audit."""
+    meta = as_dict(metadata)
+    if historical:
+        expected = meta.get("sha256")
+        if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
+            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} historical input has invalid sha256")
+        return
+    path, kind = input_path(repo, state, path_value)
+    if input_uses_repo_symlink(repo, path_value):
+        add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} input uses a repository symlink alias: {path_value!r}")
+        return
+    if path is None or kind == "escape":
+        add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} input is undeclared, external, or escapes repository: {path_value!r}")
+        return
+    declared_kind = meta.get("kind")
+    if not isinstance(declared_kind, str) or declared_kind not in {"source", "test", "fixture"}:
+        add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} has invalid kind")
+    if kind == "external":
+        if declared_kind != "fixture" or str(Path(path_value).resolve()) != path_value:
+            add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} external input must be the exact normalized fixture path")
+    elif isinstance(path_value, str) and not Path(path_value).is_absolute():
+        canonical = path.relative_to(repo).as_posix()
+        if path_value != canonical:
+            add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} repository input must use canonical relative path: {canonical}")
+    # Schema 1.2 records predating the declaration fields remain auditable; new
+    # records (and any partial declaration) must carry both fields.
+    required_declaration_fields = ("sha256",)
+    for field in required_declaration_fields:
+        if not nonempty(meta.get(field)):
+            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} needs non-empty {field}")
+    if not historical and ("identity" in meta or "reproduction" in meta):
+        for field in ("identity", "reproduction"):
+            if not nonempty(meta.get(field)):
+                add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} needs non-empty {field}")
+    expected = meta.get("sha256")
+    if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
+        add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} has invalid sha256")
+        return
+    if kind == "external":
+        allowed = external_input_paths(state).get(str(path))
+        if allowed is None or any(meta.get(field) != allowed.get(field) for field in ("sha256", "identity", "reproduction")):
+            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} external fixture declaration does not match baseline.external_inputs")
+    if not path.is_file() or path.is_symlink():
+        add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input is missing or a symlink: {path_value!r}")
+    elif sha256_file(path) != expected:
+        add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale: {path_value!r}")
+
+
 def find_placeholders(value: Any, label: str = "") -> list[str]:
     if isinstance(value, str):
         return [label or "root"] if PLACEHOLDER_PATTERN.search(value) else []
@@ -550,6 +720,8 @@ def check_execution_record(
     revision: str | None,
     indexes: dict[str, dict[str, Any]],
     errors: list[dict[str, str]],
+    spec_version: str | None = None,
+    spec_sha256: str | None = None,
 ) -> None:
     """Compare an execution record with itself, its outer evidence entry, and the repository."""
 
@@ -572,6 +744,7 @@ def check_execution_record(
         "stderr_present": bool,
         "stdout_required": bool,
         "result": str,
+        "input_changed_paths": list,
     }
     for field, expected in expected_types.items():
         value = execution.get(field)
@@ -589,6 +762,7 @@ def check_execution_record(
     timed_out = execution.get("timed_out") is True
     before, after = execution.get("revision_before"), execution.get("revision_after")
     revision_changed = before is not None and after is not None and before != after
+    revision_changed = revision_changed or bool(execution.get("input_changed_paths"))
     output_missing = execution.get("stdout_required") is True and execution.get("stdout_present") is not True
     clean_success = execution.get("exit_code") == 0 and not timed_out and not revision_changed and not output_missing
     if timed_out and inner != "timeout":
@@ -608,6 +782,13 @@ def check_execution_record(
             add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} outer passed result disagrees with actual execution")
     if legacy:
         return
+    if item.get("status") == "current" and spec_version is not None:
+        if execution.get("spec_version") != spec_version or execution.get("spec_sha256") != spec_sha256:
+            add_issue(errors, "EXECUTION_SPEC_MISMATCH", f"{evidence_id} execution raw record is not bound to the current Spec digest")
+    if item.get("status") == "current" and item.get("kind") == "execution":
+        for field in ("spec_version", "spec_sha256"):
+            if field in item and item.get(field) != execution.get(field):
+                add_issue(errors, "EXECUTION_SPEC_MISMATCH", f"{evidence_id} outer {field} disagrees with its execution record")
     inner_revision = execution.get("revision")
     if isinstance(inner_revision, str) and inner_revision:
         indexes["execution_revisions"][evidence_id] = inner_revision
@@ -656,13 +837,18 @@ def validate_record(
             f"schema_version {state.get('schema_version')!r} is checked with legacy delivery semantics; "
             f"migrate to {SCHEMA_VERSION!r} for per-revision side-effect checks and self-bound execution evidence",
         )
-    elif state.get("schema_version") != SCHEMA_VERSION:
+    elif state.get("schema_version") not in SUPPORTED_SCHEMA_VERSIONS:
         add_issue(
             errors,
             "SCHEMA_VERSION",
             f"schema_version must be {SCHEMA_VERSION!r} (1.1 is still accepted); when migrating from 1.0, add "
             "evidence[].sha256 and recompute every revision token with --print-revision before re-assessing evidence",
         )
+    if state.get("schema_version") == "1.2":
+        add_issue(warnings, "SPEC_UNBOUND_LEGACY", "schema 1.2 has no 1.3 Spec/history snapshot binding; rerun under schema 1.3")
+    if state.get("schema_version") == SCHEMA_VERSION:
+        for issue in validate_spec(state, repo):
+            add_issue(warnings if gate == "record" and issue["code"] == "SPEC_OPEN_ITEMS_PENDING" else errors, issue["code"], issue["message"])
 
     indexes = {key: index_items(state, key, errors) for key in ID_PREFIXES}
     sources = indexes["sources"]
@@ -835,10 +1021,18 @@ def validate_record(
     if evidence or changes:
         try:
             revision = revision_for_state(repo, manifest, state)
-        except ValidationError as exc:
+        except (ValidationError, ValueError) as exc:
             add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
 
     indexes["execution_revisions"] = {}
+    current_spec_version = None
+    current_spec_sha256 = None
+    if state.get("schema_version") == SCHEMA_VERSION and isinstance(state.get("spec"), dict):
+        current_spec_version = state["spec"].get("version")
+        try:
+            current_spec_sha256 = spec_digest(state, repo)
+        except (TypeError, ValueError, OSError) as exc:
+            add_issue(errors, "SPEC_DIGEST_UNAVAILABLE", str(exc))
     evidence_directory = record_directory(repo, manifest)
     hash_bucket = errors if gate in {"acceptance", "local-commit", "push", "merge", "deploy", "action"} else warnings
     for evidence_id, item in evidence.items():
@@ -848,6 +1042,8 @@ def validate_record(
         require_refs(f"{evidence_id}.supports", item.get("supports", []), metrics, errors, "CROSSREF_METRIC")
         if not item.get("supports"):
             add_issue(errors, "EVIDENCE_SUPPORT_MISSING", f"{evidence_id} must support at least one metric")
+        if item.get("status") == "stale" and not nonempty(item.get("stale_reason")):
+            add_issue(errors, "EVIDENCE_STALE_REASON", f"{evidence_id} stale evidence needs a non-empty stale_reason")
         path = safe_repo_file(repo, item.get("path"))
         if path is None:
             add_issue(errors, "EVIDENCE_PATH", f"{evidence_id}.path must stay inside the repository")
@@ -882,27 +1078,27 @@ def validate_record(
                 else:
                     if not isinstance(execution, dict):
                         execution = {}
-                    check_execution_record(evidence_id, item, execution, legacy, revision, indexes, errors)
+                    check_execution_record(evidence_id, item, execution, legacy, revision, indexes, errors, current_spec_version, current_spec_sha256)
                     for input_path, input_meta in as_dict(execution.get("inputs")).items():
-                        candidate = Path(input_path)
-                        if not candidate.is_absolute():
-                            # Record inputs are repository-relative so evidence survives a
-                            # worktree move; the stored cwd is informational only.
-                            candidate = repo / candidate
-                        try:
-                            checked = candidate.resolve().relative_to(repo).as_posix()
-                        except (OSError, ValueError):
-                            checked = None
-                        checked_path = repo / checked if checked is not None else None
-                        expected = as_dict(input_meta).get("sha256")
-                        if checked_path is None or not checked_path.is_file() or not isinstance(expected, str) or sha256_file(checked_path) != expected:
-                            add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale or outside repository: {input_path}")
+                        validate_input_declaration(
+                            repo, state, input_path, input_meta,
+                            historical=item.get("status") == "stale",
+                            evidence_id=evidence_id, errors=errors,
+                        )
         if not is_one_of(item.get("status"), EVIDENCE_STATES):
             add_issue(errors, "EVIDENCE_STATUS", f"{evidence_id} has invalid status")
         if not is_one_of(item.get("result"), VERIFY_STATES):
             add_issue(errors, "VERIFY_STATUS", f"{evidence_id} has invalid result")
         if revision is not None and item.get("status") == "current" and not self_bound and item.get("revision") != revision:
             add_issue(errors, "EVIDENCE_STALE", f"{evidence_id} revision does not match current repository state")
+        if state.get("schema_version") == SCHEMA_VERSION and item.get("status") == "current" and item.get("kind") != "execution":
+            if item.get("spec_version") != current_spec_version or item.get("spec_sha256") != current_spec_sha256:
+                add_issue(errors, "EVIDENCE_SPEC_MISMATCH", f"{evidence_id} current non-execution evidence is not bound to the current Spec digest")
+
+    for metric_id, metric in metrics.items():
+        for evidence_id in id_list(metric.get("evidence_ids")):
+            if evidence_id in evidence and metric_id not in id_list(evidence[evidence_id].get("supports")):
+                add_issue(errors, "EVIDENCE_SUPPORT_MISMATCH", f"{metric_id} references {evidence_id}, but it does not support that metric")
 
     for change_id, item in changes.items():
         require_fields(item, ("implementation_task_ids", "paths", "evidence_ids", "revision", "status"), change_id, errors)
@@ -1006,7 +1202,10 @@ def validate_record(
     if ci_revision is not None and not (isinstance(ci_revision, str) and ci_revision.strip()):
         add_issue(errors, "DELIVERY_STATUS", "delivery.remote_ci_revision must be a commit string or null")
 
-    unauthorized_bucket = errors if gate_reaches(gate, "push") else warnings
+    unauthorized_bucket = (
+        errors if state.get("schema_version") == SCHEMA_VERSION and gate in {"local-commit", "push", "merge", "deploy", "action"}
+        else (errors if gate_reaches(gate, "push") else warnings)
+    )
     action_keys: set[str] = set()
     action_fields = ("kind", "status", "authorization_action", "idempotency_key", "receipt")
     for action_id, item in indexes["actions"].items():
@@ -1024,7 +1223,17 @@ def validate_record(
         if not is_one_of(auth_action, allowed_actions):
             add_issue(errors, "ACTION_AUTH", f"{action_id}.authorization_action must name an authorization entry")
         elif is_one_of(status, EXECUTED_ACTION_STATES):
-            if authorization_status(state, auth_action) != "authorized":
+            snapshot = item.get("authorization_snapshot")
+            historical_issues = audit_snapshot(snapshot, item) if state.get("schema_version") == SCHEMA_VERSION else []
+            if snapshot is not None and historical_issues:
+                for issue in historical_issues:
+                    add_issue(errors, issue["code"], f"{action_id}: {issue['message']}")
+            # A valid snapshot preserves the historical fact after revocation.
+            # Missing snapshots remain unknown and are conservatively warned at
+            # record time, then block action-sensitive gates.
+            if state.get("schema_version") == SCHEMA_VERSION and snapshot is None:
+                add_issue(unauthorized_bucket, "AUTH_SNAPSHOT_UNKNOWN", f"{action_id} has no authorization snapshot")
+            if authorization_status(state, auth_action) != "authorized" and not (state.get("schema_version") == SCHEMA_VERSION and snapshot is not None and not historical_issues):
                 add_issue(
                     unauthorized_bucket,
                     "ACTION_UNAUTHORIZED",
@@ -1032,7 +1241,7 @@ def validate_record(
                     "keep the record, verify the real external state, and confirm with the user before continuing",
                 )
             scope = authorization_scope(state, auth_action)
-            if scope and item.get("target") not in scope:
+            if scope and item.get("target") not in scope and not (state.get("schema_version") == SCHEMA_VERSION and snapshot is not None and not historical_issues):
                 add_issue(
                     unauthorized_bucket,
                     "ACTION_OUT_OF_SCOPE",
@@ -1115,6 +1324,20 @@ def completed_revisions(indexes: dict[str, dict[str, Any]], action: str) -> set[
     }
 
 
+def historical_action_authorized(state: dict[str, Any], indexes: dict[str, dict[str, Any]], action: str, revision: str | None = None) -> bool:
+    """Whether a completed 1.3 action carries a valid authorization snapshot."""
+    if state.get("schema_version") != SCHEMA_VERSION:
+        return False
+    for item in indexes["actions"].values():
+        if item.get("authorization_action") != action or item.get("status") != "completed":
+            continue
+        if revision is not None and item.get("revision") != revision:
+            continue
+        if not audit_snapshot(item.get("authorization_snapshot"), item):
+            return True
+    return False
+
+
 def add_gate_errors(
     gate: str,
     state: dict[str, Any],
@@ -1144,6 +1367,8 @@ def add_gate_errors(
     overall = as_dict(state.get("overall_acceptance"))
     foreign = foreign_paths(state)
     excluded = revision_metadata_paths(repo, manifest)
+    if state.get("schema_version") == SCHEMA_VERSION:
+        excluded = [*excluded, *receipt_paths(state)]
 
     if gate == "action":
         # Custom irreversible actions (for example a staging migration) may be
@@ -1180,11 +1405,13 @@ def add_gate_errors(
         )
     try:
         base = resolve_base(repo, baseline.get("git_ref"))
-    except ValidationError as exc:
+    except (ValidationError, ValueError) as exc:
         add_issue(errors, "BASELINE_UNRESOLVED", str(exc))
         base = None
 
     if gate == "implementation":
+        if state.get("schema_version") == SCHEMA_VERSION and as_dict(state.get("spec")).get("open_items"):
+            add_issue(errors, "SPEC_OPEN_ITEMS_PENDING", "implementation is blocked while spec.open_items is non-empty")
         file_scope = [
             normalized
             for item in implementation_tasks.values()
@@ -1211,14 +1438,40 @@ def add_gate_errors(
             )
         return None
 
+    if state.get("schema_version") == SCHEMA_VERSION:
+        # Implementation only needs a structurally valid Spec.  Planned
+        # deliverables are checked at acceptance, after implementation writes.
+        if gate == "implementation":
+            return None
+
     try:
         revision = revision_for_state(repo, manifest, state)
-    except ValidationError as exc:
+    except (ValidationError, ValueError) as exc:
         add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
         revision = None
 
     def current(evidence_id: str) -> bool:
         return evidence_is_current(evidence_id, evidence.get(evidence_id, {}), indexes, revision, legacy)
+
+    if state.get("schema_version") == SCHEMA_VERSION:
+        # Each condition is independent: every required file and every bound
+        # metric must be represented by current, passing evidence.
+        spec = as_dict(state.get("spec"))
+        for condition in as_list(spec.get("conditions")):
+            if not isinstance(condition, dict):
+                continue
+            cid = condition.get("id", "?")
+            for rel in deliverable_paths({"conditions": [condition]}):
+                if not (repo / rel).is_file() or (repo / rel).is_symlink():
+                    add_issue(errors, "SPEC_DELIVERABLE_MISSING", f"{cid} deliverable is missing: {rel}")
+            for metric_id in id_list(condition.get("metric_ids")):
+                metric = metrics.get(metric_id, {})
+                if metric.get("kind") in BLOCKING_METRIC_KINDS and metric.get("status") not in {"passed", "deferred"}:
+                    add_issue(errors, "SPEC_METRIC_UNSATISFIED", f"{cid} requires passed mandatory metric {metric_id}")
+                if metric.get("status") == "deferred":
+                    continue
+                if not any(metric_id in id_list(evidence.get(eid, {}).get("supports")) and current(eid) and evidence.get(eid, {}).get("result") == "passed" for eid in id_list(metric.get("evidence_ids"))):
+                    add_issue(errors, "SPEC_METRIC_EVIDENCE_MISSING", f"{cid} has no current passed evidence for {metric_id}")
 
     for metric_id, metric in metrics.items():
         kind = metric.get("kind")
@@ -1302,8 +1555,17 @@ def add_gate_errors(
             for path in actual_paths:
                 if is_foreign(path, foreign):
                     continue
+                if state.get("schema_version") == SCHEMA_VERSION and path in set(receipt_paths(state)):
+                    continue
                 if not any(path_is_covered(path, declared) for declared in declared_paths):
                     add_issue(errors, "CHANGED_PATH_UNREVIEWED", f"changed path is not covered by a reviewed CHG-*: {path}")
+    if state.get("schema_version") == SCHEMA_VERSION and gate in {"acceptance", "local-commit", "push", "merge", "deploy"}:
+        for condition in as_list(as_dict(state.get("spec")).get("conditions")):
+            if not isinstance(condition, dict):
+                continue
+            for deliverable in deliverable_paths({"conditions": [condition]}):
+                if not any(path_is_covered(deliverable, declared) for declared in declared_paths):
+                    add_issue(errors, "SPEC_DELIVERABLE_UNREVIEWED", f"{condition.get('id', '?')} deliverable is not covered by a reviewed CHG-*: {deliverable}")
     if overall.get("status") != "passed":
         add_issue(errors, "OVERALL_NOT_PASSED", "overall end-to-end acceptance is not passed")
     if not id_list(overall.get("evidence_ids")):
@@ -1321,7 +1583,7 @@ def add_gate_errors(
         check_side_effect(state, indexes, "commit", revision, target, legacy, errors)
         return revision
 
-    if authorization_status(state, "commit") != "authorized":
+    if authorization_status(state, "commit") != "authorized" and not historical_action_authorized(state, indexes, "commit", revision):
         add_issue(errors, "AUTH_COMMIT", "commit is not authorized")
     if legacy:
         if delivery.get("local_commit") != "completed":
@@ -1364,7 +1626,7 @@ def add_gate_errors(
         check_side_effect(state, indexes, "push", pending, target, legacy, errors)
         return revision
 
-    if authorization_status(state, "push") != "authorized":
+    if authorization_status(state, "push") != "authorized" and not historical_action_authorized(state, indexes, "push", pending):
         add_issue(errors, "AUTH_PUSH", "push is not authorized")
     if legacy:
         if delivery.get("push") != "completed":
@@ -1383,7 +1645,7 @@ def add_gate_errors(
         check_side_effect(state, indexes, "merge", pending, target, legacy, errors)
         return revision
 
-    if authorization_status(state, "merge") != "authorized":
+    if authorization_status(state, "merge") != "authorized" and not historical_action_authorized(state, indexes, "merge", pending):
         add_issue(errors, "AUTH_MERGE", "merge is not authorized")
     merged = delivery.get("merge") == "completed" if legacy else any(
         isinstance(value, str) and value for value in completed_revisions(indexes, "merge")
@@ -1476,10 +1738,42 @@ def main(argv: list[str] | None = None) -> int:
             target=args.target,
             requested_revision=args.revision,
         )
+        output_spec_sha = None
+        if state.get("schema_version") == SCHEMA_VERSION and isinstance(state.get("spec"), dict):
+            try:
+                output_spec_sha = spec_digest(state, repo)
+            except (TypeError, ValueError, OSError):
+                output_spec_sha = None
+        spec_satisfaction = None
+        spec_unmet_conditions: list[dict[str, Any]] = []
+        if state.get("schema_version") == SCHEMA_VERSION:
+            metric_by_id = {item.get("id"): item for item in state.get("metrics", []) if isinstance(item, dict)}
+            for condition in as_list(as_dict(state.get("spec")).get("conditions")):
+                if not isinstance(condition, dict):
+                    continue
+                unmet = [
+                    metric_id for metric_id in id_list(condition.get("metric_ids"))
+                    if as_dict(metric_by_id.get(metric_id)).get("status") != "passed"
+                ]
+                if unmet:
+                    spec_unmet_conditions.append({"id": condition.get("id"), "metric_ids": unmet})
+            deferred_only = bool(spec_unmet_conditions) and all(
+                as_dict(metric_by_id.get(metric_id)).get("status") == "deferred"
+                and is_one_of(as_dict(metric_by_id.get(metric_id)).get("decision_id"), indexes["decisions"])
+                for condition in spec_unmet_conditions for metric_id in condition["metric_ids"]
+            )
+            if args.gate == "acceptance" and not errors:
+                spec_satisfaction = "partial" if deferred_only else "satisfied" if not spec_unmet_conditions else "unsatisfied"
+            else:
+                spec_satisfaction = "not_assessed"
         result = {
             "ok": not errors,
             "gate": args.gate,
             "current_revision": revision,
+            "spec_version": state.get("spec", {}).get("version") if isinstance(state.get("spec"), dict) else None,
+            "spec_sha256": output_spec_sha,
+            "spec_satisfaction": spec_satisfaction,
+            "spec_unmet_conditions": spec_unmet_conditions,
             "errors": errors,
             "warnings": warnings,
             "limits": "Structural consistency is not proof of product success or authorization authenticity.",

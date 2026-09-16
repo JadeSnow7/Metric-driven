@@ -1,0 +1,16 @@
+{
+  "label": "repository-tests",
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "-m",
+    "unittest",
+    "tools/tests/test_validate_repository.py",
+    "-v"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789554842.863285,
+  "ended_at_epoch": 1789554842.9064388,
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_plugin_links_must_point_at_the_shipped_skill (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_plugin_links_must_point_at_the_shipped_skill) ... ok\ntest_reviewer_is_read_only_and_agents_do_not_delegate (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_reviewer_is_read_only_and_agents_do_not_delegate) ... ok\ntest_shipped_definitions_pass (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_shipped_definitions_pass) ... ok\ntest_skill_description_limit_and_malformed_frontmatter (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_skill_description_limit_and_malformed_frontmatter) ... ok\ntest_subagent_must_be_pinned_to_sonnet (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_subagent_must_be_pinned_to_sonnet) ... ok\ntest_valid_fixture_passes (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests.test_valid_fixture_passes) ... ok\ntest_archived_product_copies_are_excluded_but_live_summaries_are_checked (tools.tests.test_validate_repository.ValidateRepositoryTests.test_archived_product_copies_are_excluded_but_live_summaries_are_checked) ... ok\ntest_code_examples_are_not_scanned_but_real_links_remain_visible (tools.tests.test_validate_repository.ValidateRepositoryTests.test_code_examples_are_not_scanned_but_real_links_remain_visible) ... ok\ntest_local_links_reject_absolute_and_escape_paths (tools.tests.test_validate_repository.ValidateRepositoryTests.test_local_links_reject_absolute_and_escape_paths) ... ok\ntest_main_link_scan_skips_external_fragments_and_parses_angles (tools.tests.test_validate_repository.ValidateRepositoryTests.test_main_link_scan_skips_external_fragments_and_parses_angles) ... ok\ntest_only_sealed_c_final_is_archived (tools.tests.test_validate_repository.ValidateRepositoryTests.test_only_sealed_c_final_is_archived) ... ok\ntest_only_task_experiment_and_snapshot_trees_are_excluded (tools.tests.test_validate_repository.ValidateRepositoryTests.test_only_task_experiment_and_snapshot_trees_are_excluded) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.015s\n\nOK\n"
+}

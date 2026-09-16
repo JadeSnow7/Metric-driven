@@ -1,0 +1,118 @@
+{
+  "script_sha256": {
+    "tests/test_scenarios.py": "97db545229cf3cef3f9b14944261504d5be574a9fc2b0ef64f57c292978609c7",
+    "scripts/validate_task.py": "e16b4735db639cedbcf708b0227917d22b10042522d1b929394afbba244c452f",
+    "scripts/record_execution.py": "a7d856755879b8d390082047d14ad73511218ac4455ba8f6108ba15650671268",
+    "assets/templates/task-state.example.json": "24d0d177d8be15636992719596e254170c94687bc87debb567d70367f0c24704"
+  },
+  "runs": [
+    {
+      "phase": "EVD-001",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/record_execution.py",
+        "--output",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/evidence/EVD-001.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--state",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--cwd",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--source",
+        "app.txt",
+        "--",
+        "/Users/huaodong/.local/bin/python3.11",
+        "-c",
+        "from pathlib import Path; print(Path(\"app.txt\").read_text())"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "phase": "initial",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/validate_task.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--gate",
+        "acceptance"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"gate\": \"acceptance\",\n  \"current_revision\": \"patch:2755b9c1104fc95f1c2608eb41f29ecdf49d41f4:2548a7ed56032d98bffe16dc22995c92baa15aef7c30444465ec9fb584b6dd4f\",\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "phase": "EVD-002",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/record_execution.py",
+        "--output",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/evidence/EVD-002.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--state",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--cwd",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--source",
+        "app.txt",
+        "--",
+        "/Users/huaodong/.local/bin/python3.11",
+        "-c",
+        "from pathlib import Path; print(Path(\"app.txt\").read_text())"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "phase": "new-current-with-history",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/validate_task.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--gate",
+        "acceptance"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"gate\": \"acceptance\",\n  \"current_revision\": \"patch:2755b9c1104fc95f1c2608eb41f29ecdf49d41f4:5b4ef56b7d4721824875eacf0222f8e68ff4c5d7b4c086af80b690eefff0fc57\",\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "phase": "stale-cannot-satisfy",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/validate_task.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--gate",
+        "acceptance"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"ok\": false,\n  \"gate\": \"acceptance\",\n  \"current_revision\": \"patch:2755b9c1104fc95f1c2608eb41f29ecdf49d41f4:5b4ef56b7d4721824875eacf0222f8e68ff4c5d7b4c086af80b690eefff0fc57\",\n  \"errors\": [\n    {\n      \"code\": \"METRIC_EVIDENCE_NOT_CURRENT\",\n      \"message\": \"MET-001 evidence EVD-001 is not current\"\n    },\n    {\n      \"code\": \"METRIC_EVIDENCE_UNVERIFIED\",\n      \"message\": \"MET-001 is verified by execution but has no current passed execution record; rerun it with record_execution.py or declare verification: manual\"\n    }\n  ],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "phase": "tampered-history",
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-primary-history-t6dqddp_/scripts/validate_task.py",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq/records/TASK-001/task-state.json",
+        "--repo",
+        "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-a90xfowq",
+        "--gate",
+        "acceptance"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"ok\": false,\n  \"gate\": \"acceptance\",\n  \"current_revision\": \"patch:2755b9c1104fc95f1c2608eb41f29ecdf49d41f4:5b4ef56b7d4721824875eacf0222f8e68ff4c5d7b4c086af80b690eefff0fc57\",\n  \"errors\": [\n    {\n      \"code\": \"EVIDENCE_HASH_MISMATCH\",\n      \"message\": \"EVD-001 file content no longer matches its sha256\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field argv\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field cwd\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field started_at\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field ended_at\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field exit_code\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field timed_out\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field stdout\"\n    },\n    {\n      \"code\": \"EXECUTION_RECORD_FIELD\",\n      \"message\": \"EVD-001 missing execution field stderr\"\n    },\n    {\n      \"code\": \"EXECUTION_RESULT_MISMATCH\",\n      \"message\": \"EVD-001 outer passed result disagrees with actual execution\"\n    }\n  ],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

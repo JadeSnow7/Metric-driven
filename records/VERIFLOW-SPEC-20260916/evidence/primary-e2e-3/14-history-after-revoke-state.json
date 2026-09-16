@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.3",
+  "spec": {
+    "version": "DEMO-1",
+    "authority": "records/TASK-001/SPEC.md",
+    "source_ids": [
+      "SRC-001"
+    ],
+    "goal_ref": "discovery.expected_outcome",
+    "scope_ref": "discovery.scope",
+    "constraints": [
+      "only local temp files"
+    ],
+    "exceptions": [
+      "empty input yields 0"
+    ],
+    "conditions": [
+      {
+        "id": "SC-001",
+        "metric_ids": [
+          "MET-001"
+        ],
+        "deliverables": [
+          "README.md",
+          "app.py",
+          "sample.txt",
+          "result.txt"
+        ]
+      }
+    ],
+    "contracts": [
+      "records/TASK-001/SPEC.md"
+    ],
+    "open_items": []
+  },
+  "task": {
+    "id": "TASK-001",
+    "title": "隔离行数工具",
+    "mode": "resume",
+    "status": "in_progress",
+    "source_ids": [
+      "SRC-001"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "调用查询 API 的应用",
+    "scenario": "重复读取相同且允许短暂缓存的数据",
+    "problem": "现有重复查询造成可观察的延迟和后端负载",
+    "expected_outcome": "UTF-8 行数为 2",
+    "scope": "README/app/sample/result",
+    "acceptable_result": "正确性与兼容门槛通过，性能目标完成测量"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "fixture:primary-e2e-request",
+      "summary": "构建隔离行数示例并验证，不操作外部服务",
+      "adoption": "accepted"
+    },
+    {
+      "id": "SRC-002",
+      "kind": "user_requirement",
+      "reference": "fixture:local-simulation-authorization",
+      "summary": "只允许临时仓库内写入模拟迁移标记",
+      "adoption": "superseded"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "行数示例",
+      "scope": [
+        "缓存命中、失效和旁路"
+      ],
+      "non_goals": [
+        "替换持久化数据库"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "数据允许按已确认的 TTL 缓存"
+      ],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "行数等于2",
+      "baseline": "现有实现无缓存；先保存固定 fixture 的响应",
+      "target": "stdout is 2 newline",
+      "method": "run actual program and compare saved result",
+      "environment_data": "local Python with UTF-8 two-line sample",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "status": "passed",
+      "verification": "execution"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "实现并核验本地示例",
+      "file_scope": [
+        "README.md",
+        "app.py",
+        "sample.txt",
+        "result.txt",
+        "records/TASK-001/SPEC.md"
+      ],
+      "interface_constraints": [
+        "保持现有响应结构和错误语义"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/TASK-001/evidence/first-execution.json",
+      "kind": "execution",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:30d5a629dc2bb45ab8e34abd115e9ad72697f7ad6f594bf2a149f688ff257825:spec:90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+      "spec_version": "DEMO-1",
+      "spec_sha256": "90fb8cd347dc0d0786bc58500e7673abf45fb7de8cead9708c6eb6b2b7ff7e4a",
+      "sha256": "7f5219a377bc60619c48aac5aecef24d669090dd5c113229227b35ad6f2c6bee",
+      "status": "stale",
+      "result": "passed",
+      "observed_at": "2026-09-16T10:26:42.499495Z",
+      "stale_reason": "同版本Spec正文补充验证说明，保留旧运行"
+    },
+    {
+      "id": "EVD-002",
+      "path": "records/TASK-001/evidence/second-execution.json",
+      "kind": "execution",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:228598813cc167e7c2789ca68b32e4cc87408df8a0404b3ba265194f02a7c348:spec:42c99659d35e81318c5da7a4b2efc3232a355130c8249e78a8885400d9ad0293",
+      "spec_version": "DEMO-1",
+      "spec_sha256": "42c99659d35e81318c5da7a4b2efc3232a355130c8249e78a8885400d9ad0293",
+      "sha256": "f60d2a648eb07981b055077fa2a8dd27b62b5a9fe3d341ec3866bc37be9ff526",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-16T10:26:43.543386Z"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-001",
+      "implementation_task_ids": [
+        "IT-001"
+      ],
+      "paths": [
+        "README.md",
+        "app.py",
+        "sample.txt",
+        "result.txt",
+        "records/TASK-001/SPEC.md",
+        "records/TASK-001/evidence"
+      ],
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:228598813cc167e7c2789ca68b32e4cc87408df8a0404b3ba265194f02a7c348:spec:42c99659d35e81318c5da7a4b2efc3232a355130c8249e78a8885400d9ad0293",
+      "status": "reviewed"
+    }
+  ],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001"
+    ],
+    "evidence_ids": [
+      "EVD-002"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "1d47a5e987479837ac3871a52cb0fbf6704a039e",
+    "worktree_status": "clean",
+    "ownership": "仅修改 IT-001 的 file_scope；其他改动归原作者",
+    "foreign_paths": [],
+    "prepared_at": "2026-09-16T00:00:00Z"
+  },
+  "binding": {
+    "receipt_paths": [
+      "records/TASK-001/STATUS.md",
+      "records/TASK-001/action-marker.txt"
+    ]
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "migrate": {
+      "status": "not_authorized",
+      "source_id": "SRC-002",
+      "scope": [
+        "temp:one",
+        "temp:two"
+      ]
+    }
+  },
+  "delivery": {
+    "local_validation": "passed",
+    "remote_ci": "not_started",
+    "remote_ci_revision": null
+  },
+  "actions": [
+    {
+      "id": "ACT-001",
+      "kind": "local-simulation",
+      "authorization_action": "migrate",
+      "status": "completed",
+      "target": "temp:one",
+      "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:228598813cc167e7c2789ca68b32e4cc87408df8a0404b3ba265194f02a7c348:spec:42c99659d35e81318c5da7a4b2efc3232a355130c8249e78a8885400d9ad0293",
+      "idempotency_key": "simulation-once",
+      "authorization_snapshot": {
+        "schema_version": 1,
+        "captured_at": "2026-09-16T10:26:43.822431Z",
+        "action": "migrate",
+        "target": "temp:one",
+        "revision": "patch:1d47a5e987479837ac3871a52cb0fbf6704a039e:228598813cc167e7c2789ca68b32e4cc87408df8a0404b3ba265194f02a7c348:spec:42c99659d35e81318c5da7a4b2efc3232a355130c8249e78a8885400d9ad0293",
+        "authorization": {
+          "status": "authorized",
+          "source_id": "SRC-002",
+          "scope": [
+            "temp:one",
+            "temp:two"
+          ]
+        },
+        "source": {
+          "id": "SRC-002",
+          "kind": "user_requirement",
+          "reference": "fixture:local-simulation-authorization",
+          "summary": "只允许临时仓库内写入模拟迁移标记",
+          "adoption": "accepted"
+        },
+        "source_id": "SRC-002",
+        "scope": [
+          "temp:one",
+          "temp:two"
+        ],
+        "source_content": "{\"adoption\":\"accepted\",\"id\":\"SRC-002\",\"kind\":\"user_requirement\",\"reference\":\"fixture:local-simulation-authorization\",\"summary\":\"只允许临时仓库内写入模拟迁移标记\"}",
+        "content_sha256": "90fde0a261af1fe2137893c7f77802d899446020dd7cb64a6dc4e17d879c3fc2"
+      },
+      "receipt": "records/TASK-001/action-marker.txt"
+    }
+  ],
+  "decisions": [],
+  "hypotheses": [
+    {
+      "id": "HYP-001",
+      "mechanism": "复用允许缓存的重复查询结果会减少后端访问",
+      "budget": "一次基线测量和最多两轮实现/测量",
+      "exit_condition": "MET-002 可判定，或两轮后仍无改善则停止并重新决策"
+    }
+  ],
+  "recovery_strategy": {
+    "trigger": "local simulation interrupted",
+    "steps": [
+      "read action marker before retry"
+    ],
+    "owner": "primary"
+  }
+}

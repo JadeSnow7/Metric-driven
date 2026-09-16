@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "-m",
+    "unittest",
+    "skill/veriflow/tests/test_authorization_snapshot.py"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789552459.438281,
+  "ended_at_epoch": 1789552459.505749,
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.029s\n\nOK\n",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  }
+}

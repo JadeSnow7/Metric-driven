@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "-m",
+    "unittest",
+    "skill/veriflow/tests/test_authorization_snapshot.py",
+    "-v"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at": "2026-09-16T09:56:41.136392+00:00",
+  "ended_at": "2026-09-16T09:56:41.209767+00:00",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_audit_malformed_json_never_raises_and_captured_scope_is_authoritative (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_audit_malformed_json_never_raises_and_captured_scope_is_authoritative) ... ok\ntest_audit_rejects_empty_action_target_and_revision (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_audit_rejects_empty_action_target_and_revision) ... ok\ntest_boolean_schema_and_nan_are_issues (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_boolean_schema_and_nan_are_issues) ... ok\ntest_capture_and_historical_audit_survive_current_revocation (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_capture_and_historical_audit_survive_current_revocation) ... ok\ntest_capture_rejects_empty_fields_and_audit_rejects_real_invalid_time (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_capture_rejects_empty_fields_and_audit_rejects_real_invalid_time) ... ok\ntest_capture_rejects_unauthorized_agent_source_and_scope (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_capture_rejects_unauthorized_agent_source_and_scope) ... ok\ntest_cli_outputs_snapshot_and_does_not_execute_action (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_cli_outputs_snapshot_and_does_not_execute_action) ... ok\ntest_missing_and_tampering_are_distinguished (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_missing_and_tampering_are_distinguished) ... ok\ntest_unhashable_source_kind_and_duplicate_scope_are_issues (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_unhashable_source_kind_and_duplicate_scope_are_issues) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.028s\n\nOK\n",
+  "input_sha256": {
+    "skill/veriflow/scripts/authorization_snapshot.py": "b47ec7c6f311a505b9992938efcd5d79bb2275a8076f6ca074793563f1a9f2c3",
+    "skill/veriflow/tests/test_authorization_snapshot.py": "ed984747283c7a1f704f2b6d611c04517914d949822e2b03309f912a2cab0dc4"
+  }
+}

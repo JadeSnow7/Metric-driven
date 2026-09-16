@@ -1,0 +1,60 @@
+{
+  "generated_by": "run_v3_checks.py",
+  "generated_at": "2026-09-16T09:58:12.037270+00:00",
+  "scope": [
+    "skill/veriflow/SKILL.md",
+    "skill/veriflow/references/workflow.md",
+    "skill/veriflow/references/design.md",
+    "skill/veriflow/references/delegation-and-handoffs.md",
+    "skill/veriflow/references/writing.md",
+    "skill/veriflow/references/claude-code.md",
+    "skill/veriflow/agents/claude-code/veriflow-coder.md",
+    "skill/veriflow/agents/claude-code/veriflow-reviewer.md",
+    "skill/veriflow/assets/templates/handoff.md",
+    "skill/veriflow/assets/templates/task-summary.md",
+    "skill/veriflow/assets/templates/work-log.md",
+    "skill/veriflow/assets/templates/writing-handoff.md"
+  ],
+  "sha256": {
+    "skill/veriflow/SKILL.md": "e8116764716b8ea017c48b0b6aa262f381ffe1d087c184177f5b1e1b8cd0fb43",
+    "skill/veriflow/references/workflow.md": "46d59b08638ecf2fca71dcbab53504727299da6f9505dd24ab97d5b6231d508a",
+    "skill/veriflow/references/design.md": "b0600c23df4011952878e9e64b3282f4d15092c13e49d77b9b730d8e43296ee3",
+    "skill/veriflow/references/delegation-and-handoffs.md": "62582c03b1970afe30b6f9b4c5440f21e4d159f795214bea90da7928b0ee392a",
+    "skill/veriflow/references/writing.md": "36dc83809b6aaf7f91c304d0b793066e15ed299f3fc1b0f5d655f3b20a6eeb01",
+    "skill/veriflow/references/claude-code.md": "5a1ed397981554dea4b10111b88bcdd00a879d9afa1997c1c31bf294fcbc2587",
+    "skill/veriflow/agents/claude-code/veriflow-coder.md": "aa7dafc2f8103050630efddcc087a8e7c4b7596f8afd29d5fa732134e5895bd6",
+    "skill/veriflow/agents/claude-code/veriflow-reviewer.md": "6cc1343ab4259732e684a5723551f0893d1a24eef5ea1622173ae8810392d94a",
+    "skill/veriflow/assets/templates/handoff.md": "680126d3081865c7f8944ce1e955d5dc2357a9da7dc5ba3f5f2fb1b89623e693",
+    "skill/veriflow/assets/templates/task-summary.md": "e67ba3286e0a95328fbe0a87c8e76a43cdbde8c81ed214eeaf5f6f7d08dc4615",
+    "skill/veriflow/assets/templates/work-log.md": "b921291f6bc7cd688ea61d110528150beaa66f01931e946e79bbc7ea2d7ae185",
+    "skill/veriflow/assets/templates/writing-handoff.md": "722b14256bb92e064c96b4e5247184f950b3dd56ee5fe1ede3bc020b62e413bf"
+  },
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T09:58:12.004413+00:00",
+      "ended_at": "2026-09-16T09:58:12.018588+00:00",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "python3.11",
+        "-c",
+        "from pathlib import Path\nimport json\nimport re\nmissing=[]\nfor p in ['/private/tmp/veriflow-spec-20260916/skill/veriflow/SKILL.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/references/workflow.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/references/design.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/references/delegation-and-handoffs.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/references/writing.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/references/claude-code.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/agents/claude-code/veriflow-coder.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/agents/claude-code/veriflow-reviewer.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/assets/templates/handoff.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/assets/templates/task-summary.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/assets/templates/work-log.md', '/private/tmp/veriflow-spec-20260916/skill/veriflow/assets/templates/writing-handoff.md']:\n    p=Path(p)\n    for link in re.findall(r'\\[[^]]+\\]\\(([^)#]+)', p.read_text()):\n        if not (p.parent/link).resolve().exists(): missing.append([str(p),link])\nprint(json.dumps({'missing': missing}, ensure_ascii=False))\nraise SystemExit(bool(missing))"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T09:58:12.018610+00:00",
+      "ended_at": "2026-09-16T09:58:12.037243+00:00",
+      "stdout": "{\"missing\": []}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

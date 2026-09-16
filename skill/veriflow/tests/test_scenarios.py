@@ -51,6 +51,10 @@ class ScenarioRepository:
         self.manifest = self.records / "task-state.json"
         self.records.mkdir(parents=True)
         self.state: dict[str, Any] = json.loads(TEMPLATE.read_text(encoding="utf-8"))
+        # Existing scenarios intentionally exercise the 1.2 contract; 1.3
+        # binding has independent coverage in test_spec_binding.py.
+        self.state["schema_version"] = "1.2"
+        self.state.pop("spec", None)
         self.state["baseline"]["git_ref"] = self.base
         self.state["baseline"]["prepared_at"] = "2026-01-01T00:00:00Z"
         self.state["sources"][0]["reference"] = "conversation:scenario-test"

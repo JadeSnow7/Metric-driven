@@ -1,0 +1,54 @@
+FFF
+======================================================================
+FAIL: test_contract_change_rejects_old_raw (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_contract_change_rejects_old_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 44, in test_contract_change_rejects_old_raw
+    self.record_raw(repo); self.assertEqual(self.validate(repo).returncode,0); (repo.root/"SPEC.md").write_text("contract-v2\n"); failed=self.validate(repo); self.assertNotEqual(failed.returncode,0); self.assertIn("EXECUTION_SPEC_MISMATCH",failed.stdout)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_control_and_receipt_append_keep_revision (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_control_and_receipt_append_keep_revision)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 37, in test_control_and_receipt_append_keep_revision
+    self.record_raw(repo); control=self.validate(repo); self.assertEqual(control.returncode,0,control.stdout+control.stderr); before=json.loads(control.stdout)["current_revision"]
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : {
+  "ok": false,
+  "gate": "acceptance",
+  "current_revision": "patch:b7262f000cf1a8a2ba5cac12ab63e667ca67e22c:09afa641f97b294c96aa703284fac7f9250e3324b591f24a45a6d3d4d3c96f54:spec:9c37b4e790ae767f5732804576630d2b57de3cccbbd494eed92dea109eecfc46",
+  "spec_version": "SPEC-TEST",
+  "spec_sha256": "9c37b4e790ae767f5732804576630d2b57de3cccbbd494eed92dea109eecfc46",
+  "errors": [
+    {
+      "code": "CROSSREF_EVIDENCE",
+      "message": "CHG-001.evidence_ids references missing id 'EVD-001'"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: SPEC.md"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+
+
+======================================================================
+FAIL: test_missing_each_deliverable_is_rejected (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_missing_each_deliverable_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 51, in test_missing_each_deliverable_is_rejected
+    self.record_raw(repo); self.assertEqual(self.validate(repo).returncode,0); (repo.root/missing).unlink(); failed=self.validate(repo); self.assertNotEqual(failed.returncode,0); self.assertIn("SPEC_DELIVERABLE",failed.stdout)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.819s
+
+FAILED (failures=3)
+real 1.85
+user 1.01
+sys 0.74

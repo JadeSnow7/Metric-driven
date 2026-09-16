@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "checks": [
+    "undeclared denied before command",
+    "repository/external aliases denied before command",
+    "declared canonical fixture records and validates",
+    "missing stale input retained",
+    "raw tamper detected"
+  ],
+  "script_hashes": {
+    "validate_task.py": "44da2939b432a09c4e0ef16e5384a6bed1bc429d1b3379f2910af17060492e64",
+    "integrate_boundary.py": "67250905b53d4381a89105facc3a3d8cc07bfb69de784d88ef272da88671a5cf",
+    "authorization_snapshot.py": "b47ec7c6f311a505b9992938efcd5d79bb2275a8076f6ca074793563f1a9f2c3",
+    "spec_contract.py": "454d4f64439179e5ff4f0c8823b957a80e2f9b194d0c059671035a159eed5d13",
+    "record_execution.py": "6d82ccb7477ed7b56ce41c50315c69ab165294bc9733ad1e6f84e250509aa1d8"
+  }
+}

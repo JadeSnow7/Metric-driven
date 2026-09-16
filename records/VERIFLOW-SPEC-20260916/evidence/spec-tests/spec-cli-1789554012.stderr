@@ -1,0 +1,65 @@
+FFF
+======================================================================
+FAIL: test_contract_change_rejects_old_raw (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_contract_change_rejects_old_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 49, in test_contract_change_rejects_old_raw
+    self.record_raw(repo); control=self.validate(repo); self.assertEqual(control.returncode,0,control.stdout); old=repo.root/"records/TASK-001/evidence/raw.json"; (repo.root/"SPEC.md").write_text("contract-v2\n"); failed=self.validate(repo); self.assertNotEqual(failed.returncode,0); self.assertIn("EXECUTION_SPEC_MISMATCH",failed.stdout)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : {
+  "ok": false,
+  "gate": "acceptance",
+  "current_revision": "patch:eaf38680d32d8b5b59ea14daee76574055eeb3a4:759c4d7b278ee9f4b3edc7b7d625408a253e7aecb050ce5c73776c7ddd440df5:spec:9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "spec_version": "SPEC-TEST",
+  "spec_sha256": "9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "errors": [
+    {
+      "code": "EVIDENCE_SPEC_MISMATCH",
+      "message": "EVD-001 current non-execution evidence is not bound to the current Spec digest"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+
+
+======================================================================
+FAIL: test_control_and_receipt_append_keep_revision (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_control_and_receipt_append_keep_revision)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 42, in test_control_and_receipt_append_keep_revision
+    self.record_raw(repo); control=self.validate(repo); self.assertEqual(control.returncode,0,control.stdout+control.stderr); before=json.loads(control.stdout)["current_revision"]
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : {
+  "ok": false,
+  "gate": "acceptance",
+  "current_revision": "patch:9bd3a18fc538c801a1872645f5aec7a3a28bdd50:daa01d688e59034fdfc2de990545bb666bb8a50c793004eea24c24ca190cc9b7:spec:9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "spec_version": "SPEC-TEST",
+  "spec_sha256": "9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "errors": [
+    {
+      "code": "EVIDENCE_SPEC_MISMATCH",
+      "message": "EVD-001 current non-execution evidence is not bound to the current Spec digest"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+
+
+======================================================================
+FAIL: test_missing_each_deliverable_is_rejected (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_missing_each_deliverable_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 59, in test_missing_each_deliverable_is_rejected
+    self.record_raw(repo); self.assertEqual(self.validate(repo).returncode,0); (repo.root/missing).unlink(); failed=self.validate(repo); self.assertNotEqual(failed.returncode,0); self.assertIn("SPEC_DELIVERABLE",failed.stdout)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.036s
+
+FAILED (failures=3)
+real 2.10
+user 1.13
+sys 0.81

@@ -1,0 +1,1396 @@
+{
+  "source_root": "/private/tmp/veriflow-spec-20260916",
+  "target_root": "/Users/huaodong/Documents/evidence-driven-development",
+  "files": {
+    "README.md": {
+      "source": "README.md",
+      "source_sha256": "5f399d2604240061abf5b40eeac2f308a8f691e9cc052f36dcae68bc9454c1ae",
+      "target_sha256": "58cc7938c68fe37e4c2fdea35714c9568ace971e2cda903f811db5f8efb0f347"
+    },
+    "skill/veriflow/SKILL.md": {
+      "source": "skill/veriflow/SKILL.md",
+      "source_sha256": "fc2ef4b580d3aface00c1e75a6d8231f6e2ae4e389b53fc3ec37ced3f953742c",
+      "target_sha256": "3de1c243cc0f3a61a22aa121a8f8b29d87349063eebb1358e4a3e432e4b33de9"
+    },
+    "skill/veriflow/agents/claude-code/veriflow-coder.md": {
+      "source": "skill/veriflow/agents/claude-code/veriflow-coder.md",
+      "source_sha256": "aa7dafc2f8103050630efddcc087a8e7c4b7596f8afd29d5fa732134e5895bd6",
+      "target_sha256": "ebf81b465c70af7e6edb79afe843dbad2f32a6c37dc88d64a09f3f7606c0a9ea"
+    },
+    "skill/veriflow/agents/claude-code/veriflow-reviewer.md": {
+      "source": "skill/veriflow/agents/claude-code/veriflow-reviewer.md",
+      "source_sha256": "6cc1343ab4259732e684a5723551f0893d1a24eef5ea1622173ae8810392d94a",
+      "target_sha256": "40b32cb4c47d7ca48114a9cef9dbadb63fdb8779c975aa2bf1ef4a989a0295de"
+    },
+    "skill/veriflow/assets/templates/handoff.md": {
+      "source": "skill/veriflow/assets/templates/handoff.md",
+      "source_sha256": "680126d3081865c7f8944ce1e955d5dc2357a9da7dc5ba3f5f2fb1b89623e693",
+      "target_sha256": "7e94df7d877df493f2534488248a520b926ee55e5d4458aba517ffcd8e74672f"
+    },
+    "skill/veriflow/assets/templates/task-state.example.json": {
+      "source": "skill/veriflow/assets/templates/task-state.example.json",
+      "source_sha256": "22bd7fcd312deeaf88cab8999bdfea13523075116daeb62b870d8f9101e679b6",
+      "target_sha256": "24d0d177d8be15636992719596e254170c94687bc87debb567d70367f0c24704"
+    },
+    "skill/veriflow/assets/templates/task-summary.md": {
+      "source": "skill/veriflow/assets/templates/task-summary.md",
+      "source_sha256": "e67ba3286e0a95328fbe0a87c8e76a43cdbde8c81ed214eeaf5f6f7d08dc4615",
+      "target_sha256": "58ef4b220a51f332462244f432a3b6f5cfd388315a8457113a8a2747756b43fd"
+    },
+    "skill/veriflow/assets/templates/work-log.md": {
+      "source": "skill/veriflow/assets/templates/work-log.md",
+      "source_sha256": "b921291f6bc7cd688ea61d110528150beaa66f01931e946e79bbc7ea2d7ae185",
+      "target_sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174"
+    },
+    "skill/veriflow/assets/templates/writing-handoff.md": {
+      "source": "skill/veriflow/assets/templates/writing-handoff.md",
+      "source_sha256": "722b14256bb92e064c96b4e5247184f950b3dd56ee5fe1ede3bc020b62e413bf",
+      "target_sha256": "febcfac0ec51bc15f301476fcf3cac2ce326c377029acab98e729e1491890c05"
+    },
+    "skill/veriflow/references/claude-code.md": {
+      "source": "skill/veriflow/references/claude-code.md",
+      "source_sha256": "f07e26af59c2865df3f68ec8305d6c74d638ed99e9c19e218947ef6ee220906a",
+      "target_sha256": "ed1f55dfa0f7e70defab74f48389d36834f27706058128f00cf5b6c89ad64db4"
+    },
+    "skill/veriflow/references/delegation-and-handoffs.md": {
+      "source": "skill/veriflow/references/delegation-and-handoffs.md",
+      "source_sha256": "62582c03b1970afe30b6f9b4c5440f21e4d159f795214bea90da7928b0ee392a",
+      "target_sha256": "a8b61c3095e0183ea906167c5f129f3c3b8c1bf0b010771d8c326537d6e2919a"
+    },
+    "skill/veriflow/references/design.md": {
+      "source": "skill/veriflow/references/design.md",
+      "source_sha256": "27f5cbb0e88aefbd0ce77271a034795b25c386e63eddb361316bac0dca20e3c3",
+      "target_sha256": "1eb0c81c91b248376f54102f09b7d2d0b90a245e81b9c3000d78b1230a2d024c"
+    },
+    "skill/veriflow/references/examples.md": {
+      "source": "skill/veriflow/references/examples.md",
+      "source_sha256": "eb5b242ad414c2612a8aac7d93636655fc113d23f1106e336a8880ba7558ace1",
+      "target_sha256": "6bd9168aa9396a62317b9ba72394366fea9b28a0050f2542991cdf8504d80ad8"
+    },
+    "skill/veriflow/references/metrics-and-evidence.md": {
+      "source": "skill/veriflow/references/metrics-and-evidence.md",
+      "source_sha256": "a84e9ae7e85cbd939eb8c436d0b74f0c914bb463bb1246e7466f1895f93f9c52",
+      "target_sha256": "a7a81a5f54e860c679324b17a109cf4b56733a4fa6ebc5f5f1b8a2c963c2fbc3"
+    },
+    "skill/veriflow/references/records.md": {
+      "source": "skill/veriflow/references/records.md",
+      "source_sha256": "ddd6b680234dfb908fda3fc31829c2b14aa153ee7fe121856d5dcedbb53827ce",
+      "target_sha256": "29e0ed44a2567ee87d8b90a10cfda580dfd90e080acd3dc26d455adcd695c0b7"
+    },
+    "skill/veriflow/references/workflow.md": {
+      "source": "skill/veriflow/references/workflow.md",
+      "source_sha256": "594acb4d4fb5940029c6733db5c0813fe4b106f667bcea0a8ce114fc4f282c1a",
+      "target_sha256": "99fe0310bb91f5bacd14dfdf7d9e9f605d200ebf199936251d5b85f878701b1e"
+    },
+    "skill/veriflow/references/writing.md": {
+      "source": "skill/veriflow/references/writing.md",
+      "source_sha256": "36dc83809b6aaf7f91c304d0b793066e15ed299f3fc1b0f5d655f3b20a6eeb01",
+      "target_sha256": "59d1b56aef3dd2e448596798142b3efea2a7b902c825765ec4317022b1b306d1"
+    },
+    "skill/veriflow/scripts/authorization_snapshot.py": {
+      "source": "skill/veriflow/scripts/authorization_snapshot.py",
+      "source_sha256": "b47ec7c6f311a505b9992938efcd5d79bb2275a8076f6ca074793563f1a9f2c3",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/scripts/record_execution.py": {
+      "source": "skill/veriflow/scripts/record_execution.py",
+      "source_sha256": "6d82ccb7477ed7b56ce41c50315c69ab165294bc9733ad1e6f84e250509aa1d8",
+      "target_sha256": "b64d36dbc5c5187f82b94edceeb6c097f6e36c549da8360fc0010a1a8d0dbf89"
+    },
+    "skill/veriflow/scripts/spec_contract.py": {
+      "source": "skill/veriflow/scripts/spec_contract.py",
+      "source_sha256": "454d4f64439179e5ff4f0c8823b957a80e2f9b194d0c059671035a159eed5d13",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/scripts/validate_task.py": {
+      "source": "skill/veriflow/scripts/validate_task.py",
+      "source_sha256": "9847dfed8e5344df3c8ddabb7156a403aa59c09bff405985160310a8fe13c35f",
+      "target_sha256": "0af75cffa8954688e11025c6308cedc29da35e8b14ced294dcd85b4e2e21fcf3"
+    },
+    "skill/veriflow/tests/test_authorization_snapshot.py": {
+      "source": "skill/veriflow/tests/test_authorization_snapshot.py",
+      "source_sha256": "ed984747283c7a1f704f2b6d611c04517914d949822e2b03309f912a2cab0dc4",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/tests/test_evidence_history.py": {
+      "source": "skill/veriflow/tests/test_evidence_history.py",
+      "source_sha256": "b91afa2e334fe985c0420d7f861160761c32e4f0e02bba476bcf09500738ceea",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/tests/test_scenarios.py": {
+      "source": "skill/veriflow/tests/test_scenarios.py",
+      "source_sha256": "dfe1756941a1acc490725346ba7d163e67112563910f1d4921c6e2a2f113b195",
+      "target_sha256": "97db545229cf3cef3f9b14944261504d5be574a9fc2b0ef64f57c292978609c7"
+    },
+    "skill/veriflow/tests/test_spec_binding.py": {
+      "source": "skill/veriflow/tests/test_spec_binding.py",
+      "source_sha256": "773d32c125acfa695c9ab7c1d64b36e834ae0ddc46e806ad3272ce29eebb9073",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/tests/test_spec_model.py": {
+      "source": "skill/veriflow/tests/test_spec_model.py",
+      "source_sha256": "473be5db2c5f82b53dccd004b5b41821a345b63dd303f5829daa251d1fe99c78",
+      "target_sha256": "absent"
+    },
+    "skill/veriflow/tests/test_temporal_chain.py": {
+      "source": "skill/veriflow/tests/test_temporal_chain.py",
+      "source_sha256": "ddb31e9867f13d0fbf8557ecef5f3d30b4952915964820cb8280e87d66c89b81",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/REPORT.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/REPORT.md",
+      "source_sha256": "53f9f3d7b4401a7c7e887bba9577c12754de9f25eb55341df61284c40484d7aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/SPEC.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/SPEC.md",
+      "source_sha256": "729bd063d6c03558799f4f62d6aaf7a97572e0889efe2be5b98dd77b2e67db0a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/acceptance.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/acceptance.json",
+      "source_sha256": "ce0d8af7fb3e1f2ce1d49b7018c6d11bea5a0bfd7c647ee71c1b67dd6389cc55",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/behavior-plan.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/behavior-plan.md",
+      "source_sha256": "56214a39db7c677df8fc4653b3ba288d8b133f391eef829a7e9f6f666a49275e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/design-decisions.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/design-decisions.md",
+      "source_sha256": "90631941601b92ebc57aba13c9876943d895bfe36692a9d0df72fc19d4b533f4",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/README.md",
+      "source_sha256": "2adb98df3c784b8985f3f37be950e03bf61178daeff67f47a97b20a8eb4103d6",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/SPEC-v1.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/SPEC-v1.md",
+      "source_sha256": "729bd063d6c03558799f4f62d6aaf7a97572e0889efe2be5b98dd77b2e67db0a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-log.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-log.json",
+      "source_sha256": "21a05d6f56cf023c436006309307fdd3f544a4dcbbdbc5952b25ac8cf31c8b2a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-v2.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-v2.json",
+      "source_sha256": "7f8b6cdaed534d29d5b83e1057252ca13db5f8d69ee2841c59903b785df2bf3c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-v3.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/execution-v3.json",
+      "source_sha256": "d30960fe1d037d3c2c7fdcdb531ab3be161d64f2a63b62750d978caf59984302",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/interface.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/interface.md",
+      "source_sha256": "76e425ac2e898448712dd48e32484abd3e3d27696b3c2d47f6aad0bd8ee5dca9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/test-output.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/test-output.txt",
+      "source_sha256": "f261d9bfd3bebdda042c66af28bf0e4347293058712a1d4d7062da6bbd131e4b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/tool-observed-v2-failure.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-coder/tool-observed-v2-failure.json",
+      "source_sha256": "8e2735c5109da2ddc1192dc122033da1347838e334f56873b3b562ab6c12911b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/auth-review-v1.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/auth-review-v1.json",
+      "source_sha256": "8b0217c2b4ffdf561e60373feb9d2eb3d7f9b1391a1f54444f24e43df4bab203",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-counterexamples.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-counterexamples.json",
+      "source_sha256": "28b47d5f85d1faef637628e7c8a557457cffef497c9908055efd0c12d48e9db6",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-manifest.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-manifest.json",
+      "source_sha256": "b005db77d7dc72a95604f10b04044b06a39effc1c13baf3b2279f34559fd5f8c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-python311.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-python311.json",
+      "source_sha256": "6ac52d4d8ab733f96edf7143f56e995507e8f857d7e06b0f01a6cd0c5ec7a33a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-repository-tests.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-repository-tests.txt",
+      "source_sha256": "7a9851c12e164c0cbe1443a36fdc94fdb561fa7579e499b6f85ff7467962c865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-support-counterexample.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-support-counterexample.json",
+      "source_sha256": "36616d41d97db1df59d8c481e3451917958eedc688826c74b1ee243aa4002f33",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/baseline-tests.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/baseline-tests.txt",
+      "source_sha256": "02522aae859f6e92fff05c25a03f1ee570222a883cb7b43a4291c51ba95091d2",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-environment.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-environment.json",
+      "source_sha256": "67a9ade2bdc1ad29482a89ab21123711da5d35b47c72b26e8ef1b8e7f8d1d4e8",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/light/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/light/README.md",
+      "source_sha256": "f99a32a7755d3648c9c15ff3c773356571644df50ffa47f5d7f7f80d8088836e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/light/request.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/light/request.txt",
+      "source_sha256": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/README.md",
+      "source_sha256": "19431686b0e8fbb7cf0af89082b6a172cab07f7270feaf27ff0abe2983fc6260",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/count_lines.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/count_lines.py",
+      "source_sha256": "78c343625a54e55ba9db3464b36ee4a1c8259cf469a3961075143b27df9e1bc0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/request.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/request.txt",
+      "source_sha256": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/result.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/result.txt",
+      "source_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/sample.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/artifacts/tutorial/sample.txt",
+      "source_sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/completion.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/completion.json",
+      "source_sha256": "7bc480b0275ae48edabea057b01ad3bc4cc366696805a3649f5ce464b661893b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/environment.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/environment.json",
+      "source_sha256": "e4f048409ef7d7e91dd6206412b6d2debf965362604839a09378840f5420c7f7",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/executor-reports.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/executor-reports.json",
+      "source_sha256": "477c7042fcb9a4e0c3786d656b91c7db9c0a335da5a0c6e624745ea7f3ed3bb3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/light-request.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/light-request.txt",
+      "source_sha256": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/primary-verification.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/primary-verification.json",
+      "source_sha256": "c491abc1f06ba489fc9cb16be4f1a963c243bf77d0c9a9bd85d358d483368bfd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/tutorial-request.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/tutorial-request.txt",
+      "source_sha256": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/coder/e2e-harness.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/coder/e2e-harness.jsonl",
+      "source_sha256": "5496afb7ba2a057cd791c779b63379fbd243fbd78f872462e135b84d7ab064e2",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/coder/e2e_spec_harness.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/coder/e2e_spec_harness.py",
+      "source_sha256": "d46a608a271f16a4fb3466f5c736644b28cf0c89a2b8add262fbd05a8ce5abc2",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/coder/it01-it03.diff": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/coder/it01-it03.diff",
+      "source_sha256": "cb6cd79c57224d018816f2862f477093edd9f5d03dbc5df08188fd1cbe0a1b51",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/README.md",
+      "source_sha256": "7df07560f43f6c886e04dc00b8d38c134034ee5c4529278bb4eaac0671d6e47d",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/files-v2.sha256": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/files-v2.sha256",
+      "source_sha256": "8353ec7c8e287701be96c1fad4329dc4908952900db155a7daefb400c2fa8d75",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/files.sha256": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/files.sha256",
+      "source_sha256": "ecc823fad84c9a90c19c007338fdfea7eecf90b590afdefb022f24bca7377700",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v3_checks.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v3_checks.py",
+      "source_sha256": "966fa1c0966e670c580dfaff45a1ba2c573789b7d6664ec9f11e767a24aee4d2",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v4_checks.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v4_checks.py",
+      "source_sha256": "4dc91db636768a9dad8dbcbbb086527b8c82c50e85b864f5b8a2b1ec57e9a6ad",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v5_checks.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/run_v5_checks.py",
+      "source_sha256": "f87c4f78c624a7014508e9fcd67e2b740a10dd278d3bd07cc5ff63b673616d39",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v2.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v2.md",
+      "source_sha256": "2497d8dbf22b430989095f236d95211af44b248b6a20c59745f2d1eb832253a5",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v3-checks.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v3-checks.json",
+      "source_sha256": "9cc879815d7fe830427ebe4b137ace203ff7a6b6b9526351c539954f53a1f5d6",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v4-checks.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v4-checks.json",
+      "source_sha256": "4a8b6ae75181d6aa9d6abd181f7c12688029d62c8971d22a5366c1c3e6aa018d",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v5-checks.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-coder/v5-checks.json",
+      "source_sha256": "d7bd214de8dae276bb24b9c4b859a26f0029427673e9b4ee86560899494a0705",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/docs-review-v2.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/docs-review-v2.md",
+      "source_sha256": "a21e9e47f89c07e35e4215cc1007b6ebc348659a0ab4ad3a34816fd56c9f3fa2",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.stderr",
+      "source_sha256": "fa310e5879df88f213bb867e94a62cc530e157228c5d69058ed670dc11d7872d",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/baseline-tests.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-coder.diff": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-coder.diff",
+      "source_sha256": "5baf91bb9d4fdf48e70bc0d3de5718ba72afe62ef94f96935144e24b7e58f4db",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.stderr",
+      "source_sha256": "921b60a7fd52e978fbb551cacd29df2d6708879400278e1fcc70fceeb0c6f8e0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/evidence-history.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.stderr",
+      "source_sha256": "a93c374396ec993192f78e954ab67ea2da10435237ed5799d464042b7a987ad7",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552800.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.stderr",
+      "source_sha256": "28ea25da27b99f1fa6f261b2e54e5d2a97758bb286c1b3a19481ad1a14d5a85f",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-cli-1789552832.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.stderr",
+      "source_sha256": "5e51301d36a6348e56302fdcde32c4854de9cd3d80e217563b5599a683ce5795",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-1.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.stderr",
+      "source_sha256": "9ae2c9b25bb87c11e5f19287a4d71968703d08512d465d861a80f7741dc7859a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/history-repeat-1789553117-2.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/pycompile.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/evidence-coder/pycompile.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/diff-check.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/diff-check.json",
+      "source_sha256": "522144c11297c2dfe33cedb25b90e70bc1a5635077ec623dcc7d29dae0324f8c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/manifest.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/manifest.json",
+      "source_sha256": "8f8b8e837941ce92ef6553630c1eaaffc56b8dc2f332a479c25bbdb4563e9cff",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/repository-static.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/repository-static.json",
+      "source_sha256": "70396c118c08dadab8cb2eaf78fce25149ca72b1c91cec51bc93b8087c6b4fd4",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/repository-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/repository-tests.json",
+      "source_sha256": "ddf80f0acb9bd7323607645fbdb29d1feb6805c090cb261ee80b55c55c3a43f3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/skill-format.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/skill-format.json",
+      "source_sha256": "c13eb23245715dd554d0e76643b199cf2e79ca2eee8a543b4f8f293909daa27c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/skill-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/skill-tests.json",
+      "source_sha256": "6f473caedd2fdb6e8a6b48b87d6a7ab95ee47f490ab37f1c34e9bc7fe5c4bf38",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/syntax.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-1/syntax.json",
+      "source_sha256": "75b4fed4c310caf33128908b7c6f42dd15f9310a227121c696fa9be7d050efcc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/diff-check.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/diff-check.json",
+      "source_sha256": "0cb29bfbc99bf6802eaeabc02b4bb0292c03817b8bdf94dd1fab7ae22fa44892",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/manifest.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/manifest.json",
+      "source_sha256": "58943eaa8c8137c47b38b071052903399fca6933e73f8b95c601ac608d0e8390",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/repository-static.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/repository-static.json",
+      "source_sha256": "d3cbc97a17ad8f35b7a904e66675adefe650eb21600aa24fd9a823174c99e41f",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/repository-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/repository-tests.json",
+      "source_sha256": "cd0e8724b2243dda3dc3f49cb4d7a9927ba15b1a98a59f878e2e1b303832cc91",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/skill-format.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/skill-format.json",
+      "source_sha256": "fa5e26173bf05a64b6263cc4ed2d5f63bcf4b703037223c237eae85de1b6616c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/skill-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/skill-tests.json",
+      "source_sha256": "2c41e866f089d1384036a7642c6763ecf5f1a81394d9cec136a8cef32b6f8748",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/syntax.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-2/syntax.json",
+      "source_sha256": "060f08b9e4dbd8dd21e77e8233d8ea1f1ff7c782996e54dbe24eb6c0cf7347aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/diff-check.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/diff-check.json",
+      "source_sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/manifest.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/manifest.json",
+      "source_sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/repository-static.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/repository-static.json",
+      "source_sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/repository-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/repository-tests.json",
+      "source_sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/skill-format.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/skill-format.json",
+      "source_sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/skill-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/skill-tests.json",
+      "source_sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/syntax.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-checks-3/syntax.json",
+      "source_sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/final-review.patch": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/final-review.patch",
+      "source_sha256": "e58ff675b0a5a7a6c820ef94b81d8189421127fff341fedd6bcc378c0329e954",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/frozen-skill-manifest.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/frozen-skill-manifest.json",
+      "source_sha256": "520390503ec29642471f9865c7b6bb80ae2859b78a3085cf8076cd430dc173f9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/frozen-skill.tar.gz": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/frozen-skill.tar.gz",
+      "source_sha256": "def34733452fa998349a7baa65389ac50ae7246fed6194c0d61bf717bfc2f51e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/integration-preflight.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/integration-preflight.json",
+      "source_sha256": "e6accdb66e61d9e96e52f9731b2d86112802a64952ce2e7c573e12ed7476087e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/partial.patch": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/partial.patch",
+      "source_sha256": "86a4880c7b18b882d6fe3901b8f013ad202cf768a805e61e7b9485cfec68bf5f",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/record_execution.py.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/record_execution.py.txt",
+      "source_sha256": "fcd3b7fe12a9aa739df044e171446fc57cbbf99e24d417ab95eb2b75f89629b6",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/validate_task.py.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/interrupted-draft/validate_task.py.txt",
+      "source_sha256": "712dced94738ce232435504d98d47892fedd466a51bfa13bd78ad631075ec97a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/preexisting-tools.patch": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/preexisting-tools.patch",
+      "source_sha256": "ac1cf2b962e67c941259a52103a50a6b7d462932cf8bfd1cc7fea06cd339838d",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-1/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-1/commands.jsonl",
+      "source_sha256": "871ec632ce30b7578f3eabee8125f376f0cf76cf1b10e1350a39140c5d316c9e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-1/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-1/result.json",
+      "source_sha256": "3cc153eca9dbcdee475900d2ec4e30cc94fe29b31b3ef997542db30d3fba3018",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-final/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-final/commands.jsonl",
+      "source_sha256": "6cfaadd8461068326a690137fe4a763e4e2385cd0626fca589cb6d2590a0a3aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-final/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-adversarial-final/result.json",
+      "source_sha256": "9786c1393b67d0931fe479597c73086ab0963d1eebc480d089dd14d5b7e3c39a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-authorization-tests.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-authorization-tests.json",
+      "source_sha256": "0a0ca5713b67692c7dc559f2caf7b31a2f97082ac3a29fb829e01d1429cd16ab",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/01-ready-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/01-ready-state.json",
+      "source_sha256": "33c28d8a28f0d321c04ce5d9392df3a24152bf77bdf3300ef728ec36a9cb954e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/03-record-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/03-record-state.json",
+      "source_sha256": "14f2c80aaafc766f103bf262d58c10b863df9906f753b5d630db8b8ec28e9ca0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/commands.jsonl",
+      "source_sha256": "408e781b02c832fc2b531e49fe90832e9ec06561116f652199e4c9acd67c254c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/first-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/first-execution.json",
+      "source_sha256": "225958fe8249f1706434f48b9e2219a69934a7d7350add0dfe3c68c047d4b202",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/inputs.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-1/inputs.json",
+      "source_sha256": "33a40f949459421e9c21015a882493a9c804b112349b3aa2250a0802f81af88e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/01-ready-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/01-ready-state.json",
+      "source_sha256": "92739664e47adb58da240c54bb9934b511fe7361f5ab70b5a3d898c41023cfd3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/03-record-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/03-record-state.json",
+      "source_sha256": "2ffbb3834a66865886a13c0162201a1ff52667f7cbfb70a221aa7a82d1e47c64",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/04-acceptance-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/04-acceptance-state.json",
+      "source_sha256": "2ffbb3834a66865886a13c0162201a1ff52667f7cbfb70a221aa7a82d1e47c64",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/commands.jsonl",
+      "source_sha256": "5c13071125aa1c9c1a56b7eeb735f0cdbd738af0427fb7e0428f3763e56abfd0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/first-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/first-execution.json",
+      "source_sha256": "31524fb2c6b15d9908d9d452b145aa52e008fe2aa8cd5ef99117412f70e8e3e9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/inputs.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-2/inputs.json",
+      "source_sha256": "33a40f949459421e9c21015a882493a9c804b112349b3aa2250a0802f81af88e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/01-ready-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/01-ready-state.json",
+      "source_sha256": "522d25b27a60c91553288b1ae5f4ed576ea0589b8923c787798d883a13d7a054",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/03-record-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/03-record-state.json",
+      "source_sha256": "91f0828d4f76e27b8ba33d8491210eee59d157eb746a0f39c4d5be86fa52fe4b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/04-acceptance-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/04-acceptance-state.json",
+      "source_sha256": "91f0828d4f76e27b8ba33d8491210eee59d157eb746a0f39c4d5be86fa52fe4b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/05-resume-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/05-resume-state.json",
+      "source_sha256": "d5e62b6f878354d96af6a6edfc55553bc8dd7ce0ff67849b29a2800fa054e0af",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/06-spec-changed-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/06-spec-changed-state.json",
+      "source_sha256": "d5e62b6f878354d96af6a6edfc55553bc8dd7ce0ff67849b29a2800fa054e0af",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/07-new-with-history-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/07-new-with-history-state.json",
+      "source_sha256": "a71ed1f39cc9350942d522119af7a8b237f66b79e2e227c124ec447fc9a3d3be",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/09-before-action-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/09-before-action-state.json",
+      "source_sha256": "a71ed1f39cc9350942d522119af7a8b237f66b79e2e227c124ec447fc9a3d3be",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/11-unknown-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/11-unknown-blocks-state.json",
+      "source_sha256": "5b70eb557cc19b7ea6868cd3e5b96d93f512263d82762416b3fe1b9cb7e7d661",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/13-duplicate-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/13-duplicate-blocks-state.json",
+      "source_sha256": "c2c2734c96236f06c874acf81e9a87c0c250850552b92efbc2a248fc25c7107e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/14-history-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/14-history-after-revoke-state.json",
+      "source_sha256": "5c7337312ecdda1e3308039f54d15356c46899fe6b8aba9e395f97fabc356dbc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/15-acceptance-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/15-acceptance-after-revoke-state.json",
+      "source_sha256": "5c7337312ecdda1e3308039f54d15356c46899fe6b8aba9e395f97fabc356dbc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/16-new-action-revoked-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/16-new-action-revoked-state.json",
+      "source_sha256": "5c7337312ecdda1e3308039f54d15356c46899fe6b8aba9e395f97fabc356dbc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/commands.jsonl",
+      "source_sha256": "c0791afcd7b45189cf65002fc63f1a812b51de4af02e57ada771e4b4eb0d9f21",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/final-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/final-state.json",
+      "source_sha256": "5c7337312ecdda1e3308039f54d15356c46899fe6b8aba9e395f97fabc356dbc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/first-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/first-execution.json",
+      "source_sha256": "7f5219a377bc60619c48aac5aecef24d669090dd5c113229227b35ad6f2c6bee",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/inputs.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/inputs.json",
+      "source_sha256": "6561167ac48fca2c3d50bd76a8301bfa2152f6fdb384b248cccbb74b6238cd9d",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/README.md",
+      "source_sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/app.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/app.py",
+      "source_sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/records/TASK-001/SPEC.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/records/TASK-001/SPEC.md",
+      "source_sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/result.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/result.txt",
+      "source_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/sample.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/products/sample.txt",
+      "source_sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/result.json",
+      "source_sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/second-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-3/second-execution.json",
+      "source_sha256": "f60d2a648eb07981b055077fa2a8dd27b62b5a9fe3d341ec3866bc37be9ff526",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/01-ready-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/01-ready-state.json",
+      "source_sha256": "01bbe0f0110f72b236d579756124f849a5c777f32e564fef29040e9209e951b6",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/03-record-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/03-record-state.json",
+      "source_sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/04-acceptance-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/04-acceptance-state.json",
+      "source_sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/05-resume-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/05-resume-state.json",
+      "source_sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/06-spec-changed-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/06-spec-changed-state.json",
+      "source_sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/07-new-with-history-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/07-new-with-history-state.json",
+      "source_sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/09-before-action-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/09-before-action-state.json",
+      "source_sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/11-unknown-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/11-unknown-blocks-state.json",
+      "source_sha256": "6d5979c29df7f224ea5670c665907102b5651f937f37fbadb357ca88cdc4497b",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/13-duplicate-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/13-duplicate-blocks-state.json",
+      "source_sha256": "fd3e1300cf4410851642a14022da30ee084c03e88280e5fde407286a406ffab8",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/14-history-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/14-history-after-revoke-state.json",
+      "source_sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/15-acceptance-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/15-acceptance-after-revoke-state.json",
+      "source_sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/16-new-action-revoked-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/16-new-action-revoked-state.json",
+      "source_sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/commands.jsonl",
+      "source_sha256": "5b1e15bd19afab39e5659a0e9f5f4295a3be79d0b51daaee08ae169b25af8f73",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/final-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/final-state.json",
+      "source_sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/first-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/first-execution.json",
+      "source_sha256": "e36f706f6e4b1369a5ef81d0a082f943f11bbb459c04c9e3c3146d09076d7d92",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/inputs.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/inputs.json",
+      "source_sha256": "6811f5d6aeaf96c011e935ccbe8c4a11454e3f5e9a6f51cad5bedbf154f3697e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/README.md",
+      "source_sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/app.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/app.py",
+      "source_sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/records/TASK-001/SPEC.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/records/TASK-001/SPEC.md",
+      "source_sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/result.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/result.txt",
+      "source_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/sample.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/products/sample.txt",
+      "source_sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/result.json",
+      "source_sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/second-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-e2e-final/second-execution.json",
+      "source_sha256": "cd80010e3aa62e596fe56e68475f87f5746dca4e0fd33d7820bc280738addd61",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixture-probe.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixture-probe.json",
+      "source_sha256": "30049b660082a0ccc1ff427d386626188d9654a06c64d8f1f3bc099713679f61",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final/commands.jsonl",
+      "source_sha256": "a978c978d15723dbc8c77a8b831c866e429d5dfa197c5d380184328f777bc439",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final/result.json",
+      "source_sha256": "56cf6bbb30e52dc353d17341a707390ed877bc96cb53fc76069e3ebc46616d6c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-1/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-1/commands.jsonl",
+      "source_sha256": "f06432576877e68a5644cd68de96e5cb7c4b50f01a351547d4704e5a4bfac465",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-1/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-1/result.json",
+      "source_sha256": "2d2af91076a2c2ca4e8144812d3745c386b0bf79684dcdfb0a76ecf17508f52c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-2/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-2/commands.jsonl",
+      "source_sha256": "92cb1c9f1e3695730e6f0a48c3f213db342ed13c30a3020ce3448ef33b58855c",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-2/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-fixtures-final-2/result.json",
+      "source_sha256": "d6fcd467fe8bd5c2eb2ad1a369cf0931e1fdb8e7f8fa69cbf0a81c6f5e2c8184",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-historical-prerequisite-failure.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-historical-prerequisite-failure.json",
+      "source_sha256": "9d1ed874bd8da0862565927b30a2310bd4729a94118d9e6aec53c36e42314579",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-history-probe.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-history-probe.json",
+      "source_sha256": "69fb5267f6073eb4415a16729035440249aaf057cdc2fde405e3e3a52d717bec",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-review.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-review.json",
+      "source_sha256": "8b501bb6a6b20e8d33ddafd2b1c5260e99fbf11e6926957924a03511bd7e5220",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/commands.jsonl",
+      "source_sha256": "8071dd3ef6686c90b90444ea475f0868d00717b370b8f284757a1de23458dcc7",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/result.json",
+      "source_sha256": "936c75d5ad356084ef4ee4e8ad5880623ea07a1a1e33a461e0869ef9df2637d1",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final/state.json",
+      "source_sha256": "d922c9b1f71134c579bc06c33faf3a642ce431240858fcd2d27707aad6f12907",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/commands.jsonl",
+      "source_sha256": "0fbfaeefe0ca04a6cd2191cd66729a0df7d389df1aeb729d6504b22b28706d1f",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/result.json",
+      "source_sha256": "ddb7938f366d6505130cf8e7148c01d1106ebc2a97350f56646e5951ccac4aaa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary-temporal-final-2/state.json",
+      "source_sha256": "17e6ba40017124a05d1da33e502c43097068d098eccb481d4a36641ce4d7f383",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary_adversarial.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary_adversarial.py",
+      "source_sha256": "a7ecdc0e9575b3ae571598991a70b150237659401501e905e80e351cdd9f75d8",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary_e2e.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary_e2e.py",
+      "source_sha256": "b85ce301fcee74bfd10d47c32a6ca9fe095d3732c3e2935b523f012f5817a1fd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary_fixture_check.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary_fixture_check.py",
+      "source_sha256": "8a11dfbee8275903e00f702db92389ecbd4fa8ebb92034bc5aec1423eeefbc5a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/primary_temporal_check.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/primary_temporal_check.py",
+      "source_sha256": "19dacbe44979be37e5e4231921ebcb1f3b43fa5e8668dbaaae7af3d87877e9a4",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/run_final_checks.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/run_final_checks.py",
+      "source_sha256": "03080c9b22e10c1268507103fe2b1a91422e90e421c5f5cefbcc03d2299e3c4f",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/01-ready-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/01-ready-state.json",
+      "source_sha256": "5f5e62e476114961fc7ed57a2603a8a8b1ef17a3b5fd4fef313318ee01145b62",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/03-record-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/03-record-state.json",
+      "source_sha256": "f0a3699e5ed74f783202fad025c7401f6b75759ea68782d960f434f1e81e1fa1",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/04-acceptance-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/04-acceptance-state.json",
+      "source_sha256": "f0a3699e5ed74f783202fad025c7401f6b75759ea68782d960f434f1e81e1fa1",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/05-resume-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/05-resume-state.json",
+      "source_sha256": "d972540d11be050bb6080d3698abdfa70a53dcd52ebe3b3ec883384459d765fd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/06-spec-changed-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/06-spec-changed-state.json",
+      "source_sha256": "d972540d11be050bb6080d3698abdfa70a53dcd52ebe3b3ec883384459d765fd",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/07-new-with-history-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/07-new-with-history-state.json",
+      "source_sha256": "5446210715184708d951f3452b7a4e3c886beeddb9dd6c85f53cf0ac298bba6a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/09-before-action-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/09-before-action-state.json",
+      "source_sha256": "5446210715184708d951f3452b7a4e3c886beeddb9dd6c85f53cf0ac298bba6a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/11-unknown-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/11-unknown-blocks-state.json",
+      "source_sha256": "51b4b204ce1f3789557ce0eb45164b7fee6d2c3b0061d4a315e792c8326222ba",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/13-duplicate-blocks-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/13-duplicate-blocks-state.json",
+      "source_sha256": "2e4008f1d65781b685f42967faa35b1bb458c10ac9d284c503e6ab8a4a0717d8",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/14-history-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/14-history-after-revoke-state.json",
+      "source_sha256": "a407bb29e7b109d7dcc6e5f300123a14dab46c55c5fe5113164481da64e6782e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/15-acceptance-after-revoke-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/15-acceptance-after-revoke-state.json",
+      "source_sha256": "a407bb29e7b109d7dcc6e5f300123a14dab46c55c5fe5113164481da64e6782e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/16-new-action-revoked-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/16-new-action-revoked-state.json",
+      "source_sha256": "a407bb29e7b109d7dcc6e5f300123a14dab46c55c5fe5113164481da64e6782e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/commands.jsonl": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/commands.jsonl",
+      "source_sha256": "38a77865b555c8a6f7ebad24da378b1c526bc2fcffb339c0db0280258f1e0516",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/final-state.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/final-state.json",
+      "source_sha256": "a407bb29e7b109d7dcc6e5f300123a14dab46c55c5fe5113164481da64e6782e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/first-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/first-execution.json",
+      "source_sha256": "e1a70020d96c75a8ef2f5bebe5c62e98ec81b74fe0eb751cfdabeaaf86783241",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/inputs.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/inputs.json",
+      "source_sha256": "27ea5cb925782fcddedc4df8af916dd9c757cc6c8632a009458ae3c3d0aa3ede",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/README.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/README.md",
+      "source_sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/app.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/app.py",
+      "source_sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/records/TASK-001/SPEC.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/records/TASK-001/SPEC.md",
+      "source_sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/result.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/result.txt",
+      "source_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/sample.txt": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/products/sample.txt",
+      "source_sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/result.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/result.json",
+      "source_sha256": "cedec407d1b22738348d724bf6390657fdcd18bb3813e2a2002a17f53f893f09",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/second-execution.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/primary-e2e/second-execution.json",
+      "source_sha256": "0ffbf6120b4df465adaa7c45c1d71f16df71fcf4646b2d61c3e2ae53912fff79",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/test_evidence_history.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/test_evidence_history.stderr",
+      "source_sha256": "0dbaab0268a4f17dcf2f4ec121ddf8887e2c37d3bf731694b904deddfa8d84db",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/test_evidence_history.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/script-final/e2e-1/test_evidence_history.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/skill-frontmatter-check-v2.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/skill-frontmatter-check-v2.json",
+      "source_sha256": "ea774c69805d2a7e960e3c822ecd8220e3dac05a561ffd41da5958b848cd3ce9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/skill-frontmatter-check.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/skill-frontmatter-check.json",
+      "source_sha256": "86adeb8c0dcfb192bc10d2821993bd26dc123305e60132b5d687866a8b5b2261",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/source-drift-precheck.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/source-drift-precheck.json",
+      "source_sha256": "471f54b0fbf20655b50c2e4689f9217bb160ba9e9950d1015767f6f45238ab57",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/source-git-probes.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/source-git-probes.json",
+      "source_sha256": "38640994417745904e77ddb07abb2a3efa859c7157ed8abbe77941b1e7cc4120",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/01-init.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/01-init.json",
+      "source_sha256": "d9972460347ea355dd2fb9c221ace2fcde2344a3489d49d4d708e8918beac6a7",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/02-add.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/02-add.json",
+      "source_sha256": "a3d52949c5f0d2d4d41d5cab6f60940b1717d742f23d1157ce381d9f343726e9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/03-baseline.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/03-baseline.json",
+      "source_sha256": "b83e14d8293d82556ff0c6ad5c5a41ee4a01f87be984d5a286335b0f886b9c28",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/04-record.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/04-record.json",
+      "source_sha256": "fd56d176fa73384680e942b15ffa3e51519e67032fce868db116e6e6777b0d26",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/05-validate.json": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/05-validate.json",
+      "source_sha256": "c61e42b43f1a5a15429ec897a9f171760d43194e045f29262924ab2f2b0a8160",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/e2e.py": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-coder/e2e.py",
+      "source_sha256": "b7bc9ddafe7efdb8ac4b345bbfc98f823321eda8d1b1275ae972e2305e878833",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-review-draft.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-review-draft.md",
+      "source_sha256": "fae5f24f5286c2f368e71cd3aa6383509e77dcf4ccfc6adeea51b9723f482af4",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.stderr",
+      "source_sha256": "13dbf99adb77a5b7856990bb054bac94a968223ef11de258265dc706a80d5d67",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-1.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.stderr",
+      "source_sha256": "dada8207b53b99ac2ecbc9853d61078036eee6a10285e99d0b40e623b5922b93",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-binding-1789553553-2.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.stderr",
+      "source_sha256": "8c09e6817d6b28cad55253ede9c5abf8a4257e85c2bdeb1a4f3e70cb136bb0c9",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-1.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.stderr",
+      "source_sha256": "e6f7b3bf88d938ecd3d34a9f810f67b6aa5a770213ce30d6bbf497dc4bc98554",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553694-2.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.stderr",
+      "source_sha256": "3e4cd8e332eb20fdb301f653fcd6b595dfb0ca1cad4c8a16a271e079226992a1",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553709.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.stderr",
+      "source_sha256": "6489b54cfaeda89e86a4689a6ae3b9a67f11e83e7dc201772291cbea6a728916",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553732.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.stderr",
+      "source_sha256": "8adc9c443db2273d37ccd73b180948dc89d86507dff4c9994779babaf1bb2e42",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789553740.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.stderr",
+      "source_sha256": "88538deedecf9cd5bee17fda8381a514b6d95e56ddbf6c1904532f4c2055f0de",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554012.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.exit",
+      "source_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.stderr",
+      "source_sha256": "c06a9b84b495edb671f79ec7cdf503fde4ce4412e3035e1f05957ec149b85756",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554042.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.exit": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.stderr": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.stderr",
+      "source_sha256": "5dd58d596ce12118e65ca4e26cd8bc21d401e28f8c94a98022583c507fd6f5e5",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.stdout": {
+      "source": "records/VERIFLOW-SPEC-20260916/evidence/spec-tests/spec-cli-1789554074.stdout",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/follow-up-experiment.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/follow-up-experiment.md",
+      "source_sha256": "a3b8361ca25a833f5695a46008a0d2b4ccc6379b047572daabffd4b18891e31e",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/script-fix-contract.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/script-fix-contract.md",
+      "source_sha256": "ab5cb9c0e0dda78bb7fe191b264738e4e9af278486110197ab7f1aafd0b7d934",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/spec-binding-contract.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/spec-binding-contract.md",
+      "source_sha256": "62c81004517511209eadf219352ed9627d654c24cd78ac32beee2a0431d17ea1",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/task-summary.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/task-summary.md",
+      "source_sha256": "dbf32dce0286c76f21e3950398ae108751f5ebf98e1feda1e9bf460551662ef0",
+      "target_sha256": "absent"
+    },
+    "records/VERIFLOW-SPEC-20260916/work-log.md": {
+      "source": "records/VERIFLOW-SPEC-20260916/work-log.md",
+      "source_sha256": "a837adf9016ed2aba9d4cd9ab9afe5cc53136517ef510b91c28e437eaa5bd84e",
+      "target_sha256": "absent"
+    }
+  }
+}

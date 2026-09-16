@@ -1,8 +1,31 @@
 # 简短示例
 
+## L2：1.3 Spec 绑定记录片段
+
+复杂任务的 1.3 状态把规范索引与运行回执分开：
+
+```json
+{
+  "schema_version": "1.3",
+  "spec": {
+    "version": "SPEC-1",
+    "authority": "state.spec",
+    "source_ids": ["SRC-001"],
+    "goal_ref": "discovery.expected_outcome",
+    "scope_ref": "discovery.scope",
+    "constraints": [], "exceptions": [], "open_items": [],
+    "conditions": [{"id": "SC-01", "metric_ids": ["MET-01"], "deliverables": ["docs/result.md"]}],
+    "contracts": []
+  },
+  "binding": {"receipt_paths": ["records/TASK-001/evidence/run.json"]}
+}
+```
+
+回执内容变化不改变 Spec digest；新增或修改条件、指标规范字段、契约文件字节或交付分类会使当前绑定失效。缺少 1.3 绑定的历史记录保留原样并标为旧语义审计，不能只修改外层版本字段来伪造重跑。
+
 ## L0：已定位的小缺陷，直接修并简短汇报
 
-用户说：“`paginate()` 翻到最后一页时总少一条，`tests/test_paging.py::test_last_page` 挂了，帮我修一下。”
+回到 L0 示例时，用户说：“`paginate()` 翻到最后一页时总少一条，`tests/test_paging.py::test_last_page` 挂了，帮我修一下。”
 
 问题、位置和验收（那条失败的用例）都已明确，也没有要求提交，属于轻量任务。先看 `git status`，核实成因（例如用 `total=21, size=10` 手算最后一页的切片范围），修改实现而不是断言，选能区分正确修复的检查点（整除与不整除两种总数），然后按结果、依据和限制的阅读顺序汇报：
 

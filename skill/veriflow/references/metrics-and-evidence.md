@@ -47,6 +47,7 @@
 - 支持的指标；
 - 结果 `passed` / `failed` / `undetermined`；
 - 当前性 `current` / `stale`；
+- 标为 `stale` 时必须保留非空 `stale_reason`。历史证据只审计原件哈希、记录结构和结果自洽，不要求当年输入仍存在；stale 证据永远不能满足指标的 current 条件。
 - 证据文件原始字节的 `sha256`，用于发现证据在记录后被改写；
 - 非执行类证据还要写与当前仓库状态匹配的 `revision`。
 
@@ -71,8 +72,9 @@ python3 scripts/record_execution.py \
 | `revision_before` / `revision_after` | 命令开始前、结束后的 revision token |
 | `revision` | 前后相同时为该 token；命令运行期间内容变化时为 `null` |
 | `revision_changed_paths` | 运行期间内容发生变化的路径（最多 50 个），用于找出生成物 |
-| `inputs` | 仓库内文件用仓库相对路径记录哈希，仓库移动后仍可核对 |
 | `result` | 按优先级取 `timeout` > `revision_changed` > `missing_output` > `passed` / `failed` |
+
+`inputs` 使用 mapping，key 就是输入路径，value 保存 `kind`、`sha256`、非空 `identity` 与 `reproduction`。仓库内 key 用规范相对路径。带有 `--repo` 与 `--state` 的 Veriflow recorder/validator 对外部输入要求 `baseline.external_inputs` 中精确列出的规范化绝对文件且 `kind: fixture`；独立运行、未绑定 repo/state 的 recorder 只是通用原始执行记录，不适用这条任务绑定规则。source/test 必须在仓库内；符号链接 alias 不满足身份要求。
 
 退出码：超时 `124`；`revision_changed` 和 `missing_output` 返回 `1`；找不到命令 `127`、无权执行 `126`；其余沿用命令本身的退出码。只给 `--repo` 或只给 `--state`、或无法计算 revision 时，命令不会运行，退出码 `2`。
 
@@ -85,23 +87,27 @@ python3 scripts/record_execution.py \
 - 外层证据标 `passed` 时，记录本身必须是 `passed`；标 `failed` 或 `undetermined` 时，超时、空输出等诚实记录不报错；
 - 证据标 `current` 时，记录内的 `revision` 必须等于当前 token，否则 `EXECUTION_REVISION_STALE`。只刷新外层字段而不重跑检查，过不了这一项；
 - 外层 `revision` 可以省略，写了就必须与记录内一致，否则 `EXECUTION_REVISION_MISMATCH`；
-- 输入文件哈希变化报 `EXECUTION_INPUT_STALE`。
+- 1.3 执行 raw 记录包含 `spec_version` 与 `spec_sha256`；非执行证据也必须带这两个字段。`current` 证据须与当前版本/摘要匹配；`stale` 证据保留原字段和非空 `stale_reason`，不补造缺失的绑定。当前证据会核对原记录声明、允许项和真实哈希；未声明、路径逃逸、符号链接逃逸或哈希变化报错。带 repo/state 的 `record_execution` 在命令前拒绝未授权外部输入，并在结束时重读 revision 和所有输入；运行期间输入变化（包括 ignored fixture）会产生 `revision_changed`，不能记为 passed。
 
 `verification: execution` 的强制门槛标为 `passed` 时，必须至少有一项当前、通过的执行记录，否则 `METRIC_EVIDENCE_UNVERIFIED`。
 
+`spec_satisfaction` 只表示校验器完成了机械字段、引用和路径门槛；它不能替代主线程对 Spec 条件、证据支持关系、交付物内容和用户语义的逐项审查。
+
 ## Revision token
 
-`validate_task.py --print-revision` 从任务基线到当前工作树计算只读内容指纹（`revision-v2`）。它取基线以来发生变化的路径（含未跟踪但未被忽略的文件，重命名按“删除原路径 + 新增新路径”处理），逐个记录路径、文件类型/可执行位，以及按 Git 清理过滤器和换行规则得到的内容哈希。因此：
+对 1.1/1.2，`validate_task.py --print-revision` 从任务基线到当前工作树计算只读基础内容指纹（`revision-v2`）。1.3 在该产品指纹之外增加 Spec digest 和显式路径绑定；不能用旧的 ignored/记录目录排除规则绕过显式交付物或契约。因此：
 
 - 暂存或提交改动不会改变 token，本地提交后证据仍保持当前；
 - `diff.noprefix`、`diff.algorithm` 等本地 diff 配置和 CRLF/LF 检出差异不影响 token；
 - 非记录内容的任何实际变化都会改变 token；
-- 被 `.gitignore` 忽略的文件不计入 token。行为依赖被忽略的本地配置时，把它列为执行记录的 `--fixture` 输入，或在报告中写明。
+- 1.1/1.2 基础 token 的 `.gitignore` 规则仍按旧语义适用；1.3 的显式交付物即使位于 ignored/metadata 目录或尚未生成，也必须进入绑定（尚未生成时记录 `missing`，验收单独拒绝缺失）。
 
-指纹固定排除两类路径：
+1.1/1.2 基础指纹固定排除两类记录路径：
 
 - 状态文件所在目录中的 `index.md`、`task-summary.md`、`work-log.md`、`handoffs/`、`evidence/` 和状态文件本身（状态文件直接位于仓库根目录时只排除它自己）；
 - `baseline.foreign_paths` 列出的他人无关改动，所以别人继续修改这些文件不会让本任务证据过期。
+
+1.3 另行处理：契约文件按独立字节哈希进入 Spec digest；`state.binding.receipt_paths` 只接受精确 receipt 文件并作为回执排除项。receipt 无需产品 review，但若进入提交，仍须作为提交路径单独审查并满足 push gate；不能靠 `.gitignore` 避免交付物、契约或 receipt 的绑定检查。
 
 ```bash
 python3 scripts/validate_task.py records/TASK-001/task-state.json --repo . --print-revision

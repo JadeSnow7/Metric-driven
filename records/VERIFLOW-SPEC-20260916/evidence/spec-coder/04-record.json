@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/record_execution.py",
+    "--output",
+    "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-1.3-e2e-qh6kz18_/execution.json",
+    "--cwd",
+    "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-1.3-e2e-qh6kz18_",
+    "--",
+    "/Users/huaodong/.local/bin/python3.11",
+    "probe.py"
+  ],
+  "cwd": "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-1.3-e2e-qh6kz18_",
+  "started_at": "2026-09-16T10:07:19.000981Z",
+  "ended_at": "2026-09-16T10:07:19.032672Z",
+  "stdout": "",
+  "stderr": "",
+  "exit_code": 0
+}

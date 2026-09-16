@@ -1,0 +1,21 @@
+E
+======================================================================
+ERROR: test_spec_binding (unittest.loader._FailedTest.test_spec_binding)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_spec_binding
+Traceback (most recent call last):
+  File "/Users/huaodong/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/unittest/loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 3, in <module>
+    from test_scenarios import ScenarioRepository
+ModuleNotFoundError: No module named 'test_scenarios'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+real 0.02
+user 0.01
+sys 0.00

@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "gate_count": 7,
+  "boundary": "only local Git commit actually performed; push/merge/remote CI receipts are explicitly simulated fixture state, no production or network action",
+  "tool_sha256": "9847dfed8e5344df3c8ddabb7156a403aa59c09bff405985160310a8fe13c35f"
+}

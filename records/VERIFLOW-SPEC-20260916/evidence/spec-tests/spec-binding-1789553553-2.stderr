@@ -1,0 +1,36 @@
+E.E
+======================================================================
+ERROR: test_contract_bytes_and_explicit_deliverables_are_bound (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_contract_bytes_and_explicit_deliverables_are_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 47, in test_contract_bytes_and_explicit_deliverables_are_bound
+    first = self.contract.spec_digest(self.state, repo)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/spec_contract.py", line 138, in spec_digest
+    return hashlib.sha256(_canonical(spec_projection(state, repo))).hexdigest()
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/spec_contract.py", line 107, in spec_projection
+    raise ValueError("schema 1.3 requires state.binding")
+ValueError: schema 1.3 requires state.binding
+
+======================================================================
+ERROR: test_normative_changes_bind_and_receipts_do_not (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_normative_changes_bind_and_receipts_do_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 34, in test_normative_changes_bind_and_receipts_do_not
+    first = self.contract.spec_digest(self.state, repo)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/spec_contract.py", line 138, in spec_digest
+    return hashlib.sha256(_canonical(spec_projection(state, repo))).hexdigest()
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/spec_contract.py", line 107, in spec_projection
+    raise ValueError("schema 1.3 requires state.binding")
+ValueError: schema 1.3 requires state.binding
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (errors=2)
+real 0.02
+user 0.02
+sys 0.00

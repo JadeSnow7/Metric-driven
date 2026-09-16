@@ -1,0 +1,27 @@
+E
+======================================================================
+ERROR: test_evidence_history (unittest.loader._FailedTest.test_evidence_history)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_evidence_history
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/validate_task.py", line 24, in <module>
+    from spec_contract import contract_paths, deliverable_paths, receipt_paths, spec_digest, validate_spec
+ModuleNotFoundError: No module named 'spec_contract'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/huaodong/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/unittest/loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_evidence_history.py", line 17, in <module>
+    spec.loader.exec_module(validate_task)
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/scripts/validate_task.py", line 26, in <module>
+    from .spec_contract import contract_paths, deliverable_paths, receipt_paths, spec_digest, validate_spec
+ImportError: attempted relative import with no known parent package
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

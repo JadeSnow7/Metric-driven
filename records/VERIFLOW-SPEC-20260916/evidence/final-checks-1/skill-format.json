@@ -1,0 +1,14 @@
+{
+  "label": "skill-format",
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "/Users/huaodong/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+    "/private/tmp/veriflow-spec-20260916/skill/veriflow"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789554231.8234692,
+  "ended_at_epoch": 1789554231.8501408,
+  "exit_code": 0,
+  "stdout": "Skill is valid!\n",
+  "stderr": ""
+}

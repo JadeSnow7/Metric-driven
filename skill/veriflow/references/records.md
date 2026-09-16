@@ -125,7 +125,17 @@
 
 ## `task-state.json`
 
-当前记录格式为 `schema_version: "1.2"`。建议把一项复杂任务的结构化记录放在专用子目录；这也让证据指纹能安全地区分状态元数据与产品改动：
+当前新记录格式为 `schema_version: "1.3"`。建议把一项复杂任务的结构化记录放在专用子目录；这也让证据指纹能安全地区分状态元数据与产品改动：
+
+### 1.3 Spec 绑定
+
+`state.spec` 是当前 Spec 的结构化索引：`version` 必须非空，`authority` 为 `state.spec` 或仓库内契约文件（后者必须同时列在 `spec.contracts`）。`source_ids` 必须指向 `sources` 中 `adoption: accepted` 的来源；`goal_ref` 与 `scope_ref` 分别复用 `discovery.expected_outcome` 和 `discovery.scope` 等现有字段。`constraints`、`exceptions`、`open_items` 必须是列表，未决项存在时实现门槛不能就绪。
+
+每个 `conditions` 条目都必须独立列出非空 `metric_ids`、至少一个强制或非退化指标，以及具体仓库相对交付文件。`contracts` 是必须存在的精确文件，按字节计算哈希；交付物可以在实现前缺失。运行回执只放在顶层 `state.binding.receipt_paths`，必须是精确文件路径，并且不得与交付物或契约冲突；`baseline.foreign_paths` 也不得覆盖交付物或契约。
+
+1.3 的 revision 是产品指纹与 Spec digest 的组合。digest 包含完整 Spec、全部 `main_tasks` 和 `metrics` 的规范字段、契约字节哈希、discovery 引用值、回执分类及 foreign/external 输入声明；只在对象自身的精确位置排除 `status`、`evidence_ids` 和 `implementation_task_ids`。旧 1.1/1.2 记录继续按旧语义审计，缺少绑定时不能通过修改外层字段冒充 1.3 重跑。
+
+1.3 仍保留 1.2 的 `deferred` 指标语义：它表示用户明确决定稍后验证，不能作为当前 Spec 已满足或整体验收通过的证据。历史记录迁移只保留原始 raw 和 `stale_reason`，缺少绑定、快照或当前支持关系时记为未知/过期，不补造历史 Spec 或授权快照。
 
 ```text
 records/<TASK-ID>/
@@ -147,7 +157,7 @@ records/<TASK-ID>/
 
 ### 版本迁移
 
-当前格式为 `1.2`。校验器仍接受 `1.1`，给出警告 `SCHEMA_LEGACY`，并按旧语义检查交付：`delivery` 需要六个键，某类动作只要完成过一次就阻止重复，执行记录不要求自带 revision。`ACTION_OUTCOME_UNKNOWN`、推送前的提交路径审查和 git 超时对两个版本都生效。
+历史格式 `1.1` 继续按原语义审计并给出 `SCHEMA_LEGACY`；`1.2` 继续按旧语义审计并给出 `SPEC_UNBOUND_LEGACY`；新记录使用 `1.3`。旧记录不能通过补写外层字段伪造历史 Spec、绑定或授权快照。
 
 从 1.1 迁移到 1.2：
 
@@ -156,6 +166,27 @@ records/<TASK-ID>/
 3. `delivery` 删去 `local_commit`、`push`、`merge`、`deploy`，这些进度已在 `actions` 中；远程 CI 已通过的补 `remote_ci_revision`；
 4. 命令类证据用 `record_execution.py --repo --state` 重跑，或保持文本证据并把相关指标的 `verification` 设为 `manual`；
 5. 有他人无关改动时补 `baseline.foreign_paths`。
+
+从 1.2 迁移到 1.3：
+
+1. 新建 `state.spec`，写入非空 `version`、authority、accepted `source_ids`、现有 `discovery` 引用、条件、契约与未决项；不要复制一套新的目标/方法权威。
+2. 将运行回执路径放入顶层 `state.binding.receipt_paths`，按精确文件记录；旧回执缺少绑定时保留 raw 并写 `stale_reason`，不能刷新外层字段冒充重跑。
+3. 重新计算产品与 Spec digest；正文、契约字节、规范指标或交付分类改变后必须重跑受影响检查。
+4. 对外置 fixture 补精确允许路径、sha256、identity 与 reproduction；不符合声明的历史输入只做完整性审计。
+
+### 授权执行快照
+
+执行有副作用的动作前运行：
+
+```bash
+git rev-parse HEAD
+python3 skill/veriflow/scripts/authorization_snapshot.py \
+  --state records/TASK-001/task-state.json \
+  --action push --target origin/feature-x \
+  --revision <COMMIT_SHA_FROM_PREVIOUS_COMMAND>
+```
+
+CLI stdout 是 JSON 对象；将解析后的对象原样嵌入对应 `actions[].authorization_snapshot`，与 `authorization_action`、`target`、`revision` 同一动作记录。`push`、`merge`、`deploy` 使用实际提交 SHA；`local-commit` 使用 `validate_task.py --print-revision` 输出的 revision token。对象包含执行前的 `source`、`source_id`、授权范围、`captured_at`、`source_content` 和 `content_sha256`。当前动作使用当前有效且已采纳的来源；历史动作只在存在执行前快照时可关联，缺失快照记为 `unknown`。快照是执行时事实记录，不是用户密码学签名；主线程仍需核实来源真实性。用户后来撤销来源不会改写历史快照，但会阻止未来动作。
 
 从 1.0 迁移：先按 1.1 的要求为每项证据补上 `sha256`（`--print-sha256`），证据文件建议移入 `evidence/`。1.0 的 revision token 与新算法不兼容：把受影响证据先标为 `stale`，重跑检查后再写入新 token，不要直接改写旧 token。
 
