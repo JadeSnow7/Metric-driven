@@ -21,7 +21,8 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"
+LEGACY_SCHEMA_VERSIONS = {"1.1"}
 # Keep the established domain so renaming the skill does not invalidate
 # revision tokens already stored in existing task records.
 REVISION_DOMAIN = b"evidence-driven-development/revision-v2\0"
@@ -99,8 +100,12 @@ DELIVERY_STATES = {
     "rolled_back",
 }
 ACTION_STATES = {"planned", "in_progress", "completed", "failed", "unknown"}
-EXECUTED_ACTION_STATES = {"in_progress", "completed", "failed"}
+# "unknown" may already have happened, so it is treated like an executed action.
+EXECUTED_ACTION_STATES = {"in_progress", "completed", "failed", "unknown"}
+UNRESOLVED_ACTION_STATES = {"in_progress", "unknown"}
 METRIC_KINDS = {"mandatory_gate", "improvement_target", "non_regression"}
+BLOCKING_METRIC_KINDS = {"mandatory_gate", "non_regression"}
+METRIC_VERIFICATIONS = {"execution", "manual"}
 SOURCE_KINDS = {
     "user_requirement",
     "user_feedback",
@@ -112,7 +117,10 @@ SOURCE_KINDS = {
 USER_INSTRUCTION_KINDS = {"user_requirement", "user_feedback"}
 ADOPTION_STATES = {"proposed", "accepted", "rejected", "superseded"}
 AUTH_ACTIONS = ("commit", "push", "merge", "deploy")
-DELIVERY_KEYS = (
+AUTH_ACTION_NAME = re.compile(r"[a-z][a-z0-9_-]*")
+AUTH_ERROR_CODES = {"commit": "AUTH_COMMIT", "push": "AUTH_PUSH", "merge": "AUTH_MERGE", "deploy": "AUTH_DEPLOY"}
+LEGACY_DELIVERY_KEY = {"commit": "local_commit", "push": "push", "merge": "merge", "deploy": "deploy"}
+LEGACY_DELIVERY_KEYS = (
     "local_validation",
     "local_commit",
     "push",
@@ -120,7 +128,10 @@ DELIVERY_KEYS = (
     "merge",
     "deploy",
 )
-GATES = ("record", "implementation", "acceptance", "local-commit", "push", "merge", "deploy")
+# Schema 1.2 keeps side-effect progress only in actions[] to avoid a second copy.
+DELIVERY_KEYS = ("local_validation", "remote_ci")
+GATES = ("record", "implementation", "acceptance", "local-commit", "push", "merge", "deploy", "action")
+DEFAULT_GIT_TIMEOUT = 60.0
 
 # Record files that live beside a task-state.json in records/<TASK-ID>/. They are
 # excluded from behavioral fingerprints so saving status or evidence does not
@@ -137,18 +148,35 @@ class ValidationError(RuntimeError):
     """Operational failure while reading the repository."""
 
 
+def git_timeout() -> float:
+    """Seconds allowed per git call; VERIFLOW_GIT_TIMEOUT overrides the default."""
+
+    try:
+        value = float(os.environ.get("VERIFLOW_GIT_TIMEOUT", DEFAULT_GIT_TIMEOUT))
+    except ValueError:
+        return DEFAULT_GIT_TIMEOUT
+    return value if value > 0 else DEFAULT_GIT_TIMEOUT
+
+
 def run_git(repo: Path, args: list[str], input_bytes: bytes | None = None) -> bytes:
     env = os.environ.copy()
     env["GIT_OPTIONAL_LOCKS"] = "0"
-    result = subprocess.run(
-        ["git", *args],
-        cwd=repo,
-        env=env,
-        input=input_bytes,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        check=False,
-    )
+    timeout = git_timeout()
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            cwd=repo,
+            env=env,
+            input=input_bytes,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        # A hung repository (for example files not yet downloaded from a sync
+        # service) is an operational failure, never evidence of a clean state.
+        raise ValidationError(f"git {' '.join(args)} timed out after {timeout:g} s") from exc
     if result.returncode != 0:
         detail = result.stderr.decode("utf-8", errors="replace").strip()
         raise ValidationError(f"git {' '.join(args)} failed: {detail}")
@@ -264,17 +292,32 @@ def fingerprint_entries(repo: Path, paths: list[str]) -> dict[str, bytes]:
     return entries
 
 
-def current_revision(repo: Path, manifest: Path, base_ref: Any) -> str:
+def revision_paths(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = ()) -> tuple[str, list[str]]:
+    """Resolved base and the paths that contribute to the revision fingerprint."""
+
+    base = resolve_base(repo, base_ref)
+    excluded = revision_metadata_paths(repo, manifest)
+    foreign = list(foreign)
+    paths = [
+        path
+        for path in worktree_changes(repo, base)
+        if not is_revision_metadata(path, excluded) and not is_foreign(path, foreign)
+    ]
+    return base, paths
+
+
+def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = ()) -> str:
     """Fingerprint base-to-worktree content, excluding task-record metadata.
+
+    Paths listed in ``foreign`` belong to someone else's unrelated uncommitted
+    work; they are excluded so edits there do not invalidate this task's evidence.
 
     The token depends only on which paths differ from base and what they
     contain. It does not change when files are staged or committed, and it does
     not depend on local diff settings such as prefixes, context, or algorithms.
     """
 
-    base = resolve_base(repo, base_ref)
-    excluded = revision_metadata_paths(repo, manifest)
-    paths = [path for path in worktree_changes(repo, base) if not is_revision_metadata(path, excluded)]
+    base, paths = revision_paths(repo, manifest, base_ref, foreign)
     if not paths:
         return f"commit:{base}"
 
@@ -287,6 +330,46 @@ def current_revision(repo: Path, manifest: Path, base_ref: Any) -> str:
         digest.update(b"\0")
         digest.update(entries[rel])
     return f"patch:{base}:{digest.hexdigest()}"
+
+
+def foreign_paths(state: dict[str, Any]) -> list[str]:
+    baseline = state.get("baseline")
+    values = baseline.get("foreign_paths") if isinstance(baseline, dict) else None
+    return [normalized for value in as_list(values) if (normalized := normalized_declared_path(value)) is not None]
+
+
+def is_foreign(path: str, foreign: list[str]) -> bool:
+    return any(path_is_covered(path, item) for item in foreign)
+
+
+def paths_overlap(first: str, second: str) -> bool:
+    return path_is_covered(first, second) or path_is_covered(second, first)
+
+
+def revision_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> str:
+    """Current revision token for a task record, honoring baseline.foreign_paths."""
+
+    baseline = state.get("baseline") if isinstance(state, dict) else None
+    base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
+    return current_revision(repo, manifest, base_ref, foreign_paths(state))
+
+
+def revision_entries_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> dict[str, bytes]:
+    """Per-path fingerprint entries behind revision_for_state, used to explain a changed token."""
+
+    baseline = state.get("baseline") if isinstance(state, dict) else None
+    base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
+    _, paths = revision_paths(repo, manifest, base_ref, foreign_paths(state))
+    return fingerprint_entries(repo, paths)
+
+
+def head_commit(repo: Path) -> str:
+    return run_git(repo, ["rev-parse", "--verify", "HEAD^{commit}"]).decode().strip()
+
+
+def committed_paths(repo: Path, base: str) -> list[str]:
+    raw = run_git(repo, ["diff", "--name-only", "-z", "--no-renames", "--no-ext-diff", base, "HEAD", "--"])
+    return sorted(set(split_null_terminated(raw)))
 
 
 def uncommitted_paths(repo: Path) -> list[str]:
@@ -450,11 +533,112 @@ def authorization_status(state: dict[str, Any], action: str) -> Any:
     return as_dict(as_dict(state.get("authorization")).get(action)).get("status")
 
 
-def completed_action(indexes: dict[str, dict[str, Any]], action: str) -> bool:
-    return any(
-        item.get("authorization_action") == action and item.get("status") == "completed"
-        for item in indexes["actions"].values()
-    )
+def is_legacy(state: dict[str, Any]) -> bool:
+    return state.get("schema_version") in LEGACY_SCHEMA_VERSIONS
+
+
+def authorization_scope(state: dict[str, Any], action: str) -> list[str]:
+    scope = as_dict(as_dict(state.get("authorization")).get(action)).get("scope")
+    return [value for value in scope if isinstance(value, str)] if isinstance(scope, list) else []
+
+
+def check_execution_record(
+    evidence_id: str,
+    item: dict[str, Any],
+    execution: dict[str, Any],
+    legacy: bool,
+    revision: str | None,
+    indexes: dict[str, dict[str, Any]],
+    errors: list[dict[str, str]],
+) -> None:
+    """Compare an execution record with itself, its outer evidence entry, and the repository."""
+
+    required = ("argv", "cwd", "started_at", "ended_at", "exit_code", "timed_out", "stdout", "stderr")
+    for field in required:
+        if field not in execution:
+            add_issue(errors, "EXECUTION_RECORD_FIELD", f"{evidence_id} missing execution field {field}")
+    # JSON is untyped at the boundary.  Do not let truthy strings such as
+    # ``"false"`` turn a forged record into a successful execution.
+    expected_types = {
+        "argv": list,
+        "cwd": str,
+        "started_at": str,
+        "ended_at": str,
+        "exit_code": (int, type(None)),
+        "timed_out": bool,
+        "stdout": str,
+        "stderr": str,
+        "stdout_present": bool,
+        "stderr_present": bool,
+        "stdout_required": bool,
+        "result": str,
+    }
+    for field, expected in expected_types.items():
+        value = execution.get(field)
+        valid = field not in execution or isinstance(value, expected)
+        # bool is an int subclass, but it is never a valid process exit code.
+        if field == "exit_code" and isinstance(value, bool):
+            valid = False
+        if field == "argv" and isinstance(value, list):
+            # Empty arguments are valid (for example ``python -c ''``), but
+            # an executable-less argv cannot describe a launched command.
+            valid = bool(value) and all(isinstance(arg, str) for arg in value) and bool(value[0])
+        if not valid:
+            add_issue(errors, "EXECUTION_RECORD_TYPE", f"{evidence_id} field {field} has invalid type")
+    inner = execution.get("result")
+    timed_out = execution.get("timed_out") is True
+    before, after = execution.get("revision_before"), execution.get("revision_after")
+    revision_changed = before is not None and after is not None and before != after
+    output_missing = execution.get("stdout_required") is True and execution.get("stdout_present") is not True
+    clean_success = execution.get("exit_code") == 0 and not timed_out and not revision_changed and not output_missing
+    if timed_out and inner != "timeout":
+        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} timeout does not have result=timeout")
+    if inner == "passed" and not clean_success:
+        add_issue(
+            errors,
+            "EXECUTION_RESULT_MISMATCH",
+            f"{evidence_id} is marked passed but the command failed, timed out, lacked output, or ran while content changed",
+        )
+    if clean_success and inner != "passed":
+        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} succeeded cleanly but result is {inner!r}")
+    if item.get("result") == "passed":
+        if output_missing:
+            add_issue(errors, "EXECUTION_OUTPUT_MISSING", f"{evidence_id} requires stdout but captured none")
+        if inner != "passed":
+            add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} outer passed result disagrees with actual execution")
+    if legacy:
+        return
+    inner_revision = execution.get("revision")
+    if isinstance(inner_revision, str) and inner_revision:
+        indexes["execution_revisions"][evidence_id] = inner_revision
+    outer_revision = item.get("revision")
+    if outer_revision is not None and isinstance(inner_revision, str) and outer_revision != inner_revision:
+        add_issue(
+            errors,
+            "EXECUTION_REVISION_MISMATCH",
+            f"{evidence_id}.revision differs from the revision stored inside its execution record",
+        )
+    if item.get("status") == "current" and revision is not None and inner_revision != revision:
+        detail = (
+            "was not recorded; run record_execution.py with --repo and --state"
+            if not inner_revision
+            else "does not match the current repository state; rerun the check instead of refreshing tokens"
+        )
+        add_issue(errors, "EXECUTION_REVISION_STALE", f"{evidence_id} execution revision {detail}")
+
+
+def evidence_is_current(
+    evidence_id: str,
+    item: dict[str, Any],
+    indexes: dict[str, dict[str, Any]],
+    revision: str | None,
+    legacy: bool,
+) -> bool:
+    if item.get("status") != "current":
+        return False
+    if not legacy and item.get("kind") == "execution":
+        return indexes.get("execution_revisions", {}).get(evidence_id) == revision
+    return item.get("revision") == revision
 
 
 def validate_record(
@@ -464,12 +648,20 @@ def validate_record(
     warnings: list[dict[str, str]] = []
 
     require_fields(state, ROOT_FIELDS, "root", errors)
-    if state.get("schema_version") != SCHEMA_VERSION:
+    legacy = is_legacy(state)
+    if legacy:
+        add_issue(
+            warnings,
+            "SCHEMA_LEGACY",
+            f"schema_version {state.get('schema_version')!r} is checked with legacy delivery semantics; "
+            f"migrate to {SCHEMA_VERSION!r} for per-revision side-effect checks and self-bound execution evidence",
+        )
+    elif state.get("schema_version") != SCHEMA_VERSION:
         add_issue(
             errors,
             "SCHEMA_VERSION",
-            f"schema_version must be {SCHEMA_VERSION!r}; when migrating from 1.0, add evidence[].sha256 "
-            "and recompute every revision token with --print-revision before re-assessing evidence",
+            f"schema_version must be {SCHEMA_VERSION!r} (1.1 is still accepted); when migrating from 1.0, add "
+            "evidence[].sha256 and recompute every revision token with --print-revision before re-assessing evidence",
         )
 
     indexes = {key: index_items(state, key, errors) for key in ID_PREFIXES}
@@ -568,8 +760,17 @@ def validate_record(
             add_issue(errors, "CROSSREF_MAIN_TASK", f"{metric_id} is absent from its main task metric_ids")
         if not is_one_of(metric.get("kind"), METRIC_KINDS):
             add_issue(errors, "METRIC_KIND", f"{metric_id} has invalid kind")
-        if not is_one_of(metric.get("status"), VERIFY_STATES):
+        metric_states = VERIFY_STATES if legacy else VERIFY_STATES | {"deferred"}
+        if not is_one_of(metric.get("status"), metric_states):
             add_issue(errors, "VERIFY_STATUS", f"{metric_id} has invalid status")
+        if metric.get("status") == "deferred" and not is_one_of(metric.get("decision_id"), decisions):
+            add_issue(
+                errors,
+                "DEFERRED_DECISION_MISSING",
+                f"{metric_id} is deferred without a decision_id referencing a recorded DEC-* user decision",
+            )
+        if "verification" in metric and not is_one_of(metric.get("verification"), METRIC_VERIFICATIONS):
+            add_issue(errors, "METRIC_VERIFICATION", f"{metric_id}.verification must be 'execution' or 'manual'")
         require_refs(f"{metric_id}.evidence_ids", metric.get("evidence_ids", []), evidence, errors, "CROSSREF_EVIDENCE")
         for field in ("name", "baseline", "target", "method", "environment_data"):
             if not nonempty(metric.get(field)):
@@ -633,14 +834,17 @@ def validate_record(
     revision: str | None = None
     if evidence or changes:
         try:
-            revision = current_revision(repo, manifest, baseline.get("git_ref"))
+            revision = revision_for_state(repo, manifest, state)
         except ValidationError as exc:
             add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
 
+    indexes["execution_revisions"] = {}
     evidence_directory = record_directory(repo, manifest)
-    hash_bucket = errors if gate in {"acceptance", "local-commit", "push", "merge", "deploy"} else warnings
+    hash_bucket = errors if gate in {"acceptance", "local-commit", "push", "merge", "deploy", "action"} else warnings
     for evidence_id, item in evidence.items():
-        require_fields(item, ("path", "kind", "supports", "revision", "status", "result", "observed_at"), evidence_id, errors)
+        self_bound = not legacy and item.get("kind") == "execution"
+        fields = ("path", "kind", "supports", "status", "result", "observed_at")
+        require_fields(item, fields if self_bound else (*fields, "revision"), evidence_id, errors)
         require_refs(f"{evidence_id}.supports", item.get("supports", []), metrics, errors, "CROSSREF_METRIC")
         if not item.get("supports"):
             add_issue(errors, "EVIDENCE_SUPPORT_MISSING", f"{evidence_id} must support at least one metric")
@@ -676,24 +880,15 @@ def validate_record(
                 except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
                     add_issue(errors, "EXECUTION_RECORD_INVALID", f"{evidence_id} execution record is unreadable: {exc}")
                 else:
-                    required = ("argv", "cwd", "started_at", "ended_at", "exit_code", "timed_out", "stdout", "stderr")
-                    for field in required:
-                        if field not in execution:
-                            add_issue(errors, "EXECUTION_RECORD_FIELD", f"{evidence_id} missing execution field {field}")
-                    if execution.get("timed_out") and execution.get("result") != "timeout":
-                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} timeout does not have result=timeout")
-                    if execution.get("exit_code") == 0 and execution.get("result") != "passed":
-                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} exit_code 0 does not have result=passed")
-                    if isinstance(execution.get("exit_code"), int) and execution.get("exit_code") != 0 and not execution.get("timed_out") and execution.get("result") == "passed":
-                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} failed command is marked passed")
-                    if item.get("result") == "passed" and (execution.get("exit_code") != 0 or execution.get("timed_out") or execution.get("result") != "passed"):
-                        add_issue(errors, "EXECUTION_RESULT_MISMATCH", f"{evidence_id} outer passed result disagrees with actual execution")
-                    if execution.get("stdout_required") and not execution.get("stdout_present"):
-                        add_issue(errors, "EXECUTION_OUTPUT_MISSING", f"{evidence_id} requires stdout but captured none")
+                    if not isinstance(execution, dict):
+                        execution = {}
+                    check_execution_record(evidence_id, item, execution, legacy, revision, indexes, errors)
                     for input_path, input_meta in as_dict(execution.get("inputs")).items():
                         candidate = Path(input_path)
                         if not candidate.is_absolute():
-                            candidate = Path(execution.get("cwd", "")) / candidate
+                            # Record inputs are repository-relative so evidence survives a
+                            # worktree move; the stored cwd is informational only.
+                            candidate = repo / candidate
                         try:
                             checked = candidate.resolve().relative_to(repo).as_posix()
                         except (OSError, ValueError):
@@ -706,7 +901,7 @@ def validate_record(
             add_issue(errors, "EVIDENCE_STATUS", f"{evidence_id} has invalid status")
         if not is_one_of(item.get("result"), VERIFY_STATES):
             add_issue(errors, "VERIFY_STATUS", f"{evidence_id} has invalid result")
-        if revision is not None and item.get("status") == "current" and item.get("revision") != revision:
+        if revision is not None and item.get("status") == "current" and not self_bound and item.get("revision") != revision:
             add_issue(errors, "EVIDENCE_STALE", f"{evidence_id} revision does not match current repository state")
 
     for change_id, item in changes.items():
@@ -749,11 +944,41 @@ def validate_record(
         add_issue(errors, "BASELINE_STATUS", "baseline.worktree_status is invalid")
     if not nonempty(baseline.get("ownership")):
         add_issue(errors, "BASELINE_OWNERSHIP", "baseline.ownership must not be empty")
+    if "foreign_paths" in baseline:
+        declared_foreign = baseline.get("foreign_paths")
+        if not isinstance(declared_foreign, list):
+            add_issue(errors, "FOREIGN_PATH_INVALID", "baseline.foreign_paths must be a list of repository-relative paths")
+        else:
+            for value in declared_foreign:
+                if normalized_declared_path(value) is None:
+                    add_issue(errors, "FOREIGN_PATH_INVALID", f"baseline.foreign_paths has unsafe or empty path {value!r}")
+    owned: list[tuple[str, str]] = []
+    for implementation_id, item in implementation_tasks.items():
+        owned.extend((f"{implementation_id}.file_scope", value) for value in as_list(item.get("file_scope")))
+    for change_id, item in changes.items():
+        owned.extend((f"{change_id}.paths", value) for value in as_list(item.get("paths")))
+    for foreign in foreign_paths(state):
+        for label, value in owned:
+            normalized = normalized_declared_path(value)
+            if normalized is not None and paths_overlap(foreign, normalized):
+                add_issue(
+                    errors,
+                    "FOREIGN_PATH_OVERLAP",
+                    f"foreign path {foreign} overlaps {label} {normalized}; ask the owner before editing a shared path",
+                )
 
     require_fields(state.get("authorization", {}), AUTH_ACTIONS, "authorization", errors)
     authorization = as_dict(state.get("authorization"))
-    for action in AUTH_ACTIONS:
+    for action in [*AUTH_ACTIONS, *(key for key in authorization if key not in AUTH_ACTIONS)]:
+        if not isinstance(action, str) or not AUTH_ACTION_NAME.fullmatch(action):
+            add_issue(errors, "AUTH_ACTION_NAME", f"authorization key {action!r} must match [a-z][a-z0-9_-]*")
+            continue
         require_fields(authorization.get(action, {}), ("status", "source_id"), f"authorization.{action}", errors)
+        scope = as_dict(authorization.get(action)).get("scope")
+        if scope is not None and (
+            not isinstance(scope, list) or not all(isinstance(value, str) and value.strip() for value in scope)
+        ):
+            add_issue(errors, "AUTH_SCOPE_INVALID", f"authorization.{action}.scope must be a list of target names")
         entry = as_dict(authorization.get(action))
         if not is_one_of(entry.get("status"), AUTH_STATES):
             add_issue(errors, "AUTH_STATUS", f"authorization.{action}.status is invalid")
@@ -771,29 +996,48 @@ def validate_record(
                     f"authorized {action} cites {source_id} whose adoption is {source.get('adoption')!r}, not 'accepted'",
                 )
 
-    require_fields(state.get("delivery", {}), DELIVERY_KEYS, "delivery", errors)
+    delivery_keys = LEGACY_DELIVERY_KEYS if legacy else DELIVERY_KEYS
+    require_fields(state.get("delivery", {}), delivery_keys, "delivery", errors)
     delivery = as_dict(state.get("delivery"))
-    for key in DELIVERY_KEYS:
+    for key in delivery_keys:
         if not is_one_of(delivery.get(key), DELIVERY_STATES):
             add_issue(errors, "DELIVERY_STATUS", f"delivery.{key} has invalid status")
+    ci_revision = delivery.get("remote_ci_revision")
+    if ci_revision is not None and not (isinstance(ci_revision, str) and ci_revision.strip()):
+        add_issue(errors, "DELIVERY_STATUS", "delivery.remote_ci_revision must be a commit string or null")
 
     unauthorized_bucket = errors if gate_reaches(gate, "push") else warnings
     action_keys: set[str] = set()
+    action_fields = ("kind", "status", "authorization_action", "idempotency_key", "receipt")
     for action_id, item in indexes["actions"].items():
-        require_fields(item, ("kind", "status", "authorization_action", "idempotency_key", "receipt"), action_id, errors)
+        require_fields(item, action_fields if legacy else (*action_fields, "target", "revision"), action_id, errors)
         status = item.get("status")
         if not is_one_of(status, ACTION_STATES):
             add_issue(errors, "ACTION_STATUS", f"{action_id} has invalid status")
+        if not legacy:
+            if not isinstance(item.get("target"), str):
+                add_issue(errors, "ACTION_TARGET", f"{action_id}.target must be a string naming where the action applies")
+            if not (isinstance(item.get("revision"), str) and item.get("revision").strip()):
+                add_issue(errors, "ACTION_REVISION", f"{action_id}.revision must name the content or commit it applies to")
         auth_action = item.get("authorization_action")
-        if not is_one_of(auth_action, AUTH_ACTIONS):
-            add_issue(errors, "ACTION_AUTH", f"{action_id}.authorization_action is invalid")
-        elif is_one_of(status, EXECUTED_ACTION_STATES) and authorization_status(state, auth_action) != "authorized":
-            add_issue(
-                unauthorized_bucket,
-                "ACTION_UNAUTHORIZED",
-                f"{action_id} ({auth_action}) is {status} but authorization.{auth_action} is not authorized; "
-                "keep the record, verify the real external state, and confirm with the user before continuing",
-            )
+        allowed_actions = AUTH_ACTIONS if legacy else tuple(key for key in authorization if isinstance(key, str))
+        if not is_one_of(auth_action, allowed_actions):
+            add_issue(errors, "ACTION_AUTH", f"{action_id}.authorization_action must name an authorization entry")
+        elif is_one_of(status, EXECUTED_ACTION_STATES):
+            if authorization_status(state, auth_action) != "authorized":
+                add_issue(
+                    unauthorized_bucket,
+                    "ACTION_UNAUTHORIZED",
+                    f"{action_id} ({auth_action}) is {status} but authorization.{auth_action} is not authorized; "
+                    "keep the record, verify the real external state, and confirm with the user before continuing",
+                )
+            scope = authorization_scope(state, auth_action)
+            if scope and item.get("target") not in scope:
+                add_issue(
+                    unauthorized_bucket,
+                    "ACTION_OUT_OF_SCOPE",
+                    f"{action_id} ({auth_action}) targets {item.get('target')!r}, outside authorization.{auth_action}.scope",
+                )
         key = item.get("idempotency_key")
         if not isinstance(key, str) or not key.strip():
             add_issue(errors, "ACTION_KEY", f"{action_id}.idempotency_key must be a non-empty string")
@@ -801,14 +1045,74 @@ def validate_record(
             add_issue(errors, "ACTION_KEY_DUPLICATE", f"duplicate idempotency_key {key!r}")
         else:
             action_keys.add(key)
-        if status == "completed" and not nonempty(item.get("receipt")):
-            add_issue(errors, "ACTION_RECEIPT", f"completed {action_id} needs a receipt")
+        receipt_states = {"completed"} if legacy else {"completed", "failed"}
+        if is_one_of(status, receipt_states) and not nonempty(item.get("receipt")):
+            add_issue(errors, "ACTION_RECEIPT", f"{status} {action_id} needs a receipt")
 
     placeholder_bucket = warnings if gate == "record" else errors
     for label in find_placeholders(state):
         add_issue(placeholder_bucket, "PLACEHOLDER_VALUE", f"{label} still contains a template placeholder")
 
     return errors, warnings, indexes
+
+
+def check_side_effect(
+    state: dict[str, Any],
+    indexes: dict[str, dict[str, Any]],
+    action: str,
+    pending_revision: str | None,
+    target: str | None,
+    legacy: bool,
+    errors: list[dict[str, str]],
+) -> None:
+    """Block unresolved or repeated side effects, then check authorization and scope."""
+
+    same_action = [
+        (action_id, item)
+        for action_id, item in indexes["actions"].items()
+        if item.get("authorization_action") == action
+    ]
+    for action_id, item in same_action:
+        if item.get("status") in UNRESOLVED_ACTION_STATES:
+            add_issue(
+                errors,
+                "ACTION_OUTCOME_UNKNOWN",
+                f"{action_id} ({action}) is {item.get('status')}; verify the real external state and record it as "
+                "completed or failed with a receipt before running this action again",
+            )
+    completed = [item for _, item in same_action if item.get("status") == "completed"]
+    if legacy:
+        delivery_key = LEGACY_DELIVERY_KEY.get(action)
+        if (delivery_key and as_dict(state.get("delivery")).get(delivery_key) == "completed") or completed:
+            add_issue(errors, "DELIVERY_ALREADY_COMPLETED", f"{action} is already recorded as completed; verify the receipt instead of repeating")
+    else:
+        for item in completed:
+            if item.get("revision") == pending_revision and (target is None or item.get("target") == target):
+                add_issue(
+                    errors,
+                    "DELIVERY_ALREADY_COMPLETED",
+                    f"{action} already completed for revision {pending_revision} ({item.get('target')!r}); "
+                    "verify the receipt instead of repeating",
+                )
+                break
+
+    if authorization_status(state, action) != "authorized":
+        code = AUTH_ERROR_CODES.get(action, "AUTH_ACTION")
+        add_issue(errors, code, f"{action} is not authorized")
+    scope = authorization_scope(state, action)
+    if scope:
+        if target is None:
+            add_issue(errors, "AUTH_SCOPE_TARGET_REQUIRED", f"authorization.{action} is scoped; pass --target")
+        elif target not in scope:
+            add_issue(errors, "AUTH_SCOPE", f"target {target!r} is outside authorization.{action}.scope {scope}")
+
+
+def completed_revisions(indexes: dict[str, dict[str, Any]], action: str) -> set[Any]:
+    return {
+        item.get("revision")
+        for item in indexes["actions"].values()
+        if item.get("authorization_action") == action and item.get("status") == "completed"
+    }
 
 
 def add_gate_errors(
@@ -818,10 +1122,17 @@ def add_gate_errors(
     manifest: Path,
     indexes: dict[str, dict[str, Any]],
     errors: list[dict[str, str]],
+    warnings: list[dict[str, str]] | None = None,
+    action: str | None = None,
+    target: str | None = None,
+    requested_revision: str | None = None,
 ) -> str | None:
+    if warnings is None:
+        warnings = []
     if gate == "record":
         return None
 
+    legacy = is_legacy(state)
     discovery = as_dict(state.get("discovery"))
     main_tasks = indexes["main_tasks"]
     metrics = indexes["metrics"]
@@ -831,6 +1142,25 @@ def add_gate_errors(
     baseline = as_dict(state.get("baseline"))
     delivery = as_dict(state.get("delivery"))
     overall = as_dict(state.get("overall_acceptance"))
+    foreign = foreign_paths(state)
+    excluded = revision_metadata_paths(repo, manifest)
+
+    if gate == "action":
+        # Custom irreversible actions (for example a staging migration) may be
+        # needed before product acceptance, so only their own safety checks apply.
+        try:
+            pending = requested_revision or head_commit(repo)
+        except ValidationError as exc:
+            add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
+            pending = None
+        check_side_effect(state, indexes, str(action), pending, target, legacy, errors)
+        recovery = state.get("recovery_strategy", {})
+        if not isinstance(recovery, dict) or not all(nonempty(recovery.get(field)) for field in ("trigger", "steps", "owner")):
+            add_issue(errors, "RECOVERY_STRATEGY", f"{action} gate requires trigger, steps, and owner")
+        for metric_id, metric in metrics.items():
+            if metric.get("status") == "deferred" and is_one_of(metric.get("kind"), BLOCKING_METRIC_KINDS):
+                add_issue(errors, "METRIC_DEFERRED_BLOCKS", f"{metric_id} is deferred; {action} cannot proceed")
+        return pending
 
     if discovery.get("status") != "ready":
         add_issue(errors, "DISCOVERY_NOT_READY", "implementation is blocked until discovery.status is ready")
@@ -849,23 +1179,57 @@ def add_gate_errors(
             "implementation needs a clean task worktree or a confirmed dirty dependency in baseline.worktree_status",
         )
     try:
-        resolve_base(repo, baseline.get("git_ref"))
+        base = resolve_base(repo, baseline.get("git_ref"))
     except ValidationError as exc:
         add_issue(errors, "BASELINE_UNRESOLVED", str(exc))
+        base = None
 
     if gate == "implementation":
+        file_scope = [
+            normalized
+            for item in implementation_tasks.values()
+            for value in as_list(item.get("file_scope"))
+            if (normalized := normalized_declared_path(value)) is not None
+        ]
+        try:
+            dirty = uncommitted_paths(repo)
+        except ValidationError as exc:
+            add_issue(warnings, "WORKTREE_UNAVAILABLE", str(exc))
+            dirty = []
+        unlisted = [
+            path
+            for path in dirty
+            if not is_foreign(path, foreign)
+            and not is_revision_metadata(path, excluded)
+            and not any(path_is_covered(path, scope) for scope in file_scope)
+        ]
+        if unlisted:
+            add_issue(
+                warnings,
+                "BASELINE_UNLISTED_CHANGES",
+                "uncommitted paths are neither in a file_scope nor baseline.foreign_paths: " + ", ".join(unlisted[:10]),
+            )
         return None
 
     try:
-        revision = current_revision(repo, manifest, baseline.get("git_ref"))
+        revision = revision_for_state(repo, manifest, state)
     except ValidationError as exc:
         add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
         revision = None
 
+    def current(evidence_id: str) -> bool:
+        return evidence_is_current(evidence_id, evidence.get(evidence_id, {}), indexes, revision, legacy)
+
     for metric_id, metric in metrics.items():
         kind = metric.get("kind")
         status = metric.get("status")
-        if is_one_of(kind, {"mandatory_gate", "non_regression"}) and status != "passed":
+        if status == "deferred":
+            if gate in {"merge", "deploy"} and is_one_of(kind, BLOCKING_METRIC_KINDS):
+                add_issue(errors, "METRIC_DEFERRED_BLOCKS", f"{metric_id} ({kind}) is deferred; {gate} cannot proceed")
+            else:
+                add_issue(warnings, "METRIC_DEFERRED", f"{metric_id} ({kind}) is deferred by {metric.get('decision_id')}; report it as unverified")
+            continue
+        if is_one_of(kind, BLOCKING_METRIC_KINDS) and status != "passed":
             add_issue(errors, "MANDATORY_GATE", f"{metric_id} ({kind}) is {status!r}, not passed")
         if kind == "improvement_target" and status == "undetermined":
             add_issue(errors, "IMPROVEMENT_UNDETERMINED", f"{metric_id} improvement target is undetermined")
@@ -875,10 +1239,27 @@ def add_gate_errors(
             add_issue(errors, "METRIC_EVIDENCE_MISSING", f"{metric_id} is assessed without evidence")
         for evidence_id in id_list(metric.get("evidence_ids")):
             item = evidence.get(evidence_id, {})
-            if item.get("status") != "current" or item.get("revision") != revision:
+            if not current(evidence_id):
                 add_issue(errors, "METRIC_EVIDENCE_NOT_CURRENT", f"{metric_id} evidence {evidence_id} is not current")
             if status == "passed" and item.get("result") != "passed":
                 add_issue(errors, "METRIC_EVIDENCE_RESULT", f"{metric_id} is passed but {evidence_id} is not")
+        if (
+            is_one_of(kind, BLOCKING_METRIC_KINDS)
+            and status == "passed"
+            and metric.get("verification", "execution") == "execution"
+            and not any(
+                evidence.get(evidence_id, {}).get("kind") == "execution"
+                and evidence.get(evidence_id, {}).get("result") == "passed"
+                and current(evidence_id)
+                for evidence_id in id_list(metric.get("evidence_ids"))
+            )
+        ):
+            add_issue(
+                warnings if legacy else errors,
+                "METRIC_EVIDENCE_UNVERIFIED",
+                f"{metric_id} is verified by execution but has no current passed execution record; "
+                "rerun it with record_execution.py or declare verification: manual",
+            )
 
     for implementation_id, item in implementation_tasks.items():
         if item.get("status") != "verified":
@@ -886,8 +1267,7 @@ def add_gate_errors(
         if item.get("status") == "verified" and not id_list(item.get("evidence_ids")):
             add_issue(errors, "IMPLEMENTATION_EVIDENCE_MISSING", f"{implementation_id} is verified without evidence")
         for evidence_id in id_list(item.get("evidence_ids")):
-            evidence_item = evidence.get(evidence_id, {})
-            if evidence_item.get("status") != "current" or evidence_item.get("revision") != revision:
+            if not current(evidence_id):
                 add_issue(errors, "IMPLEMENTATION_EVIDENCE_NOT_CURRENT", f"{implementation_id} evidence {evidence_id} is not current")
     for main_id, main in main_tasks.items():
         if main.get("status") != "verified":
@@ -897,6 +1277,13 @@ def add_gate_errors(
             add_issue(errors, "CHANGE_NOT_REVIEWED", f"{change_id} is not reviewed")
         if revision is not None and item.get("revision") != revision:
             add_issue(errors, "CHANGE_STALE", f"{change_id} is not bound to current state")
+    declared_paths = {
+        normalized
+        for item in changes.values()
+        if item.get("status") == "reviewed"
+        for value in as_list(item.get("paths"))
+        if (normalized := normalized_declared_path(value)) is not None
+    }
     if not changes:
         add_issue(errors, "CHANGES_MISSING", "local commit gate needs at least one reviewed CHG-* record")
     else:
@@ -905,14 +1292,16 @@ def add_gate_errors(
         except ValidationError as exc:
             add_issue(errors, "CHANGED_PATHS_UNAVAILABLE", str(exc))
         else:
-            declared_paths = {
-                normalized
-                for item in changes.values()
-                if item.get("status") == "reviewed"
-                for value in as_list(item.get("paths"))
-                if (normalized := normalized_declared_path(value)) is not None
-            }
+            present_foreign = [path for path in actual_paths if is_foreign(path, foreign)]
+            if present_foreign:
+                add_issue(
+                    warnings,
+                    "FOREIGN_CHANGES_PRESENT",
+                    "checks ran while foreign uncommitted changes existed: " + ", ".join(present_foreign[:10]),
+                )
             for path in actual_paths:
+                if is_foreign(path, foreign):
+                    continue
                 if not any(path_is_covered(path, declared) for declared in declared_paths):
                     add_issue(errors, "CHANGED_PATH_UNREVIEWED", f"changed path is not covered by a reviewed CHG-*: {path}")
     if overall.get("status") != "passed":
@@ -920,8 +1309,7 @@ def add_gate_errors(
     if not id_list(overall.get("evidence_ids")):
         add_issue(errors, "OVERALL_EVIDENCE_MISSING", "overall acceptance needs evidence")
     for evidence_id in id_list(overall.get("evidence_ids")):
-        item = evidence.get(evidence_id, {})
-        if item.get("status") != "current" or item.get("revision") != revision or item.get("result") != "passed":
+        if not current(evidence_id) or evidence.get(evidence_id, {}).get("result") != "passed":
             add_issue(errors, "OVERALL_EVIDENCE_NOT_CURRENT", f"overall evidence {evidence_id} is not current and passed")
     # Acceptance is deliberately independent of commit authorization.  The
     # local-commit gate reuses these product/review checks and adds the side
@@ -929,21 +1317,36 @@ def add_gate_errors(
     if gate == "acceptance":
         return revision
 
-    if authorization_status(state, "commit") != "authorized":
-        add_issue(errors, "AUTH_COMMIT", "commit is not authorized")
-
     if gate == "local-commit":
-        if delivery.get("local_commit") == "completed" or completed_action(indexes, "commit"):
-            add_issue(errors, "DELIVERY_ALREADY_COMPLETED", "local commit is already recorded as completed; verify before repeating")
+        check_side_effect(state, indexes, "commit", revision, target, legacy, errors)
         return revision
 
-    if delivery.get("local_commit") != "completed":
-        add_issue(errors, "LOCAL_COMMIT_INCOMPLETE", "push gate requires a completed local commit")
-    if authorization_status(state, "push") != "authorized":
-        add_issue(errors, "AUTH_PUSH", "push is not authorized")
+    if authorization_status(state, "commit") != "authorized":
+        add_issue(errors, "AUTH_COMMIT", "commit is not authorized")
+    if legacy:
+        if delivery.get("local_commit") != "completed":
+            add_issue(errors, "LOCAL_COMMIT_INCOMPLETE", "push gate requires a completed local commit")
+    elif revision not in completed_revisions(indexes, "commit"):
+        add_issue(
+            errors,
+            "LOCAL_COMMIT_INCOMPLETE",
+            "push gate requires a completed commit action whose revision equals the current verified revision",
+        )
+    if base is not None:
+        try:
+            committed = [path for path in committed_paths(repo, base) if path != relative_manifest(repo, manifest)]
+        except ValidationError as exc:
+            add_issue(errors, "COMMITTED_PATHS_UNAVAILABLE", str(exc))
+        else:
+            for path in committed:
+                if is_foreign(path, foreign) or not any(path_is_covered(path, declared) for declared in declared_paths):
+                    add_issue(errors, "COMMITTED_PATH_UNREVIEWED", f"committed path is not covered by a reviewed CHG-*: {path}")
     try:
-        excluded = revision_metadata_paths(repo, manifest)
-        dirty = [path for path in uncommitted_paths(repo) if not is_revision_metadata(path, excluded)]
+        dirty = [
+            path
+            for path in uncommitted_paths(repo)
+            if not is_revision_metadata(path, excluded) and not is_foreign(path, foreign)
+        ]
     except ValidationError as exc:
         add_issue(errors, "WORKTREE_UNAVAILABLE", str(exc))
     else:
@@ -951,34 +1354,48 @@ def add_gate_errors(
             listed = ", ".join(dirty[:10]) + (" ..." if len(dirty) > 10 else "")
             add_issue(errors, "WORKTREE_DIRTY", f"push gate requires task changes to be committed; uncommitted: {listed}")
 
+    try:
+        pending = requested_revision or head_commit(repo)
+    except ValidationError as exc:
+        add_issue(errors, "REVISION_UNAVAILABLE", str(exc))
+        pending = None
+
     if gate == "push":
-        if delivery.get("push") == "completed" or completed_action(indexes, "push"):
-            add_issue(errors, "DELIVERY_ALREADY_COMPLETED", "push is already recorded as completed; verify the receipt instead of repeating")
+        check_side_effect(state, indexes, "push", pending, target, legacy, errors)
         return revision
 
-    if delivery.get("push") != "completed":
-        add_issue(errors, "PUSH_INCOMPLETE", "merge gate requires a completed push")
-    if delivery.get("remote_ci") != "passed":
-        add_issue(errors, "REMOTE_CI", "merge gate requires remote CI to have actually passed")
-    if authorization_status(state, "merge") != "authorized":
-        add_issue(errors, "AUTH_MERGE", "merge is not authorized")
+    if authorization_status(state, "push") != "authorized":
+        add_issue(errors, "AUTH_PUSH", "push is not authorized")
+    if legacy:
+        if delivery.get("push") != "completed":
+            add_issue(errors, "PUSH_INCOMPLETE", "merge gate requires a completed push")
+        if delivery.get("remote_ci") != "passed":
+            add_issue(errors, "REMOTE_CI", "merge gate requires remote CI to have actually passed")
+    else:
+        if gate == "merge" and pending not in completed_revisions(indexes, "push"):
+            add_issue(errors, "PUSH_INCOMPLETE", f"merge gate requires a completed push action for revision {pending}")
+        if delivery.get("remote_ci") != "passed":
+            add_issue(errors, "REMOTE_CI", "merge gate requires remote CI to have actually passed")
+        elif gate == "merge" and delivery.get("remote_ci_revision") != pending:
+            add_issue(errors, "REMOTE_CI_REVISION", f"remote CI result is not recorded for revision {pending}")
 
     if gate == "merge":
-        if delivery.get("merge") == "completed" or completed_action(indexes, "merge"):
-            add_issue(errors, "DELIVERY_ALREADY_COMPLETED", "merge is already recorded as completed; verify the receipt instead of repeating")
+        check_side_effect(state, indexes, "merge", pending, target, legacy, errors)
         return revision
 
-    if delivery.get("merge") != "completed":
+    if authorization_status(state, "merge") != "authorized":
+        add_issue(errors, "AUTH_MERGE", "merge is not authorized")
+    merged = delivery.get("merge") == "completed" if legacy else any(
+        isinstance(value, str) and value for value in completed_revisions(indexes, "merge")
+    )
+    if not merged:
         add_issue(errors, "MERGE_INCOMPLETE", "deploy gate requires a completed merge")
-    if authorization_status(state, "deploy") != "authorized":
-        add_issue(errors, "AUTH_DEPLOY", "deploy is not authorized")
     recovery = state.get("recovery_strategy", {})
     if not isinstance(recovery, dict) or not all(
         nonempty(recovery.get(field)) for field in ("trigger", "steps", "owner")
     ):
         add_issue(errors, "RECOVERY_STRATEGY", "deploy gate requires trigger, steps, and owner")
-    if delivery.get("deploy") == "completed" or completed_action(indexes, "deploy"):
-        add_issue(errors, "DELIVERY_ALREADY_COMPLETED", "deploy is already recorded as completed; verify the receipt instead of repeating")
+    check_side_effect(state, indexes, "deploy", pending, target, legacy, errors)
     return revision
 
 
@@ -987,6 +1404,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("manifest", type=Path, help="path to task-state.json")
     parser.add_argument("--repo", type=Path, default=Path.cwd(), help="Git repository root")
     parser.add_argument("--gate", choices=GATES, default="record")
+    parser.add_argument("--action", help="custom authorization entry checked by --gate action (for example migrate)")
+    parser.add_argument("--target", help="where the pending side effect applies, for example origin/feature or db:staging")
+    parser.add_argument(
+        "--revision",
+        help="content the pending side effect applies to; defaults to the revision token for local-commit and HEAD otherwise",
+    )
     printing = parser.add_mutually_exclusive_group()
     printing.add_argument(
         "--print-revision",
@@ -1033,11 +1456,26 @@ def main(argv: list[str] | None = None) -> int:
             raise ValidationError("manifest root must be a JSON object")
 
         if args.print_revision:
-            print(current_revision(repo, manifest, as_dict(state.get("baseline")).get("git_ref")))
+            print(revision_for_state(repo, manifest, state))
             return 0
 
+        if args.gate == "action" and (not args.action or args.action in AUTH_ACTIONS):
+            raise ValidationError("--gate action needs --action naming a custom authorization entry such as migrate")
+        if args.action is not None and args.gate != "action":
+            raise ValidationError("--action is only valid with --gate action")
         errors, warnings, indexes = validate_record(state, repo, manifest, args.gate)
-        revision = add_gate_errors(args.gate, state, repo, manifest, indexes, errors)
+        revision = add_gate_errors(
+            args.gate,
+            state,
+            repo,
+            manifest,
+            indexes,
+            errors,
+            warnings,
+            action=args.action,
+            target=args.target,
+            requested_revision=args.revision,
+        )
         result = {
             "ok": not errors,
             "gate": args.gate,

@@ -123,6 +123,140 @@ class ToolBehaviorTests(unittest.TestCase):
             data = json.loads(manifest.read_text()); data["files"]["item.txt"]["source_sha256"] = "0" * 64; manifest.write_text(json.dumps(data)); failed = subprocess.run(base, capture_output=True, text=True); self.assertIn("source hash drifted", failed.stdout); self.assertEqual((target / "item.txt").read_text(), "old\n")
             data["files"]["item.txt"]["source_sha256"] = sha(source / "item.txt"); manifest.write_text(json.dumps(data)); failed = subprocess.run([*base[:-1], "other.txt"], capture_output=True, text=True); self.assertIn("outside allowed scope", failed.stdout); self.assertEqual((target / "item.txt").read_text(), "old\n")
 
+    def test_result_precedence_and_launch_failures(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            both = root / "timeout-and-empty.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(both), "--timeout", "0.2", "--require-stdout", "--", sys.executable, "-c", "import time; time.sleep(2)"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 124)
+            self.assertEqual(json.loads(both.read_text())["result"], "timeout")
+            script = root / "not-executable.sh"
+            script.write_text("#!/bin/sh\necho hi\n")
+            script.chmod(0o644)
+            denied = root / "denied.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(denied), "--", str(script)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 126)
+            record = json.loads(denied.read_text())
+            self.assertEqual((record["result"], record["wrapper_exit_code"]), ("failed", 126))
+            for flag in ("--repo", "--state"):
+                with self.subTest(flag):
+                    output = root / f"half-{flag.strip('-')}.json"
+                    result = subprocess.run([sys.executable, str(RECORDER), "--output", str(output), flag, str(root), "--", sys.executable, "-c", "print(1)"], capture_output=True, text=True)
+                    self.assertEqual(result.returncode, 2)
+                    self.assertFalse(output.exists())
+
+    def test_recorder_refuses_destination_created_by_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            output = root / "record.json"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(RECORDER),
+                    "--output",
+                    str(output),
+                    "--",
+                    sys.executable,
+                    "-c",
+                    f"open({str(output)!r}, 'w').write('command artifact')",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 2)
+            self.assertEqual(output.read_text(), "command artifact")
+            self.assertIn("refusing overwrite", result.stderr)
+
+            dangling = root / "dangling.json"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(RECORDER),
+                    "--output",
+                    str(dangling),
+                    "--",
+                    sys.executable,
+                    "-c",
+                    f"import os; os.symlink('missing-target', {str(dangling)!r})",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 2)
+            self.assertTrue(dangling.is_symlink())
+
+    def test_recorder_preserves_empty_command_arguments(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "record.json"
+            result = subprocess.run(
+                [sys.executable, str(RECORDER), "--output", str(output), "--", sys.executable, "-c", ""],
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(output.read_text())["argv"][-1], "")
+
+    def test_revision_binding_matches_validator_and_detects_changes_during_run(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            subprocess.run(["git", "init", "-q", str(repo)], check=True)
+            subprocess.run(["git", "-C", str(repo), "config", "user.email", "t@example.invalid"], check=True)
+            subprocess.run(["git", "-C", str(repo), "config", "user.name", "T"], check=True)
+            (repo / "app.txt").write_text("base\n")
+            subprocess.run(["git", "-C", str(repo), "add", "app.txt"], check=True)
+            subprocess.run(["git", "-C", str(repo), "commit", "-qm", "base"], check=True)
+            head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
+            (repo / "app.txt").write_text("implemented\n")
+            state = json.loads((ROOT / "assets/templates/task-state.example.json").read_text(encoding="utf-8"))
+            state["baseline"]["git_ref"] = head
+            manifest = repo / "records/TASK-001/task-state.json"
+            manifest.parent.mkdir(parents=True)
+            manifest.write_text(json.dumps(state))
+            token = subprocess.run([sys.executable, str(ROOT / "scripts/validate_task.py"), str(manifest), "--repo", str(repo), "--print-revision"], capture_output=True, text=True, check=True).stdout.strip()
+
+            steady = manifest.parent / "evidence/steady.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(steady), "--repo", str(repo), "--state", str(manifest), "--cwd", str(repo), "--source", "app.txt", "--", sys.executable, "-c", "print('ok')"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            record = json.loads(steady.read_text())
+            self.assertEqual((record["revision_before"], record["revision_after"], record["revision"]), (token, token, token))
+            self.assertEqual(list(record["inputs"]), ["app.txt"])
+            self.assertEqual((record["cwd_relative"], record["result"]), (".", "passed"))
+
+            drift = manifest.parent / "evidence/drift.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(drift), "--repo", str(repo), "--state", str(manifest), "--cwd", str(repo), "--", sys.executable, "-c", "open('app.txt', 'w').write('changed by the check')"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 1)
+            record = json.loads(drift.read_text())
+            self.assertEqual(record["result"], "revision_changed")
+            self.assertIsNone(record["revision"])
+            self.assertEqual(record["revision_changed_paths"], ["app.txt"])
+            self.assertIn("app.txt", result.stderr)
+
+            generated = manifest.parent / "evidence/generated.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(generated), "--repo", str(repo), "--state", str(manifest), "--cwd", str(repo), "--", sys.executable, "-c", "import os; os.makedirs('build', exist_ok=True); open('build/out.txt', 'w').write('x')"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertEqual(json.loads(generated.read_text())["revision_changed_paths"], ["build/out.txt"])
+            (repo / ".gitignore").write_text("build/\n")
+            subprocess.run(["git", "-C", str(repo), "add", ".gitignore"], check=True)
+            subprocess.run(["git", "-C", str(repo), "commit", "-qm", "ignore build output"], check=True)
+            state["baseline"]["git_ref"] = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
+            manifest.write_text(json.dumps(state))
+            ignored = manifest.parent / "evidence/ignored.json"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(ignored), "--repo", str(repo), "--state", str(manifest), "--cwd", str(repo), "--", sys.executable, "-c", "open('build/out.txt', 'w').write('y')"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads(ignored.read_text())["revision_changed_paths"], [])
+            self.assertNotEqual(record["revision_before"], record["revision_after"])
+
+            missing_base = json.loads(json.dumps(state))
+            missing_base["baseline"]["git_ref"] = "0" * 40
+            broken = manifest.parent / "broken-state.json"
+            broken.write_text(json.dumps(missing_base))
+            never = manifest.parent / "evidence/never.json"
+            marker = repo / "ran.txt"
+            result = subprocess.run([sys.executable, str(RECORDER), "--output", str(never), "--repo", str(repo), "--state", str(broken), "--", sys.executable, "-c", f"open({str(marker)!r}, 'w').write('x')"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertFalse(never.exists())
+            self.assertFalse(marker.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

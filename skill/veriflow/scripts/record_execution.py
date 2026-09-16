@@ -4,17 +4,18 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
+import importlib.util
 import json
+import os
+import signal
 import subprocess
 import sys
 import tempfile
-import base64
-import os
-import signal
-import re
 from datetime import datetime, timezone
 from pathlib import Path
+from types import ModuleType
 
 
 def now() -> str:
@@ -29,6 +30,28 @@ def digest(path: Path) -> str:
     return h.hexdigest()
 
 
+def load_validator() -> ModuleType:
+    """Load the sibling validate_task.py so both tools share one revision algorithm."""
+
+    path = Path(__file__).resolve().with_name("validate_task.py")
+    spec = importlib.util.spec_from_file_location("veriflow_validate_task", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.dont_write_bytecode = True
+    spec.loader.exec_module(module)
+    return module
+
+
+def relative_to(path: Path, root: Path | None) -> str | None:
+    if root is None:
+        return None
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return None
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
@@ -39,6 +62,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--fixture", action="append", type=Path, default=[])
     p.add_argument("--expect-argv", action="append", default=[])
     p.add_argument("--require-stdout", action="store_true")
+    p.add_argument("--repo", type=Path, help="Git root; with --state, bind the record to the task revision")
+    p.add_argument("--state", type=Path, help="task-state.json whose baseline defines the revision token")
     p.add_argument("command", nargs=argparse.REMAINDER)
     args = p.parse_args(argv)
     command = args.command[1:] if args.command[:1] == ["--"] else args.command
@@ -46,9 +71,12 @@ def main(argv: list[str] | None = None) -> int:
         p.error("a command is required after --")
     if args.output.exists():
         p.error(f"output already exists; refusing overwrite: {args.output}")
+    if (args.repo is None) != (args.state is None):
+        p.error("--repo and --state must be given together")
     cwd = args.cwd.resolve()
     if not cwd.is_dir():
         p.error(f"cwd is not a directory: {cwd}")
+    repo = args.repo.resolve() if args.repo is not None else None
     files: dict[str, dict[str, str]] = {}
     for kind, paths in (("source", args.source), ("test", args.test), ("fixture", args.fixture)):
         for raw in paths:
@@ -56,9 +84,35 @@ def main(argv: list[str] | None = None) -> int:
             path = path.resolve()
             if not path.is_file():
                 p.error(f"{kind} file does not exist: {path}")
-            files[str(path)] = {"kind": kind, "sha256": digest(path)}
+            # Repository-relative keys keep the record valid after a worktree move.
+            files[relative_to(path, repo) or str(path)] = {"kind": kind, "sha256": digest(path)}
     if args.expect_argv and args.expect_argv != command:
         p.error(f"argv does not match expected command: {command!r}")
+
+    revision_of = None
+    if repo is not None:
+        try:
+            validator = load_validator()
+            repo = validator.ensure_repository(repo)
+            manifest = args.state.resolve()
+            state = json.loads(manifest.read_text(encoding="utf-8"))
+            if not isinstance(state, dict):
+                raise ValueError("task-state root must be a JSON object")
+
+            def revision_of() -> str:
+                return validator.revision_for_state(repo, manifest, state)
+
+            def entries_of() -> dict[str, bytes]:
+                return validator.revision_entries_for_state(repo, manifest, state)
+
+            revision_before = revision_of()
+            entries_before = entries_of()
+        except Exception as exc:  # the command must not run without its binding
+            print(json.dumps({"ok": False, "error": f"cannot compute revision: {exc}"}), file=sys.stderr)
+            return 2
+    else:
+        revision_before = None
+        entries_before = {}
     started = now()
     timed_out = False
     wrapper_exit = None
@@ -76,15 +130,36 @@ def main(argv: list[str] | None = None) -> int:
                 process.kill()
             stdout_raw, stderr_raw = process.communicate()
             code = process.returncode
-    except FileNotFoundError as exc:
-        wrapper_exit = 127
-        if isinstance(exc, FileNotFoundError):
-            code = None
-            stdout_raw = b""
-            stderr_raw = str(exc).encode()
+    except OSError as exc:
+        wrapper_exit = 127 if isinstance(exc, FileNotFoundError) else 126
+        code = None
+        stdout_raw = b""
+        stderr_raw = str(exc).encode()
     stdout = stdout_raw.decode("utf-8", errors="replace")
     stderr = stderr_raw.decode("utf-8", errors="replace")
     ended = now()
+    revision_after = None
+    changed_paths: list[str] = []
+    if revision_of is not None:
+        try:
+            revision_after = revision_of()
+            entries_after = entries_of()
+            changed_paths = sorted(
+                path
+                for path in set(entries_before) | set(entries_after)
+                if entries_before.get(path) != entries_after.get(path)
+            )
+        except Exception as exc:
+            revision_after = f"unavailable: {exc}"
+    revision_changed = revision_of is not None and revision_after != revision_before
+    if timed_out:
+        result = "timeout"
+    elif revision_changed:
+        result = "revision_changed"
+    elif args.require_stdout and not stdout:
+        result = "missing_output"
+    else:
+        result = "passed" if code == 0 else "failed"
     record = {
         "argv": command,
         "cwd": str(cwd),
@@ -101,15 +176,38 @@ def main(argv: list[str] | None = None) -> int:
         "stderr_present": bool(stderr),
         "stdout_required": args.require_stdout,
         "inputs": files,
-        "result": "missing_output" if args.require_stdout and not stdout else ("timeout" if timed_out else ("passed" if code == 0 else "failed")),
+        "repo": str(repo) if repo is not None else None,
+        "cwd_relative": relative_to(cwd, repo),
+        "revision_before": revision_before,
+        "revision_after": revision_after,
+        "revision": revision_before if revision_of is not None and not revision_changed else None,
+        "revision_changed_paths": changed_paths[:50],
+        "result": result,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=args.output.parent, delete=False) as handle:
         json.dump(record, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
         temporary = Path(handle.name)
-    temporary.replace(args.output)
-    if record["result"] == "missing_output":
+    try:
+        # A hard-link is an exclusive publication: unlike replace(), it cannot
+        # overwrite a destination created by the command or another recorder.
+        os.link(temporary, args.output)
+    except FileExistsError:
+        print(f"output appeared while command was running; refusing overwrite: {args.output}", file=sys.stderr)
+        return 2
+    finally:
+        temporary.unlink(missing_ok=True)
+    if result == "revision_changed":
+        listed = ", ".join(changed_paths[:5]) or "unknown paths"
+        print(
+            f"repository content changed while the command ran ({listed}); ignore generated files "
+            "or write them under the evidence directory, then rerun",
+            file=sys.stderr,
+        )
+    if result == "timeout":
+        return 124
+    if result in {"revision_changed", "missing_output"}:
         return 1
     return wrapper_exit if wrapper_exit is not None else (code if code is not None else 1)
 

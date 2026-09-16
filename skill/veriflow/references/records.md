@@ -64,33 +64,45 @@
 - `passed`：当前证据支持门槛通过。
 - `failed`：当前证据表明门槛未通过。
 - `undetermined`：缺证据、环境不可用或结果无法判定；永远不算通过。
+- `deferred`（仅指标，1.2）：用户决定先交付、稍后验证；必须用 `decision_id` 关联决策。可以通过本地提交和推送，不能通过合并、部署或自定义动作门槛；整体验收不能延后。
 
-证据时效另用 `current` / `stale`。内容修改后，受影响的 `passed + current` 必须重新判定；不要只把时间戳更新为当前。
-
-证据失效时按可观察事实回退：对应 `EVD-*` 变为 `stale`，`MET-*` 与整体验收变为 `undetermined`；仍存在实现产物的 `IT-*` 从 `verified` 回到 `implemented`，其主任务也从 `verified` 回到 `implemented`；受影响的 `CHG-*` 从 `reviewed` 回到 `implemented`。若实现本身已被撤销，相应 `IT-*` 回到 `in_progress`（或经决策改为 `cancelled`），`CHG-*` 标记为 `reverted`；若已知失败，任务与指标使用 `failed`。不要机械套用上述默认值。
+证据时效另用 `current` / `stale`。验证后内容又变了，校验器会直接报出过期证据（`EVIDENCE_STALE` 或 `EXECUTION_REVISION_STALE`），不需要手工逐项回退状态。处理方式是重跑受影响检查、换上新证据；旧证据改为 `stale` 保留。只有实现被撤销或已知失败时，才相应把 `IT-*`、`CHG-*`、指标改为 `cancelled`、`reverted` 或 `failed`。
 
 ### 基线
 
 `baseline.worktree_status` 使用：
 
-- `clean`：任务 worktree 从明确提交开始且没有他人改动。
+- `clean`：任务从明确提交开始，本任务相关路径没有他人改动。
 - `dirty_dependency_confirmed`：任务依赖的未提交改动已确认归属与纳入方式，并写入 `baseline.ownership`；这些路径在提交前同样必须被已审查的 `CHG-*` 覆盖。
 - `unknown`：尚未核验，阻止进入实现。
 
+`baseline.foreign_paths`（1.2，可选）列出已确认与本任务无关的他人未提交改动。它们不计入 revision token、不参与改动覆盖检查、不阻止推送，但不能与任何 `file_scope` 或 `CHG-*.paths` 重叠（`FOREIGN_PATH_OVERLAP`）。任务依赖的改动不属于 foreign，应使用 `dirty_dependency_confirmed`。同一文件里混有他人改动时，先问用户。
+
 ### 来源采纳
 
-- `proposed`：待主线程判断，或是还需要用户确认的推断和默认决定。用户确认之前，`agent_inference` 来源及据此做出的默认决定都保持 `proposed`，不要为了让记录看起来完整就标为 `accepted`。
-- `accepted`：纳入当前需求或决策。
+- `proposed`：尚未评估的建议，或仍需用户决定的事项。已授权范围内的实现细节与可回退默认可由主线程核查后采纳；涉及范围、权限或难以回退的用户行为变化且缺少现有依据时，等待用户决定。
+- `accepted`：经有权作出该决定的人核查后纳入当前需求或决策，记录依据。采纳 `agent_inference` 不会使其成为用户授权。
 - `rejected`：已评估但不采纳，并保留原因。
 - `superseded`：被更新来源替代。
 
 ### 授权与交付
 
-授权使用 `authorized`、`not_authorized`、`unknown`，分别记录 `commit`、`push`、`merge`、`deploy`。授权来源需指向采纳状态为 `accepted` 的 `user_requirement` 或 `user_feedback`；已被 `rejected` 或 `superseded` 的指令不再构成授权，资料和代理判断也不能作为授权来源。
+授权使用 `authorized`、`not_authorized`、`unknown`，必须记录 `commit`、`push`、`merge`、`deploy` 四项；1.2 可以增加其他难以撤销的动作，例如 `migrate`（名称为小写字母、数字、`-`、`_`）。每项可带 `scope`：允许的目标列表，例如 `["origin/feature-x"]`、`["db:staging"]`。授权来源需指向采纳状态为 `accepted` 的 `user_requirement` 或 `user_feedback`；已被 `rejected` 或 `superseded` 的指令不再构成授权，资料和代理判断也不能作为授权来源。
 
-`ACT-*` 的 `authorization_action` 指明该动作消耗哪一项授权，防重复与授权核对都按这个字段判断；`kind` 只作描述。
+`ACT-*` 记录一次有副作用的动作：
 
-交付阶段使用 `not_started`、`passed`、`failed`、`unavailable`、`completed`、`rolled_back`。远程 CI 未运行是 `not_started` 或 `unavailable`，不是 `passed`。
+| 字段 | 含义 |
+| --- | --- |
+| `authorization_action` | 消耗哪一项授权；防重复与授权核对都按它判断，`kind` 只作描述 |
+| `target`（1.2） | 作用对象，例如 `origin/feature-x`、`production`、`db:staging`；本地提交可写 `local` |
+| `revision`（1.2） | 作用的内容：提交写当前 revision token，推送、合并、部署写提交 SHA |
+| `status` | `planned`、`in_progress`、`completed`、`failed`、`unknown` |
+| `receipt` | `completed` 与 `failed` 必填：提交 SHA、远端引用、迁移版本或失败输出位置 |
+| `idempotency_key` | 记录内唯一 |
+
+执行前先写 `planned` 并运行门槛，通过后改为 `in_progress` 再执行，执行后改为 `completed` 或 `failed`。中断后结果不明的写 `unknown`；校验器会在核验前阻止同类动作再次执行。
+
+`delivery`（1.2）只保留 `local_validation`、`remote_ci` 和可选的 `remote_ci_revision`；提交、推送、合并、部署的进度只记在 `actions` 里。交付状态取值为 `not_started`、`passed`、`failed`、`unavailable`、`completed`、`rolled_back`。远程 CI 未运行是 `not_started` 或 `unavailable`，不是 `passed`；`remote_ci_revision` 写实际查看过的流水线所对应的提交。
 
 ## 记录所有权与报告载体
 
@@ -113,7 +125,7 @@
 
 ## `task-state.json`
 
-当前记录格式为 `schema_version: "1.1"`。建议把一项复杂任务的结构化记录放在专用子目录；这也让证据指纹能安全地区分状态元数据与产品改动：
+当前记录格式为 `schema_version: "1.2"`。建议把一项复杂任务的结构化记录放在专用子目录；这也让证据指纹能安全地区分状态元数据与产品改动：
 
 ```text
 records/<TASK-ID>/
@@ -129,10 +141,22 @@ records/<TASK-ID>/
 
 - 每个主任务引用来源；每个指标属于主任务；每个实现任务属于主任务并关联指标或写明必要支撑原因；
 - `overall_acceptance` 独立于子任务状态；
-- 证据路径位于仓库内，带有 `sha256`，并绑定当前补丁；
-- `actions` 的 `idempotency_key` 唯一，已完成动作有回执，已执行动作有对应授权；
+- 证据路径位于仓库内，带有 `sha256`；执行记录自带运行时的 revision，其他证据用 `revision` 字段绑定当前内容；
+- `actions` 的 `idempotency_key` 唯一，已完成和失败的动作有回执，已执行动作有对应授权且在范围内；
 - 授权与交付状态分开，授权不能由工具推断，且须引用已采纳的用户指令。
 
-从 1.0 迁移：把 `schema_version` 改为 `"1.1"`，为每项证据补上 `sha256`（`--print-sha256`），证据文件建议移入 `evidence/`。1.0 的 revision token 与新算法不兼容：把受影响证据先标为 `stale`，重跑检查后再写入 `--print-revision` 的新 token，不要直接改写旧 token。
+### 版本迁移
+
+当前格式为 `1.2`。校验器仍接受 `1.1`，给出警告 `SCHEMA_LEGACY`，并按旧语义检查交付：`delivery` 需要六个键，某类动作只要完成过一次就阻止重复，执行记录不要求自带 revision。`ACTION_OUTCOME_UNKNOWN`、推送前的提交路径审查和 git 超时对两个版本都生效。
+
+从 1.1 迁移到 1.2：
+
+1. `schema_version` 改为 `"1.2"`；
+2. 每个 `ACT-*` 补 `target` 和 `revision`（历史动作按回执填写提交 SHA 或当时的 token），`failed` 动作补回执；
+3. `delivery` 删去 `local_commit`、`push`、`merge`、`deploy`，这些进度已在 `actions` 中；远程 CI 已通过的补 `remote_ci_revision`；
+4. 命令类证据用 `record_execution.py --repo --state` 重跑，或保持文本证据并把相关指标的 `verification` 设为 `manual`；
+5. 有他人无关改动时补 `baseline.foreign_paths`。
+
+从 1.0 迁移：先按 1.1 的要求为每项证据补上 `sha256`（`--print-sha256`），证据文件建议移入 `evidence/`。1.0 的 revision token 与新算法不兼容：把受影响证据先标为 `stale`，重跑检查后再写入新 token，不要直接改写旧 token。
 
 校验器不会验证文字是否真实、用户是否真的授权或指标是否合理；这些属于主线程审查。

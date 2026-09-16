@@ -1,11 +1,13 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "task": {
     "id": "TASK-001",
     "title": "为查询路径增加可核验缓存",
     "mode": "new",
     "status": "ready",
-    "source_ids": ["SRC-001"]
+    "source_ids": [
+      "SRC-001"
+    ]
   },
   "discovery": {
     "status": "ready",
@@ -28,15 +30,28 @@
   "main_tasks": [
     {
       "id": "MT-001",
-      "source_ids": ["SRC-001"],
+      "source_ids": [
+        "SRC-001"
+      ],
       "goal": "重复查询可复用结果且调用方观察到的语义不变",
-      "scope": ["缓存命中、失效和旁路"],
-      "non_goals": ["替换持久化数据库"],
+      "scope": [
+        "缓存命中、失效和旁路"
+      ],
+      "non_goals": [
+        "替换持久化数据库"
+      ],
       "dependencies": [],
-      "assumptions": ["数据允许按已确认的 TTL 缓存"],
+      "assumptions": [
+        "数据允许按已确认的 TTL 缓存"
+      ],
       "status": "defined",
-      "metric_ids": ["MET-001", "MET-002"],
-      "implementation_task_ids": ["IT-001"]
+      "metric_ids": [
+        "MET-001",
+        "MET-002"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
     }
   ],
   "metrics": [
@@ -50,7 +65,8 @@
       "method": "运行缓存行为测试并检查原始报告",
       "environment_data": "固定测试配置与仓库 fixture",
       "evidence_ids": [],
-      "status": "undetermined"
+      "status": "undetermined",
+      "verification": "execution"
     },
     {
       "id": "MET-002",
@@ -62,19 +78,29 @@
       "method": "对固定查询序列记录后端访问计数",
       "environment_data": "与 MET-001 相同的 fixture 和配置",
       "evidence_ids": [],
-      "status": "undetermined"
+      "status": "undetermined",
+      "verification": "execution"
     }
   ],
   "implementation_tasks": [
     {
       "id": "IT-001",
       "main_task_id": "MT-001",
-      "source_ids": ["SRC-001"],
+      "source_ids": [
+        "SRC-001"
+      ],
       "scope": "实现缓存适配、失效和测试观测",
-      "file_scope": ["replace/with/owned/paths"],
-      "interface_constraints": ["保持现有响应结构和错误语义"],
+      "file_scope": [
+        "replace/with/owned/paths"
+      ],
+      "interface_constraints": [
+        "保持现有响应结构和错误语义"
+      ],
       "dependencies": [],
-      "acceptance": ["MET-001", "MET-002"],
+      "acceptance": [
+        "MET-001",
+        "MET-002"
+      ],
       "support_reason": "",
       "evidence_ids": [],
       "owner": "main-thread",
@@ -84,7 +110,10 @@
   "evidence": [],
   "changes": [],
   "overall_acceptance": {
-    "metric_ids": ["MET-001", "MET-002"],
+    "metric_ids": [
+      "MET-001",
+      "MET-002"
+    ],
     "evidence_ids": [],
     "status": "undetermined"
   },
@@ -92,21 +121,34 @@
     "git_ref": "REPLACE_WITH_BASE_COMMIT",
     "worktree_status": "clean",
     "ownership": "仅修改 IT-001 的 file_scope；其他改动归原作者",
+    "foreign_paths": [],
     "prepared_at": "0000-00-00T00:00:00Z"
   },
   "authorization": {
-    "commit": {"status": "unknown", "source_id": null},
-    "push": {"status": "not_authorized", "source_id": null},
-    "merge": {"status": "not_authorized", "source_id": null},
-    "deploy": {"status": "not_authorized", "source_id": null}
+    "commit": {
+      "status": "unknown",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null,
+      "scope": [
+        "origin/replace-with-branch"
+      ]
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
   },
   "delivery": {
     "local_validation": "not_started",
-    "local_commit": "not_started",
-    "push": "not_started",
     "remote_ci": "not_started",
-    "merge": "not_started",
-    "deploy": "not_started"
+    "remote_ci_revision": null
   },
   "actions": [],
   "decisions": [],
@@ -120,7 +162,10 @@
   ],
   "recovery_strategy": {
     "trigger": "部署后关键查询错误率或结果一致性门槛失败",
-    "steps": ["禁用缓存开关", "重新运行关键查询核验"],
+    "steps": [
+      "禁用缓存开关",
+      "重新运行关键查询核验"
+    ],
     "owner": "replace-with-owner"
   }
 }

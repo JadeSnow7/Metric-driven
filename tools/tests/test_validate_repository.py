@@ -7,7 +7,13 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from validate_repository import is_maintained_document, visible_markdown  # noqa: E402
+from validate_repository import (  # noqa: E402
+    check_claude_code,
+    frontmatter,
+    is_maintained_document,
+    repository_root,
+    visible_markdown,
+)
 
 
 class ValidateRepositoryTests(unittest.TestCase):
@@ -38,6 +44,70 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertNotIn("missing-fenced.md", visible)
         self.assertNotIn("missing-inline.md", visible)
         self.assertIn("missing-real.md", visible)
+
+
+class ClaudeCodeDefinitionTests(unittest.TestCase):
+    def make_root(self) -> Path:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        (root / "skill/veriflow/agents/claude-code").mkdir(parents=True)
+        (root / "skill/veriflow/SKILL.md").write_text(
+            "---\nname: veriflow\ndescription: verify delivery\n---\n# Veriflow\n", encoding="utf-8"
+        )
+        self.write_agent(root, "veriflow-coder", "sonnet", "Read, Edit, Write, Bash")
+        self.write_agent(root, "veriflow-reviewer", "sonnet", "Read, Grep, Bash")
+        plugin = root / "claude-code"
+        (plugin / ".claude-plugin").mkdir(parents=True)
+        (plugin / ".claude-plugin/plugin.json").write_text('{"name": "veriflow"}', encoding="utf-8")
+        (plugin / "skills").mkdir()
+        (plugin / "skills/veriflow").symlink_to("../../skill/veriflow")
+        (plugin / "agents").symlink_to("../skill/veriflow/agents/claude-code")
+        return root
+
+    @staticmethod
+    def write_agent(root: Path, name: str, model: str, tools: str) -> None:
+        (root / f"skill/veriflow/agents/claude-code/{name}.md").write_text(
+            f"---\nname: {name}\ndescription: role\nmodel: {model}\ntools: {tools}\n---\nBody\n",
+            encoding="utf-8",
+        )
+
+    def test_shipped_definitions_pass(self) -> None:
+        self.assertEqual(check_claude_code(repository_root()), [])
+
+    def test_valid_fixture_passes(self) -> None:
+        self.assertEqual(check_claude_code(self.make_root()), [])
+
+    def test_subagent_must_be_pinned_to_sonnet(self) -> None:
+        for model in ("inherit", "opus", ""):
+            with self.subTest(model=model):
+                root = self.make_root()
+                self.write_agent(root, "veriflow-coder", model, "Read, Edit")
+                self.assertTrue(any("model must be 'sonnet'" in e for e in check_claude_code(root)))
+
+    def test_reviewer_is_read_only_and_agents_do_not_delegate(self) -> None:
+        root = self.make_root()
+        self.write_agent(root, "veriflow-reviewer", "sonnet", "Read, Edit, Bash")
+        self.assertTrue(any("read-only agent" in e for e in check_claude_code(root)))
+        root = self.make_root()
+        self.write_agent(root, "veriflow-coder", "sonnet", "Read, Edit, Agent")
+        self.assertTrue(any("must not delegate" in e for e in check_claude_code(root)))
+
+    def test_plugin_links_must_point_at_the_shipped_skill(self) -> None:
+        root = self.make_root()
+        link = root / "claude-code/skills/veriflow"
+        link.unlink()
+        (root / "elsewhere").mkdir()
+        link.symlink_to(root / "elsewhere")
+        self.assertTrue(any("claude-code/skills/veriflow must resolve" in e for e in check_claude_code(root)))
+
+    def test_skill_description_limit_and_malformed_frontmatter(self) -> None:
+        root = self.make_root()
+        (root / "skill/veriflow/SKILL.md").write_text(
+            "---\nname: veriflow\ndescription: " + "x" * 1025 + "\n---\n", encoding="utf-8"
+        )
+        self.assertTrue(any("description must be" in e for e in check_claude_code(root)))
+        self.assertIsNone(frontmatter("# no frontmatter\n"))
 
 
 if __name__ == "__main__":

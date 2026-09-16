@@ -35,4 +35,14 @@
 
 摘要写“已推送”，日志有 `ACT-003` 和远程回执，但本地分支落后。恢复者先核验本地 HEAD、远程分支与回执，再决定拉取或继续；不能因为当前工作区看不到提交就再次推送。
 
-如果证据仍标记 `passed`，但 revision token 与当前补丁不同，状态应先变为 `stale`，重跑受影响检查；不能直接从“上次通过”恢复到提交或部署。
+记录里 `ACT-004`（`migrate`，目标 `db:staging`）停在 `in_progress`，说明上次会话可能在迁移途中中断。恢复者先查询 staging 数据库的迁移版本表：已经是目标版本就把动作改为 `completed` 并写入版本号作为回执；仍是旧版本时，继续核对迁移日志、部分写入和仍在运行的进程；确认失败且重试安全后改为 `failed` 并写明核验结果，再运行 `--gate action --action migrate --target db:staging` 后重试。在核验之前，门槛会报 `ACTION_OUTCOME_UNKNOWN` 阻止重做。
+
+如果执行记录内的 revision 与当前内容不同，校验器会报 `EXECUTION_REVISION_STALE`；重跑受影响检查、换上新记录，不能直接从“上次通过”恢复到提交或部署。
+
+## 工作区里有别人的改动
+
+`git status` 显示 `docs/roadmap.md` 有未提交修改，本任务只改 `src/paging.py` 和对应测试。两者不重叠，所以直接在原目录继续：L0/L1 在汇报里说明检查时该文件有他人改动；L2 把它写进 `baseline.foreign_paths`。提交时先 `git add -- src/paging.py tests/test_paging.py`，再 `git commit -m "fix last page" -- src/paging.py tests/test_paging.py`，不把 `docs/roadmap.md` 带进去。只有本任务也要改 `docs/roadmap.md` 时才先问用户。
+
+## 验证环境不可用
+
+性能基准需要的专用机器今天无法访问，功能测试已全部通过，用户说“先提交，基准等机器恢复后在 CI 上跑”。把性能指标记为 `deferred`，`decision_id` 指向记录这句话的 `DEC-*`。可在本地提交门槛通过后提交；推送仍需已有或新增的 `push` 授权。报告把该指标列为“未验证”；在基准结果出来之前，合并门槛会报 `METRIC_DEFERRED_BLOCKS`。用户没有这样决定时，指标保持 `undetermined`，提交门槛照常阻断。
