@@ -2,12 +2,15 @@
 
 文件：
 
-- [evaluator.py](/private/tmp/rein-ch08-evaluator-v3/evaluator.py)
-- [calibration_cli.py](/private/tmp/rein-ch08-evaluator-v3/calibration_cli.py)
-- [test_evaluator.py](/private/tmp/rein-ch08-evaluator-v3/test_evaluator.py)
-- [review-checks.md](/private/tmp/rein-ch08-evaluator-v3/review-checks.md)
-- [handoff.md](/private/tmp/rein-ch08-evaluator-v3/handoff.md)
-- [evidence/README.md](/private/tmp/rein-ch08-evaluator-v3/evidence/README.md)
+This is a link-portability-only normalization of the maintained display report. The first five files are tracked beside the run directory:
+
+- [evaluator.py](../evaluator.py)
+- [calibration_cli.py](../calibration_cli.py)
+- [test_evaluator.py](../test_evaluator.py)
+- [review-checks.md](../review-checks.md)
+- [handoff.md](../handoff.md)
+
+The original `/private/tmp/rein-ch08-evaluator-v3/evidence/README.md` was local-only and not committed; it remains plain text here.
 
 验证结果：
 

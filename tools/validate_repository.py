@@ -51,6 +51,7 @@ DESCRIPTION_LIMIT = 1024
 
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
 UNFINISHED = re.compile(r"\[(?:TODO|PLACEHOLDER):|Briefly describe|Add the task-specific", re.IGNORECASE)
+WINDOWS_LOCAL_PATH = re.compile(r"^(?:[A-Za-z]:[\\/]|\\\\|//)")
 
 ARCHIVED_DOCUMENT_PREFIXES = (
     # Preserved chapter/product captures from the REIN-CH05-16 evidence set.
@@ -65,6 +66,10 @@ ARCHIVED_DOCUMENT_PREFIXES = (
     ("records", "REIN-CH08-EDD-20260915", "production", "final-book", "book"),
     ("records", "REIN-CH08-EDD-20260915", "production", "final-book-full-source", "book"),
 )
+
+ARCHIVED_DOCUMENTS = {
+    ("records", "REIN-CH08-EDD-20260915", "formal", "seals", "C", "run", "final.md"),
+}
 
 
 def visible_markdown(text: str) -> str:
@@ -83,6 +88,8 @@ def is_maintained_document(root: Path, path: Path) -> bool:
     """
     relative = path.resolve().relative_to(root.resolve())
     parts = relative.parts
+    if parts in ARCHIVED_DOCUMENTS:
+        return False
     if any(parts[: len(prefix)] == prefix for prefix in ARCHIVED_DOCUMENT_PREFIXES):
         return False
     if (
@@ -108,6 +115,32 @@ def is_maintained_document(root: Path, path: Path) -> bool:
     if parts[:3] == ("records", "REIN-CH05-16", "handoffs"):
         return False
     return True
+
+
+def is_safe_local_link(root: Path, markdown: Path, target: str) -> bool:
+    """Return whether a local Markdown target stays inside this repository."""
+    if Path(target).is_absolute() or WINDOWS_LOCAL_PATH.match(target):
+        return False
+    repository = root.resolve()
+    destination = (markdown.parent / target).resolve()
+    try:
+        destination.relative_to(repository)
+    except ValueError:
+        return False
+    return destination.exists()
+
+
+def broken_local_links(root: Path, markdown: Path, text: str) -> list[str]:
+    """Return raw local targets that are missing, absolute, or repository-escaping."""
+    errors: list[str] = []
+    for match in MARKDOWN_LINK.finditer(visible_markdown(text)):
+        raw_target = match.group(1).strip()
+        target = raw_target.strip("<>").split("#", 1)[0]
+        if not target or target.startswith(("http://", "https://", "mailto:", "sandbox:")):
+            continue
+        if not is_safe_local_link(root, markdown, target):
+            errors.append(raw_target)
+    return errors
 
 
 def frontmatter(text: str) -> dict[str, str] | None:
@@ -216,15 +249,8 @@ def main() -> int:
         visible = visible_markdown(text)
         if UNFINISHED.search(visible):
             errors.append(f"unfinished scaffold marker: {markdown.relative_to(root)}")
-        for match in MARKDOWN_LINK.finditer(visible):
-            target = match.group(1).strip().strip("<>").split("#", 1)[0]
-            if not target or target.startswith(("http://", "https://", "mailto:", "sandbox:")):
-                continue
-            destination = (markdown.parent / target).resolve()
-            if not destination.exists():
-                errors.append(
-                    f"broken local link in {markdown.relative_to(root)}: {match.group(1)}"
-                )
+        for target in broken_local_links(root, markdown, text):
+            errors.append(f"broken local link in {markdown.relative_to(root)}: {target}")
 
     template = root / "skill/veriflow/assets/templates/task-state.example.json"
     if template.is_file() and (root / TASK_VALIDATOR).is_file():

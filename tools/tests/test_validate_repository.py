@@ -11,6 +11,8 @@ from validate_repository import (  # noqa: E402
     check_claude_code,
     frontmatter,
     is_maintained_document,
+    is_safe_local_link,
+    broken_local_links,
     repository_root,
     visible_markdown,
 )
@@ -44,6 +46,43 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertNotIn("missing-fenced.md", visible)
         self.assertNotIn("missing-inline.md", visible)
         self.assertIn("missing-real.md", visible)
+
+    def test_local_links_reject_absolute_and_escape_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            container = Path(temporary)
+            root = container / "repo"
+            document = root / "docs/final.md"
+            document.parent.mkdir(parents=True)
+            (root / "docs/ok.md").write_text("ok", encoding="utf-8")
+            outside = container / "outside-real.md"
+            outside.write_text("outside", encoding="utf-8")
+            (root / "docs/link.md").symlink_to(outside)
+            self.assertTrue(is_safe_local_link(root, document, "ok.md"))
+            self.assertFalse(is_safe_local_link(root, document, "missing.md"))
+            self.assertFalse(is_safe_local_link(root, document, str(outside)))
+            self.assertFalse(is_safe_local_link(root, document, "../../outside-real.md"))
+            self.assertFalse(is_safe_local_link(root, document, "link.md"))
+            self.assertFalse(is_safe_local_link(root, document, r"C:\\outside.md"))
+            self.assertFalse(is_safe_local_link(root, document, r"\\server\\share\\outside.md"))
+
+    def test_main_link_scan_skips_external_fragments_and_parses_angles(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            container = Path(temporary)
+            root = container / "repo"
+            document = root / "docs/final.md"
+            document.parent.mkdir(parents=True)
+            outside = container / "outside-real.md"
+            outside.write_text("outside", encoding="utf-8")
+            (root / "docs/ok.md").write_text("ok", encoding="utf-8")
+            text = "[ok](ok.md) [bad](<" + str(outside) + ">) [web](https://example.com) [fragment](#section)"
+            self.assertEqual(broken_local_links(root, document, text), ["<" + str(outside) + ">"])
+
+    def test_only_sealed_c_final_is_archived(self) -> None:
+        root = Path(tempfile.mkdtemp())
+        sealed = root / "records/REIN-CH08-EDD-20260915/formal/seals/C/run/final.md"
+        adjacent = root / "records/REIN-CH08-EDD-20260915/formal/seals/C/run/other.md"
+        self.assertFalse(is_maintained_document(root, sealed))
+        self.assertTrue(is_maintained_document(root, adjacent))
 
 
 class ClaudeCodeDefinitionTests(unittest.TestCase):

@@ -6,11 +6,9 @@
 
 证据：
 
-本报告仅规范化链接以便可移植展示，不改变准备结果或原始证据。
-
-- [verification.txt](verification.txt)
-- [provenance.txt](../inputs/skill-repository/tree/provenance.txt)
-- [archive manifest](../inputs/skill-repository/tree/manifest.json)
+- [verification.txt]( /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/preparation-operator/verification.txt )
+- [provenance.txt]( /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/inputs/skill-repository/tree/provenance.txt )
+- [archive manifest]( /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/inputs/skill-repository/tree/manifest.json )
 
 验证全部通过：
 

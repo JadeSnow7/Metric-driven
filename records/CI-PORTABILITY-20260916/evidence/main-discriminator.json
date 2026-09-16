@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "python3",
+    "records/CI-PORTABILITY-20260916/evidence/verify-discriminator.py"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "started_at": "2026-09-16T06:38:43.105768Z",
+  "ended_at": "2026-09-16T06:38:43.229960Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "DISTINGUISHING CHECK PASSED: old existence-only rule accepts real external file; new Markdown entry rejects both ordinary and angle links while retaining valid targets.\nSEALED FINAL BYTE IDENTITY 7691cb1c2144da5111244fd81d2780832f17c84fee2a83e9c106b5003bcfd944\nORIGINAL PRESERVED records/REIN-CH05-16/evidence/evaluator-v3/final.md 12a86a7fb8c049c4096dc857d1eb75b8966afae355b302d14a253a5f78cc973f\nORIGINAL PRESERVED records/REIN-CH05-16/evidence/evaluator-v4/final.md e52dd11858760d66fd4590d00b27923e2548c6e7c668fc461bcb1023cb25ef74\nORIGINAL PRESERVED records/REIN-CH05-16/evidence/preparation-operator/final.md d952f7f1f25a98fef53b1e6902f70ebf762af481b7780d678ca120dc86b7aa56\nORIGINAL PRESERVED records/REIN-CH05-16/evidence/prerequisites-v3/final.md b2f670ace095a11009c54a6b6b9a6a0febca3b56352d6aef7df3d0ee131f1f3a\nORIGINAL PRESERVED records/REIN-CH05-16/evidence/prerequisites-v4/final.md 8e0f5c11233d4e0f3d86bd054fe83d4a427ee4c8d20e146f4963384904c68132\nORIGINAL PRESERVED records/REIN-CH08-EDD-20260915/preparation/evaluator-v3-rejected/run/final.md 8c2700bc4c3e7afce53c65dad054ffd00e7e851fac5948cac8e332588ffa3ae2\nSKILL UNCHANGED\n",
+  "stderr": "",
+  "stdout_base64": "RElTVElOR1VJU0hJTkcgQ0hFQ0sgUEFTU0VEOiBvbGQgZXhpc3RlbmNlLW9ubHkgcnVsZSBhY2NlcHRzIHJlYWwgZXh0ZXJuYWwgZmlsZTsgbmV3IE1hcmtkb3duIGVudHJ5IHJlamVjdHMgYm90aCBvcmRpbmFyeSBhbmQgYW5nbGUgbGlua3Mgd2hpbGUgcmV0YWluaW5nIHZhbGlkIHRhcmdldHMuClNFQUxFRCBGSU5BTCBCWVRFIElERU5USVRZIDc2OTFjYjFjMjE0NGRhNTExMTI0NGZkODFkMjc4MDgzMmYxN2M4NGZlZTJhODNlOWMxMDZiNTAwM2JjZmQ5NDQKT1JJR0lOQUwgUFJFU0VSVkVEIHJlY29yZHMvUkVJTi1DSDA1LTE2L2V2aWRlbmNlL2V2YWx1YXRvci12My9maW5hbC5tZCAxMmE4NmE3ZmI4YzA0OWM0MDk2ZGM4NTdkMWViNzViODk2NmFmYWUzNTViMzAyZDE0YTI1M2E1Zjc4Y2M5NzNmCk9SSUdJTkFMIFBSRVNFUlZFRCByZWNvcmRzL1JFSU4tQ0gwNS0xNi9ldmlkZW5jZS9ldmFsdWF0b3ItdjQvZmluYWwubWQgZTUyZGQxMTg1ODc2MGQ2NmZkNDU5MGQwMGIyNzkyM2UyNTQ4YzZlN2M2NjhmYzQ2MWJjYjEwMjNjYjI1ZWY3NApPUklHSU5BTCBQUkVTRVJWRUQgcmVjb3Jkcy9SRUlOLUNIMDUtMTYvZXZpZGVuY2UvcHJlcGFyYXRpb24tb3BlcmF0b3IvZmluYWwubWQgZDk1MmY3ZjFmMjVhOThmZWY1M2IxZTY5MDJmNzBlYmY3NjJhZjQ4MWI3NzgwZDY3OGNhMTIwZGM4NmI3YWE1NgpPUklHSU5BTCBQUkVTRVJWRUQgcmVjb3Jkcy9SRUlOLUNIMDUtMTYvZXZpZGVuY2UvcHJlcmVxdWlzaXRlcy12My9maW5hbC5tZCBiMmY2NzBhY2UwOTVhMTEwMDljNTRhNmI2YjlhNmEwZmViY2EzYjU2MzUyZDZhZWY3ZGYzZDBlZTEzMWYxZjNhCk9SSUdJTkFMIFBSRVNFUlZFRCByZWNvcmRzL1JFSU4tQ0gwNS0xNi9ldmlkZW5jZS9wcmVyZXF1aXNpdGVzLXY0L2ZpbmFsLm1kIDhlMGY1YzExMjMzZDRlMGYzZDg2YmQwNTRmZTgzZDRhNDI3ZWU0YzhkMjBlMTQ2ZjQ5NjMzODQ5MDRjNjgxMzIKT1JJR0lOQUwgUFJFU0VSVkVEIHJlY29yZHMvUkVJTi1DSDA4LUVERC0yMDI2MDkxNS9wcmVwYXJhdGlvbi9ldmFsdWF0b3ItdjMtcmVqZWN0ZWQvcnVuL2ZpbmFsLm1kIDhjMjcwMGJjNGMzZTdhZmNlNTNjNjVkYWQwNTRmZmQwMGU3ZTg1MWZhYzU5NDhjYWM4ZTMzMjU4OGZmYTNhZTIKU0tJTEwgVU5DSEFOR0VECg==",
+  "stderr_base64": "",
+  "stdout_present": true,
+  "stderr_present": false,
+  "stdout_required": false,
+  "inputs": {
+    "tools/validate_repository.py": {
+      "kind": "source",
+      "sha256": "995f3e09eea154ed257dfd8470db08e0aedf95d2863a88012cc4adb02a3ba3fc"
+    },
+    "records/CI-PORTABILITY-20260916/evidence/verify-discriminator.py": {
+      "kind": "test",
+      "sha256": "cf4b77d3e3aa8bd9631712fdfc6b6c600dc7e305bc21a131a29abe7002979da8"
+    }
+  },
+  "repo": "/Users/huaodong/Documents/evidence-driven-development",
+  "cwd_relative": ".",
+  "revision_before": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision_after": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision_changed_paths": [],
+  "result": "passed"
+}
