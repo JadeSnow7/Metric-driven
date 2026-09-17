@@ -7,7 +7,9 @@
 - 增加严格畸形响应校验、统一 replay、真实工具 dispatch 和调用 ID 绑定。
 - 加强 workspace canonicalize、目录拒绝、symlink escape、防跟随 symlink 的稳定搜索。
 - 两端测试均读取共享 fixture，并覆盖多工具、多轮工具结果、坏参数、未知工具、非法路径、symlink escape、replay 耗尽。
-- 同步 [contracts/README.md](</Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/contracts/README.md>)。
+本报告仅规范化链接以便可移植展示，不改变前置条件结论或原始证据。
+
+- 同步 `/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/contracts/README.md`（工作区 foreign path，local-only，未提交）。
 
 验证通过：
 
@@ -20,6 +22,6 @@
 
 完整 stdout/stderr、exit code、测试清单和 SHA-256 已保存至：
 
-[RESULT.md](</Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/prerequisites-v3/RESULT.md)
+ [RESULT.md](RESULT.md)
 
 未验证真实外网 OpenAI 请求；本任务仅验证本地 loopback HTTP，不读取密钥。

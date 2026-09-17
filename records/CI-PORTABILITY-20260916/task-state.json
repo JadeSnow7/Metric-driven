@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.2",
+  "task": {
+    "id": "CI-PORTABILITY-20260916",
+    "title": "修复 PR #3 的仓库链接可移植性并核验远程 CI",
+    "mode": "new",
+    "status": "verified",
+    "source_ids": [
+      "SRC-001"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "项目维护者",
+    "scenario": "修复 PR #3 的仓库链接可移植性并核验远程 CI",
+    "problem": "当前验收存在已核实缺口",
+    "expected_outcome": "修复 PR #3 的仓库链接可移植性并核验远程 CI",
+    "scope": "7 个报告共 18 个坏链；仓库校验器与回归；现有 PR 分支提交推送；远程三个 Python 版本矩阵",
+    "acceptable_result": "按实际证据报告通过、失败与未判定；不越过生产切换门槛"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-16-start-approved-plan",
+      "summary": "用户选择先修 CI 再做终端 M2；先对齐文档，由 coder 实现；skill 改进仅记录汇报；2026-09-16 开始执行。",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "修复 PR #3 的仓库链接可移植性并核验远程 CI",
+      "scope": [
+        "7 个报告共 18 个坏链；仓库校验器与回归；现有 PR 分支提交推送；远程三个 Python 版本矩阵"
+      ],
+      "non_goals": [
+        "修改 skill 规则或封存实验数据",
+        "合并、部署、生产默认切换"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "使用当前已核实基线"
+      ],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001"
+      ],
+      "implementation_task_ids": [
+        "IT-001",
+        "IT-002"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "链接修复与本地交付内容通过可移植性和回归检查",
+      "baseline": "见当前摘要及原始核查记录",
+      "target": "完整本地 workflow、干净快照和主线程区分性检查通过；远程矩阵另按 delivery.remote_ci 记录",
+      "method": "主线程核查差异和执行记录，并运行整体验收",
+      "environment_data": "当前本机环境；CI 另记录远程版本与矩阵结果",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002"
+      ],
+      "status": "passed",
+      "verification": "execution"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "有界实现与回归测试",
+      "file_scope": [
+        "tools/validate_repository.py",
+        "tools/tests/test_validate_repository.py",
+        "records/REIN-CH05-16/evidence/evaluator-v3/final.md",
+        "records/REIN-CH05-16/evidence/evaluator-v4/final.md",
+        "records/REIN-CH05-16/evidence/preparation-operator/final.md",
+        "records/REIN-CH05-16/evidence/prerequisites-v3/final.md",
+        "records/REIN-CH05-16/evidence/prerequisites-v4/final.md",
+        "records/REIN-CH08-EDD-20260915/preparation/evaluator-v3-rejected/run/final.md"
+      ],
+      "interface_constraints": [
+        "保留原始证据与无关工作；遵守 handoffs/implementation.md"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003"
+      ],
+      "owner": "coder",
+      "status": "verified"
+    },
+    {
+      "id": "IT-002",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "共享文档、审查、整体验收与报告",
+      "file_scope": [
+        "records/CI-PORTABILITY-20260916"
+      ],
+      "interface_constraints": [
+        "共享状态仅主线程写入"
+      ],
+      "dependencies": [
+        "IT-001"
+      ],
+      "acceptance": [
+        "MET-001"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/CI-PORTABILITY-20260916/evidence/main-clean-workflow.json",
+      "kind": "execution",
+      "supports": [
+        "MET-001"
+      ],
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-16T06:44:53.346741+00:00",
+      "sha256": "40896c1f18b840e76493399396d3e4f55ec794e44f0910cb24a00e2e653aa8e4"
+    },
+    {
+      "id": "EVD-002",
+      "path": "records/CI-PORTABILITY-20260916/evidence/main-discriminator.json",
+      "kind": "execution",
+      "supports": [
+        "MET-001"
+      ],
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-16T06:44:53.346741+00:00",
+      "sha256": "7a0145b304fe02dc2e3380ec648a1f1138596d570829e7cd3cb14b425db5256e"
+    },
+    {
+      "id": "EVD-003",
+      "path": "records/CI-PORTABILITY-20260916/evidence/main-review.md",
+      "kind": "review",
+      "supports": [
+        "MET-001"
+      ],
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-16T06:44:53.346741+00:00",
+      "sha256": "f39104a0472141fca2c39ddf79231bcff45805c9a49f9fbc0b589ebe51880ae4",
+      "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-001",
+      "implementation_task_ids": [
+        "IT-001",
+        "IT-002"
+      ],
+      "paths": [
+        "tools/validate_repository.py",
+        "tools/tests/test_validate_repository.py",
+        "records/REIN-CH05-16/evidence/evaluator-v3/final.md",
+        "records/REIN-CH05-16/evidence/evaluator-v4/final.md",
+        "records/REIN-CH05-16/evidence/preparation-operator/final.md",
+        "records/REIN-CH05-16/evidence/prerequisites-v3/final.md",
+        "records/REIN-CH05-16/evidence/prerequisites-v4/final.md",
+        "records/REIN-CH08-EDD-20260915/preparation/evaluator-v3-rejected/run/final.md",
+        "records/CI-PORTABILITY-20260916"
+      ],
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002",
+        "EVD-003"
+      ],
+      "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+      "status": "reviewed"
+    }
+  ],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001"
+    ],
+    "evidence_ids": [
+      "EVD-001",
+      "EVD-002",
+      "EVD-003"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "fd7f0a618720e7682621207d4df28411327004ef",
+    "worktree_status": "clean",
+    "ownership": "主线程拥有共享状态；coder 按合同拥有实现路径；保留其他工作",
+    "foreign_paths": [
+      "final.md",
+      "records/REIN-CH05-16/work",
+      "records/ROUND-6-GATES",
+      "records/ROUND-7-CLAUDE-CODE"
+    ],
+    "prepared_at": "2026-09-16T06:31:14.444895+00:00"
+  },
+  "authorization": {
+    "commit": {
+      "status": "authorized",
+      "source_id": "SRC-001"
+    },
+    "push": {
+      "status": "authorized",
+      "source_id": "SRC-001",
+      "scope": [
+        "origin/feat/skill-entry-round-2"
+      ]
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "passed",
+    "remote_ci": "not_started",
+    "remote_ci_revision": null
+  },
+  "actions": [
+    {
+      "id": "ACT-001",
+      "authorization_action": "commit",
+      "kind": "git-commit",
+      "target": "local",
+      "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+      "status": "in_progress",
+      "idempotency_key": "ci-portability-20260916-commit-1",
+      "receipt": null
+    }
+  ],
+  "decisions": [],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "修复引入回归或证据不完整",
+    "steps": [
+      "停止后续交付",
+      "保留原始证据，修复后重跑受影响检查"
+    ],
+    "owner": "main-thread"
+  }
+}

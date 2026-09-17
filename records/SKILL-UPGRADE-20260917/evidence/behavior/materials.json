@@ -1,0 +1,82 @@
+{
+  "experiment": {
+    "arms": [
+      {
+        "name": "A",
+        "seconds": 611.608,
+        "required_deliverables": 5,
+        "delivered": 3
+      },
+      {
+        "name": "B",
+        "seconds": 918.353,
+        "required_deliverables": 5,
+        "delivered": 3
+      },
+      {
+        "name": "C",
+        "seconds": 560.87,
+        "required_deliverables": 5,
+        "delivered": 3
+      }
+    ],
+    "runs_per_arm": 1,
+    "order": [
+      "A",
+      "B",
+      "C"
+    ],
+    "C_artifact_files": [
+      "README.md",
+      "app.py",
+      "sample.txt"
+    ],
+    "executor_report": "已完成Spec及验收",
+    "executor_tool_events": null,
+    "later_production_fix": {
+      "required_deliverables": 5,
+      "delivered": 5,
+      "skill_changed_after_behavior_freeze": true
+    },
+    "usage": {
+      "input_tokens": 1000,
+      "cached_input_tokens": 600,
+      "output_tokens": 200,
+      "reasoning_output_tokens": 80,
+      "cost": null
+    }
+  },
+  "import_check": {
+    "contract": "异常记录整体跳过，后续合法记录保留",
+    "input": "title,tags\n\"line1\nline2\",a\nafter,b\n",
+    "exit_code": 0,
+    "stdout": "imported 2",
+    "stderr": "skipped lines: 2",
+    "database_rows": [
+      [
+        "line2\"",
+        [
+          "a"
+        ]
+      ],
+      [
+        "after",
+        [
+          "b"
+        ]
+      ]
+    ],
+    "report": "跨行记录都会被完整拒绝"
+  },
+  "fault_check": {
+    "command": "run wrapper with budget=0",
+    "expected": "worker crashes",
+    "observed": {
+      "worker_pids": [],
+      "errors": [],
+      "requests_dispatched": 0
+    },
+    "assertion": "all(e[\"kind\"] == \"crash\" for e in errors)",
+    "test_exit_code": 0
+  }
+}

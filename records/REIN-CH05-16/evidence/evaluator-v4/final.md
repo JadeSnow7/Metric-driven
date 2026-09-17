@@ -25,7 +25,9 @@
 
 证据已保存：
 
-- [command-results.json](</Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/evaluator-v4/command-results.json>)
-- [source-hashes.txt](</Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/evaluator-v4/source-hashes.txt>)
+本报告仅规范化链接以便可移植展示，不改变评估结果或原始证据。
+
+- [command-results.json](command-results.json)
+- [source-hashes.txt](source-hashes.txt)
 
 剩余边界：自然语言改写的完整语义仍需人工复核，机械 oracle 不替代内容质量审查。

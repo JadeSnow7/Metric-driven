@@ -47,6 +47,7 @@ license: Apache-2.0
 - 亲自读取命令、原始输出、退出码和实际 diff。子代理回报作为核查入口；原始记录与当前版本匹配且支持结论时，作为验收证据使用。
 - 检查分别记录 `passed`、`failed`、`undetermined` 或未运行，结论限定到实测版本、环境和输入范围。内容变化后重跑受影响检查，旧证据标记 `stale`。
 - 按风险选择能区分正确与错误实现的检查；小修复覆盖相关边界，复杂行为增加集成或端到端检查。失败后依据契约修正实现；需求变化时先更新契约和验收依据。
+- 过程型验证须证明目标路径实际触发，并选择能区分错误实现的检查；最终产物不能反推过程。具体证据方法按需读取 [metrics-and-evidence.md](references/metrics-and-evidence.md)。
 - 用实际运行核实原因，分别说明多个原因的证据。工作区核查覆盖已跟踪及未跟踪文件；远程 CI、部署等状态注明来源与核验时间。
 
 ### 授权与动作
@@ -80,6 +81,7 @@ license: Apache-2.0
 | 分层、模块拆分、API、状态与兼容设计 | [design.md](references/design.md) |
 | 结构化记录、状态与编号 | [records.md](references/records.md) |
 | 指标、执行证据与门槛 | [metrics-and-evidence.md](references/metrics-and-evidence.md) |
+| 受控实验、比较与复评 | [experiments.md](references/experiments.md) |
 | 委派、完成回报与交接 | [delegation-and-handoffs.md](references/delegation-and-handoffs.md) |
 | 档位示例 | [examples.md](references/examples.md) |
 | 写作文档与报告 | [writing.md](references/writing.md) |

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "skill/veriflow/scripts/validate_task.py",
+    "records/SKILL-UPGRADE-20260917/task-state.json",
+    "--repo",
+    ".",
+    "--print-revision"
+  ],
+  "environment": {
+    "VERIFLOW_GIT_TIMEOUT": "3"
+  },
+  "exit_code": 2,
+  "provenance": "transcribed from main tool response, not a raw process log",
+  "result": "undetermined",
+  "observed_error": "git diff --name-only -z --no-renames --no-ext-diff 331db211b2b7e0ca88dd92df2ebb54a89b699b79 -- timed out after 3 s"
+}

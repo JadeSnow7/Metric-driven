@@ -19,8 +19,10 @@
 
 证据已保存：
 
-- [ts-full-output.log](/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/prerequisites-v4/ts-full-output.log)
-- [rust-full-output.log](/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/prerequisites-v4/rust-full-output.log)
-- [verification-meta.txt](/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/prerequisites-v4/verification-meta.txt)
+本报告仅规范化链接以便可移植展示，不改变前置条件结论或原始证据。
+
+- [ts-full-output.log](ts-full-output.log)
+- [rust-full-output.log](rust-full-output.log)
+- [verification-meta.txt](verification-meta.txt)
 
 未提交、未推送，未触碰根目录 tools 或评估数据集。

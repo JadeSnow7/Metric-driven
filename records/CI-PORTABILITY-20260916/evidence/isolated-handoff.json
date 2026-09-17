@@ -1,0 +1,40 @@
+{
+  "source_root": "/Users/huaodong/Documents/evidence-driven-development",
+  "destination_root": "/private/tmp/veriflow-ci-delivery-20260916",
+  "source_base": "fd7f0a618720e7682621207d4df28411327004ef",
+  "reason": "source .git pack files have dataless flags; git mmap failed: Operation canceled",
+  "files": [
+    {
+      "path": "tools/validate_repository.py",
+      "sha256": "995f3e09eea154ed257dfd8470db08e0aedf95d2863a88012cc4adb02a3ba3fc"
+    },
+    {
+      "path": "tools/tests/test_validate_repository.py",
+      "sha256": "d6c1bf2e8f31fe4ae36d4675c24335a0b9cc9b4f738984835e980bd703d88479"
+    },
+    {
+      "path": "records/REIN-CH05-16/evidence/evaluator-v3/final.md",
+      "sha256": "6e782bbc014a4f0223bb3e214809796cae62facf5c663b9485754b4f77ed6c3b"
+    },
+    {
+      "path": "records/REIN-CH05-16/evidence/evaluator-v4/final.md",
+      "sha256": "5a67832f661c205f5e809b33d1b399235bd41a16c8df19e20d22ac72ce54a00e"
+    },
+    {
+      "path": "records/REIN-CH05-16/evidence/preparation-operator/final.md",
+      "sha256": "a9e394ae783de78eebe7672deeefb4ce5c879c0a9e36d7aaf4433e5d8280a382"
+    },
+    {
+      "path": "records/REIN-CH05-16/evidence/prerequisites-v3/final.md",
+      "sha256": "06ecbdec32ea26b5254b334459dd9fa6c75c5784a1076e769d29e45e7dcc6c65"
+    },
+    {
+      "path": "records/REIN-CH05-16/evidence/prerequisites-v4/final.md",
+      "sha256": "80faada95043bd9fa57415050324808124c4a39cf7b65d51b275b49b20b7f283"
+    },
+    {
+      "path": "records/REIN-CH08-EDD-20260915/preparation/evaluator-v3-rejected/run/final.md",
+      "sha256": "60a05c840da4ea2f775baf19b6bda6fbb6f24d52d825d74b9ac9f8752b4906f0"
+    }
+  ]
+}

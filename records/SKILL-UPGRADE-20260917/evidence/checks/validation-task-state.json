@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.3",
+  "spec": {
+    "version": "UPGRADE-1",
+    "authority": "state.spec",
+    "source_ids": [
+      "SRC-001"
+    ],
+    "goal_ref": "discovery.expected_outcome",
+    "scope_ref": "discovery.scope",
+    "constraints": [
+      "保留原有改动和历史实验",
+      "不修改脚本、schema和授权语义",
+      "轻量任务不增加记录配额",
+      "不宣称普遍收益"
+    ],
+    "exceptions": [],
+    "conditions": [
+      {
+        "id": "SC-01",
+        "metric_ids": [
+          "MET-001"
+        ],
+        "deliverables": [
+          "skill/veriflow/SKILL.md",
+          "skill/veriflow/references/metrics-and-evidence.md",
+          "skill/veriflow/references/delegation-and-handoffs.md",
+          "skill/veriflow/references/writing.md",
+          "skill/veriflow/references/examples.md",
+          "skill/veriflow/references/experiments.md"
+        ]
+      },
+      {
+        "id": "SC-02",
+        "metric_ids": [
+          "MET-002"
+        ],
+        "deliverables": [
+          "skill/veriflow/SKILL.md",
+          "skill/veriflow/references/metrics-and-evidence.md",
+          "skill/veriflow/references/delegation-and-handoffs.md",
+          "skill/veriflow/references/writing.md",
+          "skill/veriflow/references/examples.md",
+          "skill/veriflow/references/experiments.md"
+        ]
+      }
+    ],
+    "contracts": [],
+    "open_items": []
+  },
+  "task": {
+    "id": "SKILL-UPGRADE-20260917",
+    "title": "根据近期实验改进验证与评估方法",
+    "mode": "new",
+    "status": "in_progress",
+    "source_ids": [
+      "SRC-001"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "使用 Veriflow 的开发代理与用户",
+    "scenario": "从实验失败中改进验证与结论",
+    "problem": "区分性验证与过程证据界限尚不充分",
+    "expected_outcome": "将已观察失败转成按需验证指导，并保持轻量工作流",
+    "scope": "六份 skill 文档和本任务记录；不改工具/schema、历史结果或执行外部交付",
+    "acceptable_result": "可追溯到实验的规则、完整冻结基线、静态与独立场景检查和诚实边界"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-17:根据近期实验结果为我升级skill",
+      "summary": "基于近期实验更新当前 veriflow skill",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "将已观察失败转成按需验证指导，并保持轻量工作流",
+      "scope": [
+        "skill/veriflow/SKILL.md",
+        "skill/veriflow/references/metrics-and-evidence.md",
+        "skill/veriflow/references/delegation-and-handoffs.md",
+        "skill/veriflow/references/writing.md",
+        "skill/veriflow/references/examples.md",
+        "skill/veriflow/references/experiments.md"
+      ],
+      "non_goals": [
+        "全面重新跑A/B/C",
+        "原仓库提交推送"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "近期现有实验足以支持窄范围指导修订"
+      ],
+      "status": "in_progress",
+      "metric_ids": [
+        "MET-001",
+        "MET-002"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "规则来源、差异与完整性",
+      "baseline": "evidence/baseline.json 冻结29文件",
+      "target": "只改限定文档；规则可追溯且不重复现有机制",
+      "method": "逐文件差异及来源映射审查",
+      "environment_data": "本地冻结文件与历史原始材料",
+      "evidence_ids": [],
+      "status": "undetermined",
+      "verification": "manual"
+    },
+    {
+      "id": "MET-002",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "结构、链接与有限行为场景",
+      "baseline": "现有工具未改；过程样本缺原始时序记录",
+      "target": "格式链接通过，独立场景能准确限制结论、检出无效验证并保持轻量",
+      "method": "quick_validate，隔离仓库校验，独立前向场景审查",
+      "environment_data": "macOS；无生产服务与外部动作",
+      "evidence_ids": [],
+      "status": "undetermined",
+      "verification": "manual"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "六份 skill 文档和本任务记录；不改工具/schema、历史结果或执行外部交付",
+      "file_scope": [
+        "skill/veriflow/SKILL.md",
+        "skill/veriflow/references/metrics-and-evidence.md",
+        "skill/veriflow/references/delegation-and-handoffs.md",
+        "skill/veriflow/references/writing.md",
+        "skill/veriflow/references/examples.md",
+        "skill/veriflow/references/experiments.md"
+      ],
+      "interface_constraints": [
+        "保留原有改动和历史实验",
+        "不修改脚本、schema和授权语义",
+        "轻量任务不增加记录配额",
+        "不宣称普遍收益"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001",
+        "MET-002"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "coder upgrade_skill",
+      "status": "in_progress"
+    }
+  ],
+  "evidence": [],
+  "changes": [],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001",
+      "MET-002"
+    ],
+    "evidence_ids": [],
+    "status": "undetermined"
+  },
+  "baseline": {
+    "git_ref": "db53dc4555021e06ede9e88447c82664bcaf6f25",
+    "worktree_status": "dirty_dependency_confirmed",
+    "ownership": "临时副本：冻结原目录29文件作为本地基线，六份候选文档为本任务改动；无生产资源",
+    "foreign_paths": [],
+    "prepared_at": "2026-09-17T03:22:24.406096+00:00"
+  },
+  "binding": {
+    "receipt_paths": []
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "not_started",
+    "remote_ci": "not_started",
+    "remote_ci_revision": null
+  },
+  "actions": [],
+  "decisions": [],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "候选指导导致行为回归",
+    "steps": [
+      "按冻结基线逐文件审查并修订候选，不覆盖其他编辑"
+    ],
+    "owner": "main-thread"
+  }
+}
