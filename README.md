@@ -1,8 +1,28 @@
-# Evidence-Driven Development Skill
+# Veriflow
+
+Veriflow 的产品职责是 **验证驱动的编排**：验收契约、任务拆解与依赖、跨 Agent 调度、验证、失败诊断与修复安排、证据组织及整体验收。
+
+**当前 main 实现仍是 Evidence-Driven Development Skill 与只读记录校验器，没有独立编排引擎。** 产品边界与下文的契约候选描述后续实现方向，不把未来能力记为已经完成。
 
 一个面向 Codex 的工程方法 skill：把模糊或复杂的软件开发请求整理成可交付链条，并用真实 diff、可复查证据、明确权限和停止条件约束执行。
 
 它解决的不是“怎样写更多流程文档”，而是四个容易失真的位置：需求尚未支持实现决策、指标与任务错位、代理自报通过、以及恢复任务时重复产生副作用。
+
+## 产品分工与实现状态
+
+| 项目 | 拥有的职责 | 稳定交接的方向 |
+| --- | --- | --- |
+| Veriflow | AcceptanceContract、任务图、尝试分派、验证计划与结果、诊断/修复策略、证据包和人工审阅结论 | 通过 RuntimePort 提交一个有界尝试；聚合证据后决定工作流是否通过 |
+| [Rein](https://github.com/JadeSnow7/Rein) | 单 Agent 的模型适配、上下文、工具循环、权限执行、局部预算、取消、恢复、事件和原始回执 | 执行已经分派的尝试；不替 Veriflow 计算任务依赖或整体验收 |
+| [Web Studio](https://github.com/JadeSnow7/Web-Studio) | Web 工作空间、浏览器/终端、CDP、页面操作、截图/日志/状态观测、预览、调试与审阅界面 | 提供受信环境能力和原始观测；人工决定绑定当前候选版本返回 |
+
+| 位置 | 已有能力与限制 |
+| --- | --- |
+| main：`skill/evidence-driven-development/` | 工程方法、模板、schema 1.1 记录与 `validate_task.py` 门槛；宿主或人负责实际执行与调度 |
+| 未合并的 [PR #3](https://github.com/JadeSnow7/Veriflow/pull/3)，审查提交 `422f012` | `skill/veriflow/`、schema 1.3 的 Spec 绑定、执行记录器、整合辅助与 Claude Code 包装；不是 main 能力，也不是独立任务图调度器 |
+| 本轮 [编排与验证契约候选](contracts/orchestration-v0.1.md) | 定义跨层职责、数据绑定与验收语义；没有新增调度器、会话创建器或 RuntimePort adapter |
+
+本轮决定、在途 PR 的兼容处理和实施切片见 [DECISIONS.md](DECISIONS.md)。保留现有 skill 名称、路径、记录 schema 与 CLI，不为产品定位重命名或搬迁源码。
 
 ## 仓库结构
 
@@ -16,6 +36,8 @@ skill/evidence-driven-development/
 └── tests/test_scenarios.py          # 隔离临时仓库中的关键反例与放行路径
 tools/validate_repository.py         # 仓库结构与内部链接检查（不属于 skill 本体）
 .github/workflows/ci.yml             # 在 Python 3.11–3.13 上运行仓库已有检查
+contracts/orchestration-v0.1.md      # 待实现的编排/验证契约，引用 Rein RuntimePort
+DECISIONS.md                        # 当前产品边界、审查依据与实施切片
 ```
 
 ## 安装
@@ -87,13 +109,15 @@ python3 skill/evidence-driven-development/scripts/validate_task.py records/TASK-
 
 `1.0` 记录的迁移步骤见 [records.md](skill/evidence-driven-development/references/records.md) 的 `task-state.json` 一节。
 
-## 能力边界
+## 当前实现与产品边界
 
-- 不是项目管理平台、测试框架、CI 服务或发布系统。
-- 不自动创建新会话、子代理、worktree、提交、远程仓库或部署。
+- Veriflow 面向开发任务的编排与验证，仍不做通用项目管理平台、测试框架、CI 服务或部署平台。
+- 当前 skill 与校验脚本不自动创建新会话、子代理、worktree、提交、远程仓库或部署；已有委派/交接规则由宿主在用户授权范围内执行。此处是当前实现说明，不是对未来 orchestration adapter 的永久禁止。
+- 后续调度器通过显式执行策略与能力协商调用 Rein/provider；跨 Agent 选择、全局预算、依赖和修复属于 Veriflow，单次执行控制属于 Rein。commit / push / merge / deploy 仍分别受用户已有授权与宿主权限约束。
 - 不把搜索结果、代理建议或通过的 CI 当作用户授权。
 - 不保证节省 token，也不要求每个小修复生成全套记录。
 - 自动化检查只覆盖它实际读取到的结构和状态，不替代人类对产品结果的判断。
+- 不直接操作 Rein 的 SQLite/会话状态，也不将 runtime 完成或局部 verifier 通过直接写成工作流通过。
 
 ## 许可证
 
