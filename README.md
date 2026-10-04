@@ -1,10 +1,27 @@
-# Veriflow Skill
+# Veriflow
+
+Veriflow 的产品职责是 **验证驱动的编排**：验收契约、任务拆解与依赖、跨 Agent 调度、验证、失败诊断与修复安排、证据组织及整体验收。
+
+**当前 main 已包含 Veriflow skill、schema 1.3、执行记录器与整合辅助工具，没有独立编排引擎或 RuntimePort adapter。** 产品边界与下文的契约候选描述后续实现方向，不把未来能力记为已经完成。
 
 一个面向 Codex 与 Claude Code 的工程方法 skill：把模糊或复杂的软件开发请求整理成可交付链条，并用真实 diff、可复查证据、明确权限和停止条件约束执行。
 
-项目仓库：[JadeSnow7/Veriflow](https://github.com/JadeSnow7/Veriflow)
+它解决的不是“怎样写更多流程文档”，而是四个容易失真的位置：需求尚未支持实现决策、指标与任务错位、代理自报通过、以及恢复任务时重复产生副作用。
 
-它连接需求就绪、设计边界、指标验收和恢复执行：明确模块职责与 API 契约，用原始证据核验代理产物，并追踪有副作用的动作。
+## 产品分工与实现状态
+
+| 项目 | 拥有的职责 | 稳定交接的方向 |
+| --- | --- | --- |
+| Veriflow | AcceptanceContract、任务图、尝试分派、验证计划与结果、诊断/修复策略、证据包和人工审阅结论 | 通过 RuntimePort 提交一个有界尝试；聚合证据后决定工作流是否通过 |
+| [Rein](https://github.com/JadeSnow7/Rein) | 单 Agent 的模型适配、上下文、工具循环、权限执行、局部预算、取消、恢复、事件和原始回执 | 执行已经分派的尝试；不替 Veriflow 计算任务依赖或整体验收 |
+| [Web Studio](https://github.com/JadeSnow7/Web-Studio) | Web 工作空间、浏览器/终端、CDP、页面操作、截图/日志/状态观测、预览、调试与审阅界面 | 提供受信环境能力和原始观测；人工决定绑定当前候选版本返回 |
+
+| 位置 | 已有能力与限制 |
+| --- | --- |
+| 已合并的 [PR #3](https://github.com/JadeSnow7/Veriflow/pull/3)，审查提交 `422f012` | `skill/veriflow/`、schema 1.3 的 Spec 绑定、执行记录器、整合辅助与 Claude Code 包装；已进入 main，仍不是独立任务图调度器 |
+| 本轮 [编排与验证契约候选](contracts/orchestration-v0.1.md) | 定义跨层职责、数据绑定与验收语义；没有新增调度器、会话创建器或 RuntimePort adapter |
+
+当前决定、历史版本的兼容处理和实施切片见 [DECISIONS.md](DECISIONS.md)。保留现有 skill 名称、路径、记录 schema 与 CLI，不为产品定位重命名或搬迁源码。
 
 ## 仓库结构
 
