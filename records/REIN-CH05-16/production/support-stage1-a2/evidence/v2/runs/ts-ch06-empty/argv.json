@@ -1,0 +1,11 @@
+[
+  "npm",
+  "run",
+  "--silent",
+  "ch06:offline",
+  "--workspace",
+  "ts",
+  "--",
+  "normal",
+  "/private/tmp/rein-stage1-support-run-v2/stage1-empty"
+]

@@ -1,0 +1,106 @@
+{
+  "before": {
+    "ts/src/rein/adapters.ts": "deee1e2ee5b2981a499f1ad2044de7d9253ba853fe6a9af831387a2048e7eb0b",
+    "ts/src/rein/contracts.ts": "878809d4036113c1c8aba9a55788cba12615de87c15666a01c98588b57eec2ee",
+    "ts/src/rein/readonly.ts": "d9c29b3fc3b1c03bc2c116569eadbfaac66da08121e05b2dad6e512b9fe4997b",
+    "ts/tests/record.test.ts": "b425db8e6402c6652ca816747679033939db7978f52f0426ec105edf787ad747",
+    "ts/tests/hello.test.ts": "c72fc83a770853edddad45dfaa6c8271f5baca39a61712c8966b41ae2747b79a",
+    "ts/tests/README.md": "fccb7297d70e7855a839a7ec368bee36c8d19c6e75421f45794438eeb5480888",
+    "ts/tests/rein-prerequisites.test.ts": "e8252cabb0d0d56723eea54a52a57769b6802beed6c9e2f2518306c539430ec6",
+    "ts/tests/chat.test.ts": "5b93295f7024b1bfa02336310115a7fa759786fb0f649a57ba9ff089ba409575",
+    "ts/tests/transport.test.ts": "8671a3a8eb866b57c5bd86a6a4ce77acd3519a6efc12feaf43e8b3879c57e67e",
+    "ts/tests/config.test.ts": "5db52ee18d46fd3dcaf1c285105deb8c1b499b25086b982f6a13e5e4bbbe3f51",
+    "ts/tests/recorded.test.ts": "a23eaf9a01cab64c599d4bb6cae6fef6485be0a9ea0e91c225763db18ae9f238",
+    "rust/src/rein/mod.rs": "98d11ad987075a6741df306e119d44ec1089267ed966fc6af1749a94d923ebd7",
+    "rust/tests/prerequisites.rs": "fc5189a39c566d63085c74dace6a555b3764cb4b2d6748953757187fcedc546f",
+    "rust/tests/README.md": "9992f9348ba5f31802ed3fa0e048cb4cc815a386fd86c275603050a458c07a6b",
+    "fixtures/cases/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixtures/cases/prerequisites.json": "b12cd8ba9f4d082ef8d4d8185ca5f47ea5b706aa2932d0c4e411e783a361c6cb",
+    "contracts/README.md": "ad6e529f6ad7eb29a5b87506e0f2db1768cd801f1e258a7cf3c2feacfbfd4ad5",
+    "rust/Cargo.toml": "c86150d3f883c14715f6736ffd9d6dd2ca1f2339982133345a2a203219e79b2e",
+    "rust/Cargo.lock": "4665aba2dfe3a3c83545b0a1df454fe554d99abf44b250fb276b421926bc6d0a",
+    "rust/src/lib.rs": "5d24a462295c6676ab83ba0b29dd63d3b462ba319226881484b90c25cf52ef38",
+    "ts/package.json": "385c313115738a2d971e9638a29c9f43a12ff93bd3cbfc15d666e2ed01f0fec2"
+  },
+  "after": {
+    "ts/src/rein/adapters.ts": "deee1e2ee5b2981a499f1ad2044de7d9253ba853fe6a9af831387a2048e7eb0b",
+    "ts/src/rein/contracts.ts": "878809d4036113c1c8aba9a55788cba12615de87c15666a01c98588b57eec2ee",
+    "ts/src/rein/readonly.ts": "d9c29b3fc3b1c03bc2c116569eadbfaac66da08121e05b2dad6e512b9fe4997b",
+    "ts/tests/record.test.ts": "b425db8e6402c6652ca816747679033939db7978f52f0426ec105edf787ad747",
+    "ts/tests/hello.test.ts": "c72fc83a770853edddad45dfaa6c8271f5baca39a61712c8966b41ae2747b79a",
+    "ts/tests/README.md": "fccb7297d70e7855a839a7ec368bee36c8d19c6e75421f45794438eeb5480888",
+    "ts/tests/rein-prerequisites.test.ts": "e8252cabb0d0d56723eea54a52a57769b6802beed6c9e2f2518306c539430ec6",
+    "ts/tests/chat.test.ts": "5b93295f7024b1bfa02336310115a7fa759786fb0f649a57ba9ff089ba409575",
+    "ts/tests/transport.test.ts": "8671a3a8eb866b57c5bd86a6a4ce77acd3519a6efc12feaf43e8b3879c57e67e",
+    "ts/tests/config.test.ts": "5db52ee18d46fd3dcaf1c285105deb8c1b499b25086b982f6a13e5e4bbbe3f51",
+    "ts/tests/recorded.test.ts": "a23eaf9a01cab64c599d4bb6cae6fef6485be0a9ea0e91c225763db18ae9f238",
+    "rust/src/rein/mod.rs": "98d11ad987075a6741df306e119d44ec1089267ed966fc6af1749a94d923ebd7",
+    "rust/tests/prerequisites.rs": "fc5189a39c566d63085c74dace6a555b3764cb4b2d6748953757187fcedc546f",
+    "rust/tests/README.md": "9992f9348ba5f31802ed3fa0e048cb4cc815a386fd86c275603050a458c07a6b",
+    "fixtures/cases/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixtures/cases/prerequisites.json": "b12cd8ba9f4d082ef8d4d8185ca5f47ea5b706aa2932d0c4e411e783a361c6cb",
+    "contracts/README.md": "ad6e529f6ad7eb29a5b87506e0f2db1768cd801f1e258a7cf3c2feacfbfd4ad5",
+    "rust/Cargo.toml": "c86150d3f883c14715f6736ffd9d6dd2ca1f2339982133345a2a203219e79b2e",
+    "rust/Cargo.lock": "4665aba2dfe3a3c83545b0a1df454fe554d99abf44b250fb276b421926bc6d0a",
+    "rust/src/lib.rs": "5d24a462295c6676ab83ba0b29dd63d3b462ba319226881484b90c25cf52ef38",
+    "ts/package.json": "385c313115738a2d971e9638a29c9f43a12ff93bd3cbfc15d666e2ed01f0fec2"
+  },
+  "commands": [
+    {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.7190157920122147,
+      "stdout": "\n> rein-book@0.1.0 typecheck\n> npm run typecheck --workspace ts\n\n\n> @rein/ts@0.0.0 typecheck\n> tsc --noEmit\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "npm",
+        "run",
+        "test",
+        "--workspace",
+        "ts",
+        "--",
+        "tests/rein-prerequisites.test.ts"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.4752815420506522,
+      "stdout": "\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests tests/rein-prerequisites.test.ts\n\n\n RUN  v2.1.9 /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/ts\n\n ✓ tests/rein-prerequisites.test.ts (7 tests) 6ms\n\n Test Files  1 passed (1)\n      Tests  7 passed (7)\n   Start at  18:31:19\n   Duration  192ms (transform 26ms, setup 0ms, collect 24ms, tests 6ms, environment 0ms, prepare 40ms)\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.2656622499926016,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--locked",
+        "--offline",
+        "--test",
+        "prerequisites"
+      ],
+      "exit": 0,
+      "duration_seconds": 3.5621401669923216,
+      "stdout": "\nrunning 5 tests\ntest tools_use_real_fixture_and_bind_actual_ids ... ok\ntest shared_fixture_and_replay_are_structured ... ok\ntest malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok\ntest symlink_escape_is_rejected ... ok\ntest concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s\n\n",
+      "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.01s\n     Running tests/prerequisites.rs (/private/tmp/rein-ch05-cargo-target/debug/deps/prerequisites-f3a192991d055a1f)\n"
+    }
+  ]
+}

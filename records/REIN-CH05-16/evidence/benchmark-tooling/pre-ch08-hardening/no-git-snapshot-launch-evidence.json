@@ -1,0 +1,45 @@
+{
+  "scope": "pre-ch08 benchmark-tooling hardening",
+  "chapter_runtime_started": false,
+  "source": {
+    "ch05_launches": [
+      "/private/tmp/rein-benchmark-executions/ch05/a/launch.json",
+      "/private/tmp/rein-benchmark-executions/ch05/b/launch.json"
+    ],
+    "observed_model": "gpt-5.6-luna",
+    "observed_cli_version": "0.154.0",
+    "observed_argv_shape": [
+      "codex", "exec", "--ephemeral", "--json", "--approve-for-me",
+      "--disable", "memories", "--disable", "multi_agent", "-C",
+      "<workspace>", "--add-dir", "<evidence>", "-m", "gpt-5.6-luna",
+      "-c", "model_reasoning_effort=\"medium\"", "-c",
+      "developer_instructions=<json>", "-o", "<final.md>", "-"
+    ]
+  },
+  "snapshot_check": {
+    "pair_ready_a_has_git": true,
+    "pair_ready_b_has_git": true,
+    "prepare_default_copy_git": false,
+    "implication": "A default prepare output is a no-.git snapshot, while the current build_argv does not include --skip-git-repo-check."
+  },
+  "codex_exec_help_evidence": {
+    "command": "codex exec --help",
+    "cli_version_observed": "0.154.0",
+    "relevant_flags_present": [
+      "--disable <FEATURE>",
+      "--sandbox <SANDBOX_MODE>",
+      "--approve-for-me",
+      "--add-dir <DIR>",
+      "--skip-git-repo-check",
+      "--ephemeral",
+      "--json"
+    ],
+    "current_build_argv_includes_skip_git_repo_check": false
+  },
+  "recommendation": "Before running a benchmark from prepare(..., copy_git=None), decide whether build_argv should include the CLI's --skip-git-repo-check. This is a launch-contract decision and was not changed in this hardening patch.",
+  "limitations": [
+    "No real chapter or model execution was started for this check.",
+    "The help output establishes flag availability; it does not by itself prove a full no-.git run.",
+    "This record is evidence for primary-thread review, not chapter acceptance."
+  ]
+}

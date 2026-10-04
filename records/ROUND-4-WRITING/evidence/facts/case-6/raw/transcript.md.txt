@@ -1,0 +1,17 @@
+# Transcript
+
+1. 读取 skill：`cat skill-iteration-3/SKILL.md`，以及 `references/workflow.md`（恢复执行）、`metrics-and-evidence.md`、`records.md`、`examples.md`
+2. 核验仓库状态：`git status`、`git log --oneline --all`、`git rev-parse HEAD`（de14e0b，main 与 origin/main 一致；inventory.py、tests/test_inventory.py 有改动未提交；records/ 未跟踪）
+3. 读取任务记录与改动：`cat records/TASK-008/task-summary.md`、`git diff`、`cat inventory.py tests/test_inventory.py`
+4. 核对远程与时间：`git branch -vv`、`git remote -v`、`git ls-remote ../origin.git`（远程 main=de14e0b）、`git log -1 --format='%H %ci'`（基线提交 2026-09-14 02:31，晚于记录里的验证时间 09-12 18:40）；记录中没有原始证据文件或版本绑定
+5. 修改前重跑记录中的验证：`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -t . -v` → 12 项 1 项失败（test_remove_item_to_zero_deletes），exit 1；判定旧证据 stale、当前 failed
+6. 复现成因：`python3 -c '...add 2, remove 2...'` → `{'apple': 0}`，names=['apple']；`remaining < 0` 永远不成立
+7. 修实现（不改测试）：inventory.py 中 `if remaining < 0:` → `if remaining == 0:`；task-summary.md 标注旧验证已失效
+8. 修复后重跑：`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -t . -v` → Ran 12 tests, OK，exit 0
+9. 手动边界检查脚本：剩 1 保留、降到 0 删除、删除后再加、不足/未知商品/数量 0 或 -1 抛 ValueError 且库存不变 → 全部符合
+10. 审查最终 diff 与身份：`git diff -- inventory.py`、`git config user.name/user.email`、`git status --short --untracked-files=all`
+11. 只暂存本任务路径并确认一致：`git add -- inventory.py tests/test_inventory.py`、`git diff --quiet -- <两个路径>`（暂存区 == 工作区）
+12. 本地提交（用户在对话中授权）：`git commit -m "TASK-008: add Inventory.remove_item ..."` → b7a79dc；`git show --stat HEAD`；`git diff HEAD --quiet -- <两个路径>`（提交内容 == 被测内容）；`git rev-parse HEAD origin/main`（origin/main 仍为 de14e0b）
+13. 更新 records/TASK-008/task-summary.md 到当前状态（未纳入提交）
+14. 未执行 push（未获授权）
+15. 写入 outputs/final_reply.md 与 outputs/transcript.md

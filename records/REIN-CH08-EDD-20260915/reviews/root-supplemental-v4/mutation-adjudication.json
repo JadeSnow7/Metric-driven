@@ -1,0 +1,436 @@
+{
+  "Quartz": {
+    "runHash": "83bd206d837097b84e26225514cdd5c50a8eacb1cba6fce29a47835c54fdc8df",
+    "dataHash": "e940689186a0f7772776d6c5beae0c905e9f83ee2e77e7abe1a0e44ebbf43942",
+    "rows": [
+      {
+        "taskId": "task-01",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "传输方式：HTTP（来源：doc-01）\n协议版本：rein-extension/0.1（来源：doc-01）",
+          "claims": [
+            {
+              "field": "传输方式",
+              "value": "HTTP",
+              "source": "doc-01"
+            },
+            {
+              "field": "协议版本",
+              "value": "rein-extension/0.1",
+              "source": "doc-01"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      },
+      {
+        "taskId": "task-01",
+        "strategy": "window",
+        "quality": 0.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-01",
+        "strategy": "summary",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "传输方式：HTTP（来源：doc-01）\n协议版本：rein-extension/0.1（来源：doc-01）",
+          "claims": [
+            {
+              "field": "传输方式",
+              "value": "HTTP",
+              "source": "doc-01"
+            },
+            {
+              "field": "协议版本",
+              "value": "rein-extension/0.1",
+              "source": "doc-01"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      },
+      {
+        "taskId": "task-01",
+        "strategy": "retrieval",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "传输方式：HTTP（来源：doc-01）\n协议版本：rein-extension/0.1（来源：doc-01）",
+          "claims": [
+            {
+              "field": "传输方式",
+              "value": "HTTP",
+              "source": "doc-01"
+            },
+            {
+              "field": "协议版本",
+              "value": "rein-extension/0.1",
+              "source": "doc-01"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源：doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "window",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源：doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "summary",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源：doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "retrieval",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源：doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "批准状态：需要重新批准（来源：doc-03）\n处理动作：停止并重新读取基线（来源：doc-05）",
+          "claims": [
+            {
+              "field": "批准状态",
+              "value": "需要重新批准",
+              "source": "doc-03"
+            },
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "window",
+        "quality": 0.5,
+        "answer": {
+          "rawAnswer": "处理动作：停止并重新读取基线（来源：doc-05）",
+          "claims": [
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "summary",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "批准状态：需要重新批准（来源：doc-03）\n处理动作：停止并重新读取基线（来源：doc-05）",
+          "claims": [
+            {
+              "field": "批准状态",
+              "value": "需要重新批准",
+              "source": "doc-03"
+            },
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "retrieval",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "批准状态：需要重新批准（来源：doc-03）\n处理动作：停止并重新读取基线（来源：doc-05）",
+          "claims": [
+            {
+              "field": "批准状态",
+              "value": "需要重新批准",
+              "source": "doc-03"
+            },
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "window",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "summary",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "retrieval",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      }
+    ]
+  },
+  "Larch": {
+    "runHash": "ee41478b8a90d049e0604e97380f8a8a231790f6618e79e4b36359fa00082918",
+    "dataHash": "63d68b88000acb37247d8cb3a10bbc7950a255e44c554bdea905cc3fac653002",
+    "rows": [
+      {
+        "taskId": "task-01",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "传输方式：Unix socket（来源：doc-01）\n协议版本：rein-extension/0.1（来源：doc-01）",
+          "claims": [
+            {
+              "field": "传输方式",
+              "value": "Unix socket",
+              "source": "doc-01"
+            },
+            {
+              "field": "协议版本",
+              "value": "rein-extension/0.1",
+              "source": "doc-01"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源：doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "on-demand",
+        "quality": 1.0,
+        "answer": {
+          "rawAnswer": "批准状态：需要重新批准（来源：doc-03）\n处理动作：停止并重新读取基线（来源：doc-05）",
+          "claims": [
+            {
+              "field": "批准状态",
+              "value": "需要重新批准",
+              "source": "doc-03"
+            },
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "on-demand",
+        "quality": 0.0,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      }
+    ]
+  },
+  "Slate": {
+    "runHash": "0b6d5478dcf5d634639e22d22fccd01a1b78eea7c8c26dc092da83422fdc089c",
+    "dataHash": "e940689186a0f7772776d6c5beae0c905e9f83ee2e77e7abe1a0e44ebbf43942",
+    "rows": [
+      {
+        "taskId": "task-01",
+        "strategy": "on-demand",
+        "quality": 1,
+        "answer": {
+          "rawAnswer": "传输方式：HTTP（来源:doc-01）\n协议版本：rein-extension/0.1（来源:doc-01）",
+          "claims": [
+            {
+              "field": "传输方式",
+              "value": "HTTP",
+              "source": "doc-01"
+            },
+            {
+              "field": "协议版本",
+              "value": "rein-extension/0.1",
+              "source": "doc-01"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": "CHECK_QUALITY_EXACT"
+      },
+      {
+        "taskId": "task-02",
+        "strategy": "on-demand",
+        "quality": 1,
+        "answer": {
+          "rawAnswer": "检查命令：npm run ch08:verify（来源:doc-06）",
+          "claims": [
+            {
+              "field": "检查命令",
+              "value": "npm run ch08:verify",
+              "source": "doc-06"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-03",
+        "strategy": "on-demand",
+        "quality": 1,
+        "answer": {
+          "rawAnswer": "批准状态：需要重新批准（来源:doc-03）\n处理动作：停止并重新读取基线（来源:doc-05）",
+          "claims": [
+            {
+              "field": "批准状态",
+              "value": "需要重新批准",
+              "source": "doc-03"
+            },
+            {
+              "field": "处理动作",
+              "value": "停止并重新读取基线",
+              "source": "doc-05"
+            }
+          ],
+          "insufficientEvidence": false
+        },
+        "failure": null
+      },
+      {
+        "taskId": "task-04",
+        "strategy": "on-demand",
+        "quality": 1,
+        "answer": {
+          "rawAnswer": "",
+          "claims": [],
+          "insufficientEvidence": true
+        },
+        "failure": null
+      }
+    ]
+  }
+}

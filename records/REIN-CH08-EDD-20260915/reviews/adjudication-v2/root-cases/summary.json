@@ -1,0 +1,38 @@
+[
+  {
+    "name": "tool-only-source-hand-estimate-171",
+    "expected": "passed",
+    "actual": "passed",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/tool-only-source-hand-estimate-171-check/run.json"
+  },
+  {
+    "name": "wrong-estimate",
+    "expected": "CHECK_ESTIMATE",
+    "actual": "CHECK_ESTIMATE",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/wrong-estimate-check/run.json"
+  },
+  {
+    "name": "timed-out-success-exit",
+    "expected": "CHECK_RUN_TIMED_OUT",
+    "actual": "CHECK_RUN_TIMED_OUT",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/timed-out-success-exit-check/run.json"
+  },
+  {
+    "name": "stale-source",
+    "expected": "CHECK_CLAIM_CURRENT_SOURCE",
+    "actual": "CHECK_CLAIM_CURRENT_SOURCE",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/stale-source-check/run.json"
+  },
+  {
+    "name": "changed-source-wrong-quality",
+    "expected": "CHECK_QUALITY_EXACT",
+    "actual": "CHECK_QUALITY_EXACT",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/changed-source-wrong-quality-check/run.json"
+  },
+  {
+    "name": "changed-source-correct-quality",
+    "expected": "passed",
+    "actual": "passed",
+    "execution": "/private/tmp/rein-ch08-adjudication-v2-root-cases/changed-source-correct-quality-check/run.json"
+  }
+]

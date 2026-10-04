@@ -1,0 +1,17 @@
+{
+  "label": "p42-rust-tests-cache-refreshed",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline"
+  ],
+  "started_utc": "2026-09-14T11:20:58Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 101,
+  "output": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.50s\n     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)\n\nrunning 9 tests\ntest tests::status_classification_keeps_key_out_of_public_error ... ok\ntest rein::tests::read_file_rejects_escape ... ok\ntest rein::tests::anthropic_round_trip_shape ... ok\ntest tests::timeout_returns_without_waiting_for_the_server ... FAILED\ntest tests::rate_limit_is_requested_once_and_keeps_provider_code ... FAILED\ntest tests::local_http_server_receives_one_openai_request ... FAILED\ntest tests::malformed_or_empty_sdk_responses_are_failures ... FAILED\ntest tests::provider_errors_are_classified_without_echoing_messages ... FAILED\ntest tests::config_requires_all_values_and_strips_trailing_slash ... ok\n\nfailures:\n\n---- tests::timeout_returns_without_waiting_for_the_server stdout ----\n\nthread 'tests::timeout_returns_without_waiting_for_the_server' (38409418) panicked at src/lib.rs:327:63:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\n\n---- tests::rate_limit_is_requested_once_and_keeps_provider_code stdout ----\n\nthread 'tests::rate_limit_is_requested_once_and_keeps_provider_code' (38409416) panicked at src/lib.rs:295:63:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\n\n---- tests::local_http_server_receives_one_openai_request stdout ----\n\nthread 'tests::local_http_server_receives_one_openai_request' (38409413) panicked at src/lib.rs:244:63:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\n\n---- tests::malformed_or_empty_sdk_responses_are_failures stdout ----\n\nthread 'tests::malformed_or_empty_sdk_responses_are_failures' (38409414) panicked at src/lib.rs:177:63:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n---- tests::provider_errors_are_classified_without_echoing_messages stdout ----\n\nthread 'tests::provider_errors_are_classified_without_echoing_messages' (38409415) panicked at src/lib.rs:177:63:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\n\n\nfailures:\n    tests::local_http_server_receives_one_openai_request\n    tests::malformed_or_empty_sdk_responses_are_failures\n    tests::provider_errors_are_classified_without_echoing_messages\n    tests::rate_limit_is_requested_once_and_keeps_provider_code\n    tests::timeout_returns_without_waiting_for_the_server\n\ntest result: FAILED. 4 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\nerror: test failed, to rerun pass `--lib`\n"
+}

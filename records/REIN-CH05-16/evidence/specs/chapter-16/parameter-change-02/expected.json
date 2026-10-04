@@ -1,0 +1,1 @@
+{"finding":"parameter was renamed","acceptable":"use current workspace parameter and explain scope","assertions":[{"file":"README.md","contains":"--workspace","reference":"src/cli.py:argparse","require_retained_body":true},{"file":"README.md","does_not_contain":"--root-dir"},{"file":"README.md","contains":"scanning"}]}

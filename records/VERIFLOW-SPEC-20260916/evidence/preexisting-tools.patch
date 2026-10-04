@@ -1,0 +1,140 @@
+diff --git a/tools/tests/test_validate_repository.py b/tools/tests/test_validate_repository.py
+index 401cf35..15e3edd 100644
+--- a/tools/tests/test_validate_repository.py
++++ b/tools/tests/test_validate_repository.py
+@@ -11,6 +11,8 @@ from validate_repository import (  # noqa: E402
+     check_claude_code,
+     frontmatter,
+     is_maintained_document,
++    is_safe_local_link,
++    broken_local_links,
+     repository_root,
+     visible_markdown,
+ )
+@@ -45,6 +47,43 @@ class ValidateRepositoryTests(unittest.TestCase):
+         self.assertNotIn("missing-inline.md", visible)
+         self.assertIn("missing-real.md", visible)
+ 
++    def test_local_links_reject_absolute_and_escape_paths(self) -> None:
++        with tempfile.TemporaryDirectory() as temporary:
++            container = Path(temporary)
++            root = container / "repo"
++            document = root / "docs/final.md"
++            document.parent.mkdir(parents=True)
++            (root / "docs/ok.md").write_text("ok", encoding="utf-8")
++            outside = container / "outside-real.md"
++            outside.write_text("outside", encoding="utf-8")
++            (root / "docs/link.md").symlink_to(outside)
++            self.assertTrue(is_safe_local_link(root, document, "ok.md"))
++            self.assertFalse(is_safe_local_link(root, document, "missing.md"))
++            self.assertFalse(is_safe_local_link(root, document, str(outside)))
++            self.assertFalse(is_safe_local_link(root, document, "../../outside-real.md"))
++            self.assertFalse(is_safe_local_link(root, document, "link.md"))
++            self.assertFalse(is_safe_local_link(root, document, r"C:\\outside.md"))
++            self.assertFalse(is_safe_local_link(root, document, r"\\server\\share\\outside.md"))
++
++    def test_main_link_scan_skips_external_fragments_and_parses_angles(self) -> None:
++        with tempfile.TemporaryDirectory() as temporary:
++            container = Path(temporary)
++            root = container / "repo"
++            document = root / "docs/final.md"
++            document.parent.mkdir(parents=True)
++            outside = container / "outside-real.md"
++            outside.write_text("outside", encoding="utf-8")
++            (root / "docs/ok.md").write_text("ok", encoding="utf-8")
++            text = "[ok](ok.md) [bad](<" + str(outside) + ">) [web](https://example.com) [fragment](#section)"
++            self.assertEqual(broken_local_links(root, document, text), ["<" + str(outside) + ">"])
++
++    def test_only_sealed_c_final_is_archived(self) -> None:
++        root = Path(tempfile.mkdtemp())
++        sealed = root / "records/REIN-CH08-EDD-20260915/formal/seals/C/run/final.md"
++        adjacent = root / "records/REIN-CH08-EDD-20260915/formal/seals/C/run/other.md"
++        self.assertFalse(is_maintained_document(root, sealed))
++        self.assertTrue(is_maintained_document(root, adjacent))
++
+ 
+ class ClaudeCodeDefinitionTests(unittest.TestCase):
+     def make_root(self) -> Path:
+diff --git a/tools/validate_repository.py b/tools/validate_repository.py
+index 806e929..ca0b9f5 100755
+--- a/tools/validate_repository.py
++++ b/tools/validate_repository.py
+@@ -51,6 +51,7 @@ DESCRIPTION_LIMIT = 1024
+ 
+ MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
+ UNFINISHED = re.compile(r"\[(?:TODO|PLACEHOLDER):|Briefly describe|Add the task-specific", re.IGNORECASE)
++WINDOWS_LOCAL_PATH = re.compile(r"^(?:[A-Za-z]:[\\/]|\\\\|//)")
+ 
+ ARCHIVED_DOCUMENT_PREFIXES = (
+     # Preserved chapter/product captures from the REIN-CH05-16 evidence set.
+@@ -66,6 +67,10 @@ ARCHIVED_DOCUMENT_PREFIXES = (
+     ("records", "REIN-CH08-EDD-20260915", "production", "final-book-full-source", "book"),
+ )
+ 
++ARCHIVED_DOCUMENTS = {
++    ("records", "REIN-CH08-EDD-20260915", "formal", "seals", "C", "run", "final.md"),
++}
++
+ 
+ def visible_markdown(text: str) -> str:
+     """Remove code examples before checking links in maintained prose."""
+@@ -83,6 +88,8 @@ def is_maintained_document(root: Path, path: Path) -> bool:
+     """
+     relative = path.resolve().relative_to(root.resolve())
+     parts = relative.parts
++    if parts in ARCHIVED_DOCUMENTS:
++        return False
+     if any(parts[: len(prefix)] == prefix for prefix in ARCHIVED_DOCUMENT_PREFIXES):
+         return False
+     if (
+@@ -110,6 +117,32 @@ def is_maintained_document(root: Path, path: Path) -> bool:
+     return True
+ 
+ 
++def is_safe_local_link(root: Path, markdown: Path, target: str) -> bool:
++    """Return whether a local Markdown target stays inside this repository."""
++    if Path(target).is_absolute() or WINDOWS_LOCAL_PATH.match(target):
++        return False
++    repository = root.resolve()
++    destination = (markdown.parent / target).resolve()
++    try:
++        destination.relative_to(repository)
++    except ValueError:
++        return False
++    return destination.exists()
++
++
++def broken_local_links(root: Path, markdown: Path, text: str) -> list[str]:
++    """Return raw local targets that are missing, absolute, or repository-escaping."""
++    errors: list[str] = []
++    for match in MARKDOWN_LINK.finditer(visible_markdown(text)):
++        raw_target = match.group(1).strip()
++        target = raw_target.strip("<>").split("#", 1)[0]
++        if not target or target.startswith(("http://", "https://", "mailto:", "sandbox:")):
++            continue
++        if not is_safe_local_link(root, markdown, target):
++            errors.append(raw_target)
++    return errors
++
++
+ def frontmatter(text: str) -> dict[str, str] | None:
+     """Parse the flat ``key: value`` YAML frontmatter used by skills and agents."""
+     if not text.startswith("---\n"):
+@@ -216,15 +249,8 @@ def main() -> int:
+         visible = visible_markdown(text)
+         if UNFINISHED.search(visible):
+             errors.append(f"unfinished scaffold marker: {markdown.relative_to(root)}")
+-        for match in MARKDOWN_LINK.finditer(visible):
+-            target = match.group(1).strip().strip("<>").split("#", 1)[0]
+-            if not target or target.startswith(("http://", "https://", "mailto:", "sandbox:")):
+-                continue
+-            destination = (markdown.parent / target).resolve()
+-            if not destination.exists():
+-                errors.append(
+-                    f"broken local link in {markdown.relative_to(root)}: {match.group(1)}"
+-                )
++        for target in broken_local_links(root, markdown, text):
++            errors.append(f"broken local link in {markdown.relative_to(root)}: {target}")
+ 
+     template = root / "skill/veriflow/assets/templates/task-state.example.json"
+     if template.is_file() and (root / TASK_VALIDATOR).is_file():

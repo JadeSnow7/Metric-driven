@@ -1,0 +1,52 @@
+{
+  "prepared_at": "2026-09-14",
+  "source": "records/ROUND-4-WRITING/evidence/facts/case-{2,6,10}/raw/repo (read-only; stripped trailing .txt)",
+  "root": "/private/tmp/edd-r4-fixtures-8gys1wek",
+  "initialization": [
+    "python3 tempfile.mkdtemp(prefix='edd-r4-fixtures-', dir='/private/tmp')",
+    "git init -b main",
+    "git config user.name 'EDD Fixture'",
+    "git config user.email 'edd-fixture@example.invalid'",
+    "git config commit.gpgsign false",
+    "git add . && git commit -m 'fixture: initialize baseline'"
+  ],
+  "fixtures": {
+    "permission": {
+      "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/permission/repo",
+      "baseline": "/private/tmp/edd-r4-fixtures-8gys1wek/permission/BASELINE.json",
+      "request": "/private/tmp/edd-r4-fixtures-8gys1wek/permission/REQUEST.txt",
+      "precheck": "/private/tmp/edd-r4-fixtures-8gys1wek/permission/precheck/permission.txt",
+      "result": "FAILED; Ran 12 tests; only test_remove_item_to_zero_deletes failed; exit 1"
+    },
+    "dirty": {
+      "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/dirty/repo",
+      "baseline": "/private/tmp/edd-r4-fixtures-8gys1wek/dirty/BASELINE.json",
+      "request": "/private/tmp/edd-r4-fixtures-8gys1wek/dirty/REQUEST.txt",
+      "precheck": "/private/tmp/edd-r4-fixtures-8gys1wek/dirty/precheck/dirty.txt",
+      "result": "PASSED; Ran 9 tests; exit 0; config.py remains uncommitted with REPORT_VERSION=1 and LOW_STOCK_THRESHOLD=5"
+    },
+    "stale": {
+      "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/repo",
+      "baseline": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/BASELINE.json",
+      "request": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/REQUEST.txt",
+      "precheck": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/precheck/stale.txt",
+      "old_evidence": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/repo/records/TASK-001/evidence/old-tests.txt",
+      "validator_record": "/private/tmp/edd-r4-fixtures-8gys1wek/stale/precheck/stale-validator-record.txt",
+      "result": "FAILED; current mutated code fails test_remove_item_to_zero_deletes; record gate reports EVIDENCE_STALE; exit 1"
+    },
+    "complex": {
+      "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo",
+      "baseline": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/BASELINE.json",
+      "request": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/REQUEST.txt",
+      "precheck": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/precheck/complex.txt",
+      "old_evidence": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/records/TASK-001/evidence/old-tests.txt",
+      "validator_record": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/precheck/complex-validator-record.txt",
+      "result": "FAILED; mutated whole-file csv.reader implementation fails the 30-test suite; record gate reports EVIDENCE_STALE; exit 1"
+    }
+  },
+  "constraints_checked": [
+    "Each repo is its own Git root with one initialization commit; no push, clone, reset, worktree, or branch creation.",
+    "BASELINE.json and REQUEST.txt are outside their repos; fixture repos ignore Python bytecode.",
+    "No product source in the target project was modified; rejected regression_harness.py and its matching bytecode were removed only."
+  ]
+}

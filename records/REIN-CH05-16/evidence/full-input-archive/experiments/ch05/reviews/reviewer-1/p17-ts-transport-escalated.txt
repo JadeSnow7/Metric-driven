@@ -1,0 +1,14 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests --run tests/transport.test.ts
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts
+
+ ✓ tests/transport.test.ts (8 tests) 316ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  19:17:16
+   Duration  681ms (transform 52ms, setup 0ms, collect 52ms, tests 316ms, environment 0ms, prepare 54ms)
+

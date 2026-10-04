@@ -1,0 +1,12 @@
+{
+  "verified_at": "2026-09-14T15:27:50.934538+00:00",
+  "file_count": 252,
+  "manifest_sha256": "7d8a9a80d94c61d7fc95b057c4b4b80f94e6422bb2ba1252aaf818773a0c84dc",
+  "passed": true,
+  "mismatches": [],
+  "metadata_limitations": [
+    "packaging/validate.json argv uses a descriptive placeholder rather than reproducible Python code; treat that as internal validation metadata, not a captured standalone command. Main independently checked every archived source/destination file hash and mode.",
+    "validation recorded249 files before adding3 packaging metadata files; final manifest contains252.",
+    "Reported earlier sandbox failure is not in retained Rust final full.* raw; no successful rerun rewrites its historical status."
+  ]
+}

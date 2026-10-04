@@ -1,0 +1,5 @@
+skill_files 15 skill_patch_bytes 20791
+rein_files 106 rein_patch_bytes 98733
+author_style_present True
+production_seal_files 106 production_git_metadata_excluded True
+production_remote_file_empty True

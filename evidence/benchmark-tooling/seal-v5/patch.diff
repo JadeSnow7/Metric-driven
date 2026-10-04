@@ -1,0 +1,406 @@
+--- /dev/null	2026-09-14 20:39:34
++++ tools/rein_benchmark.py	2026-09-14 20:38:17
+@@ -0,0 +1,333 @@
++#!/usr/bin/env python3
++"""Bounded preparation, execution and packaging helper for later Rein arms.
++
++This module deliberately does not decide whether a product is correct.  It
++only makes the inputs, process invocation and resulting trees auditable.
++"""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import os
++import shutil
++import subprocess
++import sys
++import tempfile
++import time
++import tomllib
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Iterable
++
++EXCLUDED_DIRS = {".git", "deps", "target", ".cargo-target", "build", "dist", "node_modules"}
++EXCLUDED_BUILD = {".next", ".vitepress/cache", ".vitepress/dist"}
++
++
++def now() -> str:
++    return datetime.now(timezone.utc).isoformat()
++
++
++def digest(path: Path) -> str:
++    h = hashlib.sha256()
++    with path.open("rb") as f:
++        for b in iter(lambda: f.read(1024 * 1024), b""):
++            h.update(b)
++    return h.hexdigest()
++
++
++def excluded(rel: Path) -> bool:
++    parts = rel.parts
++    if any(p in EXCLUDED_DIRS for p in parts):
++        return True
++    s = rel.as_posix()
++    if any(s == p or s.startswith(p + "/") for p in EXCLUDED_BUILD):
++        return True
++    name = rel.name
++    return name == ".env" or (name.startswith(".env.") and name != ".env.example")
++
++
++def manifest(root: Path, *, skip: set[str] | None = None) -> list[dict]:
++    skip = skip or set()
++    out = []
++    for p in sorted(root.rglob("*")):
++        if p.is_symlink():
++            rel = p.relative_to(root).as_posix()
++            if rel in skip or excluded(Path(rel)): continue
++            out.append({"path": rel, "symlink": os.readlink(p), "mode": p.lstat().st_mode & 0o777})
++            continue
++        if p.is_dir():
++            continue
++        rel = p.relative_to(root).as_posix()
++        if rel in skip or excluded(Path(rel)):
++            continue
++        out.append({"path": rel, "sha256": digest(p), "mode": p.stat().st_mode & 0o777})
++    return out
++
++
++def copy_tree(src: Path, dst: Path, *, skip: set[str] | None = None) -> list[str]:
++    if dst.exists():
++        raise RuntimeError(f"refusing to overwrite existing directory: {dst}")
++    skip = skip or set()
++    copied = []
++    for p in sorted(src.rglob("*")):
++        rel = p.relative_to(src)
++        if rel.as_posix() in skip or excluded(rel):
++            continue
++        target = dst / rel
++        if p.is_symlink():
++            resolved = p.resolve()
++            if not resolved.is_relative_to(src.resolve()):
++                raise RuntimeError(f"refusing symlink outside source: {rel}")
++            target.parent.mkdir(parents=True, exist_ok=True)
++            target.symlink_to(os.readlink(p))
++            copied.append(rel.as_posix())
++        elif p.is_dir():
++            target.mkdir(parents=True, exist_ok=True)
++        elif p.is_file():
++            target.parent.mkdir(parents=True, exist_ok=True)
++            shutil.copy2(p, target)
++            copied.append(rel.as_posix())
++    dst.mkdir(parents=True, exist_ok=True)
++    return copied
++
++
++def input_records(inputs: list[Path], destination: Path) -> list[dict]:
++    records = []
++    for source in inputs:
++        if not source.is_file():
++            raise RuntimeError(f"input is not a file: {source}")
++        target = destination / source.name
++        if target.exists():
++            raise RuntimeError(f"duplicate task input: {target.name}")
++        shutil.copy2(source, target)
++        records.append({"name": source.name, "sha256": digest(target), "source": str(source.resolve())})
++    return records
++
++
++def prepare(source: Path, output: Path, inputs: list[Path], *, skill15: list[Path] = (), copy_git: Path | None = None) -> dict:
++    source = source.resolve(); output = output.resolve()
++    if output.exists():
++        raise RuntimeError(f"refusing to overwrite existing preparation: {output}")
++    output.mkdir(parents=True)
++    arms = {}
++    for arm in ("control", "skill"):
++        root = output / f"{arm}-arm"
++        copy_tree(source, root)
++        task = root / "task-inputs"
++        if task.exists():
++            shutil.rmtree(task)
++        task.mkdir()
++        rec = input_records(inputs, task)
++        if copy_git:
++            # Explicitly requested local history is copied as ordinary data.
++            requested = copy_git.resolve()
++            gitdir = requested if requested.name == ".git" else requested / ".git"
++            if not gitdir.is_dir():
++                raise RuntimeError(f"local Git source has no .git directory: {requested}")
++            history = root / ".git"
++            copy_tree(gitdir, history)
++            # A copied config could contain a remote URL or credentials.  The
++            # object/ref database remains useful without it and is safer.
++            config = history / "config"
++            if config.exists():
++                config.unlink()
++        arms[arm] = {"root": str(root), "files": manifest(root)}
++    if arms["control"]["files"] != arms["skill"]["files"]:
++        raise RuntimeError("prepared arm manifests differ")
++    extra = [{"path": str(p), "sha256": digest(p)} for p in skill15 if p.is_file()]
++    result = {"kind": "rein-benchmark-preparation", "created_at": now(), "source": str(source),
++              "arms": arms, "task_inputs": rec, "skill15_external_hashes": extra,
++              "excluded": sorted(EXCLUDED_DIRS | EXCLUDED_BUILD), "copy_git": bool(copy_git)}
++    (output / "prepare.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
++    return result
++
++
++def role_config(path: Path) -> dict:
++    return tomllib.loads(path.read_text())
++
++
++def build_argv(coder: Path, workspace: Path, prompt_file: Path, skill: Path | None, target: Path, log: Path, executable: str = "codex") -> list[str]:
++    cfg = role_config(coder)
++    argv = [executable, "exec", "--ephemeral", "--json", "--approve-for-me", "--sandbox", "workspace-write",
++            "--disable", "memories", "--disable", "multi_agent",
++            "-C", str(workspace), "--add-dir", str(target), "--add-dir", str(log), "-m", cfg.get("model", "gpt-5.6-luna"),
++            "-c", f"model_reasoning_effort={cfg.get('model_reasoning_effort', 'medium')}",
++            "-c", "developer_instructions=" + json.dumps(cfg.get("developer_instructions", "")),
++            "-o", str(log.parent / "final.md"), "-"]
++    return argv
++
++
++def run_one(coder: Path, workspace: Path, prompt: Path, out: Path, skill: Path | None = None, executable: str = "codex") -> int:
++    if out.exists(): raise RuntimeError(f"refusing to overwrite run directory: {out}")
++    out.mkdir(parents=True); started = time.monotonic(); started_at = now()
++    target = out / "cargo-target"; log = out / "logs"; target.mkdir(); log.mkdir()
++    common_prompt = prompt.read_text()
++    actual_prompt = common_prompt
++    if skill:
++        actual_prompt += f"\n\nRead and apply the frozen skill at: {skill.resolve()}\n"
++    actual_prompt_file = out / "actual-prompt.md"; actual_prompt_file.write_text(actual_prompt)
++    argv = build_argv(coder, workspace, actual_prompt_file, skill, target, log, executable)
++    meta = {"started_at": started_at, "argv": argv, "role_sha256": digest(coder), "role_bytes_sha256": digest(coder),
++            "prompt_sha256": digest(prompt), "prompt": common_prompt, "actual_prompt_sha256": digest(actual_prompt_file), "actual_prompt": actual_prompt, "workspace": str(workspace),
++            "source_initial_hash": {x["path"]: x.get("sha256", x.get("symlink")) for x in manifest(workspace)},
++            "skill": str(skill) if skill else None, "cli_version": None}
++    if Path(executable).name == "codex":
++        version = subprocess.run([executable, "--version"], text=True, capture_output=True)
++        meta["cli_version"] = (version.stdout or version.stderr).strip()
++    (out / "run.json").write_text(json.dumps(meta, indent=2) + "\n")
++    proc = None; prompt_handle = None
++    try:
++        env = os.environ.copy(); env["CARGO_TARGET_DIR"] = str(target)
++        prompt_handle = actual_prompt_file.open("rb")
++        proc = subprocess.Popen(argv, stdin=prompt_handle, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env, cwd=workspace)
++        with (out / "events.jsonl").open("wb") as event_file, (out / "stderr.txt").open("wb") as error_file:
++            import selectors
++            selector = selectors.DefaultSelector(); selector.register(proc.stdout, selectors.EVENT_READ, event_file); selector.register(proc.stderr, selectors.EVENT_READ, error_file)
++            while selector.get_map():
++                for key, _ in selector.select():
++                    chunk = os.read(key.fileobj.fileno(), 65536)
++                    if chunk:
++                        key.data.write(chunk); key.data.flush()
++                    else:
++                        selector.unregister(key.fileobj)
++        proc.wait(); prompt_handle.close(); proc.stdout.close(); proc.stderr.close()
++        stdout = (out / "events.jsonl").read_text(errors="replace"); stderr = (out / "stderr.txt").read_text(errors="replace")
++        code = proc.returncode
++    except KeyboardInterrupt:
++        if proc and proc.poll() is None: proc.terminate(); proc.wait(timeout=5)
++        if prompt_handle: prompt_handle.close()
++        stdout = (out / "events.jsonl").read_text(errors="replace"); stderr = (out / "stderr.txt").read_text(errors="replace"); code = 130
++    except Exception as exc:
++        if proc and proc.poll() is None: proc.terminate(); proc.wait(timeout=5)
++        if prompt_handle: prompt_handle.close()
++        (out / "events.jsonl").touch(); (out / "stderr.txt").touch()
++        stdout = (out / "events.jsonl").read_text(errors="replace") if (out / "events.jsonl").exists() else ""
++        stderr = (out / "stderr.txt").read_text(errors="replace") if (out / "stderr.txt").exists() else ""
++        code = getattr(proc, "returncode", None) or 127
++        meta.update({"error": repr(exc), "classification": "spawn_or_capture_error"})
++    lines = (stdout or "").splitlines()
++    final_path = out / "final.md"
++    usage = None
++    for line in reversed(lines):
++        try:
++            event = json.loads(line)
++        except json.JSONDecodeError:
++            continue
++        if isinstance(event, dict) and event.get("usage") is not None:
++            usage = event["usage"]; break
++    terminal = None
++    for line in reversed(lines):
++        try:
++            event = json.loads(line)
++        except json.JSONDecodeError:
++            continue
++        if isinstance(event, dict) and event.get("type") in {"turn.completed", "turn.failed", "turn.blocked"}:
++            terminal = event["type"]; break
++    meta.update({"ended_at": now(), "elapsed_seconds": time.monotonic() - started, "exit_code": code,
++                 "terminal_status": terminal, "usage": usage, "final_file": str(out / "final.md") if (out / "final.md").exists() else None})
++    (out / "run.json").write_text(json.dumps(meta, indent=2) + "\n")
++    return code
++
++
++def tree_hashes(root: Path) -> dict[str, str]:
++    return {x["path"]: (x["sha256"] if "sha256" in x else "symlink:" + x["symlink"]) for x in manifest(root)}
++
++
++def seal(tree: Path, output: Path, baseline: Path | None = None, execution: Path | None = None) -> Path:
++    if output.exists(): raise RuntimeError(f"refusing to overwrite seal: {output}")
++    if execution is None: raise RuntimeError("formal seal requires external --execution evidence")
++    execution = execution.resolve()
++    if not execution.is_file(): raise RuntimeError("execution evidence is missing")
++    run = json.loads(execution.read_text())
++    if "ended_at" not in run or "exit_code" not in run or not run.get("terminal_status"):
++        raise RuntimeError("cannot seal an unfinished execution")
++    if Path(run.get("workspace", "")).resolve() != tree.resolve(): raise RuntimeError("execution workspace does not match tree")
++    output.mkdir(parents=True)
++    copy_tree(tree, output / "tree")
++    shutil.copy2(execution, output / "execution.json")
++    # Preserve the raw external execution bundle beside its summary metadata.
++    # These files are optional for hand-built test evidence, but mandatory
++    # artifacts produced by run_one are carried through when present.
++    for name in ("events.jsonl", "stderr.txt", "final.md"):
++        sibling = execution.parent / name
++        if sibling.is_file(): shutil.copy2(sibling, output / name)
++    hashes = tree_hashes(output / "tree")
++    payload = {"kind": "rein-benchmark-seal", "created_at": now(), "tree": hashes}
++    if baseline:
++        base = tree_hashes(baseline); changed = sorted(p for p in set(base)|set(hashes) if base.get(p) != hashes.get(p))
++        payload["baseline"] = str(baseline); payload["changed"] = changed
++        with tempfile.TemporaryDirectory() as td:
++            base_name = "baseline"; result_name = "result"
++            filtered_base = Path(td) / "base-source"; copy_tree(baseline, filtered_base)
++            filtered_result = Path(td) / "result-source"; copy_tree(output / "tree", filtered_result)
++            recovery = Path(td) / base_name
++            # Keep a real Git index so binary payloads, empty additions, modes,
++            # and symlink targets are represented by one portable patch.
++            repo = Path(td) / "patch-repo"
++            shutil.copytree(filtered_base, repo, symlinks=True)
++            subprocess.run(["git", "-C", str(repo), "init", "-q"], check=True, capture_output=True)
++            subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True, capture_output=True)
++            base_tree = subprocess.check_output(["git", "-C", str(repo), "write-tree"], text=True).strip()
++            for child in repo.iterdir():
++                if child.name == ".git": continue
++                if child.is_dir() and not child.is_symlink(): shutil.rmtree(child)
++                else: child.unlink()
++            for child in filtered_result.iterdir():
++                target = repo / child.name
++                if child.is_dir() and not child.is_symlink(): shutil.copytree(child, target, symlinks=True)
++                elif child.is_symlink(): target.symlink_to(os.readlink(child))
++                else: shutil.copy2(child, target)
++            subprocess.run(["git", "-C", str(repo), "add", "-A"], check=True, capture_output=True)
++            result_tree = subprocess.check_output(["git", "-C", str(repo), "write-tree"], text=True).strip()
++            binary_patch = subprocess.check_output(["git", "-C", str(repo), "diff", "--binary", base_tree, result_tree], text=True)
++            (output / "baseline.patch").write_text(binary_patch)
++            copy_tree(filtered_base, recovery)
++            apply_repo = Path(td) / "apply-repo"
++            shutil.copytree(recovery, apply_repo, symlinks=True)
++            subprocess.run(["git", "-C", str(apply_repo), "init", "-q"], check=True, capture_output=True)
++            (Path(td) / "change.patch").write_text(binary_patch)
++            applied = subprocess.run(["git", "-C", str(apply_repo), "apply", "--binary", str(Path(td) / "change.patch")], text=True, capture_output=True)
++            if applied.returncode != 0 or manifest(apply_repo) != manifest(output / "tree"):
++                raise RuntimeError("baseline patch did not recover result hashes")
++    payload["execution"] = str(execution)
++    (output / "seal.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
++    return output
++
++
++def review_pack(source: Path | dict[str, Path], output: Path, mapping: dict, exclusions: set[str] = set()) -> Path:
++    if output.exists(): raise RuntimeError(f"refusing to overwrite review pack: {output}")
++    output.mkdir(parents=True)
++    sources = source if isinstance(source, dict) else {"control": source, "skill": source}
++    for reviewer, packages in mapping.items():
++        for arm, package in packages.items():
++            if arm not in sources: raise RuntimeError(f"mapping references unknown source: {arm}")
++            dst = output / reviewer / package
++            copy_tree(Path(sources[arm]), dst, skip=exclusions)
++            (output / reviewer / f"{package}.cargo-target").mkdir(parents=True)
++    (output / "review-manifest.json").write_text(json.dumps({"source": {k: str(v) for k, v in sources.items()}, "mapping": mapping,
++        "exclusions": sorted(exclusions), "created_at": now()}, indent=2) + "\n")
++    return output
++
++
++def main(argv: Iterable[str] | None = None) -> int:
++    p = argparse.ArgumentParser(description=__doc__); s = p.add_subparsers(dest="cmd", required=True)
++    x = s.add_parser("prepare"); x.add_argument("--source", type=Path, required=True); x.add_argument("--output", type=Path, required=True); x.add_argument("--input", type=Path, action="append", default=[]); x.add_argument("--skill15", type=Path, action="append", default=[]); x.add_argument("--copy-git", type=Path)
++    x = s.add_parser("run"); x.add_argument("--coder", type=Path, required=True); x.add_argument("--workspace", type=Path, required=True); x.add_argument("--prompt", type=Path, required=True); x.add_argument("--output", type=Path, required=True); x.add_argument("--skill", type=Path); x.add_argument("--executable", default="codex")
++    x = s.add_parser("seal"); x.add_argument("--tree", type=Path, required=True); x.add_argument("--output", type=Path, required=True); x.add_argument("--baseline", type=Path); x.add_argument("--execution", type=Path, required=True)
++    x = s.add_parser("review-pack"); x.add_argument("--source", type=Path); x.add_argument("--source-control", type=Path); x.add_argument("--source-skill", type=Path); x.add_argument("--output", type=Path, required=True); x.add_argument("--mapping", type=Path, required=True); x.add_argument("--exclude", action="append", default=[])
++    a = p.parse_args(argv)
++    try:
++        if a.cmd == "prepare": prepare(a.source, a.output, a.input, skill15=a.skill15, copy_git=a.copy_git)
++        elif a.cmd == "run": return run_one(a.coder, a.workspace, a.prompt, a.output, a.skill, a.executable)
++        elif a.cmd == "seal": seal(a.tree, a.output, a.baseline, a.execution)
++        else:
++            sources = {"control": a.source_control or a.source, "skill": a.source_skill or a.source}
++            if not all(sources.values()): raise RuntimeError("review-pack needs --source or both arm sources")
++            review_pack(sources, a.output, json.loads(a.mapping.read_text()), set(a.exclude))
++        return 0
++    except (OSError, RuntimeError, subprocess.SubprocessError, json.JSONDecodeError) as e:
++        print(f"rein_benchmark: error: {e}", file=sys.stderr); return 2
++
++
++if __name__ == "__main__": raise SystemExit(main())
+--- /dev/null	2026-09-14 20:39:34
++++ tools/tests/test_rein_benchmark.py	2026-09-14 20:38:52
+@@ -0,0 +1,67 @@
++import json, stat, subprocess, tempfile, unittest
++from pathlib import Path
++import sys
++sys.path.insert(0, str(Path(__file__).parents[1]))
++import rein_benchmark as rb
++
++def product(t, name="product"):
++    r=t/name; r.mkdir(); (r/"src").mkdir(); (r/"src/old.rs").write_text("old")
++    (r/"01.md").write_text("chapter one"); (r/"fixtures").mkdir(); (r/"fixtures/manifest.json").write_text('{}')
++    (r/"package.json").write_text('{"name":"fixture"}'); (r/"package-lock.json").write_text('{}')
++    (r/"task-inputs").mkdir(); (r/"task-inputs/old.json").write_text('old history')
++    (r/".env").write_text('SECRET'); (r/".env.example").write_text('SAFE=')
++    (r/"target").mkdir(); (r/"target/x").write_text('cache'); return r
++
++class BenchmarkTests(unittest.TestCase):
++  def test_prepare_replaces_inputs_and_copies_git(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); r=product(t); inp=t/'prompt.md'; inp.write_text('fresh')
++      subprocess.run(['git','-C',str(r),'init','-q'],check=True); subprocess.run(['git','-C',str(r),'add','.'],check=True); subprocess.run(['git','-C',str(r),'commit','-qm','first'],check=True)
++      out=t/'prep'; result=rb.prepare(r,out,[inp],copy_git=r); arm=out/'control-arm'
++      self.assertEqual((arm/'task-inputs/prompt.md').read_text(),'fresh'); self.assertFalse((arm/'task-inputs/old.json').exists())
++      self.assertTrue((arm/'.git/HEAD').exists()); self.assertFalse((arm/'.git/config').exists()); self.assertEqual(subprocess.run(['git','-C',str(arm),'rev-parse','HEAD'],capture_output=True,text=True).returncode,0)
++      self.assertEqual(rb.manifest(arm),rb.manifest(out/'skill-arm')); self.assertFalse(any(x['path'].startswith('.git/') for x in result['arms']['control']['files']))
++      self.assertFalse((arm/'.env').exists()); self.assertTrue((arm/'.env.example').exists()); self.assertTrue((arm/'fixtures/manifest.json').exists())
++
++  def test_multiline_role_fake_cli_protocol(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); r=product(t); coder=t/'coder.toml'; coder.write_text('model="fake"\nmodel_reasoning_effort="low"\ndeveloper_instructions="""line one\nline two\n"""\n'); prompt=t/'p'; prompt.write_text('USER PROMPT')
++      fake=t/'fake'; fake.write_text('#!/bin/sh\nprev=; final=\nfor arg in "$@"; do [ "$prev" = "-o" ] && final="$arg"; prev="$arg"; done\ncat > "$CARGO_TARGET_DIR/input"\nprintf \'{"type":"turn.failed","usage":{"input_tokens":2}}\\n\'\nprintf \'final body\' > "$final"\nprintf partial-stderr >&2\nexit 7\n'); fake.chmod(fake.stat().st_mode|stat.S_IXUSR)
++      skill=t/'SKILL.md'; skill.write_text('frozen skill'); out=t/'run'; self.assertEqual(rb.run_one(coder,r,prompt,out,skill=skill,executable=str(fake)),7); meta=json.loads((out/'run.json').read_text())
++      self.assertEqual(meta['exit_code'],7); self.assertTrue(any('line one' in x and 'line two' in x for x in meta['argv'])); self.assertIn(str(skill.resolve()),meta['actual_prompt']); self.assertEqual((out/'final.md').read_text(),'final body'); self.assertEqual(meta['usage']['input_tokens'],2); self.assertEqual((out/'cargo-target/input').read_text(),(out/'actual-prompt.md').read_text()); self.assertEqual(meta['actual_prompt'],(out/'actual-prompt.md').read_text()); self.assertEqual(meta['argv'][-1],'-'); self.assertEqual(meta['argv'].count('--add-dir'),2); self.assertIn('partial-stderr',(out/'stderr.txt').read_text())
++      control=t/'control-run'; self.assertEqual(rb.run_one(coder,r,prompt,control,executable=str(fake)),7); control_meta=json.loads((control/'run.json').read_text()); self.assertEqual((control/'cargo-target/input').read_text(),(control/'actual-prompt.md').read_text()); self.assertNotIn(str(skill.resolve()),control_meta['actual_prompt']); self.assertNotEqual(meta['actual_prompt'],control_meta['actual_prompt'])
++
++  def test_seal_patch_recovery_and_unfinished(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); base=product(t,'base'); tree=t/'tree'; rb.copy_tree(base,tree); (tree/'src/old.rs').write_text('changed'); execution=t/'run.json'; execution.write_text(json.dumps({'workspace':str(tree),'ended_at':'x','exit_code':0,'terminal_status':'turn.completed'})); (t/'events.jsonl').write_text('{"type":"turn.completed"}\n'); (t/'stderr.txt').write_text(''); (t/'final.md').write_text('final'); out=t/'seal'; rb.seal(tree,out,base,execution); data=json.loads((out/'seal.json').read_text()); self.assertIn('src/old.rs',data['changed']); self.assertNotIn('.env', (out/'baseline.patch').read_text()); self.assertTrue((out/'tree/fixtures/manifest.json').exists()); self.assertTrue((out/'execution.json').exists()); self.assertTrue((out/'events.jsonl').exists()); self.assertTrue((out/'stderr.txt').exists()); self.assertTrue((out/'final.md').exists())
++      run=t/'unfinished.json'; run.write_text(json.dumps({'workspace':str(tree)}))
++      with self.assertRaises(RuntimeError): rb.seal(tree,t/'bad',execution=run)
++      with self.assertRaises(RuntimeError): rb.seal(tree,t/'missing')
++
++  def test_seal_binary_empty_and_executable_git_patch_recovery(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); base=product(t,'base'); (base/'src/blob.bin').write_bytes(b'\\x00\\xffbaseline'); (base/'src/tool.sh').write_text('#!/bin/sh\\nexit 0\\n'); (base/'src/tool.sh').chmod(0o644)
++      tree=t/'tree'; rb.copy_tree(base,tree); (tree/'src/blob.bin').write_bytes(b'\\x00\\xffchanged'); (tree/'src/empty').write_bytes(b''); (tree/'src/tool.sh').chmod(0o755)
++      execution=t/'run.json'; execution.write_text(json.dumps({'workspace':str(tree),'ended_at':'x','exit_code':0,'terminal_status':'turn.completed'})); out=t/'seal'
++      rb.seal(tree,out,base,execution)
++      self.assertEqual((out/'tree/src/blob.bin').read_bytes(),b'\\x00\\xffchanged'); self.assertTrue((out/'tree/src/empty').exists()); self.assertEqual((out/'tree/src/empty').stat().st_size,0); self.assertTrue((out/'tree/src/tool.sh').stat().st_mode & stat.S_IXUSR)
++
++  def test_two_sources_two_packages_and_symlink_manifest(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); a=product(t,'a'); b=product(t,'b'); (a/'src/link').symlink_to('old.rs'); (a/'src/dir-link').symlink_to('fixtures', target_is_directory=True); (a/'src/old.rs').write_text('control reviewer-a package-1 legal'); (b/'src/old.rs').write_text('skill reviewer-b package-2 legal'); out=t/'reviews'
++      rb.review_pack({'control':a,'skill':b},out,{'reviewer-a':{'control':'package-1','skill':'package-2'},'reviewer-b':{'control':'package-3','skill':'package-4'}},{'task-inputs/old.json'})
++      for reviewer in ('reviewer-a','reviewer-b'):
++        for package in ('package-1','package-2','package-3','package-4'):
++          if (out/reviewer/package).exists(): self.assertTrue((out/reviewer/package/'package-lock.json').exists()); self.assertTrue((out/reviewer/(package+'.cargo-target')).is_dir())
++      self.assertTrue((out/'reviewer-a/package-1/src/link').is_symlink())
++      self.assertTrue((out/'reviewer-a/package-1/src/dir-link').is_symlink())
++      (b/'src/outside').symlink_to('/tmp')
++      with self.assertRaises(RuntimeError): rb.copy_tree(b, t/'reject')
++
++  def test_spawn_failure_is_sealed_in_metadata(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); r=product(t); coder=t/'coder.toml'; coder.write_text('model="fake"\n'); prompt=t/'p'; prompt.write_text('x'); out=t/'run'
++      self.assertEqual(rb.run_one(coder,r,prompt,out,executable=str(t/'does-not-exist')),127)
++      meta=json.loads((out/'run.json').read_text()); self.assertEqual(meta['classification'],'spawn_or_capture_error'); self.assertIn('ended_at',meta); self.assertTrue((out/'events.jsonl').exists()); self.assertTrue((out/'stderr.txt').exists())
++
++if __name__=='__main__': unittest.main()

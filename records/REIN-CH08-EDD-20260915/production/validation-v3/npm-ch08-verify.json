@@ -1,0 +1,69 @@
+{
+  "argv": [
+    "env",
+    "CARGO_TARGET_DIR=/private/tmp/rein-ch08-production-20260915/cargo-target",
+    "CARGO_INCREMENTAL=0",
+    "CARGO_PROFILE_DEV_DEBUG=0",
+    "CARGO_PROFILE_TEST_DEBUG=0",
+    "npm",
+    "run",
+    "--silent",
+    "ch08:verify"
+  ],
+  "cwd": "/private/tmp/rein-ch08-production-20260915/book",
+  "started_at": "2026-09-15T07:04:16.204658Z",
+  "ended_at": "2026-09-15T07:04:54.891230Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "{\"unit\":\"estimated-bytes-v1\",\"rows\":16,\"filteredRows\":4,\"checks\":[\"default\",\"filter\",\"mutation\",\"zero-budget\",\"cli\",\"metadata\",\"example\",\"rust-contract-tests\"]}\n",
+  "stderr": "",
+  "stdout_base64": "eyJ1bml0IjoiZXN0aW1hdGVkLWJ5dGVzLXYxIiwicm93cyI6MTYsImZpbHRlcmVkUm93cyI6NCwiY2hlY2tzIjpbImRlZmF1bHQiLCJmaWx0ZXIiLCJtdXRhdGlvbiIsInplcm8tYnVkZ2V0IiwiY2xpIiwibWV0YWRhdGEiLCJleGFtcGxlIiwicnVzdC1jb250cmFjdC10ZXN0cyJdfQo=",
+  "stderr_base64": "",
+  "stdout_present": true,
+  "stderr_present": false,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-production-20260915/book/scripts/ch08-verify.mjs": {
+      "kind": "source",
+      "sha256": "15fb08143f604fe39b8aed2692479714345f547ba9407d87f4dab1d3b4995874"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/scripts/ch08-compare.mjs": {
+      "kind": "source",
+      "sha256": "25b8f04ac964db52562ad1381094ea34c0e459ad63a84df242f88d90c7119004"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs": {
+      "kind": "source",
+      "sha256": "39ca0d21503e20f9180dbe2170f36d25a8afa2a94108255a70d3004e2429c93d"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/src/rein/stdio_executor.rs": {
+      "kind": "source",
+      "sha256": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/examples/ch08_context.rs": {
+      "kind": "source",
+      "sha256": "672707a25fb39bd6d6b28da9002d4c7633baabfda85a4817f6de9fa0b16bb481"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/rust/tests/ch08_context.rs": {
+      "kind": "test",
+      "sha256": "d3471999e099829e0a8a6c1d00686d1e4a4aff8d79bc232af6e82a0b368c5a6e"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/index.json": {
+      "kind": "fixture",
+      "sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/ts/tests/fixtures/hybrid-fault-host.ts": {
+      "kind": "fixture",
+      "sha256": "1eaf158c617f42074372c5acffd4762b531e7cf6b80277a89d8958edd1f70889"
+    },
+    "/private/tmp/rein-ch08-production-20260915/book/examples/ch08-context-methods/entry.mjs": {
+      "kind": "fixture",
+      "sha256": "0cde374c6692fa9679e36ff66f80d7eaf70b6ecfc028f0ef122d519a45e5ae0e"
+    }
+  },
+  "result": "passed"
+}

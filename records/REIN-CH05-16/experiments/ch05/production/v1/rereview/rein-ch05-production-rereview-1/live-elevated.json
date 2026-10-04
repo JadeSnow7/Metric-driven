@@ -1,0 +1,15 @@
+{
+  "label": "live-elevated",
+  "cwd": "/private/tmp/rein-ch05-production-rereview-1",
+  "argv": [
+    "python3",
+    "live-loopback.py"
+  ],
+  "started_utc": "2026-09-14T11:48:02Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-production-rereview-build"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "[\n  {\n    \"language\": \"ts\",\n    \"mode\": \"success\",\n    \"argv\": [\n      \"npm\",\n      \"run\",\n      \"ch05:live\",\n      \"--\",\n      \"--live\",\n      \"/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4\",\n      \"read README\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914/ts\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 2,\n      \"reason\": \"final_answer\",\n      \"no_retry_and_bound\": true,\n      \"actual_tool_result_in_next_request\": true\n    }\n  },\n  {\n    \"language\": \"ts\",\n    \"mode\": \"limit\",\n    \"argv\": [\n      \"npm\",\n      \"run\",\n      \"ch05:live\",\n      \"--\",\n      \"--live\",\n      \"/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4\",\n      \"read README\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914/ts\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 4,\n      \"reason\": \"max_turns\",\n      \"no_retry_and_bound\": true\n    }\n  },\n  {\n    \"language\": \"ts\",\n    \"mode\": \"error\",\n    \"argv\": [\n      \"npm\",\n      \"run\",\n      \"ch05:live\",\n      \"--\",\n      \"--live\",\n      \"/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4\",\n      \"read README\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914/ts\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 1,\n      \"reason\": \"model_error\",\n      \"no_retry_and_bound\": true\n    }\n  },\n  {\n    \"language\": \"rust\",\n    \"mode\": \"success\",\n    \"argv\": [\n      \"/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop\",\n      \"--live\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 2,\n      \"reason\": \"FinalAnswer\",\n      \"no_retry_and_bound\": true,\n      \"actual_tool_result_in_next_request\": true\n    }\n  },\n  {\n    \"language\": \"rust\",\n    \"mode\": \"limit\",\n    \"argv\": [\n      \"/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop\",\n      \"--live\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 4,\n      \"reason\": \"MaxTurns\",\n      \"no_retry_and_bound\": true\n    }\n  },\n  {\n    \"language\": \"rust\",\n    \"mode\": \"error\",\n    \"argv\": [\n      \"/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop\",\n      \"--live\"\n    ],\n    \"cwd\": \"/private/tmp/rein-production-20260914\",\n    \"exit_code\": 0,\n    \"checks\": {\n      \"request_count\": 1,\n      \"reason\": \"ModelError\",\n      \"no_retry_and_bound\": true\n    }\n  }\n]\n"
+}

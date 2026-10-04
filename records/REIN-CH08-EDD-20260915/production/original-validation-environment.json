@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-09-15T11:14:48.745559+00:00",
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "v26.5.0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "npm",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "11.17.0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cargo",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo 1.98.0 (797e8a9bc 2026-08-05)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "rustc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "rustc 1.98.0 (88d9e12ae 2026-08-18)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Python 3.14.6\n",
+      "stderr": ""
+    }
+  ],
+  "cargo_target": "/private/tmp/rein-ch08-original-validation-20260915/cargo-target",
+  "target_exists_before_validation": false,
+  "dependency_policy": "Use original existing node_modules and locked Cargo dependencies; no install or shared binary target with production",
+  "cache_note": "Fresh target avoids binaries embedding production CARGO_MANIFEST_DIR; OS/global registry caches remain shared"
+}

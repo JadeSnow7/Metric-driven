@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "bash",
+    "-lc",
+    "set -e\nexport REIN_CH07_P1=\"$(mktemp -d)/case.json\"\ncp fixtures/cases/ch07-context.json \"$REIN_CH07_P1\"\nnode -e '''const fs=require(\"fs\"); const p=process.argv[1]; const x=JSON.parse(fs.readFileSync(p)); const c=x.cases.find(c=>c.id===\"managed-window\"); const m=c.history.find(m=>m.role===\"tool\" && m.toolCallId===\"latest-a\"); m.content=\"最新事实 A（已更正）\"; fs.writeFileSync(p,JSON.stringify(x));''' \"$REIN_CH07_P1\"\ncargo run --quiet --manifest-path rust/Cargo.toml --example ch07_context -- \"$REIN_CH07_P1\" > /tmp/rein-ch07-rust-p1-v3.json\nnode -e '''const x=require(\"/tmp/rein-ch07-rust-p1-v3.json\"); const c=x.cases.find(c=>c.id===\"managed-window\"); const expected=\"最新事实 A（已更正）\\n最新事实 B\"; if(c.result.answer!==expected){console.error(JSON.stringify({answer:c.result.answer,expected})); process.exit(1)} console.log(JSON.stringify({id:c.id,answer:c.result.answer,reason:c.result.reason,requests:c.result.requests}))'''\n"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": 1789398836.015042,
+  "end": 1789398837.622217,
+  "exit": 0,
+  "stdout": "{\"id\":\"managed-window\",\"answer\":\"最新事实 A（已更正）\\n最新事实 B\",\"reason\":\"final_answer\"}\n",
+  "stderr": ""
+}

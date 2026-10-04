@@ -1,0 +1,147 @@
+{
+  "case": "complex",
+  "checks": {
+    "behavior": {
+      "argv": [
+        "python3",
+        "-c",
+        "from inventory import Inventory\nfrom pathlib import Path\nimport tempfile,config\nexamples=[('unclosed','name,quantity\\nbad,\"unclosed\\napple,2\\n',(1,[2]),'apple',2),('huge','name,quantity\\nbig,'+'9'*5000+'\\npear,3\\n',(1,[2]),'pear',3),('trailing','name,quantity\\n\"apple\"x,2\\npear,3\\n',(1,[2]),'pear',3),('multiline','name,quantity\\n\"Widget\\nlarge\",3\\nok,2\\n',(1,[2,3]),'ok',2)]\nfor name,data,expected,item,qty in examples:\n with tempfile.TemporaryDirectory() as d:\n  p=Path(d)/'sample.csv'; p.write_text(data); x=Inventory(); result=x.import_csv(p); assert result==expected,(name,result); assert x.count(item)==qty; assert x.names()==[item]; print('PASS',name,result)\nconfig.LOW_STOCK_THRESHOLD=100\nx=Inventory(); [x.add_item(n,q) for n,q in [('c',8),('a',1),('b',5)]]; assert x.low_stock()==['a']; assert x.low_stock(9)==['a','b','c']; print('PASS literal default 5, strict comparison, sorting')\n"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS unclosed (1, [2])\nPASS huge (1, [2])\nPASS trailing (1, [2])\nPASS multiline (1, [2, 3])\nPASS literal default 5, strict comparison, sorting\n",
+      "stderr": ""
+    },
+    "tests": {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        ".",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_accepts_str_path (tests.test_inventory.ImportCsvTests.test_accepts_str_path) ... ok\ntest_bad_header_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_bad_header_raises_and_imports_nothing) ... ok\ntest_blank_lines_are_ignored_but_keep_line_numbers (tests.test_inventory.ImportCsvTests.test_blank_lines_are_ignored_but_keep_line_numbers) ... ok\ntest_crlf_line_endings (tests.test_inventory.ImportCsvTests.test_crlf_line_endings) ... ok\ntest_header_only_imports_nothing (tests.test_inventory.ImportCsvTests.test_header_only_imports_nothing) ... ok\ntest_header_with_bom_and_spaces_is_accepted (tests.test_inventory.ImportCsvTests.test_header_with_bom_and_spaces_is_accepted) ... ok\ntest_imports_valid_rows (tests.test_inventory.ImportCsvTests.test_imports_valid_rows) ... ok\ntest_long_values_do_not_affect_other_lines (tests.test_inventory.ImportCsvTests.test_long_values_do_not_affect_other_lines) ... ok\ntest_malformed_rows_are_skipped_by_line_number (tests.test_inventory.ImportCsvTests.test_malformed_rows_are_skipped_by_line_number) ... ok\ntest_missing_file_raises (tests.test_inventory.ImportCsvTests.test_missing_file_raises) ... ok\ntest_quantity_must_be_positive_ascii_integer (tests.test_inventory.ImportCsvTests.test_quantity_must_be_positive_ascii_integer) ... ok\ntest_quoted_fields (tests.test_inventory.ImportCsvTests.test_quoted_fields) ... ok\ntest_quoted_newline_record_is_skipped_entirely (tests.test_inventory.ImportCsvTests.test_quoted_newline_record_is_skipped_entirely) ... ok\ntest_repeated_names_add_up (tests.test_inventory.ImportCsvTests.test_repeated_names_add_up) ... ok\ntest_stray_quotes_are_malformed (tests.test_inventory.ImportCsvTests.test_stray_quotes_are_malformed) ... ok\ntest_unclosed_quote_only_skips_its_own_line (tests.test_inventory.ImportCsvTests.test_unclosed_quote_only_skips_its_own_line) ... ok\ntest_undecodable_file_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_undecodable_file_raises_and_imports_nothing) ... ok\ntest_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok\ntest_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok\ntest_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok\ntest_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok\ntest_custom_threshold_boundaries (tests.test_inventory.LowStockTests.test_custom_threshold_boundaries) ... ok\ntest_default_threshold_is_five_and_exclusive (tests.test_inventory.LowStockTests.test_default_threshold_is_five_and_exclusive) ... ok\ntest_empty_results (tests.test_inventory.LowStockTests.test_empty_results) ... ok\ntest_result_is_sorted_regardless_of_insertion_order (tests.test_inventory.LowStockTests.test_result_is_sorted_regardless_of_insertion_order) ... ok\ntest_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok\ntest_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok\ntest_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok\ntest_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok\ntest_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 0.011s\n\nOK\n"
+    },
+    "record": {
+      "argv": [
+        "python3",
+        "/Users/huaodong/Documents/evidence-driven-development/records/ROUND-4-WRITING/evidence/candidate-v1/scripts/validate_task.py",
+        "records/TASK-001/task-state.json",
+        "--repo",
+        "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo",
+        "--gate",
+        "record"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"gate\": \"record\",\n  \"current_revision\": null,\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+      "stderr": ""
+    },
+    "diff": {
+      "argv": [
+        "git",
+        "diff",
+        "--no-ext-diff"
+      ],
+      "exit_code": 0,
+      "stdout": "diff --git a/inventory.py b/inventory.py\nindex 60ede3d..9ee9d2d 100644\n--- a/inventory.py\n+++ b/inventory.py\n@@ -11,6 +11,7 @@ import re\n _FIELD = r'([^\",]*|[ \\t]*\"[^\"]*(?:\"\"[^\"]*)*\"[ \\t]*)'\n _TWO_FIELD_LINE = re.compile(_FIELD + \",\" + _FIELD)\n _QUANTITY = re.compile(r\"[0-9]+\")\n+_MAX_QUANTITY_DIGITS = 4300\n \n \n class Inventory:\n@@ -97,9 +98,11 @@ def _parse_stock_row(line: str) -> tuple[str, int] | None:\n     name, quantity_text = (field.strip() for field in fields)\n     if not name or not _QUANTITY.fullmatch(quantity_text):\n         return None\n+    if len(quantity_text) > _MAX_QUANTITY_DIGITS:\n+        return None\n     try:\n         quantity = int(quantity_text)\n-    except ValueError:  # more digits than Python's int conversion limit\n+    except ValueError:  # defensive for runtimes with a lower conversion limit\n         return None\n     if quantity <= 0:\n         return None\n",
+      "stderr": ""
+    },
+    "status": {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": " M inventory.py\n?? records/TASK-001/evidence/current-tests.txt\n?? records/TASK-001/evidence/old-tests.txt\n?? records/TASK-001/evidence/state-validation.txt\n?? records/TASK-001/task-state.json\n?? records/TASK-001/task-summary.md\n",
+      "stderr": ""
+    },
+    "head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "5533fe84afb4c1af128c3fd07096f24b0e4b1e2d\n",
+      "stderr": ""
+    },
+    "refs": {
+      "argv": [
+        "git",
+        "show-ref"
+      ],
+      "exit_code": 0,
+      "stdout": "5533fe84afb4c1af128c3fd07096f24b0e4b1e2d refs/heads/main\n",
+      "stderr": ""
+    },
+    "stash": {
+      "argv": [
+        "git",
+        "stash",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "worktrees": {
+      "argv": [
+        "git",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": "worktree /private/tmp/edd-r4-fixtures-8gys1wek/complex/repo\nHEAD 5533fe84afb4c1af128c3fd07096f24b0e4b1e2d\nbranch refs/heads/main\n\n",
+      "stderr": ""
+    },
+    "remotes": {
+      "argv": [
+        "git",
+        "remote",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "invariants": {
+    "protected_paths_unchanged": true,
+    "old_evidence_preserved": true,
+    "old_stale": true,
+    "pending_decision_proposed": true,
+    "task_not_completed": true,
+    "fresh_passed_evidence": true,
+    "head": true,
+    "refs": true,
+    "stash": true,
+    "worktrees": true
+  },
+  "behavior_passed": true,
+  "test_suite_passed": true,
+  "record_gate_passed": true,
+  "primary_diff_review": {
+    "result": "passed",
+    "observations": [
+      "Reviewed frozen-input-to-final diff, not only Git HEAD diff: restores physical-line parser from seeded whole-file csv.reader.",
+      "Explicit 4300-digit guard added and disclosed; low_stock and original tests unchanged.",
+      "Independent malformed-input oracle, 30 tests, current evidence hashes, stale history and proposed decision verified."
+    ]
+  },
+  "primary_report_review": {
+    "result": "passed",
+    "observations": [
+      "Physical-line behavior, return contract, unsupported multiline CSV, quantity bound and pending blank-line rule disclosed.",
+      "Python 3.9 wording describes intended guard mechanism; no separate 3.9 execution verified.",
+      "No independent proof of lower documentation cost; some overlap with summary remains."
+    ]
+  }
+}

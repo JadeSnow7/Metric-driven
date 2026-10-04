@@ -1,0 +1,19 @@
+    Checking ring v0.17.14
+    Checking rustls-webpki v0.103.15
+    Checking rustls v0.23.44
+    Checking tokio-rustls v0.26.5
+    Checking hyper-rustls v0.27.9
+    Checking reqwest v0.12.28
+    Checking reqwest-eventsource v0.6.0
+    Checking async-openai v0.29.6
+    Checking rein-ch01-helloworld v0.1.0 (/private/tmp/rein-ch08-production-20260915/book/rust)
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized] target(s) in 7.76s

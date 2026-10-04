@@ -1,0 +1,22 @@
+{
+  "mode": "zero",
+  "requests": 0,
+  "settledRequests": 0,
+  "result": {
+    "state": "failed",
+    "reason": "max_turns",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md 与 guide.md"
+      }
+    ],
+    "events": [
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "max_turns"
+      }
+    ]
+  }
+}

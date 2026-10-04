@@ -1,0 +1,6 @@
+{
+  "at": "2026-09-15T06:08:42.325362+00:00",
+  "removed": "/private/tmp/rein-ch08-review-2/run/cargo-target",
+  "approxBefore": "400M",
+  "scope": "Regenerable completed reviewer compile cache only; product source and raw outputs sealed and preserved."
+}

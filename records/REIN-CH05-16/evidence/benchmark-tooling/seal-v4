@@ -1,0 +1,8 @@
+Scope: seal/tree traversal/manifest only.
+Formal seal now requires --execution pointing to an external completed run.json. It verifies ended_at, exit_code, terminal_status and exact workspace match, then copies execution.json into the seal.
+Baseline and result are filtered identically before patch generation. Recovery applies the saved relative-path patch in a new directory and compares file hashes, additions/deletions, modes and symlink records through the manifest. .env and target are absent from patch inputs.
+Symlinks are recorded with target and mode; internal file and directory links are preserved, while links resolving outside the source are rejected. tree_hashes handles link records.
+Verification command (exit code 0): python3 -m unittest tools.tests.test_rein_benchmark -v
+Verification result: Ran 5 tests in 0.766s; OK.
+Recovery artifact path: each seal writes baseline.patch beside seal.json; the patch is generated and applied within the same verification flow, without rewriting absolute temporary paths in the delivered artifact.
+Known limitation: the current patch validation compares the filtered manifest/hash representation; a future stronger acceptance layer may separately validate every mode field and binary patch payload through Git's native index format.

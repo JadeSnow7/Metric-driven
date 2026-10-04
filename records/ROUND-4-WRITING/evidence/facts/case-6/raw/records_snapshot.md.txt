@@ -1,0 +1,21 @@
+# Record-like files changed vs base (excluding tests/ and evidence/)
+
+## records/TASK-008/task-summary.md (14 lines)
+```
+# TASK-008 当前摘要
+
+- 目标：为 Inventory 增加 remove_item(name, quantity)，库存不足抛 ValueError，降到 0 时删除商品
+- 状态：verified；已本地提交，未推送
+- 基线提交：de14e0be45b1f5875583d8fcf4741488ce00f48a
+- 提交：b7a79dc94ea2ae89db7f491ff642f8f2538cee0d（inventory.py、tests/test_inventory.py）
+- 验证：
+  - 旧记录（stale）：2026-09-12 18:40 “Ran 12 tests, OK”，没有原始输出和版本绑定。2026-09-14 在未改动的工作区重跑时 12 项中 1 项失败（test_remove_item_to_zero_deletes，names() 返回 ['apple']），exit 1。
+  - 原因：`if remaining < 0` 永远不成立（库存不足已提前抛错），降到 0 时留下了 {'apple': 0}。
+  - 修复：inventory.py 改为 `if remaining == 0`，测试未改。
+  - 当前（2026-09-14，提交内容 == 工作区）：`python3 -m unittest discover -s tests -t . -v` → Ran 12 tests, OK，exit 0；手动边界检查（剩 1 保留、降到 0 删除、删除后可再加、不足/未知商品/数量 0 或 -1 抛 ValueError 且库存不变）全部符合目标。
+- 授权：commit 已授权（用户 2026-09-14 在对话中要求提交）；push 未授权
+- 下一步：等用户审阅修复；是否推送由用户决定
+- 说明：records/ 未纳入提交，仍是未跟踪文件
+```
+
+(untracked files under records/: ['records/TASK-008/task-summary.md'])

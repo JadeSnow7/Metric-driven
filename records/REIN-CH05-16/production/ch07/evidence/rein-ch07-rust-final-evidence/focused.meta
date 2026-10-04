@@ -1,0 +1,7 @@
+argv=CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo test --test loop ch07_context_rejects_unsafe_integer_budget_as_invalid_context_config
+cwd=/private/tmp/rein-production-candidate-03/rust
+start=2026-09-14T14:56:11Z
+end=2026-09-14T14:56:11Z
+exit=0
+stdout=/private/tmp/rein-ch07-rust-final-evidence/focused.stdout
+stderr=/private/tmp/rein-ch07-rust-final-evidence/focused.stderr

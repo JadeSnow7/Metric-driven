@@ -1,0 +1,1 @@
+{"finding":"relative target does not exist","acceptable":"repair link to current API document","assertions":[{"file":"docs/faq.md","visible_link_target":"../api.md","link_target":"../api.md","must_exist":true},{"file":"docs/faq.md","require_retained_body":true}]}

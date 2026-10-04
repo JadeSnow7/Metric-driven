@@ -1,0 +1,14 @@
+file:///private/tmp/rein-ch08-production-20260915/book/scripts/ch06-compare.mjs:46
+  if (!isDeepStrictEqual(actual, expected)) throw new Error(`${label}\nexpected ${JSON.stringify(expected)}\nactual   ${JSON.stringify(actual)}`)
+                                                  ^
+
+Error: timeout: TypeScript vs fixture
+expected {"reason":"timeout","state":"failed","requests":1,"settledRequests":1,"modelRequests":1,"toolCalls":[],"skipped":[]}
+actual   {"state":"failed","reason":"model_error","requests":1,"settledRequests":1,"modelRequests":1,"toolCalls":[],"skipped":[]}
+    at assertEqual (file:///private/tmp/rein-ch08-production-20260915/book/scripts/ch06-compare.mjs:46:51)
+    at file:///private/tmp/rein-ch08-production-20260915/book/scripts/ch06-compare.mjs:55:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.5.0

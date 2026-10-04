@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "cargo",
+    "fmt",
+    "--manifest-path",
+    "rust/Cargo.toml",
+    "--check"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T15:01:33.723451+00:00",
+  "end": "2026-09-14T15:01:33.955271+00:00",
+  "elapsedSeconds": 0.23180058307480067,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

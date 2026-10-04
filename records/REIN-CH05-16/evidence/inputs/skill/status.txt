@@ -1,0 +1,7 @@
+ M skill/evidence-driven-development/SKILL.md
+ M skill/evidence-driven-development/assets/templates/handoff.md
+ M skill/evidence-driven-development/assets/templates/task-summary.md
+ M skill/evidence-driven-development/assets/templates/writing-handoff.md
+ M skill/evidence-driven-development/references/delegation-and-handoffs.md
+ M skill/evidence-driven-development/references/workflow.md
+ M skill/evidence-driven-development/references/writing.md

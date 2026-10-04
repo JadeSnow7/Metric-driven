@@ -1,0 +1,18 @@
+{
+  "label": "p42-rust-lib-escalated",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--lib"
+  ],
+  "started_utc": "2026-09-14T11:23:39Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s\n     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)\n\nrunning 9 tests\ntest rein::tests::read_file_rejects_escape ... ok\ntest tests::status_classification_keeps_key_out_of_public_error ... ok\ntest rein::tests::anthropic_round_trip_shape ... ok\ntest tests::config_requires_all_values_and_strips_trailing_slash ... ok\ntest tests::local_http_server_receives_one_openai_request ... ok\ntest tests::provider_errors_are_classified_without_echoing_messages ... ok\ntest tests::timeout_returns_without_waiting_for_the_server ... ok\ntest tests::malformed_or_empty_sdk_responses_are_failures ... ok\ntest tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s\n\n"
+}

@@ -1,0 +1,1 @@
+请做一份给 Python 初学者的 UTF-8 行计数小教程。交付 README.md 正文、可独立运行的 count_lines.py 示例、sample.txt 输入，以及实际运行后的 result.txt。样例固定两行：苹果、香蕉，每行以换行结束。运行 python3 count_lines.py sample.txt 应只输出 2 和换行；空文件输出 0 和换行；参数省略或文件不存在时返回非零退出码并向 stderr 给出可理解错误。正文需解释如何准备文件、运行示例、核对结果，并有一个自足练习。完成本地交付即可。

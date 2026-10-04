@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "--silent",
+    "ch07:context",
+    "--workspace",
+    "ts",
+    "--",
+    "/private/tmp/rein-ch07-main-review-v3/empty-text-fixture.json"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T15:12:07.085Z",
+  "end": "2026-09-14T15:12:07.432Z",
+  "elapsedMs": 346.812125,
+  "exit": 0,
+  "stdout": "{\"unit\":\"estimated-bytes-v1\",\"cases\":[{\"id\":\"empty-tool-content\",\"result\":{\"state\":\"failed\",\"reason\":\"empty_final\",\"messages\":[{\"role\":\"assistant\",\"content\":\"\",\"toolCalls\":[{\"id\":\"empty\",\"name\":\"read_file\",\"arguments\":{}}]},{\"role\":\"tool\",\"content\":\"\",\"toolCallId\":\"empty\"},{\"role\":\"user\",\"content\":\"goal\"},{\"role\":\"assistant\",\"content\":\"\"}],\"events\":[{\"type\":\"context_prepared\",\"turn\":1,\"unit\":\"estimated-bytes-v1\",\"budget\":1000,\"beforeUnits\":74,\"afterUnits\":74,\"requiredUnits\":74,\"keptGroups\":[\"g0\",\"g2\"],\"removedGroups\":[],\"requiredGroups\":[\"g0\",\"g2\"],\"mode\":\"managed\"},{\"type\":\"model_requested\",\"turn\":1,\"messages\":[{\"role\":\"assistant\",\"content\":\"\",\"toolCalls\":[{\"id\":\"empty\",\"name\":\"read_file\",\"arguments\":{}}]},{\"role\":\"tool\",\"content\":\"\",\"toolCallId\":\"empty\"},{\"role\":\"user\",\"content\":\"goal\"}],\"tools\":[{\"name\":\"search_files\",\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"additionalProperties\":false}},{\"name\":\"read_file\",\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"additionalProperties\":false}}]},{\"type\":\"model_received\",\"turn\":1,\"message\":{\"role\":\"assistant\",\"content\":\"\"},\"toolCallIds\":[],\"text\":\"\"},{\"type\":\"stopped\",\"state\":\"failed\",\"reason\":\"empty_final\"}]},\"requests\":1,\"sentMessages\":[[{\"role\":\"assistant\",\"content\":\"\",\"toolCalls\":[{\"id\":\"empty\",\"name\":\"read_file\",\"arguments\":{}}]},{\"role\":\"tool\",\"content\":\"\",\"toolCallId\":\"empty\"},{\"role\":\"user\",\"content\":\"goal\"}]]},{\"id\":\"empty-goal\",\"result\":{\"state\":\"failed\",\"reason\":\"empty_final\",\"messages\":[{\"role\":\"user\",\"content\":\"\"},{\"role\":\"assistant\",\"content\":\"\"}],\"events\":[{\"type\":\"context_prepared\",\"turn\":1,\"unit\":\"estimated-bytes-v1\",\"budget\":1000,\"beforeUnits\":12,\"afterUnits\":12,\"requiredUnits\":12,\"keptGroups\":[\"g0\"],\"removedGroups\":[],\"requiredGroups\":[\"g0\"],\"mode\":\"managed\"},{\"type\":\"model_requested\",\"turn\":1,\"messages\":[{\"role\":\"user\",\"content\":\"\"}],\"tools\":[{\"name\":\"search_files\",\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"additionalProperties\":false}},{\"name\":\"read_file\",\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"additionalProperties\":false}}]},{\"type\":\"model_received\",\"turn\":1,\"message\":{\"role\":\"assistant\",\"content\":\"\"},\"toolCallIds\":[],\"text\":\"\"},{\"type\":\"stopped\",\"state\":\"failed\",\"reason\":\"empty_final\"}]},\"requests\":1,\"sentMessages\":[[{\"role\":\"user\",\"content\":\"\"}]]}]}\n",
+  "stderr": "fixture_sha256=94efc132e3513427eb3c0dd85efca250cb03f75098eb5eb995f82678e12c9c65\n"
+}

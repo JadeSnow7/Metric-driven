@@ -1,0 +1,17 @@
+
+running 12 tests
+test rein::tests::anthropic_round_trip_shape ... ok
+test rein::tests::read_file_rejects_escape ... ok
+test tests::config_requires_all_values_and_strips_trailing_slash ... ok
+test tests::status_classification_keeps_key_out_of_public_error ... ok
+test rein::tests::loop_distinguishes_model_error_and_empty_final ... ok
+test rein::tests::loop_records_failures_and_stops_explicitly ... ok
+test rein::tests::loop_reads_real_content_and_pairs_multiple_results ... ok
+test tests::local_http_server_receives_one_openai_request ... ok
+test tests::timeout_returns_without_waiting_for_the_server ... ok
+test tests::provider_errors_are_classified_without_echoing_messages ... ok
+test tests::malformed_or_empty_sdk_responses_are_failures ... ok
+test tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+

@@ -1,0 +1,7 @@
+{
+  "captured_at": "2026-09-15T04:33:05.450229+00:00",
+  "coder_sha256": "2e0009ef961e7c0c6922a11b37d717b93d9c70a43e19e31dc730bc83e5420018",
+  "A_actual_argv_matches_profile_fields": true,
+  "runner_sha256": "0f969a15739801b5cbd42b22594709bc39b38a46172056b8ff1509c01e7438bb",
+  "future_runs": "use captured same coder.toml fields; do not follow unrelated profile changes"
+}

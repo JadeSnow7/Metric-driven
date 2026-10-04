@@ -1,0 +1,12 @@
+[
+  "cargo",
+  "run",
+  "--quiet",
+  "--manifest-path",
+  "rust/Cargo.toml",
+  "--example",
+  "ch06_loop",
+  "--",
+  "normal",
+  "/private/tmp/rein-stage1-support-run-v2/stage1-empty"
+]

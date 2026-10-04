@@ -1,0 +1,20 @@
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Task`
+ --> examples/ch08_context.rs:1:82
+  |
+1 | use rein_ch01_helloworld::rein::context_methods::{run_one, validate, Index, Row, Task, Tasks};
+  |                                                                                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+
+thread 'main' (45779188) panicked at examples/ch08_context.rs:25:75:
+read index: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,35 @@
+（档位 L1：这是恢复已有任务再提交，所以先核验了旧记录，没有直接照记录提交。）
+
+## 结果
+上次那条“验证通过”的记录已经过期。用当前代码重跑测试，12 项里有 1 项失败。我修了实现里一行明显的 bug（测试没动），全量测试重新通过后在本地提交了 `b7a79dc`。没有推送。
+
+## 改动
+- `inventory.py`：`remove_item` 中删除商品的条件从 `if remaining < 0` 改成 `if remaining == 0`。原来的条件永远不成立，因为库存不足时前面已经抛了 ValueError。所以库存降到 0 时商品不会被删除，而是留下 `{'apple': 0}`，`names()` 仍返回 `['apple']`。这既不符合任务目标“降到 0 时删除商品”，也过不了已有测试 `test_remove_item_to_zero_deletes`。
+- `tests/test_inventory.py`：原样提交，没有修改。
+- `records/TASK-008/task-summary.md`：更新到当前状态。它是未跟踪文件，没有放进提交。
+
+## 验证
+| 检查 | 命令或方法 | 结果 |
+| --- | --- | --- |
+| 复核旧记录（修改前） | `python3 -m unittest discover -s tests -t . -v` | failed：12 项中 1 项失败（`test_remove_item_to_zero_deletes`），exit 1 |
+| 全量测试（修复后） | 同上 | passed：Ran 12 tests, OK，exit 0 |
+| 边界检查 | 手动脚本：库存 3 删 2、库存 1 删 1、删除后再加、库存 4 删 5、删未知商品、数量传 0 和 -1 | passed：删完剩 1 时保留；降到 0 时从字典中删除；删除后可以再加；最后三种情况都抛 ValueError，库存不变 |
+| 提交内容与被测内容一致 | `git diff HEAD --quiet -- inventory.py tests/test_inventory.py` | passed |
+
+目标之外的行为：删除不存在的商品会抛 `ValueError("not enough 'pear' in stock")`，不会抛 KeyError，也不会静默忽略；数量不大于 0 时抛 `ValueError("quantity must be positive")`，与 `add_item` 一致。
+
+## 未完成与风险
+- 旧记录只有一句“Ran 12 tests, OK（2026-09-12 18:40）”，没有原始输出，也没有对应到具体代码版本。它的时间还早于基线提交的时间戳（2026-09-14 02:31），所以没法确定当时验证的是哪一版代码。
+- 这行修复是在你说“直接提交”之后我加的，你还没看过。如果想先审阅再提交，可以撤销这次提交并保留改动：`git reset --soft HEAD~1`（会改变仓库状态）。
+- 删除未知商品、数量不大于 0 这两种情况只做了手动检查，没有单元测试覆盖。
+- 未经独立审查。
+
+## 交付动作
+- commit：已在本地提交 `b7a79dc`，只包含 `inventory.py` 和 `tests/test_inventory.py`（你在对话中要求提交）
+- push：未执行，未获授权；`origin/main` 仍停在 `de14e0b`
+
+复跑（只读）：
+```bash
+python3 -m unittest discover -s tests -t . -v
+git show --stat b7a79dc
+```

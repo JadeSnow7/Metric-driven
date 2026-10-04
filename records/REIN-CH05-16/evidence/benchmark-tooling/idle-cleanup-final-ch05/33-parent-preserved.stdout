@@ -1,0 +1,26 @@
+/private/tmp/rein-ch05-final-text-evidence/rust-empty-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/final-ts-multi.raw
+/private/tmp/rein-ch05-final-text-evidence/rust-multi-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/ts-recovery.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-single-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/ts-single.txt
+/private/tmp/rein-ch05-final-text-evidence/ts-typecheck.txt
+/private/tmp/rein-ch05-final-text-evidence/final-ts-single.raw
+/private/tmp/rein-ch05-final-text-evidence/rust-exhausted-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-exhausted.txt
+/private/tmp/rein-ch05-final-text-evidence/ts-exhausted.txt
+/private/tmp/rein-ch05-final-text-evidence/final-ts-single npm run ch05:offline --workspace ts -- workspace.raw
+/private/tmp/rein-ch05-final-text-evidence/README.md
+/private/tmp/rein-ch05-final-text-evidence/ts-multi.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-recovery-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-limit-retry.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-multi.txt
+/private/tmp/rein-ch05-final-text-evidence/final-rust-multi.raw
+/private/tmp/rein-ch05-final-text-evidence/ts-limit.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-fmt.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-recovery.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-empty.txt
+/private/tmp/rein-ch05-final-text-evidence/ts-empty.txt
+/private/tmp/rein-ch05-final-text-evidence/final-rust-single.raw
+/private/tmp/rein-ch05-final-text-evidence/rust-limit.txt
+/private/tmp/rein-ch05-final-text-evidence/rust-single.txt

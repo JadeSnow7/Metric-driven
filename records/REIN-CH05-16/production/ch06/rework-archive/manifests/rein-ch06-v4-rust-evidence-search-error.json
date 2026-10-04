@@ -1,0 +1,50 @@
+{
+  "source_path": "/private/tmp/rein-ch06-v4-rust-evidence-search-error",
+  "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v4-rust-evidence-search-error",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "preserved/ch06_loop.rs",
+      "sha256": "f3e4fcea03c72939bbe7febf677fc8ac56918cdf3a762960d43c09fb880cf2f5",
+      "mode": "0644"
+    },
+    {
+      "path": "raw/check-examples.json",
+      "sha256": "eb03e742cf7b01524a0a88701c6a12dd2b55aef855f167304e41d7e52f14c8b1",
+      "mode": "0644"
+    },
+    {
+      "path": "raw/fmt-check.json",
+      "sha256": "5f6b74c5054111777f912e68605fd773f4281f4aaea654fefebd29fb51a6406e",
+      "mode": "0644"
+    },
+    {
+      "path": "raw/index.json",
+      "sha256": "0472a59100248ecec7bc4c6ea0df919b63ac005d7f81fd63f162b01f61fdea07",
+      "mode": "0644"
+    },
+    {
+      "path": "raw/nonexistent-workspace.json",
+      "sha256": "2023a0c5b57c10853224affa8c54ae322ef54c90b7ed2844e88c4adbbd5a905a",
+      "mode": "0644"
+    },
+    {
+      "path": "raw/numeric-filename.json",
+      "sha256": "195bf2aef43df1f91ef4e06f40cadf9d41c525d39add535da74f47eab0f94d31",
+      "mode": "0644"
+    },
+    {
+      "path": "run.py",
+      "sha256": "6b3e38a373d07caae49cf59443119cf5af19e72c446cdfb8e1a234a40dd7a74c",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

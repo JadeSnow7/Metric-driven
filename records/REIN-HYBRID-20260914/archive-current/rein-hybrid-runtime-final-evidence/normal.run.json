@@ -1,0 +1,1 @@
+{"argv":["cargo","run","--quiet","--manifest-path","rust/Cargo.toml","--example","hybrid_stdio","--","normal"],"cwd":"/private/tmp/rein-hybrid-work-20260914","start":"2026-09-14T16:14:53Z","end":"2026-09-14T16:14:58Z","exit":0}

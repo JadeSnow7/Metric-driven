@@ -1,0 +1,41 @@
+{
+  "kind": "invalid-portable-archive",
+  "timestamp": "2026-09-14T13:04:45.266774+00:00",
+  "files": [
+    {
+      "name": "rein-ch05.tar.gz",
+      "sha256": "9ac466172e5668d6e84ebf265d9fc974dc7ed7734704dcb3970a6838daddf2b7",
+      "source": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.tar.gz",
+      "archived": "records/REIN-CH05-16/experiments/ch05/production-final/invalid-portable/rein-ch05.tar.gz"
+    },
+    {
+      "name": "rein-pre-ch05.tar.gz",
+      "sha256": "1a3c78bf7a9bf927747a948dbd0a6040740dd4c792a7b2b1bb7bae6acd77e1f3",
+      "source": "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-pre-ch05.tar.gz",
+      "archived": "records/REIN-CH05-16/experiments/ch05/production-final/invalid-portable/rein-pre-ch05.tar.gz"
+    },
+    {
+      "name": "README.md",
+      "sha256": "a3e9afce1bc01f23995ece990d63aeb0dca3c885aca5c67883630604bf4a1c41",
+      "source": "/private/tmp/rein-production-candidate-03/chapter-snapshots/README.md",
+      "archived": "records/REIN-CH05-16/experiments/ch05/production-final/invalid-portable/README.md"
+    }
+  ],
+  "after_delete": [
+    {
+      "name": "rein-ch05.tar.gz",
+      "exists_after_delete": false,
+      "archived_sha256": "9ac466172e5668d6e84ebf265d9fc974dc7ed7734704dcb3970a6838daddf2b7"
+    },
+    {
+      "name": "rein-pre-ch05.tar.gz",
+      "exists_after_delete": false,
+      "archived_sha256": "1a3c78bf7a9bf927747a948dbd0a6040740dd4c792a7b2b1bb7bae6acd77e1f3"
+    },
+    {
+      "name": "README.md",
+      "exists_after_delete": false,
+      "archived_sha256": "a3e9afce1bc01f23995ece990d63aeb0dca3c885aca5c67883630604bf4a1c41"
+    }
+  ]
+}

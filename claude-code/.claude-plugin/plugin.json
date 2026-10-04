@@ -1,0 +1,7 @@
+{
+  "name": "veriflow",
+  "version": "0.1.0",
+  "description": "Veriflow for Claude Code: evidence-bounded delivery with an Opus/Fable main thread and Sonnet coder/reviewer subagents.",
+  "license": "Apache-2.0",
+  "keywords": ["verification", "evidence", "delivery", "subagents"]
+}

@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "gate": "record",
+  "current_revision": null,
+  "errors": [],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}

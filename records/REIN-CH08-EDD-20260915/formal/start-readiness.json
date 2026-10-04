@@ -1,0 +1,11 @@
+{
+  "accepted_at": "2026-09-15T04:25:52.820644+00:00",
+  "skill_old_files": 15,
+  "skill_new_files": 18,
+  "common_files": 169,
+  "common_prerequisites": "TS100 pass, Rust tests pass, ch07 compare and actual Rust-Node normal/cancel/crash evidence reviewed; current common matches accepted source hashes",
+  "evaluator": "5 tests pass; known-good and 11 specifically detected mutants; toy only calibrates external protocol",
+  "review_protocol_sha256": "fe12af40115b7e3630f80f1d50f16879f1ad3be3a9b073a986d3bcaf89f23509",
+  "authorization": "local implementation/delivery only; no commit/tag/push/deploy",
+  "formal_status": "ready; no arms launched yet"
+}

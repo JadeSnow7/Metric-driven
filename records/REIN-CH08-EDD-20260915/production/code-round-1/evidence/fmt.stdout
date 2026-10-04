@@ -1,0 +1,136 @@
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/examples/ch08_context.rs:11:
+ }
+ fn main() {
+     let mut args = env::args().skip(1);
+-    let root = PathBuf::from(args.next().unwrap_or_else(|| "fixtures/ch08-context".into()));
++    let root = PathBuf::from(
++        args.next()
++            .unwrap_or_else(|| "fixtures/ch08-context".into()),
++    );
+     let mut budget: Option<usize> = None;
+     let mut strategy: Option<String> = None;
+     while let Some(arg) = args.next() {
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/examples/ch08_context.rs:21:
+                 budget = Some(value.parse().map_err(|_| "invalid budget").unwrap());
+             }
+             "--strategy" if strategy.is_none() && !value.is_empty() => {
+-                if !matches!(value, "on-demand" | "window" | "summary" | "retrieval") { panic!("invalid strategy") }
++                if !matches!(value, "on-demand" | "window" | "summary" | "retrieval") {
++                    panic!("invalid strategy")
++                }
+                 strategy = Some(value.to_owned());
+             }
+             _ => panic!("invalid or duplicate argument: {arg}"),
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:118:
+         }),
+         "window" => {}
+         "summary" => {}
+-        "retrieval" => {},
++        "retrieval" => {}
+         _ => {}
+     }
+     if strategy == "window" {
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:136:
+     let metadata = format!("{} {}", doc.title, doc.keywords.join(" ")).to_lowercase();
+     q.iter().filter(|w| body.contains(w.as_str())).count()
+         + q.iter().filter(|w| metadata.contains(w.as_str())).count()
+-        + doc.keywords.iter().filter(|k| body.contains(&k.to_lowercase())).count()
++        + doc
++            .keywords
++            .iter()
++            .filter(|k| body.contains(&k.to_lowercase()))
++            .count()
+ }
+ 
+ fn expected_field_count(question: &str) -> usize {
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:143:
+-    if question.contains("生产吞吐量") { 0 }
+-    else if question.contains("和") && question.contains("分别") { 2 }
+-    else if question.contains("传输方式") && question.contains("协议版本") { 2 }
+-    else { 1 }
++    if question.contains("生产吞吐量") {
++        0
++    } else if question.contains("和") && question.contains("分别") {
++        2
++    } else if question.contains("传输方式") && question.contains("协议版本") {
++        2
++    } else {
++        1
++    }
+ }
+ fn parse_claims(messages: &[Message], question: &str) -> Vec<Claim> {
+     let fields = ["传输方式", "协议版本", "检查命令", "批准状态", "处理动作"];
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:243:
+     let mut messages = required;
+     let mut operations = Vec::new();
+     let mut executor = StdioExecutor::new(root);
+-    executor.env.push(("REIN_HYBRID_WORKSPACE".into(), root.to_string_lossy().into_owned()));
++    executor.env.push((
++        "REIN_HYBRID_WORKSPACE".into(),
++        root.to_string_lossy().into_owned(),
++    ));
+     let mut read_docs = selected.clone();
+     if strategy == "window" {
+         read_docs.sort_by_key(|d| d.order);
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:301:
+     if strategy == "retrieval" {
+         let mut scored = Vec::new();
+         for doc in &read_docs {
+-            if let Some(m) = messages.iter().find(|m| m.role == "tool" && m.content.starts_with(&format!("[来源:{}]", doc.id))) {
++            if let Some(m) = messages
++                .iter()
++                .find(|m| m.role == "tool" && m.content.starts_with(&format!("[来源:{}]", doc.id)))
++            {
+                 let body = m.content.lines().skip(1).collect::<Vec<_>>().join("\n");
+                 scored.push((retrieval_score(task, doc, &body), doc.order, doc.id.clone()));
+             }
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:310:
+         for op in operations.iter_mut() {
+             if let Some(path) = op.get("path").and_then(|v| v.as_str()) {
+                 if let Some(doc) = read_docs.iter().find(|d| d.path == path) {
+-                    let body = messages.iter().find(|m| m.role == "tool" && m.content.starts_with(&format!("[来源:{}]", doc.id))).map(|m| m.content.lines().skip(1).collect::<Vec<_>>().join("\n")).unwrap_or_default();
++                    let body = messages
++                        .iter()
++                        .find(|m| {
++                            m.role == "tool" && m.content.starts_with(&format!("[来源:{}]", doc.id))
++                        })
++                        .map(|m| m.content.lines().skip(1).collect::<Vec<_>>().join("\n"))
++                        .unwrap_or_default();
+                     op["score"] = serde_json::json!(retrieval_score(task, doc, &body));
+                 }
+             }
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:329:
+     }
+     if strategy == "window" {
+         while estimated_units(&messages) > budget {
+-            let Some(i) = messages.iter().position(|m| m.role == "tool") else { break };
++            let Some(i) = messages.iter().position(|m| m.role == "tool") else {
++                break;
++            };
+             let mut lines = messages[i].content.lines();
+             let source = lines.next().unwrap_or("").to_owned();
+             let paragraphs: Vec<&str> = lines.collect();
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:336:
+-            if paragraphs.len() <= 1 { messages.remove(i); continue; }
++            if paragraphs.len() <= 1 {
++                messages.remove(i);
++                continue;
++            }
+             let keep = paragraphs.split_at(paragraphs.len() / 2).1.join("\n");
+             messages[i].content = format!("{}\n{}", source, keep);
+         }
+Diff in /private/tmp/rein-ch08-production-20260915/book/rust/src/rein/context_methods.rs:340:
+     }
+     let a = answer(&messages, &task.question, task);
+     let needed = expected_field_count(&task.question);
+-    let quality = Some(if needed == 0 && a.claims.is_empty() { 1.0 } else if needed == 0 { 0.0 } else { (a.claims.len() as f64 / needed as f64).min(1.0) });
++    let quality = Some(if needed == 0 && a.claims.is_empty() {
++        1.0
++    } else if needed == 0 {
++        0.0
++    } else {
++        (a.claims.len() as f64 / needed as f64).min(1.0)
++    });
+     Row {
+         task_id: task.id.clone(),
+         strategy: strategy.into(),

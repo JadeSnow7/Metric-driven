@@ -1,0 +1,14 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests --run tests/loop.test.ts
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch05-pair-ready-20260914/b/ts
+
+ ✓ tests/loop.test.ts (3 tests) 10ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  19:16:45
+   Duration  164ms (transform 24ms, setup 0ms, collect 21ms, tests 10ms, environment 0ms, prepare 32ms)
+

@@ -1,0 +1,116 @@
+{"variant":"AZURE","root":"/private/tmp/rein-ch05-review-evidence-1/demo-ts-3r8idk"}
+{
+  "state": "completed",
+  "reason": "final_answer",
+  "answer": "已完成读取与搜索。",
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messageCount": 1
+    },
+    {
+      "type": "model_received",
+      "turn": 1,
+      "toolCallIds": [
+        "anthropic-1",
+        "anthropic-2"
+      ],
+      "text": "hello"
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "toolCallId": "anthropic-1",
+      "result": {
+        "toolCallId": "anthropic-1",
+        "ok": true,
+        "output": "前置 AZURE README"
+      }
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "toolCallId": "anthropic-2",
+      "result": {
+        "toolCallId": "anthropic-2",
+        "ok": true,
+        "output": "README.md\nextra.md"
+      }
+    },
+    {
+      "type": "model_requested",
+      "turn": 2,
+      "messageCount": 4
+    },
+    {
+      "type": "model_received",
+      "turn": 2,
+      "toolCallIds": [],
+      "text": "已完成读取与搜索。"
+    },
+    {
+      "type": "stopped",
+      "state": "completed",
+      "reason": "final_answer"
+    }
+  ]
+}
+{"variant":"OCHRE","root":"/private/tmp/rein-ch05-review-evidence-1/demo-ts-Q4vaJc"}
+{
+  "state": "completed",
+  "reason": "final_answer",
+  "answer": "已完成读取与搜索。",
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messageCount": 1
+    },
+    {
+      "type": "model_received",
+      "turn": 1,
+      "toolCallIds": [
+        "anthropic-1",
+        "anthropic-2"
+      ],
+      "text": "hello"
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "toolCallId": "anthropic-1",
+      "result": {
+        "toolCallId": "anthropic-1",
+        "ok": true,
+        "output": "前置 OCHRE README"
+      }
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "toolCallId": "anthropic-2",
+      "result": {
+        "toolCallId": "anthropic-2",
+        "ok": true,
+        "output": "README.md\nextra.md"
+      }
+    },
+    {
+      "type": "model_requested",
+      "turn": 2,
+      "messageCount": 4
+    },
+    {
+      "type": "model_received",
+      "turn": 2,
+      "toolCallIds": [],
+      "text": "已完成读取与搜索。"
+    },
+    {
+      "type": "stopped",
+      "state": "completed",
+      "reason": "final_answer"
+    }
+  ]
+}

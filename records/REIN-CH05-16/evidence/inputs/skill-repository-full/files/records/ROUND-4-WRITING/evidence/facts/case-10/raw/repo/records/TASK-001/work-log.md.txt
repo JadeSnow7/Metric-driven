@@ -1,0 +1,69 @@
+# TASK-001 工作日志
+
+> 仅追加事件；当前结论回写 `task-summary.md`。
+
+## 2026-09-13T23:08:14Z — EVENT-001
+
+- 类型：开始
+- 执行者：main-thread（会话 1）
+- 关联：`SRC-001` / `SRC-003` / `EVD-001`
+- 起点与实际动作：main@`547ce4e`，`git status` 干净（只有被忽略的 `__pycache__/`）；定为 L2；建立 `task-state.json`，拆出 MT-001、MT-002 与 MET-001..004；`--gate implementation` 结果 ok
+- 结果：passed（基线 9 个测试通过；原始输出于 23:10:00Z 重跑保存为 EVD-001）
+- 证据或回执：`evidence/EVD-001-baseline-tests.txt`
+- 对摘要的影响：建立摘要
+- 下一步或停止条件：先写测试，再实现
+
+## 2026-09-13T23:08:14Z — EVENT-002（与环境检查同一批命令，未单独计时）
+
+- 类型：实验
+- 执行者：main-thread
+- 关联：`DEC-001` / `DEC-002`
+- 起点与实际动作：在 scratchpad 用小脚本探测 csv 与 int 的行为
+- 结果：整文件 `csv.reader` 遇到未闭合引号时，把后续所有行吞进一个字段且不报错；单个字段超过 131072 字符会抛 `csv.Error`；`int()` 接受 `+3`/`1_000`/非 ASCII 数字（如 ٣），超过 4300 位抛 `ValueError`
+- 证据或回执：探测输出没有保存为 EVD（结论已由 ImportCsvTests 固定，EVD-003 的变异检查证明去掉相应处理后测试会失败）
+- 对摘要的影响：采用逐行解析 + ASCII 数字正则 + 捕获两类异常（DEC-001、DEC-002，proposed）
+- 下一步或停止条件：实现
+
+## 2026-09-13T23:15:14Z — EVENT-003
+
+- 类型：验证
+- 执行者：main-thread
+- 关联：`IT-001` / `IT-002` / `EVD-002` / `EVD-003` / `EVD-004`
+- 起点与实际动作：实现前运行新测试，28 个中 24 个报 AttributeError（新方法不存在），既有 9 个通过；实现后全部通过。之后为兼容性修改了测试辅助函数（改为写 bytes，加 `from __future__ import annotations`），把源码中的非 ASCII 字符改回转义写法；修改后重新运行全部检查并生成证据
+- 结果：passed。单元测试 28/28（EVD-002）；6 个变异体全部被抓到（EVD-003）；E2E PASSED（EVD-004）；`--gate local-commit` 结果 ok
+- 证据或回执：revision `patch:547ce4ebe0389259d0d5db5a00330285f80101a1:1e52ebba3c67d64fdf67d3dc5ea53d3c8a4cf7e5862fce4996e03318ffb5e1e5`
+- 对摘要的影响：MT/IT/MET 为 verified/passed；EVD-001 标 stale；任务整体 verified，因为 DEC 待确认，不是 completed
+- 下一步或停止条件：本地提交（已授权）；不推送
+
+## 2026-09-13T23:18:00Z — EVENT-004（时间为约值，介于 23:16:19Z 与 23:22:58Z 之间）
+
+- 类型：重大变更（提交前）
+- 执行者：main-thread
+- 关联：`DEC-001` / `DEC-002` / `IT-001` / `MET-001` / `EVD-002`..`EVD-004`
+- 起点与实际动作：核对摘要里“跨行引号记录会被拆成坏行跳过”这句话时实测：`name,quantity\n"Widget\nlarge",3\npear,2` 返回 `(2, [2])`，并导入了商品 `large"`，说明原来的说法错误，也违反“坏行不影响其他行”。`csv.reader(strict=True)` 同样放行 `large",3`。已撤下暂存，把证据、指标、任务状态回退（EVD stale、MET undetermined、IT-001/MT-001 in_progress、IT-002/MT-002 implemented）
+- 结果：blocked → 改为用两字段 RFC 4180 正则解析（未加引号的字段不许含引号、引号后不许有多余字符、内部引号须双写）；去掉 csv 依赖后，name 不再受 131072 字符限制。测试随规则调整：删除“超长 name 被跳过”的断言，改为“20 万字符 name 正常导入”；新增引号字段、多余引号、跨行记录 3 个测试。新测试先在旧实现上运行，4 个失败
+- 证据或回执：见 EVENT-005
+- 对摘要的影响：DEC-001/DEC-002 内容更新（仍为 proposed）；摘要“待确认”第 3 项改写
+- 下一步或停止条件：重跑全部检查并生成新证据
+
+## 2026-09-13T23:22:59Z — EVENT-005
+
+- 类型：验证
+- 执行者：main-thread
+- 关联：`EVD-002` / `EVD-003` / `EVD-004` / `EVD-005`
+- 起点与实际动作：代码定稿后重跑单元测试、8 个变异体、E2E（样本新增跨行引号记录）、9 种构造的超长恶意行计时
+- 结果：passed。30/30 测试；8/8 变异体被抓到；E2E PASSED；最慢 19.32 ms；`--gate local-commit` 结果 ok
+- 证据或回执：revision `patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532`
+- 对摘要的影响：MT/IT/MET 回到 verified/passed，任务整体 verified，因为 DEC 待确认，不是 completed
+- 下一步或停止条件：本地提交（已授权）；不推送
+
+## 2026-09-13T23:25:52Z — EVENT-006
+
+- 类型：提交
+- 执行者：main-thread
+- 关联：`ACT-001` / `ACT-002` / `CHG-001`..`CHG-003`
+- 起点与实际动作：`--gate local-commit` 结果 ok，暂存区与工作区一致（`git diff --stat` 为空，没有未暂存的未跟踪文件）；`git add inventory.py tests/test_inventory.py records/TASK-001`；`git commit`
+- 结果：completed。提交 `6d1d31b2e151f37123f545d4edeccfb979bff38b`，父提交 547ce4e，12 个文件；`git status -sb` 显示 `main...origin/main [ahead 1]`
+- 证据或回执：见上述 SHA。之后再提交一次记录回执（ACT-002，只含 records/TASK-001）
+- 对摘要的影响：delivery.local_commit = completed；push 未授权、未执行
+- 下一步或停止条件：等用户确认 DEC-001..DEC-005；没有明确授权不要 push

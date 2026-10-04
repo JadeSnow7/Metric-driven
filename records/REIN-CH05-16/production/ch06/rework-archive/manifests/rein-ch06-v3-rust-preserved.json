@@ -1,0 +1,35 @@
+{
+  "source_path": "/private/tmp/rein-ch06-v3-rust-preserved",
+  "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-rust-preserved",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "files/ch06_loop.rs",
+      "sha256": "3d012d4d5d7f1c0369febceffe45e728d79387c869365a9c9782044922a9add8",
+      "mode": "0644"
+    },
+    {
+      "path": "files/loop.rs",
+      "sha256": "cc08844f0922375d7a38866f67c45430ee2c00ae3850816134f6a0e8126add66",
+      "mode": "0644"
+    },
+    {
+      "path": "files/mod.rs",
+      "sha256": "8e4e65fa7747903f720d6504e712c8a20c4b3b60c0a1d03a0798615ff8edf22b",
+      "mode": "0644"
+    },
+    {
+      "path": "files/tests-loop.rs",
+      "sha256": "9a4dc91fdb79e5d5daf79faabf7e6df089b43606888b35938620467ac2852846",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

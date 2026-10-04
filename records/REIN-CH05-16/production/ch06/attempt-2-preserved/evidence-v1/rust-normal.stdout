@@ -1,0 +1,197 @@
+{
+  "mode": "normal",
+  "result": {
+    "answer": "完成",
+    "events": [
+      {
+        "messages": [
+          {
+            "content": "读取 README.md",
+            "role": "user"
+          }
+        ],
+        "tools": [
+          {
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "type": "object"
+            },
+            "name": "search_files"
+          },
+          {
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "type": "object"
+            },
+            "name": "read_file"
+          }
+        ],
+        "turn": 1,
+        "type": "model_requested"
+      },
+      {
+        "message": {
+          "content": "",
+          "role": "assistant",
+          "toolCalls": [
+            {
+              "arguments": {
+                "path": "README.md"
+              },
+              "id": "read",
+              "name": "read_file"
+            }
+          ]
+        },
+        "text": "",
+        "toolCallIds": [
+          "read"
+        ],
+        "turn": 1,
+        "type": "model_received"
+      },
+      {
+        "call": {
+          "arguments": {
+            "path": "README.md"
+          },
+          "id": "read",
+          "name": "read_file"
+        },
+        "result": {
+          "ok": true,
+          "output": "marker: ch06\n",
+          "toolCallId": "read"
+        },
+        "toolCallId": "read",
+        "turn": 1,
+        "type": "tool_result"
+      },
+      {
+        "messages": [
+          {
+            "content": "读取 README.md",
+            "role": "user"
+          },
+          {
+            "content": "",
+            "role": "assistant",
+            "toolCalls": [
+              {
+                "arguments": {
+                  "path": "README.md"
+                },
+                "id": "read",
+                "name": "read_file"
+              }
+            ]
+          },
+          {
+            "content": "marker: ch06\n",
+            "role": "tool",
+            "toolCallId": "read"
+          }
+        ],
+        "tools": [
+          {
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "type": "object"
+            },
+            "name": "search_files"
+          },
+          {
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "type": "object"
+            },
+            "name": "read_file"
+          }
+        ],
+        "turn": 2,
+        "type": "model_requested"
+      },
+      {
+        "message": {
+          "content": "完成",
+          "role": "assistant"
+        },
+        "text": "完成",
+        "toolCallIds": [],
+        "turn": 2,
+        "type": "model_received"
+      },
+      {
+        "reason": "final_answer",
+        "state": "completed",
+        "type": "stopped"
+      }
+    ],
+    "messages": [
+      {
+        "content": "读取 README.md",
+        "role": "user"
+      },
+      {
+        "content": "",
+        "role": "assistant",
+        "toolCalls": [
+          {
+            "arguments": {
+              "path": "README.md"
+            },
+            "id": "read",
+            "name": "read_file"
+          }
+        ]
+      },
+      {
+        "content": "marker: ch06\n",
+        "role": "tool",
+        "toolCallId": "read"
+      },
+      {
+        "content": "完成",
+        "role": "assistant"
+      }
+    ],
+    "reason": "final_answer",
+    "state": "completed"
+  }
+}

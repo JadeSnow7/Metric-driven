@@ -1,0 +1,6 @@
+argv=/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmp.pDEZElNVcM single 
+cwd=/private/tmp/rein-production-candidate-03
+start=2026-09-14T12:51:52Z
+zsh:13: permission denied: /var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmp.pDEZElNVcM
+end=2026-09-14T12:51:52Z
+exit=126

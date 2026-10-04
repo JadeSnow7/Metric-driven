@@ -1,0 +1,18 @@
+{
+  "kind": "ch05-production-final-evidence-collection",
+  "timestamp": "2026-09-14T13:05:56.749457+00:00",
+  "excluded": [
+    "target",
+    "node_modules",
+    "cargo-target",
+    "real .env",
+    "live *.raw"
+  ],
+  "sources": [
+    "candidate03-evidence",
+    "final-text",
+    "live-redacted",
+    "docs-build-final.json",
+    "input-recovery-main-verification.json"
+  ]
+}

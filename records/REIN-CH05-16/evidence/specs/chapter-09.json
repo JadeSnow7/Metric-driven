@@ -1,0 +1,1 @@
+{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch09","title":"验收与验证器","checks":[{"id":"structured","observable":"验收条件为结构化数据并产生逐项结果"},{"id":"exit-vs-task","observable":"进程退出成功但任务失败的情况被识别"},{"id":"validators","observable":"测试、类型、运行时和声明式验证器报告各自证明范围"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}

@@ -1,0 +1,7 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (/private/tmp/rein-production-build-20260914/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)
+     Running unittests src/bin/hello.rs (/private/tmp/rein-production-build-20260914/debug/deps/hello-e891c8ec077baf1a)
+     Running unittests src/main.rs (/private/tmp/rein-production-build-20260914/debug/deps/rein_ch01_helloworld-99d76be240253315)
+     Running tests/loop.rs (/private/tmp/rein-production-build-20260914/debug/deps/loop-8ce302fc995cc4fc)
+     Running tests/prerequisites.rs (/private/tmp/rein-production-build-20260914/debug/deps/prerequisites-f3a192991d055a1f)
+   Doc-tests rein_ch01_helloworld

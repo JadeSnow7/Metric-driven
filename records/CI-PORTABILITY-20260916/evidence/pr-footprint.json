@@ -1,0 +1,88 @@
+{
+  "observed_at": "2026-09-16T06:34:53.654020+00:00",
+  "head": "fd7f0a618720e7682621207d4df28411327004ef",
+  "base": "599c380a8dfeaadeff3a4d542b34071800996a29",
+  "top_level": {
+    ".github": {
+      "files": 1,
+      "added_text_lines": 4,
+      "deleted_text_lines": 2
+    },
+    "README.md": {
+      "files": 1,
+      "added_text_lines": 96,
+      "deleted_text_lines": 34
+    },
+    "claude-code": {
+      "files": 3,
+      "added_text_lines": 9,
+      "deleted_text_lines": 0
+    },
+    "evidence": {
+      "files": 12,
+      "added_text_lines": 889,
+      "deleted_text_lines": 0
+    },
+    "records": {
+      "files": 8327,
+      "added_text_lines": 1203186,
+      "deleted_text_lines": 0
+    },
+    "review-iteration-2.md": {
+      "files": 1,
+      "added_text_lines": 92,
+      "deleted_text_lines": 0
+    },
+    "skill": {
+      "files": 37,
+      "added_text_lines": 4329,
+      "deleted_text_lines": 2301
+    },
+    "tools": {
+      "files": 11,
+      "added_text_lines": 1898,
+      "deleted_text_lines": 22
+    }
+  },
+  "suffixes": {
+    ".yml": 40,
+    ".md": 1764,
+    ".json": 1744,
+    "": 115,
+    ".diff": 6,
+    ".sha256": 25,
+    ".status": 18,
+    ".stderr": 244,
+    ".stdout": 256,
+    ".meta": 30,
+    ".sh": 32,
+    ".jsonl": 34,
+    ".txt": 1647,
+    ".rs": 257,
+    ".py": 97,
+    ".mts": 28,
+    ".lock": 47,
+    ".toml": 45,
+    ".vue": 18,
+    ".css": 18,
+    ".ts": 618,
+    ".svg": 18,
+    ".example": 39,
+    ".patch": 67,
+    ".yaml": 14,
+    ".exit": 113,
+    ".log": 12,
+    ".argv": 16,
+    ".cwd": 14,
+    ".raw": 5,
+    ".gz": 43,
+    ".mjs": 71,
+    ".finished-at": 2,
+    ".err": 1,
+    ".out": 1,
+    ".bin": 890,
+    ".tsv": 3,
+    ".stat": 1
+  },
+  "limits": "File counts are not a retention verdict; no records removed or histories rewritten."
+}

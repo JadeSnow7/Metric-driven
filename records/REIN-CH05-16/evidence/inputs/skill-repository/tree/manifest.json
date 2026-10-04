@@ -1,0 +1,182 @@
+{
+  "kind": "rein-working-tree-snapshot",
+  "created_at": "2026-09-14T10:35:50.726668+00:00",
+  "source": "temporary reconstruction from local Git object; see provenance.txt",
+  "head": "1a10fca5d408004a354da5f61e6f449c09801f23",
+  "branch": "not reconstructed in archive",
+  "files": [
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-input.md",
+      "sha256": "49c4f9aa2200b37d0bc6dffde15276d2c04743567cc795c984748a7d37fe2a8d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-output.md",
+      "sha256": "e551fb5138d4b16d94b75ebf6c6ccc98479c75955c4421db9e7fc7450b158f67",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-review.md",
+      "sha256": "c4542f2698d89728ccaddab8af737f96fcddb392323316a5980d9dca781db602",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/repository-check.txt",
+      "sha256": "e5943c7794222f7962cbee3ff341c25bb0b016be4b1cda23ffa96eabdb01b32f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/review-criteria.md",
+      "sha256": "e9cb803a7776d86883092211139b48ed4282fb3a1d5ba79da869381bdcce4139",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/skill-check.txt",
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/unit-tests.txt",
+      "sha256": "9d30bd4d0f9927f88a2646cabcf25b9799d5c590c7d4809eab521519ff4d3810",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/task-summary.md",
+      "sha256": "5cffebcf4bfb7387b75b776c75ce54adae2976a9db55436c177eeaf0287df50d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/work-log.md",
+      "sha256": "4d60fbeda4e4e14b6fbbfc022480e73c80b35d4c3af5dcec875f63e8c8c6e969",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/SKILL.md",
+      "sha256": "524145d492222373faeb2b21daa9626e9dd5e26d6b5402c5619d23e5161350ff",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/agents/openai.yaml",
+      "sha256": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/handoff.md",
+      "sha256": "9f6e58631627885c91180ab0868f00f2178460675676c5cb32bb0e01640e9f45",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/task-state.example.json",
+      "sha256": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/task-summary.md",
+      "sha256": "e628e02810da77776603cf9382350c1eb2f2931ba94b5cf05ab6a2c28c5c021f",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/work-log.md",
+      "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+      "sha256": "4da5b99c6c4bd6350184574a9ce2955e3c514686d7dac17e2de260ee74e0d6bf",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+      "sha256": "4ba5583903e29af181ec78eb5daa69ee89611d526035d0ac9c6cdcd0017d6066",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/examples.md",
+      "sha256": "3a8d7ed4d35d6bfe521d1fbedb9de17557d431e7a62d1a7b65a597bdfec121cc",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/metrics-and-evidence.md",
+      "sha256": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/records.md",
+      "sha256": "d6706b854d53daf13ad5e11377c8787769d41c2473230018be91f5cab937c884",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/workflow.md",
+      "sha256": "732f6e765349a1d2f36a87d544da7d1f18af1197d6fc8a544bbea6928063cc27",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/writing.md",
+      "sha256": "d56e009c2817e0b39e5a2604b1aeb358e14a24afff0c474b75be50e8c7ca9fad",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/scripts/validate_task.py",
+      "sha256": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+      "mode": 493
+    },
+    {
+      "path": "skill/evidence-driven-development/tests/test_scenarios.py",
+      "sha256": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+      "mode": 420
+    }
+  ],
+  "git_inventory": [
+    "records/ROUND-5-WRITING/evidence/forward-input.md",
+    "records/ROUND-5-WRITING/evidence/forward-output.md",
+    "records/ROUND-5-WRITING/evidence/forward-review.md",
+    "records/ROUND-5-WRITING/evidence/repository-check.txt",
+    "records/ROUND-5-WRITING/evidence/review-criteria.md",
+    "records/ROUND-5-WRITING/evidence/skill-check.txt",
+    "records/ROUND-5-WRITING/evidence/unit-tests.txt",
+    "records/ROUND-5-WRITING/task-summary.md",
+    "records/ROUND-5-WRITING/work-log.md",
+    "skill/evidence-driven-development/SKILL.md",
+    "skill/evidence-driven-development/agents/openai.yaml",
+    "skill/evidence-driven-development/assets/templates/handoff.md",
+    "skill/evidence-driven-development/assets/templates/task-state.example.json",
+    "skill/evidence-driven-development/assets/templates/task-summary.md",
+    "skill/evidence-driven-development/assets/templates/work-log.md",
+    "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+    "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+    "skill/evidence-driven-development/references/examples.md",
+    "skill/evidence-driven-development/references/metrics-and-evidence.md",
+    "skill/evidence-driven-development/references/records.md",
+    "skill/evidence-driven-development/references/workflow.md",
+    "skill/evidence-driven-development/references/writing.md",
+    "skill/evidence-driven-development/scripts/validate_task.py",
+    "skill/evidence-driven-development/tests/test_scenarios.py"
+  ],
+  "deleted_tracked": [],
+  "skipped_symlinks": [],
+  "excluded_policy": {
+    "directories": [
+      ".git",
+      ".vitepress/cache",
+      ".vitepress/dist",
+      "build",
+      "dist",
+      "node_modules",
+      "target"
+    ],
+    "secret_names": [
+      ".env",
+      ".env.development",
+      ".env.local",
+      ".env.production"
+    ]
+  },
+  "scope": {
+    "skill_files": 15,
+    "late_untracked_directory": "records/ROUND-5-WRITING",
+    "excluded_later_task_outputs": [
+      "tools",
+      "records/REIN-CH05-16"
+    ]
+  }
+}

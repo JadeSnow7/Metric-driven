@@ -1,0 +1,22 @@
+
+running 5 tests
+test tools_use_real_fixture_and_bind_actual_ids ... ok
+test symlink_escape_is_rejected ... ok
+test shared_fixture_and_replay_are_structured ... ok
+test malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok
+test concrete_reqwest_captures_two_openai_turns_and_tool_results ... FAILED
+
+failures:
+
+---- concrete_reqwest_captures_two_openai_turns_and_tool_results stdout ----
+
+thread 'concrete_reqwest_captures_two_openai_turns_and_tool_results' (38460111) panicked at tests/prerequisites.rs:188:59:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    concrete_reqwest_captures_two_openai_turns_and_tool_results
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

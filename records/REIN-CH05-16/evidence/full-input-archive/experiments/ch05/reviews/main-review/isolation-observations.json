@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-09-14T11:20:26.137956+00:00",
+  "parent_files_outside_assigned_arm": [
+    {
+      "path": "/private/tmp/rein-ch05-pair-ready-20260914/docs/chapters/05-rust.md",
+      "bytes": 3928,
+      "sha256": "684ea0c7e89b776133bf2f2cdf10704124a44302b910e6e598a10acdc0f67a00"
+    },
+    {
+      "path": "/private/tmp/rein-ch05-pair-ready-20260914/docs/chapters/05.md",
+      "bytes": 4825,
+      "sha256": "4dfbddba0ac7e8289ba5d819ab27460ff43f656165217f2c0a7595f745856a3b"
+    },
+    {
+      "path": "/private/tmp/rein-ch05-pair-ready-20260914/rust/src/bin/ch05_loop.rs",
+      "bytes": 2685,
+      "sha256": "af31219dc5ed3b51b45eb07a1c82a5a67af4b60c40ff27fd737d356999ec1724"
+    }
+  ],
+  "arm_walk_vs_first_manifest": "No unrecorded files inside either arm after excluding dependencies/build outputs/.git",
+  "interpretation": "Raw arm-a events show parent-level path listing and misplaced temporary writing followed by correction; no observed reading of arm-b file contents in reviewed commands. Full observable log audit remains required."
+}

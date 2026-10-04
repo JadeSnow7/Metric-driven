@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-09-16T10:04:35.427442+00:00",
+  "scope": [
+    "skill/veriflow/references/workflow.md"
+  ],
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T10:04:35.391390+00:00",
+      "ended_at": "2026-09-16T10:04:35.414028+00:00",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "python3.11",
+        "-c",
+        "from pathlib import Path; import re; p=Path('skill/veriflow/references/workflow.md'); missing=[x for x in re.findall(r'\\[[^]]+\\]\\(([^)#]+)', p.read_text()) if not (p.parent/x).resolve().exists()]; print({'missing': missing}); raise SystemExit(bool(missing))"
+      ],
+      "cwd": "/private/tmp/veriflow-spec-20260916",
+      "started_at": "2026-09-16T10:04:35.414050+00:00",
+      "ended_at": "2026-09-16T10:04:35.427430+00:00",
+      "stdout": "{'missing': []}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

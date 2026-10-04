@@ -1,0 +1,7 @@
+argv=zsh -lc for\ p\ in\ /private/tmp/rein-production-build-20260914\ /private/tmp/rein-production-rereview-build\ /private/tmp/rein-ch05-final-text-evidence/cargo-target\;\ do\ printf\ \"PATH\ %s\\n\"\ \"\$p\"\;\ \[\ -d\ \"\$p\"\ \]\ \|\|\ \{\ printf\ \"MISSING_OR_NOT_DIR\\n\"\;\ exit\ 2\;\ \}\;\ \[\ !\ -L\ \"\$p\"\ \]\ \|\|\ \{\ printf\ \"SYMLINK_REJECTED\\n\"\;\ exit\ 3\;\ \}\;\ r=\$\(realpath\ \"\$p\"\)\ \|\|\ exit\ 4\;\ printf\ \"REALPATH\ %s\\n\"\ \"\$r\"\;\ \[\ \"\$r\"\ =\ \"\$p\"\ \]\ \|\|\ \{\ printf\ \"REALPATH_MISMATCH\\n\"\;\ exit\ 5\;\ \}\;\ done 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:05:17Z
+end=2026-09-14T13:05:17Z
+exit=127
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/01-paths.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/01-paths.stderr

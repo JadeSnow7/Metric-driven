@@ -1,0 +1,70 @@
+[
+  {
+    "case": "external-record",
+    "argv": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/private/tmp/veriflow-baseline-20260916/skill/veriflow/scripts/record_execution.py",
+      "--output",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0/records/TASK-001/evidence/old.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+      "--state",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0/records/TASK-001/task-state.json",
+      "--fixture",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0-external.txt",
+      "--cwd",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+      "--",
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "-c",
+      "print(\"ok\")"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "case": "stale-external",
+    "argv": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/private/tmp/veriflow-baseline-20260916/skill/veriflow/scripts/validate_task.py",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0/records/TASK-001/task-state.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+      "--gate",
+      "record"
+    ],
+    "cwd": "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+    "exit_code": 1,
+    "stdout": "{\n  \"ok\": false,\n  \"gate\": \"record\",\n  \"current_revision\": null,\n  \"errors\": [\n    {\n      \"code\": \"EXECUTION_INPUT_STALE\",\n      \"message\": \"EVD-001 input hash is stale or outside repository: /private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0-external.txt\"\n    }\n  ],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "case": "historical-current-revocation",
+    "argv": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/private/tmp/veriflow-baseline-20260916/skill/veriflow/scripts/validate_task.py",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0/records/TASK-001/task-state.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+      "--gate",
+      "record"
+    ],
+    "cwd": "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-46emqjh0",
+    "exit_code": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"gate\": \"record\",\n  \"current_revision\": null,\n  \"errors\": [],\n  \"warnings\": [\n    {\n      \"code\": \"ACTION_UNAUTHORIZED\",\n      \"message\": \"ACT-001 (push) is completed but authorization.push is not authorized; keep the record, verify the real external state, and confirm with the user before continuing\"\n    }\n  ],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "case": "changed-success-target",
+    "before": "commit:022d5af3f32aa842ac833784c7fa45766be8fd54",
+    "after": "commit:022d5af3f32aa842ac833784c7fa45766be8fd54",
+    "same": true
+  },
+  {
+    "case": "added-runtime-receipt",
+    "before": "commit:022d5af3f32aa842ac833784c7fa45766be8fd54",
+    "after": "patch:022d5af3f32aa842ac833784c7fa45766be8fd54:8046a16b041e92ea617fb718625fb68042f0a47052ccdd1d0ccfee57cd64de9d",
+    "same": false
+  }
+]

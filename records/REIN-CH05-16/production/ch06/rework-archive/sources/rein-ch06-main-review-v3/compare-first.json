@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "node",
+    "scripts/ch06-compare.mjs"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T13:44:06.552095+00:00",
+  "end": "2026-09-14T13:44:08.376850+00:00",
+  "exit": 1,
+  "stdout": "",
+  "stderr": "file:///private/tmp/rein-production-candidate-03/scripts/ch06-compare.mjs:38\n  if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`${label}\\nexpected ${JSON.stringify(expected)}\\nactual   ${JSON.stringify(actual)}`)\n                                                                 ^\n\nError: normal: TypeScript vs fixture\nexpected {\"reason\":\"final_answer\",\"state\":\"completed\",\"requests\":3,\"toolCalls\":[{\"id\":\"search-1\",\"name\":\"search_files\",\"arguments\":{\"needle\":\"marker: ch06\"}},{\"id\":\"read-1\",\"name\":\"read_file\",\"arguments\":{\"path\":\"README.md\"}},{\"id\":\"read-2\",\"name\":\"read_file\",\"arguments\":{\"path\":\"guide.md\"}}],\"skipped\":[],\"answer\":\"完成：marker: ch06 alpha | marker: ch06 beta\"}\nactual   {\"state\":\"completed\",\"reason\":\"final_answer\",\"requests\":3,\"settledRequests\":3,\"toolCalls\":[{\"id\":\"search-1\",\"name\":\"search_files\",\"arguments\":{\"needle\":\"marker: ch06\"}},{\"id\":\"read-1\",\"name\":\"read_file\",\"arguments\":{\"path\":\"README.md\"}},{\"id\":\"read-2\",\"name\":\"read_file\",\"arguments\":{\"path\":\"guide.md\"}}],\"skipped\":[],\"answer\":\"完成：marker: ch06 alpha | marker: ch06 beta\"}\n    at assertEqual (file:///private/tmp/rein-production-candidate-03/scripts/ch06-compare.mjs:38:66)\n    at file:///private/tmp/rein-production-candidate-03/scripts/ch06-compare.mjs:47:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v26.5.0\n"
+}

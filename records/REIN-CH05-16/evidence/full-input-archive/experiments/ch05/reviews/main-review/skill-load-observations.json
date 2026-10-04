@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-09-14T11:26:49.334747+00:00",
+  "arms": {
+    "a": {
+      "skill_load_commands": [],
+      "observed_writing_reference_read": false,
+      "observable_memory_reads": []
+    },
+    "b": {
+      "skill_load_commands": [
+        "/bin/zsh -lc \"sed -n '1,240p' /private/tmp/rein-benchmark-resources-20260914/skill/SKILL.md && printf '\\\\n--- product ---\\\\n' && sed -n '1,260p' task-inputs/product-spec.md && printf '\\\\n--- chapter ---\\\\n' && sed -n '1,300p' task-inputs/chapter-05.json && printf '\\\\n--- clarifications ---\\\\n' && sed -n '1,260p' task-inputs/ch05-product-clarifications.md && printf '\\\\n--- contracts ---\\\\n' && sed -n '1,240p' contracts/README.md && printf '\\\\n--- files ---\\\\n' && rg --files | sed -n '1,240p'\""
+      ],
+      "observed_writing_reference_read": false,
+      "observable_memory_reads": []
+    }
+  },
+  "limitations": "Command audit covers observable shell commands, not hidden context or unlogged reasoning. Treatment read SKILL.md; no reference/writing.md read observed. Control queried parent-level paths and produced misplaced parent artifacts; inspect isolation-observations.json and preserve artifacts separately."
+}

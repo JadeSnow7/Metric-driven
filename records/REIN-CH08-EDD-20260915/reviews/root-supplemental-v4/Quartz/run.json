@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "python3",
+    "/private/tmp/rein-ch08-adjudication-v4-frozen/supplemental_check.py",
+    "--run",
+    "/private/tmp/rein-ch08-review-1/output/Quartz/recheck-ch08-correct-3/run.json",
+    "--data",
+    "/private/tmp/rein-ch08-review-1/products/Quartz/fixtures/ch08-context",
+    "--budget",
+    "2400"
+  ],
+  "cwd": "/private/tmp/rein-ch08-adjudication-v4-frozen",
+  "started_at": "2026-09-15T05:56:06.212530Z",
+  "ended_at": "2026-09-15T05:56:06.289588Z",
+  "elapsed_seconds": 0.07695875002536923,
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": 0,
+  "launch_error": null,
+  "stdout": "{\"checked_rows\": 16, \"data_hash\": \"7e85cc8432581e0f93c182e3b31cec746e23e99b3034e3df5700bcd25bd98ed3\", \"evaluator_hash\": \"6ed1a9d09fd40871b8e4e0bfed7cb2d2f64a4a3eb9f5ff762bb0566cda6fe86b\", \"run_hash\": \"e95fae7930073bff4ac3fd496c34a9d797b475d6ba6e0c067a9cfcbddb5f7184\", \"status\": \"passed\"}\n",
+  "stderr": "",
+  "stdout_base64": "eyJjaGVja2VkX3Jvd3MiOiAxNiwgImRhdGFfaGFzaCI6ICI3ZTg1Y2M4NDMyNTgxZTBmOTNjMTgyZTNiMzFjZWM3NDZlMjNlOTliMzAzNGUzZGY1NzAwYmNkMjViZDk4ZWQzIiwgImV2YWx1YXRvcl9oYXNoIjogIjZlZDFhOWQwOWZkNDA4NzFiOGU0ZTBiZmVkN2NiMmQyZjY0YTRhM2ViOWY1ZmY3NjJiYjA1NjZjZGE2ZmU4NmIiLCAicnVuX2hhc2giOiAiZTk1ZmFlNzkzMDA3M2JmZjRhYzNmZDQ5NmMzNGE5ZDc5N2I0NzVkNmJhNmUwYzA2N2E5Y2ZjYmRkYjVmNzE4NCIsICJzdGF0dXMiOiAicGFzc2VkIn0K",
+  "stderr_base64": "",
+  "source_hashes_before": {
+    "test.exit": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "test.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supplemental_check.py": "46552677dc21be00a040caa8c81b93e22db44df8d3ad81775ff1ff73ce164154",
+    "test.stderr": "0217ac5da72bead938a00501b326121e671090ae4c6885cd70b4793b0351d8e8",
+    "tests/test_supplemental.py": "83513dcea47f36df3c841b5d332b265093e3ec3d1fab49640d3a05b2e7be6a86"
+  },
+  "source_hashes_after": {
+    "test.exit": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "test.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supplemental_check.py": "46552677dc21be00a040caa8c81b93e22db44df8d3ad81775ff1ff73ce164154",
+    "test.stderr": "0217ac5da72bead938a00501b326121e671090ae4c6885cd70b4793b0351d8e8",
+    "tests/test_supplemental.py": "83513dcea47f36df3c841b5d332b265093e3ec3d1fab49640d3a05b2e7be6a86"
+  }
+}

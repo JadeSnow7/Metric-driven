@@ -1,0 +1,12 @@
+[
+  "npm",
+  "run",
+  "--silent",
+  "ch05:offline",
+  "--workspace",
+  "ts",
+  "--",
+  "workspace",
+  "/private/tmp/rein-stage1-support-run-v2/stage1-input",
+  "single"
+]

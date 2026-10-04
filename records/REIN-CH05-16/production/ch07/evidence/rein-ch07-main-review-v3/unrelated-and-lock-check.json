@@ -1,0 +1,9 @@
+{
+  "package-lock.json": true,
+  "rust/Cargo.lock": true,
+  "docs/chapters/00.md": true,
+  "docs/chapters/01.md": true,
+  "docs/chapters/02.md": true,
+  "docs/chapters/03.md": true,
+  "docs/chapters/04.md": true
+}

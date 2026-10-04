@@ -1,0 +1,51 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts
+
+ ✓ tests/config.test.ts (13 tests) 5ms
+ ✓ tests/chat.test.ts (17 tests) 3ms
+ ✓ tests/record.test.ts (6 tests) 3ms
+ ✓ tests/recorded.test.ts (3 tests) 12ms
+ ❯ tests/transport.test.ts (8 tests | 5 failed) 17ms
+   × createFetchTransport > 原样搬运状态码、状态文本与响应体，不解释内容 9ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 把请求体送到服务端 2ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 连接不上时抛 NetworkError，消息里带上 URL 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 服务端不响应时抛 TimeoutError，消息里带上超时值 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 响应头已到但响应体悬挂时也抛 TimeoutError 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+ ✓ tests/loop.test.ts (4 tests) 17ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 14ms
+stderr | tests/hello.test.ts > hello SDK entry points > 安全 CLI 缺配置时返回退出码 1，且不打印密钥
+失败（config）：REIN_BASE_URL 未设置。参考 ts/.env.example，复制为 ts/.env 后填写。
+
+ ✓ tests/hello.test.ts (18 tests) 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/transport.test.ts > createFetchTransport > 原样搬运状态码、状态文本与响应体，不解释内容
+ FAIL  tests/transport.test.ts > createFetchTransport > 把请求体送到服务端
+ FAIL  tests/transport.test.ts > createFetchTransport > 连接不上时抛 NetworkError，消息里带上 URL
+ FAIL  tests/transport.test.ts > createFetchTransport > 服务端不响应时抛 TimeoutError，消息里带上超时值
+ FAIL  tests/transport.test.ts > createFetchTransport > 响应头已到但响应体悬挂时也抛 TimeoutError
+Error: listen EPERM: operation not permitted 127.0.0.1
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  5 failed | 71 passed (76)
+   Start at  19:16:43
+   Duration  479ms (transform 275ms, setup 0ms, collect 588ms, tests 103ms, environment 2ms, prepare 405ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts
+npm error workspace @rein/ts@0.0.0
+npm error location /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts
+npm error command failed
+npm error command sh -c vitest run --passWithNoTests

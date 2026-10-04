@@ -1,0 +1,8 @@
+{
+  "chapter": "rein-ch07",
+  "source": "/private/tmp/rein-production-candidate-03",
+  "baseline": "/private/tmp/rein-ch06-main-snapshot-review/tar-recovered/rein-ch06",
+  "baseline_manifest_sha256": "e55a2581228533c22dcb969cb6e9f449f101fc9c785588143fc942ee2e49476b",
+  "baseline_manifest": "records/REIN-CH05-16/snapshots/ch06-accepted/manifest.json",
+  "evidence_manifest": "records/REIN-CH05-16/production/ch07/evidence/manifest.json"
+}

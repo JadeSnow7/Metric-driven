@@ -1,0 +1,16 @@
+file:///private/tmp/rein-ch08-review-1/products/Quartz/scripts/ch07-compare.mjs:8
+const run = (command, args, cwd) => { const result = spawnSync(command, args, { cwd, encoding: 'utf8' }); if (result.error) throw result.error; if (result.status !== 0) throw new Error(`${command} failed: ${result.stderr}`); return JSON.parse(result.stdout) }
+                                                                                                                                                                               ^
+
+Error: cargo failed: error: failed to create directory `/Volumes/Data`
+
+Caused by:
+  Operation not permitted (os error 1)
+
+    at run (file:///private/tmp/rein-ch08-review-1/products/Quartz/scripts/ch07-compare.mjs:8:176)
+    at file:///private/tmp/rein-ch08-review-1/products/Quartz/scripts/ch07-compare.mjs:10:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.5.0

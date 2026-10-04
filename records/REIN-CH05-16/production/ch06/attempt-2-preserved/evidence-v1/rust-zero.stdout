@@ -1,0 +1,20 @@
+{
+  "mode": "zero",
+  "result": {
+    "events": [
+      {
+        "reason": "max_turns",
+        "state": "failed",
+        "type": "stopped"
+      }
+    ],
+    "messages": [
+      {
+        "content": "读取 README.md",
+        "role": "user"
+      }
+    ],
+    "reason": "max_turns",
+    "state": "failed"
+  }
+}

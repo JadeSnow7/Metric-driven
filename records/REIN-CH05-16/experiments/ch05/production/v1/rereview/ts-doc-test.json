@@ -1,0 +1,20 @@
+{
+  "label": "ts-doc-test",
+  "cwd": "/private/tmp/rein-production-20260914/ts",
+  "argv": [
+    "npm",
+    "run",
+    "test",
+    "--workspace",
+    "ts",
+    "--",
+    "loop.test.ts"
+  ],
+  "started_utc": "2026-09-14T11:46:53Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-production-rereview-build"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 1,
+  "output": "npm error No workspaces found:\nnpm error   --workspace=ts\nnpm error Log files were not written due to an error writing to the directory: /Users/huaodong/.npm/_logs\nnpm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal\n"
+}

@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "sha256sum",
+    "records/REIN-CH05-16/snapshots/ch07-accepted/manifest.json",
+    "records/REIN-CH05-16/snapshots/ch07-accepted/baseline.patch",
+    "records/REIN-CH05-16/snapshots/ch07-accepted/rein-ch07.tar.gz",
+    "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch07.manifest.json",
+    "/private/tmp/rein-production-candidate-03/chapter-snapshots/ch06-to-ch07.patch",
+    "/private/tmp/rein-production-candidate-03/chapter-snapshots/README.md",
+    "records/REIN-CH05-16/production/ch07/evidence/manifest.json"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T15:17:46.555091+00:00",
+  "end": "2026-09-14T15:17:46.563045+00:00",
+  "elapsedMs": 7.525291992351413,
+  "exit": 0,
+  "stdout": "958af5f16530efe6a049414de2423c2d0c97f0dfdbf20f504b2be4012b684d75  records/REIN-CH05-16/snapshots/ch07-accepted/manifest.json\ne5f1d3d9d8fc5e075dcf40a7da5bb50093d20cfc46083f62aa3eb139c8f0b06f  records/REIN-CH05-16/snapshots/ch07-accepted/baseline.patch\ne1505e5fd700c8d203c8f00e51fd1c61164adf0de27546fd7fa820b0affb237e  records/REIN-CH05-16/snapshots/ch07-accepted/rein-ch07.tar.gz\n958af5f16530efe6a049414de2423c2d0c97f0dfdbf20f504b2be4012b684d75  /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch07.manifest.json\ne5f1d3d9d8fc5e075dcf40a7da5bb50093d20cfc46083f62aa3eb139c8f0b06f  /private/tmp/rein-production-candidate-03/chapter-snapshots/ch06-to-ch07.patch\ncea3ba4f9fa85f85ba692e4b3f5dee622f574c2bebbe5b75a7bf3ab9d3b46e1e  /private/tmp/rein-production-candidate-03/chapter-snapshots/README.md\nde859bd262a5bc8ad84b0bc9f4e7a3d20c2cb5f53e25b4bc4e5a03dd8cd3fbad  records/REIN-CH05-16/production/ch07/evidence/manifest.json\n",
+  "stderr": ""
+}

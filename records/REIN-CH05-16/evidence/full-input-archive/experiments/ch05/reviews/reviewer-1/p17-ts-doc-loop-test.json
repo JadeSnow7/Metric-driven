@@ -1,0 +1,20 @@
+{
+  "label": "p17-ts-doc-loop-test",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17",
+  "argv": [
+    "npm",
+    "test",
+    "--workspace",
+    "ts",
+    "--",
+    "--run",
+    "tests/loop.test.ts"
+  ],
+  "started_utc": "2026-09-14T11:25:18Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-17"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests --run tests/loop.test.ts\n\n\n RUN  v2.1.9 /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts\n\n ✓ tests/loop.test.ts (4 tests) 7ms\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  19:25:18\n   Duration  156ms (transform 22ms, setup 0ms, collect 18ms, tests 7ms, environment 0ms, prepare 35ms)\n\n"
+}

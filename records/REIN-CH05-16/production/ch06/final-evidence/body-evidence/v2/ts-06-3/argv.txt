@@ -1,0 +1,1 @@
+node --import tsx /private/tmp/rein-ch06-ts-v2.A5Pr2P/ts/examples/ch06-loop.ts budget /private/tmp/rein-ch06-v2-input.n9th4X

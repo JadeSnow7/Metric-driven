@@ -1,0 +1,39 @@
+{
+  "cwd": "/private/tmp/rein-hybrid-work-20260914",
+  "commands": [
+    {
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "stdout": "docs-build-v2.stdout",
+      "stderr": "docs-build-v2.stderr"
+    },
+    {
+      "argv": [
+        "npm",
+        "exec",
+        "--workspace",
+        "ts",
+        "vitest",
+        "run",
+        "docs/.vitepress/theme/sourceVersionState.test.ts",
+        "tests/hybrid-host.test.ts"
+      ],
+      "exit": 0,
+      "stdout": "nav-v2.stdout",
+      "stderr": "nav-v2.stderr"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/check-book-links.mjs"
+      ],
+      "exit": 0,
+      "stdout": "book-links-v2.stdout",
+      "stderr": "book-links-v2.stderr"
+    }
+  ]
+}

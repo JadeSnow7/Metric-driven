@@ -1,0 +1,26 @@
+{
+  "dispatch_recorded_at_epoch": 1789554540.1061509,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "role": "coder",
+  "model_provenance": "custom coder role definition in collaboration tool; no model override",
+  "host": "macOS-26.6.2-arm64-arm-64bit",
+  "skill_manifest": "../frozen-skill-manifest.json",
+  "stop_condition": "one final answer or 12 minutes per case",
+  "context": "fresh fork_turns=none; only skill path, request path, allowed workspace and side-effect bounds",
+  "cases": {
+    "light": {
+      "directory": "/private/tmp/veriflow-behavior-20260916/light",
+      "request_sha256": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff",
+      "agent": "/root/behavior_light",
+      "status": "running"
+    },
+    "tutorial": {
+      "directory": "/private/tmp/veriflow-behavior-20260916/tutorial",
+      "request_sha256": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd",
+      "agent": "/root/behavior_tutorial",
+      "status": "running"
+    }
+  },
+  "initial_light_readme": "# Verflow\n\n本工具保存执行记录，帮助核对任务结果。\n"
+}

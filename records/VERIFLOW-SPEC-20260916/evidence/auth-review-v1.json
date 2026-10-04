@@ -1,0 +1,16 @@
+[
+  {
+    "case": "malformed-source",
+    "result": {
+      "exception": "AttributeError(\"'str' object has no attribute 'get'\")"
+    }
+  },
+  {
+    "case": "top-scope-overrides-captured-scope",
+    "result": []
+  },
+  {
+    "case": "invalid-calendar-time",
+    "result": []
+  }
+]

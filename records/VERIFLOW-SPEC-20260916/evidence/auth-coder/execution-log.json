@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "-m",
+    "unittest",
+    "skill/veriflow/tests/test_authorization_snapshot.py"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_utc": "2026-09-16T09:49:36Z",
+  "exit_code": 0,
+  "stdout": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.045s\n\nOK\n",
+  "stderr": "",
+  "environment": {"PYTHONDONTWRITEBYTECODE": "1"},
+  "assertions": [
+    "capture rejects unauthorized, agent source, and out-of-scope target",
+    "historical audit remains valid after current authorization/source changes",
+    "missing snapshot is explicitly UNKNOWN",
+    "tampered target/revision/source id is rejected by integrity digest",
+    "CLI emits JSON snapshot without executing an action"
+  ]
+}

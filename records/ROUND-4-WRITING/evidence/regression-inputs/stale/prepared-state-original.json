@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "TASK-001",
+    "title": "恢复 TASK-001：核查旧验证与当前 Inventory 代码",
+    "mode": "resume",
+    "status": "verified",
+    "source_ids": [
+      "SRC-001"
+    ],
+    "status_note": "已验证等待下一步"
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "Inventory 调用方",
+    "scenario": "恢复已有任务并核查旧验证",
+    "problem": "旧验证与当前工作树可能不一致",
+    "expected_outcome": "保留可复查状态并核对证据时效",
+    "scope": "inventory.py、tests/test_inventory.py、records/TASK-001",
+    "acceptable_result": "真实测试结果、退出码和 revision 可复查"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:fixture-preparation",
+      "summary": "恢复任务并核查旧验证；本轮只核验",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "恢复既有任务并核查旧验证是否支持当前代码",
+      "scope": [
+        "源码、测试与旧证据核验"
+      ],
+      "non_goals": [
+        "修改源码和测试",
+        "提交、推送、外部动作"
+      ],
+      "dependencies": [],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "import_csv 契约",
+      "baseline": "初始化提交后的当前代码",
+      "target": "真实 unittest 输出与当前 revision 一致",
+      "method": "python3 -m unittest discover -s tests -t . -v，核对原始输出、退出码与 revision",
+      "environment_data": "本地 Python 与该 fixture",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "status": "passed"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "核验现有源码、测试和旧证据",
+      "file_scope": [
+        "inventory.py",
+        "tests/test_inventory.py",
+        "records/TASK-001"
+      ],
+      "interface_constraints": [
+        "不修改源码和测试"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/TASK-001/evidence/old-tests.txt",
+      "kind": "test_output",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "commit:ec38cd36e4855f47a868dce7d6e56df525810932",
+      "sha256": "812b7b5587ffa178cf17c86d90dce1eccf47b636040e7bc8ad41f5f3f195a2a8",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T00:00:00Z",
+      "note": "旧测试原始输出；源码后续改变后按 revision 重新核验"
+    }
+  ],
+  "changes": [],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001"
+    ],
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "ec38cd36e4855f47a868dce7d6e56df525810932",
+    "worktree_status": "clean",
+    "ownership": "只核验，不修改源码和测试；记录与证据由本流程生成",
+    "prepared_at": "2026-09-14T00:00:00Z"
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "not_started",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "question": "空白行是否计 skipped",
+      "status": "proposed",
+      "options": [
+        "忽略空白行",
+        "计入 skipped"
+      ]
+    }
+  ],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "旧证据与当前代码 revision 不一致",
+    "steps": [
+      "重新运行真实测试",
+      "更新结构化证据"
+    ],
+    "owner": "main-thread"
+  }
+}

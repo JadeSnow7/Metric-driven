@@ -1,0 +1,50 @@
+diff --git a/config.py b/config.py
+index 122b4d3..c209f78 100644
+--- a/config.py
++++ b/config.py
+@@ -1 +1,2 @@
+ REPORT_VERSION=1
++LOW_STOCK_THRESHOLD=5
+diff --git a/inventory.py b/inventory.py
+index df5e78d..6a91373 100644
+--- a/inventory.py
++++ b/inventory.py
+@@ -1,5 +1,7 @@
+ """In-memory stock tracking."""
+ 
++import config
++
+ 
+ class Inventory:
+     def __init__(self) -> None:
+@@ -16,3 +18,10 @@ class Inventory:
+     def names(self) -> list[str]:
+         """Return item names in alphabetical order."""
+         return sorted(self._items)
++
++    def low_stock_items(self) -> list[str]:
++        """Return item names whose stock is strictly below the configured threshold."""
++        return sorted(
++            name for name, quantity in self._items.items()
++            if quantity < config.LOW_STOCK_THRESHOLD
++        )
+diff --git a/tests/test_inventory.py b/tests/test_inventory.py
+index e04a84b..0b8ee7c 100644
+--- a/tests/test_inventory.py
++++ b/tests/test_inventory.py
+@@ -23,6 +23,15 @@ class InventoryTests(unittest.TestCase):
+         inventory.add_item("apple", 1)
+         self.assertEqual(inventory.names(), ["apple", "pear"])
+ 
++    def test_low_stock_items_are_strictly_below_configured_threshold_and_sorted(self) -> None:
++        inventory = Inventory()
++        inventory.add_item("pear", 1)
++        inventory.add_item("apple", 4)
++        inventory.add_item("banana", 5)
++        inventory.add_item("orange", 6)
++
++        self.assertEqual(inventory.low_stock_items(), ["apple", "pear"])
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

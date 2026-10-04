@@ -1,0 +1,15 @@
+test_add_and_count (tests.test_inventory.InventoryTests) ... ok
+test_low_stock_items_are_strictly_below_configured_threshold_and_sorted (tests.test_inventory.InventoryTests) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests) ... ok
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK

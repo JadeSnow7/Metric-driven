@@ -1,0 +1,15 @@
+{
+  "case": "evidence-does-not-support-mandatory-metric",
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "/private/tmp/veriflow-baseline-20260916/skill/veriflow/scripts/validate_task.py",
+    "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-uiq15zq0/records/TASK-001/task-state.json",
+    "--repo",
+    "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-uiq15zq0",
+    "--gate",
+    "acceptance"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"gate\": \"acceptance\",\n  \"current_revision\": \"patch:27edd5ef72cd1743d8d66852cc013527fceb95ae:6e17d8e9e78a8531c86a8c486d4678cc9c84605d5e4bd2c823e1ef27ae768043\",\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,25 @@
+# 交接包 HANDOFF-001（会话 1 结束时）
+
+- 编号：`TASK-001` / `MT-001`（import_csv）、`MT-002`（low_stock）
+- 目标与价值：CSV 批量入库并报告坏行行号；列出低库存商品便于补货
+- 来源：`SRC-001`（用户原话，accepted）、`SRC-002`（边界规则推断，proposed）、`SRC-003`（仓库约定，accepted）
+- 基线提交 / worktree：`547ce4e`，main，开始时干净；本任务提交 `6d1d31b`（ACT-001），其后是一次只改 records 的回执提交（ACT-002）；两次都没有推送
+- 改动所有权：`inventory.py`、`tests/test_inventory.py`、`records/TASK-001/` 归本任务；其他文件未动
+- 范围与非目标：见 `task-summary.md`“主任务”
+- 文件范围：同上三处
+- 接口兼容约束：`add_item`/`count`/`names` 行为不变；`import_csv(path) -> tuple[int, list[int]]`；`low_stock(threshold=5) -> list[str]`
+- 依赖：无外部依赖，只用标准库 `re`、`os`
+- 指标与验收：`MET-001`..`MET-004`，均为 passed（revision `patch:547ce4e…:eae90ace…`，完整值见 task-state.json）
+- 证据路径：`records/TASK-001/evidence/EVD-00{1..5}-*.txt`
+- 已采纳决策：无。`DEC-001`..`DEC-005` 都是 proposed，默认行为已实现并由测试固定
+- 未决问题：`task-summary.md`“待确认”1–5
+- 必要失败经验：
+  - 整个文件交给 `csv.reader` 时，一个未闭合引号会把后面所有行吞进同一个字段，而且不报错（Python 3.14.6 实测）。
+  - 逐行用 `csv.reader` 也不够：跨行引号记录的第二行（如 `mini",6`）会被当作有效行，导入成商品 `mini"`，`strict=True` 也拦不住。所以现在用 `_TWO_FIELD_LINE` 正则按 RFC 4180 引号规则解析。**不要为了“用标准库”改回 csv**，EVD-003 的变体 6 专门检查这一点。
+  - `int()` 会接受 `+3`、`1_000`、非 ASCII 数字（如 ٣），并且对超过 4300 位的数字抛 `ValueError`。所以先用 `_QUANTITY` 正则，再用 try 捕获。
+- 当前状态：MT-001 verified、MT-002 verified；任务整体 verified（不是 completed）
+- 下一步：
+  1. 恢复前核验：`git log --oneline -4` 应看到 `547ce4e` → `6d1d31b` → 记录回执提交；`git status --short` 应当干净；`git status -sb` 应显示 main 领先 origin/main 2 个提交（没有推送）。**不要重复提交**，`--gate local-commit` 会因为 ACT-001 已完成而阻止。
+  2. 运行 `python3 -m unittest discover -s tests -t . -v` 和 `python3 records/TASK-001/e2e_check.py`。
+  3. 按用户对待确认项的答复修改：先改测试，再改实现，重新生成证据，更新 revision/sha256，跑 `--gate local-commit` 后再提交。
+- 停止条件：用户改变需求语义（例如要求表头大小写不敏感、支持多行记录）时，先更新 `SRC-*`/`DEC-*` 和指标再动代码；**没有用户明确授权不要 push**。

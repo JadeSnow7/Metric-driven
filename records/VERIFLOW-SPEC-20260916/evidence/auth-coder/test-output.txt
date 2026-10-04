@@ -1,0 +1,11 @@
+命令：PYTHONDONTWRITEBYTECODE=1 /Users/huaodong/.local/bin/python3.11 -m unittest skill/veriflow/tests/test_authorization_snapshot.py
+cwd：/private/tmp/veriflow-spec-20260916
+执行时间（UTC）：2026-09-16T09:49:36Z
+退出码：0
+stdout：
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.045s
+
+OK
+stderr：空

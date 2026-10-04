@@ -1,0 +1,22 @@
+$ git rev-parse HEAD
+547ce4ebe0389259d0d5db5a00330285f80101a1
+$ python3 --version
+Python 3.14.6
+$ date -u
+2026-09-13T23:10:00Z
+$ python3 -m unittest discover -s tests -t . -v
+test_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+OK
+exit=0

@@ -8,7 +8,7 @@
 | 运行依赖 | [Rein RuntimePort 0.1 候选](https://github.com/JadeSnow7/Rein/blob/cf62ae829e7c57a219e3e82436ce1a3307917ac4/contracts/runtime-port-v0.1.md)；固定引用提交 `cf62ae8`，权威定义在 Rein，不复制其会话 DTO |
 | 关联决定 | [BOUNDARY-20261004](../DECISIONS.md) |
 
-本文规定语义与最小字段，不是现有 `task-state.json` 的 schema，也不声称 `validate_task.py` 已能读取这些对象。当前 main 继续使用 schema 1.1；未合并 PR #3 的 schema 1.3 另行适配。正式实现须选一个权威类型源并生成 schema，再提供固定版本的映射；不能在 skill、调度器与 Rein 各维护一套相同状态。
+本文规定语义与最小字段，不是现有 `task-state.json` 的 schema，也不声称 `validate_task.py` 已能读取这些对象。PR #3 已合并，当前记录 schema 为 1.3，并兼容历史 1.1/1.2；本编排契约仍需单独适配。正式实现须选一个权威类型源并生成 schema，再提供固定版本的映射；不能在 skill、调度器与 Rein 各维护一套相同状态。
 
 ## 1. 最小契约对象
 

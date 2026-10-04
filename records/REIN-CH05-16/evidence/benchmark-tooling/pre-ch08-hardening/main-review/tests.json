@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "tools.tests.test_rein_benchmark",
+    "tools.tests.test_rein_chapter_snapshot",
+    "-v"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "started_at": "2026-09-14T14:16:00.222034+00:00",
+  "ended_at": "2026-09-14T14:16:14.758467+00:00",
+  "elapsed_seconds": 14.536184708005749,
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_interrupted_sigterm_ignored_process_is_killed_with_partial_output (tools.tests.test_rein_benchmark.BenchmarkTests.test_interrupted_sigterm_ignored_process_is_killed_with_partial_output) ... ok\ntest_missing_codex_version_query_keeps_metadata (tools.tests.test_rein_benchmark.BenchmarkTests.test_missing_codex_version_query_keeps_metadata) ... ok\ntest_multiline_role_fake_cli_protocol (tools.tests.test_rein_benchmark.BenchmarkTests.test_multiline_role_fake_cli_protocol) ... ok\ntest_prepare_replaces_inputs_and_copies_git (tools.tests.test_rein_benchmark.BenchmarkTests.test_prepare_replaces_inputs_and_copies_git) ... ok\ntest_prunes_nested_build_cache_but_keeps_fixture_and_safe_env (tools.tests.test_rein_benchmark.BenchmarkTests.test_prunes_nested_build_cache_but_keeps_fixture_and_safe_env) ... ok\ntest_seal_binary_empty_and_executable_git_patch_recovery (tools.tests.test_rein_benchmark.BenchmarkTests.test_seal_binary_empty_and_executable_git_patch_recovery) ... ok\ntest_seal_patch_recovery_and_unfinished (tools.tests.test_rein_benchmark.BenchmarkTests.test_seal_patch_recovery_and_unfinished) ... ok\ntest_seal_unchanged_tree_accepts_empty_git_patch (tools.tests.test_rein_benchmark.BenchmarkTests.test_seal_unchanged_tree_accepts_empty_git_patch) ... ok\ntest_spawn_failure_is_sealed_in_metadata (tools.tests.test_rein_benchmark.BenchmarkTests.test_spawn_failure_is_sealed_in_metadata) ... ok\ntest_two_sources_two_packages_and_symlink_manifest (tools.tests.test_rein_benchmark.BenchmarkTests.test_two_sources_two_packages_and_symlink_manifest) ... ok\ntest_binary_empty_mode_and_unchanged_baseline_patch (tools.tests.test_rein_chapter_snapshot.SnapshotTests.test_binary_empty_mode_and_unchanged_baseline_patch) ... ok\ntest_filtered_portable_snapshot_and_recovery (tools.tests.test_rein_chapter_snapshot.SnapshotTests.test_filtered_portable_snapshot_and_recovery) ... ok\ntest_rejects_existing_output_and_outside_symlink (tools.tests.test_rein_chapter_snapshot.SnapshotTests.test_rejects_existing_output_and_outside_symlink) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 7.891s\n\nOK\n"
+}

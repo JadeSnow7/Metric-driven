@@ -1,0 +1,1 @@
+{"finding":"parameters match current interface","acceptable":"report no change and leave files unchanged","assertions":[{"file":"docs/api.md","contains":"--model current --timeout 30","reference":"src/cli.py"},{"no_change":true}]}

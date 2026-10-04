@@ -1,0 +1,45 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_eval.py"
+  ],
+  "cwd": "/private/tmp/rein-ch08-evaluator-v4",
+  "started_at": "2026-09-15T04:24:09.411683Z",
+  "ended_at": "2026-09-15T04:24:18.097817Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "",
+  "stderr": "test_dynamic_known_good_suite_and_raw_records (test_eval.EvalTests.test_dynamic_known_good_suite_and_raw_records) ... ok\ntest_existing_output_sentinel_is_not_overwritten (test_eval.EvalTests.test_existing_output_sentinel_is_not_overwritten) ... ok\ntest_mutants_hit_distinct_checks_and_write_calibration (test_eval.EvalTests.test_mutants_hit_distinct_checks_and_write_calibration) ... ok\ntest_no_self_caught_duplicate_failure (test_eval.EvalTests.test_no_self_caught_duplicate_failure) ... ok\ntest_positive_semantics (test_eval.EvalTests.test_positive_semantics) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 8.644s\n\nOK\n",
+  "stdout_base64": "",
+  "stderr_base64": "dGVzdF9keW5hbWljX2tub3duX2dvb2Rfc3VpdGVfYW5kX3Jhd19yZWNvcmRzICh0ZXN0X2V2YWwuRXZhbFRlc3RzLnRlc3RfZHluYW1pY19rbm93bl9nb29kX3N1aXRlX2FuZF9yYXdfcmVjb3JkcykgLi4uIG9rCnRlc3RfZXhpc3Rpbmdfb3V0cHV0X3NlbnRpbmVsX2lzX25vdF9vdmVyd3JpdHRlbiAodGVzdF9ldmFsLkV2YWxUZXN0cy50ZXN0X2V4aXN0aW5nX291dHB1dF9zZW50aW5lbF9pc19ub3Rfb3ZlcndyaXR0ZW4pIC4uLiBvawp0ZXN0X211dGFudHNfaGl0X2Rpc3RpbmN0X2NoZWNrc19hbmRfd3JpdGVfY2FsaWJyYXRpb24gKHRlc3RfZXZhbC5FdmFsVGVzdHMudGVzdF9tdXRhbnRzX2hpdF9kaXN0aW5jdF9jaGVja3NfYW5kX3dyaXRlX2NhbGlicmF0aW9uKSAuLi4gb2sKdGVzdF9ub19zZWxmX2NhdWdodF9kdXBsaWNhdGVfZmFpbHVyZSAodGVzdF9ldmFsLkV2YWxUZXN0cy50ZXN0X25vX3NlbGZfY2F1Z2h0X2R1cGxpY2F0ZV9mYWlsdXJlKSAuLi4gb2sKdGVzdF9wb3NpdGl2ZV9zZW1hbnRpY3MgKHRlc3RfZXZhbC5FdmFsVGVzdHMudGVzdF9wb3NpdGl2ZV9zZW1hbnRpY3MpIC4uLiBvawoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpSYW4gNSB0ZXN0cyBpbiA4LjY0NHMKCk9LCg==",
+  "stdout_present": false,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-evaluator-v4/evaluator.py": {
+      "kind": "source",
+      "sha256": "6ed1a9d09fd40871b8e4e0bfed7cb2d2f64a4a3eb9f5ff762bb0566cda6fe86b"
+    },
+    "/private/tmp/rein-ch08-evaluator-v4/toy_cli.py": {
+      "kind": "source",
+      "sha256": "3afe4a15a7fb0a8297a20422dac25cdf5dfe0f08f4f69d9e84e20f5076b455f0"
+    },
+    "/private/tmp/rein-ch08-evaluator-v4/test_eval.py": {
+      "kind": "test",
+      "sha256": "088a9bbc50bec55762431f37b1e4d36deb90a7c49652974897abdf16dc096ff6"
+    },
+    "/private/tmp/rein-ch08-common-20260915/book/fixtures/ch08-context/index.json": {
+      "kind": "fixture",
+      "sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a"
+    },
+    "/private/tmp/rein-ch08-common-20260915/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    }
+  },
+  "result": "passed"
+}

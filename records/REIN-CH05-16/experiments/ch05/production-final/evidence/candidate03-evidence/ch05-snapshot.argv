@@ -1,0 +1,1 @@
+python3 tools/rein_chapter_snapshot.py --source /private/tmp/rein-production-candidate-03 --chapter 05 --output records/REIN-CH05-16/snapshots/ch05 --baseline records/REIN-CH05-16/snapshots/pre-ch05-portable/files --portable-output /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.tar.gz

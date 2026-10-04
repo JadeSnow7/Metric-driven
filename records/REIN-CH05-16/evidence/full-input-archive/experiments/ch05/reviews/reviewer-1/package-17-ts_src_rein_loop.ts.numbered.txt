@@ -1,0 +1,73 @@
+   1 import type { ChatAdapter, Message, ToolCall, ToolDefinition, ToolResult } from './contracts'
+   2 import { dispatchReadonly, type Workspace } from './readonly'
+   3 
+   4 export type LoopEvent =
+   5   | { readonly type: 'started'; readonly round: number }
+   6   | { readonly type: 'model'; readonly round: number; readonly toolCallIds: readonly string[]; readonly text: string }
+   7   | { readonly type: 'tool'; readonly round: number; readonly toolCallId: string; readonly name: string; readonly result: ToolResult }
+   8   | { readonly type: 'stopped'; readonly reason: StopReason }
+   9 
+  10 export type StopReason = 'completed' | 'empty_final' | 'model_error' | 'max_rounds'
+  11 
+  12 export interface LoopResult {
+  13   readonly ok: boolean
+  14   readonly answer?: string
+  15   readonly reason: StopReason
+  16   readonly messages: readonly Message[]
+  17   readonly events: readonly LoopEvent[]
+  18 }
+  19 
+  20 export const readonlyToolDefinitions: readonly ToolDefinition[] = [
+  21   { name: 'search_files', description: '在工作区文本文件中搜索关键词', inputSchema: { type: 'object', properties: { needle: { type: 'string' } }, required: ['needle'], additionalProperties: false } },
+  22   { name: 'read_file', description: '读取工作区内的一个文本文件', inputSchema: { type: 'object', properties: { path: { type: 'string' } }, required: ['path'], additionalProperties: false } },
+  23 ]
+  24 
+  25 export async function runAgentLoop(
+  26   adapter: ChatAdapter,
+  27   initialMessages: readonly Message[],
+  28   workspace: Workspace,
+  29   options: { readonly maxRounds?: number; readonly tools?: readonly ToolDefinition[] } = {},
+  30 ): Promise<LoopResult> {
+  31   const maxRounds = options.maxRounds ?? 32
+  32   const tools = options.tools ?? readonlyToolDefinitions
+  33   const messages: Message[] = [...initialMessages]
+  34   const events: LoopEvent[] = [{ type: 'started', round: 0 }]
+  35   for (let round = 1; round <= maxRounds; round += 1) {
+  36     let turn
+  37     try { turn = await adapter.complete(messages, tools) }
+  38     catch (error) {
+  39       events.push({ type: 'stopped', reason: 'model_error' })
+  40       return { ok: false, reason: 'model_error', messages, events }
+  41     }
+  42     messages.push(turn.message)
+  43     events.push({ type: 'model', round, toolCallIds: turn.toolCalls.map(call => call.id), text: turn.message.content })
+  44     if (turn.toolCalls.length === 0) {
+  45       if (turn.message.content.trim().length === 0) {
+  46         events.push({ type: 'stopped', reason: 'empty_final' })
+  47         return { ok: false, reason: 'empty_final', messages, events }
+  48       }
+  49       events.push({ type: 'stopped', reason: 'completed' })
+  50       return { ok: true, answer: turn.message.content, reason: 'completed', messages, events }
+  51     }
+  52     for (const call of turn.toolCalls) {
+  53       const result = await dispatchReadonly(call, workspace)
+  54       const content = result.ok ? result.output ?? '' : JSON.stringify({ error: result.error })
+  55       messages.push({ role: 'tool', toolCallId: result.toolCallId, content })
+  56       events.push({ type: 'tool', round, toolCallId: call.id, name: call.name, result })
+  57     }
+  58   }
+  59   events.push({ type: 'stopped', reason: 'max_rounds' })
+  60   return { ok: false, reason: 'max_rounds', messages, events }
+  61 }
+  62 
+  63 export function replayAdapter(turns: readonly (Pick<import('./contracts').ModelTurn, 'message' | 'toolCalls'> | Error)[]): ChatAdapter & { readonly receivedMessages: readonly (readonly Message[])[] } {
+  64   let index = 0
+  65   const receivedMessages: (readonly Message[])[] = []
+  66   return { receivedMessages, async complete(messages) {
+  67     receivedMessages.push(structuredClone(messages))
+  68     const turn = turns[index++]
+  69     if (turn === undefined) throw new Error('replay exhausted')
+  70     if (turn instanceof Error) throw turn
+  71     return turn
+  72   } }
+  73 }

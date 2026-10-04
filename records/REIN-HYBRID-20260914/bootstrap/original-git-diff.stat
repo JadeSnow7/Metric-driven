@@ -1,0 +1,21 @@
+ DECISIONS.md                                     |   4 +
+ README.md                                        |   8 +-
+ docs/.vitepress/config.mts                       |   4 +-
+ docs/.vitepress/theme/SourceVersionSwitch.vue    |   5 +-
+ docs/.vitepress/theme/custom.css                 |   1 -
+ docs/.vitepress/theme/sourceVersionState.test.ts |   7 +-
+ docs/.vitepress/theme/sourceVersionState.ts      |   4 +-
+ docs/about.md                                    |  12 +-
+ docs/chapters/01-rust.md                         |   6 +-
+ docs/chapters/01-ts-advanced.md                  |   6 +-
+ docs/chapters/01-ts.md                           | 295 +-------------------
+ docs/chapters/01.md                              | 187 ++++++++-----
+ docs/chapters/02.md                              |  41 ++-
+ docs/chapters/03.md                              | 334 +++++++++++++++++++++-
+ docs/chapters/04.md                              | 336 ++++++++++++++++++++++-
+ docs/index.md                                    |   2 +-
+ docs/readings/00-ts.md                           |   4 +-
+ docs/readings/00.md                              |   4 +-
+ docs/toc.md                                      |  19 +-
+ reports/ch01-writing-plan.md                     |   2 +
+ 20 files changed, 878 insertions(+), 403 deletions(-)

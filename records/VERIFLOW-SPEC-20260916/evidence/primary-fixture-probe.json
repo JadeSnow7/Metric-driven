@@ -1,0 +1,158 @@
+[
+  {
+    "case": "undeclared",
+    "argv": [
+      "/Users/huaodong/.local/bin/python3.11",
+      "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-fixture-tools-355y_esd/scripts/record_execution.py",
+      "--output",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/evidence/undeclared.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--state",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/task-state.json",
+      "--cwd",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--fixture",
+      "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/fixture.txt",
+      "--",
+      "/Users/huaodong/.local/bin/python3.11",
+      "-c",
+      "from pathlib import Path;Path(\"marker.txt\").write_text(\"ran\")"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "usage: record_execution.py [-h] --output OUTPUT [--cwd CWD]\n                           [--timeout TIMEOUT] [--source SOURCE] [--test TEST]\n                           [--fixture FIXTURE] [--expect-argv EXPECT_ARGV]\n                           [--require-stdout] [--repo REPO] [--state STATE]\n                           ...\nrecord_execution.py: error: external fixture is not declared in baseline.external_inputs: /private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/fixture.txt\n",
+    "record": null
+  },
+  {
+    "case": "declared",
+    "argv": [
+      "/Users/huaodong/.local/bin/python3.11",
+      "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-fixture-tools-355y_esd/scripts/record_execution.py",
+      "--output",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/evidence/declared.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--state",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/task-state.json",
+      "--cwd",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--fixture",
+      "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/fixture.txt",
+      "--",
+      "/Users/huaodong/.local/bin/python3.11",
+      "-c",
+      "print(\"ok\")"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "record": {
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "-c",
+        "print(\"ok\")"
+      ],
+      "cwd": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "started_at": "2026-09-16T09:58:36.778458Z",
+      "ended_at": "2026-09-16T09:58:36.789529Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "wrapper_exit_code": null,
+      "stdout": "ok\n",
+      "stderr": "",
+      "stdout_base64": "b2sK",
+      "stderr_base64": "",
+      "stdout_present": true,
+      "stderr_present": false,
+      "stdout_required": false,
+      "inputs": {
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/fixture.txt": {
+          "kind": "fixture",
+          "sha256": "01d09d19c2139a46aebfb577780d123d7396e97201bc7ead210a2ebff8239dee",
+          "identity": "fixture-v1",
+          "reproduction": "write old and newline"
+        }
+      },
+      "repo": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "cwd_relative": ".",
+      "revision_before": "commit:a730b9fc5e619440ee8ce2917f403d1b55853c47",
+      "revision_after": "commit:a730b9fc5e619440ee8ce2917f403d1b55853c47",
+      "revision": "commit:a730b9fc5e619440ee8ce2917f403d1b55853c47",
+      "revision_changed_paths": [],
+      "input_changed_paths": [],
+      "result": "passed"
+    }
+  },
+  {
+    "case": "validate-declared",
+    "exit": 0,
+    "stdout": "{\n  \"ok\": true,\n  \"gate\": \"record\",\n  \"current_revision\": null,\n  \"errors\": [],\n  \"warnings\": [],\n  \"limits\": \"Structural consistency is not proof of product success or authorization authenticity.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "case": "ignored-alias-retarget",
+    "argv": [
+      "/Users/huaodong/.local/bin/python3.11",
+      "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/vf-fixture-tools-355y_esd/scripts/record_execution.py",
+      "--output",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/evidence/ignored-alias-retarget.json",
+      "--repo",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--state",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j/records/TASK-001/task-state.json",
+      "--cwd",
+      "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "--fixture",
+      "alias.txt",
+      "--",
+      "/Users/huaodong/.local/bin/python3.11",
+      "-c",
+      "from pathlib import Path;p=Path(\"alias.txt\");p.unlink();p.symlink_to('/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/other.txt');print(p.read_text())"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "record": {
+      "argv": [
+        "/Users/huaodong/.local/bin/python3.11",
+        "-c",
+        "from pathlib import Path;p=Path(\"alias.txt\");p.unlink();p.symlink_to('/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/other.txt');print(p.read_text())"
+      ],
+      "cwd": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "started_at": "2026-09-16T09:58:37.119592Z",
+      "ended_at": "2026-09-16T09:58:37.135812Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "wrapper_exit_code": null,
+      "stdout": "new\n\n",
+      "stderr": "",
+      "stdout_base64": "bmV3Cgo=",
+      "stderr_base64": "",
+      "stdout_present": true,
+      "stderr_present": false,
+      "stdout_required": false,
+      "inputs": {
+        "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpjq1fqeos/fixture.txt": {
+          "kind": "fixture",
+          "sha256": "01d09d19c2139a46aebfb577780d123d7396e97201bc7ead210a2ebff8239dee",
+          "identity": "fixture-v1",
+          "reproduction": "write old and newline"
+        }
+      },
+      "repo": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/edd-scenario-6pehww2j",
+      "cwd_relative": ".",
+      "revision_before": "patch:a730b9fc5e619440ee8ce2917f403d1b55853c47:48c1940ca8edfb09700709abd9cabe59716c4b90a44481943c36c78de7bae90a",
+      "revision_after": "patch:a730b9fc5e619440ee8ce2917f403d1b55853c47:48c1940ca8edfb09700709abd9cabe59716c4b90a44481943c36c78de7bae90a",
+      "revision": "patch:a730b9fc5e619440ee8ce2917f403d1b55853c47:48c1940ca8edfb09700709abd9cabe59716c4b90a44481943c36c78de7bae90a",
+      "revision_changed_paths": [],
+      "input_changed_paths": [],
+      "result": "passed"
+    }
+  },
+  {
+    "case": "alias-observation",
+    "recorder_passed": true,
+    "payload": "new\n\n"
+  }
+]

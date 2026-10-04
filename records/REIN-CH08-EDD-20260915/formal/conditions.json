@@ -1,0 +1,29 @@
+{
+  "frozen_at": "2026-09-15T03:59:16.843930+00:00",
+  "order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "medium",
+  "source": "custom coder.toml via CLI --ignore-user-config",
+  "wall_limit_seconds": 2700,
+  "runs_per_arm": 1,
+  "stop": "first terminal delivery or explicit block; wrapper timeout classified resource_interruption",
+  "scoring": "only after all three sealed",
+  "source_files": 169,
+  "dependency_entries": 7039,
+  "product_spec_sha256": "0af3519539d7b978cff2d7a80a3962c2795a4cb2707f04970b8aec6b58dd39fe",
+  "prompts": {
+    "A": "5adb5eeb1f4f3dba2e3a8b5a7199df5cec722255208ddbdd572e132d5f969e41",
+    "B": "c4c291133c4ad904926b2315af658e5c9a527306dc2703e54fc83771055f3940",
+    "C": "c4c291133c4ad904926b2315af658e5c9a527306dc2703e54fc83771055f3940"
+  },
+  "tools": "same host CLI tools, workspace-write plus automatic approval review; own temporary build paths",
+  "cache": "separate dependency copies, .vite cache cleared; separate empty Cargo target per run; shared OS/Cargo registry download caches remain",
+  "isolation": "fresh CLI contexts without history; explicit path scopes and observable read audit, not strict OS read isolation",
+  "token_budget": null,
+  "cost": null,
+  "status": "prepared; evaluator calibration must be accepted before first launch"
+}

@@ -1,0 +1,31 @@
+{
+  "fixture": "complex",
+  "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo",
+  "head": "5533fe84afb4c1af128c3fd07096f24b0e4b1e2d",
+  "source_test_config_sha256": {
+    "config.py": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+    "README.md": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+    ".gitignore": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+    "pricing.py": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+    "inventory.py": "6b3a40ac2d2deec7ceb4060aac2642d773aa99b06e97343d1e8b7e5d917b6188",
+    "tests/test_inventory.py": "550e4c9e6436850541b5edc394fae19475f1f8fe7c19e897da9fff3913cbf5a5",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_pricing.py": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+    "records/TASK-001/task-state.json": "ecf2351a9bb0dbca3d7c0862e58388174fb1f3399de0f24de6e9647f7b1f342b",
+    "records/TASK-001/task-summary.md": "fbd6426555b07934dfec424f2621fbf5bc88a834830fc027d4c8a2f2731ade23",
+    "records/TASK-001/evidence/old-tests.txt": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147"
+  },
+  "refs": [
+    "5533fe84afb4c1af128c3fd07096f24b0e4b1e2d refs/heads/main"
+  ],
+  "stash": [],
+  "worktrees": [
+    "worktree /private/tmp/edd-r4-fixtures-8gys1wek/complex/repo",
+    "HEAD 5533fe84afb4c1af128c3fd07096f24b0e4b1e2d",
+    "branch refs/heads/main"
+  ],
+  "old_evidence_sha256": {
+    "records/TASK-001/evidence/old-tests.txt": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147"
+  },
+  "initial_status": "M inventory.py\n?? records/TASK-001/evidence/old-tests.txt\n?? records/TASK-001/task-state.json\n?? records/TASK-001/task-summary.md"
+}

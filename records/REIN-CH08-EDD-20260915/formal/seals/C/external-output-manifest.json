@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-15T05:07:06.729653+00:00",
+  "files": [
+    {
+      "path": "/private/tmp/ch08-error.stdout",
+      "sha256": "2c7f6698afeed253a6064fc2e767ee718b90e8a90a4ac75e64c63ca5398017c9"
+    },
+    {
+      "path": "/private/tmp/ch08-error.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/ch08-meta.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/tmp/ch08-meta.stderr",
+      "sha256": "d9bd1423c4eaa564d32f7e5ece2bf6e38f4e569113ee6ce6444ff1d760dae607"
+    }
+  ],
+  "deviation": "C also wrote shared /tmp/ch08-* raw outputs; captured after terminal before review"
+}

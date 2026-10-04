@@ -1,0 +1,341 @@
+diff --git a/skill/veriflow/scripts/record_execution.py b/skill/veriflow/scripts/record_execution.py
+index b3ff72a..2d0535a 100644
+--- a/skill/veriflow/scripts/record_execution.py
++++ b/skill/veriflow/scripts/record_execution.py
+@@ -52,6 +52,17 @@ def relative_to(path: Path, root: Path | None) -> str | None:
+         return None
+ 
+ 
++def external_declaration(state: dict, path: Path) -> dict | None:
++    """Find an exact, explicitly authorized external input declaration."""
++    baseline = state.get("baseline") if isinstance(state, dict) else None
++    values = baseline.get("external_inputs", []) if isinstance(baseline, dict) else []
++    for item in values if isinstance(values, list) else []:
++        if not isinstance(item, dict):
++            continue
++        declared = item.get("path")
++        if isinstance(declared, str) and Path(declared).resolve() == path:
++            return item
++    return None
+ def main(argv: list[str] | None = None) -> int:
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument("--output", type=Path, required=True)
+@@ -77,6 +88,12 @@ def main(argv: list[str] | None = None) -> int:
+     if not cwd.is_dir():
+         p.error(f"cwd is not a directory: {cwd}")
+     repo = args.repo.resolve() if args.repo is not None else None
++    if repo is not None:
++        try:
++            repo = load_validator().ensure_repository(repo)
++        except Exception as exc:
++            print(json.dumps({"ok": False, "error": f"cannot open repository: {exc}"}), file=sys.stderr)
++            return 2
+     files: dict[str, dict[str, str]] = {}
+     for kind, paths in (("source", args.source), ("test", args.test), ("fixture", args.fixture)):
+         for raw in paths:
+@@ -84,8 +101,24 @@ def main(argv: list[str] | None = None) -> int:
+             path = path.resolve()
+             if not path.is_file():
+                 p.error(f"{kind} file does not exist: {path}")
+-            # Repository-relative keys keep the record valid after a worktree move.
+-            files[relative_to(path, repo) or str(path)] = {"kind": kind, "sha256": digest(path)}
++            relative = relative_to(path, repo)
++            if relative is not None:
++                files[relative] = {"kind": kind, "sha256": digest(path)}
++            elif repo is not None:
++                # Arbitrary external paths are never implicitly trusted.  They
++                # require an exact baseline declaration with identity and replay data.
++                state_for_input = json.loads(args.state.resolve().read_text(encoding="utf-8"))
++                declaration = external_declaration(state_for_input, path)
++                if declaration is None or declaration.get("sha256") != digest(path) or not declaration.get("identity") or not declaration.get("reproduction"):
++                    p.error(f"{kind} file is outside --repo and is not an exact declared external input: {path}")
++                files[f"external:{path}"] = {
++                    "kind": kind,
++                    "sha256": digest(path),
++                    "identity": declaration["identity"],
++                    "reproduction": declaration["reproduction"],
++                }
++            else:
++                files[str(path)] = {"kind": kind, "sha256": digest(path)}
+     if args.expect_argv and args.expect_argv != command:
+         p.error(f"argv does not match expected command: {command!r}")
+ 
+@@ -99,11 +132,17 @@ def main(argv: list[str] | None = None) -> int:
+             if not isinstance(state, dict):
+                 raise ValueError("task-state root must be a JSON object")
+ 
++            def read_state() -> dict:
++                loaded = json.loads(manifest.read_text(encoding="utf-8"))
++                if not isinstance(loaded, dict):
++                    raise ValueError("task-state root must be a JSON object")
++                return loaded
++
+             def revision_of() -> str:
+-                return validator.revision_for_state(repo, manifest, state)
++                return validator.revision_for_state(repo, manifest, read_state())
+ 
+             def entries_of() -> dict[str, bytes]:
+-                return validator.revision_entries_for_state(repo, manifest, state)
++                return validator.revision_entries_for_state(repo, manifest, read_state())
+ 
+             revision_before = revision_of()
+             entries_before = entries_of()
+diff --git a/skill/veriflow/scripts/validate_task.py b/skill/veriflow/scripts/validate_task.py
+index 5959063..452d0cc 100755
+--- a/skill/veriflow/scripts/validate_task.py
++++ b/skill/veriflow/scripts/validate_task.py
+@@ -21,8 +21,9 @@ from pathlib import Path
+ from typing import Any, Iterable
+ 
+ 
+-SCHEMA_VERSION = "1.2"
++SCHEMA_VERSION = "1.3"
+ LEGACY_SCHEMA_VERSIONS = {"1.1"}
++COMPATIBLE_SCHEMA_VERSIONS = {"1.1", "1.2"}
+ # Keep the established domain so renaming the skill does not invalidate
+ # revision tokens already stored in existing task records.
+ REVISION_DOMAIN = b"evidence-driven-development/revision-v2\0"
+@@ -58,6 +59,8 @@ ROOT_FIELDS = (
+     "hypotheses",
+     "recovery_strategy",
+ )
++SPEC_FIELDS = ("id", "version", "path", "sha256", "authority", "goal", "scope", "deliverables", "success_conditions", "constraints", "verification", "open_items")
++SPEC_RUNTIME_FIELDS = {"evidence_ids", "status", "result", "observed_at", "receipt", "revision", "validation_results"}
+ 
+ DISCOVERY_STATES = {"needs_clarification", "exploring", "ready"}
+ TASK_RECORD_STATES = {
+@@ -223,6 +226,36 @@ def revision_metadata_paths(repo: Path, manifest: Path) -> list[str]:
+     return [manifest_rel, *(f"{directory}/{name}" for name in names)]
+ 
+ 
++def spec_path(repo: Path, state: dict[str, Any]) -> Path | None:
++    value = as_dict(state.get("spec")).get("path")
++    return safe_repo_file(repo, value)
++
++
++def spec_projection(value: Any, *, root: bool = True) -> Any:
++    """Return Spec declaration; only the explicit top-level receipt bucket is runtime."""
++    if isinstance(value, dict):
++        return {
++            key: spec_projection(item, root=False)
++            for key, item in sorted(value.items())
++            if not (root and key == "runtime_receipts")
++        }
++    if isinstance(value, list):
++        return [spec_projection(item, root=False) for item in value]
++    return value
++
++
++def spec_binding_entries(repo: Path, state: dict[str, Any]) -> dict[str, bytes]:
++    """Bind the 1.3 Spec independently from excluded task-record metadata."""
++    spec = as_dict(state.get("spec"))
++    entries: dict[str, bytes] = {}
++    path = spec_path(repo, state)
++    if path is not None and path.is_file():
++        entries[f"spec:file:{spec.get('path')}"] = path.read_bytes()
++    projected = json.dumps(spec_projection(spec), ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
++    entries["spec:declaration"] = projected
++    return entries
++
++
+ def is_revision_metadata(path: str, excluded: list[str]) -> bool:
+     return any(path == item or path.startswith(f"{item}/") for item in excluded)
+ 
+@@ -306,7 +339,7 @@ def revision_paths(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[
+     return base, paths
+ 
+ 
+-def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = ()) -> str:
++def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterable[str] = (), state: dict[str, Any] | None = None) -> str:
+     """Fingerprint base-to-worktree content, excluding task-record metadata.
+ 
+     Paths listed in ``foreign`` belong to someone else's unrelated uncommitted
+@@ -318,10 +351,15 @@ def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterabl
+     """
+ 
+     base, paths = revision_paths(repo, manifest, base_ref, foreign)
+-    if not paths:
++    spec_entries = spec_binding_entries(repo, state or {})
++    if not paths and not spec_entries:
+         return f"commit:{base}"
+ 
+     entries = fingerprint_entries(repo, paths)
++    # task records are metadata, but the declarative 1.3 Spec is an independent
++    # contract and must remain bound even when it lives under records/.
++    for name, content in spec_entries.items():
++        entries[name] = b"spec\0" + hashlib.sha256(content).digest()
+     digest = hashlib.sha256(REVISION_DOMAIN)
+     digest.update(base.encode("ascii"))
+     for rel in paths:
+@@ -329,6 +367,11 @@ def current_revision(repo: Path, manifest: Path, base_ref: Any, foreign: Iterabl
+         digest.update(rel.encode("utf-8", errors="surrogateescape"))
+         digest.update(b"\0")
+         digest.update(entries[rel])
++    for rel in sorted(spec_entries):
++        digest.update(b"\0spec\0")
++        digest.update(rel.encode("utf-8"))
++        digest.update(b"\0")
++        digest.update(entries[rel])
+     return f"patch:{base}:{digest.hexdigest()}"
+ 
+ 
+@@ -351,7 +394,7 @@ def revision_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> str
+ 
+     baseline = state.get("baseline") if isinstance(state, dict) else None
+     base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
+-    return current_revision(repo, manifest, base_ref, foreign_paths(state))
++    return current_revision(repo, manifest, base_ref, foreign_paths(state), state)
+ 
+ 
+ def revision_entries_for_state(repo: Path, manifest: Path, state: dict[str, Any]) -> dict[str, bytes]:
+@@ -360,7 +403,9 @@ def revision_entries_for_state(repo: Path, manifest: Path, state: dict[str, Any]
+     baseline = state.get("baseline") if isinstance(state, dict) else None
+     base_ref = baseline.get("git_ref") if isinstance(baseline, dict) else None
+     _, paths = revision_paths(repo, manifest, base_ref, foreign_paths(state))
+-    return fingerprint_entries(repo, paths)
++    entries = fingerprint_entries(repo, paths)
++    entries.update({name: b"spec\0" + hashlib.sha256(content).digest() for name, content in spec_binding_entries(repo, state).items()})
++    return entries
+ 
+ 
+ def head_commit(repo: Path) -> str:
+@@ -542,6 +587,14 @@ def authorization_scope(state: dict[str, Any], action: str) -> list[str]:
+     return [value for value in scope if isinstance(value, str)] if isinstance(scope, list) else []
+ 
+ 
++def external_input_declaration(state: dict[str, Any], path: Path) -> dict[str, Any] | None:
++    baseline = as_dict(state.get("baseline"))
++    for item in as_list(baseline.get("external_inputs")):
++        if isinstance(item, dict) and isinstance(item.get("path"), str) and Path(item["path"]).resolve() == path:
++            return item
++    return None
++
++
+ def check_execution_record(
+     evidence_id: str,
+     item: dict[str, Any],
+@@ -656,13 +709,44 @@ def validate_record(
+             f"schema_version {state.get('schema_version')!r} is checked with legacy delivery semantics; "
+             f"migrate to {SCHEMA_VERSION!r} for per-revision side-effect checks and self-bound execution evidence",
+         )
+-    elif state.get("schema_version") != SCHEMA_VERSION:
++    elif state.get("schema_version") not in COMPATIBLE_SCHEMA_VERSIONS:
+         add_issue(
+             errors,
+             "SCHEMA_VERSION",
+             f"schema_version must be {SCHEMA_VERSION!r} (1.1 is still accepted); when migrating from 1.0, add "
+             "evidence[].sha256 and recompute every revision token with --print-revision before re-assessing evidence",
+         )
++    elif state.get("schema_version") == "1.2":
++        add_issue(warnings, "SCHEMA_COMPAT", "schema_version 1.2 remains readable; add the 1.3 Spec binding before new acceptance")
++    if state.get("schema_version") == SCHEMA_VERSION:
++        spec = as_dict(state.get("spec"))
++        require_fields(spec, SPEC_FIELDS, "spec", errors)
++        spec_file = spec_path(repo, state)
++        if spec_file is None:
++            add_issue(errors, "SPEC_PATH", "spec.path must name a repository file")
++        elif not spec_file.is_file():
++            add_issue(errors, "SPEC_MISSING", f"spec file does not exist: {spec.get('path')}")
++        else:
++            expected = spec.get("sha256")
++            if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
++                add_issue(errors, "SPEC_HASH_FORMAT", "spec.sha256 must be a 64-character lowercase SHA-256")
++            elif sha256_file(spec_file) != expected:
++                add_issue(errors, "SPEC_HASH_MISMATCH", "spec file content no longer matches spec.sha256")
++        if not nonempty(spec.get("authority")):
++            add_issue(errors, "SPEC_AUTHORITY", "spec.authority is required")
++        if not isinstance(spec.get("deliverables"), list) or not spec.get("deliverables"):
++            add_issue(errors, "SPEC_DELIVERABLES", "spec.deliverables must list required deliverables")
++        if not isinstance(spec.get("success_conditions"), list) or not spec.get("success_conditions"):
++            add_issue(errors, "SPEC_SUCCESS_CONDITIONS", "spec.success_conditions must list observable conditions")
++        for position, item in enumerate(as_list(spec.get("deliverables"))):
++            if not isinstance(item, dict):
++                add_issue(errors, "SPEC_DELIVERABLE", f"spec.deliverables[{position}] must be an object")
++                continue
++            path = safe_repo_file(repo, item.get("path"))
++            if path is None or not path.exists():
++                add_issue(errors, "SPEC_DELIVERABLE_MISSING", f"required deliverable is missing: {item.get('path')!r}")
++            if item.get("required", True) is True and not nonempty(item.get("kind")):
++                add_issue(errors, "SPEC_DELIVERABLE_KIND", f"spec.deliverables[{position}].kind is required")
+ 
+     indexes = {key: index_items(state, key, errors) for key in ID_PREFIXES}
+     sources = indexes["sources"]
+@@ -885,7 +969,17 @@ def validate_record(
+                     check_execution_record(evidence_id, item, execution, legacy, revision, indexes, errors)
+                     for input_path, input_meta in as_dict(execution.get("inputs")).items():
+                         candidate = Path(input_path)
+-                        if not candidate.is_absolute():
++                        external_ok = False
++                        if candidate.is_absolute():
++                            declaration = external_input_declaration(state, candidate.resolve())
++                            metadata = as_dict(input_meta)
++                            if declaration is None or metadata.get("identity") != declaration.get("identity") or metadata.get("reproduction") != declaration.get("reproduction"):
++                                add_issue(errors, "EXECUTION_EXTERNAL_UNDECLARED", f"{evidence_id} external input is not exactly declared: {input_path}")
++                            else:
++                                checked_path = candidate.resolve()
++                                expected = metadata.get("sha256")
++                                external_ok = checked_path.is_file() and isinstance(expected, str) and sha256_file(checked_path) == expected
++                        else:
+                             # Record inputs are repository-relative so evidence survives a
+                             # worktree move; the stored cwd is informational only.
+                             candidate = repo / candidate
+@@ -895,7 +989,7 @@ def validate_record(
+                             checked = None
+                         checked_path = repo / checked if checked is not None else None
+                         expected = as_dict(input_meta).get("sha256")
+-                        if checked_path is None or not checked_path.is_file() or not isinstance(expected, str) or sha256_file(checked_path) != expected:
++                        if not external_ok and (checked_path is None or not checked_path.is_file() or not isinstance(expected, str) or sha256_file(checked_path) != expected):
+                             add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale or outside repository: {input_path}")
+         if not is_one_of(item.get("status"), EVIDENCE_STATES):
+             add_issue(errors, "EVIDENCE_STATUS", f"{evidence_id} has invalid status")
+@@ -1024,6 +1118,16 @@ def validate_record(
+         if not is_one_of(auth_action, allowed_actions):
+             add_issue(errors, "ACTION_AUTH", f"{action_id}.authorization_action must name an authorization entry")
+         elif is_one_of(status, EXECUTED_ACTION_STATES):
++            snapshot = as_dict(item.get("authorization_snapshot"))
++            if not legacy and not all(nonempty(snapshot.get(field)) for field in ("source_id", "source_content", "scope", "target", "revision", "captured_at", "content_sha256")):
++                add_issue(errors, "AUTH_SNAPSHOT_MISSING", f"{action_id} executed action needs an authorization_snapshot with source, scope, target, revision, time, and content hash")
++            if not legacy and snapshot.get("scope") and item.get("target") not in as_list(snapshot.get("scope")):
++                add_issue(errors, "ACTION_OUT_OF_SCOPE", f"{action_id} target is outside the authorization scope captured at execution")
++            if not legacy and isinstance(snapshot.get("source_content"), str):
++                expected_hash = snapshot.get("content_sha256")
++                actual_hash = hashlib.sha256(snapshot["source_content"].encode("utf-8")).hexdigest()
++                if expected_hash != actual_hash:
++                    add_issue(errors, "AUTH_SNAPSHOT_HASH", f"{action_id} authorization snapshot content hash does not match")
+             if authorization_status(state, auth_action) != "authorized":
+                 add_issue(
+                     unauthorized_bucket,
+@@ -1239,6 +1343,8 @@ def add_gate_errors(
+             add_issue(errors, "METRIC_EVIDENCE_MISSING", f"{metric_id} is assessed without evidence")
+         for evidence_id in id_list(metric.get("evidence_ids")):
+             item = evidence.get(evidence_id, {})
++            if not legacy and metric_id not in id_list(item.get("supports")):
++                add_issue(errors, "EVIDENCE_SUPPORT_MISMATCH", f"{evidence_id} does not declare support for {metric_id}")
+             if not current(evidence_id):
+                 add_issue(errors, "METRIC_EVIDENCE_NOT_CURRENT", f"{metric_id} evidence {evidence_id} is not current")
+             if status == "passed" and item.get("result") != "passed":
+@@ -1284,6 +1390,24 @@ def add_gate_errors(
+         for value in as_list(item.get("paths"))
+         if (normalized := normalized_declared_path(value)) is not None
+     }
++    if not legacy:
++        spec = as_dict(state.get("spec"))
++        required_deliverables = [item for item in as_list(spec.get("deliverables")) if isinstance(item, dict) and item.get("required", True) is True]
++        for item in required_deliverables:
++            path = normalized_declared_path(item.get("path"))
++            if path and not any(path_is_covered(path, declared) or path_is_covered(declared, path) for declared in declared_paths):
++                add_issue(errors, "SPEC_DELIVERABLE_UNREVIEWED", f"required Spec deliverable is absent from reviewed changes: {path}")
++        for position, condition in enumerate(as_list(spec.get("success_conditions"))):
++            if not isinstance(condition, dict):
++                continue
++            metric_ids = id_list(condition.get("metric_ids"))
++            if not metric_ids:
++                add_issue(errors, "SPEC_CONDITION_UNLINKED", f"Spec success condition {condition.get('id', position)!r} must reference acceptance metric ids")
++            for metric_id in metric_ids:
++                if metric_id not in metrics:
++                    add_issue(errors, "SPEC_CONDITION_METRIC_MISSING", f"Spec success condition references a missing metric: {metric_id}")
++                elif metrics[metric_id].get("status") != "passed":
++                    add_issue(errors, "SPEC_CONDITION_NOT_PASSED", f"Spec success condition {condition.get('id', position)!r} depends on {metric_id}, which is not passed")
+     if not changes:
+         add_issue(errors, "CHANGES_MISSING", "local commit gate needs at least one reviewed CHG-* record")
+     else:

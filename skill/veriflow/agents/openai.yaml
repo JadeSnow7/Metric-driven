@@ -1,0 +1,4 @@
+interface:
+  display_name: "Veriflow"
+  short_description: "Turn uncertain work into verified, traceable delivery"
+  default_prompt: "Use $veriflow to turn this request into a scoped, evidence-backed implementation."

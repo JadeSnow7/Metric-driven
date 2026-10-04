@@ -1,0 +1,2518 @@
+{
+  "package": "p42",
+  "checks": {
+    "AZURE-real-search-read-next-request": "passed",
+    "OCHRE-real-search-read-next-request": "passed",
+    "structured-tool-failure-feedback": "passed",
+    "model-error-keeps-events-no-answer": "passed",
+    "empty-final": "passed",
+    "normal-final": "passed",
+    "default-32-model-rounds": "passed",
+    "events-retain-call-inputs": "failed"
+  },
+  "AZURE": {
+    "root": "/private/tmp/rein-ch05-review-evidence-1/ts-ws-1qcZdr",
+    "received": [
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "search",
+                "name": "search_files",
+                "arguments": {
+                  "needle": "needle"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "search",
+            "content": "AZURE-a.txt\nAZURE-b.txt"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "search",
+                "name": "search_files",
+                "arguments": {
+                  "needle": "needle"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "search",
+            "content": "AZURE-a.txt\nAZURE-b.txt"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "read-0",
+                "name": "read_file",
+                "arguments": {
+                  "path": "AZURE-a.txt"
+                }
+              },
+              {
+                "id": "read-1",
+                "name": "read_file",
+                "arguments": {
+                  "path": "AZURE-b.txt"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "read-0",
+            "content": "needle AZURE apples"
+          },
+          {
+            "role": "tool",
+            "toolCallId": "read-1",
+            "content": "needle AZURE books"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      }
+    ],
+    "result": {
+      "state": "completed",
+      "reason": "final_answer",
+      "answer": "needle AZURE apples|needle AZURE books",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "search",
+              "name": "search_files",
+              "arguments": {
+                "needle": "needle"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "search",
+          "content": "AZURE-a.txt\nAZURE-b.txt"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "read-0",
+              "name": "read_file",
+              "arguments": {
+                "path": "AZURE-a.txt"
+              }
+            },
+            {
+              "id": "read-1",
+              "name": "read_file",
+              "arguments": {
+                "path": "AZURE-b.txt"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read-0",
+          "content": "needle AZURE apples"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read-1",
+          "content": "needle AZURE books"
+        },
+        {
+          "role": "assistant",
+          "content": "needle AZURE apples|needle AZURE books",
+          "toolCalls": []
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "search"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "search",
+          "result": {
+            "toolCallId": "search",
+            "ok": true,
+            "output": "AZURE-a.txt\nAZURE-b.txt"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 3
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [
+            "read-0",
+            "read-1"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 2,
+          "toolCallId": "read-0",
+          "result": {
+            "toolCallId": "read-0",
+            "ok": true,
+            "output": "needle AZURE apples"
+          }
+        },
+        {
+          "type": "tool_result",
+          "turn": 2,
+          "toolCallId": "read-1",
+          "result": {
+            "toolCallId": "read-1",
+            "ok": true,
+            "output": "needle AZURE books"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 3,
+          "messageCount": 6
+        },
+        {
+          "type": "model_received",
+          "turn": 3,
+          "toolCallIds": [],
+          "text": "needle AZURE apples|needle AZURE books"
+        },
+        {
+          "type": "stopped",
+          "state": "completed",
+          "reason": "final_answer"
+        }
+      ]
+    }
+  },
+  "OCHRE": {
+    "root": "/private/tmp/rein-ch05-review-evidence-1/ts-ws-6sHBd5",
+    "received": [
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "search",
+                "name": "search_files",
+                "arguments": {
+                  "needle": "needle"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "search",
+            "content": "OCHRE-a.txt\nOCHRE-b.txt"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "messages": [
+          {
+            "role": "user",
+            "content": "inspect current workspace"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "search",
+                "name": "search_files",
+                "arguments": {
+                  "needle": "needle"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "search",
+            "content": "OCHRE-a.txt\nOCHRE-b.txt"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "toolCalls": [
+              {
+                "id": "read-0",
+                "name": "read_file",
+                "arguments": {
+                  "path": "OCHRE-a.txt"
+                }
+              },
+              {
+                "id": "read-1",
+                "name": "read_file",
+                "arguments": {
+                  "path": "OCHRE-b.txt"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "toolCallId": "read-0",
+            "content": "needle OCHRE apples"
+          },
+          {
+            "role": "tool",
+            "toolCallId": "read-1",
+            "content": "needle OCHRE books"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      }
+    ],
+    "result": {
+      "state": "completed",
+      "reason": "final_answer",
+      "answer": "needle OCHRE apples|needle OCHRE books",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "search",
+              "name": "search_files",
+              "arguments": {
+                "needle": "needle"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "search",
+          "content": "OCHRE-a.txt\nOCHRE-b.txt"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "read-0",
+              "name": "read_file",
+              "arguments": {
+                "path": "OCHRE-a.txt"
+              }
+            },
+            {
+              "id": "read-1",
+              "name": "read_file",
+              "arguments": {
+                "path": "OCHRE-b.txt"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read-0",
+          "content": "needle OCHRE apples"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read-1",
+          "content": "needle OCHRE books"
+        },
+        {
+          "role": "assistant",
+          "content": "needle OCHRE apples|needle OCHRE books",
+          "toolCalls": []
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "search"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "search",
+          "result": {
+            "toolCallId": "search",
+            "ok": true,
+            "output": "OCHRE-a.txt\nOCHRE-b.txt"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 3
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [
+            "read-0",
+            "read-1"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 2,
+          "toolCallId": "read-0",
+          "result": {
+            "toolCallId": "read-0",
+            "ok": true,
+            "output": "needle OCHRE apples"
+          }
+        },
+        {
+          "type": "tool_result",
+          "turn": 2,
+          "toolCallId": "read-1",
+          "result": {
+            "toolCallId": "read-1",
+            "ok": true,
+            "output": "needle OCHRE books"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 3,
+          "messageCount": 6
+        },
+        {
+          "type": "model_received",
+          "turn": 3,
+          "toolCallIds": [],
+          "text": "needle OCHRE apples|needle OCHRE books"
+        },
+        {
+          "type": "stopped",
+          "state": "completed",
+          "reason": "final_answer"
+        }
+      ]
+    }
+  },
+  "failures": {
+    "requests": [
+      [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        }
+      ],
+      [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "unknown",
+              "name": "no_such_tool",
+              "arguments": {}
+            },
+            {
+              "id": "invalid",
+              "name": "read_file",
+              "arguments": {
+                "path": 9
+              }
+            },
+            {
+              "id": "missing",
+              "name": "read_file",
+              "arguments": {
+                "path": "missing.md"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "unknown",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "invalid",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"arguments_invalid\",\"message\":\"read_file requires string path\"}}"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "missing",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"path_invalid\",\"message\":\"ENOENT: no such file or directory, realpath '/private/tmp/rein-ch05-review-evidence-1/ts-ws-1qcZdr/missing.md'\"}}"
+        }
+      ]
+    ],
+    "result": {
+      "state": "completed",
+      "reason": "final_answer",
+      "answer": "feedback received",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "unknown",
+              "name": "no_such_tool",
+              "arguments": {}
+            },
+            {
+              "id": "invalid",
+              "name": "read_file",
+              "arguments": {
+                "path": 9
+              }
+            },
+            {
+              "id": "missing",
+              "name": "read_file",
+              "arguments": {
+                "path": "missing.md"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "unknown",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "invalid",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"arguments_invalid\",\"message\":\"read_file requires string path\"}}"
+        },
+        {
+          "role": "tool",
+          "toolCallId": "missing",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"path_invalid\",\"message\":\"ENOENT: no such file or directory, realpath '/private/tmp/rein-ch05-review-evidence-1/ts-ws-1qcZdr/missing.md'\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "feedback received",
+          "toolCalls": []
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "unknown",
+            "invalid",
+            "missing"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "unknown",
+          "result": {
+            "toolCallId": "unknown",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "invalid",
+          "result": {
+            "toolCallId": "invalid",
+            "ok": false,
+            "error": {
+              "code": "arguments_invalid",
+              "message": "read_file requires string path"
+            }
+          }
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "missing",
+          "result": {
+            "toolCallId": "missing",
+            "ok": false,
+            "error": {
+              "code": "path_invalid",
+              "message": "ENOENT: no such file or directory, realpath '/private/tmp/rein-ch05-review-evidence-1/ts-ws-1qcZdr/missing.md'"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 5
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [],
+          "text": "feedback received"
+        },
+        {
+          "type": "stopped",
+          "state": "completed",
+          "reason": "final_answer"
+        }
+      ]
+    }
+  },
+  "modelError": {
+    "state": "failed",
+    "reason": "model_error",
+    "messages": [
+      {
+        "role": "user",
+        "content": "inspect current workspace"
+      },
+      {
+        "role": "assistant",
+        "content": "",
+        "toolCalls": [
+          {
+            "id": "before-error",
+            "name": "read_file",
+            "arguments": {
+              "path": "AZURE-a.txt"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "toolCallId": "before-error",
+        "content": "needle AZURE apples"
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messageCount": 1
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "toolCallIds": [
+          "before-error"
+        ],
+        "text": ""
+      },
+      {
+        "type": "tool_result",
+        "turn": 1,
+        "toolCallId": "before-error",
+        "result": {
+          "toolCallId": "before-error",
+          "ok": true,
+          "output": "needle AZURE apples"
+        }
+      },
+      {
+        "type": "model_requested",
+        "turn": 2,
+        "messageCount": 3
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "model_error"
+      }
+    ],
+    "error": "probe network down"
+  },
+  "empty": {
+    "state": "failed",
+    "reason": "empty_final",
+    "messages": [
+      {
+        "role": "user",
+        "content": "inspect current workspace"
+      },
+      {
+        "role": "assistant",
+        "content": " \n ",
+        "toolCalls": []
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messageCount": 1
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "toolCallIds": [],
+        "text": " \n "
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "empty_final"
+      }
+    ]
+  },
+  "normal": {
+    "state": "completed",
+    "reason": "final_answer",
+    "answer": "normal",
+    "messages": [
+      {
+        "role": "user",
+        "content": "inspect current workspace"
+      },
+      {
+        "role": "assistant",
+        "content": "normal",
+        "toolCalls": []
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messageCount": 1
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "toolCallIds": [],
+        "text": "normal"
+      },
+      {
+        "type": "stopped",
+        "state": "completed",
+        "reason": "final_answer"
+      }
+    ]
+  },
+  "limit": {
+    "count": 32,
+    "result": {
+      "state": "failed",
+      "reason": "max_turns",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-1",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-1",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-2",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-2",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-3",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-3",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-4",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-4",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-5",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-5",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-6",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-6",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-7",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-7",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-8",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-8",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-9",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-9",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-10",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-10",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-11",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-11",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-12",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-12",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-13",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-13",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-14",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-14",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-15",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-15",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-16",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-16",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-17",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-17",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-18",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-18",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-19",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-19",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-20",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-20",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-21",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-21",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-22",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-22",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-23",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-23",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-24",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-24",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-25",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-25",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-26",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-26",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-27",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-27",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-28",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-28",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-29",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-29",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-30",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-30",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-31",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-31",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "repeat-32",
+              "name": "no_such_tool",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "repeat-32",
+          "content": "{\"ok\":false,\"error\":{\"code\":\"unknown_tool\",\"message\":\"unknown tool: no_such_tool\"}}"
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "repeat-1"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "repeat-1",
+          "result": {
+            "toolCallId": "repeat-1",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 3
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [
+            "repeat-2"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 2,
+          "toolCallId": "repeat-2",
+          "result": {
+            "toolCallId": "repeat-2",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 3,
+          "messageCount": 5
+        },
+        {
+          "type": "model_received",
+          "turn": 3,
+          "toolCallIds": [
+            "repeat-3"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 3,
+          "toolCallId": "repeat-3",
+          "result": {
+            "toolCallId": "repeat-3",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 4,
+          "messageCount": 7
+        },
+        {
+          "type": "model_received",
+          "turn": 4,
+          "toolCallIds": [
+            "repeat-4"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 4,
+          "toolCallId": "repeat-4",
+          "result": {
+            "toolCallId": "repeat-4",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 5,
+          "messageCount": 9
+        },
+        {
+          "type": "model_received",
+          "turn": 5,
+          "toolCallIds": [
+            "repeat-5"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 5,
+          "toolCallId": "repeat-5",
+          "result": {
+            "toolCallId": "repeat-5",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 6,
+          "messageCount": 11
+        },
+        {
+          "type": "model_received",
+          "turn": 6,
+          "toolCallIds": [
+            "repeat-6"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 6,
+          "toolCallId": "repeat-6",
+          "result": {
+            "toolCallId": "repeat-6",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 7,
+          "messageCount": 13
+        },
+        {
+          "type": "model_received",
+          "turn": 7,
+          "toolCallIds": [
+            "repeat-7"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 7,
+          "toolCallId": "repeat-7",
+          "result": {
+            "toolCallId": "repeat-7",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 8,
+          "messageCount": 15
+        },
+        {
+          "type": "model_received",
+          "turn": 8,
+          "toolCallIds": [
+            "repeat-8"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 8,
+          "toolCallId": "repeat-8",
+          "result": {
+            "toolCallId": "repeat-8",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 9,
+          "messageCount": 17
+        },
+        {
+          "type": "model_received",
+          "turn": 9,
+          "toolCallIds": [
+            "repeat-9"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 9,
+          "toolCallId": "repeat-9",
+          "result": {
+            "toolCallId": "repeat-9",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 10,
+          "messageCount": 19
+        },
+        {
+          "type": "model_received",
+          "turn": 10,
+          "toolCallIds": [
+            "repeat-10"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 10,
+          "toolCallId": "repeat-10",
+          "result": {
+            "toolCallId": "repeat-10",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 11,
+          "messageCount": 21
+        },
+        {
+          "type": "model_received",
+          "turn": 11,
+          "toolCallIds": [
+            "repeat-11"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 11,
+          "toolCallId": "repeat-11",
+          "result": {
+            "toolCallId": "repeat-11",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 12,
+          "messageCount": 23
+        },
+        {
+          "type": "model_received",
+          "turn": 12,
+          "toolCallIds": [
+            "repeat-12"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 12,
+          "toolCallId": "repeat-12",
+          "result": {
+            "toolCallId": "repeat-12",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 13,
+          "messageCount": 25
+        },
+        {
+          "type": "model_received",
+          "turn": 13,
+          "toolCallIds": [
+            "repeat-13"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 13,
+          "toolCallId": "repeat-13",
+          "result": {
+            "toolCallId": "repeat-13",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 14,
+          "messageCount": 27
+        },
+        {
+          "type": "model_received",
+          "turn": 14,
+          "toolCallIds": [
+            "repeat-14"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 14,
+          "toolCallId": "repeat-14",
+          "result": {
+            "toolCallId": "repeat-14",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 15,
+          "messageCount": 29
+        },
+        {
+          "type": "model_received",
+          "turn": 15,
+          "toolCallIds": [
+            "repeat-15"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 15,
+          "toolCallId": "repeat-15",
+          "result": {
+            "toolCallId": "repeat-15",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 16,
+          "messageCount": 31
+        },
+        {
+          "type": "model_received",
+          "turn": 16,
+          "toolCallIds": [
+            "repeat-16"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 16,
+          "toolCallId": "repeat-16",
+          "result": {
+            "toolCallId": "repeat-16",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 17,
+          "messageCount": 33
+        },
+        {
+          "type": "model_received",
+          "turn": 17,
+          "toolCallIds": [
+            "repeat-17"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 17,
+          "toolCallId": "repeat-17",
+          "result": {
+            "toolCallId": "repeat-17",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 18,
+          "messageCount": 35
+        },
+        {
+          "type": "model_received",
+          "turn": 18,
+          "toolCallIds": [
+            "repeat-18"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 18,
+          "toolCallId": "repeat-18",
+          "result": {
+            "toolCallId": "repeat-18",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 19,
+          "messageCount": 37
+        },
+        {
+          "type": "model_received",
+          "turn": 19,
+          "toolCallIds": [
+            "repeat-19"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 19,
+          "toolCallId": "repeat-19",
+          "result": {
+            "toolCallId": "repeat-19",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 20,
+          "messageCount": 39
+        },
+        {
+          "type": "model_received",
+          "turn": 20,
+          "toolCallIds": [
+            "repeat-20"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 20,
+          "toolCallId": "repeat-20",
+          "result": {
+            "toolCallId": "repeat-20",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 21,
+          "messageCount": 41
+        },
+        {
+          "type": "model_received",
+          "turn": 21,
+          "toolCallIds": [
+            "repeat-21"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 21,
+          "toolCallId": "repeat-21",
+          "result": {
+            "toolCallId": "repeat-21",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 22,
+          "messageCount": 43
+        },
+        {
+          "type": "model_received",
+          "turn": 22,
+          "toolCallIds": [
+            "repeat-22"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 22,
+          "toolCallId": "repeat-22",
+          "result": {
+            "toolCallId": "repeat-22",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 23,
+          "messageCount": 45
+        },
+        {
+          "type": "model_received",
+          "turn": 23,
+          "toolCallIds": [
+            "repeat-23"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 23,
+          "toolCallId": "repeat-23",
+          "result": {
+            "toolCallId": "repeat-23",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 24,
+          "messageCount": 47
+        },
+        {
+          "type": "model_received",
+          "turn": 24,
+          "toolCallIds": [
+            "repeat-24"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 24,
+          "toolCallId": "repeat-24",
+          "result": {
+            "toolCallId": "repeat-24",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 25,
+          "messageCount": 49
+        },
+        {
+          "type": "model_received",
+          "turn": 25,
+          "toolCallIds": [
+            "repeat-25"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 25,
+          "toolCallId": "repeat-25",
+          "result": {
+            "toolCallId": "repeat-25",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 26,
+          "messageCount": 51
+        },
+        {
+          "type": "model_received",
+          "turn": 26,
+          "toolCallIds": [
+            "repeat-26"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 26,
+          "toolCallId": "repeat-26",
+          "result": {
+            "toolCallId": "repeat-26",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 27,
+          "messageCount": 53
+        },
+        {
+          "type": "model_received",
+          "turn": 27,
+          "toolCallIds": [
+            "repeat-27"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 27,
+          "toolCallId": "repeat-27",
+          "result": {
+            "toolCallId": "repeat-27",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 28,
+          "messageCount": 55
+        },
+        {
+          "type": "model_received",
+          "turn": 28,
+          "toolCallIds": [
+            "repeat-28"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 28,
+          "toolCallId": "repeat-28",
+          "result": {
+            "toolCallId": "repeat-28",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 29,
+          "messageCount": 57
+        },
+        {
+          "type": "model_received",
+          "turn": 29,
+          "toolCallIds": [
+            "repeat-29"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 29,
+          "toolCallId": "repeat-29",
+          "result": {
+            "toolCallId": "repeat-29",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 30,
+          "messageCount": 59
+        },
+        {
+          "type": "model_received",
+          "turn": 30,
+          "toolCallIds": [
+            "repeat-30"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 30,
+          "toolCallId": "repeat-30",
+          "result": {
+            "toolCallId": "repeat-30",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 31,
+          "messageCount": 61
+        },
+        {
+          "type": "model_received",
+          "turn": 31,
+          "toolCallIds": [
+            "repeat-31"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 31,
+          "toolCallId": "repeat-31",
+          "result": {
+            "toolCallId": "repeat-31",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 32,
+          "messageCount": 63
+        },
+        {
+          "type": "model_received",
+          "turn": 32,
+          "toolCallIds": [
+            "repeat-32"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 32,
+          "toolCallId": "repeat-32",
+          "result": {
+            "toolCallId": "repeat-32",
+            "ok": false,
+            "error": {
+              "code": "unknown_tool",
+              "message": "unknown tool: no_such_tool"
+            }
+          }
+        },
+        {
+          "type": "stopped",
+          "state": "failed",
+          "reason": "max_turns"
+        }
+      ]
+    }
+  },
+  "eventReplay": {
+    "sameEvents": true,
+    "a": {
+      "state": "completed",
+      "reason": "final_answer",
+      "answer": "done",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "read",
+              "name": "read_file",
+              "arguments": {
+                "path": "same-a.txt"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read",
+          "content": "identical"
+        },
+        {
+          "role": "assistant",
+          "content": "done",
+          "toolCalls": []
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "read"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "read",
+          "result": {
+            "toolCallId": "read",
+            "ok": true,
+            "output": "identical"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 3
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [],
+          "text": "done"
+        },
+        {
+          "type": "stopped",
+          "state": "completed",
+          "reason": "final_answer"
+        }
+      ]
+    },
+    "b": {
+      "state": "completed",
+      "reason": "final_answer",
+      "answer": "done",
+      "messages": [
+        {
+          "role": "user",
+          "content": "inspect current workspace"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "read",
+              "name": "read_file",
+              "arguments": {
+                "path": "same-b.txt"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "toolCallId": "read",
+          "content": "identical"
+        },
+        {
+          "role": "assistant",
+          "content": "done",
+          "toolCalls": []
+        }
+      ],
+      "events": [
+        {
+          "type": "model_requested",
+          "turn": 1,
+          "messageCount": 1
+        },
+        {
+          "type": "model_received",
+          "turn": 1,
+          "toolCallIds": [
+            "read"
+          ],
+          "text": ""
+        },
+        {
+          "type": "tool_result",
+          "turn": 1,
+          "toolCallId": "read",
+          "result": {
+            "toolCallId": "read",
+            "ok": true,
+            "output": "identical"
+          }
+        },
+        {
+          "type": "model_requested",
+          "turn": 2,
+          "messageCount": 3
+        },
+        {
+          "type": "model_received",
+          "turn": 2,
+          "toolCallIds": [],
+          "text": "done"
+        },
+        {
+          "type": "stopped",
+          "state": "completed",
+          "reason": "final_answer"
+        }
+      ]
+    }
+  },
+  "events-retain-call-inputsError": "AssertionError [ERR_ASSERTION]: Expected \"actual\" not to be strictly deep-equal to:\n\n[\n  {\n    messageCount: 1,\n    turn: 1,\n    type: 'model_requested'\n  },\n  {\n    text: '',\n    toolCallIds: [\n      'read'\n    ],\n    turn: 1,\n    type: 'model_received'\n  },\n  {\n    result: {\n      ok: true,\n      output: 'identical',\n      toolCallId: 'read'\n    },\n    toolCallId: 'read',\n    turn: 1,\n    type: 'tool_result'\n  },\n  {\n    messageCount: 3,\n    turn: 2,\n    type: 'model_requested'\n  },\n  {\n    text: 'done',\n    toolCallIds: [],\n    turn: 2,\n    type: 'model_received'\n  },\n  {\n    reason: 'final_answer',\n    state: 'completed',\n    type: 'stopped'\n  }\n]\n"
+}

@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-09-14T15:41:18.265307+00:00",
+  "original_paths_checked": 124,
+  "original_changed_since_freeze": [],
+  "retained_at_bootstrap_review": {
+    "docs/chapters/01.md": true,
+    "docs/chapters/02.md": true,
+    "docs/chapters/03.md": true,
+    "docs/chapters/04.md": true,
+    "reports/ch01-author-style.md": true,
+    "docs/.vitepress/config.mts": true,
+    "docs/.vitepress/theme/SourceVersionSwitch.vue": false,
+    "docs/.vitepress/theme/sourceVersionState.ts": true
+  },
+  "passed": false,
+  "interpretation": "Original 124 paths still match freeze; all protected author prose matches. The sole work-tree mismatch was a concurrent authorized coder edit after bootstrap: SourceVersionSwitch.vue adds only v-if=\"pair?.ts && pair?.rust\". Root inspected actual diff; no author-content loss. Raw passed=false above reflects snapshot equality after writing began, not an integration conflict.",
+  "gate": "accepted_with_concurrent_change_identified"
+}

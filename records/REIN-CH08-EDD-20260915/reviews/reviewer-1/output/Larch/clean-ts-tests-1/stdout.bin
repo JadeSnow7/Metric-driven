@@ -1,0 +1,33 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch08-review-1/products/Larch/ts
+
+ ✓ tests/chat.test.ts (17 tests) 11ms
+ ✓ tests/config.test.ts (13 tests) 8ms
+ ✓ tests/recorded.test.ts (3 tests) 12ms
+ ❯ tests/transport.test.ts (8 tests | 5 failed) 23ms
+   × createFetchTransport > 原样搬运状态码、状态文本与响应体，不解释内容 8ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 把请求体送到服务端 3ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 连接不上时抛 NetworkError，消息里带上 URL 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 服务端不响应时抛 TimeoutError，消息里带上超时值 0ms
+     → listen EPERM: operation not permitted 127.0.0.1
+   × createFetchTransport > 响应头已到但响应体悬挂时也抛 TimeoutError 1ms
+     → listen EPERM: operation not permitted 127.0.0.1
+ ✓ tests/ch07-context.test.ts (8 tests) 37ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 35ms
+ ✓ tests/hello.test.ts (18 tests) 26ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/loop.test.ts (16 tests) 197ms
+ ✓ tests/hybrid-host.test.ts (4 tests) 291ms
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  5 failed | 95 passed (100)
+   Start at  13:19:16
+   Duration  600ms (transform 282ms, setup 0ms, collect 729ms, tests 641ms, environment 1ms, prepare 798ms)
+

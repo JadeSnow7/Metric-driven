@@ -1,0 +1,2 @@
+2026-09-15T05:09:06.525080Z  WARN codex_analytics::client: failed to send events request: error sending request for url (https://chatgpt.com/backend-api/codex/analytics-events/events)
+2026-09-15T05:12:43.101320Z ERROR codex_core::tools::router: error=exec_command failed: UnknownProcessId { process_id: 33567 }

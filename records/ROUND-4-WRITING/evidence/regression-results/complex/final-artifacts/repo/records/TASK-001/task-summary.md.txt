@@ -1,0 +1,9 @@
+# TASK-001 当前摘要
+
+- 状态：verified；本地实现和验证已完成，未执行提交、推送或外部操作。
+- 结果：`Inventory.import_csv` 按物理行独立解析 CSV；坏行只进入自身行号的 `skipped`，后续合法行继续导入；返回成功行数与坏行号的既有契约保持不变。
+- 兼容性：`low_stock` 默认阈值 5、严格小于比较和排序行为保持；跨行 CSV 仍不支持。空白行忽略且不计 `skipped` 仍是候选规则，待确认。
+- 实现：恢复逐物理行解析路径，并增加 4300 位数量文本上限，避免 Python 版本差异导致超长数量被接受。
+- 验证：`python3 -m unittest discover -s tests -t . -v`，30 项通过，退出码 0。
+- 原始证据：[current-tests.txt](evidence/current-tests.txt)；结构化状态：[task-state.json](task-state.json)。
+- 限制：只完成本地源码、验证和记录更新；未提交、未推送、未运行远程 CI、未部署。

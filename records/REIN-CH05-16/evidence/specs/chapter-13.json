@@ -1,0 +1,1 @@
+{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch13","title":"计划与任务审查","checks":[{"id":"dependencies","observable":"依赖未满足时后续任务不执行"},{"id":"persist","observable":"事件和审查节点持久化后可恢复"},{"id":"unknown-side-effect","observable":"副作用结果未知时不会自动重放"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}

@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-15T06:53:32.883891+00:00",
+  "reviewer": "primary",
+  "sourceHashes": {
+    "rust/src/rein/context_methods.rs": "39ca0d21503e20f9180dbe2170f36d25a8afa2a94108255a70d3004e2429c93d",
+    "rust/src/rein/mod.rs": "75f3c5bf75031ffbccc69e21b61cb6d456d9a2a1b47bcd667f53a2f878445231",
+    "rust/examples/ch08_context.rs": "672707a25fb39bd6d6b28da9002d4c7633baabfda85a4817f6de9fa0b16bb481",
+    "scripts/ch08-compare.mjs": "25b8f04ac964db52562ad1381094ea34c0e459ad63a84df242f88d90c7119004",
+    "examples/ch08-context-methods/README.md": "1c22a16fdab8622f6421b26bbc408b7d13d267ec0aa35e72d9038bde21b37e50",
+    "examples/ch08-context-methods/docs/demo.md": "cb8bd12410959fff115be826746e23773f8ac5f659349e9aa31ca852e1595a4f",
+    "examples/ch08-context-methods/entry.mjs": "0cde374c6692fa9679e36ff66f80d7eaf70b6ecfc028f0ef122d519a45e5ae0e",
+    "examples/ch08-context-methods/input/index.json": "e8d5ac55010c69cd3d4e9599d6ee9b90438be388f4ad4d9b34f2602e9f97ba89",
+    "examples/ch08-context-methods/input/tasks.json": "a4e6cbaaefcb71c1a7f820b3ad4ee602f03ce5c7b49917a145e027e2623421a8"
+  },
+  "observations": [
+    "Rust constructs and budgets final messages; TaskView excludes expectedFacts and task ID; answer accepts messages only, oracle is read afterwards.",
+    "Actual Node executor reads selected data-root files; callRecords come from executor, not fabricated per strategy.",
+    "Window accepts latest complete paragraph suffix and restores (order,index) identity order; no body-text reverse lookup.",
+    "Retrieval scores real paragraph text using exact ASCII tokens and non-ASCII alphabetic ngrams; metadata is not scored. All candidate fields preserve body text and selection; source IDs deduplicate accepted messages.",
+    "Every accepted fragment uses existing estimated_units; zero/base overflow happens before executor invocation. Rust API and native CLI reject unsafe budget.",
+    "Summary extracts actual fact lines with source; rule-based offline answer and summary do not prove model performance.",
+    "Independent input and oracle now consistent and entry asserts real claims/quality/records."
+  ],
+  "pending": [
+    "Fresh calibrated contract tests and root actual re-run.",
+    "Final tutorial and navigation run; acceptance manifest and original-workspace integration."
+  ],
+  "status": "source_reviewed_tests_pending"
+}

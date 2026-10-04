@@ -1,0 +1,85 @@
+[
+  {
+    "argv": [
+      "codex",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:00.513199+00:00",
+    "ended_at": "2026-09-15T04:04:00.565009+00:00",
+    "exit_code": 0,
+    "stdout": "codex-cli 0.154.0\n",
+    "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n"
+  },
+  {
+    "argv": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:00.565024+00:00",
+    "ended_at": "2026-09-15T04:04:00.672460+00:00",
+    "exit_code": 0,
+    "stdout": "v26.5.0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "npm",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:00.672471+00:00",
+    "ended_at": "2026-09-15T04:04:00.856181+00:00",
+    "exit_code": 0,
+    "stdout": "11.17.0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "cargo",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:00.856231+00:00",
+    "ended_at": "2026-09-15T04:04:00.967715+00:00",
+    "exit_code": 0,
+    "stdout": "cargo 1.98.0 (797e8a9bc 2026-08-05)\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rustc",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:00.968055+00:00",
+    "ended_at": "2026-09-15T04:04:01.177143+00:00",
+    "exit_code": 0,
+    "stdout": "rustc 1.98.0 (88d9e12ae 2026-08-18)\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:01.177169+00:00",
+    "ended_at": "2026-09-15T04:04:01.186567+00:00",
+    "exit_code": 0,
+    "stdout": "Python 3.14.6\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "sw_vers"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at": "2026-09-15T04:04:01.186585+00:00",
+    "ended_at": "2026-09-15T04:04:01.201518+00:00",
+    "exit_code": 0,
+    "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+    "stderr": ""
+  }
+]

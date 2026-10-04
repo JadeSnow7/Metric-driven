@@ -1,0 +1,20 @@
+{
+  "label": "p42-rust-prerequisite-loopback-escalated",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--test",
+    "prerequisites",
+    "concrete_reqwest_captures_two_openai_turns_and_tool_results"
+  ],
+  "started_utc": "2026-09-14T11:24:09Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s\n     Running tests/prerequisites.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/deps/prerequisites-f3a192991d055a1f)\n\nrunning 1 test\ntest concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.12s\n\n"
+}

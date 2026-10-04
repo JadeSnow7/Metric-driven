@@ -1,0 +1,75 @@
+{
+  "captured_at": "2026-09-14T04:41:53.580257+00:00",
+  "source_root": "/private/tmp/edd-r4-fixtures-8gys1wek/dirty",
+  "files": {
+    "BASELINE.json": {
+      "archive": "regression-results/dirty/final-artifacts/BASELINE.json.txt",
+      "sha256": "7e0899d0cb021d1a974c640f4b78d71209d2154ec89383d56493ef1e6ddcc49a"
+    },
+    "REQUEST.txt": {
+      "archive": "regression-results/dirty/final-artifacts/REQUEST.txt.txt",
+      "sha256": "bc2b3144960700dcff5effd028e742776da269677841b4024ef8981897f1b8c5"
+    },
+    "final_reply.md": {
+      "archive": "regression-results/dirty/final-artifacts/final_reply.md.txt",
+      "sha256": "9dd94ca2772e7e55fc6c8e3a773c1b9e1df0c07b06df28eee672efeb75c86fc9"
+    },
+    "git-trace.log": {
+      "archive": "regression-results/dirty/final-artifacts/git-trace.log.txt",
+      "sha256": "01ff5e98bbe8b996b9e2cca1e98df69e0f98bd8321e15d6c1ce0d7f7a428c551"
+    },
+    "precheck/dirty.txt": {
+      "archive": "regression-results/dirty/final-artifacts/precheck/dirty.txt.txt",
+      "sha256": "2d2adee203b63cc888f2a37b097727c9ea2dade4b21aff2126f3cad10e1f174f"
+    },
+    "repo/.gitignore": {
+      "archive": "regression-results/dirty/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b"
+    },
+    "repo/config.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/config.py.txt",
+      "sha256": "a6b642d79fa6b45cc6fff99c261587927a8d85b0bd34bd31c2f55e7befe6ce1f"
+    },
+    "repo/inventory.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/inventory.py.txt",
+      "sha256": "a6d87806090a64310482be8600419975a5aa7161b188adca74fa69ea4ae4e057"
+    },
+    "repo/pricing.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b"
+    },
+    "repo/tests/__init__.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "repo/tests/test_inventory.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "60cb11872f318c5e4fa35f5484f6d9c8d79c1ed55a9e7255f41e33f69ddfd955"
+    },
+    "repo/tests/test_pricing.py": {
+      "archive": "regression-results/dirty/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac"
+    },
+    "run-evidence/commands.txt": {
+      "archive": "regression-results/dirty/final-artifacts/run-evidence/commands.txt.txt",
+      "sha256": "646aa28abfc745ede6d5bae7a1c9571a5b001fbe1564601a95d823c77cfe5740"
+    },
+    "run-evidence/git-diff.txt": {
+      "archive": "regression-results/dirty/final-artifacts/run-evidence/git-diff.txt.txt",
+      "sha256": "86c7c569c5ddb909615bb367d42db21f7cdcad0062dfe07d1c877e88a63fc5fe"
+    },
+    "run-evidence/git-status.txt": {
+      "archive": "regression-results/dirty/final-artifacts/run-evidence/git-status.txt.txt",
+      "sha256": "067ef7b358ec870203e70f19a5dae8ab48b7e877284d7e87c0688d3c9e9f88e2"
+    },
+    "run-evidence/py-compile.txt": {
+      "archive": "regression-results/dirty/final-artifacts/run-evidence/py-compile.txt.txt",
+      "sha256": "031689b5d3f3bfe8f5bf950721d35a95a26b949783dc152fd27983c991719f2b"
+    },
+    "run-evidence/unittest-discover.txt": {
+      "archive": "regression-results/dirty/final-artifacts/run-evidence/unittest-discover.txt.txt",
+      "sha256": "6b2a16461e18aa98f48e56231b942dae51fde5f0f62ad1b94be4a3efb883174f"
+    }
+  },
+  "note": "Complete text artifacts, excluding Git object database/cache. Original paths documented; .txt suffix prevents interpreting fixture-relative Markdown links in main repository."
+}

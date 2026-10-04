@@ -1,0 +1,44 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/tests",
+      "-v"
+    ],
+    "exit": 0
+  },
+  {
+    "argv": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "skill/evidence-driven-development/tests",
+      "-v"
+    ],
+    "exit": 0
+  },
+  {
+    "argv": [
+      "python3",
+      "tools/validate_repository.py"
+    ],
+    "exit": 1
+  },
+  {
+    "argv": [
+      "python3",
+      "-m",
+      "py_compile",
+      "tools/rein_evaluate.py",
+      "tools/tests/test_rein_evaluate.py",
+      "tools/tests/test_rein_dataset.py"
+    ],
+    "exit": 0
+  }
+]

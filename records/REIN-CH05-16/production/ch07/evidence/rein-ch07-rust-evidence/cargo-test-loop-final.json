@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--test",
+    "loop"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/rust",
+  "start": "2026-09-14T14:41:32.393051+00:00",
+  "end": "2026-09-14T14:41:36.828299+00:00",
+  "elapsed": 4.435276031494141,
+  "exit": 0,
+  "stdout": "\nrunning 9 tests\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\ntest ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch ... ok\ntest ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history ... ok\ntest nested_arguments_are_canonical_for_duplicate_detection ... ok\ntest unknown_badargs_missing_file_are_feedback_and_can_recover ... ok\ntest two_workspaces_search_then_read_and_pair_multiple_calls ... ok\ntest model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok\ntest observer_cancels_between_tools_and_pending_model_is_dropped ... ok\ntest controls_stop_pending_model_and_zero_budget_without_dispatch ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\nwarning: unused variable: `start`\n   --> src/rein/loop.rs:676:21\n    |\n676 |                 let start = index;\n    |                     ^^^^^ help: if this is intentional, prefix it with an underscore: `_start`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.06s\n     Running tests/loop.rs (/private/tmp/rein-candidate03-build/debug/deps/loop-8ce302fc995cc4fc)\n"
+}

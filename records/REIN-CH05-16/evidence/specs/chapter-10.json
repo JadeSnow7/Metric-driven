@@ -1,0 +1,1 @@
+{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch10","title":"失败反馈","checks":[{"id":"classify","observable":"失败按可修复、不可修复或取消分类并结构化反馈"},{"id":"repair-limit","observable":"修复次数有界，超过限制不会无限重试"},{"id":"handoff","observable":"不可修复失败可进入人工接管且资源得到清理"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}

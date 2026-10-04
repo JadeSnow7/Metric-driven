@@ -1,0 +1,2053 @@
+{
+  "reviewer": "reviewer-1",
+  "spec_version": "report-comparison-1",
+  "scope": {
+    "cases": [
+      1,
+      2,
+      6,
+      10
+    ],
+    "blinded": true,
+    "configuration_mapping_read": false,
+    "other_reviews_read": false,
+    "development_or_test_execution": false,
+    "network_or_delegation": false,
+    "method": "逐项 required 对照事实包；复核全部匿名目录文件正文，并按需要阅读其 raw 来源。引用中的行号为本次报告文本行号。链接仅作证据入口，不替代必读组合中的事实正文。测量为全文 Unicode 字符，包括链接与围栏；不以长度单独定优劣。"
+  },
+  "cases": [
+    {
+      "case": 1,
+      "reports": {
+        "R1": {
+          "required_files": [
+            "final_reply.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "pricing.py 改为 Decimal(str(price/rate)) 按 ROUND_HALF_UP 计算到分，局部精度 400；tests/test_pricing.py 增加三项测试。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "这里有两个成因。历史记录中的计算显示，`0.125` 可以精确表示，`round(0.125, 2)` 得到 `0.12` 是因为半数取偶；而 `2.01 * 0.5` 的二进制浮点乘积略低于 `1.005`，还存在表示误差。`pricing.py` 因此分别用 `Decimal(str(price))`、`Decimal(str(rate))` 转换输入，在局部精度 400 下计算折后金额，再以 `ROUND_HALF_UP` 舍入到分。[成因核查与执行轨迹](../../../facts/case-1/raw/transcript.md.txt)"
+                },
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "记录显示，当时使用 Python 3.14.6，修前 9 项测试中有 1 项失败，修后 12 项全部通过；用 HEAD 旧实现运行新测试时，原半分用例和 `2.01` 用例均失败。新增的三项测试覆盖 `2.01` 的半分、略低于半分的值，以及 `1e30` 和 `inf`。这些是历史执行轨迹记载的结果，本次未重新运行；该轨迹由当时代理整理，并非完整工具原始日志。可在项目根目录复跑："
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "成因须分开：0.125 可精确表示，round(0.125,2)=0.12 来自取偶；2.01*0.5 的二进制乘积略低于 1.005，另有表示误差。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "这里有两个成因。历史记录中的计算显示，`0.125` 可以精确表示，`round(0.125, 2)` 得到 `0.12` 是因为半数取偶；而 `2.01 * 0.5` 的二进制浮点乘积略低于 `1.005`，还存在表示误差。`pricing.py` 因此分别用 `Decimal(str(price))`、`Decimal(str(rate))` 转换输入，在局部精度 400 下计算折后金额，再以 `ROUND_HALF_UP` 舍入到分。[成因核查与执行轨迹](../../../facts/case-1/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记载：Python 3.14.6，python3 -m unittest discover -s tests -t . -v；修前9项1失败，修后12项全部通过；HEAD旧实现运行新测试时，半分与2.01两个用例失败。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "记录显示，当时使用 Python 3.14.6，修前 9 项测试中有 1 项失败，修后 12 项全部通过；用 HEAD 旧实现运行新测试时，原半分用例和 `2.01` 用例均失败。新增的三项测试覆盖 `2.01` 的半分、略低于半分的值，以及 `1e30` 和 `inf`。这些是历史执行轨迹记载的结果，本次未重新运行；该轨迹由当时代理整理，并非完整工具原始日志。可在项目根目录复跑："
+                },
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 8,
+                  "quote": "python3 -m unittest discover -s tests -t . -v"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "负价格半分现在远离零舍入：-0.25、rate=0.5 得 -0.13（此前-0.12）；负价格是否为业务合法输入尚不明确，无对应单元测试。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 11,
+                  "quote": "还需留意两个行为变化：有限价格现在统一返回 `float`，此前某些整数输入返回 `int`；负价格遇到半分会远离零舍入，例如 `price=-0.25, rate=0.5` 从 `-0.12` 变为 `-0.13`。`inf`、`nan` 则保留原浮点计算路径。[实现差异](../../../facts/case-1/raw/git_state.md.txt)、[历史边界探测](../../../facts/case-1/raw/transcript.md.txt)"
+                },
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 13,
+                  "quote": "负价格是否属于业务合法输入仍不明确，也没有对应单元测试。下一步需要明确负价格的输入契约，并据此补充验证；现有测试通过尚不足以认定这一行为已获业务验收。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "有限价格返回 float，原来某些整数输入返回 int；inf/nan 走旧浮点计算路径；1e30、inf 有新增回归。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 11,
+                  "quote": "还需留意两个行为变化：有限价格现在统一返回 `float`，此前某些整数输入返回 `int`；负价格遇到半分会远离零舍入，例如 `price=-0.25, rate=0.5` 从 `-0.12` 变为 `-0.13`。`inf`、`nan` 则保留原浮点计算路径。[实现差异](../../../facts/case-1/raw/git_state.md.txt)、[历史边界探测](../../../facts/case-1/raw/transcript.md.txt)"
+                },
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "记录显示，当时使用 Python 3.14.6，修前 9 项测试中有 1 项失败，修后 12 项全部通过；用 HEAD 旧实现运行新测试时，原半分用例和 `2.01` 用例均失败。新增的三项测试覆盖 `2.01` 的半分、略低于半分的值，以及 `1e30` 和 `inf`。这些是历史执行轨迹记载的结果，本次未重新运行；该轨迹由当时代理整理，并非完整工具原始日志。可在项目根目录复跑："
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "改动留在工作区，未提交，远端引用未变；没有 records 产物。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 1,
+                  "quote": "半分舍入修复已留在工作区：`0.25` 打五折由 `0.12` 改为 `0.13`，`2.01` 打五折得到 `1.01`。截至第三轮运行结束，改动尚未提交，远端引用未变，也没有新增 `records` 产物。[历史工作区状态与差异](../../../facts/case-1/raw/git_state.md.txt)"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份均给出修复、两个不同成因、历史测试与反向验证、负数和类型边界、未提交状态；读者能确定下一步是明确负价格契约。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 1008,
+                "lines": 13
+              }
+            },
+            "required_reading_chars": 1008,
+            "record_lines": 0
+          },
+          "issues": [
+            {
+              "kind": "within_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F03"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-1/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "记录显示，当时使用 Python 3.14.6，修前 9 项测试中有 1 项失败，修后 12 项全部通过；用 HEAD 旧实现运行新测试时，原半分用例和 `2.01` 用例均失败。新增的三项测试覆盖 `2.01` 的半分、略低于半分的值，以及 `1e30` 和 `inf`。这些是历史执行轨迹记载的结果，本次未重新运行；该轨迹由当时代理整理，并非完整工具原始日志。可在项目根目录复跑："
+                }
+              ],
+              "reason": "历史来源和本轮未重跑的说明必要；该段前后的来源提示有轻微重合，但同时补充了轨迹不是原始日志，不能把整段当作纯重复。"
+            }
+          ]
+        },
+        "R2": {
+          "required_files": [
+            "final_reply.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "pricing.py 改为 Decimal(str(price/rate)) 按 ROUND_HALF_UP 计算到分，局部精度 400；tests/test_pricing.py 增加三项测试。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "`pricing.py` 改为将价格和折扣率分别通过 `Decimal(str(...))` 转换，以局部精度 400 计算，再按 `ROUND_HALF_UP` 舍入到分。两个成因需分开看：`0.125` 可精确表示，`round(0.125, 2)` 得到 `0.12` 是半数取偶；`2.01 * 0.5` 的二进制乘积略低于 `1.005`，则另有表示误差。`tests/test_pricing.py` 新增三项测试，覆盖 `2.01` 的半分、低于半分的输入，以及 `1e30`／`inf` 回归。[改动证据](../../../facts/case-1/raw/git_state.md.txt)、[成因与执行轨迹](../../../facts/case-1/raw/transcript.md.txt)。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "成因须分开：0.125 可精确表示，round(0.125,2)=0.12 来自取偶；2.01*0.5 的二进制乘积略低于 1.005，另有表示误差。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "`pricing.py` 改为将价格和折扣率分别通过 `Decimal(str(...))` 转换，以局部精度 400 计算，再按 `ROUND_HALF_UP` 舍入到分。两个成因需分开看：`0.125` 可精确表示，`round(0.125, 2)` 得到 `0.12` 是半数取偶；`2.01 * 0.5` 的二进制乘积略低于 `1.005`，则另有表示误差。`tests/test_pricing.py` 新增三项测试，覆盖 `2.01` 的半分、低于半分的输入，以及 `1e30`／`inf` 回归。[改动证据](../../../facts/case-1/raw/git_state.md.txt)、[成因与执行轨迹](../../../facts/case-1/raw/transcript.md.txt)。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记载：Python 3.14.6，python3 -m unittest discover -s tests -t . -v；修前9项1失败，修后12项全部通过；HEAD旧实现运行新测试时，半分与2.01两个用例失败。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "记录显示，当时使用 Python 3.14.6；可在原项目根目录复跑 `python3 -m unittest discover -s tests -t . -v`。历史结果如下：[执行轨迹](../../../facts/case-1/raw/transcript.md.txt)。"
+                },
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 7,
+                  "quote": "- 修复前：9 项测试，1 项失败，退出码 1。"
+                },
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 8,
+                  "quote": "- 修复后：12 项全部通过，退出码 0。"
+                },
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 9,
+                  "quote": "- 反向验证：用 HEAD 旧实现运行新测试时，半分用例与 `2.01` 用例失败，说明这些用例能够检出旧实现的问题。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "负价格半分现在远离零舍入：-0.25、rate=0.5 得 -0.13（此前-0.12）；负价格是否为业务合法输入尚不明确，无对应单元测试。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 11,
+                  "quote": "仍有两项超出正价格半分修复的行为变化：负价格 `-0.25`、`rate=0.5` 现在远离零舍入为 `-0.13`，此前为 `-0.12`；其业务合法性尚不明确，也没有对应单元测试，需要维护者确认契约后补充验收。有限价格现在统一返回 `float`，原先某些整数输入返回 `int`。`inf`／`nan` 保留旧浮点计算路径；新增回归覆盖了 `inf`，不应据此扩展为所有非有限输入均有单元测试覆盖。[行为记录](../../../facts/case-1/raw/transcript.md.txt)。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "有限价格返回 float，原来某些整数输入返回 int；inf/nan 走旧浮点计算路径；1e30、inf 有新增回归。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 11,
+                  "quote": "仍有两项超出正价格半分修复的行为变化：负价格 `-0.25`、`rate=0.5` 现在远离零舍入为 `-0.13`，此前为 `-0.12`；其业务合法性尚不明确，也没有对应单元测试，需要维护者确认契约后补充验收。有限价格现在统一返回 `float`，原先某些整数输入返回 `int`。`inf`／`nan` 保留旧浮点计算路径；新增回归覆盖了 `inf`，不应据此扩展为所有非有限输入均有单元测试覆盖。[行为记录](../../../facts/case-1/raw/transcript.md.txt)。"
+                },
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "`pricing.py` 改为将价格和折扣率分别通过 `Decimal(str(...))` 转换，以局部精度 400 计算，再按 `ROUND_HALF_UP` 舍入到分。两个成因需分开看：`0.125` 可精确表示，`round(0.125, 2)` 得到 `0.12` 是半数取偶；`2.01 * 0.5` 的二进制乘积略低于 `1.005`，则另有表示误差。`tests/test_pricing.py` 新增三项测试，覆盖 `2.01` 的半分、低于半分的输入，以及 `1e30`／`inf` 回归。[改动证据](../../../facts/case-1/raw/git_state.md.txt)、[成因与执行轨迹](../../../facts/case-1/raw/transcript.md.txt)。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "改动留在工作区，未提交，远端引用未变；没有 records 产物。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 13,
+                  "quote": "历史仓库采集显示改动未提交、远端引用未变，且没有 `records` 产物；本报告不将这些历史状态表述为当前仓库的实时核验结果。[仓库状态](../../../facts/case-1/raw/git_state.md.txt)、[记录目录快照](../../../facts/case-1/raw/records_snapshot.md.txt)。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份均给出修复、两个不同成因、历史测试与反向验证、负数和类型边界、未提交状态；读者能确定下一步是明确负价格契约。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 1126,
+                "lines": 13
+              }
+            },
+            "required_reading_chars": 1126,
+            "record_lines": 0
+          },
+          "issues": [
+            {
+              "kind": "within_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F06"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 1,
+                  "quote": "半分舍入修复已留在工作区，尚未提交。以下报告对应第三轮运行结束时的历史状态；测试结果来自当时代理整理的执行轨迹，并非本轮重新运行，也不是完整工具原始日志。"
+                },
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 13,
+                  "quote": "历史仓库采集显示改动未提交、远端引用未变，且没有 `records` 产物；本报告不将这些历史状态表述为当前仓库的实时核验结果。[仓库状态](../../../facts/case-1/raw/git_state.md.txt)、[记录目录快照](../../../facts/case-1/raw/records_snapshot.md.txt)。"
+                }
+              ],
+              "reason": "未提交重复，末段新增远端和 records 状态有必要；只能删除重复的未提交片段，不能删去整个末段。"
+            },
+            {
+              "kind": "optional_boundary_explanation",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F05"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-1/R2/final_reply.md",
+                  "line": 11,
+                  "quote": "仍有两项超出正价格半分修复的行为变化：负价格 `-0.25`、`rate=0.5` 现在远离零舍入为 `-0.13`，此前为 `-0.12`；其业务合法性尚不明确，也没有对应单元测试，需要维护者确认契约后补充验收。有限价格现在统一返回 `float`，原先某些整数输入返回 `int`。`inf`／`nan` 保留旧浮点计算路径；新增回归覆盖了 `inf`，不应据此扩展为所有非有限输入均有单元测试覆盖。[行为记录](../../../facts/case-1/raw/transcript.md.txt)。"
+                }
+              ],
+              "reason": "这句新增 nan 不等于已获单元覆盖的边界提醒，有实际解释价值；两份均已足够限定证据，R1 未给此句不算遗漏。"
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "preferred": "R1",
+        "accuracy_or_boundary_difference": "无实质差异；两份六项 required 均 present。",
+        "locatable_improvement": {
+          "winner": "R1",
+          "quotes": [
+            {
+              "file": "blind/case-1/R1/final_reply.md",
+              "line": 1,
+              "quote": "半分舍入修复已留在工作区：`0.25` 打五折由 `0.12` 改为 `0.13`，`2.01` 打五折得到 `1.01`。截至第三轮运行结束，改动尚未提交，远端引用未变，也没有新增 `records` 产物。[历史工作区状态与差异](../../../facts/case-1/raw/git_state.md.txt)"
+            }
+          ],
+          "reason": "开头直接给两个可见修复结果；R2 开头只说修复留在工作区，正文有机制和测试用例但无这两个正向输出的直接并列。对维护者更快说明效果。"
+        },
+        "redundancy_judgment": "两份重复均轻微；R2 首尾重复未提交，且来源提醒较分散。R2 的非有限测试范围说明有价值。",
+        "total_reading_burden": {
+          "R1_chars": 1008,
+          "R2_chars": 1126,
+          "preferred_reading_burden": "R1",
+          "reason": "R1 少 118 字符且直接给结果；并非单凭短判优。R2 增加退出码与非有限覆盖提醒有一定价值，但对本例必要理解的提升很小。",
+          "material_regression_for_preferred": false
+        },
+        "important_disagreements": [
+          "若更重视 nan 未有测试的显式提醒，可将两份判为 tie；没有事实或边界方面的实质争议。"
+        ]
+      }
+    },
+    {
+      "case": 2,
+      "reports": {
+        "R1": {
+          "required_files": [
+            "final_reply.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "用户希望增加智能补货且要准；尚未实施，仓库无diff、无新增提交。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 1,
+                  "quote": "智能补货还未实施，需要先明确“准”的业务含义和数据依据。历史仓库记录显示没有代码 diff，也没有新增提交。[仓库状态](../../../facts/case-2/raw/git_state.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "Inventory 只有当前库存、入库、count、names，没有销量/出库历史或日期；这些材料不足以推算需求或实测准确度。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "现有 `Inventory` 只保存当前库存，支持入库、`count` 查询数量和 `names` 列出商品；没有带日期的销量或出库历史，无法据此推算需求或实测补货准确度。[现有代码](../../../facts/case-2/raw/repo/inventory.py.txt) 当时的执行轨迹还报告，`config.py` 中的 `LOW_STOCK_THRESHOLD=5` 没有被使用，因此不能视为现行补货规则或已测基线。[历史轨迹](../../../facts/case-2/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "config.py 的 LOW_STOCK_THRESHOLD=5 未被使用，不能作为现行补货规则或已测基线。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "现有 `Inventory` 只保存当前库存，支持入库、`count` 查询数量和 `names` 列出商品；没有带日期的销量或出库历史，无法据此推算需求或实测补货准确度。[现有代码](../../../facts/case-2/raw/repo/inventory.py.txt) 当时的执行轨迹还报告，`config.py` 中的 `LOW_STOCK_THRESHOLD=5` 没有被使用，因此不能视为现行补货规则或已测基线。[历史轨迹](../../../facts/case-2/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记录现有 unittest 命令9项通过 exit0；这不是补货功能的测试结果。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 14,
+                  "quote": "历史轨迹记录现有测试命令 `python3 -m unittest discover -s tests -t . -v` 的 9 项测试通过、退出码为 0。这是当时代理整理的记录，本轮未重新运行，也不代表补货功能已通过测试。[测试记录及复跑命令](../../../facts/case-2/raw/transcript.md.txt) 下一步先确认上述业务决定，再实施并验证。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "需厘清四个业务决定：输出建议还是自动操作、历史需求数据来源、缺货和积压的权衡、到货周期；不超过5个独立问题。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "请先明确以下四个决定；括号内都是待确认的候选建议："
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 7,
+                  "quote": "1. 补货功能应输出建议，还是自动执行操作？（建议先提供补货清单，不修改库存、不下单。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 8,
+                  "quote": "2. 历史需求数据可以从哪里取得？（如果有带日期的出库数据，建议支持导入。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 9,
+                  "quote": "3. “准”应如何权衡缺货与库存积压？（建议优先减少缺货，同时约束库存占用。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 10,
+                  "quote": "4. 商品的到货周期应如何确定？（建议支持全局默认值，并允许按商品设置。）"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "已有候选方向：仅建议清单且不改库存/下单；带日期出库数据可导入；优先缺货但约束库存；全局到货周期可按商品设置。均待确认，不能说已采纳。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 5,
+                  "quote": "请先明确以下四个决定；括号内都是待确认的候选建议："
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 7,
+                  "quote": "1. 补货功能应输出建议，还是自动执行操作？（建议先提供补货清单，不修改库存、不下单。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 8,
+                  "quote": "2. 历史需求数据可以从哪里取得？（如果有带日期的出库数据，建议支持导入。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 9,
+                  "quote": "3. “准”应如何权衡缺货与库存积压？（建议优先减少缺货，同时约束库存占用。）"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 10,
+                  "quote": "4. 商品的到货周期应如何确定？（建议支持全局默认值，并允许按商品设置。）"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "验收建议为历史回测缺货天数与平均库存，先测对照基线再定提升；任何数值都非业务已测事实。下一步先确认业务决定，再实施，不索要提交推送权限。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 12,
+                  "quote": "验收建议用历史数据回测，比较缺货天数与平均库存；先测对照基线，再确定提升目标。该方法也待确认，目前没有已测的业务指标或数值门槛。"
+                },
+                {
+                  "file": "blind/case-2/R1/final_reply.md",
+                  "line": 14,
+                  "quote": "历史轨迹记录现有测试命令 `python3 -m unittest discover -s tests -t . -v` 的 9 项测试通过、退出码为 0。这是当时代理整理的记录，本轮未重新运行，也不代表补货功能已通过测试。[测试记录及复跑命令](../../../facts/case-2/raw/transcript.md.txt) 下一步先确认上述业务决定，再实施并验证。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份均区分库存现状与未实施补货，说明数据缺口、未使用阈值和旧测试限制，提出四个业务决定与待确认候选，并先测基线再定提升。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 821,
+                "lines": 14
+              }
+            },
+            "required_reading_chars": 821,
+            "record_lines": 0
+          },
+          "issues": []
+        },
+        "R2": {
+          "required_files": [
+            "final_reply.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "用户希望增加智能补货且要准；尚未实施，仓库无diff、无新增提交。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 1,
+                  "quote": "“智能补货，要准一点”需要先明确业务含义和数据依据，按 L2 处理。历史交付记录显示，功能尚未实施，仓库没有 diff，也没有新增提交。[仓库状态](../../../facts/case-2/raw/git_state.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "Inventory 只有当前库存、入库、count、names，没有销量/出库历史或日期；这些材料不足以推算需求或实测准确度。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "现有 `Inventory` 只有当前库存、入库、`count` 和 `names`，没有销量、出库历史或日期，尚不足以推算需求或实测准确度。[源码](../../../facts/case-2/raw/repo/inventory.py.txt) 当时代理整理的轨迹记录称，`config.py` 的 `LOW_STOCK_THRESHOLD=5` 未被使用，不能当作现行补货规则或已测基线；现有测试命令 `python3 -m unittest discover -s tests -t . -v` 为 9 项通过、退出码 0，但这不是补货功能的测试结果，也不是本次重新运行的结果。[历史轨迹](../../../facts/case-2/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "config.py 的 LOW_STOCK_THRESHOLD=5 未被使用，不能作为现行补货规则或已测基线。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "现有 `Inventory` 只有当前库存、入库、`count` 和 `names`，没有销量、出库历史或日期，尚不足以推算需求或实测准确度。[源码](../../../facts/case-2/raw/repo/inventory.py.txt) 当时代理整理的轨迹记录称，`config.py` 的 `LOW_STOCK_THRESHOLD=5` 未被使用，不能当作现行补货规则或已测基线；现有测试命令 `python3 -m unittest discover -s tests -t . -v` 为 9 项通过、退出码 0，但这不是补货功能的测试结果，也不是本次重新运行的结果。[历史轨迹](../../../facts/case-2/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记录现有 unittest 命令9项通过 exit0；这不是补货功能的测试结果。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "现有 `Inventory` 只有当前库存、入库、`count` 和 `names`，没有销量、出库历史或日期，尚不足以推算需求或实测准确度。[源码](../../../facts/case-2/raw/repo/inventory.py.txt) 当时代理整理的轨迹记录称，`config.py` 的 `LOW_STOCK_THRESHOLD=5` 未被使用，不能当作现行补货规则或已测基线；现有测试命令 `python3 -m unittest discover -s tests -t . -v` 为 9 项通过、退出码 0，但这不是补货功能的测试结果，也不是本次重新运行的结果。[历史轨迹](../../../facts/case-2/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "需厘清四个业务决定：输出建议还是自动操作、历史需求数据来源、缺货和积压的权衡、到货周期；不超过5个独立问题。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "需要先确认四个决定："
+                },
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 7,
+                  "quote": "1. 补货功能只输出建议，还是自动执行操作？"
+                },
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 8,
+                  "quote": "2. 历史需求数据从哪里获取？"
+                },
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 9,
+                  "quote": "3. 缺货与库存积压之间，你希望如何取舍？"
+                },
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 10,
+                  "quote": "4. 补货从发起到到货通常需要多久？"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "已有候选方向：仅建议清单且不改库存/下单；带日期出库数据可导入；优先缺货但约束库存；全局到货周期可按商品设置。均待确认，不能说已采纳。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 12,
+                  "quote": "默认建议是：先提供建议清单，不改库存、不下单；允许导入带日期的出库数据；优先减少缺货，同时约束库存；到货周期先设全局值，并允许按商品设置。这些都是待确认的候选方向。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "推断/候选决定",
+              "criterion": "验收建议为历史回测缺货天数与平均库存，先测对照基线再定提升；任何数值都非业务已测事实。下一步先确认业务决定，再实施，不索要提交推送权限。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 14,
+                  "quote": "验收建议用历史数据回测，比较缺货天数与平均库存，先测对照基线，再确定提升目标。目前没有已测的业务数值或准确度结论。下一步先确认上述业务决定，再实施。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份均区分库存现状与未实施补货，说明数据缺口、未使用阈值和旧测试限制，提出四个业务决定与待确认候选，并先测基线再定提升。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 718,
+                "lines": 14
+              }
+            },
+            "required_reading_chars": 718,
+            "record_lines": 0
+          },
+          "issues": [
+            {
+              "kind": "unnecessary_internal_term",
+              "severity": "non_blocking",
+              "fact_ids": [],
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 1,
+                  "quote": "“智能补货，要准一点”需要先明确业务含义和数据依据，按 L2 处理。历史交付记录显示，功能尚未实施，仓库没有 diff，也没有新增提交。[仓库状态](../../../facts/case-2/raw/git_state.md.txt)"
+                }
+              ],
+              "reason": "L2 未定义，也不影响用户的四个业务决定；删除不会损失现状、缺口或下一步。"
+            },
+            {
+              "kind": "cross_paragraph_mapping",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F05",
+                "F06"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "需要先确认四个决定："
+                },
+                {
+                  "file": "blind/case-2/R2/final_reply.md",
+                  "line": 12,
+                  "quote": "默认建议是：先提供建议清单，不改库存、不下单；允许导入带日期的出库数据；优先减少缺货，同时约束库存；到货周期先设全局值，并允许按商品设置。这些都是待确认的候选方向。"
+                }
+              ],
+              "reason": "四问与四个候选集中在两处，读者需做逐项映射；不算事实遗漏，R1 的括号就地配对略易直接作答。"
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "preferred": "R1",
+        "accuracy_or_boundary_difference": "无实质差异；两份七项 required 均 present。",
+        "locatable_improvement": {
+          "winner": "R1",
+          "quotes": [
+            {
+              "file": "blind/case-2/R1/final_reply.md",
+              "line": 7,
+              "quote": "1. 补货功能应输出建议，还是自动执行操作？（建议先提供补货清单，不修改库存、不下单。）"
+            },
+            {
+              "file": "blind/case-2/R1/final_reply.md",
+              "line": 8,
+              "quote": "2. 历史需求数据可以从哪里取得？（如果有带日期的出库数据，建议支持导入。）"
+            },
+            {
+              "file": "blind/case-2/R1/final_reply.md",
+              "line": 9,
+              "quote": "3. “准”应如何权衡缺货与库存积压？（建议优先减少缺货，同时约束库存占用。）"
+            },
+            {
+              "file": "blind/case-2/R1/final_reply.md",
+              "line": 10,
+              "quote": "4. 商品的到货周期应如何确定？（建议支持全局默认值，并允许按商品设置。）"
+            }
+          ],
+          "reason": "问题后紧跟对应候选并统一声明待确认，四个决定能逐项作答；同时没有 R2 未定义的 L2 术语。"
+        },
+        "redundancy_judgment": "两份没有明显重复事实段；R2 更紧凑，但将候选另置一段，需自行配对。",
+        "total_reading_burden": {
+          "R1_chars": 821,
+          "R2_chars": 718,
+          "preferred_reading_burden": "tie",
+          "reason": "R1 多 103 字符，主要用于就地匹配问题和候选及拆开旧测试范围；R2 字数少而段内密度更高，不能据长度认定 R1 负担退步。",
+          "material_regression_for_preferred": false
+        },
+        "important_disagreements": [
+          "R1 的篇幅更长与提问更易作答存在取舍；这里以需求澄清可作答性优先，不将长度单独计负。"
+        ]
+      }
+    },
+    {
+      "case": 6,
+      "reports": {
+        "R1": {
+          "required_files": [
+            "final_reply.md",
+            "task-summary.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "旧摘要声称12项通过，却无原始输出和版本绑定；不能据此证明当前代码通过，也不能凭时间戳推断它验证了哪一版本。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "TASK-008 已修复“库存归零仍保留商品”的问题，并在历史交付时完成本地提交 `b7a79dc`；未推送。旧摘要的“12 项通过”已标记为 `stale`：它没有原始输出和版本绑定，不能证明当前代码通过，也不能凭时间戳确定验证的是哪个版本。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "当时重新检查：12项中 test_remove_item_to_zero_deletes 失败，exit1；降到0留下apple:0。库存不足此前已抛错，remaining<0 删除分支不会触发。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 9,
+                  "quote": "- `inventory.py`：将删除条件从 `remaining < 0` 改为 `remaining == 0`。库存不足会提前抛错，原删除分支不会触发，导致移除全部库存后留下 `{'apple': 0}`。"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 16,
+                  "quote": "| 修复前完整测试 | `python3 -m unittest discover -s tests -t . -v` | failed：12 项中 `test_remove_item_to_zero_deletes` 失败，exit 1 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "inventory.py 将 remaining<0 改为 remaining==0；本次恢复未修改既有测试内容。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 9,
+                  "quote": "- `inventory.py`：将删除条件从 `remaining < 0` 改为 `remaining == 0`。库存不足会提前抛错，原删除分支不会触发，导致移除全部库存后留下 `{'apple': 0}`。"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 10,
+                  "quote": "- 本次历史恢复没有修改既有测试内容；本地提交包含 `inventory.py` 和此前已有改动的 `tests/test_inventory.py`。[保留的代码与提交差异](../../../facts/case-6/raw/git_state.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史记录显示修后完整12项通过exit0，命令python3 -m unittest discover -s tests -t . -v；手动检查剩1保留、归0删除、再入库以及不足/未知商品/数量0或-1异常且库存不变。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 17,
+                  "quote": "| 修复后完整测试 | 同上；实际执行附带 `PYTHONDONTWRITEBYTECODE=1` | passed：12 项通过，exit 0 |"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 18,
+                  "quote": "| 手动边界检查 | 剩 1 保留、归 0 删除、删除后再入库；不足、未知商品、数量 0 或 -1 | 记录显示符合预期；异常均抛 `ValueError` 且库存不变 |"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 20,
+                  "quote": "在原项目根目录可复跑：`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -t . -v`。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "未知商品和非正数量沿用ValueError；这两类只做手动检查，没有单元覆盖；未经独立审查。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 24,
+                  "quote": "未知商品和非正数量沿用 `ValueError`，这两类移除异常仅有历史手动检查，没有单元覆盖；本次历史修复未经独立审查。未取得远程 CI 验证证据。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "历史本地提交b7a79dc包含inventory.py及tests/test_inventory.py；记录称提交内容与被测内容一致。未推送，origin/main停在de14e0b。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "TASK-008 已修复“库存归零仍保留商品”的问题，并在历史交付时完成本地提交 `b7a79dc`；未推送。旧摘要的“12 项通过”已标记为 `stale`：它没有原始输出和版本绑定，不能证明当前代码通过，也不能凭时间戳确定验证的是哪个版本。"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 10,
+                  "quote": "- 本次历史恢复没有修改既有测试内容；本地提交包含 `inventory.py` 和此前已有改动的 `tests/test_inventory.py`。[保留的代码与提交差异](../../../facts/case-6/raw/git_state.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 28,
+                  "quote": "记录显示提交内容与被测内容一致；`origin/main` 仍停在 `de14e0b`，未推送。[历史 Git 状态](../../../facts/case-6/raw/git_state.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "已有TASK-008摘要已改为verified、旧证据stale；摘要仍未跟踪、未纳入提交。需要复用更新摘要并供审阅，而不是重复提交或建议无必要的回退。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 30,
+                  "quote": "已有摘要当时已更新为 `verified`、旧证据为 `stale`，但仍未跟踪、未纳入提交。本轮复用并更新为供审阅的 [task-summary.md](task-summary.md)，仅整理报告；无需重复提交。下一步是审阅修复，是否推送由用户决定。"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 28,
+                  "quote": "- 下一步：审阅已有修复；是否推送由用户决定。当前没有重复提交或回退的必要；接手后若要采取新动作，先核对实时仓库状态。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份完整组合均能回答旧证据为什么失效、实际失败及修复条件、测试与手动范围、本地提交及摘要未跟踪状态；下一步是审阅而非重复提交。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 1222,
+                "lines": 30
+              },
+              "task-summary.md": {
+                "unicode_chars": 1562,
+                "lines": 28
+              }
+            },
+            "required_reading_chars": 2784,
+            "record_lines": 28
+          },
+          "issues": [
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F01"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "TASK-008 已修复“库存归零仍保留商品”的问题，并在历史交付时完成本地提交 `b7a79dc`；未推送。旧摘要的“12 项通过”已标记为 `stale`：它没有原始输出和版本绑定，不能证明当前代码通过，也不能凭时间戳确定验证的是哪个版本。"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 10,
+                  "quote": "旧摘要记录 2026-09-12 18:40“Ran 12 tests, OK”，但缺少原始输出和版本绑定，已标记 `stale`。不能用该结论证明当前代码通过，也不能仅凭时间戳推断其对应版本。"
+                }
+              ],
+              "reason": "旧证据缺原始输出、缺版本绑定、不能凭时间戳判版本，在两个必读文件完整重说；摘要新增旧时间值没有改变判定理由。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F02",
+                "F03"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 9,
+                  "quote": "- `inventory.py`：将删除条件从 `remaining < 0` 改为 `remaining == 0`。库存不足会提前抛错，原删除分支不会触发，导致移除全部库存后留下 `{'apple': 0}`。"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 12,
+                  "quote": "历史恢复时，修改前完整测试 12 项中 `test_remove_item_to_zero_deletes` 失败，exit 1；库存从 2 减到 0 后仍留下 `{'apple': 0}`，`names()` 返回 `['apple']`。库存不足此前已抛错，因此 `remaining < 0` 删除分支不会触发。修复将条件改为 `remaining == 0`，恢复过程中未改既有测试内容。"
+                }
+              ],
+              "reason": "修复原因和 remaining 条件转换重复；摘要新增 names() 输出帮助定位症状，但不足以使整段重复理由成为必要新信息。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F04",
+                "F05"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 18,
+                  "quote": "| 手动边界检查 | 剩 1 保留、归 0 删除、删除后再入库；不足、未知商品、数量 0 或 -1 | 记录显示符合预期；异常均抛 `ValueError` 且库存不变 |"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 19,
+                  "quote": "- 手动边界：剩 1 保留、归 0 删除、删除后再入库；库存不足、未知商品、数量 0 或 -1 均抛 `ValueError` 且库存不变，记录显示全部符合预期。"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 24,
+                  "quote": "未知商品和非正数量沿用 `ValueError`，这两类移除异常仅有历史手动检查，没有单元覆盖；本次历史修复未经独立审查。未取得远程 CI 验证证据。"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 20,
+                  "quote": "- 未知商品、非正数量沿用 `ValueError`；这两类移除异常仅做手动检查，无单元覆盖。保留的[测试文件](../../../facts/case-6/raw/repo/tests/test_inventory.py.txt)可供审阅。"
+                }
+              ],
+              "reason": "相同手动样本列表、异常库存不变、未知/非正数量无单元覆盖分别跨文件重复，没有新增覆盖信息。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F06",
+                "F07"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 28,
+                  "quote": "记录显示提交内容与被测内容一致；`origin/main` 仍停在 `de14e0b`，未推送。[历史 Git 状态](../../../facts/case-6/raw/git_state.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 6,
+                  "quote": "- 本地提交：`b7a79dc94ea2ae89db7f491ff642f8f2538cee0d`，包含 `inventory.py`、`tests/test_inventory.py`。记录称提交内容与被测内容一致；`origin/main` 仍为 `de14e0b`。[历史 Git 状态](../../../facts/case-6/raw/git_state.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R1/final_reply.md",
+                  "line": 30,
+                  "quote": "已有摘要当时已更新为 `verified`、旧证据为 `stale`，但仍未跟踪、未纳入提交。本轮复用并更新为供审阅的 [task-summary.md](task-summary.md)，仅整理报告；无需重复提交。下一步是审阅修复，是否推送由用户决定。"
+                },
+                {
+                  "file": "blind/case-6/R1/task-summary.md",
+                  "line": 26,
+                  "quote": "- 原摘要已更新为 `verified`、旧证据 `stale`，但 `records/TASK-008/task-summary.md` 仍未跟踪且未纳入提交，不能称整个工作区干净。[原摘要与记录状态](../../../facts/case-6/raw/records_snapshot.md.txt)"
+                }
+              ],
+              "reason": "提交/被测内容一致、远端基点、摘要未跟踪均重复；摘要说明不能称工作区干净有解释价值，但不需要连同全部状态再复述。"
+            }
+          ]
+        },
+        "R2": {
+          "required_files": [
+            "final_reply.md",
+            "task-summary.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "旧摘要声称12项通过，却无原始输出和版本绑定；不能据此证明当前代码通过，也不能凭时间戳推断它验证了哪一版本。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "旧摘要声称 12 项通过，却没有原始输出或版本绑定，不能证明当前代码通过，也不能靠时间戳判断它验证了哪个版本。当时重新检查发现 `test_remove_item_to_zero_deletes` 失败：扣完库存仍留下 `apple: 0`。原因是库存不足已提前抛错，原来的 `remaining < 0` 删除分支不会触发；恢复时将条件改成 `remaining == 0`，没有修改既有测试内容。[执行轨迹](../../../facts/case-6/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "当时重新检查：12项中 test_remove_item_to_zero_deletes 失败，exit1；降到0留下apple:0。库存不足此前已抛错，remaining<0 删除分支不会触发。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "旧摘要声称 12 项通过，却没有原始输出或版本绑定，不能证明当前代码通过，也不能靠时间戳判断它验证了哪个版本。当时重新检查发现 `test_remove_item_to_zero_deletes` 失败：扣完库存仍留下 `apple: 0`。原因是库存不足已提前抛错，原来的 `remaining < 0` 删除分支不会触发；恢复时将条件改成 `remaining == 0`，没有修改既有测试内容。[执行轨迹](../../../facts/case-6/raw/transcript.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 12,
+                  "quote": "| 修复前重新检查 | `failed`；12 项中 `test_remove_item_to_zero_deletes` 失败，退出码 1 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "inventory.py 将 remaining<0 改为 remaining==0；本次恢复未修改既有测试内容。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "旧摘要声称 12 项通过，却没有原始输出或版本绑定，不能证明当前代码通过，也不能靠时间戳判断它验证了哪个版本。当时重新检查发现 `test_remove_item_to_zero_deletes` 失败：扣完库存仍留下 `apple: 0`。原因是库存不足已提前抛错，原来的 `remaining < 0` 删除分支不会触发；恢复时将条件改成 `remaining == 0`，没有修改既有测试内容。[执行轨迹](../../../facts/case-6/raw/transcript.md.txt)"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史记录显示修后完整12项通过exit0，命令python3 -m unittest discover -s tests -t . -v；手动检查剩1保留、归0删除、再入库以及不足/未知商品/数量0或-1异常且库存不变。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 13,
+                  "quote": "| 修复后完整测试 | 记录为 `passed`；12 项通过，退出码 0 |"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 14,
+                  "quote": "| 手动边界检查 | 记录为 `passed`；剩 1 保留、归 0 删除、删除后再入库；库存不足、未知商品、数量为 0 或 -1 均抛 `ValueError`，且库存不变 |"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 21,
+                  "quote": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -t . -v"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "未知商品和非正数量沿用ValueError；这两类只做手动检查，没有单元覆盖；未经独立审查。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "历史记录显示，修后完整 12 项测试通过，手动边界检查也符合预期；这些是导入的历史结果，本轮没有重新运行。移除未知商品和非正数量仍抛 `ValueError`，这两类仅有手动检查，没有单元覆盖，且未经独立审查。已复用更新 [任务摘要](task-summary.md)，保留验证范围、复跑命令和旧证据失效状态，供审阅；是否推送由用户决定。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "历史本地提交b7a79dc包含inventory.py及tests/test_inventory.py；记录称提交内容与被测内容一致。未推送，origin/main停在de14e0b。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 1,
+                  "quote": "库存归零后仍保留商品的问题已修复，并在当时完成本地提交 `b7a79dc`，包含 `inventory.py` 和 `tests/test_inventory.py`；未推送，`origin/main` 仍为 `de14e0b`。[历史提交状态](../../../facts/case-6/raw/git_state.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 24,
+                  "quote": "基线为 `de14e0be45b1f5875583d8fcf4741488ce00f48a`，历史提交为 `b7a79dc94ea2ae89db7f491ff642f8f2538cee0d`。执行轨迹称，提交内容与被测内容一致；[历史 Git 状态](../../../facts/case-6/raw/git_state.md.txt)记录代码和测试已提交，但 `records/TASK-008/task-summary.md` 仍未跟踪、未纳入提交，不能称整个工作区干净。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "已有TASK-008摘要已改为verified、旧证据stale；摘要仍未跟踪、未纳入提交。需要复用更新摘要并供审阅，而不是重复提交或建议无必要的回退。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 5,
+                  "quote": "状态：`verified`，指第三轮运行结束时的历史交付状态。本摘要依据[已有摘要](../../../facts/case-6/raw/repo/records/TASK-008/task-summary.md.txt)更新；本轮仅整理报告，未重新开发、测试或执行 Git 操作。[交付回复](final_reply.md)说明了修复行为及原因。"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 11,
+                  "quote": "| 旧摘要的通过结论 | `stale`；缺少原始输出与版本绑定，不能用于当前版本验收 |"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 24,
+                  "quote": "基线为 `de14e0be45b1f5875583d8fcf4741488ce00f48a`，历史提交为 `b7a79dc94ea2ae89db7f491ff642f8f2538cee0d`。执行轨迹称，提交内容与被测内容一致；[历史 Git 状态](../../../facts/case-6/raw/git_state.md.txt)记录代码和测试已提交，但 `records/TASK-008/task-summary.md` 仍未跟踪、未纳入提交，不能称整个工作区干净。"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 26,
+                  "quote": "当时用户授权了 commit，未授权 push；历史授权不适用于本轮执行。当前供用户审阅修复和更新后的摘要，推送与否待用户决定，无需重复提交已有修复。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份完整组合均能回答旧证据为什么失效、实际失败及修复条件、测试与手动范围、本地提交及摘要未跟踪状态；下一步是审阅而非重复提交。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 592,
+                "lines": 5
+              },
+              "task-summary.md": {
+                "unicode_chars": 1118,
+                "lines": 26
+              }
+            },
+            "required_reading_chars": 1710,
+            "record_lines": 26
+          },
+          "issues": [
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F01",
+                "F05"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 3,
+                  "quote": "旧摘要声称 12 项通过，却没有原始输出或版本绑定，不能证明当前代码通过，也不能靠时间戳判断它验证了哪个版本。当时重新检查发现 `test_remove_item_to_zero_deletes` 失败：扣完库存仍留下 `apple: 0`。原因是库存不足已提前抛错，原来的 `remaining < 0` 删除分支不会触发；恢复时将条件改成 `remaining == 0`，没有修改既有测试内容。[执行轨迹](../../../facts/case-6/raw/transcript.md.txt)"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 11,
+                  "quote": "| 旧摘要的通过结论 | `stale`；缺少原始输出与版本绑定，不能用于当前版本验收 |"
+                },
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "历史记录显示，修后完整 12 项测试通过，手动边界检查也符合预期；这些是导入的历史结果，本轮没有重新运行。移除未知商品和非正数量仍抛 `ValueError`，这两类仅有手动检查，没有单元覆盖，且未经独立审查。已复用更新 [任务摘要](task-summary.md)，保留验证范围、复跑命令和旧证据失效状态，供审阅；是否推送由用户决定。"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 16,
+                  "quote": "移除未知商品和非正数量没有单元覆盖；相关行为仅有上述手动检查。未经独立审查。远程 CI 未核实。"
+                }
+              ],
+              "reason": "旧证据缺口与两类未覆盖声明仍有少量重复；保留一处正文已足够。"
+            },
+            {
+              "kind": "necessary_expansion",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F04"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-6/R2/final_reply.md",
+                  "line": 5,
+                  "quote": "历史记录显示，修后完整 12 项测试通过，手动边界检查也符合预期；这些是导入的历史结果，本轮没有重新运行。移除未知商品和非正数量仍抛 `ValueError`，这两类仅有手动检查，没有单元覆盖，且未经独立审查。已复用更新 [任务摘要](task-summary.md)，保留验证范围、复跑命令和旧证据失效状态，供审阅；是否推送由用户决定。"
+                },
+                {
+                  "file": "blind/case-6/R2/task-summary.md",
+                  "line": 14,
+                  "quote": "| 手动边界检查 | 记录为 `passed`；剩 1 保留、归 0 删除、删除后再入库；库存不足、未知商品、数量为 0 或 -1 均抛 `ValueError`，且库存不变 |"
+                }
+              ],
+              "reason": "摘要补出具体剩 1、归零、再入库和异常输入且库存不变，给出 final 概述没有的覆盖范围；这部分不计纯重复。"
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "preferred": "R2",
+        "accuracy_or_boundary_difference": "完整必读组合无遗漏或越界；不能只看 R2 final 未列 exit1 或全部手动样本就判遗漏，摘要已列出。",
+        "locatable_improvement": {
+          "winner": "R2",
+          "quotes": [
+            {
+              "file": "blind/case-6/R2/final_reply.md",
+              "line": 5,
+              "quote": "历史记录显示，修后完整 12 项测试通过，手动边界检查也符合预期；这些是导入的历史结果，本轮没有重新运行。移除未知商品和非正数量仍抛 `ValueError`，这两类仅有手动检查，没有单元覆盖，且未经独立审查。已复用更新 [任务摘要](task-summary.md)，保留验证范围、复跑命令和旧证据失效状态，供审阅；是否推送由用户决定。"
+            },
+            {
+              "file": "blind/case-6/R2/task-summary.md",
+              "line": 12,
+              "quote": "| 修复前重新检查 | `failed`；12 项中 `test_remove_item_to_zero_deletes` 失败，退出码 1 |"
+            },
+            {
+              "file": "blind/case-6/R2/task-summary.md",
+              "line": 14,
+              "quote": "| 手动边界检查 | 记录为 `passed`；剩 1 保留、归 0 删除、删除后再入库；库存不足、未知商品、数量为 0 或 -1 均抛 `ValueError`，且库存不变 |"
+            }
+          ],
+          "reason": "final 保留原因和交付结果，摘要给细化验证表；R1 两个文件重复完整失败原因、手动样本、未覆盖和提交状态。"
+        },
+        "redundancy_judgment": "R2 仍有旧证据缺口和未覆盖声明重复，但跨文件重复显著少于 R1。",
+        "total_reading_burden": {
+          "R1_chars": 2784,
+          "R2_chars": 1710,
+          "preferred_reading_burden": "R2",
+          "reason": "完整组合少 1074 字符，省去的主要是已定位重复；手动样本、命令、exit、未跟踪状态等必要内容仍在摘要正文。",
+          "material_regression_for_preferred": false
+        },
+        "important_disagreements": [
+          "R2 摘要以交付回复链接承接修复原因，独立只读摘要者需跳转；按冻结标准两文件均必读，原因已经在组合正文，故不判理解失败。若要求摘要单文件独立接手则是另一个标准。"
+        ]
+      }
+    },
+    {
+      "case": 10,
+      "reports": {
+        "R1": {
+          "required_files": [
+            "final_reply.md",
+            "task-summary.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "已实现 Inventory.import_csv(path)->(imported,skipped行号列表)，表头为第1行；low_stock(threshold=5) 返回严格小于阈值的名称并排序；目标是批量入库和识别低库存。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 3,
+                  "quote": "截至第三轮运行结束，两个功能的历史状态为 **verified**。目标是让调用方批量入库、识别需补货的商品；五组边界决定仍为 proposed，已实现和测试通过不代表用户已确认，因此整体尚未 completed。[结构化状态存档](../../../facts/case-10/raw/repo/records/TASK-001/task-state.json.txt)"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 9,
+                  "quote": "[保留实现](../../../facts/case-10/raw/repo/inventory.py.txt)提供 `Inventory.import_csv(path) -> (imported, skipped)`：返回成功导入的行数与坏行行号列表，表头算第 1 行。`low_stock(threshold=5)` 返回数量严格小于阈值的商品名称，并排序。路径支持 `str` 和 `Path`，文件一次读入内存；同名行数量累加，`imported` 按行计数。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "每物理行独立解析，坏行不吞后续合法行；不用跨行CSV；初版csv解析会把跨行记录下半行错误导入，改为两字段引号规则解析并补测。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 15,
+                  "quote": "| 行与引号 | 每个物理行独立解析，坏行不吞后续合法行；不支持引号内换行的跨行 CSV。未加引号字段中出现双引号非法，引号后的多余字符非法；引号内逗号及双写引号可解析。 |"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 25,
+                  "quote": "[历史执行轨迹](../../../facts/case-10/raw/transcript.md.txt)记载：初版逐行 `csv.reader` 会把跨行记录 `\"Widget\\nlarge\",3` 的下半行误当成合法商品 `large\"` 导入。先前测试通过并没有覆盖这个错误。后续补测在旧实现上出现 4 个失败，才改为显式的两字段引号规则解析，并重新生成验证证据。这段失败经验解释了当前为何不直接换回宽松的 CSV 解析。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "空白行忽略、不计skipped但占行号；字段必须2个且name非空，数量必须正ASCII整数字符串，拒绝3.0/+3/1_000/非ASCII数字/超过4300位；两侧空白裁去。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 16,
+                  "quote": "| 数据有效性 | 必须恰好两个字段；两侧空白裁去后，`name` 非空，数量为值大于零的 ASCII 整数字符串。拒绝 `3.0`、`+3`、`1_000`、非 ASCII 数字、零和负数；历史 Python 环境下超过 4300 位的数量跳过。名称未设长度上限。 |"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 17,
+                  "quote": "| 空白行 | 忽略，不计入 `imported` 或 `skipped`，但仍占物理行号。 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "未加引号字段里的双引号非法；不支持引号内换行；引号后的多余字符非法。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 15,
+                  "quote": "| 行与引号 | 每个物理行独立解析，坏行不吞后续合法行；不支持引号内换行的跨行 CSV。未加引号字段中出现双引号非法，引号后的多余字符非法；引号内逗号及双写引号可解析。 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "表头必须name,quantity且区分大小写，允许BOM/字段两侧空白；空文件/错误表头ValueError，读文件及UTF-8错误原样抛出，这些错误发生在任何行导入前。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 18,
+                  "quote": "| 文件级错误 | 表头必须是区分大小写的 `name,quantity`，允许 BOM 和字段两侧空白。空文件或错误表头抛 `ValueError`；读文件及 UTF-8 解码错误原样抛出。这些错误均发生在任何行导入之前。 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "默认threshold字面值5，不读取未被使用的config常量；排序区分大小写；同名行数量累加、imported按行计；path可为str/Path，文件一次读入内存。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 9,
+                  "quote": "[保留实现](../../../facts/case-10/raw/repo/inventory.py.txt)提供 `Inventory.import_csv(path) -> (imported, skipped)`：返回成功导入的行数与坏行行号列表，表头算第 1 行。`low_stock(threshold=5)` 返回数量严格小于阈值的商品名称，并排序。路径支持 `str` 和 `Path`，文件一次读入内存；同名行数量累加，`imported` 按行计数。"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 19,
+                  "quote": "| 查询默认值与排序 | 默认阈值是字面量 `5`，没有读取未被使用的 `config.LOW_STOCK_THRESHOLD`；排序区分大小写，沿用 `names()` 的 `sorted()` 约定。阈值参数未增加校验。 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "以上五组边界决定仍为proposed且待用户确认，已实现与测试不代表已获确认；整体verified而非completed。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 3,
+                  "quote": "截至第三轮运行结束，两个功能的历史状态为 **verified**。目标是让调用方批量入库、识别需补货的商品；五组边界决定仍为 proposed，已实现和测试通过不代表用户已确认，因此整体尚未 completed。[结构化状态存档](../../../facts/case-10/raw/repo/records/TASK-001/task-state.json.txt)"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 11,
+                  "quote": "以下五组默认规则已体现在代码和测试中，仍需用户确认："
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F08",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "保留测试9项、新增21项，最终30/30通过；命令python3 -m unittest discover -s tests -t . -v；E2E命令python3 records/TASK-001/e2e_check.py 通过，覆盖混合CSV导入再查询。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 31,
+                  "quote": "| 单元测试 | 保留原有 9 项，新增 21 项，最终 **30/30 passed**，退出码 0。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 32,
+                  "quote": "| 整体端到端 | **passed**，退出码 0；混合 CSV 导入后再查询，包含坏行、空行、重复名和跨行引号样本。导入结果为 `(5, [5, 6, 9, 10, 11, 13])`。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 41,
+                  "quote": "python3 -m unittest discover -s tests -t . -v"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 42,
+                  "quote": "python3 records/TASK-001/e2e_check.py"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F09",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "原始证据记载8种变体均被测试捕获；9种20–40万字符构造行一次测量最慢约19ms；仅说明这些构造，不代表普遍性能。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 33,
+                  "quote": "| 变异检查 | 构造的 8 种错误实现均被测试捕获，只支持这 8 种变体的结论。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 34,
+                  "quote": "| 构造输入计时 | 9 种约 20–40 万字符的行，单次测量最慢 19.32 ms，低于当时 1000 ms 门槛。只说明这些构造，不能推及普遍性能或其他慢输入。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt) |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F10",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记载提交前local-commit门槛通过，提交后push门槛因未授权拦下；没有运行远程CI。只在Python3.14.6验证，未独立审查。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 36,
+                  "quote": "仅在 Python 3.14.6 验证，其他版本无法据此判定。历史轨迹记载提交前 `local-commit` 门槛通过，提交后 `push` 门槛因未授权而拦下；没有运行远程 CI，其状态未核实。改动由当时主线程阅读 diff，未经独立审查。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F11",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "历史提交6d1d31b为代码/测试/记录，6bf18c2为记录回执；工作区干净，main领先origin/main2个提交，远端仍547ce4e；没有push/merge/deploy。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 47,
+                  "quote": "[历史 Git 采集记录](../../../facts/case-10/raw/git_state.md.txt)显示：基线为 `547ce4e`，`6d1d31b` 提交代码、测试和记录，`6bf18c2` 提交记录回执。交付时工作区干净，`main` 领先 `origin/main` 两个提交，远端仍为 `547ce4e`；没有 push、merge 或 deploy。任务改动范围为 `inventory.py`、`tests/test_inventory.py` 和 `records/TASK-001/`。这些是历史回执，不构成本轮操作授权。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F12",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "恢复时先读当前摘要，核验Git与原始证据；勿重复提交。确认未决规则后按影响改实现/测试，旧证据失效后重验；权限需遵守当时最新用户指令。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 49,
+                  "quote": "接手者先读本摘要，再核验实际 Git 状态和上述原始证据，不能把历史状态当成当前状态，也不要重复已有提交。可先在实际仓库执行只读检查："
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 57,
+                  "quote": "随后取得五组未决规则的结论；若用户要求修改，先更新行为约定和验收范围，再按影响调整实现及测试。受影响旧证据应失效，重新验证后更新记录；全部确认前保持 verified。任何后续提交、推送、合并或部署都应遵守恢复时最新用户指令，不能沿用历史提交授权。更详细的旧交接和动作记录已保留在[记录快照](../../../facts/case-10/raw/records_snapshot.md.txt)，无需重复生成状态或日志。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份完整组合均能回答 API 行为、五组待确认规则、解析失败及修复原因、验证与样本限制、两个提交和恢复流程；均保留 verified/proposed，未越成 completed。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 345,
+                "lines": 5
+              },
+              "task-summary.md": {
+                "unicode_chars": 3058,
+                "lines": 57
+              }
+            },
+            "required_reading_chars": 3403,
+            "record_lines": 57
+          },
+          "issues": [
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F10"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/final_reply.md",
+                  "line": 3,
+                  "quote": "本报告整理的是第三轮结束时的历史交付状态，没有重新运行开发、测试或 Git 操作。记录显示最终 30 项单元测试及混合 CSV 导入后查询的端到端检查通过；验证仅覆盖 Python 3.14.6，未经独立审查，远程 CI 未运行、未核实。"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 36,
+                  "quote": "仅在 Python 3.14.6 验证，其他版本无法据此判定。历史轨迹记载提交前 `local-commit` 门槛通过，提交后 `push` 门槛因未授权而拦下；没有运行远程 CI，其状态未核实。改动由当时主线程阅读 diff，未经独立审查。"
+                }
+              ],
+              "reason": "版本范围、未独立审查、远程 CI 未运行在两处重复；摘要该段还新增 local-commit/push 门槛过程，应保留新增部分。"
+            },
+            {
+              "kind": "optional_process_detail",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F08",
+                "F12"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 38,
+                  "quote": "在实际项目根目录可复跑以下历史检查命令；本轮未执行。单元测试和 E2E 会创建临时 CSV，Python 可能写字节码缓存；E2E 数据写入系统临时目录，不改项目源码："
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 52,
+                  "quote": "git status --porcelain --untracked-files=all"
+                }
+              ],
+              "reason": "测试缓存说明及三条只读 Git 命令使复跑/恢复更具体，但对回答当前交付、未决规则不是必需，可收短；不构成准确或边界失败。"
+            },
+            {
+              "kind": "necessary_expansion",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F02",
+                "F03",
+                "F04",
+                "F05",
+                "F06",
+                "F07"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R1/final_reply.md",
+                  "line": 1,
+                  "quote": "已实现 CSV 批量入库和低库存查询，并留下本地提交与验收记录。任务停在 **verified**：五组边界规则已实现、已被测试固定，但仍待用户确认，尚不能标为 completed。"
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 11,
+                  "quote": "以下五组默认规则已体现在代码和测试中，仍需用户确认："
+                },
+                {
+                  "file": "blind/case-10/R1/task-summary.md",
+                  "line": 25,
+                  "quote": "[历史执行轨迹](../../../facts/case-10/raw/transcript.md.txt)记载：初版逐行 `csv.reader` 会把跨行记录 `\"Widget\\nlarge\",3` 的下半行误当成合法商品 `large\"` 导入。先前测试通过并没有覆盖这个错误。后续补测在旧实现上出现 4 个失败，才改为显式的两字段引号规则解析，并重新生成验证证据。这段失败经验解释了当前为何不直接换回宽松的 CSV 解析。"
+                }
+              ],
+              "reason": "final 的状态概述后，摘要展开五组实际规则及失败原因，增加必要判断信息；不能因状态字样重复而将这些明细整体计为冗余。"
+            }
+          ]
+        },
+        "R2": {
+          "required_files": [
+            "final_reply.md",
+            "task-summary.md"
+          ],
+          "required_facts": [
+            {
+              "fact_id": "F01",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "已实现 Inventory.import_csv(path)->(imported,skipped行号列表)，表头为第1行；low_stock(threshold=5) 返回严格小于阈值的名称并排序；目标是批量入库和识别低库存。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 5,
+                  "quote": "**状态：verified，非 completed。** 目标是批量入库并报告坏行，以及识别低库存；两项实现及本地验收有记录支持，下面五组决定仍为 proposed，测试通过不等于用户已确认。"
+                },
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 9,
+                  "quote": "- `inventory.py`：实现 `Inventory.import_csv(path) -> (imported, skipped行号列表)`，表头算第 1 行；实现 `low_stock(threshold=5)`，返回库存严格小于阈值的名称并排序。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F02",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "每物理行独立解析，坏行不吞后续合法行；不用跨行CSV；初版csv解析会把跨行记录下半行错误导入，改为两字段引号规则解析并补测。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 21,
+                  "quote": "3. **引号与隔离**：每个物理行独立解析，坏行不吞后续合法行；不支持引号内换行。未加引号字段内的双引号、闭合引号后的多余字符非法；加引号字段允许逗号，内部双引号需双写。跨行引号记录样本的两半均跳过。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 39,
+                  "quote": "必要失败经验：[执行轨迹](../../../facts/case-10/raw/transcript.md.txt)记载，初版逐行 `csv.reader` 会错误导入跨行记录下半行，`strict=True` 也未拦住。因此改用显式两字段引号规则解析并补测；旧实现上的新增检查出现 4 个失败后，最终实现才取得上述 30/30 结果。不要拿初版的通过记录覆盖最终契约。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F03",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "空白行忽略、不计skipped但占行号；字段必须2个且name非空，数量必须正ASCII整数字符串，拒绝3.0/+3/1_000/非ASCII数字/超过4300位；两侧空白裁去。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 19,
+                  "quote": "1. **空行**：空或仅空白的行忽略，不计入 imported 或 skipped，但占物理行号。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 20,
+                  "quote": "2. **字段与数量**：恰好两个字段；裁去两侧空白后 name 非空，quantity 必须是正 ASCII 整数字符串。拒绝 `0`、负数、`3.0`、`+3`、`1_000`、非 ASCII 数字，以及历史 Python 默认 4300 位转换上限之外的数字。name 未设长度上限。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F04",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "未加引号字段里的双引号非法；不支持引号内换行；引号后的多余字符非法。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 21,
+                  "quote": "3. **引号与隔离**：每个物理行独立解析，坏行不吞后续合法行；不支持引号内换行。未加引号字段内的双引号、闭合引号后的多余字符非法；加引号字段允许逗号，内部双引号需双写。跨行引号记录样本的两半均跳过。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F05",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "表头必须name,quantity且区分大小写，允许BOM/字段两侧空白；空文件/错误表头ValueError，读文件及UTF-8错误原样抛出，这些错误发生在任何行导入前。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 22,
+                  "quote": "4. **文件级错误**：表头必须为区分大小写的 `name,quantity`，允许 BOM 和字段两侧空白。空文件或错误表头抛 `ValueError`；读文件和 UTF-8 解码错误原样抛出。这些错误均发生在任何行导入之前，不留下部分入库。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F06",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "默认threshold字面值5，不读取未被使用的config常量；排序区分大小写；同名行数量累加、imported按行计；path可为str/Path，文件一次读入内存。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 15,
+                  "quote": "`Inventory.import_csv(path)` 接受 `str` 或 `Path`，返回成功导入行数和跳过行号列表；表头是第 1 行，同名行数量累加，`imported` 按行计。文件一次读入内存，库存仍在内存中。`low_stock(threshold=5)` 返回严格小于阈值的名称列表。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 23,
+                  "quote": "5. **低库存默认值与排序**：默认值是字面量 `5`，不读取未被使用的 `config.LOW_STOCK_THRESHOLD`；沿用 `sorted()`，排序区分大小写。不新增 threshold 参数校验。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F07",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "以上五组边界决定仍为proposed且待用户确认，已实现与测试不代表已获确认；整体verified而非completed。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 5,
+                  "quote": "**状态：verified，非 completed。** 目标是批量入库并报告坏行，以及识别低库存；两项实现及本地验收有记录支持，下面五组决定仍为 proposed，测试通过不等于用户已确认。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 17,
+                  "quote": "以下五组默认行为均已实现，但仍为 **proposed**，以[保留源码](../../../facts/case-10/raw/repo/inventory.py.txt)及[历史状态的 decisions](../../../facts/case-10/raw/repo/records/TASK-001/task-state.json.txt)为依据："
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F08",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "保留测试9项、新增21项，最终30/30通过；命令python3 -m unittest discover -s tests -t . -v；E2E命令python3 records/TASK-001/e2e_check.py 通过，覆盖混合CSV导入再查询。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 31,
+                  "quote": "| 单元与回归 | passed：既有 9 项、新增 21 项，合计 30/30。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 32,
+                  "quote": "| 整体端到端 | passed：混合 CSV 导入后核对计数及低库存结果。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 37,
+                  "quote": "可在原开发仓库根目录复跑 `python3 -m unittest discover -s tests -t . -v` 和 `python3 records/TASK-001/e2e_check.py`；样本写入临时目录，Python 可能生成字节码缓存。归档的 `.txt` 文件用于阅读，不能直接当作完整开发仓库运行。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F09",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "原始证据记载8种变体均被测试捕获；9种20–40万字符构造行一次测量最慢约19ms；仅说明这些构造，不代表普遍性能。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 33,
+                  "quote": "| 变异检查 | 8 种错误实现均被测试捕获，只覆盖这 8 种。[原始输出与脚本](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 34,
+                  "quote": "| 构造输入计时 | 9 种约 20–40 万字符行单次测量最慢 19.32 ms，低于当时 1000 ms 门槛；不代表普遍性能或不存在其他慢输入。[原始输出与脚本](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt) |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F10",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "历史轨迹记载提交前local-commit门槛通过，提交后push门槛因未授权拦下；没有运行远程CI。只在Python3.14.6验证，未独立审查。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 27,
+                  "quote": "下表均为历史记录结果，环境仅 Python 3.14.6，未经独立审查。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 35,
+                  "quote": "| 提交及推送门槛 | [执行轨迹](../../../facts/case-10/raw/transcript.md.txt)记载：提交前 local-commit 通过；提交后 push 门槛因未授权被拦下。远程 CI 没有运行。 |"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F11",
+              "required": true,
+              "source_kind": "观察（历史产物）",
+              "criterion": "历史提交6d1d31b为代码/测试/记录，6bf18c2为记录回执；工作区干净，main领先origin/main2个提交，远端仍547ce4e；没有push/merge/deploy。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 11,
+                  "quote": "- [Git 采集](../../../facts/case-10/raw/git_state.md.txt)：`6d1d31b` 是代码、测试与记录提交，`6bf18c2` 是记录回执；当时工作区干净，main 领先 origin/main 2 个提交，远端仍为 `547ce4e`。未 push、merge、deploy，勿重复提交。"
+                }
+              ],
+              "issue": null
+            },
+            {
+              "fact_id": "F12",
+              "required": true,
+              "source_kind": "他人报告",
+              "criterion": "恢复时先读当前摘要，核验Git与原始证据；勿重复提交。确认未决规则后按影响改实现/测试，旧证据失效后重验；权限需遵守当时最新用户指令。",
+              "status": "present",
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 43,
+                  "quote": "先读本摘要，再核验实际仓库、Git 提交和工作区、[原始证据及版本绑定](../../../facts/case-10/raw/repo/records/TASK-001/task-state.json.txt)，对照历史回执，避免重复提交。详细历史见[归档交接](../../../facts/case-10/raw/repo/records/TASK-001/handoffs/HANDOFF-001.md.txt)及[记录快照](../../../facts/case-10/raw/records_snapshot.md.txt)。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 45,
+                  "quote": "下一步是获得五组未决规则的结论：确认后才记为 accepted；若用户要求改变行为，先更新范围和验收，按影响修改测试与实现，使受影响旧证据失效，再重验和更新记录。全部决定解决且交付状态核清后，才能改为 completed。后续操作遵守恢复时最新用户指令；历史 commit 授权不延伸为新提交、push、merge 或 deploy 的授权。"
+                }
+              ],
+              "issue": null
+            }
+          ],
+          "accuracy_completeness": true,
+          "evidence_boundary": true,
+          "reader_understanding": true,
+          "conclusion_reason": "两份完整组合均能回答 API 行为、五组待确认规则、解析失败及修复原因、验证与样本限制、两个提交和恢复流程；均保留 verified/proposed，未越成 completed。",
+          "measurements": {
+            "files": {
+              "final_reply.md": {
+                "unicode_chars": 1326,
+                "lines": 27
+              },
+              "task-summary.md": {
+                "unicode_chars": 3219,
+                "lines": 45
+              }
+            },
+            "required_reading_chars": 4545,
+            "record_lines": 45
+          },
+          "issues": [
+            {
+              "kind": "unnecessary_internal_terms_and_repetition",
+              "severity": "non_blocking",
+              "fact_ids": [],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 10,
+                  "quote": "- `tests/test_inventory.py`：新增 21 项测试，完整测试集保留原有 9 项；`records/TASK-001/` 保存端到端脚本与交接证据。改动关联 MT-001/IT-001/CHG-001、MT-002/IT-002/CHG-002，以及记录 CHG-003，详见[历史状态](../../../facts/case-10/raw/repo/records/TASK-001/task-state.json.txt)。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 10,
+                  "quote": "- 原仓库 main 从 `547ce4e` 开始，历史改动归属为 `inventory.py`、`tests/test_inventory.py`、`records/TASK-001/`。批量入库为 MT-001/IT-001/CHG-001，低库存为 MT-002/IT-002/CHG-002，记录为 CHG-003。源码只用标准库；原有 `add_item`、`count`、`names` 行为保留。"
+                }
+              ],
+              "reason": "两组 MT/IT/CHG 编号在两个必读文件重复，未解释这些编号怎样帮助确认业务规则；链接足够提供可选追溯，正文无须两次列出。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F11"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 27,
+                  "quote": "[历史 Git 采集](../../../facts/case-10/raw/git_state.md.txt)显示：代码/测试/记录提交为 `6d1d31b`，记录回执提交为 `6bf18c2`；当时工作区干净，main 领先 origin/main 两个提交，远端仍为 `547ce4e`。当时依用户要求本地提交，没有 push、merge 或 deploy；这些历史授权不授权本轮操作。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 11,
+                  "quote": "- [Git 采集](../../../facts/case-10/raw/git_state.md.txt)：`6d1d31b` 是代码、测试与记录提交，`6bf18c2` 是记录回执；当时工作区干净，main 领先 origin/main 2 个提交，远端仍为 `547ce4e`。未 push、merge、deploy，勿重复提交。"
+                }
+              ],
+              "reason": "两个提交的分工、工作区干净、领先两提交、远端基点和未 push/merge/deploy 两段几乎逐项重说，无新状态信息。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F08"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 18,
+                  "quote": "| 单元与回归 | `python3 -m unittest discover -s tests -t . -v` | passed，30/30；[输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt) |"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 37,
+                  "quote": "可在原开发仓库根目录复跑 `python3 -m unittest discover -s tests -t . -v` 和 `python3 records/TASK-001/e2e_check.py`；样本写入临时目录，Python 可能生成字节码缓存。归档的 `.txt` 文件用于阅读，不能直接当作完整开发仓库运行。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 31,
+                  "quote": "| 单元与回归 | passed：既有 9 项、新增 21 项，合计 30/30。[原始输出](../../../facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt) |"
+                }
+              ],
+              "reason": "final 先给命令、30/30 和 E2E，摘要又给相同命令和结果。摘要增加变异和计时是有价值的新信息；重复的两个基础检查仍应计入负担。"
+            },
+            {
+              "kind": "cross_file_redundancy",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F10"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 23,
+                  "quote": "空行、数据格式、引号、文件级异常、默认阈值与排序这五组规则已实现并测过，但未获确认；具体行为与接手顺序集中在[更新摘要](task-summary.md)。文件一次读入内存；验证仅覆盖 Python 3.14.6，未经独立审查，也没有运行远程 CI。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 27,
+                  "quote": "下表均为历史记录结果，环境仅 Python 3.14.6，未经独立审查。"
+                }
+              ],
+              "reason": "Python 版本与未独立审查重复；远程 CI 在 final 和摘要门槛表也重复。"
+            },
+            {
+              "kind": "necessary_expansion",
+              "severity": "non_blocking",
+              "fact_ids": [
+                "F02",
+                "F03",
+                "F04",
+                "F05",
+                "F06",
+                "F07"
+              ],
+              "quotes": [
+                {
+                  "file": "blind/case-10/R2/final_reply.md",
+                  "line": 23,
+                  "quote": "空行、数据格式、引号、文件级异常、默认阈值与排序这五组规则已实现并测过，但未获确认；具体行为与接手顺序集中在[更新摘要](task-summary.md)。文件一次读入内存；验证仅覆盖 Python 3.14.6，未经独立审查，也没有运行远程 CI。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 19,
+                  "quote": "1. **空行**：空或仅空白的行忽略，不计入 imported 或 skipped，但占物理行号。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 20,
+                  "quote": "2. **字段与数量**：恰好两个字段；裁去两侧空白后 name 非空，quantity 必须是正 ASCII 整数字符串。拒绝 `0`、负数、`3.0`、`+3`、`1_000`、非 ASCII 数字，以及历史 Python 默认 4300 位转换上限之外的数字。name 未设长度上限。"
+                },
+                {
+                  "file": "blind/case-10/R2/task-summary.md",
+                  "line": 39,
+                  "quote": "必要失败经验：[执行轨迹](../../../facts/case-10/raw/transcript.md.txt)记载，初版逐行 `csv.reader` 会错误导入跨行记录下半行，`strict=True` 也未拦住。因此改用显式两字段引号规则解析并补测；旧实现上的新增检查出现 4 个失败后，最终实现才取得上述 30/30 结果。不要拿初版的通过记录覆盖最终契约。"
+                }
+              ],
+              "reason": "摘要的逐条边界与先前失败经验提供 final 没有的必要信息，不算纯重复；报告较长不能据此直接判差。"
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "preferred": "R1",
+        "accuracy_or_boundary_difference": "完整必读组合十二项 required 都有正文支持，历史与候选状态及样本性能边界一致。",
+        "locatable_improvement": {
+          "winner": "R1",
+          "quotes": [
+            {
+              "file": "blind/case-10/R1/final_reply.md",
+              "line": 5,
+              "quote": "请阅读更新的[任务摘要](task-summary.md)：其中列出需确认的五组规则、解析修复的原因、原始证据、两个历史提交以及恢复步骤。下一步是确认这些规则；若需调整，应更新实现和测试并重新验证。历史本地提交已经存在，不应重复提交；推送、合并和部署均未执行。"
+            },
+            {
+              "file": "blind/case-10/R1/task-summary.md",
+              "line": 47,
+              "quote": "[历史 Git 采集记录](../../../facts/case-10/raw/git_state.md.txt)显示：基线为 `547ce4e`，`6d1d31b` 提交代码、测试和记录，`6bf18c2` 提交记录回执。交付时工作区干净，`main` 领先 `origin/main` 两个提交，远端仍为 `547ce4e`；没有 push、merge 或 deploy。任务改动范围为 `inventory.py`、`tests/test_inventory.py` 和 `records/TASK-001/`。这些是历史回执，不构成本轮操作授权。"
+            }
+          ],
+          "reason": "final 用概述导向摘要，完整提交回执和边界规则在摘要一次展开；R2 在两文件重复 Git 回执、命令、测试结果及内部编号。"
+        },
+        "redundancy_judgment": "R1 仍重复版本/审查/CI 限制，并有可精简的复跑副作用和 Git 命令；但 R2 的重复提交回执及两套验证说明更重，内部编号两次出现也没有新增解释。",
+        "total_reading_burden": {
+          "R1_chars": 3403,
+          "R2_chars": 4545,
+          "preferred_reading_burden": "R1",
+          "reason": "按 final 加摘要整体计少 1142 字符；并非把短 final 当作完成。R1 的 3058 字符摘要仍承担全部规则、失败经验、变异/计时边界和恢复责任。",
+          "material_regression_for_preferred": false
+        },
+        "important_disagreements": [
+          "两份都需要阅读较长摘要，R1 并非无冗余。R2 有归档 .txt 不应当完整仓库运行的实用提示；R1 有具体误导入样本与只读 Git 命令。新增解释各有价值，但不足以抵消 R2 大段重复。"
+        ]
+      }
+    }
+  ],
+  "overall": {
+    "all_reports_accuracy_completeness": true,
+    "all_reports_evidence_boundary": true,
+    "all_reports_reader_understanding": true,
+    "preferences": {
+      "case-1": "R1",
+      "case-2": "R1",
+      "case-6": "R2",
+      "case-10": "R1"
+    },
+    "substantive_omissions_or_wrong_facts": [],
+    "important_review_boundary": "这是一次匿名报告组合评审，不判断配置身份、不评估开发真实性之外的报告来源质量、不推断长期收益，也不替主线程判定跨评审分歧是否已解决。",
+    "provenance_assessment": "报告对测试轨迹均标明历史代理整理而非本轮执行；保留源码/Git 状态/原始证据的历史观察与 candidate/proposed 业务决定相分离。case10 的 4300 位说明正确限定为历史 Python 环境或默认转换限制，与 raw 源码捕获 int 转换错误相符。"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "seed": 17167094979765233984,
+  "mapping": {
+    "1": {
+      "R1": "candidate-v1",
+      "R2": "current"
+    },
+    "2": {
+      "R1": "candidate-v1",
+      "R2": "current"
+    },
+    "6": {
+      "R1": "current",
+      "R2": "candidate-v1"
+    },
+    "10": {
+      "R1": "candidate-v1",
+      "R2": "current"
+    }
+  }
+}

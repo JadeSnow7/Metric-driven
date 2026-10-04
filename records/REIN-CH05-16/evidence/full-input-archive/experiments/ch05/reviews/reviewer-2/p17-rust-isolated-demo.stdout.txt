@@ -1,0 +1,58 @@
+{
+  "answer": "读取完成：guide.md",
+  "events": [
+    {
+      "round": 0,
+      "type": "started"
+    },
+    {
+      "round": 1,
+      "text": "",
+      "tool_call_ids": [
+        "search-1"
+      ],
+      "type": "model"
+    },
+    {
+      "name": "search_files",
+      "result": {
+        "ok": true,
+        "output": "guide.md",
+        "toolCallId": "search-1"
+      },
+      "round": 1,
+      "tool_call_id": "search-1",
+      "type": "tool"
+    },
+    {
+      "round": 2,
+      "text": "",
+      "tool_call_ids": [
+        "read-1"
+      ],
+      "type": "model"
+    },
+    {
+      "name": "read_file",
+      "result": {
+        "ok": true,
+        "output": "# Loop\n工具结果会进入下一轮。\n",
+        "toolCallId": "read-1"
+      },
+      "round": 2,
+      "tool_call_id": "read-1",
+      "type": "tool"
+    },
+    {
+      "round": 3,
+      "text": "读取完成：guide.md",
+      "tool_call_ids": [],
+      "type": "model"
+    },
+    {
+      "reason": "completed",
+      "type": "stopped"
+    }
+  ],
+  "reason": "completed"
+}

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "--silent",
+    "ch07:compare-all"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T15:12:09.439Z",
+  "end": "2026-09-14T15:12:10.610Z",
+  "elapsedMs": 1171.151208,
+  "exit": 0,
+  "stdout": "{\"unit\":\"estimated-bytes-v1\",\"cases\":[{\"id\":\"unmanaged-overflow\",\"reason\":\"model_error\",\"requests\":1},{\"id\":\"managed-window\",\"reason\":\"final_answer\",\"requests\":1},{\"id\":\"required-overflow\",\"reason\":\"context_budget_exhausted\",\"requests\":0},{\"id\":\"multi-tool-boundary\",\"reason\":\"final_answer\",\"requests\":1},{\"id\":\"invalid-orphan\",\"reason\":\"invalid_context_history\",\"requests\":0},{\"id\":\"invalid-missing\",\"reason\":\"invalid_context_history\",\"requests\":0},{\"id\":\"unicode-content\",\"reason\":\"final_answer\",\"requests\":1}]}\n",
+  "stderr": ""
+}

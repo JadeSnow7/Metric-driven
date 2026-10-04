@@ -1,0 +1,16 @@
+- building client + server bundles...
+
+
+(!) Found dead link ./../../examples/ch08-context-methods/README in file chapters/08.md
+x Build failed in 1.79s
+[31m✖[0m building client + server bundles...
+build error:
+[vitepress] 1 dead link(s) found.
+[vitepress] 1 dead link(s) found.
+    at Object.renderStart (file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/vitepress/dist/node/chunk-D3CUZ4fa.js:45027:15)
+    at file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/rollup/dist/es/shared/node-entry.js:22861:40
+    at async Promise.all (index 0)
+    at async PluginDriver.hookParallel (file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/rollup/dist/es/shared/node-entry.js:22771:9)
+    at async Bundle.generate (file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/rollup/dist/es/shared/node-entry.js:20896:13)
+    at async file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/rollup/dist/es/shared/node-entry.js:23850:27
+    at async catchUnfinishedHookActions (file:///private/tmp/rein-ch08-formal-20260915/B/book/node_modules/rollup/dist/es/shared/node-entry.js:23215:16)

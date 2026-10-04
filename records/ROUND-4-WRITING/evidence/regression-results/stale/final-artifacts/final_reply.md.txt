@@ -1,0 +1,19 @@
+# TASK-001 核验报告
+
+当前代码不再受旧验证支持。相对基线 `ec38cd36e4855f47a868dce7d6e56df525810932`，工作树存在一处未提交的 `inventory.py` 改动；本轮未修改源码或测试。
+
+已实际运行：
+
+```text
+python3 -m unittest discover -s tests -t . -v
+```
+
+结果为 12 个测试中 1 个失败，失败用例是 `test_remove_item_to_zero_deletes`，退出码为 1。当前实现使用 `if remaining < 0`，数量归零时保留零值条目，导致 `names()` 返回 `['apple']`。原始 stdout、stderr、退出码分别保存在 `repo/records/TASK-001/evidence/current-tests.stdout`、`current-tests.stderr`、`current-tests.exit`；revision 为 `patch:ec38cd36e4855f47a868dce7d6e56df525810932:c60b6a77c70e47fe2a0543612effc13fb2190045a355f8f4a8ead3cf9038d8e1`。
+
+已更新：
+
+- `repo/records/TASK-001/task-state.json`：旧证据 `EVD-001` 标记 stale；新增当前失败证据 `EVD-002` 至 `EVD-004`；任务、指标和整体验收标记 failed。
+- `repo/records/TASK-001/task-summary.md`：写入当前结果、原因、证据和限制。
+- `repo/records/TASK-001/work-log.md`：追加恢复核验与失败事件。
+
+结构记录校验通过（record gate）。未执行提交、推送、合并、部署或其他外部操作。

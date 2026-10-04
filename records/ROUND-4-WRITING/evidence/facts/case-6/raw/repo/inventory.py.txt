@@ -1,0 +1,30 @@
+"""In-memory stock tracking."""
+
+
+class Inventory:
+    def __init__(self) -> None:
+        self._items: dict[str, int] = {}
+
+    def add_item(self, name: str, quantity: int) -> None:
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
+        self._items[name] = self._items.get(name, 0) + quantity
+
+    def count(self, name: str) -> int:
+        return self._items.get(name, 0)
+
+    def names(self) -> list[str]:
+        """Return item names in alphabetical order."""
+        return sorted(self._items)
+
+    def remove_item(self, name: str, quantity: int) -> None:
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
+        current = self._items.get(name, 0)
+        if quantity > current:
+            raise ValueError(f"not enough {name!r} in stock")
+        remaining = current - quantity
+        if remaining == 0:
+            del self._items[name]
+        else:
+            self._items[name] = remaining

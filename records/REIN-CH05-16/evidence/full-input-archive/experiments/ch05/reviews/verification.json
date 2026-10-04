@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-09-14T11:34:33.666814+00:00",
+  "sources": {
+    "reviewer-1": "/private/tmp/rein-ch05-review-evidence-1",
+    "reviewer-2": "/private/tmp/rein-ch05-review-evidence-2",
+    "main-review": "/private/tmp/rein-ch05-main-review"
+  },
+  "files": {
+    "reviewer-1": 150,
+    "reviewer-2": 145,
+    "main-review": 13
+  },
+  "excluded": [
+    "target",
+    "node_modules"
+  ],
+  "full_readback_hashes": {
+    "reviewer-1": true,
+    "reviewer-2": true,
+    "main-review": true
+  },
+  "scope": "Read-only preservation of reviewer reports, commands, cwd, outputs, exit codes, and counterexample source where present. This review archive is separate evidence and does not imply formal input or overall pass."
+}

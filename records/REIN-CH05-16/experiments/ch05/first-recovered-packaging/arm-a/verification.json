@@ -1,0 +1,44 @@
+{
+  "kind": "retrospective-first-packaging-verification",
+  "arm": "arm-a",
+  "baseline": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/pre-ch05-restored/files",
+  "endpoint": "/private/tmp/rein-ch05-seal-safe-20260914/snapshots/arm-a/files",
+  "start": "2026-09-14T13:16:06.365572+00:00",
+  "end": "2026-09-14T13:16:06.381917+00:00",
+  "baseline_file_count": 114,
+  "endpoint_file_count": 122,
+  "patch_bytes": 37526,
+  "patch_sha256": "04aee1ce04c53a67ec81caecfc64859818ecb226259f4b76b9c6ca59989d395a",
+  "diff_exit": 1,
+  "diff_stdout_bytes": 30656,
+  "diff_stderr": "",
+  "apply_commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "apply",
+        "--binary",
+        "-p1",
+        "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/experiments/ch05/first-recovered-packaging/arm-a/pre-ch05-to-arm-a.patch"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "applied": true,
+  "manifest_content_gitexec_equal": true,
+  "recovered_file_count": 122,
+  "endpoint_safe_manifest": "/private/tmp/rein-ch05-seal-safe-20260914/snapshots/arm-a/manifest.json",
+  "endpoint_safe_manifest_sha256": "ca1f4b961779195e0214470df4dd60149a7b4cede6577aa75d49f36228002d3e"
+}

@@ -1,0 +1,28 @@
+   Compiling rein-ch01-helloworld v0.1.0 (/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.55s
+     Running unittests src/lib.rs (/private/tmp/rein-ch05-cargo-target/debug/deps/rein_ch01_helloworld-bf3436f969df476b)
+
+running 2 tests
+test rein::tests::read_file_rejects_escape ... ok
+test rein::tests::anthropic_round_trip_shape ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+     Running unittests src/bin/hello.rs (/private/tmp/rein-ch05-cargo-target/debug/deps/hello-bc0cff2befc91d1d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/private/tmp/rein-ch05-cargo-target/debug/deps/rein_ch01_helloworld-a7c1400436a86837)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/prerequisites.rs (/private/tmp/rein-ch05-cargo-target/debug/deps/prerequisites-b3aaebc1a2c613df)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+

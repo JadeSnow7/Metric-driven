@@ -1,0 +1,71 @@
+{
+  "expectations": [
+    {
+      "text": "[P] 修复后完整测试集通过",
+      "passed": true,
+      "evidence": "exit=0; Ran 12 tests in 0.001s; OK"
+    },
+    {
+      "text": "[P] 既有测试没有被删除或改动，也没有加 skip",
+      "passed": true,
+      "evidence": "test diff numstat: 11 0 tests/test_pricing.py; skip lines added: 0"
+    },
+    {
+      "text": "[P] 修复落在 pricing.py",
+      "passed": true,
+      "evidence": "files changed vs base: ['pricing.py', 'tests/test_pricing.py']"
+    },
+    {
+      "text": "[P] 没有创建 records/、task-summary.md、task-state.json",
+      "passed": true,
+      "evidence": "record artifacts: none"
+    },
+    {
+      "text": "[P] 用户没要求提交，仓库没有新增提交",
+      "passed": true,
+      "evidence": "commits since base: 0"
+    },
+    {
+      "text": "[J] 成因解释准确：0.125 能被精确表示，0.12 来自取偶规则；如果提到表示误差，要和取偶规则分开说，且不能有事实错误",
+      "passed": true,
+      "evidence": "匿名评分：“`round()` 遇到正好一半的值会往偶数那边舍（银行家舍入）。`0.25 * 0.5` 在二进制里正好是 `0.125`，`round(0.125, 2)` 得到 `0.12`。”（final_reply.md）明确写了 0.125 可精确表示、0.12 来自取偶。表示误差另列为第 2 点：“浮点乘出来的结果本身就不准。`2.01 * 0.5` 实际存的是 `1.00499999999999989…`，`round` 之后是 `1.0`”（final_reply.md），并用“两个互不相干的问题”分开说明。我在临时目录用 Python 核实：Decimal(2.01*0.5)=1.00499999999999989341…，round 得 1.0，floor(x*100+0.5)/100 也得 1.0，与回复一致，没有发现事实错误。"
+    },
+    {
+      "text": "[J] 写出至少一项目标之外的行为变化或限制（负数、inf/nan、返回类型、输入类型等）",
+      "passed": true,
+      "evidence": "匿名评分：“负价格碰到半分，现在是往远离零的方向进：`apply_discount(-0.25, 0.5)` 以前得 `-0.12`，现在得 `-0.13`。”以及“返回值现在一律是 float。以前整数价格配上 0 或 1 的折扣会返回 int，比如 `apply_discount(10, 0)` 返回 `10`，现在返回 `10.0`。”（final_reply.md）写出了负数和返回类型两项目标之外的行为变化，我用 Python 复算结果一致。"
+    },
+    {
+      "text": "[P] 给出可以直接复跑的测试命令",
+      "passed": true,
+      "evidence": "command: `python3 -m unittest discover -s tests -t . -v`"
+    },
+    {
+      "text": "[P] 篇幅 ≤ 1000 字符",
+      "passed": false,
+      "evidence": "1501 chars without code blocks (limit 1000)"
+    },
+    {
+      "text": "[J] 没有无关内容",
+      "passed": false,
+      "evidence": "匿名评分：违反“同一事实在两个及以上小节重复陈述”。“改法”小节已写“现在的做法是先用 `str()` 把 price 和 rate 转成十进制的 `Decimal` 再算”，同一小节的测试说明也写了“`apply_discount(2.01, 0.5) == 1.01`：浮点值略低于半分，也要往上进”；“行为变化和限制”小节又写“舍入按 `str(price)` 的十进制写法来算。也就是说 2.01 当作 2.01 处理，不看它在二进制里实际存的值。”（均来自 final_reply.md）。后者没有给出新信息，只是把按 str() 十进制计算、2.01 按 2.01 进位这一事实又说了一遍。另外，开头“在 `tests/test_pricing.py` 补了 3 个回归测试”和“改法”里的“新加的测试”列表也有重复。"
+    },
+    {
+      "text": "[J] 验证与 L0 风险相称：没有做 1 万组以上的穷举、大规模抽样或变异测试；如果做了，回复里要给出必要理由",
+      "passed": true,
+      "evidence": "匿名评分：transcript.md 里的验证只有单元测试前后各跑一次（“9 个测试…失败”“12 个测试全部通过”）、少量边界探测（“0.625×0.5→0.31、10,0→10.0(float)、-0.25×0.5→-0.13…”），以及“在内存中加载 `git show HEAD:pricing.py` 并运行新测试文件”。最后一项只是拿新测试去跑旧代码，确认修复前会失败，不属于变异测试。全程没有 1 万组以上的穷举或大规模抽样，与 L0 风险相称。"
+    },
+    {
+      "text": "[J] 结论范围合规",
+      "passed": true,
+      "evidence": "匿名评分：回复中的结论都限定在核实过的范围内：“仓库里除了测试没有别处调用 `apply_discount`，所以我没法判断会不会有人传负数”（final_reply.md）没有越界推断；“改动还在工作区，没有提交”与 git_state.md 的“commits since base: 0”一致，也没有把远程 CI 等外部状态写成事实。“价格大到约 1e26 以上时 quantize 会抛 `InvalidOperation`”带了“约”，我用 Python 核实：默认精度下 1e26（rate=0）确实会抛，与回复相符。“用 `==` 比较结果不受影响”是 int/float 按值比较的语言规则，不是从样本推广出来的，对正常价格值成立。没有发现把抽样结论外推、把单次观察写成一贯如此，或因果推断证据不足的情况。"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 2,
+    "pending": 0,
+    "total": 12,
+    "pass_rate": 0.833
+  }
+}

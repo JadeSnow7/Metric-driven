@@ -1,0 +1,13 @@
+
+running 8 tests
+test fault_host_normal_control_reaches_fixture_final ... ok
+test disconnect_after_effect_records_one_ledger_line_and_is_unknown ... ok
+test production_host_reads_real_file_and_reaches_fixture_final ... ok
+test cancellation_wait_is_observed_after_started ... ok
+test crash_modes_have_no_followup_model_call ... ok
+test malformed_and_identity_faults_stop_without_second_model_call ... ok
+test evidence_and_stale_target_faults_are_unknown ... ok
+test ignored_cancel_becomes_unknown ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.16s
+

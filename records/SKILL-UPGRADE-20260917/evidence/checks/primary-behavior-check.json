@@ -1,0 +1,56 @@
+{
+  "argv": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "-c",
+    "from pathlib import Path\nimport json,csv,io\np=Path(\"records/SKILL-UPGRADE-20260917/evidence/behavior\")\nassert (p/\"README-result.txt\").read_bytes()==b\"# Veriflow\\n\\nKeep this paragraph unchanged.\\n\"\nd=json.loads((p/\"materials.json\").read_text()); f=d[\"fault_check\"]\nassert f[\"observed\"][\"requests_dispatched\"]==0 and not f[\"observed\"][\"worker_pids\"]\nassert all(e[\"kind\"]==\"crash\" for e in f[\"observed\"][\"errors\"]) is True\nrows=list(csv.reader(io.StringIO(d[\"import_check\"][\"input\"]),strict=True))\nassert rows==[[\"title\",\"tags\"],[\"line1\\nline2\",\"a\"],[\"after\",\"b\"]]\nassert d[\"import_check\"][\"database_rows\"]==[[\"line2\\\"\",[\"a\"]],[\"after\",[\"b\"]]]\nprint(\"README exact byte check passed; empty all returns True without dispatch; strict CSV yields complete multiline record and after row; supplied database contains residual line instead.\")\n"
+  ],
+  "cwd": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-upgrade-u_748uyb",
+  "started_at": "2026-09-17T03:30:07.051084Z",
+  "ended_at": "2026-09-17T03:30:07.070794Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "README exact byte check passed; empty all returns True without dispatch; strict CSV yields complete multiline record and after row; supplied database contains residual line instead.\n",
+  "stderr": "",
+  "stdout_base64": "UkVBRE1FIGV4YWN0IGJ5dGUgY2hlY2sgcGFzc2VkOyBlbXB0eSBhbGwgcmV0dXJucyBUcnVlIHdpdGhvdXQgZGlzcGF0Y2g7IHN0cmljdCBDU1YgeWllbGRzIGNvbXBsZXRlIG11bHRpbGluZSByZWNvcmQgYW5kIGFmdGVyIHJvdzsgc3VwcGxpZWQgZGF0YWJhc2UgY29udGFpbnMgcmVzaWR1YWwgbGluZSBpbnN0ZWFkLgo=",
+  "stderr_base64": "",
+  "stdout_present": true,
+  "stderr_present": false,
+  "stdout_required": false,
+  "inputs": {
+    "records/SKILL-UPGRADE-20260917/evidence/behavior/materials.json": {
+      "kind": "fixture",
+      "sha256": "28cf5b0a0911f366c18a4da071a460f06b28fae324ec997884fb71e429ebef50",
+      "identity": "repository:records/SKILL-UPGRADE-20260917/evidence/behavior/materials.json",
+      "reproduction": "read repository input records/SKILL-UPGRADE-20260917/evidence/behavior/materials.json and verify sha256"
+    },
+    "records/SKILL-UPGRADE-20260917/evidence/behavior/README-result.txt": {
+      "kind": "fixture",
+      "sha256": "a7a59e83bdd3de60049afd8d781bc095a64f8b36123fb41fcfdcd0ef3ca0a2b3",
+      "identity": "repository:records/SKILL-UPGRADE-20260917/evidence/behavior/README-result.txt",
+      "reproduction": "read repository input records/SKILL-UPGRADE-20260917/evidence/behavior/README-result.txt and verify sha256"
+    }
+  },
+  "repo": "/private/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/veriflow-upgrade-u_748uyb",
+  "cwd_relative": ".",
+  "revision_before": "patch:db53dc4555021e06ede9e88447c82664bcaf6f25:35c3dcd00fc4f76b203b4de26e40f19030bb5a02911abbfc489b010231c8e1ad:spec:f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "revision_after": "patch:db53dc4555021e06ede9e88447c82664bcaf6f25:35c3dcd00fc4f76b203b4de26e40f19030bb5a02911abbfc489b010231c8e1ad:spec:f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "revision": "patch:db53dc4555021e06ede9e88447c82664bcaf6f25:35c3dcd00fc4f76b203b4de26e40f19030bb5a02911abbfc489b010231c8e1ad:spec:f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "spec_version": "UPGRADE-1",
+  "spec_sha256": "f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "spec_before": {
+    "version": "UPGRADE-1",
+    "sha256": "f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d"
+  },
+  "spec_after": {
+    "version": "UPGRADE-1",
+    "sha256": "f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d"
+  },
+  "spec_version_before": "UPGRADE-1",
+  "spec_sha256_before": "f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "spec_version_after": "UPGRADE-1",
+  "spec_sha256_after": "f733a528b40ca6fee0bc964cf9b2520230193c14021081967062f443d3debd8d",
+  "revision_changed_paths": [],
+  "input_changed_paths": [],
+  "result": "passed"
+}

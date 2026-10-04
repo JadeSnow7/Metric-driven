@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ch07-context.test.ts",
+    "tests/loop.test.ts"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/ts",
+  "start": "2026-09-14T14:45:19.625Z",
+  "end": "2026-09-14T14:45:20.283Z",
+  "elapsedMs": 658.164208,
+  "exit": 0,
+  "stdout": "\n RUN  v2.1.9 /private/tmp/rein-production-candidate-03/ts\n\n ✓ tests/ch07-context.test.ts (7 tests) 6ms\n ✓ tests/loop.test.ts (16 tests) 126ms\n\n Test Files  2 passed (2)\n      Tests  23 passed (23)\n   Start at  22:45:19\n   Duration  328ms (transform 54ms, setup 0ms, collect 74ms, tests 132ms, environment 0ms, prepare 81ms)\n\n",
+  "stderr": ""
+}

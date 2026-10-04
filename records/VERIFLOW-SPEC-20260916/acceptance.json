@@ -1,0 +1,738 @@
+{
+  "spec_version": "VF-SPEC-1",
+  "spec_path": "SPEC.md",
+  "spec_sha256": "729bd063d6c03558799f4f62d6aaf7a97572e0889efe2be5b98dd77b2e67db0a",
+  "judgment": "primary semantic review; mechanical validation is supporting evidence only",
+  "conditions": [
+    {
+      "id": "SC-01",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/primary-fixtures-final/commands.jsonl",
+          "sha256": "a978c978d15723dbc8c77a8b831c866e429d5dfa197c5d380184328f777bc439"
+        },
+        {
+          "path": "evidence/primary-fixtures-final/result.json",
+          "sha256": "56cf6bbb30e52dc353d17341a707390ed877bc96cb53fc76069e3ebc46616d6c"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/commands.jsonl",
+          "sha256": "6cfaadd8461068326a690137fe4a763e4e2385cd0626fca589cb6d2590a0a3aa"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/result.json",
+          "sha256": "9786c1393b67d0931fe479597c73086ab0963d1eebc480d089dd14d5b7e3c39a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/01-ready-state.json",
+          "sha256": "01bbe0f0110f72b236d579756124f849a5c777f32e564fef29040e9209e951b6"
+        },
+        {
+          "path": "evidence/primary-e2e-final/03-record-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/04-acceptance-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/05-resume-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/06-spec-changed-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/07-new-with-history-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/09-before-action-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/11-unknown-blocks-state.json",
+          "sha256": "6d5979c29df7f224ea5670c665907102b5651f937f37fbadb357ca88cdc4497b"
+        },
+        {
+          "path": "evidence/primary-e2e-final/13-duplicate-blocks-state.json",
+          "sha256": "fd3e1300cf4410851642a14022da30ee084c03e88280e5fde407286a406ffab8"
+        },
+        {
+          "path": "evidence/primary-e2e-final/14-history-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/15-acceptance-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/16-new-action-revoked-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/commands.jsonl",
+          "sha256": "5b1e15bd19afab39e5659a0e9f5f4295a3be79d0b51daaee08ae169b25af8f73"
+        },
+        {
+          "path": "evidence/primary-e2e-final/final-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/first-execution.json",
+          "sha256": "e36f706f6e4b1369a5ef81d0a082f943f11bbb459c04c9e3c3146d09076d7d92"
+        },
+        {
+          "path": "evidence/primary-e2e-final/inputs.json",
+          "sha256": "6811f5d6aeaf96c011e935ccbe8c4a11454e3f5e9a6f51cad5bedbf154f3697e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/README.md",
+          "sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/app.py",
+          "sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/records/TASK-001/SPEC.md",
+          "sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/result.txt",
+          "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/sample.txt",
+          "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/result.json",
+          "sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676"
+        },
+        {
+          "path": "evidence/primary-e2e-final/second-execution.json",
+          "sha256": "cd80010e3aa62e596fe56e68475f87f5746dca4e0fd33d7820bc280738addd61"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-02",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/primary-fixtures-final/commands.jsonl",
+          "sha256": "a978c978d15723dbc8c77a8b831c866e429d5dfa197c5d380184328f777bc439"
+        },
+        {
+          "path": "evidence/primary-fixtures-final/result.json",
+          "sha256": "56cf6bbb30e52dc353d17341a707390ed877bc96cb53fc76069e3ebc46616d6c"
+        },
+        {
+          "path": "evidence/final-checks-3/diff-check.json",
+          "sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac"
+        },
+        {
+          "path": "evidence/final-checks-3/manifest.json",
+          "sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-static.json",
+          "sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-tests.json",
+          "sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-format.json",
+          "sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-tests.json",
+          "sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511"
+        },
+        {
+          "path": "evidence/final-checks-3/syntax.json",
+          "sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-03",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/primary-adversarial-final/commands.jsonl",
+          "sha256": "6cfaadd8461068326a690137fe4a763e4e2385cd0626fca589cb6d2590a0a3aa"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/result.json",
+          "sha256": "9786c1393b67d0931fe479597c73086ab0963d1eebc480d089dd14d5b7e3c39a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/01-ready-state.json",
+          "sha256": "01bbe0f0110f72b236d579756124f849a5c777f32e564fef29040e9209e951b6"
+        },
+        {
+          "path": "evidence/primary-e2e-final/03-record-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/04-acceptance-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/05-resume-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/06-spec-changed-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/07-new-with-history-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/09-before-action-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/11-unknown-blocks-state.json",
+          "sha256": "6d5979c29df7f224ea5670c665907102b5651f937f37fbadb357ca88cdc4497b"
+        },
+        {
+          "path": "evidence/primary-e2e-final/13-duplicate-blocks-state.json",
+          "sha256": "fd3e1300cf4410851642a14022da30ee084c03e88280e5fde407286a406ffab8"
+        },
+        {
+          "path": "evidence/primary-e2e-final/14-history-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/15-acceptance-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/16-new-action-revoked-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/commands.jsonl",
+          "sha256": "5b1e15bd19afab39e5659a0e9f5f4295a3be79d0b51daaee08ae169b25af8f73"
+        },
+        {
+          "path": "evidence/primary-e2e-final/final-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/first-execution.json",
+          "sha256": "e36f706f6e4b1369a5ef81d0a082f943f11bbb459c04c9e3c3146d09076d7d92"
+        },
+        {
+          "path": "evidence/primary-e2e-final/inputs.json",
+          "sha256": "6811f5d6aeaf96c011e935ccbe8c4a11454e3f5e9a6f51cad5bedbf154f3697e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/README.md",
+          "sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/app.py",
+          "sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/records/TASK-001/SPEC.md",
+          "sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/result.txt",
+          "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/sample.txt",
+          "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/result.json",
+          "sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676"
+        },
+        {
+          "path": "evidence/primary-e2e-final/second-execution.json",
+          "sha256": "cd80010e3aa62e596fe56e68475f87f5746dca4e0fd33d7820bc280738addd61"
+        },
+        {
+          "path": "evidence/final-checks-3/diff-check.json",
+          "sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac"
+        },
+        {
+          "path": "evidence/final-checks-3/manifest.json",
+          "sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-static.json",
+          "sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-tests.json",
+          "sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-format.json",
+          "sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-tests.json",
+          "sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511"
+        },
+        {
+          "path": "evidence/final-checks-3/syntax.json",
+          "sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-04",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/primary-temporal-final-2/commands.jsonl",
+          "sha256": "0fbfaeefe0ca04a6cd2191cd66729a0df7d389df1aeb729d6504b22b28706d1f"
+        },
+        {
+          "path": "evidence/primary-temporal-final-2/result.json",
+          "sha256": "ddb7938f366d6505130cf8e7148c01d1106ebc2a97350f56646e5951ccac4aaa"
+        },
+        {
+          "path": "evidence/primary-temporal-final-2/state.json",
+          "sha256": "17e6ba40017124a05d1da33e502c43097068d098eccb481d4a36641ce4d7f383"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/commands.jsonl",
+          "sha256": "6cfaadd8461068326a690137fe4a763e4e2385cd0626fca589cb6d2590a0a3aa"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/result.json",
+          "sha256": "9786c1393b67d0931fe479597c73086ab0963d1eebc480d089dd14d5b7e3c39a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/01-ready-state.json",
+          "sha256": "01bbe0f0110f72b236d579756124f849a5c777f32e564fef29040e9209e951b6"
+        },
+        {
+          "path": "evidence/primary-e2e-final/03-record-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/04-acceptance-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/05-resume-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/06-spec-changed-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/07-new-with-history-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/09-before-action-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/11-unknown-blocks-state.json",
+          "sha256": "6d5979c29df7f224ea5670c665907102b5651f937f37fbadb357ca88cdc4497b"
+        },
+        {
+          "path": "evidence/primary-e2e-final/13-duplicate-blocks-state.json",
+          "sha256": "fd3e1300cf4410851642a14022da30ee084c03e88280e5fde407286a406ffab8"
+        },
+        {
+          "path": "evidence/primary-e2e-final/14-history-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/15-acceptance-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/16-new-action-revoked-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/commands.jsonl",
+          "sha256": "5b1e15bd19afab39e5659a0e9f5f4295a3be79d0b51daaee08ae169b25af8f73"
+        },
+        {
+          "path": "evidence/primary-e2e-final/final-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/first-execution.json",
+          "sha256": "e36f706f6e4b1369a5ef81d0a082f943f11bbb459c04c9e3c3146d09076d7d92"
+        },
+        {
+          "path": "evidence/primary-e2e-final/inputs.json",
+          "sha256": "6811f5d6aeaf96c011e935ccbe8c4a11454e3f5e9a6f51cad5bedbf154f3697e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/README.md",
+          "sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/app.py",
+          "sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/records/TASK-001/SPEC.md",
+          "sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/result.txt",
+          "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/sample.txt",
+          "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/result.json",
+          "sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676"
+        },
+        {
+          "path": "evidence/primary-e2e-final/second-execution.json",
+          "sha256": "cd80010e3aa62e596fe56e68475f87f5746dca4e0fd33d7820bc280738addd61"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-05",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/final-review.patch",
+          "sha256": "e58ff675b0a5a7a6c820ef94b81d8189421127fff341fedd6bcc378c0329e954"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/commands.jsonl",
+          "sha256": "6cfaadd8461068326a690137fe4a763e4e2385cd0626fca589cb6d2590a0a3aa"
+        },
+        {
+          "path": "evidence/primary-adversarial-final/result.json",
+          "sha256": "9786c1393b67d0931fe479597c73086ab0963d1eebc480d089dd14d5b7e3c39a"
+        },
+        {
+          "path": "evidence/final-checks-3/diff-check.json",
+          "sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac"
+        },
+        {
+          "path": "evidence/final-checks-3/manifest.json",
+          "sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-static.json",
+          "sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-tests.json",
+          "sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-format.json",
+          "sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-tests.json",
+          "sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511"
+        },
+        {
+          "path": "evidence/final-checks-3/syntax.json",
+          "sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-06",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/final-checks-3/diff-check.json",
+          "sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac"
+        },
+        {
+          "path": "evidence/final-checks-3/manifest.json",
+          "sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-static.json",
+          "sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-tests.json",
+          "sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-format.json",
+          "sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-tests.json",
+          "sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511"
+        },
+        {
+          "path": "evidence/final-checks-3/syntax.json",
+          "sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad"
+        },
+        {
+          "path": "evidence/final-review.patch",
+          "sha256": "e58ff675b0a5a7a6c820ef94b81d8189421127fff341fedd6bcc378c0329e954"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-07",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/primary-e2e-final/01-ready-state.json",
+          "sha256": "01bbe0f0110f72b236d579756124f849a5c777f32e564fef29040e9209e951b6"
+        },
+        {
+          "path": "evidence/primary-e2e-final/03-record-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/04-acceptance-state.json",
+          "sha256": "3b12c5ee9756d7ff8012b25b98d1584222799dc67ffc1476099f7b751d41e648"
+        },
+        {
+          "path": "evidence/primary-e2e-final/05-resume-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/06-spec-changed-state.json",
+          "sha256": "4d30dc4ea72bfb660dbff2868b88a0a5e7ee6d4bf6c265ec3451b540ac28d388"
+        },
+        {
+          "path": "evidence/primary-e2e-final/07-new-with-history-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/09-before-action-state.json",
+          "sha256": "239fdd313d5f5ecb73c0e5555ab1106d2c5e5b3ab5cec7115c351717c86e5425"
+        },
+        {
+          "path": "evidence/primary-e2e-final/11-unknown-blocks-state.json",
+          "sha256": "6d5979c29df7f224ea5670c665907102b5651f937f37fbadb357ca88cdc4497b"
+        },
+        {
+          "path": "evidence/primary-e2e-final/13-duplicate-blocks-state.json",
+          "sha256": "fd3e1300cf4410851642a14022da30ee084c03e88280e5fde407286a406ffab8"
+        },
+        {
+          "path": "evidence/primary-e2e-final/14-history-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/15-acceptance-after-revoke-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/16-new-action-revoked-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/commands.jsonl",
+          "sha256": "5b1e15bd19afab39e5659a0e9f5f4295a3be79d0b51daaee08ae169b25af8f73"
+        },
+        {
+          "path": "evidence/primary-e2e-final/final-state.json",
+          "sha256": "d86b8273f78d4b8e27af9acb0ff68cde048d488467ff8dc199419be7cd8abbc0"
+        },
+        {
+          "path": "evidence/primary-e2e-final/first-execution.json",
+          "sha256": "e36f706f6e4b1369a5ef81d0a082f943f11bbb459c04c9e3c3146d09076d7d92"
+        },
+        {
+          "path": "evidence/primary-e2e-final/inputs.json",
+          "sha256": "6811f5d6aeaf96c011e935ccbe8c4a11454e3f5e9a6f51cad5bedbf154f3697e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/README.md",
+          "sha256": "9406b93c198a0501e68750c91b2235ec3652f619742a78375ff2bf6f71289ea5"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/app.py",
+          "sha256": "992dffd38a0544dc717a6d60d949fb56716df3c3bbb9e3942cd512af36fc6abc"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/records/TASK-001/SPEC.md",
+          "sha256": "4559b84f4a90eebcfcc272828e610b1fe80e01d843bd682699cf98fff47f0f4a"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/result.txt",
+          "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+        },
+        {
+          "path": "evidence/primary-e2e-final/products/sample.txt",
+          "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+        },
+        {
+          "path": "evidence/primary-e2e-final/result.json",
+          "sha256": "46c0d96b7fc4ed113d1513dccedd93b7204c2724fc23f3d0d25dcd6972e14676"
+        },
+        {
+          "path": "evidence/primary-e2e-final/second-execution.json",
+          "sha256": "cd80010e3aa62e596fe56e68475f87f5746dca4e0fd33d7820bc280738addd61"
+        }
+      ],
+      "limits": ""
+    },
+    {
+      "id": "SC-08",
+      "status": "observed_with_limits",
+      "evidence": [
+        {
+          "path": "evidence/behavior-run/artifacts/light/README.md",
+          "sha256": "f99a32a7755d3648c9c15ff3c773356571644df50ffa47f5d7f7f80d8088836e"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/light/request.txt",
+          "sha256": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/tutorial/README.md",
+          "sha256": "19431686b0e8fbb7cf0af89082b6a172cab07f7270feaf27ff0abe2983fc6260"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/tutorial/count_lines.py",
+          "sha256": "78c343625a54e55ba9db3464b36ee4a1c8259cf469a3961075143b27df9e1bc0"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/tutorial/request.txt",
+          "sha256": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/tutorial/result.txt",
+          "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+        },
+        {
+          "path": "evidence/behavior-run/artifacts/tutorial/sample.txt",
+          "sha256": "b1a50a880a10ee152f6abf6610741e3af644afb8090b2e076515b428ca88cc3e"
+        },
+        {
+          "path": "evidence/behavior-run/completion.json",
+          "sha256": "7bc480b0275ae48edabea057b01ad3bc4cc366696805a3649f5ce464b661893b"
+        },
+        {
+          "path": "evidence/behavior-run/environment.json",
+          "sha256": "e4f048409ef7d7e91dd6206412b6d2debf965362604839a09378840f5420c7f7"
+        },
+        {
+          "path": "evidence/behavior-run/executor-reports.json",
+          "sha256": "477c7042fcb9a4e0c3786d656b91c7db9c0a335da5a0c6e624745ea7f3ed3bb3"
+        },
+        {
+          "path": "evidence/behavior-run/light-request.txt",
+          "sha256": "e4f57a51d2a37baef6ba779c5713540693084367b0c110d76cc1ad4007fc46ff"
+        },
+        {
+          "path": "evidence/behavior-run/primary-verification.json",
+          "sha256": "c491abc1f06ba489fc9cb16be4f1a963c243bf77d0c9a9bd85d358d483368bfd"
+        },
+        {
+          "path": "evidence/behavior-run/tutorial-request.txt",
+          "sha256": "316343b515907e067cba7ebece875fdf995f49d33d8390dc720977f59fc09dbd"
+        },
+        {
+          "path": "evidence/frozen-skill-manifest.json",
+          "sha256": "520390503ec29642471f9865c7b6bb80ae2859b78a3085cf8076cd430dc173f9"
+        }
+      ],
+      "limits": "Spec formation timing and executor validation process unverified; frozen pre-final temporal patch; two samples only"
+    },
+    {
+      "id": "SC-09",
+      "status": "satisfied",
+      "evidence": [
+        {
+          "path": "evidence/final-review.patch",
+          "sha256": "e58ff675b0a5a7a6c820ef94b81d8189421127fff341fedd6bcc378c0329e954"
+        },
+        {
+          "path": "evidence/final-checks-3/diff-check.json",
+          "sha256": "d5795e141d7ff010170b207d0bd60caaac5a7bd0f62309d7c9ee74c9323c79ac"
+        },
+        {
+          "path": "evidence/final-checks-3/manifest.json",
+          "sha256": "3264aa6990a123c4fb20db7c7af9ae3e7f83879754a9686065a091997628605e"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-static.json",
+          "sha256": "1741e7b255e31dad6b2b1d97ba32fbea2c59d96db496d307df9a0534afee6578"
+        },
+        {
+          "path": "evidence/final-checks-3/repository-tests.json",
+          "sha256": "53893129b2395a787d8cc37ecd217d6b1fbd3fcc75a25d3fab5d5ee166ed6b35"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-format.json",
+          "sha256": "b1d02fad3153095a85706a3787baa11887c73c72ec1e13805ab2b994ae239796"
+        },
+        {
+          "path": "evidence/final-checks-3/skill-tests.json",
+          "sha256": "c4e8fd3432c096445f4c1ee101482b2eb12aa2ec8bfc0ebeba81bc2668244511"
+        },
+        {
+          "path": "evidence/final-checks-3/syntax.json",
+          "sha256": "b557afd47f5383b17d56d61d2b7f4881b3c5ff1be765522cdde4fd0756f440ad"
+        },
+        {
+          "path": "evidence/integration-manifest-1.json",
+          "sha256": "458e17288b834b1f4e519e15082a55c22e49e2699abc3b9961dc3d69f71a126d"
+        },
+        {
+          "path": "evidence/integration-execution-1.json",
+          "sha256": "1da9051af7ea034433fe7549b1406458ae83125b65f69835b4d778f375dbbf0a"
+        },
+        {
+          "path": "evidence/integration-readback-1.json",
+          "sha256": "c47969cf9d67cae1728d6e551e0e162054149f2c5c3197800702ab82ea06a42f"
+        },
+        {
+          "path": "evidence/primary-review.json",
+          "sha256": "8b501bb6a6b20e8d33ddafd2b1c5260e99fbf11e6926957924a03511bd7e5220"
+        }
+      ],
+      "limits": ""
+    }
+  ],
+  "record_integrity": "final raw process evidence retained; early transcription separately labeled",
+  "actions": {
+    "install": "not_performed",
+    "commit_original": "not_performed",
+    "push": "not_performed",
+    "merge": "not_performed",
+    "publish": "not_performed"
+  },
+  "delivery": "repository files integrated and read back; behavior-process limits remain explicit",
+  "unverified": [
+    "executor Spec formation/maintenance and original verification process",
+    "final temporal code patch behavioral recheck",
+    "original-workspace full repository static scan timed out at 30 seconds",
+    "Linux/Python version matrix; real Claude Code; production services"
+  ]
+}

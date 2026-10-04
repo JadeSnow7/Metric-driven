@@ -1,0 +1,69 @@
+
+> @rein/ts@0.0.0 ch06:offline
+> node --import tsx examples/ch06-loop.ts timeout
+
+{
+  "mode": "timeout",
+  "requests": 1,
+  "result": {
+    "state": "failed",
+    "reason": "timeout",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md"
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messages": [
+          {
+            "role": "user",
+            "content": "读取 README.md"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "timeout"
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+
+> @rein/ts@0.0.0 ch05:offline
+> node --import tsx examples/ch05-loop.ts single
+
+{
+  "state": "completed",
+  "reason": "final_answer",
+  "answer": "已完成读取与搜索。",
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messageCount": 1
+    },
+    {
+      "type": "model_received",
+      "turn": 1,
+      "toolCallIds": [
+        "read-only"
+      ],
+      "text": ""
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "toolCallId": "read-only",
+      "result": {
+        "toolCallId": "read-only",
+        "ok": true,
+        "output": "# 前置 workspace fixture\n\n该目录只作为 `read_file` 与 `search_files` 的离线根目录；测试不得读取根目录之外的文件。\n"
+      }
+    },
+    {
+      "type": "model_requested",
+      "turn": 2,
+      "messageCount": 3
+    },
+    {
+      "type": "model_received",
+      "turn": 2,
+      "toolCallIds": [],
+      "text": "已完成读取与搜索。"
+    },
+    {
+      "type": "stopped",
+      "state": "completed",
+      "reason": "final_answer"
+    }
+  ]
+}

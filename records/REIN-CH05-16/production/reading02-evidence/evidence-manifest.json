@@ -1,0 +1,30 @@
+{
+  "source_path": "/private/tmp/rein-reading02-evidence",
+  "archive_path": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/production/reading02-evidence/source",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "commands.md",
+      "sha256": "7888bda73ba981186714cb1e64939ead9b8b489df82a7e226313f84ead4e5f81",
+      "mode": "0644"
+    },
+    {
+      "path": "hash-fail-closed.json",
+      "sha256": "98496e99e3973ccf550e7ac969a5bd070a5212b02cf9a9db98755164a63675a6",
+      "mode": "0644"
+    },
+    {
+      "path": "raw-run.json",
+      "sha256": "98f9de5add58b6b01b404424487065d6e190842efb5ac7d8cc3f457b8c863f82",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "kind": "final_cost_metadata_audit",
+  "reviewed_at": "2026-09-15T11:27:03.103Z",
+  "history_preserved": [
+    {
+      "source": "costs/production-final-completion-20260915.json",
+      "history": "costs/production-final-completion-20260915.history.json"
+    },
+    {
+      "source": "costs/primary-asof-completion-20260915.json",
+      "history": "costs/primary-asof-completion-20260915.history.json"
+    },
+    {
+      "source": "costs/phase-accounting.json",
+      "history": "costs/phase-accounting.history.json"
+    }
+  ],
+  "corrections": [
+    "unverifiable future created_at/updatedAt set to null",
+    "measured reviewed_at/reviewedAt added",
+    "session-derived timestamps and usage unchanged"
+  ],
+  "sample_comparisons": [
+    {
+      "turn_id": "01a0a4be-fa23-7672-84d5-24f23a617984",
+      "usage_matches": true,
+      "turn_token_usage_matches": true,
+      "source_usage_timestamp": "2026-09-15T11:06:27.506Z",
+      "archived_usage_timestamp": "2026-09-15T11:15:04.932Z"
+    },
+    {
+      "turn_id": "01a0a4c8-0e87-7222-a842-87f266ec1520",
+      "usage_matches": true,
+      "turn_token_usage_matches": true,
+      "source_usage_timestamp": "2026-09-15T11:16:24.807Z",
+      "archived_usage_timestamp": "2026-09-15T11:19:37.957Z"
+    },
+    {
+      "turn_id": "01a0a4cc-9e7b-7fb1-895f-629982731ea9",
+      "usage_matches": true,
+      "turn_token_usage_matches": true,
+      "source_usage_timestamp": "2026-09-15T11:21:18.458Z",
+      "archived_usage_timestamp": "2026-09-15T11:22:17.617Z"
+    },
+    {
+      "turn_id": "01a0a30b-3bc8-7f63-be35-84acc40fda52",
+      "usage_matches": true,
+      "turn_token_usage_matches": true,
+      "source_usage_timestamp": "2026-09-15T03:10:35.892Z",
+      "archived_usage_timestamp": "2026-09-15T07:17:42.540Z"
+    },
+    {
+      "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+      "usage_matches": false,
+      "turn_token_usage_matches": false,
+      "source_usage_timestamp": "2026-09-15T10:42:16.828Z",
+      "archived_usage_timestamp": "2026-09-15T11:23:31.825Z"
+    }
+  ],
+  "all_samples_match": false
+}

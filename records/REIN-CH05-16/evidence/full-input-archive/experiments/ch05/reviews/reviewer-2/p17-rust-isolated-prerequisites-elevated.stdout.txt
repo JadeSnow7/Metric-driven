@@ -1,0 +1,10 @@
+
+running 5 tests
+test tools_use_real_fixture_and_bind_actual_ids ... ok
+test symlink_escape_is_rejected ... ok
+test malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok
+test shared_fixture_and_replay_are_structured ... ok
+test concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+

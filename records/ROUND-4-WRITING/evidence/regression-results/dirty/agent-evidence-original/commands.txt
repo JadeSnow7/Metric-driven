@@ -1,0 +1,4 @@
+python3 -m unittest discover -v  (exit 0; stdout/stderr in unittest-discover.txt)
+python3 -m py_compile inventory.py tests/test_inventory.py  (exit 1; stdout/stderr in py-compile.txt; blocked by interpreter cache permission)
+GIT_TRACE=/private/tmp/edd-r4-fixtures-8gys1wek/dirty/git-trace.log git diff -- inventory.py tests/test_inventory.py  (stdout in git-diff.txt)
+GIT_TRACE=/private/tmp/edd-r4-fixtures-8gys1wek/dirty/git-trace.log git status --short  (stdout in git-status.txt)

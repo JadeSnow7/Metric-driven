@@ -1,0 +1,35 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/private/tmp/rein-ch08-review-tools",
+  "started_at": "2026-09-15T05:00:00.645258Z",
+  "ended_at": "2026-09-15T05:00:01.083863Z",
+  "elapsed_seconds": 0.43845566699746996,
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": 0,
+  "launch_error": null,
+  "stdout": "",
+  "stderr": "test_five_outcomes (test_run_check.T.test_five_outcomes) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.383s\n\nOK\n",
+  "stdout_base64": "",
+  "stderr_base64": "dGVzdF9maXZlX291dGNvbWVzICh0ZXN0X3J1bl9jaGVjay5ULnRlc3RfZml2ZV9vdXRjb21lcykgLi4uIG9rCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tClJhbiAxIHRlc3QgaW4gMC4zODNzCgpPSwo=",
+  "source_hashes_before": {
+    "README.md": "68339dfa90f64f65c96b31a5b97abc049475e52c162296532220f32b26287854",
+    "run_check.py": "4b41fa19e5eb29a34a6123ff891a88083b44437d3f24dc9994a544e33783b592",
+    "tests/test_run_check.py": "1a64809f897fadaa6c14b760606e5152282da86f84eebc263dc79bb09f07aa16",
+    "tests/__pycache__/test_run_check.cpython-314.pyc": "8b310838cdcffc16ba2edaeb14930537ce6337ae0be8251c00d1bc4cf9faec12"
+  },
+  "source_hashes_after": {
+    "README.md": "68339dfa90f64f65c96b31a5b97abc049475e52c162296532220f32b26287854",
+    "run_check.py": "4b41fa19e5eb29a34a6123ff891a88083b44437d3f24dc9994a544e33783b592",
+    "tests/test_run_check.py": "1a64809f897fadaa6c14b760606e5152282da86f84eebc263dc79bb09f07aa16",
+    "tests/__pycache__/test_run_check.cpython-314.pyc": "8b310838cdcffc16ba2edaeb14930537ce6337ae0be8251c00d1bc4cf9faec12"
+  }
+}

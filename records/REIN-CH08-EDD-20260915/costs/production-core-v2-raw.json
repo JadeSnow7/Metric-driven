@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "owner":"core_v2",
+  "source_session":"/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-17-49-01a0a3b6-ecc1-7f23-92a9-65e5d84315fe.jsonl",
+  "method":"每 turn 取最后一个 turn_token_usage；不使用累计 thread_token_usage；不估算费用",
+  "turns":[
+    {"turn_id":"01a0a3b6-ed2c-7241-bba5-3a47308b860a","started_at":1789453069,"completed_at":1789453525,"status":"completed","usage":{"input_tokens":1909172,"cached_input_tokens":1841408,"cache_write_input_tokens":0,"output_tokens":16082,"reasoning_output_tokens":2152,"total_tokens":1925254},"turn_token_usage":{"input_tokens":1909172,"cached_input_tokens":1841408,"cache_write_input_tokens":0,"output_tokens":16082,"reasoning_output_tokens":2152,"total_tokens":1925254}},
+    {"turn_id":"01a0a3bf-1b31-7e61-95f8-3c2226bdad9c","started_at":1789453605,"completed_at":1789453656,"status":"completed","usage":{"input_tokens":280469,"cached_input_tokens":273664,"cache_write_input_tokens":0,"output_tokens":2047,"reasoning_output_tokens":216,"total_tokens":282516},"turn_token_usage":{"input_tokens":280469,"cached_input_tokens":273664,"cache_write_input_tokens":0,"output_tokens":2047,"reasoning_output_tokens":216,"total_tokens":282516}},
+    {"turn_id":"01a0a3ce-cd01-7203-a2ed-0eaddd0ab84d","started_at":1789454634,"completed_at":1789454832,"status":"completed","usage":{"input_tokens":1433550,"cached_input_tokens":1413632,"cache_write_input_tokens":0,"output_tokens":4780,"reasoning_output_tokens":446,"total_tokens":1438330},"turn_token_usage":{"input_tokens":1433550,"cached_input_tokens":1413632,"cache_write_input_tokens":0,"output_tokens":4780,"reasoning_output_tokens":446,"total_tokens":1438330}},
+    {"turn_id":"01a0a3d2-efdc-75a2-8da7-99a8880d5b6a","started_at":1789454905,"completed_at":1789454939,"status":"completed","usage":{"input_tokens":213509,"cached_input_tokens":210432,"cache_write_input_tokens":0,"output_tokens":1033,"reasoning_output_tokens":113,"total_tokens":214542},"turn_token_usage":{"input_tokens":213509,"cached_input_tokens":210432,"cache_write_input_tokens":0,"output_tokens":1033,"reasoning_output_tokens":113,"total_tokens":214542}},
+    {"turn_id":"01a0a3d3-c1dc-7543-a143-3d0c27cf064d","started_at":1789454959,"completed_at":1789455013,"status":"completed","usage":{"input_tokens":435402,"cached_input_tokens":429056,"cache_write_input_tokens":0,"output_tokens":1388,"reasoning_output_tokens":56,"total_tokens":436790},"turn_token_usage":{"input_tokens":435402,"cached_input_tokens":429056,"cache_write_input_tokens":0,"output_tokens":1388,"reasoning_output_tokens":56,"total_tokens":436790}}
+  ],
+  "sum_final_turn_token_usage":{"input_tokens":4272102,"cached_input_tokens":4168192,"cache_write_input_tokens":0,"output_tokens":25330,"reasoning_output_tokens":2983,"total_tokens":4297432}
+}

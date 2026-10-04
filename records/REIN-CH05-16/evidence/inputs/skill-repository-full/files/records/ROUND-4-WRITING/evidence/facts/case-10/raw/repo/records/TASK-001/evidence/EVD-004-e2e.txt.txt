@@ -1,0 +1,12 @@
+$ date -u
+2026-09-13T23:22:59Z
+$ python3 records/TASK-001/e2e_check.py
+ok   import_csv: observed=(5, [5, 6, 9, 10, 11, 13]) expected=(5, [5, 6, 9, 10, 11, 13])
+ok   counts: observed={'apple': 12, 'banana': 4, 'Widget, large': 4, 'elderberry': 5, 'cherry': 0, 'date': 0, 'fig': 0, 'Gadget': 0, 'mini"': 0} expected={'apple': 12, 'banana': 4, 'Widget, large': 4, 'elderberry': 5, 'cherry': 0, 'date': 0, 'fig': 0, 'Gadget': 0, 'mini"': 0}
+ok   names: observed=['Widget, large', 'apple', 'banana', 'elderberry'] expected=['Widget, large', 'apple', 'banana', 'elderberry']
+ok   low_stock(): observed=['Widget, large', 'banana'] expected=['Widget, large', 'banana']
+ok   low_stock(13): observed=['Widget, large', 'apple', 'banana', 'elderberry'] expected=['Widget, large', 'apple', 'banana', 'elderberry']
+ok   low_stock(4): observed=[] expected=[]
+ok   return type: tuple(int, list)
+E2E PASSED
+exit=0

@@ -1,0 +1,1 @@
+npm exec --workspace ts vitest run tests/hybrid-host.test.ts

@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "python3",
+    "/private/tmp/rein-ch08-adjudication-v2/supplemental_check.py",
+    "--run",
+    "/private/tmp/rein-ch08-adjudication-v2-root-cases/tool-only-source-hand-estimate-171.json",
+    "--data",
+    "/private/tmp/rein-ch08-adjudication-v2-root-cases/data",
+    "--budget",
+    "2400"
+  ],
+  "cwd": "/private/tmp/rein-ch08-adjudication-v2",
+  "started_at": "2026-09-15T05:37:16.634828Z",
+  "ended_at": "2026-09-15T05:37:16.673490Z",
+  "elapsed_seconds": 0.03836300002876669,
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": 0,
+  "launch_error": null,
+  "stdout": "{\"checked_rows\": 16, \"data_hash\": \"2671c0246bc19ace505a69ff1e8004a32ec01fea4a10891108cf99da8f8423f3\", \"evaluator_hash\": \"6ed1a9d09fd40871b8e4e0bfed7cb2d2f64a4a3eb9f5ff762bb0566cda6fe86b\", \"run_hash\": \"a2f47709d57d54a995b78b423120d3e05546b331a413e0d8219b47b1d7d19f76\", \"status\": \"passed\"}\n",
+  "stderr": "",
+  "stdout_base64": "eyJjaGVja2VkX3Jvd3MiOiAxNiwgImRhdGFfaGFzaCI6ICIyNjcxYzAyNDZiYzE5YWNlNTA1YTY5ZmYxZTgwMDRhMzJlYzAxZmVhNGExMDg5MTEwOGNmOTlkYThmODQyM2YzIiwgImV2YWx1YXRvcl9oYXNoIjogIjZlZDFhOWQwOWZkNDA4NzFiOGU0ZTBiZmVkN2NiMmQyZjY0YTRhM2ViOWY1ZmY3NjJiYjA1NjZjZGE2ZmU4NmIiLCAicnVuX2hhc2giOiAiYTJmNDc3MDlkNTdkNTRhOTk1Yjc4YjQyMzEyMGQzZTA1NTQ2YjMzMWE0MTNlMGQ4MjE5YjQ3YjFkN2QxOWY3NiIsICJzdGF0dXMiOiAicGFzc2VkIn0K",
+  "stderr_base64": "",
+  "source_hashes_before": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427",
+    "__pycache__/supplemental_check.cpython-314.pyc": "a3c51a2387d8eb52f348a07670a0eda5232de22cf4960978c0eef23185d845d0"
+  },
+  "source_hashes_after": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427",
+    "__pycache__/supplemental_check.cpython-314.pyc": "a3c51a2387d8eb52f348a07670a0eda5232de22cf4960978c0eef23185d845d0"
+  }
+}

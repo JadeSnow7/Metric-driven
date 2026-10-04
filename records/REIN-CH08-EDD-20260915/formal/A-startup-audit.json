@@ -1,0 +1,43 @@
+{
+  "captured_at": "2026-09-15T04:27:24.117130+00:00",
+  "thread_id": "01a0a350-b138-7a42-a45b-dcfde0858ef8",
+  "session_path": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T12-26-09-01a0a350-b138-7a42-a45b-dcfde0858ef8.jsonl",
+  "contexts": [
+    {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "cwd": "/private/tmp/rein-ch08-formal-20260915/A/book",
+      "approval_policy": "on-request",
+      "sandbox_policy": {
+        "type": "workspace-write",
+        "network_access": false,
+        "exclude_tmpdir_env_var": false,
+        "exclude_slash_tmp": false
+      }
+    }
+  ],
+  "injected_messages": [
+    {
+      "role": "developer",
+      "sha256": "2dadf90a0741a9dd567663dc9b7fa452933c9878c3396caeec8d919063ba1cf3",
+      "characters": 21666,
+      "contains_edd_skill_name": false,
+      "contains_memory_summary": false
+    },
+    {
+      "role": "user",
+      "sha256": "ae1636a587ae25668bde18f23b620b21bcd4e171aa5d9c3f8d6f4d015ed0515f",
+      "characters": 5130,
+      "contains_edd_skill_name": false,
+      "contains_memory_summary": false
+    },
+    {
+      "role": "user",
+      "sha256": "3de71ad9ee99505c68d58e7579e8f323200e41b3633ec92ceaf8f74de6d43804",
+      "characters": 1401,
+      "contains_edd_skill_name": false,
+      "contains_memory_summary": false
+    }
+  ],
+  "scope": "startup only; final observable tool reads will be audited after seal; no OS read isolation claim"
+}

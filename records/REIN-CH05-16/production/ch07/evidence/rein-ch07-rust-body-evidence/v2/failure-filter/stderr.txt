@@ -1,0 +1,21 @@
+
+thread 'main' (39984755) panicked at examples/ch07_context.rs:115:61:
+read case file: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+node:internal/modules/cjs/loader:2089
+    throw err;
+    ^
+
+SyntaxError: /private/tmp/rein-ch07-rust.json: Unexpected end of JSON input
+    at parse (<anonymous>)
+    at Object..json (node:internal/modules/cjs/loader:2086:39)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at [eval]:1:9
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:483:12
+
+Node.js v26.5.0

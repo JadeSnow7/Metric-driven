@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "python3",
+    "/private/tmp/rein-ch08-adjudication-v2/supplemental_check.py",
+    "--run",
+    "/private/tmp/rein-ch08-adjudication-v2-root-cases/stale-source.json",
+    "--data",
+    "/private/tmp/rein-ch08-adjudication-v2-root-cases/data",
+    "--budget",
+    "2400"
+  ],
+  "cwd": "/private/tmp/rein-ch08-adjudication-v2",
+  "started_at": "2026-09-15T05:37:16.873731Z",
+  "ended_at": "2026-09-15T05:37:16.911435Z",
+  "elapsed_seconds": 0.037656040978617966,
+  "exit_code": 1,
+  "timed_out": false,
+  "wrapper_exit_code": 1,
+  "launch_error": null,
+  "stdout": "{\"data_hash\": \"3c099a9d7a0d583c9735fc9a0c856e0312e2912dacd3ee580c03b17c1c44772a\", \"evaluator_hash\": \"6ed1a9d09fd40871b8e4e0bfed7cb2d2f64a4a3eb9f5ff762bb0566cda6fe86b\", \"failed_checks\": [{\"check_id\": \"CHECK_CLAIM_CURRENT_SOURCE\"}], \"run_hash\": \"a2f47709d57d54a995b78b423120d3e05546b331a413e0d8219b47b1d7d19f76\", \"status\": \"failed\"}\n",
+  "stderr": "",
+  "stdout_base64": "eyJkYXRhX2hhc2giOiAiM2MwOTlhOWQ3YTBkNTgzYzk3MzVmYzlhMGM4NTZlMDMxMmUyOTEyZGFjZDNlZTU4MGMwM2IxN2MxYzQ0NzcyYSIsICJldmFsdWF0b3JfaGFzaCI6ICI2ZWQxYTlkMDlmZDQwODcxYjhlNGUwYmZlZDdjYjJkMmY2NGE0YTNlYjlmNWZmNzYyYmIwNTY2Y2RhNmZlODZiIiwgImZhaWxlZF9jaGVja3MiOiBbeyJjaGVja19pZCI6ICJDSEVDS19DTEFJTV9DVVJSRU5UX1NPVVJDRSJ9XSwgInJ1bl9oYXNoIjogImEyZjQ3NzA5ZDU3ZDU0YTk5NWI3OGI0MjMxMjBkM2UwNTU0NmIzMzFhNDEzZTBkODIxOWI0N2IxZDdkMTlmNzYiLCAic3RhdHVzIjogImZhaWxlZCJ9Cg==",
+  "stderr_base64": "",
+  "source_hashes_before": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427",
+    "__pycache__/supplemental_check.cpython-314.pyc": "a3c51a2387d8eb52f348a07670a0eda5232de22cf4960978c0eef23185d845d0"
+  },
+  "source_hashes_after": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427",
+    "__pycache__/supplemental_check.cpython-314.pyc": "a3c51a2387d8eb52f348a07670a0eda5232de22cf4960978c0eef23185d845d0"
+  }
+}

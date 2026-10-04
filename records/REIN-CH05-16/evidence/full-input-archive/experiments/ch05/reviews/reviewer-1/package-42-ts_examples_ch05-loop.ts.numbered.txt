@@ -1,0 +1,15 @@
+   1 import { readFile } from 'node:fs/promises'
+   2 import { join } from 'node:path'
+   3 import { createReplayAdapter } from '../src/rein/adapters'
+   4 import { runAgentLoop } from '../src/rein/loop'
+   5 
+   6 const root = join(process.cwd(), '../fixtures/workspaces/prerequisites')
+   7 const fixture = JSON.parse(await readFile(join(process.cwd(), '../fixtures/cases/prerequisites.json'), 'utf8'))
+   8 const single = process.argv[2] === 'single'
+   9 const first = single ? { content: [{ type: 'tool_use', id: 'read-only', name: 'read_file', input: { path: 'README.md' } }] } : fixture.anthropic_response
+  10 const replay = createReplayAdapter([
+  11   JSON.stringify(first),
+  12   JSON.stringify(fixture.anthropic_followup_response ?? { content: [{ type: 'text', text: '已完成读取与搜索。' }] }),
+  13 ])
+  14 const result = await runAgentLoop(replay, { root }, single ? '请读取 README.md。' : '请检查 workspace，并总结结果。')
+  15 console.log(JSON.stringify({ state: result.state, reason: result.reason, answer: result.answer, events: result.events }, null, 2))

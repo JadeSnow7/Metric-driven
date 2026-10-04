@@ -1,0 +1,148 @@
+
+> @rein/ts@0.0.0 ch06:offline
+> node --import tsx examples/ch06-loop.ts cancel-between-tools
+
+{
+  "mode": "cancel-between-tools",
+  "requests": 1,
+  "settledRequests": 1,
+  "result": {
+    "state": "failed",
+    "reason": "cancelled",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md 与 guide.md"
+      },
+      {
+        "role": "assistant",
+        "content": "",
+        "toolCalls": [
+          {
+            "id": "one",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          },
+          {
+            "id": "two",
+            "name": "read_file",
+            "arguments": {
+              "path": "guide.md"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "toolCallId": "one",
+        "content": "marker: ch06 alpha\n"
+      }
+    ],
+    "events": [
+      {
+        "type": "model_requested",
+        "turn": 1,
+        "messages": [
+          {
+            "role": "user",
+            "content": "读取 README.md 与 guide.md"
+          }
+        ],
+        "tools": [
+          {
+            "name": "search_files",
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "name": "read_file",
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ]
+      },
+      {
+        "type": "model_received",
+        "turn": 1,
+        "message": {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "one",
+              "name": "read_file",
+              "arguments": {
+                "path": "README.md"
+              }
+            },
+            {
+              "id": "two",
+              "name": "read_file",
+              "arguments": {
+                "path": "guide.md"
+              }
+            }
+          ]
+        },
+        "toolCallIds": [
+          "one",
+          "two"
+        ],
+        "text": ""
+      },
+      {
+        "type": "tool_result",
+        "turn": 1,
+        "call": {
+          "id": "one",
+          "name": "read_file",
+          "arguments": {
+            "path": "README.md"
+          }
+        },
+        "toolCallId": "one",
+        "result": {
+          "toolCallId": "one",
+          "ok": true,
+          "output": "marker: ch06 alpha\n"
+        }
+      },
+      {
+        "type": "action_skipped",
+        "turn": 1,
+        "action": "tool",
+        "callId": "two",
+        "reason": "cancelled"
+      },
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "cancelled"
+      }
+    ]
+  }
+}

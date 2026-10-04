@@ -1,0 +1,7 @@
+# TASK-001 当前摘要
+
+- 状态：failed；当前代码不再受旧验证支持。
+- 核验结果：`python3 -m unittest discover -s tests -t . -v` 运行 12 个测试，`test_remove_item_to_zero_deletes` 失败，原始退出码为 1。
+- 观察到的原因：当前 `inventory.py` 使用 `if remaining < 0`，数量归零时保留 `apple: 0`，因此 `names()` 返回 `['apple']`。
+- 证据：旧输出已标记 stale；当前 stderr、退出码和 revision 保存在 `records/TASK-001/evidence/current-tests.stderr`、`current-tests.exit` 与结构化记录中。
+- 限制：本轮只核验，未修改源码或测试；未执行提交、推送或其他外部动作。

@@ -1,0 +1,142 @@
+[
+  {
+    "scenario": "normal",
+    "cwd": "/private/tmp/rein-hybrid-work-20260914",
+    "argv": [
+      "cargo",
+      "run",
+      "--quiet",
+      "--locked",
+      "--manifest-path",
+      "rust/Cargo.toml",
+      "--example",
+      "hybrid_stdio",
+      "--",
+      "normal"
+    ],
+    "started": "2026-09-14T16:38:19.302118+00:00",
+    "ended": "2026-09-14T16:38:23.764061+00:00",
+    "exit_code": 0,
+    "checks": {
+      "exit": true,
+      "reason": true,
+      "calls": true,
+      "one_record": true,
+      "dispatched": true,
+      "reaped": true,
+      "answer": true
+    },
+    "source_hashes": {
+      "rust/src/rein/stdio_executor.rs": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7",
+      "rust/src/rein/loop.rs": "94716fbebc1c586941613b9e7b0d7a10115d2323ee4709393a5331602218b5b0",
+      "rust/examples/hybrid_stdio.rs": "923e943fe3b7b653bef799debce618235e870aaa678289dfe5fe6ff91573ef01",
+      "ts/src/hybrid-host.ts": "f9081abd75eef0015cca7a2a3e83550850bf94ccc8cfba8f68aa105eebb2c44f",
+      "ts/tests/fixtures/hybrid-fault-host.ts": "eadbf3d95e994890122d247955022c691c4ddf4e0d3c37292e9c4f479efdea92"
+    }
+  },
+  {
+    "scenario": "invalid",
+    "cwd": "/private/tmp/rein-hybrid-work-20260914",
+    "argv": [
+      "cargo",
+      "run",
+      "--quiet",
+      "--locked",
+      "--manifest-path",
+      "rust/Cargo.toml",
+      "--example",
+      "hybrid_stdio",
+      "--",
+      "invalid"
+    ],
+    "started": "2026-09-14T16:38:23.765353+00:00",
+    "ended": "2026-09-14T16:38:24.841511+00:00",
+    "exit_code": 1,
+    "checks": {
+      "exit": true,
+      "reason": true,
+      "calls": true,
+      "one_record": true,
+      "dispatched": true,
+      "reaped": true,
+      "answer": true
+    },
+    "source_hashes": {
+      "rust/src/rein/stdio_executor.rs": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7",
+      "rust/src/rein/loop.rs": "94716fbebc1c586941613b9e7b0d7a10115d2323ee4709393a5331602218b5b0",
+      "rust/examples/hybrid_stdio.rs": "923e943fe3b7b653bef799debce618235e870aaa678289dfe5fe6ff91573ef01",
+      "ts/src/hybrid-host.ts": "f9081abd75eef0015cca7a2a3e83550850bf94ccc8cfba8f68aa105eebb2c44f",
+      "ts/tests/fixtures/hybrid-fault-host.ts": "eadbf3d95e994890122d247955022c691c4ddf4e0d3c37292e9c4f479efdea92"
+    }
+  },
+  {
+    "scenario": "cancel",
+    "cwd": "/private/tmp/rein-hybrid-work-20260914",
+    "argv": [
+      "cargo",
+      "run",
+      "--quiet",
+      "--locked",
+      "--manifest-path",
+      "rust/Cargo.toml",
+      "--example",
+      "hybrid_stdio",
+      "--",
+      "cancel"
+    ],
+    "started": "2026-09-14T16:38:24.842324+00:00",
+    "ended": "2026-09-14T16:38:25.927569+00:00",
+    "exit_code": 1,
+    "checks": {
+      "exit": true,
+      "reason": true,
+      "calls": true,
+      "one_record": true,
+      "dispatched": true,
+      "reaped": true,
+      "answer": true
+    },
+    "source_hashes": {
+      "rust/src/rein/stdio_executor.rs": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7",
+      "rust/src/rein/loop.rs": "94716fbebc1c586941613b9e7b0d7a10115d2323ee4709393a5331602218b5b0",
+      "rust/examples/hybrid_stdio.rs": "923e943fe3b7b653bef799debce618235e870aaa678289dfe5fe6ff91573ef01",
+      "ts/src/hybrid-host.ts": "f9081abd75eef0015cca7a2a3e83550850bf94ccc8cfba8f68aa105eebb2c44f",
+      "ts/tests/fixtures/hybrid-fault-host.ts": "eadbf3d95e994890122d247955022c691c4ddf4e0d3c37292e9c4f479efdea92"
+    }
+  },
+  {
+    "scenario": "crash",
+    "cwd": "/private/tmp/rein-hybrid-work-20260914",
+    "argv": [
+      "cargo",
+      "run",
+      "--quiet",
+      "--locked",
+      "--manifest-path",
+      "rust/Cargo.toml",
+      "--example",
+      "hybrid_stdio",
+      "--",
+      "crash"
+    ],
+    "started": "2026-09-14T16:38:25.928652+00:00",
+    "ended": "2026-09-14T16:38:26.980200+00:00",
+    "exit_code": 0,
+    "checks": {
+      "exit": false,
+      "reason": false,
+      "calls": false,
+      "one_record": true,
+      "dispatched": true,
+      "reaped": true,
+      "answer": false
+    },
+    "source_hashes": {
+      "rust/src/rein/stdio_executor.rs": "7ba0d5823a19d637439ea86a665fe895462ac15e6a1ac9c5d977bff58caa04b7",
+      "rust/src/rein/loop.rs": "94716fbebc1c586941613b9e7b0d7a10115d2323ee4709393a5331602218b5b0",
+      "rust/examples/hybrid_stdio.rs": "923e943fe3b7b653bef799debce618235e870aaa678289dfe5fe6ff91573ef01",
+      "ts/src/hybrid-host.ts": "f9081abd75eef0015cca7a2a3e83550850bf94ccc8cfba8f68aa105eebb2c44f",
+      "ts/tests/fixtures/hybrid-fault-host.ts": "eadbf3d95e994890122d247955022c691c4ddf4e0d3c37292e9c4f479efdea92"
+    }
+  }
+]

@@ -1,0 +1,106 @@
+{
+  "case": 10,
+  "title": "CSV与低库存的复杂交接",
+  "as_of": "第三轮运行结束时；不代表本轮重新执行",
+  "reader": "请求开发工作的项目维护者；复杂交接兼顾下一会话接手者",
+  "purpose": "理解当前结果、原因、依据、限制与下一步；case 2 为澄清回复",
+  "provenance_note": "raw/transcript.md.txt 为当时代理整理的执行轨迹，不是完整工具原始日志。git_state 为历史采集输出，repo/ 为保留产物。不要把导入的历史测试说成你刚执行的测试；可统一用“记录显示”说明来源，不必每句重复。用户当时的请求见 raw/eval_metadata.json；其中 commit 授权不适用于本轮执行。",
+  "facts": [
+    {
+      "id": "F01",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "已实现 Inventory.import_csv(path)->(imported,skipped行号列表)，表头为第1行；low_stock(threshold=5) 返回严格小于阈值的名称并排序；目标是批量入库和识别低库存。",
+      "source": "raw/git_state.md.txt"
+    },
+    {
+      "id": "F02",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "每物理行独立解析，坏行不吞后续合法行；不用跨行CSV；初版csv解析会把跨行记录下半行错误导入，改为两字段引号规则解析并补测。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F03",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "空白行忽略、不计skipped但占行号；字段必须2个且name非空，数量必须正ASCII整数字符串，拒绝3.0/+3/1_000/非ASCII数字/超过4300位；两侧空白裁去。",
+      "source": "raw/repo/inventory.py.txt"
+    },
+    {
+      "id": "F04",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "未加引号字段里的双引号非法；不支持引号内换行；引号后的多余字符非法。",
+      "source": "raw/repo/inventory.py.txt"
+    },
+    {
+      "id": "F05",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "表头必须name,quantity且区分大小写，允许BOM/字段两侧空白；空文件/错误表头ValueError，读文件及UTF-8错误原样抛出，这些错误发生在任何行导入前。",
+      "source": "raw/repo/inventory.py.txt"
+    },
+    {
+      "id": "F06",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "默认threshold字面值5，不读取未被使用的config常量；排序区分大小写；同名行数量累加、imported按行计；path可为str/Path，文件一次读入内存。",
+      "source": "raw/repo/inventory.py.txt"
+    },
+    {
+      "id": "F07",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "以上五组边界决定仍为proposed且待用户确认，已实现与测试不代表已获确认；整体verified而非completed。",
+      "source": "raw/repo/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "id": "F08",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "保留测试9项、新增21项，最终30/30通过；命令python3 -m unittest discover -s tests -t . -v；E2E命令python3 records/TASK-001/e2e_check.py 通过，覆盖混合CSV导入再查询。",
+      "source": "raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt",
+      "additional_sources": [
+        "raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt"
+      ]
+    },
+    {
+      "id": "F09",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "原始证据记载8种变体均被测试捕获；9种20–40万字符构造行一次测量最慢约19ms；仅说明这些构造，不代表普遍性能。",
+      "source": "raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt",
+      "additional_sources": [
+        "raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt"
+      ]
+    },
+    {
+      "id": "F10",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "历史轨迹记载提交前local-commit门槛通过，提交后push门槛因未授权拦下；没有运行远程CI。只在Python3.14.6验证，未独立审查。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F11",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "历史提交6d1d31b为代码/测试/记录，6bf18c2为记录回执；工作区干净，main领先origin/main2个提交，远端仍547ce4e；没有push/merge/deploy。",
+      "source": "raw/git_state.md.txt"
+    },
+    {
+      "id": "F12",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "恢复时先读当前摘要，核验Git与原始证据；勿重复提交。确认未决规则后按影响改实现/测试，旧证据失效后重验；权限需遵守当时最新用户指令。",
+      "source": "raw/records_snapshot.md.txt"
+    }
+  ],
+  "optional_context": [],
+  "output_contract": {
+    "final_reply.md": "给用户的本次交付回复；只写报告，不执行任务",
+    "task-summary.md": "case 6、10 已有摘要，更新这份；case 1、2 不新建",
+    "handoff.md": "仅 case 10 需要且摘要仍不足以接手时生成，可省略；缺失的详细状态用现有证据链接，不复制日志"
+  }
+}

@@ -1,0 +1,1 @@
+{"finding":"document npm script is unavailable","acceptable":"document the current build command","assertions":[{"file":"docs/run.md","contains":"npm run build","reference":"package.json:scripts.build","require_retained_body":true},{"file":"docs/run.md","does_not_contain":"old-build"},{"file":"docs/run.md","contains":"Execute"}]}

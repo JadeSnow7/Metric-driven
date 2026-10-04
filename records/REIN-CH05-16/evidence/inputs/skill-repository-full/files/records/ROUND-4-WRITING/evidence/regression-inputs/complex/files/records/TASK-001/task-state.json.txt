@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "TASK-001",
+    "title": "库存服务：CSV 批量入库与低库存查询（接手核验）",
+    "mode": "resume",
+    "status": "verified",
+    "source_ids": [
+      "SRC-001"
+    ],
+    "status_note": "已验证等待下一步"
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "Inventory 调用方",
+    "scenario": "恢复已有任务并核查旧验证",
+    "problem": "旧验证与当前工作树可能不一致",
+    "expected_outcome": "保留可复查状态并核对证据时效",
+    "scope": "inventory.py、tests/test_inventory.py、records/TASK-001",
+    "acceptable_result": "真实测试结果、退出码和 revision 可复查"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:fixture-preparation",
+      "summary": "修复CSV坏物理行隔离缺陷，验证并更新接手记录；允许本地实现，禁止Git写操作与外部动作",
+      "adoption": "accepted"
+    },
+    {
+      "id": "SRC-002",
+      "kind": "agent_inference",
+      "reference": "fixture:prior-proposed-blank-line-rule",
+      "summary": "空白行忽略且不计skipped的候选默认规则仍待用户确认",
+      "adoption": "proposed"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "坏CSV物理行不影响后续合法行入库",
+      "scope": [
+        "CSV导入、错误行号与验证"
+      ],
+      "non_goals": [
+        "跨行CSV支持",
+        "提交推送与外部动作"
+      ],
+      "dependencies": [],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001",
+        "MET-003"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    },
+    {
+      "id": "MT-002",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "低库存查询默认值、严格比较及排序保持",
+      "scope": [
+        "low_stock兼容行为"
+      ],
+      "non_goals": [
+        "跨行CSV支持",
+        "提交推送与外部动作"
+      ],
+      "dependencies": [],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-002"
+      ],
+      "implementation_task_ids": [
+        "IT-002"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "import_csv 契约",
+      "baseline": "初始化提交后的当前代码",
+      "target": "真实 unittest 输出与当前 revision 一致",
+      "method": "python3 -m unittest discover -s tests -t . -v，核对原始输出、退出码与 revision",
+      "environment_data": "本地 Python 与该 fixture",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-002",
+      "main_task_id": "MT-002",
+      "kind": "mandatory_gate",
+      "name": "low_stock 契约",
+      "baseline": "初始化提交后的当前代码",
+      "target": "真实 unittest 输出与当前 revision 一致",
+      "method": "python3 -m unittest discover -s tests -t . -v，核对原始输出、退出码与 revision",
+      "environment_data": "本地 Python 与该 fixture",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-003",
+      "main_task_id": "MT-001",
+      "kind": "non_regression",
+      "name": "既有测试不退化",
+      "baseline": "初始化提交后的当前代码",
+      "target": "真实 unittest 输出与当前 revision 一致",
+      "method": "python3 -m unittest discover -s tests -t . -v，核对原始输出、退出码与 revision",
+      "environment_data": "本地 Python 与该 fixture",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "status": "passed"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "CSV隔离修复、测试和接手记录",
+      "file_scope": [
+        "inventory.py",
+        "tests",
+        "records/TASK-001"
+      ],
+      "interface_constraints": [
+        "不修改源码和测试"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001",
+        "MET-003"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    },
+    {
+      "id": "IT-002",
+      "main_task_id": "MT-002",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "核验低库存查询兼容性",
+      "file_scope": [
+        "inventory.py",
+        "tests",
+        "records/TASK-001"
+      ],
+      "interface_constraints": [
+        "不修改源码和测试"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-002"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/TASK-001/evidence/old-tests.txt",
+      "kind": "test_output",
+      "supports": [
+        "MET-001",
+        "MET-002",
+        "MET-003"
+      ],
+      "revision": "commit:5533fe84afb4c1af128c3fd07096f24b0e4b1e2d",
+      "sha256": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-14T00:00:00Z",
+      "note": "旧测试原始输出；源码后续改变后按 revision 重新核验"
+    }
+  ],
+  "changes": [],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001",
+      "MET-002",
+      "MET-003"
+    ],
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "5533fe84afb4c1af128c3fd07096f24b0e4b1e2d",
+    "worktree_status": "clean",
+    "ownership": "只核验，不修改源码和测试；记录与证据由本流程生成",
+    "prepared_at": "2026-09-14T00:00:00Z"
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "not_started",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "question": "空白行是否计 skipped",
+      "status": "proposed",
+      "options": [
+        "忽略空白行",
+        "计入 skipped"
+      ],
+      "source_ids": [
+        "SRC-002"
+      ]
+    }
+  ],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "旧证据与当前代码 revision 不一致",
+    "steps": [
+      "重新运行真实测试",
+      "更新结构化证据"
+    ],
+    "owner": "main-thread"
+  }
+}

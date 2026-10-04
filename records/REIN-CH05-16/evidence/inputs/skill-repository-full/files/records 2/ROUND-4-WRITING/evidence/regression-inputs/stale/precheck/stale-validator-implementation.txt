@@ -1,0 +1,15 @@
+{
+  "ok": false,
+  "gate": "implementation",
+  "current_revision": null,
+  "errors": [
+    {
+      "code": "EVIDENCE_STALE",
+      "message": "EVD-001 revision does not match current repository state"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+
+EXIT_CODE=1

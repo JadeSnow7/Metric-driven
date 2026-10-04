@@ -1,0 +1,4 @@
+worktree /private/tmp/edd-r4-fixtures-8gys1wek/stale/repo
+HEAD ec38cd36e4855f47a868dce7d6e56df525810932
+branch refs/heads/main
+

@@ -1,0 +1,16 @@
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:961: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpgvqpkodg'>
+  _warnings.warn(warn_message, ResourceWarning)
+./opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:961: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpfjnnmib3'>
+  _warnings.warn(warn_message, ResourceWarning)
+./opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:961: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmp3af63jjd'>
+  _warnings.warn(warn_message, ResourceWarning)
+./opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:961: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmpaoiff0dg'>
+  _warnings.warn(warn_message, ResourceWarning)
+./opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:961: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/tmppf4m0art'>
+  _warnings.warn(warn_message, ResourceWarning)
+.
+----------------------------------------------------------------------
+Ran 5 tests in 0.971s
+
+OK
+exit=0

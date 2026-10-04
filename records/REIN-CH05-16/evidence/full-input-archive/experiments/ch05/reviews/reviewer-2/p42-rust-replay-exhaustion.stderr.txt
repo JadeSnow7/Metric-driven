@@ -1,0 +1,16 @@
+   Compiling review-probe-42 v0.1.0 (/private/tmp/rein-ch05-review-evidence-2/rust-probe-42)
+warning: function `main` is never used
+  --> /private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust/examples/ch05_loop.rs:24:10
+   |
+24 | async fn main() {
+   |          ^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `review-probe-42` (bin "replay_exhaustion") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.32s
+     Running `/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-42/debug/replay_exhaustion`
+
+thread 'main' (38460319) panicked at /private/tmp/rein-ch05-review-20260914/reviewer-2/package-42/rust/examples/ch05_loop.rs:18:51:
+removal index (is 0) should be < len (is 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

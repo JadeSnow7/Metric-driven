@@ -1,0 +1,68 @@
+# TASK-001 当前摘要
+
+> 当前状态的权威人读摘要；结构化状态见 `task-state.json`，历史见 `work-log.md`，下次接手先读 `handoffs/HANDOFF-001.md`。
+
+- 标题：库存服务 CSV 批量入库（`Inventory.import_csv`）与低库存查询（`Inventory.low_stock`）
+- 模式：首次执行（new），档位 L2（两个用户可见结果 + 用户要求可跨会话接手）
+- 状态：**verified**（实现和本地验收都已通过；DEC-001..DEC-005 待用户确认，所以不是 completed）
+- 基线提交：`547ce4ebe0389259d0d5db5a00330285f80101a1`（main，开始时工作区干净，只有被忽略的 `__pycache__/`）
+- worktree 与改动所有权：直接在原仓库 main 上改；本任务只写 `inventory.py`、`tests/test_inventory.py`、`records/TASK-001/`
+- 最近核验：2026-09-13T23:22Z（UTC），本机 Python 3.14.6；只在这一个 Python 版本上跑过
+
+## 来源与目标
+
+- `SRC-001`（user_requirement，accepted）：用户原话。import_csv(path) 返回 (imported, skipped)，skipped 是格式错误行的行号（表头算第 1 行），坏行跳过、不影响其他行；low_stock(threshold=5) 返回低于阈值的商品名，按字母排序；两项都要测试；留跨会话记录；本地提交，不推送。
+- `SRC-002`（agent_inference，proposed）：用户没定义的边界规则，见下方“待确认”。
+- `SRC-003`（external_material，accepted）：仓库约定。`add_item` 拒绝 quantity<=0、同名累加；`names()` 用 `sorted()`；`config.py` 里有 `LOW_STOCK_THRESHOLD = 5`，但没有任何代码引用它。
+
+## 主任务
+
+- `MT-001` 批量入库：调用方用一个 CSV 批量入库，并知道哪些行被跳过。非目标：引号内换行的多行记录、额外列、持久化。状态 verified。
+- `MT-002` 低库存查询：列出库存低于阈值的商品。非目标：把默认值接到 config、校验阈值参数。状态 verified。
+
+## 指标与整体验收
+
+| 指标 | 类型 | 门槛 | 证据 | 状态 |
+| --- | --- | --- | --- | --- |
+| `MET-001` import_csv 契约 | mandatory_gate | ImportCsvTests 17 个全过（计数、行号、未闭合引号/多余引号/跨行引号记录/超长数字只影响本行、空行、CRLF、表头/解码错误整体失败且库存不变）；构造的超长恶意行单行解析 < 1000 ms | `EVD-002`、`EVD-003`、`EVD-005` | passed |
+| `MET-002` low_stock 契约 | mandatory_gate | LowStockTests 4 个全过（严格小于、默认 5、排序、空结果） | `EVD-002`、`EVD-003` | passed |
+| `MET-003` 既有测试不退化 | non_regression | 基线 9 个（`EVD-001`，stale）改动后仍通过 | `EVD-002` | passed |
+| `MET-004` 整体端到端 | mandatory_gate | `python3 records/TASK-001/e2e_check.py` exit 0 | `EVD-004` | passed |
+
+- `EVD-003` 是变异检查：8 个常见错误实现（包括改回标准库 csv 的宽松解析）各自至少被 1 个测试抓到。它只覆盖这 8 个变体。
+- `EVD-005` 只是本机单次计时（9 种构造输入，最慢 19 ms），不证明不存在别的慢输入。
+- 当前 revision：`patch:547ce4e…:eae90ace8e7b…`（完整值见 `task-state.json`）。
+- 远程 CI：仓库里没有 CI 配置，没有运行（delivery.remote_ci = unavailable）。
+
+## 实现与改动
+
+- `IT-001` → `CHG-001`：`inventory.py` 新增 `import_csv` 与模块级辅助函数 `_split_two_fields`、`_unquote`、`_parse_stock_row`（按两字段、RFC 4180 引号规则用正则解析，不用标准库 csv）；`tests/test_inventory.py` 新增 `ImportCsvTests`。
+- `IT-002` → `CHG-002`：`inventory.py` 新增 `low_stock`；`tests/test_inventory.py` 新增 `LowStockTests`。
+- `CHG-003`：`records/TASK-001/`（端到端脚本和本记录）。
+- 以上都由主线程实现并阅读 diff，**未经独立审查**。
+
+## 已交付 vs 待确认
+
+已交付，由测试固定并通过：两个方法和测试（见上表）。
+
+待用户确认（`DEC-*` 均为 proposed，默认行为已经实现；改动任一项都需要改一处判断和对应测试）：
+
+1. `DEC-003` 空行（空或只有空白）：默认忽略，不进 skipped，但仍占行号。另一种做法是把空行也列进 skipped。
+2. `DEC-002` 什么算格式错误：字段数不是 2；name 去掉首尾空白后为空；quantity 不是纯 ASCII 数字（`+3`、`3.0`、`1_000`、非 ASCII 数字（如 ٣）都算）；quantity 为 0 或负数（沿用 `add_item`）；超过 Python 4300 位上限的数字。name 不限长度。
+3. `DEC-001` 引号：未加引号的字段里出现双引号算格式错误（`12" pizza,3` 会被跳过，要写成 `"12"" pizza",3`）。每个物理行是一条记录，不支持引号内换行，跨行记录的每一行都被跳过。
+4. `DEC-004` 文件级问题：表头不是 `name,quantity`（区分大小写，允许 BOM 和字段两侧空白）或文件为空时抛 `ValueError`；文件不存在或不是 UTF-8 时原异常上抛。以上情况都不导入任何行。
+5. `DEC-005` low_stock：默认值是字面量 5，没有接 `config.LOW_STOCK_THRESHOLD`；排序用 `sorted()`，区分大小写（`"Widget"` 排在 `"apple"` 前），与 `names()` 一致。
+
+## 权限与交付
+
+| 动作 | 授权状态 | 来源 | 实际状态/回执 |
+| --- | --- | --- | --- |
+| commit | authorized | SRC-001 | 已提交 `6d1d31b`（代码、测试、记录，ACT-001）；随后提交了一次只含记录回执的更新（ACT-002，是 6d1d31b 的子提交） |
+| push | not_authorized（用户明确说不要推送） | SRC-001 | 未执行；提交后 `git status -sb` 显示 main 领先 origin/main，`git ls-remote ../origin.git` 中 main 仍是 547ce4e |
+| merge | not_authorized | — | 未执行 |
+| deploy | not_authorized | — | 未执行 |
+
+## 下一步
+
+- 等用户对“待确认”1–5 给出结论。确认一项就把对应 `DEC-*` 改为 accepted；要改的就先改测试再改实现，重跑检查后更新证据。全部确认、交付动作核验完毕后，任务才能标为 completed。
+- 推送需要用户另行明确授权，推送前先跑 `--gate push`。

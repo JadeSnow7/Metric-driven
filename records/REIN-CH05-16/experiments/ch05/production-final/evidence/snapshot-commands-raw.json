@@ -1,0 +1,47 @@
+{
+  "kind": "snapshot-command-raw",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/rein_chapter_snapshot.py",
+        "--source",
+        "/private/tmp/rein-pre-ch05-clean-20260914/files",
+        "--chapter",
+        "pre-ch05",
+        "--output",
+        "records/REIN-CH05-16/snapshots/pre-ch05-restored",
+        "--portable-output",
+        "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-pre-ch05.tar.gz"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "start": "2026-09-14T13:04:57.125838+00:00",
+      "end": "2026-09-14T13:04:57.331000+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/rein_chapter_snapshot.py",
+        "--source",
+        "/private/tmp/rein-production-candidate-03",
+        "--chapter",
+        "05",
+        "--output",
+        "records/REIN-CH05-16/snapshots/ch05-accepted",
+        "--baseline",
+        "records/REIN-CH05-16/snapshots/pre-ch05-restored/files",
+        "--portable-output",
+        "/private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.tar.gz"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "start": "2026-09-14T13:04:57.331016+00:00",
+      "end": "2026-09-14T13:04:57.933490+00:00",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "fixture": "permission",
+  "repo": "/private/tmp/edd-r4-fixtures-8gys1wek/permission/repo",
+  "head": "b316dc958ec73096b9efeb0cdcc6d9ca382d85e9",
+  "source_test_config_sha256": {
+    "README.md": "9a204baed37d3f0bf134f8ab382d6f238c794a056813d9d75546caa64f13408e",
+    ".gitignore": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+    "pricing.py": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+    "inventory.py": "883d9a36f9dccaa0404c91bda690cfd8bd9396dcb846621f6691f4a924f46c3a",
+    "tests/test_inventory.py": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_pricing.py": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac"
+  },
+  "refs": [
+    "b316dc958ec73096b9efeb0cdcc6d9ca382d85e9 refs/heads/main"
+  ],
+  "stash": [],
+  "worktrees": [
+    "worktree /private/tmp/edd-r4-fixtures-8gys1wek/permission/repo",
+    "HEAD b316dc958ec73096b9efeb0cdcc6d9ca382d85e9",
+    "branch refs/heads/main"
+  ],
+  "old_evidence_sha256": {},
+  "initial_status": ""
+}

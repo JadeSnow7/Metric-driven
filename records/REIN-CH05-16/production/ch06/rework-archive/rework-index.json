@@ -1,0 +1,131 @@
+{
+  "chapter": "ch06",
+  "status": "archive_for_review",
+  "final_source_snapshot_archived": false,
+  "sources": [
+    {
+      "label": "production-evidence-v1",
+      "source_path": "/private/tmp/rein-ch06-production-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/attempt-2-preserved/evidence-v1",
+      "action": "indexed_existing",
+      "file_count": 41,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/production-evidence-v1.json"
+    },
+    {
+      "label": "production-evidence-v2",
+      "source_path": "/private/tmp/rein-ch06-production-evidence-v2",
+      "archive_path": "records/REIN-CH05-16/production/ch06/attempt-2-preserved/evidence-v2",
+      "action": "indexed_existing",
+      "file_count": 40,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/production-evidence-v2.json"
+    },
+    {
+      "label": "rein-ch06-main-review-v3",
+      "source_path": "/private/tmp/rein-ch06-main-review-v3",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-main-review-v3",
+      "action": "copied",
+      "file_count": 2,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-main-review-v3.json"
+    },
+    {
+      "label": "rein-ch06-main-review-v4",
+      "source_path": "/private/tmp/rein-ch06-main-review-v4",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-main-review-v4",
+      "action": "copied",
+      "file_count": 5,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-main-review-v4.json"
+    },
+    {
+      "label": "rein-ch06-v3-rust-evidence",
+      "source_path": "/private/tmp/rein-ch06-v3-rust-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-rust-evidence",
+      "action": "copied",
+      "file_count": 1,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-rust-evidence.json"
+    },
+    {
+      "label": "rein-ch06-v3-rust-preserved",
+      "source_path": "/private/tmp/rein-ch06-v3-rust-preserved",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-rust-preserved",
+      "action": "copied",
+      "file_count": 4,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-rust-preserved.json"
+    },
+    {
+      "label": "rein-ch06-v3-ts-evidence",
+      "source_path": "/private/tmp/rein-ch06-v3-ts-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-ts-evidence",
+      "action": "copied",
+      "file_count": 46,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-ts-evidence.json"
+    },
+    {
+      "label": "rein-ch06-v3-ts-preserved",
+      "source_path": "/private/tmp/rein-ch06-v3-ts-preserved",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-ts-preserved",
+      "action": "copied",
+      "file_count": 7,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v3-ts-preserved.json"
+    },
+    {
+      "label": "rein-ch06-v4-rust-evidence",
+      "source_path": "/private/tmp/rein-ch06-v4-rust-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v4-rust-evidence",
+      "action": "copied",
+      "file_count": 49,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-rust-evidence.json"
+    },
+    {
+      "label": "rein-ch06-v4-rust-evidence-search-error",
+      "source_path": "/private/tmp/rein-ch06-v4-rust-evidence-search-error",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v4-rust-evidence-search-error",
+      "action": "copied",
+      "file_count": 7,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-rust-evidence-search-error.json"
+    },
+    {
+      "label": "rein-ch06-v4-ts-evidence",
+      "source_path": "/private/tmp/rein-ch06-v4-ts-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v4-ts-evidence",
+      "action": "copied",
+      "file_count": 45,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-ts-evidence.json"
+    },
+    {
+      "label": "rein-ch06-v4-ts-final-evidence",
+      "source_path": "/private/tmp/rein-ch06-v4-ts-final-evidence",
+      "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v4-ts-final-evidence",
+      "action": "copied",
+      "file_count": 30,
+      "manifest": "records/REIN-CH05-16/production/ch06/rework-archive/manifests/rein-ch06-v4-ts-final-evidence.json"
+    }
+  ],
+  "missing": [
+    {
+      "label": "rein-ch06-v1-source-snapshot",
+      "status": "missing",
+      "path": null,
+      "note": "旧 v1 源码快照缺失"
+    },
+    {
+      "label": "rein-ch05-v3-ts-preserved",
+      "status": "missing",
+      "path": "/private/tmp/rein-ch05-v3-ts-preserved",
+      "note": "路径不存在；未假定为 ch05 来源"
+    }
+  ],
+  "notes": [
+    "ch06 是生产章，不属于 ch05/ch08/ch12/ch14 正式首轮。",
+    "v3 Rust 仅有 verification.md 手写总结；未将其当作 raw 自动命令输出。",
+    "v4 Rust raw/ 与 dynamic/ 以及 search-error raw/ 均原样归档。",
+    "本归档不表示 ch06 最终验收，也不封存最终 ch06 源快照。"
+  ],
+  "source_count": 12,
+  "copied_file_count": 196,
+  "indexed_file_count": 81,
+  "verification": {
+    "copied_sources_sha256_verified": true,
+    "indexed_existing_rounds_sha256_compared": true,
+    "method": "sha256 per relative path; mode recorded in manifests"
+  }
+}

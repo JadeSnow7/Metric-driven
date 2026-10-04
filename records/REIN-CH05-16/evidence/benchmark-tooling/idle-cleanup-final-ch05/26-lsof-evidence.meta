@@ -1,0 +1,7 @@
+argv=lsof +D /private/tmp/rein-ch05-final-text-evidence/cargo-target 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:06:05Z
+end=2026-09-14T13:06:06Z
+exit=1
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/26-lsof-evidence.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/26-lsof-evidence.stderr

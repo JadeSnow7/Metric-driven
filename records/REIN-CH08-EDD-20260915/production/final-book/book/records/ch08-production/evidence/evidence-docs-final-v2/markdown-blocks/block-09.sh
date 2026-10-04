@@ -1,0 +1,8 @@
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
+RETRIEVAL_ROOT="$(mktemp -d /tmp/rein-ch08-practice-3.XXXXXX)"
+cp -R fixtures/ch08-context/. "$RETRIEVAL_ROOT/"
+cp "$RETRIEVAL_ROOT/tasks.json" "$RETRIEVAL_ROOT/tasks.before.json"
+npm run --silent ch08:compare -- --data-root "$RETRIEVAL_ROOT" --strategy retrieval >"$RETRIEVAL_ROOT/before.json"
+node -e 'const fs=require("fs"); const p=process.argv[1]+"/tasks.json"; const x=JSON.parse(fs.readFileSync(p)); x.tasks.find(t=>t.id==="task-03").question="zzqnomatch902"; fs.writeFileSync(p,JSON.stringify(x));' "$RETRIEVAL_ROOT"
+npm run --silent ch08:compare -- --data-root "$RETRIEVAL_ROOT" --strategy retrieval >"$RETRIEVAL_ROOT/after.json"
+node -e 'const fs=require("fs"); const before=JSON.parse(fs.readFileSync(process.argv[1])).results.find(x=>x.taskId==="task-03"); const after=JSON.parse(fs.readFileSync(process.argv[2])).results.find(x=>x.taskId==="task-03"); const scoredBefore=before.operations.filter(x=>x.type==="retrieval"); const scoredAfter=after.operations.filter(x=>x.type==="retrieval"); if(!before.selectedSources.includes("doc-03")||!before.selectedSources.includes("doc-05")||before.quality!==1||!after.answer||after.answer.claims.length!==0||!after.answer.insufficientEvidence||after.quality!==0||!scoredAfter.length||scoredAfter.some(x=>x.score!==0||x.selected!==false)||after.selectedSources.length!==0||!scoredBefore.length) process.exit(1); console.log(JSON.stringify({before:{sources:before.selectedSources,quality:before.quality,candidates:scoredBefore.length},after:{sources:after.selectedSources,quality:after.quality,candidates:scoredAfter.length,allZero:true,claims:after.answer.claims.length}}))' "$RETRIEVAL_ROOT/before.json" "$RETRIEVAL_ROOT/after.json"

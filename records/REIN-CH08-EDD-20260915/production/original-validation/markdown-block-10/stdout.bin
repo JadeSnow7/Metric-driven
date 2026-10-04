@@ -1,0 +1,20 @@
+
+running 14 tests
+test budget_boundaries_are_empty_and_do_not_dispatch ... ok
+test direct_max_budget_and_zero_budget_skip_deleted_selected_file ... ok
+test oracle_errors_are_explicit_after_answering ... ok
+test symlink_escape_is_pre_dispatch_with_prepared_record ... ok
+test metadata_rejects_task_duplicates_orders_absolute_and_unsafe_budget ... ok
+test window_budget_keeps_exact_latest_two_complete_source_messages ... ok
+test node_faults_and_missing_files_keep_real_records ... ok
+test jsonl_mutation_flows_through_http_source_and_oracle ... ok
+test unknown_oracle_still_scores_real_throughput_claim ... ok
+test duplicate_bodies_keep_document_identity_and_retrieval_changes_with_body ... ok
+test retrieval_scores_body_only_and_unknown_query_is_empty ... ok
+test missing_oracle_id_and_ascii_word_boundaries ... ok
+test default_matrix_preserves_rules_and_exact_estimates ... ok
+test metadata_and_native_api_reject_unsafe_inputs ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.33s
+
+{"unit":"estimated-bytes-v1","rows":16,"filteredRows":4,"checks":["default","filter","mutation","zero-budget","cli","metadata","example","rust-contract-tests"]}

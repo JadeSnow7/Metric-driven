@@ -1,0 +1,43 @@
+{
+  "captured_at": "2026-09-15T04:57:18.768499+00:00",
+  "thread_id": "01a0a36c-620e-7552-8c3f-066d7616e6fb",
+  "session_path": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T12-56-24-01a0a36c-620e-7552-8c3f-066d7616e6fb.jsonl",
+  "contexts": [
+    {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "cwd": "/private/tmp/rein-ch08-formal-20260915/C/book",
+      "approval_policy": "on-request",
+      "sandbox_policy": {
+        "type": "workspace-write",
+        "network_access": false,
+        "exclude_tmpdir_env_var": false,
+        "exclude_slash_tmp": false
+      }
+    }
+  ],
+  "injected_messages": [
+    {
+      "role": "developer",
+      "characters": 21666,
+      "sha256": "dc13bf927d43c8874032c71da55a5e74ea2113a627654b6a5e7b8158f9a25f89",
+      "edd_name": false,
+      "memory_summary": false
+    },
+    {
+      "role": "user",
+      "characters": 5130,
+      "sha256": "c9a5324b34570b07e9feb764b98b68507d9e944b91b7f69627816d589425b55f",
+      "edd_name": false,
+      "memory_summary": false
+    },
+    {
+      "role": "user",
+      "characters": 1507,
+      "sha256": "466d258cd606aa77c96c5fd9190445a4d18eab101dd04acc94b80bacff148b89",
+      "edd_name": true,
+      "memory_summary": false
+    }
+  ],
+  "note": "C launched once after B terminal seal; immutable prompt retains same nested skill path mismatch as B; inspect final reads."
+}

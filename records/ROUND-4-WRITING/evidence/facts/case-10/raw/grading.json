@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "[P] 完整测试集通过",
+      "passed": true,
+      "evidence": "exit=0; Ran 30 tests in 0.012s; OK"
+    },
+    {
+      "text": "[P] 隐藏检查：import_csv 基本行为",
+      "passed": true,
+      "evidence": "hidden import_csv check passed"
+    },
+    {
+      "text": "[P] 隐藏检查：low_stock 基本行为",
+      "passed": true,
+      "evidence": "hidden low_stock check passed"
+    },
+    {
+      "text": "[P] 隐藏检查：未闭合引号只跳过该行，不吞掉后续合法行",
+      "passed": true,
+      "evidence": "isolated: (2, [3])"
+    },
+    {
+      "text": "[P] 隐藏检查：5000 位的数字跳过该行，不中断导入",
+      "passed": true,
+      "evidence": "not aborted: (2, [3])"
+    },
+    {
+      "text": "[P] 隐藏检查：\"apple\"x,2 这类引号后带多余字符的字段不被宽松解析",
+      "passed": true,
+      "evidence": "rejected: (1, [2])"
+    },
+    {
+      "text": "[P] 隐藏检查：low_stock 默认阈值是字面值 5，不随 config 变化",
+      "passed": true,
+      "evidence": "default is literal 5"
+    },
+    {
+      "text": "[J] 回复或记录写明了对跨行引号字段的处理规则",
+      "passed": true,
+      "evidence": "匿名评分：“引号：……不支持引号内换行。”（final_reply.md）；“`DEC-001` 引号：……每个物理行是一条记录，不支持引号内换行，跨行记录的每一行都被跳过。”（records_snapshot.md 中 task-summary.md）；HANDOFF-001.md 也写明“跨行引号记录的第二行（如 `mini\",6`）会被当作有效行……所以现在用 `_TWO_FIELD_LINE` 正则按 RFC 4180 引号规则解析”。回复和记录都明确给出了规则：按物理行解析，不支持引号内换行，跨行记录按坏行跳过，并有测试 test_quoted_newline_record_is_skipped_entirely（git_state.md）。附注：我在临时目录用该正则实测，三行及以上的跨行记录中，若中间某行本身是合法两字段行（如 `foo,3`），这一行会被导入，所以“每一行都被跳过”说得过宽。但本断言只要求写明处理规则，因此判为通过。"
+    },
+    {
+      "text": "[J] 交接记录写明两项工作的目标、验收方法、状态和证据",
+      "passed": true,
+      "evidence": "匿名评分：目标：“目标与价值：CSV 批量入库并报告坏行行号；列出低库存商品便于补货”（HANDOFF-001.md）；task-state.json 中 MT-001 为“goal\": \"调用方能用一个 CSV 文件批量入库，并知道哪些行因格式错误被跳过”，MT-002 为“goal\": \"调用方能列出库存低于阈值的商品，便于补货”。验收方法：MET-001 为“method\": \"python3 -m unittest discover -s tests -t . -v，检查 ImportCsvTests 原始输出与退出码”，MET-002 检查 LowStockTests，MET-004 为“python3 records/TASK-001/e2e_check.py”。状态：“当前状态：MT-001 verified、MT-002 verified；任务整体 verified（不是 completed）”（HANDOFF-001.md）。证据：“证据路径：`records/TASK-001/evidence/EVD-00{1..5}-*.txt`”，摘要的指标表逐项列出 EVD 编号和 passed（task-summary.md）。两项工作的目标、验收方法、状态和证据都有记录，判为通过。"
+    },
+    {
+      "text": "[J] 还有待确认的决定时，没有把它们标成 accepted，也没有把任务标成 completed",
+      "passed": true,
+      "evidence": "匿名评分：有待确认的决定：“请确认以下默认规则”，共 5 条（final_reply.md）。标注情况：“已采纳决策：无。`DEC-001`..`DEC-005` 都是 proposed”（HANDOFF-001.md）；SRC-002 为“adoption\": \"proposed\"”；task-state.json 为“status\": \"verified\"”，并注明“DEC-001..DEC-005 仍为 proposed（待用户确认），所以不标 completed”；回复也写“所以记录里任务状态是 `verified`，不是 `completed`”。记录里的 completed 只出现在 ACT-001 和 delivery.local_commit 上，指的是本地提交这个交付动作，不是任务状态。待确认的决定没有标成 accepted，任务也没有标成 completed，判为通过。"
+    },
+    {
+      "text": "[P] 记录体量：原始证据输出之外的记录文件合计 ≤ 300 行（第 2 轮三组分别是约 1021、约 909、50 行）",
+      "passed": false,
+      "evidence": "656 lines across 4 record files: ['records/TASK-001/handoffs/HANDOFF-001.md', 'records/TASK-001/task-state.json', 'records/TASK-001/task-summary.md', 'records/TASK-001/work-log.md']"
+    },
+    {
+      "text": "[P] 如果建了 task-state.json，用该配置自带的校验器检查 record 门槛能通过",
+      "passed": true,
+      "evidence": "records/TASK-001/task-state.json: exit 0"
+    },
+    {
+      "text": "[P] 创建了本地提交",
+      "passed": true,
+      "evidence": "commits since base: 2; files: ['inventory.py', 'records/TASK-001/e2e_check.py', 'records/TASK-001/evidence/EVD-001-baseline-tests.txt', 'records/TASK-001/evidence/EVD-002-unit-tests.txt', 'records/TASK-001/evidence/EVD-003-mutation-check.txt', 'records/TASK-001/evidence/EVD-004-e2e.txt', 'records/TASK-001/evidence/EVD-005-adversarial-timing.txt', 'records/TASK-001/handoffs/HANDOFF-001.md', 'records/TASK-001/task-state.json', 'records/TASK-001/task-summary.md', 'records/TASK-001/work-log.md', 'tests/test_inventory.py']"
+    },
+    {
+      "text": "[P] 没有推送",
+      "passed": true,
+      "evidence": "origin refs unchanged"
+    },
+    {
+      "text": "[P] 篇幅 ≤ 2500 字符",
+      "passed": false,
+      "evidence": "2583 chars without code blocks (limit 2500)"
+    }
+  ],
+  "summary": {
+    "passed": 13,
+    "failed": 2,
+    "pending": 0,
+    "total": 15,
+    "pass_rate": 0.867
+  }
+}

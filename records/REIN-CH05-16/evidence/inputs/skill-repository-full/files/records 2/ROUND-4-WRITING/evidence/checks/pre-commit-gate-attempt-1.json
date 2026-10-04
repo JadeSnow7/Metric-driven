@@ -1,0 +1,1457 @@
+{
+  "ok": false,
+  "gate": "local-commit",
+  "current_revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+  "errors": [
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/attempts.jsonl"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/baseline.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind-mapping.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-1/R1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-1/R2/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-10/R1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-10/R1/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-10/R2/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-10/R2/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-2/R1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-2/R2/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-6/R1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-6/R1/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-6/R2/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/blind/case-6/R2/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/SKILL.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/agents/openai.yaml"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/handoff.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-state.example.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/work-log.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/writing-handoff.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/delegation-and-handoffs.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/examples.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/metrics-and-evidence.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/records.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/workflow.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/references/writing.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/scripts/validate_task.py"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/candidate-v1/tests/test_scenarios.py"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/compile.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/diff-check.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/final-document-checks.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/final-task-record.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/repository.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/results.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/scenario-tests.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/checks/skill.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/cost-summary.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/SKILL.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/agents/openai.yaml"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/assets/templates/handoff.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-state.example.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/assets/templates/work-log.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/assets/templates/writing-handoff.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/references/delegation-and-handoffs.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/references/examples.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/references/metrics-and-evidence.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/references/records.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/references/workflow.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/scripts/validate_task.py"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/current-skill/tests/test_scenarios.py"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/evaluation-spec.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/facts.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/eval_metadata.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/git_state.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/grading.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/records_snapshot.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/timing.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-1/raw/transcript.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/facts.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/eval_metadata.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/git_state.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/grading.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/records_snapshot.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/e2e_check.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-001-baseline-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/handoffs/HANDOFF-001.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/work-log.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/timing.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-10/raw/transcript.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/facts.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/eval_metadata.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/git_state.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/grading.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/records_snapshot.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/timing.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-2/raw/transcript.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/facts.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/eval_metadata.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/git_state.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/grading.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/records_snapshot.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/records/TASK-008/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/timing.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/facts/case-6/raw/transcript.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/final-integrity.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/fixture-preparation.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/freeze-v1.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/generation-prompt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/handoff-working-tree.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/incremental-skill.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-assertions.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-assertions.lock"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-gate.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-harness-brief.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-harness-rejected-v1.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-input-preflight.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs.lock.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/BASELINE.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/REQUEST.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/baseline-behavior-independent.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/evidence/old-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/initial-record-gate.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-implementation.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-record.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-baseline-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-state-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/BASELINE.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/REQUEST.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/precheck/dirty.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/dirty/prepared-baseline-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/BASELINE.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/REQUEST.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/precheck/permission.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/permission/prepared-baseline-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/BASELINE.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/REQUEST.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/baseline-behavior-independent.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/evidence/old-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/initial-record-gate.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-implementation.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-record.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-baseline-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-state-original.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/artifact-manifest.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/behavior.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/diff.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/BASELINE.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/REQUEST.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/git-trace.log.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-implementation.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-record.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/current-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/state-validation.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/current-tests.exit.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.exit.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/head.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/input-to-final-source.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/record.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/refs.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/remotes.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/stash.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/status.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/tests.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/trace-review.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/verification.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/complex/worktrees.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/commands.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-diff.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-status.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/py-compile.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/unittest-discover.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-final-original.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-location-issue.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-manifest.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/behavior.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/diff.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/BASELINE.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/REQUEST.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/git-trace.log.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/precheck/dirty.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/commands.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-diff.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-status.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/py-compile.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/unittest-discover.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/git-status.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/head.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/input-to-final-source.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/refs.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/remotes.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/stash.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/tests.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/trace-review.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/verification.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/dirty/worktrees.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/artifact-manifest.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/behavior.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/diff.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/BASELINE.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/REQUEST.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/git-trace.log.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/precheck/permission.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.exit.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stderr.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stdout.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.exit.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stderr.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stdout.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/git-status.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/head.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/input-to-final-source.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/refs.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/remotes.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/stash.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/tests.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/trace-review.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/verification.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/permission/worktrees.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/artifact-manifest.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/diff.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/BASELINE.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/REQUEST.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/final_reply.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/git-trace.log.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-implementation.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-record.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/.gitignore.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/README.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/config.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.exit.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stderr.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stdout.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-state.json.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-summary.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/work-log.md.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/__init__.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_inventory.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_pricing.py.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/head.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/input-to-final-source.patch"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/record.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/refs.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/remotes.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/stash.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/status.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/tests.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/trace-review.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/verification.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/regression-results/stale/worktrees.txt"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/rejected-harness-review.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/report-gate.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/report-measurements.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-1/candidate-v1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-1/current/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-10/current/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-10/current/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-2/candidate-v1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-2/current/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-6/current/final_reply.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reports/case-6/current/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reviews/reviewer-1.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/reviews/reviewer-2.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/round3-provenance.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/style-sources.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/evidence/validation-environment.json"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/task-summary.md"
+    },
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/ROUND-4-WRITING/work-log.md"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}

@@ -1,0 +1,53 @@
+
+running 12 tests
+test rein::tests::read_file_rejects_escape ... ok
+test tests::status_classification_keeps_key_out_of_public_error ... ok
+test rein::tests::anthropic_round_trip_shape ... ok
+test rein::tests::loop_distinguishes_model_error_and_empty_final ... ok
+test tests::timeout_returns_without_waiting_for_the_server ... FAILED
+test tests::local_http_server_receives_one_openai_request ... FAILED
+test tests::rate_limit_is_requested_once_and_keeps_provider_code ... FAILED
+test tests::malformed_or_empty_sdk_responses_are_failures ... FAILED
+test rein::tests::loop_records_failures_and_stops_explicitly ... ok
+test tests::config_requires_all_values_and_strips_trailing_slash ... ok
+test tests::provider_errors_are_classified_without_echoing_messages ... FAILED
+test rein::tests::loop_reads_real_content_and_pairs_multiple_results ... ok
+
+failures:
+
+---- tests::timeout_returns_without_waiting_for_the_server stdout ----
+
+thread 'tests::timeout_returns_without_waiting_for_the_server' (38386796) panicked at src/lib.rs:327:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::local_http_server_receives_one_openai_request stdout ----
+
+thread 'tests::local_http_server_receives_one_openai_request' (38386791) panicked at src/lib.rs:244:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::rate_limit_is_requested_once_and_keeps_provider_code stdout ----
+
+thread 'tests::rate_limit_is_requested_once_and_keeps_provider_code' (38386794) panicked at src/lib.rs:295:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::malformed_or_empty_sdk_responses_are_failures stdout ----
+
+thread 'tests::malformed_or_empty_sdk_responses_are_failures' (38386792) panicked at src/lib.rs:177:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::provider_errors_are_classified_without_echoing_messages stdout ----
+
+thread 'tests::provider_errors_are_classified_without_echoing_messages' (38386793) panicked at src/lib.rs:177:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::local_http_server_receives_one_openai_request
+    tests::malformed_or_empty_sdk_responses_are_failures
+    tests::provider_errors_are_classified_without_echoing_messages
+    tests::rate_limit_is_requested_once_and_keeps_provider_code
+    tests::timeout_returns_without_waiting_for_the_server
+
+test result: FAILED. 7 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,15 @@
+
+> rein-book@0.1.0 typecheck
+> npm run typecheck --workspace ts
+
+
+> @rein/ts@0.0.0 typecheck
+> tsc --noEmit
+
+examples/ch05-loop.ts(15,19): error TS2532: Object is possibly 'undefined'.
+tests/loop.test.ts(50,73): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+tests/loop.test.ts(50,80): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string | ArrayBufferView<ArrayBufferLike> | Iterable<string | ArrayBufferView<ArrayBufferLike>> | AsyncIterable<...>'.
+  Type 'undefined' is not assignable to type 'string | ArrayBufferView<ArrayBufferLike> | Iterable<string | ArrayBufferView<ArrayBufferLike>> | AsyncIterable<...>'.
+tests/loop.test.ts(56,58): error TS2532: Object is possibly 'undefined'.
+tests/loop.test.ts(60,41): error TS2532: Object is possibly 'undefined'.

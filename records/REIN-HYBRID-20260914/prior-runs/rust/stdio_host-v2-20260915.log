@@ -1,0 +1,64 @@
+2026-09-15T00:06:00+08:00
+/private/tmp/rein-hybrid-work-20260914
+warning: unused import: `AsyncBufRead`
+  --> src/rein/stdio_executor.rs:14:10
+   |
+14 |     io::{AsyncBufRead, AsyncBufReadExt, AsyncWriteExt, BufReader},
+   |          ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `session_id` and `max_message_bytes` are never read
+   --> src/rein/stdio_executor.rs:101:5
+    |
+ 97 | struct Wire {
+    |        ---- fields in this struct
+...
+101 |     session_id: Option<String>,
+    |     ^^^^^^^^^^
+...
+119 |     max_message_bytes: Option<usize>,
+    |     ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rein-ch01-helloworld` (lib) generated 3 warnings (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running tests/stdio_host.rs (/private/tmp/rein-hybrid-target/debug/deps/stdio_host-a1a48f56b31380c9)
+
+running 4 tests
+
+thread 'production_host_reads_real_file_and_reaches_fixture_final' (40478994) panicked at tests/stdio_host.rs:141:5:
+assertion `left == right` failed
+  left: Some("fixture-output\n")
+ right: Some("fixture-output")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test production_host_reads_real_file_and_reaches_fixture_final ... FAILED
+
+thread 'ignored_cancel_becomes_unknown' (40478992) panicked at tests/stdio_host.rs:186:5:
+assertion `left == right` failed
+  left: Cancelled
+ right: OutcomeUnknown
+test ignored_cancel_becomes_unknown ... FAILED
+test cancellation_wait_is_observed_after_started ... ok
+test malformed_and_identity_faults_stop_without_second_model_call ... ok
+
+failures:
+
+failures:
+    ignored_cancel_becomes_unknown
+    production_host_reads_real_file_and_reaches_fixture_final
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.40s
+
+error: test failed, to rerun pass `--test stdio_host`
+exit=101
+2026-09-15T00:06:02+08:00

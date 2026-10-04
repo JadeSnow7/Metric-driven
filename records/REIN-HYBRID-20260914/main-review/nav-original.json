@@ -1,0 +1,15 @@
+{
+  "cwd": "/Users/huaodong/workspace/Agent-Learning",
+  "argv": [
+    "node",
+    "--import",
+    "tsx",
+    "--test",
+    "docs/.vitepress/theme/sourceVersionState.test.ts"
+  ],
+  "start": "2026-09-14T16:50:20.080257+00:00",
+  "end": "2026-09-14T16:50:20.253683+00:00",
+  "exit_code": 0,
+  "stdout": "\u2714 resolves the TypeScript and Rust language routes (0.353792ms)\n\u2714 keeps only recognized common anchors and maps language-specific aliases (0.089084ms)\n\u2714 keeps chapter 01 common anchors available to both editions (0.050667ms)\n\u2714 does not invent language pairs for core and legacy chapter routes (0.0515ms)\n\u2714 sidebar uses the Rust core route and exposes the plugin adjunct (0.349417ms)\n\u2139 tests 5\n\u2139 suites 0\n\u2139 pass 5\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 138.456833\n",
+  "stderr": ""
+}

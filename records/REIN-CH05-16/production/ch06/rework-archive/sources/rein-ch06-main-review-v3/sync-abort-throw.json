@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "node",
+    "--import",
+    "tsx",
+    "--input-type=module",
+    "-"
+  ],
+  "stdin": "import {runAgentLoop} from './ts/src/rein/loop.ts';\nconst c = new AbortController();\nconst result = await runAgentLoop({complete() {c.abort();throw new Error('sync after abort')}}, {root:'.'}, 'x', {signal:c.signal,timeoutMs:100});\nconsole.log(JSON.stringify(result));\nawait new Promise(resolve=>setTimeout(resolve,30));\n",
+  "start": "2026-09-14T13:44:40.178450+00:00",
+  "end": "2026-09-14T13:44:40.293705+00:00",
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "exit": 1,
+  "stdout": "{\"state\":\"failed\",\"reason\":\"cancelled\",\"messages\":[{\"role\":\"user\",\"content\":\"x\"}],\"events\":[{\"type\":\"model_requested\",\"turn\":1,\"messages\":[{\"role\":\"user\",\"content\":\"x\"}],\"tools\":[{\"name\":\"search_files\",\"description\":\"Search text in workspace files.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"needle\":{\"type\":\"string\"}},\"required\":[\"needle\"],\"additionalProperties\":false}},{\"name\":\"read_file\",\"description\":\"Read one UTF-8 file in the workspace.\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"additionalProperties\":false}}]},{\"type\":\"stopped\",\"state\":\"failed\",\"reason\":\"cancelled\"}]}\n",
+  "stderr": "/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts:130\n    onAbort = () => reject(new Error('cancelled'))\n                           ^\n\nError: cancelled\n    at AbortSignal.onAbort (/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts:130:28)\n    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:856:20)\n    at AbortSignal.dispatchEvent (node:internal/event_target:789:26)\n    at runAbort (node:internal/abort_controller:547:10)\n    at abortSignal (node:internal/abort_controller:518:3)\n    at AbortController.abort (node:internal/abort_controller:566:5)\n    at Object.complete (file:///private/tmp/rein-production-candidate-03/[eval1]:3:50)\n    at <anonymous> (/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts:69:47)\n    at raceControl (/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts:138:12)\n    at runAgentLoop (/private/tmp/rein-production-candidate-03/ts/src/rein/loop.ts:69:21)\n\nNode.js v26.5.0\n"
+}

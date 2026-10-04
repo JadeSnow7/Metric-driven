@@ -1,0 +1,9 @@
+2026-09-15T04:43:03.883112Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/B/book/docs/index.md:
+05–07 章沿 Rust core 与 TypeScript plugin 的混合路线推进，当前 M1 已完成离线实验核验；旧 TS 页面保留为历史对照。阅读 0 的示例与练习是可选自测，不是进入正文的条件。
+2026-09-15T04:43:59.514374Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target /private/tmp/rein-ch08-formal-20260915/B/book/docs/chapters/08.md
+2026-09-15T04:45:15.348518Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 186ms)... turn_id=01a0a35c-6a40-7192-89e9-2c8fd39e5cb5 retries=1 max_retries=5 sampling_error=stream disconnected before completion: failed to send websocket request: Connection closed normally
+2026-09-15T04:46:21.575570Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /private/tmp/rein-ch08-formal-20260915/B/book/rust/src/rein/context_methods.rs:
+                let source = m.content[4..]
+                    .split(']')
+2026-09-15T04:48:44.871183Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=seatbelt reason=operation_not_permitted path=unknown
+2026-09-15T04:49:04.774830Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=seatbelt reason=operation_not_permitted path=unknown

@@ -1,0 +1,131 @@
+{
+  "README.md": {
+    "sha256": "58cc7938c68fe37e4c2fdea35714c9568ace971e2cda903f811db5f8efb0f347"
+  },
+  ".gitignore": {
+    "sha256": "f8c3c5b079332d5a21b3d8894bc6e1b61ab21436aaabd368939dbab8c86daff4"
+  },
+  "skill/veriflow/SKILL.md": {
+    "sha256": "3de1c243cc0f3a61a22aa121a8f8b29d87349063eebb1358e4a3e432e4b33de9"
+  },
+  "skill/veriflow/references/examples.md": {
+    "sha256": "6bd9168aa9396a62317b9ba72394366fea9b28a0050f2542991cdf8504d80ad8"
+  },
+  "skill/veriflow/references/metrics-and-evidence.md": {
+    "sha256": "a7a81a5f54e860c679324b17a109cf4b56733a4fa6ebc5f5f1b8a2c963c2fbc3"
+  },
+  "skill/veriflow/references/claude-code.md": {
+    "sha256": "ed1f55dfa0f7e70defab74f48389d36834f27706058128f00cf5b6c89ad64db4"
+  },
+  "skill/veriflow/references/delegation-and-handoffs.md": {
+    "sha256": "a8b61c3095e0183ea906167c5f129f3c3b8c1bf0b010771d8c326537d6e2919a"
+  },
+  "skill/veriflow/references/workflow.md": {
+    "sha256": "99fe0310bb91f5bacd14dfdf7d9e9f605d200ebf199936251d5b85f878701b1e"
+  },
+  "skill/veriflow/references/writing.md": {
+    "sha256": "59d1b56aef3dd2e448596798142b3efea2a7b902c825765ec4317022b1b306d1"
+  },
+  "skill/veriflow/references/design.md": {
+    "sha256": "1eb0c81c91b248376f54102f09b7d2d0b90a245e81b9c3000d78b1230a2d024c"
+  },
+  "skill/veriflow/references/records.md": {
+    "sha256": "29e0ed44a2567ee87d8b90a10cfda580dfd90e080acd3dc26d455adcd695c0b7"
+  },
+  "skill/veriflow/tests/test_scenarios.py": {
+    "sha256": "97db545229cf3cef3f9b14944261504d5be574a9fc2b0ef64f57c292978609c7"
+  },
+  "skill/veriflow/tests/test_tools.py": {
+    "sha256": "1dc8413f6cada659a8365140f7bfdcfafa04f59c6f52146ec7cefd40072aeb98"
+  },
+  "skill/veriflow/agents/openai.yaml": {
+    "sha256": "5eec144a6c983eac27a828a5594c06979ac498c4b9c1dbcf9d2344174d800c09"
+  },
+  "skill/veriflow/scripts/validate_task.py": {
+    "sha256": "0af75cffa8954688e11025c6308cedc29da35e8b14ced294dcd85b4e2e21fcf3"
+  },
+  "skill/veriflow/scripts/integrate_boundary.py": {
+    "sha256": "67250905b53d4381a89105facc3a3d8cc07bfb69de784d88ef272da88671a5cf"
+  },
+  "skill/veriflow/scripts/record_execution.py": {
+    "sha256": "b64d36dbc5c5187f82b94edceeb6c097f6e36c549da8360fc0010a1a8d0dbf89"
+  },
+  "skill/veriflow/assets/templates/writing-handoff.md": {
+    "sha256": "febcfac0ec51bc15f301476fcf3cac2ce326c377029acab98e729e1491890c05"
+  },
+  "skill/veriflow/assets/templates/work-log.md": {
+    "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174"
+  },
+  "skill/veriflow/assets/templates/task-state.example.json": {
+    "sha256": "24d0d177d8be15636992719596e254170c94687bc87debb567d70367f0c24704"
+  },
+  "skill/veriflow/assets/templates/task-summary.md": {
+    "sha256": "58ef4b220a51f332462244f432a3b6f5cfd388315a8457113a8a2747756b43fd"
+  },
+  "skill/veriflow/assets/templates/handoff.md": {
+    "sha256": "7e94df7d877df493f2534488248a520b926ee55e5d4458aba517ffcd8e74672f"
+  },
+  "skill/veriflow/agents/claude-code/veriflow-reviewer.md": {
+    "sha256": "40b32cb4c47d7ca48114a9cef9dbadb63fdb8779c975aa2bf1ef4a989a0295de"
+  },
+  "skill/veriflow/agents/claude-code/veriflow-coder.md": {
+    "sha256": "ebf81b465c70af7e6edb79afe843dbad2f32a6c37dc88d64a09f3f7606c0a9ea"
+  },
+  "tools/test_rein_experiment.py": {
+    "sha256": "0bd4274e6d7ab759e5b1ba1d44fb28e286d653389072da9eaf2a64395b3c2f4e"
+  },
+  "tools/rein_chapter_snapshot.py": {
+    "sha256": "4038844c1e72a560f8064d6ee51302aaee20d41a7dfa23f4bfb4bd11e77edfd7"
+  },
+  "tools/.DS_Store": {
+    "sha256": "b8ac7914318bb2791a9956bdf4ab8c1966ef8a81b685e13eb2860b904f56c34e"
+  },
+  "tools/rein_evaluate.py": {
+    "sha256": "17b2b7aba7a02b6af1141875948d5fda153e4e89fc91b5109352e7674f62e208"
+  },
+  "tools/rein_experiment.py": {
+    "sha256": "85906ee3338a39d1dc36598a120b6a8656de297e9a74f96f255b367eb6881003"
+  },
+  "tools/rein_benchmark.py": {
+    "sha256": "62eb7979a313d79d58fd213c8bc163274e017c851056d950f8569bd9aedb36b3"
+  },
+  "tools/validate_repository.py": {
+    "sha256": "995f3e09eea154ed257dfd8470db08e0aedf95d2863a88012cc4adb02a3ba3fc"
+  },
+  "tools/tests/test_rein_dataset.py": {
+    "sha256": "c4ec1d475878d1b20354626adcd85fac5c07b2d5e5d38b5cba0788f2afdee9aa"
+  },
+  "tools/tests/test_rein_evaluate.py": {
+    "sha256": "698d6018c29c41e78f6ab85c837cf2719e30033e7baea69aea4f8580b9be05d9"
+  },
+  "tools/tests/test_rein_benchmark.py": {
+    "sha256": "e828776f01785e8cafb7997dde00f2876d2454560d5766f2e959ec294f80cddd"
+  },
+  "tools/tests/test_validate_repository.py": {
+    "sha256": "d6c1bf2e8f31fe4ae36d4675c24335a0b9cc9b4f738984835e980bd703d88479"
+  },
+  "tools/tests/test_rein_chapter_snapshot.py": {
+    "sha256": "57fe61667322a3f2a4335007c44a929b3d78c0054a95691744c966df72717422"
+  },
+  "claude-code/.DS_Store": {
+    "sha256": "5a3d45bafefe2cbc8d1cb883f6fd076d9e9adb0931f242a5cd6d59725be0f276"
+  },
+  "claude-code/agents": {
+    "symlink": "../skill/veriflow/agents/claude-code"
+  },
+  "claude-code/.claude-plugin/plugin.json": {
+    "sha256": "2eae9b6699b02a7766d7b13804b65ed41d0499c30151d8ba397b3098becb1e44"
+  },
+  "claude-code/skills/veriflow": {
+    "symlink": "../../skill/veriflow"
+  },
+  ".github/.DS_Store": {
+    "sha256": "ece498a95d5cdb7e3c72f2b00d96e534fea2cb7ec0d5d0828faf9b0fca88f7c2"
+  },
+  ".github/workflows/ci.yml": {
+    "sha256": "3e8febced913fd7c88ed5897dfb7397344bc4eab73b563013049bd29a9811e31"
+  },
+  "LICENSE": {
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  }
+}

@@ -1,0 +1,61 @@
+   1 import type { ChatAdapter, Message, ToolDefinition, ToolResult } from './contracts'
+   2 import type { Workspace } from './readonly'
+   3 import { dispatchReadonly } from './readonly'
+   4 
+   5 export type LoopState = 'running' | 'completed' | 'failed'
+   6 export type StopReason = 'final_answer' | 'empty_final' | 'model_error' | 'max_turns'
+   7 export type LoopEvent =
+   8   | { readonly type: 'model_requested'; readonly turn: number; readonly messageCount: number }
+   9   | { readonly type: 'model_received'; readonly turn: number; readonly toolCallIds: readonly string[]; readonly text: string }
+  10   | { readonly type: 'tool_result'; readonly turn: number; readonly toolCallId: string; readonly result: ToolResult }
+  11   | { readonly type: 'stopped'; readonly state: Exclude<LoopState, 'running'>; readonly reason: StopReason }
+  12 
+  13 export interface LoopOptions {
+  14   readonly maxTurns?: number
+  15   readonly tools?: readonly ToolDefinition[]
+  16 }
+  17 
+  18 export interface LoopResult {
+  19   readonly state: LoopState
+  20   readonly reason: StopReason
+  21   readonly answer?: string
+  22   readonly messages: readonly Message[]
+  23   readonly events: readonly LoopEvent[]
+  24   readonly error?: string
+  25 }
+  26 
+  27 export const readonlyToolDefinitions: readonly ToolDefinition[] = [
+  28   { name: 'search_files', description: 'Search text in workspace files.', inputSchema: { type: 'object', properties: { needle: { type: 'string' } }, required: ['needle'], additionalProperties: false } },
+  29   { name: 'read_file', description: 'Read one UTF-8 file in the workspace.', inputSchema: { type: 'object', properties: { path: { type: 'string' } }, required: ['path'], additionalProperties: false } },
+  30 ]
+  31 
+  32 /** Runs the small, replayable tool loop. One model turn may produce many tools. */
+  33 export async function runAgentLoop(adapter: ChatAdapter, workspace: Workspace, prompt: string, options: LoopOptions = {}): Promise<LoopResult> {
+  34   const maxTurns = options.maxTurns ?? 32
+  35   const tools = options.tools ?? readonlyToolDefinitions
+  36   const messages: Message[] = [{ role: 'user', content: prompt }]
+  37   const events: LoopEvent[] = []
+  38   for (let turn = 1; turn <= maxTurns; turn++) {
+  39     events.push({ type: 'model_requested', turn, messageCount: messages.length })
+  40     let model
+  41     try { model = await adapter.complete(messages, tools) }
+  42     catch (error) { return finish(messages, events, 'failed', 'model_error', undefined, error instanceof Error ? error.message : 'model error') }
+  43     messages.push(model.message)
+  44     events.push({ type: 'model_received', turn, toolCallIds: model.toolCalls.map(call => call.id), text: model.message.content })
+  45     if (model.toolCalls.length === 0) {
+  46       if (model.message.content.trim().length === 0) return finish(messages, events, 'failed', 'empty_final')
+  47       return finish(messages, events, 'completed', 'final_answer', model.message.content)
+  48     }
+  49     for (const call of model.toolCalls) {
+  50       const result = await dispatchReadonly(call, workspace)
+  51       events.push({ type: 'tool_result', turn, toolCallId: call.id, result })
+  52       messages.push({ role: 'tool', toolCallId: result.toolCallId, content: result.ok ? result.output ?? '' : JSON.stringify({ ok: false, error: result.error }) })
+  53     }
+  54   }
+  55   return finish(messages, events, 'failed', 'max_turns')
+  56 }
+  57 
+  58 function finish(messages: Message[], events: LoopEvent[], state: Exclude<LoopState, 'running'>, reason: StopReason, answer?: string, error?: string): LoopResult {
+  59   events.push({ type: 'stopped', state, reason })
+  60   return { state, reason, ...(answer === undefined ? {} : { answer }), messages, events, ...(error === undefined ? {} : { error }) }
+  61 }

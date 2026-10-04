@@ -1,0 +1,27 @@
+{
+  "script": "/private/tmp/rein-reading02-hash-check.sh",
+  "book_root": "/private/tmp/rein-production-candidate-03",
+  "source_untouched": true,
+  "steps": [
+    {
+      "name": "original",
+      "argv": "bash -c expected=\"$(node -e 'const fs=require(\"fs\"); const m=JSON.parse(fs.readFileSync(process.argv[1], \"utf8\")); console.log(m.files.find(f => f.path === \"docs/chapters/05.md\").sha256)' \"$1\")\"; actual=\"$(shasum -a 256 \"$2\" | awk '{print $1}')\"; test \"$expected\" = \"$actual\" || exit 1; printf 'docs/chapters/05.md: %s\\\\n' \"$actual\" _ /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.manifest.json /private/tmp/rein-reading02-hash-run.flbgdz/extract/rein-ch05/docs/chapters/05.md",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "start": "2026-09-14T13:35:13Z",
+      "end": "2026-09-14T13:35:13Z",
+      "exit": 0,
+      "stdout": "docs/chapters/05.md: 16bb9258c31ce754ab119ee35d1e8f360ba8bcddc84f24d53756f6fcc5efea6a\\n",
+      "stderr": ""
+    },
+    {
+      "name": "tampered",
+      "argv": "bash -c expected=\"$(node -e 'const fs=require(\"fs\"); const m=JSON.parse(fs.readFileSync(process.argv[1], \"utf8\")); console.log(m.files.find(f => f.path === \"docs/chapters/05.md\").sha256)' \"$1\")\"; actual=\"$(shasum -a 256 \"$2\" | awk '{print $1}')\"; test \"$expected\" = \"$actual\" || exit 1; printf 'docs/chapters/05.md: %s\\\\n' \"$actual\" _ /private/tmp/rein-production-candidate-03/chapter-snapshots/rein-ch05.manifest.json /private/tmp/rein-reading02-hash-run.flbgdz/extract/rein-ch05/docs/chapters/05.md",
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "start": "2026-09-14T13:35:13Z",
+      "end": "2026-09-14T13:35:13Z",
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

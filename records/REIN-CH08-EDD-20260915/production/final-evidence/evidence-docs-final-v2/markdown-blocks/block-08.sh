@@ -1,0 +1,5 @@
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
+ZERO_ROOT="$(mktemp -d /tmp/rein-ch08-practice-2.XXXXXX)"
+cp -R fixtures/ch08-context/. "$ZERO_ROOT/"
+npm run --silent ch08:compare -- --data-root "$ZERO_ROOT" --budget 0 >"$ZERO_ROOT/result.json"
+node -e 'const fs=require("fs"); const o=JSON.parse(fs.readFileSync(process.argv[1])); if(o.results.length!==16||!o.results.every(r=>r.status==="context_budget_exhausted"&&r.messages.length===0&&r.operations.length===0&&r.callRecords.length===0&&r.answer===null&&r.modelCalls===0&&r.estimatedUnits===0&&r.quality===null)) process.exit(1); console.log(`rows=${o.results.length} status=context_budget_exhausted messages=0 operations=0 callRecords=0 answer=null modelCalls=0`)' "$ZERO_ROOT/result.json"

@@ -1,0 +1,63 @@
+2026-09-15T00:08:46+08:00
+/private/tmp/rein-hybrid-work-20260914
+warning: unused import: `AsyncBufRead`
+  --> src/rein/stdio_executor.rs:14:10
+   |
+14 |     io::{AsyncBufRead, AsyncBufReadExt, AsyncWriteExt, BufReader},
+   |          ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `session_id` and `max_message_bytes` are never read
+   --> src/rein/stdio_executor.rs:101:5
+    |
+ 97 | struct Wire {
+    |        ---- fields in this struct
+...
+101 |     session_id: Option<String>,
+    |     ^^^^^^^^^^
+...
+119 |     max_message_bytes: Option<usize>,
+    |     ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rein-ch01-helloworld` (lib) generated 3 warnings (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-hybrid-work-20260914/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.13s
+     Running tests/stdio_host.rs (/private/tmp/rein-hybrid-target/debug/deps/stdio_host-a1a48f56b31380c9)
+
+running 8 tests
+test fault_host_normal_control_reaches_fixture_final ... ok
+test disconnect_after_effect_records_one_ledger_line_and_is_unknown ... ok
+test production_host_reads_real_file_and_reaches_fixture_final ... ok
+test cancellation_wait_is_observed_after_started ... ok
+
+thread 'ignored_cancel_becomes_unknown' (40506939) panicked at tests/stdio_host.rs:218:5:
+assertion `left == right` failed
+  left: Cancelled
+ right: OutcomeUnknown
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test ignored_cancel_becomes_unknown ... FAILED
+test crash_modes_have_no_followup_model_call ... ok
+test malformed_and_identity_faults_stop_without_second_model_call ... ok
+test evidence_and_stale_target_faults_are_unknown ... ok
+
+failures:
+
+failures:
+    ignored_cancel_becomes_unknown
+
+test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.69s
+
+error: test failed, to rerun pass `--test stdio_host`
+exit=101
+2026-09-15T00:08:50+08:00

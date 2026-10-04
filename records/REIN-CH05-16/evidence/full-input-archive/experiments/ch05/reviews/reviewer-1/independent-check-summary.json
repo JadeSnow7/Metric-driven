@@ -1,0 +1,58 @@
+{
+  "p17-ts": {
+    "evidence": "p17-ts-independent.json",
+    "checks": {
+      "AZURE-real-search-read-next-request": "passed",
+      "OCHRE-real-search-read-next-request": "passed",
+      "structured-tool-failure-feedback": "passed",
+      "model-error-keeps-events-no-answer": "passed",
+      "empty-final": "passed",
+      "normal-final": "passed",
+      "default-32-model-rounds": "passed",
+      "events-retain-call-inputs": "failed"
+    }
+  },
+  "p42-ts": {
+    "evidence": "p42-ts-independent.json",
+    "checks": {
+      "AZURE-real-search-read-next-request": "passed",
+      "OCHRE-real-search-read-next-request": "passed",
+      "structured-tool-failure-feedback": "passed",
+      "model-error-keeps-events-no-answer": "passed",
+      "empty-final": "passed",
+      "normal-final": "passed",
+      "default-32-model-rounds": "passed",
+      "events-retain-call-inputs": "failed"
+    }
+  },
+  "p17-rust": {
+    "evidence": "p17-rust-independent-isolated.json",
+    "checks": {
+      "AZURE-real-search-read-next-request": "passed",
+      "OCHRE-real-search-read-next-request": "passed",
+      "events-retain-call-inputs": "failed",
+      "normal-final": "passed",
+      "structured-tool-failure-feedback": "passed",
+      "model-error-keeps-events-no-answer": "passed",
+      "empty-final": "passed",
+      "explicit-32-model-rounds": "passed",
+      "AZURE-same-turn-id-order": "passed",
+      "OCHRE-same-turn-id-order": "passed"
+    }
+  },
+  "p42-rust": {
+    "evidence": "p42-rust-independent.json",
+    "checks": {
+      "AZURE-real-search-read-next-request": "passed",
+      "OCHRE-real-search-read-next-request": "passed",
+      "events-retain-call-inputs": "failed",
+      "normal-final": "passed",
+      "structured-tool-failure-feedback": "passed",
+      "model-error-keeps-events-no-answer": "passed",
+      "empty-final": "passed",
+      "explicit-32-model-rounds": "passed",
+      "AZURE-same-turn-id-order": "passed",
+      "OCHRE-same-turn-id-order": "passed"
+    }
+  }
+}

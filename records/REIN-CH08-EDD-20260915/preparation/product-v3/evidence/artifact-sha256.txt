@@ -1,0 +1,4 @@
+3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a  /private/tmp/rein-ch08-preparation-product-v3/data/index.json
+41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1  /private/tmp/rein-ch08-preparation-product-v3/data/tasks.json
+3b20edc2f72ca8baed303a1378a2d9f0a4d19bb9320f9283d5bf8d3192df0170  /private/tmp/rein-ch08-preparation-product-v3/data/budget-calibration.json
+fa4648e7da127bb47310d1ebaaffe21166f59d75d64db8386a3f3e1031158c85  /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH08-EDD-20260915/preparation/product-v3/product-spec.md

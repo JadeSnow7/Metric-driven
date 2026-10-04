@@ -1,0 +1,17 @@
+{
+  "name": "cargo-test",
+  "argv": [
+    "env",
+    "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build",
+    "cargo",
+    "test",
+    "--manifest-path",
+    "/private/tmp/rein-production-candidate-03/rust/Cargo.toml"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T13:47:42Z",
+  "end": "2026-09-14T13:47:47Z",
+  "exit": 0,
+  "stdout": "\nrunning 9 tests\ntest tests::status_classification_keeps_key_out_of_public_error ... ok\ntest rein::tests::read_file_rejects_escape ... ok\ntest rein::tests::anthropic_round_trip_shape ... ok\ntest tests::config_requires_all_values_and_strips_trailing_slash ... ok\ntest tests::local_http_server_receives_one_openai_request ... ok\ntest tests::provider_errors_are_classified_without_echoing_messages ... ok\ntest tests::timeout_returns_without_waiting_for_the_server ... ok\ntest tests::malformed_or_empty_sdk_responses_are_failures ... ok\ntest tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 7 tests\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\ntest unknown_badargs_missing_file_are_feedback_and_can_recover ... ok\ntest nested_arguments_are_canonical_for_duplicate_detection ... ok\ntest model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok\ntest two_workspaces_search_then_read_and_pair_multiple_calls ... ok\ntest observer_cancels_between_tools_and_pending_model_is_dropped ... ok\ntest controls_stop_pending_model_and_zero_budget_without_dispatch ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n\nrunning 5 tests\ntest tools_use_real_fixture_and_bind_actual_ids ... ok\ntest symlink_escape_is_rejected ... ok\ntest shared_fixture_and_replay_are_structured ... ok\ntest malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok\ntest concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.46s\n     Running unittests src/lib.rs (/private/tmp/rein-candidate03-build/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)\n     Running unittests src/bin/hello.rs (/private/tmp/rein-candidate03-build/debug/deps/hello-e891c8ec077baf1a)\n     Running unittests src/main.rs (/private/tmp/rein-candidate03-build/debug/deps/rein_ch01_helloworld-99d76be240253315)\n     Running tests/loop.rs (/private/tmp/rein-candidate03-build/debug/deps/loop-8ce302fc995cc4fc)\n     Running tests/prerequisites.rs (/private/tmp/rein-candidate03-build/debug/deps/prerequisites-f3a192991d055a1f)\n   Doc-tests rein_ch01_helloworld\n"
+}

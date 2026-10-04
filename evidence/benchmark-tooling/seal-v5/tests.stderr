@@ -1,0 +1,11 @@
+test_multiline_role_fake_cli_protocol (test_rein_benchmark.BenchmarkTests.test_multiline_role_fake_cli_protocol) ... ok
+test_prepare_replaces_inputs_and_copies_git (test_rein_benchmark.BenchmarkTests.test_prepare_replaces_inputs_and_copies_git) ... ok
+test_seal_binary_empty_and_executable_git_patch_recovery (test_rein_benchmark.BenchmarkTests.test_seal_binary_empty_and_executable_git_patch_recovery) ... ok
+test_seal_patch_recovery_and_unfinished (test_rein_benchmark.BenchmarkTests.test_seal_patch_recovery_and_unfinished) ... ok
+test_spawn_failure_is_sealed_in_metadata (test_rein_benchmark.BenchmarkTests.test_spawn_failure_is_sealed_in_metadata) ... ok
+test_two_sources_two_packages_and_symlink_manifest (test_rein_benchmark.BenchmarkTests.test_two_sources_two_packages_and_symlink_manifest) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.962s
+
+OK

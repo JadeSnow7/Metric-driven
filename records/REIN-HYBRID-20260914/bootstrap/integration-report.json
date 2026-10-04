@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+    "/Users/huaodong/Documents/evidence-driven-development/records/REIN-HYBRID-20260914/run.mjs"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "startedAt": "2026-09-14T15:35:55.558Z",
+  "endedAt": "2026-09-14T15:35:56.387Z",
+  "exit": 0,
+  "stdout": "merged 153 candidate paths; conflicts: 0\n",
+  "stderr": "",
+  "originalHead": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "baselinePath": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/inputs/rein-restored/manifest.json",
+  "output": "/private/tmp/rein-hybrid-work-20260914",
+  "record": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-HYBRID-20260914/bootstrap",
+  "candidatePaths": 153,
+  "conflicts": [],
+  "authorPaths": [
+    "docs/chapters/01.md",
+    "docs/chapters/02.md",
+    "docs/chapters/03.md",
+    "docs/chapters/04.md",
+    "reports/ch01-author-style.md",
+    "docs/.vitepress/config.mts",
+    "docs/.vitepress/theme/SourceVersionSwitch.vue",
+    "docs/.vitepress/theme/sourceVersionState.ts"
+  ],
+  "chapter01": {
+    "beforeHash": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d",
+    "afterHash": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d",
+    "originalCurrentHash": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d"
+  },
+  "sourceManifestPath": "/Users/huaodong/Documents/evidence-driven-development/records/REIN-HYBRID-20260914/bootstrap/hybrid-tree-manifest.json"
+}

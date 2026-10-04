@@ -1,0 +1,54 @@
+   1 use rein_ch01_helloworld::rein::{run_agent_loop, OpenAiHttp, StopReason, ToolError, Workspace};
+   2 use std::{
+   3     future::Future,
+   4     pin::Pin,
+   5     sync::{Arc, Mutex},
+   6 };
+   7 
+   8 struct Replay(Arc<Mutex<Vec<String>>>);
+   9 impl OpenAiHttp for Replay {
+  10     fn post<'a>(
+  11         &'a self,
+  12         _: &'a str,
+  13         _: &'a str,
+  14         _: serde_json::Value,
+  15     ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>> {
+  16         let response = self.0.lock().unwrap().remove(0);
+  17         Box::pin(async move { Ok(response) })
+  18     }
+  19 }
+  20 
+  21 #[tokio::test]
+  22 async fn tools_are_real_and_results_are_paired_in_order() {
+  23     let root = std::env::temp_dir().join(format!("rein-loop-{}", std::process::id()));
+  24     let _ = std::fs::remove_dir_all(&root);
+  25     std::fs::create_dir(&root).unwrap();
+  26     std::fs::write(root.join("note.txt"), "rust evidence").unwrap();
+  27     let responses = vec![
+  28         r#"{"choices":[{"message":{"role":"assistant","content":null,"tool_calls":[{"id":"s","type":"function","function":{"name":"search_files","arguments":"{\"needle\":\"evidence\"}"}},{"id":"r","type":"function","function":{"name":"read_file","arguments":"{\"path\":\"note.txt\"}"}}]}}]}"#.into(),
+  29         r#"{"choices":[{"message":{"role":"assistant","content":"done"}}]}"#.into(),
+  30     ];
+  31     let result = run_agent_loop(
+  32         &Replay(Arc::new(Mutex::new(responses))),
+  33         "offline://replay",
+  34         "x",
+  35         "m",
+  36         &Workspace { root: root.clone() },
+  37         "inspect",
+  38         2,
+  39     )
+  40     .await;
+  41     assert_eq!(result.reason, StopReason::FinalAnswer);
+  42     assert_eq!(
+  43         result
+  44             .messages
+  45             .iter()
+  46             .filter(|m| m.role == "tool")
+  47             .map(|m| m.tool_call_id.as_deref())
+  48             .collect::<Vec<_>>(),
+  49         vec![Some("s"), Some("r")]
+  50     );
+  51     assert_eq!(result.messages[2].content, "note.txt");
+  52     assert_eq!(result.messages[3].content, "rust evidence");
+  53     std::fs::remove_dir_all(root).unwrap();
+  54 }

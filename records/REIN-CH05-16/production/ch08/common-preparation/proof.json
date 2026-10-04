@@ -1,0 +1,187 @@
+{
+  "manifest": {
+    "chapter": "rein-ch08-common-input",
+    "unit": "estimated-bytes-v1",
+    "budget": 2400,
+    "sourceSnapshot": "/private/tmp/rein-ch07-main-snapshot-review/tar-recovered/rein-ch07",
+    "sourceManifest": "records/REIN-CH05-16/snapshots/ch07-accepted/manifest.json",
+    "documents": [
+      {
+        "id": "01-runtime",
+        "title": "运行配置",
+        "path": "docs/01-runtime.md",
+        "bytes": 713,
+        "sha256": "c5564c3d1b79b264663b0198752d744ab969dc89c3a0db4193e670892f2adbb3"
+      },
+      {
+        "id": "02-cache",
+        "title": "缓存配置",
+        "path": "docs/02-cache.md",
+        "bytes": 715,
+        "sha256": "633b30d4330c93a1086989fc08b635e2c541a71681b9003fc41893083fbf74e3"
+      },
+      {
+        "id": "03-approval",
+        "title": "批准规则",
+        "path": "docs/03-approval.md",
+        "bytes": 842,
+        "sha256": "5bed5d8d8fde7cbdf836c532ebcf45f48600067c66a83776de176529beaf0194"
+      },
+      {
+        "id": "04-index",
+        "title": "文档索引",
+        "path": "docs/04-index.md",
+        "bytes": 813,
+        "sha256": "4e628444667556897b71e3096414bf6681614bc4444860dbb6d4016a58071651"
+      },
+      {
+        "id": "05-failure",
+        "title": "失败处理",
+        "path": "docs/05-failure.md",
+        "bytes": 703,
+        "sha256": "320bccabb65aac5b5dde22f8527c46444fee0efb55aa209b03007f093b376233"
+      },
+      {
+        "id": "06-release",
+        "title": "发布操作",
+        "path": "docs/06-release.md",
+        "bytes": 838,
+        "sha256": "2ff783da3c92d6d07eda3ed2ca171c006eb9f7e2bf25fdca8e046995333aa8ae"
+      }
+    ],
+    "fixtureFiles": {
+      "fixtures/ch08-context/docs/01-runtime.md": {
+        "bytes": 713,
+        "sha256": "c5564c3d1b79b264663b0198752d744ab969dc89c3a0db4193e670892f2adbb3"
+      },
+      "fixtures/ch08-context/docs/02-cache.md": {
+        "bytes": 715,
+        "sha256": "633b30d4330c93a1086989fc08b635e2c541a71681b9003fc41893083fbf74e3"
+      },
+      "fixtures/ch08-context/docs/03-approval.md": {
+        "bytes": 842,
+        "sha256": "5bed5d8d8fde7cbdf836c532ebcf45f48600067c66a83776de176529beaf0194"
+      },
+      "fixtures/ch08-context/docs/04-index.md": {
+        "bytes": 813,
+        "sha256": "4e628444667556897b71e3096414bf6681614bc4444860dbb6d4016a58071651"
+      },
+      "fixtures/ch08-context/docs/05-failure.md": {
+        "bytes": 703,
+        "sha256": "320bccabb65aac5b5dde22f8527c46444fee0efb55aa209b03007f093b376233"
+      },
+      "fixtures/ch08-context/docs/06-release.md": {
+        "bytes": 838,
+        "sha256": "2ff783da3c92d6d07eda3ed2ca171c006eb9f7e2bf25fdca8e046995333aa8ae"
+      },
+      "fixtures/ch08-context/index.json": {
+        "bytes": 1367,
+        "sha256": "e050ea3de880ec20da2c2ec6a7a94669ff80b7dd0c96bd04264f9dc47f994121"
+      },
+      "fixtures/ch08-context/tasks.json": {
+        "bytes": 2060,
+        "sha256": "6f685842ac66bce024ec54ba4e921556d1d536f8c4a12299af2fe188dc7de247"
+      }
+    },
+    "proof": [
+      {
+        "taskId": "runtime",
+        "selectedSources": [
+          "01-runtime"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "仅根据提供材料回答；没有依据时明确说明证据不足。"
+          },
+          {
+            "role": "user",
+            "content": "运行文档检索服务使用什么传输方式和协议版本？"
+          },
+          {
+            "role": "user",
+            "content": "[来源:01-runtime]\n# 运行配置\n\n传输方式：stdio\n协议版本：2025-06-18\n\n本页描述一个小型服务在启动阶段需要知道的背景信息。配置内容按主题排列，便于维护者从索引进入具体说明，并在变更时留下清晰的阅读路径。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n"
+          }
+        ],
+        "estimatedUnits": 909,
+        "unit": "estimated-bytes-v1",
+        "budget": 2400,
+        "fitsBudget": true
+      },
+      {
+        "taskId": "release",
+        "selectedSources": [
+          "06-release"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "仅根据提供材料回答；没有依据时明确说明证据不足。"
+          },
+          {
+            "role": "user",
+            "content": "发布前应该运行哪条检查命令？"
+          },
+          {
+            "role": "user",
+            "content": "[来源:06-release]\n# 发布操作\n\n发布前检查命令：npm run verify\n\n本页说明发布阶段的工作背景。检查步骤被放在发布动作之前，便于维护者在交付前形成一致的确认节奏，并保留可复查的操作记录。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n"
+          }
+        ],
+        "estimatedUnits": 1010,
+        "unit": "estimated-bytes-v1",
+        "budget": 2400,
+        "fitsBudget": true
+      },
+      {
+        "taskId": "approval",
+        "selectedSources": [
+          "03-approval",
+          "05-failure"
+        ],
+        "messages": [
+          {
+            "role": "system",
+            "content": "仅根据提供材料回答；没有依据时明确说明证据不足。"
+          },
+          {
+            "role": "user",
+            "content": "文件基线变化后，批准状态是什么，接下来如何处理？"
+          },
+          {
+            "role": "user",
+            "content": "[来源:03-approval]\n# 批准规则\n\n基线变化后的批准状态：失效\n\n本页说明变更审查所处的背景。内容强调记录之间的关联和复核职责，使维护者能够沿着资料中的线索理解一次修改为何需要重新确认。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n"
+          },
+          {
+            "role": "user",
+            "content": "[来源:05-failure]\n# 失败处理\n\n旧批准失效后的处理动作：重新生成补丁并重新审查\n\n本页描述出现异常结果时的处置背景。叙述围绕恢复顺序和复核责任展开，帮助维护者把一次失败看作可追踪的工作过程。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n这段背景用于说明资料的组织方式与阅读边界，帮助读者在连续阅读时保持上下文，并且让示例拥有稳定的篇幅。\n"
+          }
+        ],
+        "estimatedUnits": 1780,
+        "unit": "estimated-bytes-v1",
+        "budget": 2400,
+        "fitsBudget": true
+      },
+      {
+        "taskId": "unknown",
+        "selectedSources": [],
+        "messages": [
+          {
+            "role": "system",
+            "content": "仅根据提供材料回答；没有依据时明确说明证据不足。"
+          },
+          {
+            "role": "user",
+            "content": "生产环境每秒可以处理多少请求？"
+          }
+        ],
+        "estimatedUnits": 143,
+        "unit": "estimated-bytes-v1",
+        "budget": 2400,
+        "fitsBudget": true
+      }
+    ]
+  },
+  "readme": "# ch08 共同输入\n\n基于已验收的 ch07 快照物化，预算为 2400，计量单位为 estimated-bytes-v1。六篇资料与四个任务固定后交给主线程复核。\n\n策略只接收 question、rules、budget、资料根和 index；统一回答器只接收策略实际构造的 messages。tasks.json 中的 expectedFacts、requiredFields、relevantSources 仅供评估器使用，不能透传给策略或回答器。unknown 任务没有资料来源，必须明确说明证据不足。\n\n每条规则是 system 消息，问题是 user 消息，每个选中文档是带 [来源:id] 前缀的 user 消息。完整 messages 与实际估算保存在 manifest.json 的 proof 中。本包只准备输入，没有策略、回答器、章节正文、比较器，也未启动模型或正式执行。\n",
+  "startedAt": "2026-09-14T15:22:56.704Z",
+  "endedAt": "2026-09-14T15:22:56.779Z"
+}

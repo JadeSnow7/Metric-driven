@@ -1,0 +1,357 @@
+{
+  "passed": true,
+  "modes": [
+    {
+      "mode": "normal",
+      "typescript": {
+        "state": "completed",
+        "reason": "final_answer",
+        "requests": 3,
+        "settledRequests": 3,
+        "modelRequests": 3,
+        "toolCalls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          },
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          },
+          {
+            "id": "read-2",
+            "name": "read_file",
+            "arguments": {
+              "path": "guide.md"
+            }
+          }
+        ],
+        "skipped": [],
+        "answer": "完成：marker: ch06 alpha | marker: ch06 beta"
+      },
+      "rust": {
+        "state": "completed",
+        "reason": "final_answer",
+        "requests": 3,
+        "settledRequests": 3,
+        "modelRequests": 3,
+        "toolCalls": [
+          {
+            "id": "search-1",
+            "name": "search_files",
+            "arguments": {
+              "needle": "marker: ch06"
+            }
+          },
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          },
+          {
+            "id": "read-2",
+            "name": "read_file",
+            "arguments": {
+              "path": "guide.md"
+            }
+          }
+        ],
+        "skipped": [],
+        "answer": "完成：marker: ch06 alpha | marker: ch06 beta"
+      }
+    },
+    {
+      "mode": "budget",
+      "typescript": {
+        "state": "failed",
+        "reason": "tool_budget_exhausted",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [
+          {
+            "id": "one",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "two",
+            "tool_budget_exhausted"
+          ]
+        ]
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "tool_budget_exhausted",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [
+          {
+            "id": "one",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "two",
+            "tool_budget_exhausted"
+          ]
+        ]
+      }
+    },
+    {
+      "mode": "duplicate",
+      "typescript": {
+        "state": "failed",
+        "reason": "duplicate_action",
+        "requests": 2,
+        "settledRequests": 2,
+        "modelRequests": 2,
+        "toolCalls": [
+          {
+            "id": "duplicate-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "duplicate-2",
+            "duplicate_action"
+          ]
+        ]
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "duplicate_action",
+        "requests": 2,
+        "settledRequests": 2,
+        "modelRequests": 2,
+        "toolCalls": [
+          {
+            "id": "duplicate-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "duplicate-2",
+            "duplicate_action"
+          ]
+        ]
+      }
+    },
+    {
+      "mode": "zero",
+      "typescript": {
+        "state": "failed",
+        "reason": "max_turns",
+        "requests": 0,
+        "settledRequests": 0,
+        "modelRequests": 0,
+        "toolCalls": [],
+        "skipped": []
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "max_turns",
+        "requests": 0,
+        "settledRequests": 0,
+        "modelRequests": 0,
+        "toolCalls": [],
+        "skipped": []
+      }
+    },
+    {
+      "mode": "tool-zero",
+      "typescript": {
+        "state": "failed",
+        "reason": "tool_budget_exhausted",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": [
+          [
+            "one",
+            "tool_budget_exhausted"
+          ],
+          [
+            "two",
+            "tool_budget_exhausted"
+          ]
+        ]
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "tool_budget_exhausted",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": [
+          [
+            "one",
+            "tool_budget_exhausted"
+          ],
+          [
+            "two",
+            "tool_budget_exhausted"
+          ]
+        ]
+      }
+    },
+    {
+      "mode": "cancel-before",
+      "typescript": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 0,
+        "settledRequests": 0,
+        "modelRequests": 0,
+        "toolCalls": [],
+        "skipped": []
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 0,
+        "settledRequests": 0,
+        "modelRequests": 0,
+        "toolCalls": [],
+        "skipped": []
+      }
+    },
+    {
+      "mode": "cancel",
+      "typescript": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      }
+    },
+    {
+      "mode": "cancel-at-return",
+      "typescript": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      }
+    },
+    {
+      "mode": "cancel-between-tools",
+      "typescript": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [
+          {
+            "id": "one",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "two",
+            "cancelled"
+          ]
+        ]
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "cancelled",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [
+          {
+            "id": "one",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ],
+        "skipped": [
+          [
+            "two",
+            "cancelled"
+          ]
+        ]
+      }
+    },
+    {
+      "mode": "timeout",
+      "typescript": {
+        "state": "failed",
+        "reason": "timeout",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      },
+      "rust": {
+        "state": "failed",
+        "reason": "timeout",
+        "requests": 1,
+        "settledRequests": 1,
+        "modelRequests": 1,
+        "toolCalls": [],
+        "skipped": []
+      }
+    }
+  ]
+}

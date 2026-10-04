@@ -1,0 +1,19 @@
+# Repository state after the run
+- current branch: main
+- commits since base: 0; files in new commits: none
+- git status --porcelain --untracked-files=all:
+```
+(clean)
+```
+- stash list: empty
+- origin refs unchanged since fixture setup: True
+
+## git log f4e9c0e..HEAD
+```
+(no commits)
+```
+
+## diff vs base (worktree, code files only)
+```diff
+(no diff)
+```

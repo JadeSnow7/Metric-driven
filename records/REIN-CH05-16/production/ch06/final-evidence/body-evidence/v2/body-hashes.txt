@@ -1,0 +1,2 @@
+6b1ae527db1fd26dd68e37c7635c79fc9f1de437ca51539620bf6fbfd9f75b84  docs/chapters/06.md
+30106cc1279cf85edc08c95c5ca2c8c0ef73fd30150c4ebf8da1c8f095cd2f87  docs/chapters/06-rust.md

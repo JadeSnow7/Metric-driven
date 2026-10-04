@@ -48,3 +48,7 @@ Rein PR #3 的 D12–D14 与三产品整合设计目前仍把 Coordinator / DAG 
 | V4：跨 Agent 与 Web 场景 | 在 V2/V3 通过后，资源选择、文件写入所有权与全局预算；Web Studio provider 单独接入 | 两 Agent 写范围不冲突；取消/断连不重复副作用；网页业务断言与人工决定绑定同一候选 |
 
 首个闭环只需串行任务与现有 CLI/进程适配，不要求并行调度、daemon、完整项目管理界面或部署平台。交付实现时分别报告本地检查、真实模型、跨 Agent 与 Web 原生界面的证据，不能用其中一种替代另一种。
+
+## 合并后状态（2026-10-05）
+
+以上版本表保留 2026-10-04 的审查事实。PR #3 已合并，当前实现采用 `skill/veriflow/`、schema 1.3、recorder、整合工具及 Claude Code 包装，并保持 1.1/1.2 历史兼容；不退回旧目录与旧格式。Rein PR #3 的离线运行时亦已合并，RuntimePort 与本仓编排契约仍是待实现候选。保留本决定的 Veriflow workflow / Rein runtime / Web Studio 环境分工；没有在此次合并中实现 V1–V4 或迁移源码。

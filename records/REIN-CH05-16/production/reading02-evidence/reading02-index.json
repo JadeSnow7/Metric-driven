@@ -1,0 +1,12 @@
+{
+  "label": "reading02-evidence",
+  "source_path": "/private/tmp/rein-reading02-evidence",
+  "archive_path": "records/REIN-CH05-16/production/reading02-evidence/source",
+  "action": "copied",
+  "file_count": 3,
+  "manifest": "records/REIN-CH05-16/production/reading02-evidence/evidence-manifest.json",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  }
+}

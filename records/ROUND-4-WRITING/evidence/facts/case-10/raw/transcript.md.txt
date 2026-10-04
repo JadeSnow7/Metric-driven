@@ -1,0 +1,30 @@
+# Transcript（主要步骤与命令，每步一行）
+
+1. 阅读 skill：`cat skill-iteration-3/SKILL.md`，以及 references/workflow.md、records.md、metrics-and-evidence.md、delegation-and-handoffs.md、examples.md 和 assets/templates/*。
+2. 阅读校验器 `skill-iteration-3/scripts/validate_task.py`，了解门槛与必需字段。
+3. 检查仓库：`git status`、`git log --oneline`、`git branch -a`、`git remote -v`、列出文件；结果为 main@547ce4e、工作区干净、origin=../origin.git。
+4. 阅读源码与测试：README.md、.gitignore、config.py、pricing.py、inventory.py、tests/*。
+5. 判定档位 L2（两个用户可见结果，且需跨会话接手）；授权为 commit 已授权、push 未授权。
+6. 基线测试：`python3 --version`（3.14.6）；`python3 -m unittest discover -s tests -t . -v` → 9/9 OK。
+7. 在 scratchpad 探测 csv/int 行为：整文件 `csv.reader` 遇未闭合引号会吞掉后续行；字段超过 131072 会抛 csv.Error；`int()` 接受 +3/1_000/٣；超过 4300 位抛 ValueError。
+8. 建立 `records/TASK-001/{evidence,handoffs}`，保存基线测试输出为 EVD-001；用 `validate_task.py --print-revision/--print-sha256` 计算 revision 与 sha256。
+9. 编写 `records/TASK-001/task-state.json`（SRC/MT/MET/IT/DEC、基线、授权），运行 `validate_task.py --gate implementation` → ok。
+10. 先写测试 `tests/test_inventory.py`（ImportCsvTests、LowStockTests），运行后 24 个 AttributeError，原有测试通过。
+11. 第一版实现 `inventory.py`（逐行 csv.reader + ASCII 数字正则 + 捕获异常 + low_stock）；`python3 -m unittest discover -s tests -t . -v` → 28/28 OK。
+12. 在 scratchpad 副本上做变异检查（mutation_check.py），6 个变体都被抓到；编写并运行 `records/TASK-001/e2e_check.py` → E2E PASSED。
+13. 审查 `git diff`：测试辅助函数改为写 bytes，加 `from __future__ import annotations`；把源码里的字面 U+0663/U+FEFF 改回转义写法；重新生成 EVD-002..004，`--gate local-commit` → ok。
+14. 编写 task-summary.md、work-log.md、handoffs/HANDOFF-001.md；`git add` 暂存任务路径。
+15. 核对摘要中的说法时实测跨行引号记录：`"Widget\nlarge",3` 的第二行被导入为商品 `large"`，说明原说法错误、隔离被破坏（`csv.reader(strict=True)` 也不拦）。顺带执行了 `rm -rf __pycache__/*.pyc`（仅删除被忽略的字节码缓存）。
+16. `git restore --staged` 撤下暂存；把 task-state 回退（EVD stale、MET undetermined、IT-001/MT-001 in_progress、IT-002/MT-002 implemented），`--gate local-commit` 确认被拦。
+17. 新增或调整测试（引号字段、多余引号、跨行记录两半都跳过、20 万字符 name 可导入），在旧实现上运行得 4 个失败。
+18. 改实现为两字段 RFC 4180 正则解析（`_TWO_FIELD_LINE`、`_split_two_fields`、`_unquote`），去掉 csv 依赖 → 30/30 OK。
+19. 用构造的超长恶意行测正则耗时（最慢约 19 ms）；更新变异体为 8 个，E2E 样本加入跨行引号记录。
+20. 重新生成证据 EVD-002（30/30）、EVD-003（8/8 变体被抓到）、EVD-004（E2E PASSED）、EVD-005（最慢 19.32 ms），并计算新的 revision 与 sha256。
+21. 更新 task-state.json（verified/passed、DEC-001/002 改写且仍为 proposed、CHG reviewed）、task-summary.md、HANDOFF-001.md，work-log 追加 EVENT-004/005；`--gate local-commit` → ok。
+22. `git add inventory.py tests/test_inventory.py records/TASK-001`；核对 `git diff --stat` 为空、没有漏掉的未跟踪文件。
+23. `git commit` → 6d1d31b "Add Inventory.import_csv and Inventory.low_stock with tests"（12 个文件）；`git status -sb` 显示 ahead 1。
+24. 记录提交回执（ACT-001 completed、ACT-002、delivery.local_commit=completed），work-log 追加 EVENT-006；`--gate record` → ok；`--gate push` → 只报 AUTH_PUSH；`--gate local-commit` → DELIVERY_ALREADY_COMPLETED（防止重复提交）。
+25. `git ls-remote ../origin.git` 确认远端 main 仍为 547ce4e（未推送）。
+26. `git commit` → 6bf18c2 "records: TASK-001 commit receipt for 6d1d31b"（仅 records）；`git status -sb` 显示 ahead 2，工作区干净；revision 与证据一致。
+27. 在 HEAD 上最终复跑：unittest 30/30 OK；`python3 records/TASK-001/e2e_check.py` → E2E PASSED。
+28. 写入 outputs/final_reply.md 与 outputs/transcript.md。未执行 push、merge、deploy。

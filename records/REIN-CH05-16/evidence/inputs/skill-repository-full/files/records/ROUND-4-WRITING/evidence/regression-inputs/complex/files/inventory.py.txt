@@ -1,0 +1,83 @@
+"""In-memory stock tracking."""
+
+from __future__ import annotations
+
+import csv
+import os
+import re
+
+# One physical CSV line with exactly two fields (RFC 4180 quoting). A field is
+# either unquoted and free of quotes and commas, or wrapped in double quotes
+# (optionally padded with spaces/tabs) with any inner quote doubled.
+_FIELD = r'([^",]*|[ \t]*"[^"]*(?:""[^"]*)*"[ \t]*)'
+_TWO_FIELD_LINE = re.compile(_FIELD + "," + _FIELD)
+_QUANTITY = re.compile(r"[0-9]+")
+
+
+class Inventory:
+    def __init__(self) -> None:
+        self._items: dict[str, int] = {}
+
+    def add_item(self, name: str, quantity: int) -> None:
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
+        self._items[name] = self._items.get(name, 0) + quantity
+
+    def count(self, name: str) -> int:
+        return self._items.get(name, 0)
+
+    def names(self) -> list[str]:
+        """Return item names in alphabetical order."""
+        return sorted(self._items)
+
+    def import_csv(self, path: str | os.PathLike[str]) -> tuple[int, list[int]]:
+        """Import using one whole-file csv.reader stream (fixture defect)."""
+        with open(path, encoding="utf-8-sig", newline="") as handle:
+            rows = list(csv.reader(handle))
+        if not rows or [field.strip() for field in rows[0]] != ["name", "quantity"]:
+            raise ValueError("CSV must start with the header 'name,quantity'")
+        pending=[]; skipped=[]
+        for line_number,row in enumerate(rows[1:],start=2):
+            if not row or not any(field.strip() for field in row): continue
+            if len(row)!=2: skipped.append(line_number); continue
+            name, quantity_text=(field.strip() for field in row)
+            if not name or not quantity_text.isdigit() or int(quantity_text)<=0: skipped.append(line_number); continue
+            pending.append((name,int(quantity_text)))
+        for name, quantity in pending: self.add_item(name,quantity)
+        return len(pending), skipped
+
+    def low_stock(self, threshold: int = 5) -> list[str]:
+        """Return names of items whose quantity is below ``threshold``, sorted."""
+        return sorted(name for name, quantity in self._items.items() if quantity < threshold)
+
+
+def _split_two_fields(line: str) -> tuple[str, str] | None:
+    """Split one physical line into two unquoted values; ``None`` if malformed."""
+    match = _TWO_FIELD_LINE.fullmatch(line.rstrip("\r\n"))
+    if match is None:
+        return None
+    first, second = (_unquote(field) for field in match.groups())
+    return first, second
+
+
+def _unquote(field: str) -> str:
+    padded = field.strip(" \t")
+    if padded.startswith('"'):  # the pattern guarantees a closing quote
+        return padded[1:-1].replace('""', '"')
+    return field
+
+
+def _parse_stock_row(line: str) -> tuple[str, int] | None:
+    fields = _split_two_fields(line)
+    if fields is None:
+        return None
+    name, quantity_text = (field.strip() for field in fields)
+    if not name or not _QUANTITY.fullmatch(quantity_text):
+        return None
+    try:
+        quantity = int(quantity_text)
+    except ValueError:  # more digits than Python's int conversion limit
+        return None
+    if quantity <= 0:
+        return None
+    return name, quantity

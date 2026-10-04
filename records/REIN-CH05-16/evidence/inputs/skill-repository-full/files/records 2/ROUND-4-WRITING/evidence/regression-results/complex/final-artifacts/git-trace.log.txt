@@ -1,0 +1,21 @@
+12:32:18.251171 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:32:18.251496 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:32:18.252800 git.c:476               trace: built-in: git status --short --branch
+12:32:25.248637 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:32:25.249176 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:32:25.249895 git.c:476               trace: built-in: git ls-files
+12:33:13.562059 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:33:13.562755 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:33:13.564872 git.c:476               trace: built-in: git show HEAD:inventory.py
+12:33:35.639998 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:33:35.640475 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:33:35.641150 git.c:476               trace: built-in: git status --short --branch
+12:34:59.026752 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:34:59.027223 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:34:59.027606 git.c:476               trace: built-in: git diff --check
+12:35:43.604402 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:35:43.604651 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:35:43.605025 git.c:476               trace: built-in: git diff -- inventory.py records/TASK-001/task-summary.md records/TASK-001/task-state.json
+12:35:43.622996 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:35:43.623279 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:35:43.623936 git.c:476               trace: built-in: git status --short --branch

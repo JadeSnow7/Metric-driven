@@ -1,0 +1,1 @@
+{"finding":"relative target does not exist","acceptable":"repair link to current setup document","assertions":[{"file":"docs/index.md","visible_link_target":"../setup.md","link_target":"../setup.md","must_exist":true},{"file":"docs/index.md","require_retained_body":true}]}

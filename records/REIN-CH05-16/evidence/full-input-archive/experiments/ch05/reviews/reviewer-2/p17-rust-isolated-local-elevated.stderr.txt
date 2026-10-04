@@ -1,0 +1,2 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s
+     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)

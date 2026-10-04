@@ -1,0 +1,3 @@
+Pre-fix regression: test_execution_failure_cannot_be_claimed_passed_by_outer_record
+Observed validator result: exit=0
+{"ok": true, "gate": "acceptance", "errors": [], "warnings": [], "limits": "Structural consistency is not proof of product success or authorization authenticity."}

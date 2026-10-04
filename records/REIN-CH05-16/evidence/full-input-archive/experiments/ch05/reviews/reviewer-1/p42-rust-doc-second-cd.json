@@ -1,0 +1,16 @@
+{
+  "label": "p42-rust-doc-second-cd",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "sh",
+    "-c",
+    "cd rust"
+  ],
+  "started_utc": "2026-09-14T11:22:33Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 1,
+  "output": "sh: line 0: cd: rust: No such file or directory\n"
+}

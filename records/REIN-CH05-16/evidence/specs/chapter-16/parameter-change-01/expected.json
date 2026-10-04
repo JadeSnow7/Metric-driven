@@ -1,0 +1,1 @@
+{"finding":"flag was renamed","acceptable":"update the flag while retaining timeout intent","assertions":[{"file":"docs/api.md","contains":"--timeout-seconds 5","reference":"src/cli.py:argparse","require_retained_body":true},{"file":"docs/api.md","does_not_contain":"--timeout 5"},{"file":"docs/api.md","contains":"Call"}]}

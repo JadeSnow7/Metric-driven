@@ -1,0 +1,40 @@
+{
+  "source_path": "/private/tmp/rein-ch06-main-review-v4",
+  "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-main-review-v4",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "ch05-regression.json",
+      "sha256": "b36e6abaab8cdf58bcb06ab7cd2fc5bd092a6245006547f1da9da2243aaf70eb",
+      "mode": "0644"
+    },
+    {
+      "path": "compare.json",
+      "sha256": "ce4c9fcfc00fe0202f52b0747d1bc4ff0c713e3667c211a6ac42a227fd297e3d",
+      "mode": "0644"
+    },
+    {
+      "path": "rust-normal-changed.json",
+      "sha256": "42b35918436852a69a552bb4134dd738d1cf78e3e22538f6e498f20bc17804b0",
+      "mode": "0644"
+    },
+    {
+      "path": "rust-normal-empty.json",
+      "sha256": "c2f6de90dd986cd7b3401a0f42aa8e34297b44bad6cd33f84bfc19d6af4bff2a",
+      "mode": "0644"
+    },
+    {
+      "path": "sync-abort-throw.json",
+      "sha256": "ce3f0ec6fd7a093cd1ec490c0697573b6dfc874f803760ce0796f1b4557353fa",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

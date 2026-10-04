@@ -1,0 +1,17 @@
+{
+  "name": "fmt-check",
+  "argv": [
+    "cargo",
+    "fmt",
+    "--manifest-path",
+    "/private/tmp/rein-production-candidate-03/rust/Cargo.toml",
+    "--",
+    "--check"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T13:51:38Z",
+  "end": "2026-09-14T13:51:38Z",
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}
