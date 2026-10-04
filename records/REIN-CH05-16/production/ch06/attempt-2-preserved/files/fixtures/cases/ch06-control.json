@@ -1,0 +1,1 @@
+{"modes":["normal","budget","duplicate","cancel","timeout","zero"],"expectedReasons":{"normal":"final_answer","budget":"tool_budget_exhausted","duplicate":"duplicate_action","cancel":"cancelled","timeout":"timeout","zero":"max_turns"}}

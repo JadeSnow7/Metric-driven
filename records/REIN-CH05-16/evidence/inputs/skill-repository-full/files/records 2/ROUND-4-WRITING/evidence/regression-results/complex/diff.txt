@@ -1,0 +1,25 @@
+diff --git a/inventory.py b/inventory.py
+index 60ede3d..9ee9d2d 100644
+--- a/inventory.py
++++ b/inventory.py
+@@ -11,6 +11,7 @@ import re
+ _FIELD = r'([^",]*|[ \t]*"[^"]*(?:""[^"]*)*"[ \t]*)'
+ _TWO_FIELD_LINE = re.compile(_FIELD + "," + _FIELD)
+ _QUANTITY = re.compile(r"[0-9]+")
++_MAX_QUANTITY_DIGITS = 4300
+ 
+ 
+ class Inventory:
+@@ -97,9 +98,11 @@ def _parse_stock_row(line: str) -> tuple[str, int] | None:
+     name, quantity_text = (field.strip() for field in fields)
+     if not name or not _QUANTITY.fullmatch(quantity_text):
+         return None
++    if len(quantity_text) > _MAX_QUANTITY_DIGITS:
++        return None
+     try:
+         quantity = int(quantity_text)
+-    except ValueError:  # more digits than Python's int conversion limit
++    except ValueError:  # defensive for runtimes with a lower conversion limit
+         return None
+     if quantity <= 0:
+         return None

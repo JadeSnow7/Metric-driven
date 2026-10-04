@@ -1,0 +1,193 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling libc v0.2.189
+   Compiling pin-project-lite v0.2.17
+   Compiling cfg-if v1.0.4
+   Compiling futures-core v0.3.34
+   Compiling stable_deref_trait v1.2.1
+   Compiling bytes v1.12.1
+   Compiling memchr v2.8.3
+   Compiling futures-sink v0.3.34
+   Compiling find-msvc-tools v0.1.12
+   Compiling shlex v2.0.1
+   Compiling itoa v1.0.18
+   Compiling futures-channel v0.3.34
+   Compiling smallvec v1.16.1
+   Compiling cc v1.4.6
+   Compiling writeable v0.6.4
+   Compiling litemap v0.8.3
+   Compiling futures-io v0.3.34
+   Compiling icu_normalizer_data v2.3.0
+   Compiling zeroize v1.9.0
+   Compiling utf8_iter v1.0.4
+   Compiling icu_properties_data v2.3.0
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling http v1.5.0
+   Compiling once_cell v1.21.4
+   Compiling zerocopy v0.8.57
+   Compiling serde_core v1.0.229
+   Compiling percent-encoding v2.3.2
+   Compiling rustls-pki-types v1.15.1
+   Compiling http-body v1.1.0
+   Compiling untrusted v0.9.0
+   Compiling ring v0.17.14
+   Compiling core-foundation-sys v0.8.7
+   Compiling httparse v1.10.1
+   Compiling strsim v0.11.1
+   Compiling tower-service v0.3.3
+   Compiling ident_case v1.0.1
+   Compiling rustls v0.23.44
+   Compiling fnv v1.0.7
+   Compiling bitflags v2.13.2
+   Compiling serde v1.0.229
+   Compiling try-lock v0.2.5
+   Compiling want v0.3.1
+   Compiling form_urlencoded v1.2.2
+   Compiling tracing-core v0.1.36
+   Compiling zmij v1.0.23
+   Compiling atomic-waker v1.1.2
+   Compiling subtle v2.6.1
+   Compiling unicase v2.9.0
+   Compiling getrandom v0.3.4
+   Compiling syn v3.0.5
+   Compiling syn v2.0.119
+   Compiling mio v1.2.3
+   Compiling socket2 v0.6.5
+   Compiling getrandom v0.2.17
+   Compiling synstructure v0.13.2
+   Compiling darling_core v0.20.11
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling tokio-macros v2.7.2
+   Compiling futures-macro v0.3.34
+   Compiling tokio v1.53.1
+   Compiling zerofrom-derive v0.1.7
+   Compiling yoke-derive v0.8.2
+   Compiling futures-util v0.3.34
+   Compiling zerofrom v0.1.8
+   Compiling tracing-attributes v0.1.31
+   Compiling serde_derive v1.0.229
+   Compiling core-foundation v0.10.1
+   Compiling security-framework-sys v2.17.0
+   Compiling security-framework v3.7.0
+   Compiling tracing v0.1.44
+   Compiling darling_macro v0.20.11
+   Compiling mime_guess v2.0.5
+   Compiling ppv-lite86 v0.2.21
+   Compiling sync_wrapper v1.0.2
+   Compiling ipnet v2.12.2
+   Compiling serde_json v1.0.151
+   Compiling tower-layer v0.3.3
+   Compiling base64 v0.22.1
+   Compiling rustls-webpki v0.103.15
+   Compiling darling v0.20.11
+   Compiling hyper v1.11.1
+   Compiling tower v0.5.3
+   Compiling rustls-native-certs v0.8.4
+   Compiling rand_core v0.6.4
+   Compiling ryu v1.0.23
+   Compiling yoke v0.8.3
+   Compiling minimal-lexical v0.2.1
+   Compiling thiserror v1.0.69
+   Compiling mime v0.3.17
+   Compiling nom v7.1.3
+   Compiling rand_chacha v0.3.1
+   Compiling hyper-util v0.1.20
+   Compiling tokio-util v0.7.19
+   Compiling rand_core v0.9.5
+   Compiling thiserror-impl v1.0.69
+   Compiling http-body-util v0.1.5
+   Compiling thiserror v2.0.20
+   Compiling log v0.4.34
+   Compiling rand_chacha v0.9.0
+   Compiling rand v0.8.8
+   Compiling eventsource-stream v0.2.3
+   Compiling futures-executor v0.3.34
+   Compiling thiserror-impl v2.0.20
+   Compiling instant v0.1.13
+   Compiling futures-timer v3.0.4
+   Compiling backoff v0.4.0
+   Compiling futures v0.3.34
+   Compiling rand v0.9.5
+   Compiling tokio-stream v0.1.19
+   Compiling async-openai-macros v0.1.1
+   Compiling dotenvy v0.15.7
+   Compiling tokio-rustls v0.26.5
+   Compiling hyper-rustls v0.27.9
+   Compiling serde_urlencoded v0.7.1
+   Compiling secrecy v0.10.3
+   Compiling derive_builder_core v0.20.2
+   Compiling derive_builder_macro v0.20.2
+   Compiling derive_builder v0.20.2
+   Compiling zerovec v0.11.8
+   Compiling zerotrie v0.2.5
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.3.0
+   Compiling icu_locale_core v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling url v2.5.8
+   Compiling tower-http v0.6.11
+   Compiling reqwest v0.12.28
+   Compiling reqwest-eventsource v0.6.0
+   Compiling async-openai v0.29.6
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 42.68s
+     Running unittests src/lib.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)
+
+running 9 tests
+test tests::status_classification_keeps_key_out_of_public_error ... ok
+test rein::tests::read_file_rejects_escape ... ok
+test rein::tests::anthropic_round_trip_shape ... ok
+test tests::provider_errors_are_classified_without_echoing_messages ... FAILED
+test tests::timeout_returns_without_waiting_for_the_server ... FAILED
+test tests::rate_limit_is_requested_once_and_keeps_provider_code ... FAILED
+test tests::malformed_or_empty_sdk_responses_are_failures ... FAILED
+test tests::local_http_server_receives_one_openai_request ... FAILED
+test tests::config_requires_all_values_and_strips_trailing_slash ... ok
+
+failures:
+
+---- tests::provider_errors_are_classified_without_echoing_messages stdout ----
+
+thread 'tests::provider_errors_are_classified_without_echoing_messages' (38430334) panicked at src/lib.rs:177:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::timeout_returns_without_waiting_for_the_server stdout ----
+
+thread 'tests::timeout_returns_without_waiting_for_the_server' (38430337) panicked at src/lib.rs:327:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::rate_limit_is_requested_once_and_keeps_provider_code stdout ----
+
+thread 'tests::rate_limit_is_requested_once_and_keeps_provider_code' (38430335) panicked at src/lib.rs:295:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::malformed_or_empty_sdk_responses_are_failures stdout ----
+
+thread 'tests::malformed_or_empty_sdk_responses_are_failures' (38430333) panicked at src/lib.rs:177:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+---- tests::local_http_server_receives_one_openai_request stdout ----
+
+thread 'tests::local_http_server_receives_one_openai_request' (38430332) panicked at src/lib.rs:244:63:
+called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
+
+
+failures:
+    tests::local_http_server_receives_one_openai_request
+    tests::malformed_or_empty_sdk_responses_are_failures
+    tests::provider_errors_are_classified_without_echoing_messages
+    tests::rate_limit_is_requested_once_and_keeps_provider_code
+    tests::timeout_returns_without_waiting_for_the_server
+
+test result: FAILED. 4 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,1 @@
+/bin/zsh -lc cd /private/tmp/rein-production-candidate-03/ts && node --import tsx examples/ch05-live.ts --live '/private/tmp/rein-ch05-live-evidence/workspace' '请搜索 marker:，读取命中的两个文件，并给出事实A、事实B及各自来源文件。'

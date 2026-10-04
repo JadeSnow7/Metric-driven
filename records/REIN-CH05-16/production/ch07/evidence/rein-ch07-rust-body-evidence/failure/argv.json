@@ -1,0 +1,1 @@
+["cargo", "run", "--quiet", "--manifest-path", "rust/Cargo.toml", "--example", "ch07_context", "--", "/private/tmp/rein-ch07-rust-body-evidence/case/ch07-context.json"]

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys; from pathlib import Path; d=json.loads(Path(sys.argv[1]).read_text()); rs=d["results"]; est=lambda m:sum(8+len(x["role"].encode())+len(x["content"].encode()) for x in m); print(json.dumps({"rows":len(rs),"unit":d.get("unit"),"estimate_mismatches":[[r["taskId"],r["strategy"],r["estimatedUnits"],est(r["messages"])] for r in rs if r.get("status")=="completed" and r["estimatedUnits"]!=est(r["messages"])],"budget_zero_rows":sum(r.get("status")=="context_budget_exhausted" for r in rs),"task04":[[r["strategy"],r["status"],r.get("quality"),r.get("answer",{}).get("insufficientEvidence") if r.get("answer") else None] for r in rs if r["taskId"]=="task-04"],"ops_score_missing":sum(r["strategy"]=="retrieval" and any(o.get("score") is None for o in r["operations"]) for r in rs)},ensure_ascii=False))
+                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/Quartz/clean-ch08-1/stdout.bin'

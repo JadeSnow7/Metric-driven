@@ -1,0 +1,18 @@
+{
+  "label": "p17-ts-doc-initial",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17",
+  "argv": [
+    "npm",
+    "run",
+    "ch05:offline",
+    "--workspace",
+    "ts"
+  ],
+  "started_utc": "2026-09-14T11:14:41Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 254,
+  "output": "npm error code ENOENT\nnpm error syscall open\nnpm error path /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/package.json\nnpm error errno -2\nnpm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/package.json'\nnpm error enoent This is related to npm not being able to find a file.\nnpm error enoent\nnpm error Log files were not written due to an error writing to the directory: /Users/huaodong/.npm/_logs\nnpm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal\n"
+}

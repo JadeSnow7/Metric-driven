@@ -1,0 +1,24 @@
+[
+  {
+    "arm": "a",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "expected_files": 122,
+    "mismatches": [],
+    "extra": [],
+    "missing": [],
+    "patch_sha256": "04aee1ce04c53a67ec81caecfc64859818ecb226259f4b76b9c6ca59989d395a"
+  },
+  {
+    "arm": "b",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "expected_files": 123,
+    "mismatches": [],
+    "extra": [],
+    "missing": [],
+    "patch_sha256": "e4f5497171f602a50bde9aa6351a2fe60e8ae20f62879fbab5a106c1fc5069a7"
+  }
+]

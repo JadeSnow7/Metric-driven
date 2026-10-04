@@ -1,0 +1,1 @@
+["bash", "-lc", "export REIN_CH07_CASE=\"$(mktemp -d)/ch07-context.json\"; cp fixtures/cases/ch07-context.json \"$REIN_CH07_CASE\"; cargo run --quiet --manifest-path rust/Cargo.toml --example ch07_context -- \"$REIN_CH07_CASE\""]

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npm",
+    "test",
+    "--workspace",
+    "ts"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T14:38:30.303Z",
+  "end": "2026-09-14T14:38:31.189Z",
+  "elapsedMs": 885.036916,
+  "exit": 0,
+  "stdout": "\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests\n\n\n RUN  v2.1.9 /private/tmp/rein-production-candidate-03/ts\n\n ✓ tests/config.test.ts (13 tests) 3ms\n ✓ tests/record.test.ts (6 tests) 2ms\n ✓ tests/ch07-context.test.ts (4 tests) 6ms\n ✓ tests/chat.test.ts (17 tests) 11ms\n ✓ tests/recorded.test.ts (3 tests) 5ms\n ✓ tests/rein-prerequisites.test.ts (7 tests) 29ms\n ✓ tests/hello.test.ts (18 tests) 33ms\n ✓ tests/loop.test.ts (16 tests) 183ms\n ✓ tests/transport.test.ts (8 tests) 288ms\n\n Test Files  9 passed (9)\n      Tests  92 passed (92)\n   Start at  22:38:30\n   Duration  565ms (transform 311ms, setup 0ms, collect 701ms, tests 561ms, environment 1ms, prepare 534ms)\n\n",
+  "stderr": "stderr | tests/hello.test.ts > hello SDK entry points > 安全 CLI 缺配置时返回退出码 1，且不打印密钥\n失败（config）：REIN_BASE_URL 未设置。参考 ts/.env.example，复制为 ts/.env 后填写。\n\n"
+}

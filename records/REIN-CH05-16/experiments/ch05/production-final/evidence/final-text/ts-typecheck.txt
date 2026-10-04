@@ -1,0 +1,9 @@
+
+> rein-book@0.1.0 typecheck
+> npm run typecheck --workspace ts
+
+
+> @rein/ts@0.0.0 typecheck
+> tsc --noEmit
+
+exit=0

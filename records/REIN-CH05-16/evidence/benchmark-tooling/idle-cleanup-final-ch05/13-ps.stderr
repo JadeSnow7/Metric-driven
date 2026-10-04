@@ -1,0 +1,1 @@
+zsh: can't open input file: zsh -lc ps\ -axo\ pid=,ppid=,user=,stat=,lstart=,command=\ \|\ awk\ /\'rein-production-build-20260914\|rein-production-rereview-build\|rein-ch05-final-text-evidence\|cargo-target\'/ 

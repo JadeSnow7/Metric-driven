@@ -1,0 +1,150 @@
+{
+  "kind": "formal-input-creation",
+  "started_at": "2026-09-15T03:57:18.499369+00:00",
+  "ended_at": "2026-09-15T03:57:18.994834+00:00",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/A/book",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.499537+00:00",
+      "ended_at": "2026-09-15T03:57:18.513327+00:00",
+      "exit_code": 0,
+      "stdout": "1dfa82b9d90196c2294f61914d2017449e5548e3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/A/book",
+        "status",
+        "--porcelain=v1"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.513360+00:00",
+      "ended_at": "2026-09-15T03:57:18.544245+00:00",
+      "exit_code": 0,
+      "stdout": " M .github/workflows/test.yml\n M DECISIONS.md\n M MIGRATIONS.md\n M README.md\n M contracts/README.md\n M docs/.vitepress/config.mts\n M docs/.vitepress/theme/SourceVersionSwitch.vue\n M docs/.vitepress/theme/custom.css\n M docs/.vitepress/theme/sourceVersionState.test.ts\n M docs/.vitepress/theme/sourceVersionState.ts\n M docs/about.md\n M docs/appendices/a2.md\n M docs/chapters/01-rust.md\n M docs/chapters/01-ts-advanced.md\n M docs/chapters/01-ts.md\n M docs/chapters/01.md\n M docs/chapters/02.md\n M docs/chapters/03.md\n M docs/chapters/04.md\n M docs/chapters/05.md\n M docs/chapters/06.md\n M docs/chapters/07.md\n M docs/chapters/15.md\n M docs/chapters/16.md\n M docs/index.md\n M docs/milestones/02.md\n M docs/readings/00-ts.md\n M docs/readings/00.md\n M docs/readings/02.md\n M docs/toc.md\n M package.json\n M reports/ch01-writing-plan.md\n M rust/Cargo.lock\n M rust/Cargo.toml\n M rust/src/lib.rs\n M ts/package.json\n M ts/src/transport.ts\n?? chapter-snapshots/\n?? contracts/extension-v0.1.md\n?? docs/chapters/05-rust.md\n?? docs/chapters/06-plugin.md\n?? docs/chapters/06-rust.md\n?? docs/chapters/07-rust.md\n?? fixtures/cases/ch05-loop.json\n?? fixtures/cases/ch06-control.json\n?? fixtures/cases/ch07-context.json\n?? fixtures/cases/prerequisites.json\n?? fixtures/ch08-context/\n?? fixtures/hybrid-marker.txt\n?? fixtures/workspaces/prerequisites/\n?? reports/ch01-author-style.md\n?? rust/examples/ch05_compare.rs\n?? rust/examples/ch05_loop.rs\n?? rust/examples/ch06_loop.rs\n?? rust/examples/ch07_context.rs\n?? rust/examples/hybrid_stdio.rs\n?? rust/src/rein/\n?? rust/tests/loop.rs\n?? rust/tests/prerequisites.rs\n?? rust/tests/stdio_host.rs\n?? scripts/\n?? ts/examples/ch05-compare.ts\n?? ts/examples/ch05-live.ts\n?? ts/examples/ch05-loop.ts\n?? ts/examples/ch06-loop.ts\n?? ts/examples/ch07-context.ts\n?? ts/src/hybrid-host.ts\n?? ts/src/rein/\n?? ts/tests/ch07-context.test.ts\n?? ts/tests/fixtures/\n?? ts/tests/hybrid-host.test.ts\n?? ts/tests/loop.test.ts\n?? ts/tests/rein-prerequisites.test.ts\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "find",
+        "/private/tmp/rein-ch08-formal-20260915/A/book/node_modules",
+        "-type",
+        "l",
+        "-name",
+        ".vite",
+        "-print"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.544313+00:00",
+      "ended_at": "2026-09-15T03:57:18.687345+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/B/book",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.687434+00:00",
+      "ended_at": "2026-09-15T03:57:18.698447+00:00",
+      "exit_code": 0,
+      "stdout": "1dfa82b9d90196c2294f61914d2017449e5548e3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/B/book",
+        "status",
+        "--porcelain=v1"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.698500+00:00",
+      "ended_at": "2026-09-15T03:57:18.726461+00:00",
+      "exit_code": 0,
+      "stdout": " M .github/workflows/test.yml\n M DECISIONS.md\n M MIGRATIONS.md\n M README.md\n M contracts/README.md\n M docs/.vitepress/config.mts\n M docs/.vitepress/theme/SourceVersionSwitch.vue\n M docs/.vitepress/theme/custom.css\n M docs/.vitepress/theme/sourceVersionState.test.ts\n M docs/.vitepress/theme/sourceVersionState.ts\n M docs/about.md\n M docs/appendices/a2.md\n M docs/chapters/01-rust.md\n M docs/chapters/01-ts-advanced.md\n M docs/chapters/01-ts.md\n M docs/chapters/01.md\n M docs/chapters/02.md\n M docs/chapters/03.md\n M docs/chapters/04.md\n M docs/chapters/05.md\n M docs/chapters/06.md\n M docs/chapters/07.md\n M docs/chapters/15.md\n M docs/chapters/16.md\n M docs/index.md\n M docs/milestones/02.md\n M docs/readings/00-ts.md\n M docs/readings/00.md\n M docs/readings/02.md\n M docs/toc.md\n M package.json\n M reports/ch01-writing-plan.md\n M rust/Cargo.lock\n M rust/Cargo.toml\n M rust/src/lib.rs\n M ts/package.json\n M ts/src/transport.ts\n?? chapter-snapshots/\n?? contracts/extension-v0.1.md\n?? docs/chapters/05-rust.md\n?? docs/chapters/06-plugin.md\n?? docs/chapters/06-rust.md\n?? docs/chapters/07-rust.md\n?? fixtures/cases/ch05-loop.json\n?? fixtures/cases/ch06-control.json\n?? fixtures/cases/ch07-context.json\n?? fixtures/cases/prerequisites.json\n?? fixtures/ch08-context/\n?? fixtures/hybrid-marker.txt\n?? fixtures/workspaces/prerequisites/\n?? reports/ch01-author-style.md\n?? rust/examples/ch05_compare.rs\n?? rust/examples/ch05_loop.rs\n?? rust/examples/ch06_loop.rs\n?? rust/examples/ch07_context.rs\n?? rust/examples/hybrid_stdio.rs\n?? rust/src/rein/\n?? rust/tests/loop.rs\n?? rust/tests/prerequisites.rs\n?? rust/tests/stdio_host.rs\n?? scripts/\n?? ts/examples/ch05-compare.ts\n?? ts/examples/ch05-live.ts\n?? ts/examples/ch05-loop.ts\n?? ts/examples/ch06-loop.ts\n?? ts/examples/ch07-context.ts\n?? ts/src/hybrid-host.ts\n?? ts/src/rein/\n?? ts/tests/ch07-context.test.ts\n?? ts/tests/fixtures/\n?? ts/tests/hybrid-host.test.ts\n?? ts/tests/loop.test.ts\n?? ts/tests/rein-prerequisites.test.ts\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "find",
+        "/private/tmp/rein-ch08-formal-20260915/B/book/node_modules",
+        "-type",
+        "l",
+        "-name",
+        ".vite",
+        "-print"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.726531+00:00",
+      "ended_at": "2026-09-15T03:57:18.849151+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/C/book",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.849235+00:00",
+      "ended_at": "2026-09-15T03:57:18.859858+00:00",
+      "exit_code": 0,
+      "stdout": "1dfa82b9d90196c2294f61914d2017449e5548e3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/private/tmp/rein-ch08-formal-20260915/C/book",
+        "status",
+        "--porcelain=v1"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.859911+00:00",
+      "ended_at": "2026-09-15T03:57:18.889476+00:00",
+      "exit_code": 0,
+      "stdout": " M .github/workflows/test.yml\n M DECISIONS.md\n M MIGRATIONS.md\n M README.md\n M contracts/README.md\n M docs/.vitepress/config.mts\n M docs/.vitepress/theme/SourceVersionSwitch.vue\n M docs/.vitepress/theme/custom.css\n M docs/.vitepress/theme/sourceVersionState.test.ts\n M docs/.vitepress/theme/sourceVersionState.ts\n M docs/about.md\n M docs/appendices/a2.md\n M docs/chapters/01-rust.md\n M docs/chapters/01-ts-advanced.md\n M docs/chapters/01-ts.md\n M docs/chapters/01.md\n M docs/chapters/02.md\n M docs/chapters/03.md\n M docs/chapters/04.md\n M docs/chapters/05.md\n M docs/chapters/06.md\n M docs/chapters/07.md\n M docs/chapters/15.md\n M docs/chapters/16.md\n M docs/index.md\n M docs/milestones/02.md\n M docs/readings/00-ts.md\n M docs/readings/00.md\n M docs/readings/02.md\n M docs/toc.md\n M package.json\n M reports/ch01-writing-plan.md\n M rust/Cargo.lock\n M rust/Cargo.toml\n M rust/src/lib.rs\n M ts/package.json\n M ts/src/transport.ts\n?? chapter-snapshots/\n?? contracts/extension-v0.1.md\n?? docs/chapters/05-rust.md\n?? docs/chapters/06-plugin.md\n?? docs/chapters/06-rust.md\n?? docs/chapters/07-rust.md\n?? fixtures/cases/ch05-loop.json\n?? fixtures/cases/ch06-control.json\n?? fixtures/cases/ch07-context.json\n?? fixtures/cases/prerequisites.json\n?? fixtures/ch08-context/\n?? fixtures/hybrid-marker.txt\n?? fixtures/workspaces/prerequisites/\n?? reports/ch01-author-style.md\n?? rust/examples/ch05_compare.rs\n?? rust/examples/ch05_loop.rs\n?? rust/examples/ch06_loop.rs\n?? rust/examples/ch07_context.rs\n?? rust/examples/hybrid_stdio.rs\n?? rust/src/rein/\n?? rust/tests/loop.rs\n?? rust/tests/prerequisites.rs\n?? rust/tests/stdio_host.rs\n?? scripts/\n?? ts/examples/ch05-compare.ts\n?? ts/examples/ch05-live.ts\n?? ts/examples/ch05-loop.ts\n?? ts/examples/ch06-loop.ts\n?? ts/examples/ch07-context.ts\n?? ts/src/hybrid-host.ts\n?? ts/src/rein/\n?? ts/tests/ch07-context.test.ts\n?? ts/tests/fixtures/\n?? ts/tests/hybrid-host.test.ts\n?? ts/tests/loop.test.ts\n?? ts/tests/rein-prerequisites.test.ts\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "find",
+        "/private/tmp/rein-ch08-formal-20260915/C/book/node_modules",
+        "-type",
+        "l",
+        "-name",
+        ".vite",
+        "-print"
+      ],
+      "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+      "started_at": "2026-09-15T03:57:18.889552+00:00",
+      "ended_at": "2026-09-15T03:57:18.994766+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "formal_status": "prepared_not_started",
+  "resource_policy": "copies of node_modules; no cross-book symlink; no formal runs"
+}

@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/private/tmp/rein-ch08-adjudication-v2",
+  "started_at": "2026-09-15T05:30:05.906604Z",
+  "ended_at": "2026-09-15T05:30:06.306298Z",
+  "elapsed_seconds": 0.39945108292158693,
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": 0,
+  "launch_error": null,
+  "stdout": "",
+  "stderr": "test_estimate_constants_and_tool_fields (test_supplemental.SupplementalTests.test_estimate_constants_and_tool_fields) ... ok\ntest_full_run_and_required_failures (test_supplemental.SupplementalTests.test_full_run_and_required_failures) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.351s\n\nOK\n",
+  "stdout_base64": "",
+  "stderr_base64": "dGVzdF9lc3RpbWF0ZV9jb25zdGFudHNfYW5kX3Rvb2xfZmllbGRzICh0ZXN0X3N1cHBsZW1lbnRhbC5TdXBwbGVtZW50YWxUZXN0cy50ZXN0X2VzdGltYXRlX2NvbnN0YW50c19hbmRfdG9vbF9maWVsZHMpIC4uLiBvawp0ZXN0X2Z1bGxfcnVuX2FuZF9yZXF1aXJlZF9mYWlsdXJlcyAodGVzdF9zdXBwbGVtZW50YWwuU3VwcGxlbWVudGFsVGVzdHMudGVzdF9mdWxsX3J1bl9hbmRfcmVxdWlyZWRfZmFpbHVyZXMpIC4uLiBvawoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpSYW4gMiB0ZXN0cyBpbiAwLjM1MXMKCk9LCg==",
+  "source_hashes_before": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427"
+  },
+  "source_hashes_after": {
+    "prompt.md": "ea088ede26a555f054aacec3a1b05d210e29b6fe0340e09829c2b64277d37d72",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "supplemental_check.py": "52cc9ba88e07f8f1c58a227a268d3877e32b4045b5fa7f58a6371848f072f438",
+    "tests/test_supplemental.py": "a7c6e22c6bc4c88e6c960e90bc7677bbdc4a786aac99aad251b2a985329569bf",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "60ad71f9d8b00e821e4375d668c62d06fa817584ad39c05ac9d008788806f427",
+    "__pycache__/supplemental_check.cpython-314.pyc": "a3c51a2387d8eb52f348a07670a0eda5232de22cf4960978c0eef23185d845d0"
+  }
+}

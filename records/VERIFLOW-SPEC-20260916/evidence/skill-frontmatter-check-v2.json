@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "/Users/huaodong/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+    "/private/tmp/veriflow-spec-20260916/skill/veriflow"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789553194.236919,
+  "ended_at_epoch": 1789553194.828799,
+  "exit_code": 0,
+  "stdout": "Skill is valid!\n",
+  "stderr": "",
+  "environment": {
+    "PYTHONPATH": "/private/tmp/veriflow-validation-deps",
+    "PyYAML": "6.0.3"
+  },
+  "inputs": {
+    "skill/veriflow/SKILL.md": "e8116764716b8ea017c48b0b6aa262f381ffe1d087c184177f5b1e1b8cd0fb43"
+  }
+}

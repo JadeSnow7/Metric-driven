@@ -1,0 +1,1 @@
+Initial main-agent seal invocation used a wrong session filename. The failed partial seal is preserved at ../A-seal-attempt-1-failed. A was not rerun or edited; canonical seal uses the session path already recorded in A-startup-audit.json. This orchestration error is outside A implementation time.

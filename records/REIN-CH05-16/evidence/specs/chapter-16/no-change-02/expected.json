@@ -1,0 +1,1 @@
+{"finding":"link resolves and content is current","acceptable":"report no change and leave files unchanged","assertions":[{"file":"docs/index.md","link_target":"guide.md","must_exist":true},{"no_change":true}]}

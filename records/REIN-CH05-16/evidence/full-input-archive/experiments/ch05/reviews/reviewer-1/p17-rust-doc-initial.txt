@@ -1,0 +1,4 @@
+error: failed to parse manifest at `/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/rust/Cargo.toml`
+
+Caused by:
+  default-run target `rein-ch01-helloworld` not found

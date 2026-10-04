@@ -1,0 +1,3 @@
+# Record-like files changed vs base (excluding tests/ and evidence/)
+
+(untracked files under records/: none)

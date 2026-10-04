@@ -1,0 +1,8 @@
+ M inventory.py
+?? records/TASK-001/evidence/current-tests.exit
+?? records/TASK-001/evidence/current-tests.stderr
+?? records/TASK-001/evidence/current-tests.stdout
+?? records/TASK-001/evidence/old-tests.txt
+?? records/TASK-001/task-state.json
+?? records/TASK-001/task-summary.md
+?? records/TASK-001/work-log.md

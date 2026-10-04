@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "python3",
+    "tools/validate_repository.py"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "started_at": "2026-09-16T06:36:00.985841Z",
+  "ended_at": "2026-09-16T06:36:01.262650Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "repository validation passed (25 required files, local links and Claude Code definitions checked)\nnote: this proves repository consistency, not workflow behavior or delivery authorization\n",
+  "stderr": "",
+  "stdout_base64": "cmVwb3NpdG9yeSB2YWxpZGF0aW9uIHBhc3NlZCAoMjUgcmVxdWlyZWQgZmlsZXMsIGxvY2FsIGxpbmtzIGFuZCBDbGF1ZGUgQ29kZSBkZWZpbml0aW9ucyBjaGVja2VkKQpub3RlOiB0aGlzIHByb3ZlcyByZXBvc2l0b3J5IGNvbnNpc3RlbmN5LCBub3Qgd29ya2Zsb3cgYmVoYXZpb3Igb3IgZGVsaXZlcnkgYXV0aG9yaXphdGlvbgo=",
+  "stderr_base64": "",
+  "stdout_present": true,
+  "stderr_present": false,
+  "stdout_required": false,
+  "inputs": {},
+  "repo": "/Users/huaodong/Documents/evidence-driven-development",
+  "cwd_relative": ".",
+  "revision_before": "patch:fd7f0a618720e7682621207d4df28411327004ef:bac2b458b169ea4f520f8d851cc9d35da1e85adcc0809dd530268534044672f5",
+  "revision_after": "patch:fd7f0a618720e7682621207d4df28411327004ef:bac2b458b169ea4f520f8d851cc9d35da1e85adcc0809dd530268534044672f5",
+  "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:bac2b458b169ea4f520f8d851cc9d35da1e85adcc0809dd530268534044672f5",
+  "revision_changed_paths": [],
+  "result": "passed"
+}

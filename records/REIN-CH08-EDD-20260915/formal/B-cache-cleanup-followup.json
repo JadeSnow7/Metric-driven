@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T04:56:59.665056+00:00",
+  "path": "/private/tmp/rein-ch08-formal-20260915/B/run/cargo-target",
+  "existed": true,
+  "removed": true,
+  "reason": "B terminated and seal.py completed successfully. Independent readback hash verification pending due Documents file-read delay. Remove only regenerable build cache to protect C disk availability."
+}

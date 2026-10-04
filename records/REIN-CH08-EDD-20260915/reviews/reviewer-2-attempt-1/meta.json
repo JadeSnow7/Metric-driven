@@ -1,0 +1,12 @@
+{
+  "sealed_at": "2026-09-15T05:50:55.429849+00:00",
+  "thread_id": "01a0a391-2d7a-77f1-8c2b-b749249e84df",
+  "turn": {
+    "id": "01a0a394-4f5a-7ec3-8ada-04e4e51480e3",
+    "startedAt": 1789450801,
+    "completedAt": 1789451308,
+    "durationMs": 507246
+  },
+  "state": "incomplete review: explicitly did not execute three prose exercises/link checks for all artifacts; followup required; report and raw retained unchanged",
+  "session_sha256": "88267ab2e053c2ad224e224739651aa5ff38bbf7d6ca81a8fbd0505e66745cfd"
+}

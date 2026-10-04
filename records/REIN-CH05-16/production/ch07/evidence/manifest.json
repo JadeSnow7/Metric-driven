@@ -1,0 +1,1525 @@
+{
+  "files": [
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/hashes.json",
+      "relativepath": "packaging/hashes.json",
+      "sha256": "06ef606b4bf41347595261b65052a59b9224a957f2937532bc39c0f26751c366",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/snapshot.json",
+      "relativepath": "packaging/snapshot.json",
+      "sha256": "78a5151cdd868a95c6bc852edb131f17e6dfb88b158c8f84c91b314e28abd90c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-packaging-evidence/validate.json",
+      "relativepath": "packaging/validate.json",
+      "sha256": "bc741ba7e5d0f0256c4161850ead863306302160d3c46227f46d03fc9030a223",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/probe.json",
+      "relativepath": "rein-ch07-main-review-v1/probe.json",
+      "sha256": "76f7e98bfee8af4494549cd658247f58f42d48621b269dce1f14ea1c46b0739e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/probe.mts",
+      "relativepath": "rein-ch07-main-review-v1/probe.mts",
+      "sha256": "4ac98d9d1fcebc00c3a751acdc8a274243d381a89f5b0fb4f80ad8523659351f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/rust-default.json",
+      "relativepath": "rein-ch07-main-review-v1/rust-default.json",
+      "sha256": "d8b14373f3aa60aa848a4ed6503a7a0f5544e12379a509e073f049a1949dab5c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/rust-fixture.json",
+      "relativepath": "rein-ch07-main-review-v1/rust-fixture.json",
+      "sha256": "6a86d9ea1c88aa07fdeca73a8ba05d2ce9af235426e3b8515dd713752773b116",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/rust-probe-input.json",
+      "relativepath": "rein-ch07-main-review-v1/rust-probe-input.json",
+      "sha256": "3ddd23962b0d2ce38dc1172a0f79331218be1d83ca60becd0855534f57f76550",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v1/rust-probes.json",
+      "relativepath": "rein-ch07-main-review-v1/rust-probes.json",
+      "sha256": "548bd612c7f532a55eb0c3c09c374d486c0cabed29b4e1931d616ef46b4d9f56",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v2/independent-fixture-metrics.json",
+      "relativepath": "rein-ch07-main-review-v2/independent-fixture-metrics.json",
+      "sha256": "09611ac24e9c4476d9374102e97e336530c2328fcfe519d9facc0add53b52649",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v2/ts-probe.json",
+      "relativepath": "rein-ch07-main-review-v2/ts-probe.json",
+      "sha256": "b46dc582cea8b6985f7a6f3fd869654f8a22d79f513ba4646c0d44216ae8cfba",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/against-ch06.diff",
+      "relativepath": "rein-ch07-main-review-v3/against-ch06.diff",
+      "sha256": "8b9799215fd08e0954d8a63a410f9d21a949ca4dc8d1a047b7d993f5c9e5ba8b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ch05-regression-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/ch05-regression-raw.json",
+      "sha256": "142fc3d57155aae3cc904d5bf50e1aed3c70fd75a6aef05ee5e0f385a7863953",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ch06-regression-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/ch06-regression-raw.json",
+      "sha256": "43d0d31c1080e15117f2d1440d33351a5e5c4a059fac7aee64148d2de0df71ee",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/changed-fixture.json",
+      "relativepath": "rein-ch07-main-review-v3/changed-fixture.json",
+      "sha256": "294b26551f60cb707f4a206429ec28a88295b054d5492bd17f93f12aa901ab52",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/docs-build-final.json",
+      "relativepath": "rein-ch07-main-review-v3/docs-build-final.json",
+      "sha256": "e6fbec8a249109d10a10a31e0b37eefe7bb7c10f2988b7e6eda9ffcdceea98e5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/empty-text-fixture.json",
+      "relativepath": "rein-ch07-main-review-v3/empty-text-fixture.json",
+      "sha256": "94efc132e3513427eb3c0dd85efca250cb03f75098eb5eb995f82678e12c9c65",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/final-extra-fixture.json",
+      "relativepath": "rein-ch07-main-review-v3/final-extra-fixture.json",
+      "sha256": "ee21062f13ab8dd7f9387e5423c99238956e4b09f7b4412d7b4700046a8155c4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/metrics-verification.json",
+      "relativepath": "rein-ch07-main-review-v3/metrics-verification.json",
+      "sha256": "33186131858fe8832c2e101caa2e9defa7ce0787ed71371bd4e55eee03f8a8a1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/probe-final-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/probe-final-raw.json",
+      "sha256": "c47dcede8ebeeadade74b07a9112fb94ebce56abd94e60aa583d7e9b017c25ed",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/probe-raw-v2.json",
+      "relativepath": "rein-ch07-main-review-v3/probe-raw-v2.json",
+      "sha256": "c1c32ff22f53f91c10831cdc153d410d02309f657edf0218e61058f960965f0f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/probe-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/probe-raw.json",
+      "sha256": "1e10ebc5e07f3eeeb4bb50789e8056512029786cbb07baf0eef2bf4bedfcd177",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/probe-result.json",
+      "relativepath": "rein-ch07-main-review-v3/probe-result.json",
+      "sha256": "c67548a6fdad50f11f5ba1def6f81bbe9ff7ef03fb8616330a43e19276735a1c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/probe.mts",
+      "relativepath": "rein-ch07-main-review-v3/probe.mts",
+      "sha256": "7ef08c61a15b6ebd9c185f88eb30e9acf95cfeb8045848c770f34c2b9a129519",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-body-v2-raw-review.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-body-v2-raw-review.json",
+      "sha256": "66a487dd8201fd6fa85b53beacab158b59a72cabb60204ea9128c982b5f7cdc0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-changed-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-changed-raw.json",
+      "sha256": "663f65dceb800fa56fe2d4fea22988f6c5f84f8160a497b9032d40aa661a1ff9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-changed-result.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-changed-result.json",
+      "sha256": "72a887157cd7c2a6228e1c76811f9886a5823c99d9795f2ec93bf6f83ff23497",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-default-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-default-raw.json",
+      "sha256": "e61960f83580f41142d0e6d7de7d0ad6cc0c23a0fe550f64603fa3f49cf4c5f2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-default-result.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-default-result.json",
+      "sha256": "71ae628e374dcf6a2d09fff34d49fe0a485efa4db5aa4207f817526629ff2b24",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-empty-before.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-empty-before.json",
+      "sha256": "645b1383b86804aa3d1c29888879e5d643f8175bbd198eccca29df4b01faa92e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-extra-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-extra-raw.json",
+      "sha256": "b2f3812a321c8d9f9bbd63fa10386ddbfbd63817afdf39d75f63e975915cc21d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-extra-result.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-extra-result.json",
+      "sha256": "8f59914743a936d128ecbdf8cc278d9d3cb217457b4029d89f2aeddb0c6f9d3e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-fmt-final-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-fmt-final-raw.json",
+      "sha256": "eefde645807d0bf7a3f8e4fe6f914d5f0bc062bc6bb4dabb5c237c3c2c1641a1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-probe-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-probe-raw.json",
+      "sha256": "c41d2f8e8317cecb226905530fe279fdc85e16d91fa8830a812e233fa6835c5f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/rust-probe-result.json",
+      "relativepath": "rein-ch07-main-review-v3/rust-probe-result.json",
+      "sha256": "df8d0b4d9d4bb1f2cdb9e3086066b99c5e1e470841f698ae917f683db2318397",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-changed-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-changed-raw.json",
+      "sha256": "81c4c737fede1fa4eef4d88dcde6381726d11b64adc2073ceee9aa291a5bc0a5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-changed-result.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-changed-result.json",
+      "sha256": "63a7af594eb5050a3b3f208e875027f9a70617a165fe9b83d09684718f6a3cfc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-default-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-default-raw.json",
+      "sha256": "0f06c1bdbaa6c07dbad2423e234e8b26fbe65743e37667bdc126feccf89fbb2d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-default-result.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-default-result.json",
+      "sha256": "580dbbbe295b4855dffd807cff12acc7b9f1b5d49282a0b6da8d5baaa172f023",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-empty-before.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-empty-before.json",
+      "sha256": "d2fb5ebe4ea6f8c6bde99ef391fef1d4beb132e96ec675a699ae0b571e407f05",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-extra-raw.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-extra-raw.json",
+      "sha256": "a3c100daea72c5b11c35a5e38a2dbbf2766a1f0901f40466a8ac09cc482ef879",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/ts-extra-result.json",
+      "relativepath": "rein-ch07-main-review-v3/ts-extra-result.json",
+      "sha256": "22c0229ac1dd920a3cb7c133a47f0ebdf7abaa35e9a67f92eb23ff933d3d86d7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-main-review-v3/unrelated-and-lock-check.json",
+      "relativepath": "rein-ch07-main-review-v3/unrelated-and-lock-check.json",
+      "sha256": "3f9218a2061033e8565966d856ffdc9c63d4879964601351c04c9d643de8af3e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/case/ch07-context.json",
+      "relativepath": "rein-ch07-rust-body-evidence/case/ch07-context.json",
+      "sha256": "153cc601c4fd64b2b3d9fd467e744f90a34928788fc33851cdc087a16c3e9aa3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/cases/practice-07-1.json",
+      "relativepath": "rein-ch07-rust-body-evidence/cases/practice-07-1.json",
+      "sha256": "415a7647f85d487b081be58e80a714071720d6865f82310e57f3a0a9b407e52a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/cases/practice-07-2-238.json",
+      "relativepath": "rein-ch07-rust-body-evidence/cases/practice-07-2-238.json",
+      "sha256": "228c8cd6a4656f2ac1010f0b44128c43531f0a72f3c8714dda14d99008e3bc72",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/cases/practice-07-2-239.json",
+      "relativepath": "rein-ch07-rust-body-evidence/cases/practice-07-2-239.json",
+      "sha256": "c2c0aaec7250b52e3c9cbe882ff8ce1a396bafbe613a0ff615afb883ae04d265",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/cases/practice-07-3.json",
+      "relativepath": "rein-ch07-rust-body-evidence/cases/practice-07-3.json",
+      "sha256": "8fdb8ff517fe266dad78cbe33997d024593d126e0674455c2e735c52a8cac548",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/argv.json",
+      "sha256": "cd14f8c6564ea38792162be783bbd7a2af117a5031f12350c0ee64f389f456a0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/end.txt",
+      "sha256": "b2d34ef73fbd22da91dc29586f4ab35d14fdb8c39edb0c57515b6d31e4c7b3a6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/start.txt",
+      "sha256": "8e72d099561dbf7d31f7c13ee6cde870978733284b71de5dafdd28e980aba60b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure-filter/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure-filter/stdout.txt",
+      "sha256": "8f2b759532bdedf650cc8c51b886838599c2f3bc0c76651c8e66333fc00fe443",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/argv.json",
+      "sha256": "ec76d16cb1cefde78e8639e3d215393bdb3af747cc9610a3574c64e2326da645",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/end.txt",
+      "sha256": "4a3af899cc0c4912c85d8ab259e277a3985e58a9fd32ff2642f6a17f848539b3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/start.txt",
+      "sha256": "26a9f6b118a00101d1646cff46002cd65f87b170af4c0e84d3bd99b2532f7d89",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/failure/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/failure/stdout.txt",
+      "sha256": "2ee8c8ed8cdec7d2324cc1267c0afe6a104ffeef53b0700ff84d5fa107939fb9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/argv.json",
+      "sha256": "ec76d16cb1cefde78e8639e3d215393bdb3af747cc9610a3574c64e2326da645",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/end.txt",
+      "sha256": "e18cd04a7ff2c816c1113d742ebeb2a87f0985d06aa47f61e358c2728fb33d78",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/start.txt",
+      "sha256": "3cc29638ae13078eb2de3c08e07c5ed0559cff8641178b0ecd5825c9fcddd338",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/normal/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/normal/stdout.txt",
+      "sha256": "2ee8c8ed8cdec7d2324cc1267c0afe6a104ffeef53b0700ff84d5fa107939fb9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/argv.json",
+      "sha256": "81344abe3b6c1706f22ac1292cf2a7277fb7d1e11cf647a6a9d311f27f4b3b1b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/end.txt",
+      "sha256": "ae9be70f3afc7e9abcae73a7cb038072827fc00cf3f92bb7778945b7278b9925",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/start.txt",
+      "sha256": "fb2f93ce73133fb7b8513f44ccd043dd1971b19684c42950162836f80767337e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-1/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-1/stdout.txt",
+      "sha256": "e15e450ecdb7fd2d7d4e10a8b2ba4373c569e2880db20e5496c3f49d348b16ef",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/argv.json",
+      "sha256": "1c64e21010d47c43b05ec98eb8bf7e1157de639b394858b7d73d0d3ac56f8391",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/end.txt",
+      "sha256": "9d9402ba6281fcf9f355ce782b4efc863249f048eb3c230d3f2cd711e159518b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/start.txt",
+      "sha256": "c699528a0e1e172ac4e3719172edfa23a94e14ed679592837f2528c6327375cd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-238/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-238/stdout.txt",
+      "sha256": "72db260fb9323b0ae0c8ab823087daba3c40795c65cbccf877a531ad6d2f9565",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/argv.json",
+      "sha256": "5b9949081ad181b0bff3b8d7296d9594c3f5c416075e50ffe9ce33497556f329",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/end.txt",
+      "sha256": "65404a05480160e0353940c86067fed6707aff8fab0889c5a866df389be61c16",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/start.txt",
+      "sha256": "b4607fbaf4e564cac594460209fa435239c195a65b5920ca65cfaf73940f62f8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-2-239/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-2-239/stdout.txt",
+      "sha256": "15544206d63af3548bce170e52832908ca2fa923b4fa51e280b5b996e97252d2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/argv.json",
+      "sha256": "0c7cce324db2b0c73145ae7fbee3a33c3bef82e5147739093c05c3fd8328c257",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/cwd.txt",
+      "sha256": "6b55a96ea4e1cb8c7c86f5f349d7b1ec42af063e8b6b59551285fe545cb9fd6e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/end.txt",
+      "sha256": "6ed4fd759c02040a30f9976311d96ba16ad8e9d4a3b35b5c1f5d7b367f14ba64",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/start.txt",
+      "sha256": "8da70ffc604d9d3fc1db053168ca650d402c107f7704e44f9621af65e06f5e1f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/practice-07-3/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/practice-07-3/stdout.txt",
+      "sha256": "fbd36760c6ddcf74b4b0dada2555d75f0658842c96e7f3ec69cc7af88ec88e4d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v1-before/07-rust.md",
+      "relativepath": "rein-ch07-rust-body-evidence/v1-before/07-rust.md",
+      "sha256": "1f756321943e27c261b49b76fc82467a89e2d9c1494daad7e6905cfef180cbee",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v1-before/hash.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v1-before/hash.txt",
+      "sha256": "399d3e3d65deaefc022beb15ae14410a1df37ba002a87c7496f1536d92ed31f8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/argv.json",
+      "sha256": "cd14f8c6564ea38792162be783bbd7a2af117a5031f12350c0ee64f389f456a0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/end.txt",
+      "sha256": "56f11ebaf375f6054f81ce9cbaeb02306dea20b2e3229eac05446623497735b0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/start.txt",
+      "sha256": "af4b7d79e69a6286d4c377cc0fcddd215011b5180e2f061aaa6b1d0bda0b96e8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter-fixed/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter-fixed/stdout.txt",
+      "sha256": "8f2b759532bdedf650cc8c51b886838599c2f3bc0c76651c8e66333fc00fe443",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/argv.json",
+      "sha256": "cd14f8c6564ea38792162be783bbd7a2af117a5031f12350c0ee64f389f456a0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/end.txt",
+      "sha256": "f6f97e2f990c5060a257506cc4a601d2ac059054972ce503ad42405a155445c5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/start.txt",
+      "sha256": "70131ff00be39b3c291c47164585491481c0048bd7106cb67f289d3895a6c1ce",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/stderr.txt",
+      "sha256": "a4eecf8b600f866c1951c93a81b424bd96d0fa9461b7a4f8d69375a1511f4fc4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/failure-filter/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/failure-filter/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/argv.json",
+      "sha256": "d1f892ba41fe3baa5474cf74766d2b3a315bba110a6d817daf6408b29dcad5cc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/end.txt",
+      "sha256": "d016fc45b3266ca12d304577d806b7ae2884aff8849518dc7613f0b65082ae50",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/start.txt",
+      "sha256": "eed49dc8f08dd336283c10e4f92708cc8ea54eb106b796beb212b85e5d141784",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/normal/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/normal/stdout.txt",
+      "sha256": "2ee8c8ed8cdec7d2324cc1267c0afe6a104ffeef53b0700ff84d5fa107939fb9",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/argv.json",
+      "sha256": "6c3d3a8efa36fc8783b80c912c45d908c1c241112954bba7f4291c1de2631169",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/end.txt",
+      "sha256": "e01d880c92e1835a25a69be50c4c2952ddea9b8b015e3ce23cf8bcd1ed4eda68",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/start.txt",
+      "sha256": "2d6cc5df96bb20fda87754af8d8984e309d7834472a5ecfdd9a746550f3adf7c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-1/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-1/stdout.txt",
+      "sha256": "e15e450ecdb7fd2d7d4e10a8b2ba4373c569e2880db20e5496c3f49d348b16ef",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/argv.json",
+      "sha256": "5cd2e607333d3f4cc89dfbaee3b7e991386e8f2eb9f3bad8dcddac674205d1ae",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/end.txt",
+      "sha256": "889ac119d61ae02f49d6fd5b44d47ee9f0e0a39a21e8abe43002d018a9dee2a7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/start.txt",
+      "sha256": "5b05d438152cbc51a8b74b56f14855d0b2be9b480a5247297306daba16c7cb65",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-2/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-2/stdout.txt",
+      "sha256": "d27628bcae56b7d0e40dcfa3ca3cc092b0bdd26e4fb737cb9c12ba1ec455cd83",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/argv.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/argv.json",
+      "sha256": "63c487643cf8b4e6abf586d874a8dc825a41947f27405f1f47918a6ba9a0f308",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/cwd.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/cwd.txt",
+      "sha256": "82461bf5a9e2e2c16822f6ef65f91d973a88b0dea14ff2b155431f84ac535acf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/end.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/end.txt",
+      "sha256": "ada591bfa910f7677c235d68225e2125d4d96c04bb30215cb01baac77e6d4b88",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/exit.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/start.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/start.txt",
+      "sha256": "1ebc55fe53bba3c14ca37785d10074fdbd3c60c47524fc4be4ca99d5900ba0b4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/stderr.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v2/practice-07-3/stdout.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v2/practice-07-3/stdout.txt",
+      "sha256": "fbd36760c6ddcf74b4b0dada2555d75f0658842c96e7f3ec69cc7af88ec88e4d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v3/before/07-rust.md",
+      "relativepath": "rein-ch07-rust-body-evidence/v3/before/07-rust.md",
+      "sha256": "4479b12f38d6c8544d43d41310f434dfe9a199c0ac97321803cbf92b7d720427",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v3/before/hash.txt",
+      "relativepath": "rein-ch07-rust-body-evidence/v3/before/hash.txt",
+      "sha256": "fec2a4bab3dde70fd0494e9336518346c308ee6bbff20984193af1bb8f0e729a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-body-evidence/v3/practice-07-1-raw.json",
+      "relativepath": "rein-ch07-rust-body-evidence/v3/practice-07-1-raw.json",
+      "sha256": "97cf804d4ea69e86bd8f87f514f5d38f88992c6825e4edd4eabed1a115367717",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-build-example-final.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-build-example-final.json",
+      "sha256": "992ff1d43d3c4b20164f976e1a177e6ba88cf47153d19b8f742f5d98013642d0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-build-example-v2.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-build-example-v2.json",
+      "sha256": "106b0976b6b2a5310c83aa9172559d4d422ad1d532b30d2cb0ef2244bedd6a9e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt-check-final.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt-check-final.json",
+      "sha256": "dc6f5e9c41c0efa12729d527dcc9d38b4f7f658f86ed50d4892c7b5b355e75d2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt-check-postwarning.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt-check-postwarning.json",
+      "sha256": "e56098fb0b757b720e84e42be7c0566a4eb14f36e2ced9418aa30c55bceca90d",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt-check-v2.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt-check-v2.json",
+      "sha256": "6f54ae3cd93fafa4fabd08636309639a9d7790ef3ab490ada151a8e57e3e121c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt-check.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt-check.json",
+      "sha256": "6f49f637d8974503d08d4dedd69e87a3c54d53a5b108f8a193f4e2fd8767f08a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt-final.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt-final.json",
+      "sha256": "494f320a5ad3d0e69b54842c53f28b29ea9202c59731dec96bf51ef59312b942",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-fmt.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-fmt.json",
+      "sha256": "351217a86dbc354fc6eb5cc1cd8868807e0998b0152ab64ad2e5f38599e2171c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-test-loop-final.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-test-loop-final.json",
+      "sha256": "90158bb1535802971c1190f8679b77e69dd279bd97d6416eaca3c7c9c7093243",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-test-loop-postwarning.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-test-loop-postwarning.json",
+      "sha256": "c033915bf60a1a39c62114982bd0735a7b70627aec10bab21464297762fed8b2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cargo-test-loop-v2.json",
+      "relativepath": "rein-ch07-rust-evidence/cargo-test-loop-v2.json",
+      "sha256": "3ab88060db3b19e2e5b392056fdb8a01df1a69b0529faddb69939fde7c9876be",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/cli-default-final.json",
+      "relativepath": "rein-ch07-rust-evidence/cli-default-final.json",
+      "sha256": "9bf4ce575dbc5de59093c721a46184fc432236696e15fdcf2bcd7d75fa8cc6ae",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/v2-cargo-fmt-posttests.json",
+      "relativepath": "rein-ch07-rust-evidence/v2-cargo-fmt-posttests.json",
+      "sha256": "19340dd77d9d2b561d3468eed0468aa7eb6bb6c226e5b62f63e0eee331df8519",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/v2-cargo-fmt.json",
+      "relativepath": "rein-ch07-rust-evidence/v2-cargo-fmt.json",
+      "sha256": "4031afd0b50b838de262c1dce78e805e9d06195476c71ef225cec80e017cf07c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/v2-cargo-test-full.json",
+      "relativepath": "rein-ch07-rust-evidence/v2-cargo-test-full.json",
+      "sha256": "ee0324e56ac59bb506e8758c9bc45e7e40e48ecb800ec9e3d74a214eea5662ca",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/v2-cargo-test-loop-final.json",
+      "relativepath": "rein-ch07-rust-evidence/v2-cargo-test-loop-final.json",
+      "sha256": "03ab182f44039bc6fc2a3e5f57fd5ad777684d7bcabcd00133c8b5cc54e398dc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-evidence/v2-cargo-test-loop.json",
+      "relativepath": "rein-ch07-rust-evidence/v2-cargo-test-loop.json",
+      "sha256": "ec77d022a84d5cdd3df277b33217f514dd45234bbcdeb46da05c3f26e5e210c0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/before/loop.rs",
+      "relativepath": "rein-ch07-rust-final-evidence/before/loop.rs",
+      "sha256": "61b71693bbe00a46ebd9586b6744fbb0847c4c5e12954d761f48fb3b2eebc35f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/before/tests-loop.rs",
+      "relativepath": "rein-ch07-rust-final-evidence/before/tests-loop.rs",
+      "sha256": "5c510cab5c0d0d999707f7b48ee6c51e2db5b1650316ce97d9538e044a2ffd0b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/fmt.meta",
+      "relativepath": "rein-ch07-rust-final-evidence/fmt.meta",
+      "sha256": "ff454d9cc8256ca66e193ada5dc32dd956ce18a3ccda2be22ade1a49570c99a6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/fmt.stderr",
+      "relativepath": "rein-ch07-rust-final-evidence/fmt.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/fmt.stdout",
+      "relativepath": "rein-ch07-rust-final-evidence/fmt.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/focused.meta",
+      "relativepath": "rein-ch07-rust-final-evidence/focused.meta",
+      "sha256": "2c51467faeb3e4114e88fb69156eca54d2d1876ed22aec44551536da2e4ad5e7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/focused.stderr",
+      "relativepath": "rein-ch07-rust-final-evidence/focused.stderr",
+      "sha256": "11a1d5ae0e7f1d84975e9601ac70986cc291635649703c03fd9d93ecef92594a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/focused.stdout",
+      "relativepath": "rein-ch07-rust-final-evidence/focused.stdout",
+      "sha256": "e0df026be1ce9f9a2844c5e297b44c5aadbbf09152cd613f878613b2d4168664",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/full.meta",
+      "relativepath": "rein-ch07-rust-final-evidence/full.meta",
+      "sha256": "74c32a0eddbe007d140f6e1593d3ff0a8358fa1549be6ce105d122cbc85fd78e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/full.stderr",
+      "relativepath": "rein-ch07-rust-final-evidence/full.stderr",
+      "sha256": "a5250c9cf008fa922092172ef14aa66672764231eef697e1b1f0ceb2c2dc6007",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-final-evidence/full.stdout",
+      "relativepath": "rein-ch07-rust-final-evidence/full.stdout",
+      "sha256": "796412bdb6fd3d00972ce0e377e018528cdec21f32f7b1ed5e22e4b5a3895555",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/.env.example",
+      "relativepath": "rein-ch07-rust-v1-preserved/.env.example",
+      "sha256": "d77f0ead5466f877f6ddbe3cb778d546a9f0401b443b8908068393bf803b92d5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/Cargo.lock",
+      "relativepath": "rein-ch07-rust-v1-preserved/Cargo.lock",
+      "sha256": "4665aba2dfe3a3c83545b0a1df454fe554d99abf44b250fb276b421926bc6d0a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/Cargo.toml",
+      "relativepath": "rein-ch07-rust-v1-preserved/Cargo.toml",
+      "sha256": "4cc3b2f235428f34d42e8914bb1458568d502504fd083cf7f4b267e8f547879c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/README.md",
+      "relativepath": "rein-ch07-rust-v1-preserved/README.md",
+      "sha256": "733bf518cb018281ec18bb84b892add71cfbc1e69d72a635a7f563167167bf73",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/ch05_compare.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/ch05_compare.rs",
+      "sha256": "4130b3e9dd28161d2e74b02a7b85a81b7f61c240b792aa402e575d80f060a1cb",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/ch05_loop.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/ch05_loop.rs",
+      "sha256": "529e448444cbf9f2a8c9a77b1fac35a3d065ddfda297546b975109f526fa5276",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/ch06_loop.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/ch06_loop.rs",
+      "sha256": "710eb97f4b046a73a051e7c261881012e6c8f2ab349af5546d1c238866f074b7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/ch07_context.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/ch07_context.rs",
+      "sha256": "1e9bc77674c3f381832f2a2ce4fefcbf817176345607c088a8746b7c23c95ffd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/reading-00/.gitignore",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/reading-00/.gitignore",
+      "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/reading-00/Cargo.lock",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/reading-00/Cargo.lock",
+      "sha256": "2521601119a8483a3d34612910b6772d160fe9bfff991506b0fcab595d172a68",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/reading-00/Cargo.toml",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/reading-00/Cargo.toml",
+      "sha256": "6b0dba6107e8704f1f5737781a40ec46141c820473e4221902866429f91e17d5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/examples/reading-00/src/main.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/examples/reading-00/src/main.rs",
+      "sha256": "854f15e6eca1bb897ecad3018279f5e54879bb7a47224307e8233fed95cc75cc",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/manifest.json",
+      "relativepath": "rein-ch07-rust-v1-preserved/manifest.json",
+      "sha256": "f9507338a71691e3c9d64f27af38755dc8c2cd2c3d05df469705455260f94876",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/README.md",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/README.md",
+      "sha256": "6e80416a14dde96751869a049e5ce87b86b4a967760c7c395fe2c2871409bea2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/bin/hello.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/bin/hello.rs",
+      "sha256": "74337baef4504361e5296e473e1d54c24936e7bbe9eb89735b9d4187f00ac969",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/lib.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/lib.rs",
+      "sha256": "5d24a462295c6676ab83ba0b29dd63d3b462ba319226881484b90c25cf52ef38",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/main.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/main.rs",
+      "sha256": "0299ccf72449f18087ecae8d39f002e1e3aba1b6247d1198818ec2d9147066b7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/rein/loop.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/rein/loop.rs",
+      "sha256": "f95cf95a93f6df5ca4480e5ed1dc7b78043e85d432040c59d227bbab65de86b4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/src/rein/mod.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/src/rein/mod.rs",
+      "sha256": "0984616b7f1f14696698bfa2fb473e163aff59eb694ac4b3082ce9f687171060",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/tests/README.md",
+      "relativepath": "rein-ch07-rust-v1-preserved/tests/README.md",
+      "sha256": "9992f9348ba5f31802ed3fa0e048cb4cc815a386fd86c275603050a458c07a6b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/tests/loop.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/tests/loop.rs",
+      "sha256": "280f025d1e5e8494e3b367b71acf21a6ec49f7d9ade4fada4a23600eae9eb983",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v1-preserved/tests/prerequisites.rs",
+      "relativepath": "rein-ch07-rust-v1-preserved/tests/prerequisites.rs",
+      "sha256": "fc5189a39c566d63085c74dace6a555b3764cb4b2d6748953757187fcedc546f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-rust-v2-preserved/manifest.json",
+      "relativepath": "rein-ch07-rust-v2-preserved/manifest.json",
+      "sha256": "823b029d5b17a843d3eeaaa4f4b6951fb190c233ac8f033f5bc1209c5f0f85c1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/compare-v9.json",
+      "relativepath": "rein-ch07-ts-body-evidence/compare-v9.json",
+      "sha256": "8d2bdabd2b8a651711f82151bb940924eac1c2792d1501dfa1c6bb9d9a92d6d0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/copy-practice-v2.json",
+      "relativepath": "rein-ch07-ts-body-evidence/copy-practice-v2.json",
+      "sha256": "f5e3c49fcf51eb9b0f518fbd13a689f38f4d09378d82191c011bdd56233665d0",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/docs-build-final.json",
+      "relativepath": "rein-ch07-ts-body-evidence/docs-build-final.json",
+      "sha256": "28a215ee4b6390fac03bd0bd31734c7c6f2ea1fb33cab75d30747a07553cd782",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/docs-build-final2.json",
+      "relativepath": "rein-ch07-ts-body-evidence/docs-build-final2.json",
+      "sha256": "24053546f1504edc55d0cbccc397f1bc430a2eee3563e64663dca93b9c0a08a2",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/docs-build.json",
+      "relativepath": "rein-ch07-ts-body-evidence/docs-build.json",
+      "sha256": "2fe425dea27914a67fa603c7cbb7a772d05fca523db59c68663956ebeb36dc33",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/empty-v9.json",
+      "relativepath": "rein-ch07-ts-body-evidence/empty-v9.json",
+      "sha256": "f9baa7d6af3676d76eb96674359c39d3d02cd69f4b3c4e8aa3ba026575535213",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/runs-v2.json",
+      "relativepath": "rein-ch07-ts-body-evidence/runs-v2.json",
+      "sha256": "187095109e871105a7aafe6fd776c96e7ea3cea0bc470134f30ea88f0ee873f5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/runs.json",
+      "relativepath": "rein-ch07-ts-body-evidence/runs.json",
+      "sha256": "620856947a8e132ced2d086d26151926060fcf2674dd76f469d594740fa8f9d7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/rust-practice-07-1-final.json",
+      "relativepath": "rein-ch07-ts-body-evidence/rust-practice-07-1-final.json",
+      "sha256": "13a52533ad7b8fca5cba8429bf3d9142a1343e7717739ce0b7362e63570902d1",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/rust-practice-v2.json",
+      "relativepath": "rein-ch07-ts-body-evidence/rust-practice-v2.json",
+      "sha256": "829d87bd17b1f921af2591525b942f3a64c668717f2ac884d192f96a1cb5b3fe",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-body-evidence/typecheck-v9.json",
+      "relativepath": "rein-ch07-ts-body-evidence/typecheck-v9.json",
+      "sha256": "1c3c8f64da5319e6beae62c7d047e9ec8fd947569a0ac0bd92121bf8296613d7",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/cli-v2.json",
+      "relativepath": "rein-ch07-ts-evidence/cli-v2.json",
+      "sha256": "79940bdc14d3bd1daa876f59c441a7c625bad7ee42137d62c05b36dae410127b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/cli.json",
+      "relativepath": "rein-ch07-ts-evidence/cli.json",
+      "sha256": "86b250e5bd58283113483f66ed18e3dbe09b924e4d6940f1e0bc85b3d7318537",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/compare-v5.json",
+      "relativepath": "rein-ch07-ts-evidence/compare-v5.json",
+      "sha256": "2c7d1506791435982780f39aff24e98acb95b9d71a248249c2afb3c6de8d7f8b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/compare-v6.json",
+      "relativepath": "rein-ch07-ts-evidence/compare-v6.json",
+      "sha256": "4fb5d84fd30d871eeb6aa74ebc5a8d25c44ec7a2a43046c07e873e722e17fe39",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/compare-v7.json",
+      "relativepath": "rein-ch07-ts-evidence/compare-v7.json",
+      "sha256": "fa96f22fde9698db8ab3535758628d4731c7860cf8c03ed7599049ab7cced4f5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/compare-v8.json",
+      "relativepath": "rein-ch07-ts-evidence/compare-v8.json",
+      "sha256": "618c8a591d7067398107596f35727a4a9a5b799a2681a0021c47806685e0d295",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/focused-v2.json",
+      "relativepath": "rein-ch07-ts-evidence/focused-v2.json",
+      "sha256": "8585fd750776e706f26c988601badbf5837ebabc78656c08a41ba5d9d0707105",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/focused-v4.json",
+      "relativepath": "rein-ch07-ts-evidence/focused-v4.json",
+      "sha256": "bc3eda95058c0c59ba40d091327a4568a9aded544be539939c179f5b91d43f27",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/focused.json",
+      "relativepath": "rein-ch07-ts-evidence/focused.json",
+      "sha256": "bc29cc559b33a27b9ffbd0af2858f059d23c0addf9aeb5b98f8cc9b2e0ddb719",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v2.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v2.json",
+      "sha256": "17c7d0881e45e8f6986b1d7e2d61d645e3967692eb3f9dae21fe016c9741ab8e",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v3.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v3.json",
+      "sha256": "710a1f11719ed3d6c3faab6c7818f5323377224812dfbb6d30e94d813577442c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v4.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v4.json",
+      "sha256": "a3c09c11898c716a33ae2032b9f7b49d20f1b34751d972e63d93d74df49ae95a",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v5.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v5.json",
+      "sha256": "9e92ed35186915b4115d2551a06c25bb7ed35edc4a5c35a93c8a67d978d76b26",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v7.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v7.json",
+      "sha256": "a03024cb8496a982b92ce2ad8367b005ef4dfc9c3c67684a1d372d839c997fbf",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/full-v8.json",
+      "relativepath": "rein-ch07-ts-evidence/full-v8.json",
+      "sha256": "38dea51b460a47713ba1aa92668216c8175313835fc19c799c8e452b14e76c06",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/metadata-limitations.json",
+      "relativepath": "rein-ch07-ts-evidence/metadata-limitations.json",
+      "sha256": "f78030b4c49cfb0829a9248890fa8c694275c6b65dc487b3cc247ef35a6dc485",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/rust-integration-v8.json",
+      "relativepath": "rein-ch07-ts-evidence/rust-integration-v8.json",
+      "sha256": "e3abd5753feff989005cdd3d904dfc6e376f541f251f6ce331ae3203d6dbf425",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/rust-targeted-v7.json",
+      "relativepath": "rein-ch07-ts-evidence/rust-targeted-v7.json",
+      "sha256": "91c92613b19b9f4a92344f76caf39faf0a813947e75f9c15098c3de89167ad9b",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck-v2.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck-v2.json",
+      "sha256": "763a7919a4f93bbd4bd94a0b9732a687de7c77ba67d00674f1b2c98b89fd52a5",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck-v4.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck-v4.json",
+      "sha256": "f5a84e5a747eb834519fb700864cb9d6c066357b2b5a83c69f3e0854ef4743d6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck-v5.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck-v5.json",
+      "sha256": "a3761842bfb083e441aa613fbdb219243a89b982246e09264f0dc3b14b957d28",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck-v7.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck-v7.json",
+      "sha256": "45392821bf3577d9134f5cdd5e79dda7d65b595231ba156b34d452f9de924406",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck-v8.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck-v8.json",
+      "sha256": "b807fd5e854e4034ee30cfd2d06cb07d628d4991b9c91fea8d9a0d3a3c26f55c",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-evidence/typecheck.json",
+      "relativepath": "rein-ch07-ts-evidence/typecheck.json",
+      "sha256": "6633b5ce7251371ec73f952d9440529fd3409621e77ead043e2faad8ee9f3be6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/SHA256SUMS",
+      "relativepath": "rein-ch07-ts-v1-preserved/SHA256SUMS",
+      "sha256": "bfb08c51d7e28dd037c25f2f71c6527fc3a47e5240922b58e42d52852e0129fa",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/ch07-compare.mjs",
+      "relativepath": "rein-ch07-ts-v1-preserved/ch07-compare.mjs",
+      "sha256": "cc0993834e8cd66ffe097a736630eab1f25c9d5d2287143e98ff7f23d44f68da",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/ch07-context.json",
+      "relativepath": "rein-ch07-ts-v1-preserved/ch07-context.json",
+      "sha256": "153cc601c4fd64b2b3d9fd467e744f90a34928788fc33851cdc087a16c3e9aa3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/ch07-context.test.ts",
+      "relativepath": "rein-ch07-ts-v1-preserved/ch07-context.test.ts",
+      "sha256": "df29c2f4f661b9e5ead181e3518224b4021c143ea95f21be3e81dbab4ab7c4d6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/ch07-context.ts",
+      "relativepath": "rein-ch07-ts-v1-preserved/ch07-context.ts",
+      "sha256": "0abde27bea2334f819a39e657059f4cef7145de56774b1a30883ccbe8451351f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/contracts.ts",
+      "relativepath": "rein-ch07-ts-v1-preserved/contracts.ts",
+      "sha256": "f02b84d389cd27b4780276a1c1097a77447a1d882af7cde9d3420ac33e852db8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/loop.ts",
+      "relativepath": "rein-ch07-ts-v1-preserved/loop.ts",
+      "sha256": "e6f3ebb73e166212f68f77121f9c79500b07bde841e79412e6d251dea64f1b29",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v1-preserved/package.json",
+      "relativepath": "rein-ch07-ts-v1-preserved/package.json",
+      "sha256": "37101db5bb3e6104ae5713cfd4db66c945820d9f56cdf571c8914cc30a8a471f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/SHA256SUMS",
+      "relativepath": "rein-ch07-ts-v2-preserved/SHA256SUMS",
+      "sha256": "dcfc5c14e54ce5aacd6bedbd984c81a4e2bd7cccfd63b215137603777406dcae",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/ch07-compare.mjs",
+      "relativepath": "rein-ch07-ts-v2-preserved/ch07-compare.mjs",
+      "sha256": "77ff14c202f5721c4dadd574095d89729414b25b06330f800d19b45ac6e46fc4",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/ch07-context.json",
+      "relativepath": "rein-ch07-ts-v2-preserved/ch07-context.json",
+      "sha256": "153cc601c4fd64b2b3d9fd467e744f90a34928788fc33851cdc087a16c3e9aa3",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/ch07-context.test.ts",
+      "relativepath": "rein-ch07-ts-v2-preserved/ch07-context.test.ts",
+      "sha256": "df29c2f4f661b9e5ead181e3518224b4021c143ea95f21be3e81dbab4ab7c4d6",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/ch07-context.ts",
+      "relativepath": "rein-ch07-ts-v2-preserved/ch07-context.ts",
+      "sha256": "0abde27bea2334f819a39e657059f4cef7145de56774b1a30883ccbe8451351f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/contracts.ts",
+      "relativepath": "rein-ch07-ts-v2-preserved/contracts.ts",
+      "sha256": "f02b84d389cd27b4780276a1c1097a77447a1d882af7cde9d3420ac33e852db8",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/loop.ts",
+      "relativepath": "rein-ch07-ts-v2-preserved/loop.ts",
+      "sha256": "f8171eab4264b122e13f33f2bb446ecbdbe1aaca847c7e107e4d14eb8f572866",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v2-preserved/package.json",
+      "relativepath": "rein-ch07-ts-v2-preserved/package.json",
+      "sha256": "37101db5bb3e6104ae5713cfd4db66c945820d9f56cdf571c8914cc30a8a471f",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v7-preserved/SHA256SUMS",
+      "relativepath": "rein-ch07-ts-v7-preserved/SHA256SUMS",
+      "sha256": "0fa65c01618bc6a8e9a9437289154537f419c05eb173f39ac347a8bcd71ff0dd",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v7-preserved/ch07-context.test.ts",
+      "relativepath": "rein-ch07-ts-v7-preserved/ch07-context.test.ts",
+      "sha256": "18795fb44132cce70723708f8b38324328096f9585270ff583312317e59274ca",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v7-preserved/loop.ts",
+      "relativepath": "rein-ch07-ts-v7-preserved/loop.ts",
+      "sha256": "d98367e453796a95dde2ac6d69da0247a17777eea4e33cb7bf98d66b2e709958",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v8-preserved/SHA256SUMS",
+      "relativepath": "rein-ch07-ts-v8-preserved/SHA256SUMS",
+      "sha256": "ed3f6fd49fb854c9cecc57da5f1ee646b775fcbf3f7078f2634d684c4a419d19",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v8-preserved/ch07-context.test.ts",
+      "relativepath": "rein-ch07-ts-v8-preserved/ch07-context.test.ts",
+      "sha256": "9c55a5b50acb708a3dc3b5b84e712d2bd02a757a4089a0737697a93159b5ab63",
+      "mode": "0o644"
+    },
+    {
+      "source": "/private/tmp/rein-ch07-ts-v8-preserved/loop.ts",
+      "relativepath": "rein-ch07-ts-v8-preserved/loop.ts",
+      "sha256": "03850916e44ac862ccc51b3300c47d9ec879af074964dbec20ce9929c64840fa",
+      "mode": "0o644"
+    }
+  ],
+  "missing": [],
+  "excluded": [
+    "node_modules",
+    "target",
+    "build",
+    "dist",
+    "external symlinks",
+    "package-lock.json"
+  ]
+}

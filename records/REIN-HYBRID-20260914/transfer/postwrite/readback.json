@@ -1,0 +1,12 @@
+{
+  "checked": 81,
+  "failures": [],
+  "author": {
+    "path": "docs/chapters/01.md",
+    "sha256": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d",
+    "expected": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d",
+    "unchanged": true,
+    "bytes": 7305,
+    "mode": 420
+  }
+}

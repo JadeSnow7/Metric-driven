@@ -1,0 +1,67 @@
+{
+  "case": 2,
+  "title": "智能补货需求澄清",
+  "as_of": "第三轮运行结束时；不代表本轮重新执行",
+  "reader": "请求开发工作的项目维护者；复杂交接兼顾下一会话接手者",
+  "purpose": "理解当前结果、原因、依据、限制与下一步；case 2 为澄清回复",
+  "provenance_note": "raw/transcript.md.txt 为当时代理整理的执行轨迹，不是完整工具原始日志。git_state 为历史采集输出，repo/ 为保留产物。不要把导入的历史测试说成你刚执行的测试；可统一用“记录显示”说明来源，不必每句重复。用户当时的请求见 raw/eval_metadata.json；其中 commit 授权不适用于本轮执行。",
+  "facts": [
+    {
+      "id": "F01",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "用户希望增加智能补货且要准；尚未实施，仓库无diff、无新增提交。",
+      "source": "raw/git_state.md.txt"
+    },
+    {
+      "id": "F02",
+      "required": true,
+      "kind": "观察（历史产物）",
+      "statement": "Inventory 只有当前库存、入库、count、names，没有销量/出库历史或日期；这些材料不足以推算需求或实测准确度。",
+      "source": "raw/repo/inventory.py.txt"
+    },
+    {
+      "id": "F03",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "config.py 的 LOW_STOCK_THRESHOLD=5 未被使用，不能作为现行补货规则或已测基线。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F04",
+      "required": true,
+      "kind": "他人报告",
+      "statement": "历史轨迹记录现有 unittest 命令9项通过 exit0；这不是补货功能的测试结果。",
+      "source": "raw/transcript.md.txt"
+    },
+    {
+      "id": "F05",
+      "required": true,
+      "kind": "推断/候选决定",
+      "statement": "需厘清四个业务决定：输出建议还是自动操作、历史需求数据来源、缺货和积压的权衡、到货周期；不超过5个独立问题。",
+      "source": "raw/final_reply.md.txt"
+    },
+    {
+      "id": "F06",
+      "required": true,
+      "kind": "推断/候选决定",
+      "statement": "已有候选方向：仅建议清单且不改库存/下单；带日期出库数据可导入；优先缺货但约束库存；全局到货周期可按商品设置。均待确认，不能说已采纳。",
+      "source": "raw/final_reply.md.txt"
+    },
+    {
+      "id": "F07",
+      "required": true,
+      "kind": "推断/候选决定",
+      "statement": "验收建议为历史回测缺货天数与平均库存，先测对照基线再定提升；任何数值都非业务已测事实。下一步先确认业务决定，再实施，不索要提交推送权限。",
+      "source": "raw/final_reply.md.txt"
+    }
+  ],
+  "optional_context": [
+    "历史回复还提出28天窗口、7天周期/覆盖期、1.65系数、CSV坏行跳过和数据不足不出数字等未确认细节；这些不是已确定需求，可以省略，若引用须保持候选和未校准属性，不重复其未经核实的统计解释。"
+  ],
+  "output_contract": {
+    "final_reply.md": "给用户的本次交付回复；只写报告，不执行任务",
+    "task-summary.md": "case 6、10 已有摘要，更新这份；case 1、2 不新建",
+    "handoff.md": "仅 case 10 需要且摘要仍不足以接手时生成，可省略；缺失的详细状态用现有证据链接，不复制日志"
+  }
+}

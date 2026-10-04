@@ -1,0 +1,28 @@
+Command: python3 tools/tests/test_rein_evaluate.py
+Result:
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.226s
+
+OK
+
+Additional checks:
+- py_compile_ok
+- chapter-16 case count: 12
+- categories: expired_command x3, parameter_change x3, broken_relative_link x3, no_change x3
+- real runner binding: `python -m unittest discover`; fake `print('passed')` has no recognized runner and is rejected
+- empty commands and all-optional commands are rejected
+- mutation of a source input rejects the old source fingerprint
+- unittest output with only skipped tests is rejected; unreviewed functional results are `undetermined` with non-zero CLI exit
+- test-count parsing is only an observable runner report; it is not independent proof of test authenticity
+- git diff --check: passed for assigned paths
+
+Dataset self-test: python3 tools/tests/test_rein_dataset.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.019s
+
+OK
+- original fixtures: 9 faulty cases fail the semantic oracle, 3 no-change cases pass
+- independent corrected candidates: 12/12 pass
+- broken-link candidates retain link labels and point to existing targets; deleting the link text does not satisfy the oracle

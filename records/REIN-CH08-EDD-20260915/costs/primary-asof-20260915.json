@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "kind": "primary_asof_index",
+  "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-10-15-01a0a30b-34e0-72e0-9759-25600c652723.jsonl",
+  "as_of": "2026-09-15T11:19:11.152Z",
+  "complete": false,
+  "scope": "public root-directed collaboration records and per-turn usage only; original full session intentionally not copied",
+  "source_line_count": 5981,
+  "turns": [
+    {
+      "turn_id": "01a0a30b-3bc8-7f63-be35-84acc40fda52",
+      "started_at": "2026-09-15T03:10:17.633Z",
+      "usage_record": {
+        "timestamp": "2026-09-15T07:17:42.540Z",
+        "usage": {
+          "input_tokens": 202849,
+          "cached_input_tokens": 201856,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 568,
+          "reasoning_output_tokens": 352,
+          "total_tokens": 203417
+        },
+        "turn_token_usage": {
+          "input_tokens": 82939274,
+          "cached_input_tokens": 81568768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 330383,
+          "reasoning_output_tokens": 156737,
+          "total_tokens": 83269657
+        }
+      }
+    },
+    {
+      "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+      "started_at": "2026-09-15T10:41:27.874Z",
+      "usage_record": {
+        "timestamp": "2026-09-15T11:19:11.073Z",
+        "usage": {
+          "input_tokens": 172524,
+          "cached_input_tokens": 172160,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 180,
+          "reasoning_output_tokens": 26,
+          "total_tokens": 172704
+        },
+        "turn_token_usage": {
+          "input_tokens": 14168710,
+          "cached_input_tokens": 13668992,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 41870,
+          "reasoning_output_tokens": 11564,
+          "total_tokens": 14210580
+        }
+      }
+    }
+  ],
+  "collaboration_messages": [],
+  "missing": [
+    "session remained running at as_of; later turns and final total cost unavailable",
+    "coordination call count is not repair-round count"
+  ]
+}

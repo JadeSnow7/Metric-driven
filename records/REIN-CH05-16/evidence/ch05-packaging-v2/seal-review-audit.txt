@@ -1,0 +1,26 @@
+first_arm a file_count 122
+a exit.json sha256 a6613ff8b13b81a0a1abc671b7c3883b3b4151f259e4724eafaa72fcf0b3b7cc
+a events.jsonl sha256 8b65fdba0e3c3802c54296c770acac0b69314f2c619e0586ff190316dbea51e5
+a final.md sha256 3f2b6883249b8a8cfa6fbac0a8e13afe365936f1458d2b018621f0794578c1c2
+a prompt.md sha256 bb929a9b7a089b88700e8955418fb46df9a4b9006d892d400f5646c2d6b74055
+a launch.json sha256 3a5c5f5e131b54773619efb07eae96e73be30eee22d974a7956d1f9179b12f69
+a stderr.log sha256 c1d9bdd0c658be472b9587ef327b32299deba7753394242f3f39d6b38ce48117
+a exit_code 0 elapsed_seconds 571.2943205829943 usage_keys ['argv', 'arm', 'cli_version', 'elapsed_seconds', 'ended_at', 'environment_overrides', 'exit_code', 'group', 'prompt_sha256', 'role_sha256', 'source_audit', 'started_at']
+reviewer-1 package-17 package_files 28
+reviewer-1 package-42 package_files 29
+reviewer-2 package-17 package_files 28
+reviewer-2 package-42 package_files 29
+first_arm b file_count 123
+b exit.json sha256 53c28e85cc48535cf1e91526c8af80320648886a09d3bc63283d4eac60673033
+b events.jsonl sha256 cf95df804b4a906e0aad2881b09de5174a42a72d985371dec92521ad5f867a16
+b final.md sha256 c87314d3dc369a37a03d7cba698bd7b82700cafb07e4a2f3fdc12fcd044c5d24
+b prompt.md sha256 e047a8525fd1bd8286d339dbde7b7f1a28da01f5182c5c1d73ea631953ff1d92
+b launch.json sha256 271ce4e055e2937f5455adc6de500547cb73cb7cd9b12443fc68d7091bf1e8d5
+b stderr.log sha256 ad304a8773d86c593d187dca5191f08f5e04ee45896aa5ca6616038d60c755b2
+b exit_code 0 elapsed_seconds 546.9885164999869 usage_keys ['argv', 'arm', 'cli_version', 'elapsed_seconds', 'ended_at', 'environment_overrides', 'exit_code', 'group', 'prompt_sha256', 'role_sha256', 'source_audit', 'started_at']
+reviewer-1 package-17 package_files 28
+reviewer-1 package-42 package_files 29
+reviewer-2 package-17 package_files 28
+reviewer-2 package-42 package_files 29
+task_input_preflight a equal True got {'task-inputs/ch05-product-clarifications.md': '457def41fd1e1174a7061d15e2a736a9f37d59bbf8ad634504032b8c9eab8aa1', 'task-inputs/chapter-05.json': '71bde7eb75e3743776bafc2094bc6ef26f7ca478743f7e1adcd4e329d9cbc4ae', 'task-inputs/product-spec.md': '514709ddac70ee1d481d49c5074e6b7bd37b52467ff51f2184c4464eedf1cbf8'} expected {'task-inputs/product-spec.md': '514709ddac70ee1d481d49c5074e6b7bd37b52467ff51f2184c4464eedf1cbf8', 'task-inputs/chapter-05.json': '71bde7eb75e3743776bafc2094bc6ef26f7ca478743f7e1adcd4e329d9cbc4ae', 'task-inputs/ch05-product-clarifications.md': '457def41fd1e1174a7061d15e2a736a9f37d59bbf8ad634504032b8c9eab8aa1'}
+task_input_preflight b equal True got {'task-inputs/ch05-product-clarifications.md': '457def41fd1e1174a7061d15e2a736a9f37d59bbf8ad634504032b8c9eab8aa1', 'task-inputs/chapter-05.json': '71bde7eb75e3743776bafc2094bc6ef26f7ca478743f7e1adcd4e329d9cbc4ae', 'task-inputs/product-spec.md': '514709ddac70ee1d481d49c5074e6b7bd37b52467ff51f2184c4464eedf1cbf8'} expected {'task-inputs/product-spec.md': '514709ddac70ee1d481d49c5074e6b7bd37b52467ff51f2184c4464eedf1cbf8', 'task-inputs/chapter-05.json': '71bde7eb75e3743776bafc2094bc6ef26f7ca478743f7e1adcd4e329d9cbc4ae', 'task-inputs/ch05-product-clarifications.md': '457def41fd1e1174a7061d15e2a736a9f37d59bbf8ad634504032b8c9eab8aa1'}

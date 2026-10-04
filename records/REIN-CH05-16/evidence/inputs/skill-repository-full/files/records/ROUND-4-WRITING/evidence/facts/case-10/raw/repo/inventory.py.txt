@@ -1,0 +1,106 @@
+"""In-memory stock tracking."""
+
+from __future__ import annotations
+
+import os
+import re
+
+# One physical CSV line with exactly two fields (RFC 4180 quoting). A field is
+# either unquoted and free of quotes and commas, or wrapped in double quotes
+# (optionally padded with spaces/tabs) with any inner quote doubled.
+_FIELD = r'([^",]*|[ \t]*"[^"]*(?:""[^"]*)*"[ \t]*)'
+_TWO_FIELD_LINE = re.compile(_FIELD + "," + _FIELD)
+_QUANTITY = re.compile(r"[0-9]+")
+
+
+class Inventory:
+    def __init__(self) -> None:
+        self._items: dict[str, int] = {}
+
+    def add_item(self, name: str, quantity: int) -> None:
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
+        self._items[name] = self._items.get(name, 0) + quantity
+
+    def count(self, name: str) -> int:
+        return self._items.get(name, 0)
+
+    def names(self) -> list[str]:
+        """Return item names in alphabetical order."""
+        return sorted(self._items)
+
+    def import_csv(self, path: str | os.PathLike[str]) -> tuple[int, list[int]]:
+        """Add stock from a UTF-8 CSV file whose header is ``name,quantity``.
+
+        Each physical line is one record and is parsed on its own, so a broken
+        line (for example an unclosed quote) never affects the lines after it.
+        Line numbers count the header as line 1. A data line is imported when it
+        has exactly two well-formed CSV fields, a non-blank name and a quantity
+        made only of ASCII digits with a value above zero; whitespace around
+        either value is ignored. Any other non-blank line is skipped, including
+        a quote inside an unquoted field and both halves of a record whose
+        quoted field spans lines. Blank lines are ignored. Repeated names add
+        up, as with ``add_item``.
+
+        Returns ``(imported, skipped)``: the number of imported lines and the
+        line numbers of skipped lines. Raises ``ValueError`` if the file is empty
+        or its first line is not the expected header; errors opening or decoding
+        the file propagate. When an exception is raised nothing is imported.
+        """
+        with open(path, encoding="utf-8-sig", newline="") as handle:
+            lines = handle.readlines()
+
+        header = _split_two_fields(lines[0]) if lines else None
+        if header is None or (header[0].strip(), header[1].strip()) != ("name", "quantity"):
+            raise ValueError("CSV must start with the header 'name,quantity'")
+
+        rows: list[tuple[str, int]] = []
+        skipped: list[int] = []
+        for line_number, line in enumerate(lines[1:], start=2):
+            if not line.strip():
+                continue
+            row = _parse_stock_row(line)
+            if row is None:
+                skipped.append(line_number)
+            else:
+                rows.append(row)
+
+        for name, quantity in rows:
+            self.add_item(name, quantity)
+        return len(rows), skipped
+
+    def low_stock(self, threshold: int = 5) -> list[str]:
+        """Return names of items whose quantity is below ``threshold``, sorted."""
+        return sorted(name for name, quantity in self._items.items() if quantity < threshold)
+
+
+def _split_two_fields(line: str) -> tuple[str, str] | None:
+    """Split one physical line into two unquoted values; ``None`` if malformed."""
+    match = _TWO_FIELD_LINE.fullmatch(line.rstrip("\r\n"))
+    if match is None:
+        return None
+    first, second = (_unquote(field) for field in match.groups())
+    return first, second
+
+
+def _unquote(field: str) -> str:
+    padded = field.strip(" \t")
+    if padded.startswith('"'):  # the pattern guarantees a closing quote
+        return padded[1:-1].replace('""', '"')
+    return field
+
+
+def _parse_stock_row(line: str) -> tuple[str, int] | None:
+    fields = _split_two_fields(line)
+    if fields is None:
+        return None
+    name, quantity_text = (field.strip() for field in fields)
+    if not name or not _QUANTITY.fullmatch(quantity_text):
+        return None
+    try:
+        quantity = int(quantity_text)
+    except ValueError:  # more digits than Python's int conversion limit
+        return None
+    if quantity <= 0:
+        return None
+    return name, quantity

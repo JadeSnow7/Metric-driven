@@ -1,0 +1,28 @@
+{
+  "all_checks_pass": true,
+  "tracked": 390,
+  "untracked": 9,
+  "archive_files": 399,
+  "skill_files": 15,
+  "baseline_tar": "/tmp/metric-driven-baseline-1a10fca5.tar.gz",
+  "baseline_tar_sha256": "38d158005d4e5826e2e57e26120d60ed14836f005e084452353b76e442e04e06",
+  "out_of_scope_artifacts": [
+    {
+      "path": "05-rust.md",
+      "sha256": "684ea0c7e89b776133bf2f2cdf10704124a44302b910e6e598a10acdc0f67a00",
+      "mode": 420
+    },
+    {
+      "path": "05.md",
+      "sha256": "4dfbddba0ac7e8289ba5d819ab27460ff43f656165217f2c0a7595f745856a3b",
+      "mode": 420
+    },
+    {
+      "path": "ch05_loop.rs",
+      "sha256": "af31219dc5ed3b51b45eb07a1c82a5a67af4b60c40ff27fd737d356999ec1724",
+      "mode": 420
+    }
+  ],
+  "out_of_scope_source": "/private/tmp/rein-ch05-pair-ready-20260914",
+  "out_of_scope_note": "Misplaced first-round artifacts retained for provenance only; not formal first inputs or scoring."
+}

@@ -1,0 +1,43 @@
+# Preparation operator verification
+
+All commands ran in `/Users/huaodong/Documents/evidence-driven-development` on 2026-09-14. Exit values are the actual process exits.
+
+## Source hashes
+
+```text
+17b2b7aba7a02b6af1141875948d5fda153e4e89fc91b5109352e7674f62e208  tools/rein_evaluate.py
+698d6018c29c41e78f6ab85c837cf2719e30033e7baea69aea4f8580b9be05d9  tools/tests/test_rein_evaluate.py
+c54de66c82646ffe595872af5f37bff84c976c9e1cf32b7a462d29d7cd8c8494  tools/tests/test_validate_repository.py
+c457146ac69c8783e26de3ff1c4c7298bfba70bae5fbca25cbd04260719da237  tools/validate_repository.py
+```
+
+## Commands and results
+
+`python3 -B -m unittest discover -s tools/tests -p 'test_*.py'`
+
+- stdout/stderr: `Ran 23 tests in 0.246s`, `OK`; the argparse usage lines are expected stderr from rejection tests.
+- Cargo regression assertion: `3 passed; 0 failed; 2 ignored` plus `5 passed; 0 failed; 1 ignored` yields `executed=8, passed=8, failed=0, skipped=3`.
+- exit: `0`
+
+`python3 -B tools/test_rein_experiment.py`
+
+- stdout/stderr: `Ran 4 tests in 0.371s`, `OK`
+- exit: `0`
+
+`python3 -B tools/validate_repository.py`
+
+- stdout: `repository validation passed (18 required files, local links checked)` and the tool limitation note.
+- stderr: empty.
+- exit: `0`
+
+`git diff --check -- tools/rein_evaluate.py tools/tests/test_rein_evaluate.py tools/tests/test_validate_repository.py tools/validate_repository.py`
+
+- stdout/stderr: empty.
+- exit: `0`
+
+## Archive restoration checks
+
+- `tree/manifest.json` reports 24 archived files: 15 skill files and 9 `records/ROUND-5-WRITING` files.
+- No archived file has a secret name in the excluded secret-name set.
+- Reconstructed skill files matched all 15 entries in the original frozen `evidence/inputs/skill/tree/manifest.json` by path and SHA-256.
+- The later ROUND-5-WRITING collection is explicitly not represented as an initial hash or timestamp; equality with the initial moment cannot be proved.

@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-15T05:09:06.060562+00:00",
+  "reason": "All formal source/raw snapshots sealed; anonymous reviewer dependency COW copies already created from retained common baseline; remove regenerable independent formal dependency copies to reserve disk for reviewers",
+  "retained_dependency_source": "/private/tmp/rein-ch08-common-20260915/book/node_modules",
+  "files": [
+    {
+      "group": "A",
+      "path": "/private/tmp/rein-ch08-formal-20260915/A/book/node_modules",
+      "du_before": "173M\t/private/tmp/rein-ch08-formal-20260915/A/book/node_modules\n",
+      "removed": true
+    },
+    {
+      "group": "B",
+      "path": "/private/tmp/rein-ch08-formal-20260915/B/book/node_modules",
+      "du_before": "173M\t/private/tmp/rein-ch08-formal-20260915/B/book/node_modules\n",
+      "removed": true
+    },
+    {
+      "group": "C",
+      "path": "/private/tmp/rein-ch08-formal-20260915/C/book/node_modules",
+      "du_before": "173M\t/private/tmp/rein-ch08-formal-20260915/C/book/node_modules\n",
+      "removed": true
+    }
+  ]
+}

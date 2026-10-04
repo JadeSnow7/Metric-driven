@@ -1,0 +1,32 @@
+test_add_and_count (tests.test_inventory.InventoryTests) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests) ... ok
+test_remove_item_insufficient (tests.test_inventory.InventoryTests) ... ok
+test_remove_item_partial (tests.test_inventory.InventoryTests) ... ok
+test_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests) ... FAIL
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests) ... ok
+
+======================================================================
+FAIL: test_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/stale/repo/tests/test_inventory.py", line 36, in test_remove_item_to_zero_deletes
+    self.assertEqual(inventory.names(), [])
+AssertionError: Lists differ: ['apple'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'apple'
+
+- ['apple']
++ []
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+FAILED (failures=1)

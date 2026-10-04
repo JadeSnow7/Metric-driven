@@ -1,0 +1,61 @@
+{
+  "kind": "pre-ch08-tool-evidence-v2",
+  "chapter_runtime_started": false,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "bb6aaa20f2229d245ab1e7d459a1ebe8836d789660eaf6a8b8a03290711467fa",
+      "mode": "0644"
+    },
+    {
+      "path": "codex-version-failure/actual-prompt.md",
+      "sha256": "b813ed47f864713d1c30ec0c9449365aba43b603987a277db1db8d5f00bfb6db",
+      "mode": "0644"
+    },
+    {
+      "path": "codex-version-failure/events.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "codex-version-failure/run.json",
+      "sha256": "a559af3bc138b12ea5f550c055bdcaf95286ffaad36d8f1a6b27058a491cede5",
+      "mode": "0644"
+    },
+    {
+      "path": "codex-version-failure/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0644"
+    },
+    {
+      "path": "codex-version-wrapper.json",
+      "sha256": "3e2aca1bcfc3c427b63549faab71335f716e521fa6f002ab64e6192450003924",
+      "mode": "0644"
+    },
+    {
+      "path": "normal/actual-prompt.md",
+      "sha256": "b813ed47f864713d1c30ec0c9449365aba43b603987a277db1db8d5f00bfb6db",
+      "mode": "0644"
+    },
+    {
+      "path": "normal/events.jsonl",
+      "sha256": "6f886cd70a19a3538d70d122b35d035f36cae2e3921facdf9f7e06b9c7a30a0f",
+      "mode": "0644"
+    },
+    {
+      "path": "normal/run.json",
+      "sha256": "b718d11dfb372be5fa74ecf91d1ae283817cc222a0a85bc0038e0c4e66e72e06",
+      "mode": "0644"
+    },
+    {
+      "path": "normal/stderr.txt",
+      "sha256": "33541efcf068db58a5c3fba6d4422d9a8157b6565b6dee2e46d03cabed2df0d9",
+      "mode": "0644"
+    },
+    {
+      "path": "normal-wrapper.json",
+      "sha256": "66e2332ede3f8878a052b6f380d45bb526496ade929108ee885d6c81b3ca5fdd",
+      "mode": "0644"
+    }
+  ]
+}

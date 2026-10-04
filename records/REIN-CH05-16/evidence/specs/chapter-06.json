@@ -1,0 +1,1 @@
+{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch06","title":"循环控制","checks":[{"id":"budgets","observable":"步数和工具调用预算耗尽时停止并报告原因"},{"id":"duplicate","observable":"重复行动被检测并阻止无限循环"},{"id":"cancel-timeout","observable":"取消和超时停止后不再派发新动作"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}

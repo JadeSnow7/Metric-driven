@@ -1,0 +1,7 @@
+
+running 2 tests
+test ch08_zero_budget_does_not_read_or_call ... ok
+test ch08_default_tasks_are_evidence_based ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+

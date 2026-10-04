@@ -1,0 +1,57 @@
+{
+  "updatedAt": "2026-09-15T12:25:00Z",
+  "currencyCosts": null,
+  "savingsPercent": null,
+  "phases": {
+    "commonPreparation": {
+      "raw": "../preparation; costs/common-preparation-raw.json; costs/skill-update-raw.json",
+      "implementationTokens": null,
+      "writingTokens": null,
+      "validationTokens": null,
+      "note": "Shared prerequisites and skill updates are independent raw cost records; no invented split."
+    },
+    "formal": {
+      "raw": "formal-runs.json",
+      "runs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "runCount": 3,
+      "implementationWritingVerificationSeparated": false,
+      "note": "Exactly one formal run per A/B/C. Raw time/tokens include implementation, writing, autonomous validation and fixes; split is null."
+    },
+    "independentReview": {
+      "raw": "review-costs.json",
+      "note": "Independent reviewer turns and method corrections are separate from formal and production."
+    },
+    "production": {
+      "raw": "production-final-20260915.json; production-final-completion-20260915.json",
+      "sessions": [
+        "old-repair",
+        "old-archive",
+        "final-body",
+        "final-archive"
+      ],
+      "sourceTestDocsPrimarySplit": null,
+      "owners": [
+        "core_v2",
+        "old_tests (retired)",
+        "validation_v3",
+        "old_docs",
+        "final_docs",
+        "finish_delivery"
+      ],
+      "note": "Historical production raw files are retained; mixed source/test/docs/primary periods cannot be reliably separated, so split is null. Current product acceptance is recorded elsewhere; book backwrite remains in progress. Completion snapshot added; repeated same-source final-evidence archives are copies and must not be added."
+    },
+    "primaryAsOf": {
+      "raw": "primary-asof-20260915.json; primary-asof-completion-20260915.json",
+      "seconds": null,
+      "tokens": null,
+      "note": "Primary session is incomplete at as_of; public collaboration records are indexed, coordination call count is not repair-round count. Completion snapshot still lacks final primary turn completion."
+    }
+  },
+  "tokenSemantics": "Retain raw fields. cached_input_tokens is contained in input_tokens; reasoning_output_tokens is retained as reported; unknown phase splits remain null. No money or savings estimate.",
+  "state": "verification_in_progress",
+  "statusAuthority": "STATUS.md"
+}

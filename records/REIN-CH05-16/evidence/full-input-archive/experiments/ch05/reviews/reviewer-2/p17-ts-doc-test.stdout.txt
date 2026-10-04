@@ -1,0 +1,14 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests --run tests/loop.test.ts
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch05-review-20260914/reviewer-2/package-17/ts
+
+ ✓ tests/loop.test.ts (4 tests) 6ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  19:23:18
+   Duration  167ms (transform 22ms, setup 0ms, collect 19ms, tests 6ms, environment 0ms, prepare 36ms)
+

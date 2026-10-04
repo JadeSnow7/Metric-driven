@@ -1,0 +1,8 @@
+{
+  "time": "2026-09-15T05:57:55.324258+00:00",
+  "status": "accepted-for-narrow-adjudication",
+  "scope": "Actual camelCase tool fields and tool source adaptation only; imports hash-frozen original evaluator; does not replace original reports or prove full products pass.",
+  "tests": "Primary actual unittest run exit0, 3 tests. 171/174 tool wire calibration and current-source/old-oracle failure IDs inspected.",
+  "known_limit": "Synthetic full matrix fixtures test row checks only, not live Rust/Node. Live reviewer outputs applied separately; frozen check CHECK_ESTIMATE covers both exact estimate and <=budget.",
+  "hash": "46552677dc21be00a040caa8c81b93e22db44df8d3ad81775ff1ff73ce164154"
+}

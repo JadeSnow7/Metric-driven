@@ -1,0 +1,20 @@
+.....F......
+======================================================================
+FAIL: test_remove_item_to_zero_deletes (test_inventory.InventoryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/permission/repo/tests/test_inventory.py", line 36, in test_remove_item_to_zero_deletes
+    self.assertEqual(inventory.names(), [])
+AssertionError: Lists differ: ['apple'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'apple'
+
+- ['apple']
++ []
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+FAILED (failures=1)

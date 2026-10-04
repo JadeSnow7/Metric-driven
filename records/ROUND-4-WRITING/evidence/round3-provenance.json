@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "captured_at": "2026-09-14T03:39:25.258679+00:00",
+    "repository": "/Users/huaodong/Documents/evidence-driven-development",
+    "files": {
+      "benchmark.md": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/iteration-3/benchmark.md",
+        "sha256": "079448112c25c74db1806c1d1879b996ba27245ab6030a95d96ad55f941fd6bf"
+      },
+      "benchmark.json": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/iteration-3/benchmark.json",
+        "sha256": "12030ab4c5760d070fc7a13b36f0bd4bd92a1527d84528f6daa7d1545357b217"
+      },
+      "report.json": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/iteration-3/report.json",
+        "sha256": "1c29284fdd695f227aeb64cdaa5b8395fcd39bf4ce8dfc088883bbe9f3cb8bfd"
+      },
+      "rubric.lock": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/rubric.lock",
+        "sha256": "cd3ab96c4438ce61b104a0cb66708d8852b9511a248dbe9ca70df36bb94aba88"
+      },
+      "rubric-iteration-3.md": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/evals/rubric-iteration-3.md",
+        "sha256": "ae01b7432039223cee836a5285bdab14f329c98ea8deb0bda66d8faae8ac9347"
+      },
+      "evals-iteration-3.json": {
+        "source": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/evals/evals-iteration-3.json",
+        "sha256": "fd82515631ef8cbd47cf2ad692bc7ef608ab6ad6d1ca3106032c16006e633224"
+      },
+      "skill-at-handoff.md": {
+        "source": "/Users/huaodong/Documents/evidence-driven-development/skill/evidence-driven-development/SKILL.md",
+        "sha256": "2c24dd9113191fc02aa054eabab3ada1d86e06bf79d16b48a8edf5c8873108b4"
+      }
+    },
+    "head": "599c380a8dfeaadeff3a4d542b34071800996a29"
+  },
+  "archive": "/Users/huaodong/.codex/visualizations/2026/09/13/01a09bcd-3601-7210-b595-61daeace025a/metric-driven-handoff/evidence",
+  "run_root": "/private/tmp/claude-501/-Users-huaodong-Documents-evidence-driven-development/82e73dbb-3ebf-47ba-ac6e-bbda5599e045/scratchpad/evidence-driven-development-workspace/iteration-3"
+}

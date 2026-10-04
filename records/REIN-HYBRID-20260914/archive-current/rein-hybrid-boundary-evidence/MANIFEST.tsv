@@ -1,0 +1,13 @@
+source_path	relative_path	bytes	mode	sha256
+/private/tmp/rein-hybrid-boundary-evidence/hybrid-host-v2.exit	hybrid-host-v2.exit	7	0o644	19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061
+/private/tmp/rein-hybrid-boundary-evidence/hybrid-host-v2.log	hybrid-host-v2.log	286	0o644	dc8bbfe59d85eccc56bebe4625620f75348c9494e9803b1b854bdabe9cae1fbc
+/private/tmp/rein-hybrid-boundary-evidence/rust-stdio-host.stderr	rust-stdio-host.stderr	1026	0o644	e6c9ec586790211da89ce45f449843a75d9e2118c002e60b0e7853fbd699d7ea
+/private/tmp/rein-hybrid-boundary-evidence/rust-stdio-host.stdout	rust-stdio-host.stdout	934	0o644	3794ba0fd4fed0770965c1b83eef85dfd2706841af874dcacf8807f68720e12a
+/private/tmp/rein-hybrid-boundary-evidence/source.sha256	source.sha256	196	0o644	acb2edfeaa219752b6cbcc570963778ffd76971d88c6ad9187c8c73c52802ee7
+/private/tmp/rein-hybrid-boundary-evidence/stdio_host-final.log	stdio_host-final.log	1775	0o644	76c651e250b840e54cb1d0675247331bab9c7873cb2ce6a6458afdcddc4d518e
+/private/tmp/rein-hybrid-boundary-evidence/stdio_host-final.source.sha256	stdio_host-final.source.sha256	91	0o644	5f1b361b66e0d35930c6cac326260ced0eeec62363b06c04908716767f579b19
+/private/tmp/rein-hybrid-boundary-evidence/stdio_host-v2.exit	stdio_host-v2.exit	7	0o644	19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061
+/private/tmp/rein-hybrid-boundary-evidence/stdio_host-v2.log	stdio_host-v2.log	1396	0o644	93c062478d7903addd20dcc7094bc45a9b738553e47fd33b6fcf190c0ccd3dbb
+/private/tmp/rein-hybrid-boundary-evidence/typecheck-v2.exit	typecheck-v2.exit	7	0o644	19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061
+/private/tmp/rein-hybrid-boundary-evidence/typecheck-v2.log	typecheck-v2.log	44	0o644	a49dffea48da86a6df01db80fa4ade151f55ab7321d554b9728b9e5f4090ec74
+/private/tmp/rein-hybrid-boundary-evidence/v2-sources.sha256	v2-sources.sha256	196	0o644	85883a5cdd95d3b86dc65f4acf71e995e67d7bbeff88b3f45b073e36f82fa06c

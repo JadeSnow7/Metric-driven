@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "owner": "common_preparation",
+  "source_session": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T11-12-14-01a0a30d-0624-7582-9eb0-061ef558946c.jsonl",
+  "method": "one final turn_token_usage per turn; preserve usage/cache fields; cumulative thread_token_usage excluded; no cost estimate",
+  "turns": [
+    {
+      "turn_id": "01a0a30d-0677-7a02-a89e-54a993cdbf93",
+      "phase": "common_preparation",
+      "started_at": 1789441934,
+      "completed_at": 1789442763,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 81594,
+        "cached_input_tokens": 80640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 522,
+        "reasoning_output_tokens": 58,
+        "total_tokens": 82116
+      },
+      "turn_token_usage": {
+        "input_tokens": 2885362,
+        "cached_input_tokens": 2822656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11844,
+        "reasoning_output_tokens": 1784,
+        "total_tokens": 2897206
+      }
+    },
+    {
+      "turn_id": "01a0a31a-a8ba-7013-b9e5-0d87ace967bd",
+      "phase": "common_preparation",
+      "started_at": 1789442828,
+      "completed_at": 1789443126,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 99771,
+        "cached_input_tokens": 98048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 543,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 100314
+      },
+      "turn_token_usage": {
+        "input_tokens": 1413834,
+        "cached_input_tokens": 1383680,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5867,
+        "reasoning_output_tokens": 649,
+        "total_tokens": 1419701
+      }
+    },
+    {
+      "turn_id": "01a0a31f-a77c-7f53-ad11-d5c3a0329dc8",
+      "phase": "common_preparation",
+      "started_at": 1789443155,
+      "completed_at": 1789443336,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 113099,
+        "cached_input_tokens": 111360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 526,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 113625
+      },
+      "turn_token_usage": {
+        "input_tokens": 989929,
+        "cached_input_tokens": 969472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6295,
+        "reasoning_output_tokens": 436,
+        "total_tokens": 996224
+      }
+    },
+    {
+      "turn_id": "01a0a328-5580-7462-a3a8-bddcaee72591",
+      "phase": "common_preparation",
+      "started_at": 1789443724,
+      "completed_at": 1789443900,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 124094,
+        "cached_input_tokens": 122624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 664,
+        "reasoning_output_tokens": 148,
+        "total_tokens": 124758
+      },
+      "turn_token_usage": {
+        "input_tokens": 1200194,
+        "cached_input_tokens": 1183232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7340,
+        "reasoning_output_tokens": 699,
+        "total_tokens": 1207534
+      }
+    },
+    {
+      "turn_id": "01a0a32f-2e87-7ac0-8565-1e83871dc013",
+      "phase": "common_preparation",
+      "started_at": 1789444173,
+      "completed_at": 1789444295,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 130922,
+        "cached_input_tokens": 129792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 453,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 131375
+      },
+      "turn_token_usage": {
+        "input_tokens": 1024481,
+        "cached_input_tokens": 1012736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4603,
+        "reasoning_output_tokens": 757,
+        "total_tokens": 1029084
+      }
+    },
+    {
+      "turn_id": "01a0a331-8bf4-7431-b30f-4dfbd03ce296",
+      "phase": "common_preparation",
+      "started_at": 1789444328,
+      "completed_at": 1789444489,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 139439,
+        "cached_input_tokens": 137984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 620,
+        "reasoning_output_tokens": 143,
+        "total_tokens": 140059
+      },
+      "turn_token_usage": {
+        "input_tokens": 1498209,
+        "cached_input_tokens": 1484032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5723,
+        "reasoning_output_tokens": 650,
+        "total_tokens": 1503932
+      }
+    },
+    {
+      "turn_id": "01a0a334-7460-7e41-9bb2-c04ca830fa63",
+      "phase": "common_preparation",
+      "started_at": 1789444519,
+      "completed_at": 1789444653,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 155720,
+        "cached_input_tokens": 152320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 707,
+        "reasoning_output_tokens": 198,
+        "total_tokens": 156427
+      },
+      "turn_token_usage": {
+        "input_tokens": 1198816,
+        "cached_input_tokens": 1177600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4618,
+        "reasoning_output_tokens": 871,
+        "total_tokens": 1203434
+      }
+    },
+    {
+      "turn_id": "01a0a339-2400-7893-bb40-bc6dfe89e26d",
+      "phase": "common_preparation",
+      "started_at": 1789444826,
+      "completed_at": 1789445297,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 177262,
+        "cached_input_tokens": 175872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 581,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 177843
+      },
+      "turn_token_usage": {
+        "input_tokens": 5760030,
+        "cached_input_tokens": 5720576,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13455,
+        "reasoning_output_tokens": 2650,
+        "total_tokens": 5773485
+      }
+    },
+    {
+      "turn_id": "01a0a340-8514-72f0-9eac-0c74897dc78e",
+      "phase": "common_preparation",
+      "started_at": 1789445309,
+      "completed_at": 1789445438,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 183688,
+        "cached_input_tokens": 183040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 503,
+        "reasoning_output_tokens": 9,
+        "total_tokens": 184191
+      },
+      "turn_token_usage": {
+        "input_tokens": 2176247,
+        "cached_input_tokens": 2163712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4315,
+        "reasoning_output_tokens": 949,
+        "total_tokens": 2180562
+      }
+    },
+    {
+      "turn_id": "01a0a343-2080-7170-989c-8f4ce1bd3083",
+      "phase": "common_preparation",
+      "started_at": 1789445480,
+      "completed_at": 1789445536,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 186705,
+        "cached_input_tokens": 186112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 432,
+        "reasoning_output_tokens": 20,
+        "total_tokens": 187137
+      },
+      "turn_token_usage": {
+        "input_tokens": 743141,
+        "cached_input_tokens": 738304,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2398,
+        "reasoning_output_tokens": 488,
+        "total_tokens": 745539
+      }
+    },
+    {
+      "turn_id": "01a0a344-732c-7f51-9981-da91750d8bd9",
+      "phase": "common_preparation",
+      "started_at": 1789445567,
+      "completed_at": 1789445618,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 188976,
+        "cached_input_tokens": 188160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 324,
+        "reasoning_output_tokens": 13,
+        "total_tokens": 189300
+      },
+      "turn_token_usage": {
+        "input_tokens": 752834,
+        "cached_input_tokens": 748544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1471,
+        "reasoning_output_tokens": 199,
+        "total_tokens": 754305
+      }
+    },
+    {
+      "turn_id": "01a0a347-1f4d-7dd3-98bf-56e7990b4eb0",
+      "phase": "common_preparation",
+      "started_at": 1789445742,
+      "completed_at": 1789445801,
+      "status": "completed",
+      "usage": {
+        "input_tokens": 191293,
+        "cached_input_tokens": 190208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 311,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 191604
+      },
+      "turn_token_usage": {
+        "input_tokens": 952466,
+        "cached_input_tokens": 946944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1815,
+        "reasoning_output_tokens": 303,
+        "total_tokens": 954281
+      }
+    }
+  ]
+}

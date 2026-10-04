@@ -1,0 +1,25 @@
+{
+  "source_path": "/private/tmp/rein-ch06-main-review-v3",
+  "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-main-review-v3",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "compare-first.json",
+      "sha256": "5febcf3254d8a609f500da84132c46b3c46565d7f42ec3e922eebed28778e459",
+      "mode": "0644"
+    },
+    {
+      "path": "sync-abort-throw.json",
+      "sha256": "b04a789bd43d2b71e14266bc6bb84de80b2737a5aa301db8c9b358d75bb9424e",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

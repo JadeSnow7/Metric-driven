@@ -1,0 +1,13 @@
+{
+  "seal_tree": {
+    "blob.bin": "da40fd58c4b71b44098581c528a9efcc93e55f1e543e5065457247fa37609533",
+    "empty": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tool.sh": "a8076d3d28d21e02012b20eaf7dbf75409a6277134439025f282e368e3305abf"
+  },
+  "patch_bytes": 351,
+  "patch_has_binary": true,
+  "empty_exists": true,
+  "empty_bytes": 0,
+  "exec_bit": true,
+  "recovered_manifest_matches": true
+}

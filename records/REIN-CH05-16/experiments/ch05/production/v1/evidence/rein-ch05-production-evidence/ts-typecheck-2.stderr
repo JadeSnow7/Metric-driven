@@ -1,0 +1,7 @@
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path /private/tmp/rein-production-20260914/ts
+npm error workspace @rein/ts@0.0.0
+npm error location /private/tmp/rein-production-20260914/ts
+npm error command failed
+npm error command sh -c tsc --noEmit

@@ -1,0 +1,72 @@
+{
+  "17": {
+    "ts": {
+      "anchors": [
+        "knowledge-loop",
+        "知识点-循环与工具结果配对",
+        "failure-paths"
+      ],
+      "exercises": [
+        "## 练习 05"
+      ],
+      "commands": [
+        "npm ci\nnpm run typecheck --workspace ts\nnpm run ch05:offline --workspace ts\n",
+        "npm test --workspace ts -- --run tests/loop.test.ts\n"
+      ]
+    },
+    "rust": {
+      "anchors": [
+        "knowledge-loop",
+        "知识点-循环与工具结果配对",
+        "failure-paths"
+      ],
+      "exercises": [
+        "## 练习 05"
+      ],
+      "commands": [
+        "cd rust\nCARGO_TARGET_DIR=/tmp/rein-ch05-target cargo fmt -- --check\nCARGO_TARGET_DIR=/tmp/rein-ch05-target cargo run --locked --offline --bin ch05_loop\n",
+        "CARGO_TARGET_DIR=/tmp/rein-ch05-target cargo test --locked --offline loop_\n"
+      ]
+    }
+  },
+  "42": {
+    "ts": {
+      "anchors": [
+        "ch05-loop",
+        "message-tool-pairing",
+        "tool-loop-mechanism",
+        "failure-paths",
+        "event-replay",
+        "exercises"
+      ],
+      "exercises": [
+        "### 练习 05-1：改变输入",
+        "### 练习 05-2：修正失败调用",
+        "### 练习 05-3：检查停止"
+      ],
+      "commands": [
+        "npm ci\nnpm run typecheck --workspace ts\nnpm run ch05:offline --workspace ts\nnpm run ch05:offline --workspace ts -- single\n",
+        "npm test --workspace ts\n"
+      ]
+    },
+    "rust": {
+      "anchors": [
+        "ch05-loop",
+        "message-tool-pairing",
+        "tool-loop-mechanism",
+        "event-replay",
+        "failure-paths",
+        "exercises"
+      ],
+      "exercises": [
+        "### 练习 05-1：另一份工作区",
+        "### 练习 05-2：失败后继续",
+        "### 练习 05-3：停止原因"
+      ],
+      "commands": [
+        "cd rust\ncargo fmt --check\ncargo test --locked --offline\ncargo run --locked --offline --example ch05_loop\ncargo run --locked --offline --example ch05_loop -- single\n",
+        "cd rust\ncargo fmt --check\ncargo test --locked --offline\n"
+      ]
+    }
+  }
+}

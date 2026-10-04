@@ -1,0 +1,11 @@
+{
+  "provenance": "Exact field values read by primary thread from execution-v2.json before the coder overwrote that file; this is a preserved tool observation, not a second execution.",
+  "argv": ["/Users/huaodong/.local/bin/python3.11", "-m", "unittest", "skill/veriflow/tests/test_authorization_snapshot.py"],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789552446.972435,
+  "ended_at_epoch": 1789552447.099494,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "F......\n======================================================================\nFAIL: test_audit_malformed_json_never_raises_and_captured_scope_is_authoritative (skill.veriflow.tests.test_authorization_snapshot.AuthorizationSnapshotTests.test_audit_malformed_json_never_raises_and_captured_scope_is_authoritative)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_authorization_snapshot.py\", line 58, in test_audit_malformed_json_never_raises_and_captured_scope_is_authoritative\n    self.assertTrue(any(item[\"code\"] == \"AUTH_SNAPSHOT_SCOPE\" for item in module.audit_snapshot(snapshot, {**record, \"target\": \"other\"})))\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 7 tests in 0.054s\n\nFAILED (failures=1)\n",
+  "environment": {"PYTHONDONTWRITEBYTECODE": "1"}
+}

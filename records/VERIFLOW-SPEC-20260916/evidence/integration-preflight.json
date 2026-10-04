@@ -1,0 +1,47 @@
+{
+  "source_head": {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/private/tmp/veriflow-spec-20260916",
+    "started_at_epoch": 1789561628.9112,
+    "ended_at_epoch": 1789561628.925757,
+    "exit_code": 0,
+    "stdout": "ed9b2438c2ca14b79368d119348fc88cdbc6dee2\n",
+    "stderr": ""
+  },
+  "target_head": {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at_epoch": 1789561628.925762,
+    "ended_at_epoch": 1789561628.938282,
+    "exit_code": 0,
+    "stdout": "fd7f0a618720e7682621207d4df28411327004ef\n",
+    "stderr": ""
+  },
+  "scoped_status": {
+    "argv": [
+      "git",
+      "status",
+      "--short",
+      "--untracked-files=no",
+      "--",
+      "skill/veriflow",
+      "README.md",
+      "tools/validate_repository.py",
+      "tools/tests/test_validate_repository.py"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at_epoch": 1789561628.9382908,
+    "ended_at_epoch": 1789561628.963624,
+    "exit_code": 0,
+    "stdout": " M tools/tests/test_validate_repository.py\n M tools/validate_repository.py\n",
+    "stderr": ""
+  }
+}

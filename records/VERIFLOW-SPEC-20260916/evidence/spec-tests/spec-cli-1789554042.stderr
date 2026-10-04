@@ -1,0 +1,41 @@
+FF.
+======================================================================
+FAIL: test_contract_change_rejects_old_raw (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_contract_change_rejects_old_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 57, in test_contract_change_rejects_old_raw
+    repo.write_state(); self.record_raw(repo,"new.json","EVD-NEW"); self.assertEqual(self.validate(repo).returncode,0)
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_control_and_receipt_append_keep_revision (skill.veriflow.tests.test_spec_binding.SpecBindingTests.test_control_and_receipt_append_keep_revision)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/veriflow-spec-20260916/skill/veriflow/tests/test_spec_binding.py", line 48, in test_control_and_receipt_append_keep_revision
+    receipt=repo.root/"records/TASK-001/STATUS.md"; receipt.write_text("receipt\n"); after_result=self.validate(repo); self.assertEqual(after_result.returncode,0,after_result.stdout); after=json.loads(after_result.stdout)["current_revision"]; self.assertEqual(before,after)
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : {
+  "ok": false,
+  "gate": "acceptance",
+  "current_revision": "patch:d22a07a9f5add3523f9262781cfc47ef68defd15:765d4d6e7a65b4674c1ff64de00cf81e436862ef63fda469bf86b571b6f2883c:spec:9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "spec_version": "SPEC-TEST",
+  "spec_sha256": "9a450679c353ed848bcc59b0dfead637509e6876cb86d870631375acdff4a866",
+  "errors": [
+    {
+      "code": "CHANGED_PATH_UNREVIEWED",
+      "message": "changed path is not covered by a reviewed CHG-*: records/TASK-001/STATUS.md"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.603s
+
+FAILED (failures=2)
+real 4.63
+user 2.55
+sys 1.83

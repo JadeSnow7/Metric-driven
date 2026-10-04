@@ -1,0 +1,86 @@
+[
+  {
+    "path": "Cargo.toml",
+    "sha256": "4cc3b2f235428f34d42e8914bb1458568d502504fd083cf7f4b267e8f547879c"
+  },
+  {
+    "path": "Cargo.lock",
+    "sha256": "4665aba2dfe3a3c83545b0a1df454fe554d99abf44b250fb276b421926bc6d0a"
+  },
+  {
+    "path": "README.md",
+    "sha256": "733bf518cb018281ec18bb84b892add71cfbc1e69d72a635a7f563167167bf73"
+  },
+  {
+    "path": ".env.example",
+    "sha256": "d77f0ead5466f877f6ddbe3cb778d546a9f0401b443b8908068393bf803b92d5"
+  },
+  {
+    "path": "tests/prerequisites.rs",
+    "sha256": "fc5189a39c566d63085c74dace6a555b3764cb4b2d6748953757187fcedc546f"
+  },
+  {
+    "path": "tests/README.md",
+    "sha256": "9992f9348ba5f31802ed3fa0e048cb4cc815a386fd86c275603050a458c07a6b"
+  },
+  {
+    "path": "tests/loop.rs",
+    "sha256": "280f025d1e5e8494e3b367b71acf21a6ec49f7d9ade4fada4a23600eae9eb983"
+  },
+  {
+    "path": "examples/ch07_context.rs",
+    "sha256": "1e9bc77674c3f381832f2a2ce4fefcbf817176345607c088a8746b7c23c95ffd"
+  },
+  {
+    "path": "examples/ch05_loop.rs",
+    "sha256": "529e448444cbf9f2a8c9a77b1fac35a3d065ddfda297546b975109f526fa5276"
+  },
+  {
+    "path": "examples/ch05_compare.rs",
+    "sha256": "4130b3e9dd28161d2e74b02a7b85a81b7f61c240b792aa402e575d80f060a1cb"
+  },
+  {
+    "path": "examples/ch06_loop.rs",
+    "sha256": "710eb97f4b046a73a051e7c261881012e6c8f2ab349af5546d1c238866f074b7"
+  },
+  {
+    "path": "src/lib.rs",
+    "sha256": "5d24a462295c6676ab83ba0b29dd63d3b462ba319226881484b90c25cf52ef38"
+  },
+  {
+    "path": "src/README.md",
+    "sha256": "6e80416a14dde96751869a049e5ce87b86b4a967760c7c395fe2c2871409bea2"
+  },
+  {
+    "path": "src/main.rs",
+    "sha256": "0299ccf72449f18087ecae8d39f002e1e3aba1b6247d1198818ec2d9147066b7"
+  },
+  {
+    "path": "src/bin/hello.rs",
+    "sha256": "74337baef4504361e5296e473e1d54c24936e7bbe9eb89735b9d4187f00ac969"
+  },
+  {
+    "path": "src/rein/mod.rs",
+    "sha256": "0984616b7f1f14696698bfa2fb473e163aff59eb694ac4b3082ce9f687171060"
+  },
+  {
+    "path": "src/rein/loop.rs",
+    "sha256": "f95cf95a93f6df5ca4480e5ed1dc7b78043e85d432040c59d227bbab65de86b4"
+  },
+  {
+    "path": "examples/reading-00/Cargo.toml",
+    "sha256": "6b0dba6107e8704f1f5737781a40ec46141c820473e4221902866429f91e17d5"
+  },
+  {
+    "path": "examples/reading-00/Cargo.lock",
+    "sha256": "2521601119a8483a3d34612910b6772d160fe9bfff991506b0fcab595d172a68"
+  },
+  {
+    "path": "examples/reading-00/.gitignore",
+    "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368"
+  },
+  {
+    "path": "examples/reading-00/src/main.rs",
+    "sha256": "854f15e6eca1bb897ecad3018279f5e54879bb7a47224307e8233fed95cc75cc"
+  }
+]

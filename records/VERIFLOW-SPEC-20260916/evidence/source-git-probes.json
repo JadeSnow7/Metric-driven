@@ -1,0 +1,36 @@
+[
+  {
+    "argv": [
+      "git",
+      "status",
+      "--short",
+      "--untracked-files=no",
+      "--",
+      "skill/veriflow",
+      "README.md",
+      "tools/validate_repository.py",
+      "tools/tests/test_validate_repository.py"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "elapsed_s": 0.05276012420654297,
+    "exit_code": 0,
+    "stdout": " M tools/tests/test_validate_repository.py\n M tools/validate_repository.py\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--no-ext-diff",
+      "--stat",
+      "--",
+      "skill/veriflow",
+      "README.md"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "elapsed_s": 0.04601907730102539,
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

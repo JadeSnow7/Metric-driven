@@ -1,0 +1,26 @@
+{
+  "changed": [
+    "blob.bin",
+    "empty",
+    "tool.sh"
+  ],
+  "binary_patch": true,
+  "binary_bytes": [
+    0,
+    255,
+    99,
+    104,
+    97,
+    110,
+    103,
+    101,
+    100
+  ],
+  "empty_exists": true,
+  "empty_size": 0,
+  "exec_bit": true,
+  "recovered_matches": true,
+  "unchanged_patch_bytes": 0,
+  "unchanged_changed": [],
+  "unchanged_matches": true
+}

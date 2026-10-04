@@ -1,0 +1,226 @@
+{
+  "17": {
+    "ts": [
+      {
+        "test": "search_then_multi_read_A",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "search_then_multi_read_B",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "bad_tools",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "normal_final",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "empty_final",
+        "status": "passed",
+        "reason": "empty_final"
+      },
+      {
+        "test": "model_failure_after_tool",
+        "status": "passed",
+        "reason": "model_error"
+      },
+      {
+        "test": "default_32_protection",
+        "status": "passed",
+        "request_count": 32,
+        "reason": "max_rounds"
+      },
+      {
+        "test": "explicit_4_cap",
+        "status": "passed",
+        "request_count": 4,
+        "reason": "max_rounds"
+      },
+      {
+        "test": "event_only_reconstruction_counterexample",
+        "status": "observed",
+        "events_equal": true,
+        "requests_equal": false,
+        "reason": null
+      }
+    ],
+    "rust": [
+      {
+        "test": "search_then_multi_read_A",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "search_then_multi_read_B",
+        "status": "passed",
+        "reason": "completed"
+      },
+      {
+        "test": "normal",
+        "status": "passed",
+        "request_count": 1,
+        "reason": "completed"
+      },
+      {
+        "test": "errors",
+        "status": "passed",
+        "request_count": 2,
+        "reason": "completed"
+      },
+      {
+        "test": "empty",
+        "status": "passed",
+        "request_count": 1,
+        "reason": "empty_final"
+      },
+      {
+        "test": "model_error",
+        "status": "passed",
+        "request_count": 2,
+        "reason": "model_error"
+      },
+      {
+        "test": "repeat",
+        "status": "passed",
+        "request_count": 32,
+        "reason": "max_rounds"
+      },
+      {
+        "test": "explicit_4_cap",
+        "status": "passed",
+        "request_count": 4,
+        "reason": "max_rounds"
+      },
+      {
+        "test": "event_only_reconstruction_counterexample",
+        "events_equal": true,
+        "requests_equal": false,
+        "reason": null
+      }
+    ]
+  },
+  "42": {
+    "ts": [
+      {
+        "test": "search_then_multi_read_A",
+        "status": "passed",
+        "reason": "final_answer"
+      },
+      {
+        "test": "search_then_multi_read_B",
+        "status": "passed",
+        "reason": "final_answer"
+      },
+      {
+        "test": "bad_tools",
+        "status": "passed",
+        "reason": "final_answer"
+      },
+      {
+        "test": "normal_final",
+        "status": "passed",
+        "reason": "final_answer"
+      },
+      {
+        "test": "empty_final",
+        "status": "passed",
+        "reason": "empty_final"
+      },
+      {
+        "test": "model_failure_after_tool",
+        "status": "passed",
+        "reason": "model_error"
+      },
+      {
+        "test": "default_32_protection",
+        "status": "passed",
+        "request_count": 32,
+        "reason": "max_turns"
+      },
+      {
+        "test": "explicit_4_cap",
+        "status": "passed",
+        "request_count": 4,
+        "reason": "max_turns"
+      },
+      {
+        "test": "event_only_reconstruction_counterexample",
+        "status": "observed",
+        "events_equal": true,
+        "requests_equal": false,
+        "reason": null
+      }
+    ],
+    "rust": [
+      {
+        "test": "search_then_multi_read_A",
+        "status": "passed",
+        "reason": "FinalAnswer"
+      },
+      {
+        "test": "search_then_multi_read_B",
+        "status": "passed",
+        "reason": "FinalAnswer"
+      },
+      {
+        "test": "normal",
+        "status": "passed",
+        "request_count": 1,
+        "reason": "FinalAnswer"
+      },
+      {
+        "test": "errors",
+        "status": "passed",
+        "request_count": 2,
+        "reason": "FinalAnswer"
+      },
+      {
+        "test": "empty",
+        "status": "passed",
+        "request_count": 1,
+        "reason": "EmptyFinal"
+      },
+      {
+        "test": "model_error",
+        "status": "passed",
+        "request_count": 2,
+        "reason": "ModelError"
+      },
+      {
+        "test": "repeat",
+        "status": "passed",
+        "request_count": 32,
+        "reason": "MaxTurns"
+      },
+      {
+        "test": "explicit_4_cap",
+        "status": "passed",
+        "request_count": 4,
+        "reason": "MaxTurns"
+      },
+      {
+        "test": "event_only_reconstruction_counterexample",
+        "events_equal": true,
+        "requests_equal": false,
+        "reason": null
+      }
+    ]
+  },
+  "source_unchanged": {
+    "17": {
+      "compared_source_files": 78,
+      "changed_files": []
+    },
+    "42": {
+      "compared_source_files": 79,
+      "changed_files": []
+    }
+  }
+}

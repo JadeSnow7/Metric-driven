@@ -1,0 +1,7 @@
+argv=zsh -lc for\ p\ in\ /private/tmp/rein-production-build-20260914\ /private/tmp/rein-production-rereview-build\ /private/tmp/rein-ch05-final-text-evidence/cargo-target\;\ do\ printf\ \"PATH\ %s\\n\"\ \"\$p\"\;\ if\ \[\ -e\ \"\$p\"\ \]\ \|\|\ \[\ -L\ \"\$p\"\ \]\;\ then\ printf\ \"STILL_EXISTS_OR_SYMLINK\\n\"\;\ exit\ 2\;\ else\ printf\ \"ABSENT\\n\"\;\ fi\;\ done 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:07:01Z
+end=2026-09-14T13:07:01Z
+exit=0
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/32-paths-after.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/32-paths-after.stderr

@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0",
+  "owner":"old_tests_owner",
+  "source_session":"/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-18-36-01a0a3b7-a2b8-7bc0-879a-deabfe05da4c.jsonl",
+  "method":"每 turn 取最后一个 turn_token_usage；不使用累计 thread_token_usage；不估算费用；中断与完成分开",
+  "turns":[
+    {"turn_id":"01a0a3b7-a319-7072-b212-a9548a48029e","started_at":1789453116,"completed_at":1789453523,"status":"completed","usage":{"input_tokens":1895086,"cached_input_tokens":1830912,"cache_write_input_tokens":0,"output_tokens":12154,"reasoning_output_tokens":1405,"total_tokens":1907240},"turn_token_usage":{"input_tokens":1895086,"cached_input_tokens":1830912,"cache_write_input_tokens":0,"output_tokens":12154,"reasoning_output_tokens":1405,"total_tokens":1907240}},
+    {"turn_id":"01a0a3be-8642-70f3-9e37-e29d2993cbb0","started_at":1789453567,"completed_at":1789454411,"status":"completed","usage":{"input_tokens":5175616,"cached_input_tokens":5114880,"cache_write_input_tokens":0,"output_tokens":12547,"reasoning_output_tokens":2868,"total_tokens":5188163},"turn_token_usage":{"input_tokens":5175616,"cached_input_tokens":5114880,"cache_write_input_tokens":0,"output_tokens":12547,"reasoning_output_tokens":2868,"total_tokens":5188163}},
+    {"turn_id":"01a0a3d2-293c-7a22-acaf-ea77f2ed69c5","started_at":1789454854,"completed_at":null,"status":"interrupted_or_incomplete","usage":{"input_tokens":1375538,"cached_input_tokens":1360896,"cache_write_input_tokens":0,"output_tokens":2825,"reasoning_output_tokens":393,"total_tokens":1378363},"turn_token_usage":{"input_tokens":1375538,"cached_input_tokens":1360896,"cache_write_input_tokens":0,"output_tokens":2825,"reasoning_output_tokens":393,"total_tokens":1378363}},
+    {"turn_id":"01a0a3d8-6c98-7801-b358-7401bc50bfc1","started_at":1789455264,"completed_at":1789455275,"status":"completed","usage":{"input_tokens":118015,"cached_input_tokens":117504,"cache_write_input_tokens":0,"output_tokens":36,"reasoning_output_tokens":0,"total_tokens":118051},"turn_token_usage":{"input_tokens":118015,"cached_input_tokens":117504,"cache_write_input_tokens":0,"output_tokens":36,"reasoning_output_tokens":0,"total_tokens":118051}}
+  ],
+  "sum_final_turn_token_usage":{"input_tokens":8564255,"cached_input_tokens":8424192,"cache_write_input_tokens":0,"output_tokens":27562,"reasoning_output_tokens":4666,"total_tokens":8591817}
+}

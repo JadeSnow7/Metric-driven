@@ -1,0 +1,8 @@
+{
+  "records/ROUND-7-CLAUDE-CODE/task-summary.md": "13f19b0a55dc7b2631198ccd27073bbd5c28f0cf772403a0d4209eaed0ef1309",
+  "records/ROUND-7-CLAUDE-CODE/evidence/checks/s4-hidden-check.txt": "b2a66a27b40373acf6ae55d2000910457bf2c35bec6efacc12b8be9f464064fd",
+  "records/REIN-CH08-EDD-20260915/REPORT.md": "fe8b7a78d2c7349cb7db1e3c51e9fcf366eca6b163b8d8c4af22917eb0377de2",
+  "records/VERIFLOW-SPEC-20260916/REPORT.md": "3db1c1b2f86c40126c163973580a52725753131d3d69b6355a047cfc4da22b6e",
+  "records/VERIFLOW-SPEC-20260916/evidence/behavior-run/executor-reports.json": "477c7042fcb9a4e0c3786d656b91c7db9c0a335da5a0c6e624745ea7f3ed3bb3",
+  "records/VERIFLOW-SPEC-20260916/follow-up-experiment.md": "a3b8361ca25a833f5695a46008a0d2b4ccc6379b047572daabffd4b18891e31e"
+}

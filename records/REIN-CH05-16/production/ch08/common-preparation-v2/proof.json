@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "unit": "estimated-bytes-v1",
+    "budget": 2400,
+    "files": {
+      "docs/01-runtime.md": {
+        "bytes": 713,
+        "sha256": "c5564c3d1b79b264663b0198752d744ab969dc89c3a0db4193e670892f2adbb3"
+      },
+      "docs/02-cache.md": {
+        "bytes": 715,
+        "sha256": "633b30d4330c93a1086989fc08b635e2c541a71681b9003fc41893083fbf74e3"
+      },
+      "docs/03-approval.md": {
+        "bytes": 842,
+        "sha256": "5bed5d8d8fde7cbdf836c532ebcf45f48600067c66a83776de176529beaf0194"
+      },
+      "docs/04-index.md": {
+        "bytes": 813,
+        "sha256": "4e628444667556897b71e3096414bf6681614bc4444860dbb6d4016a58071651"
+      },
+      "docs/05-failure.md": {
+        "bytes": 703,
+        "sha256": "320bccabb65aac5b5dde22f8527c46444fee0efb55aa209b03007f093b376233"
+      },
+      "docs/06-release.md": {
+        "bytes": 838,
+        "sha256": "2ff783da3c92d6d07eda3ed2ca171c006eb9f7e2bf25fdca8e046995333aa8ae"
+      },
+      "index.json": {
+        "bytes": 1367,
+        "sha256": "e050ea3de880ec20da2c2ec6a7a94669ff80b7dd0c96bd04264f9dc47f994121"
+      },
+      "tasks.json": {
+        "bytes": 1536,
+        "sha256": "10161f105cc1f97bbfd122bf0bacb14cbe0df1b5cc9ac4d8c69711c0b1ab2758"
+      },
+      "README.md": {
+        "bytes": 806,
+        "sha256": "09c3b3cc8fc9c7ca2ba09da0ea68ead341e5b79806cf3743eea6e91359e6d362"
+      }
+    }
+  },
+  "readme": "# 第08章实验材料\n\n本目录提供固定的六篇 Markdown 资料、文档索引和四个问题。资料使用 UTF-8 保存，索引包含稳定 id、标题、相对路径、关键词与顺序；任务文件在顶层提供统一规则和 2400 的 estimated-bytes-v1 预算。\n\nrunner 将顶层 rules、budget 与每个 task 的 question 组成策略视图，再由策略从资料根和 index 选择上下文。每条规则作为 system 消息，问题作为 user 消息，资料作为带 [来源:id] 前缀的 user 消息。tasks.json 中的 expectedFacts、requiredFields、relevantSources 只供后置评估器使用；它们不属于策略或回答器输入。\n\n没有资料依据的问题应明确说明证据不足。完整消息和估算证明位于共同准备记录，不属于资料索引。\n",
+  "startedAt": "2026-09-14T15:27:33.100Z",
+  "endedAt": "2026-09-14T15:27:33.338Z"
+}

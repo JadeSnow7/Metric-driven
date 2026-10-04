@@ -1,0 +1,51 @@
+
+running 9 tests
+test tests::status_classification_keeps_key_out_of_public_error ... ok
+test rein::tests::read_file_rejects_escape ... ok
+test rein::tests::anthropic_round_trip_shape ... ok
+test tests::config_requires_all_values_and_strips_trailing_slash ... ok
+test tests::local_http_server_receives_one_openai_request ... ok
+test tests::provider_errors_are_classified_without_echoing_messages ... ok
+test tests::timeout_returns_without_waiting_for_the_server ... ok
+test tests::malformed_or_empty_sdk_responses_are_failures ... ok
+test tests::rate_limit_is_requested_once_and_keeps_provider_code ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test loop_wire_values_are_snake_case_and_fields_camel_case ... ok
+test unknown_badargs_missing_file_are_feedback_and_can_recover ... ok
+test nested_arguments_are_canonical_for_duplicate_detection ... ok
+test model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok
+test two_workspaces_search_then_read_and_pair_multiple_calls ... ok
+test observer_cancels_between_tools_and_pending_model_is_dropped ... ok
+test controls_stop_pending_model_and_zero_budget_without_dispatch ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 5 tests
+test tools_use_real_fixture_and_bind_actual_ids ... ok
+test symlink_escape_is_rejected ... ok
+test shared_fixture_and_replay_are_structured ... ok
+test malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok
+test concrete_reqwest_captures_two_openai_turns_and_tool_results ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

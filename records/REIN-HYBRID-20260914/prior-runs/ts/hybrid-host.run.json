@@ -1,0 +1,1 @@
+{"argv":["npm","exec","--workspace","ts","vitest","run","tests/hybrid-host.test.ts"],"cwd":"/private/tmp/rein-hybrid-work-20260914","start":"2026-09-14T16:00:35Z","end":"2026-09-14T16:00:37Z","exit":0}

@@ -1,0 +1,19 @@
+{
+  "sealed_at": "2026-09-15T05:30:51.903639+00:00",
+  "thread_id": "01a0a376-8deb-7c31-8b0a-cd90d81f357e",
+  "source_hash_mismatches": [],
+  "resumed_turn": {
+    "id": "01a0a37b-c7c5-7ee3-b8d0-0d215616085a",
+    "startedAt": 1789449193,
+    "completedAt": 1789450126,
+    "durationMs": 933513
+  },
+  "raw_session_sha256": "482cf75ec4511239561a84a841b967c85b2a166c805492f1e3c5582d9614afd7",
+  "cache_cleanup": [
+    {
+      "path": "/private/tmp/rein-ch08-review-1/.cargo-target-Slate",
+      "du_before": "4.0K\t/private/tmp/rein-ch08-review-1/.cargo-target-Slate\n"
+    }
+  ],
+  "note": "Initial CLI run interrupted by main for shared-target contamination; same independent reviewer resumed via app Luna/medium. Raw initial/results/final all preserved. See method correction. No other reviewer report shared."
+}

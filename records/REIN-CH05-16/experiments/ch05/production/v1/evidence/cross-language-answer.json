@@ -1,0 +1,1 @@
+{"ts":"多文件摘要：# 前置 workspace fixture\n\n该目录只作为 `read_file` 与 `search_files` 的离线根目录；测试不得读取根目录之外的文件。\n\nmarker: 第一份文档用于验证多文件读取。 | marker: 第二份文档用于验证多文件读取。","rust":"多文件摘要：# 前置 workspace fixture\n\n该目录只作为 `read_file` 与 `search_files` 的离线根目录；测试不得读取根目录之外的文件。\n\nmarker: 第一份文档用于验证多文件读取。 | marker: 第二份文档用于验证多文件读取。","tsState":"completed","rustState":"Completed"}

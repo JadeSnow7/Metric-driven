@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-15T05:13:36.916244+00:00",
+  "thread_id": "01a0a376-8deb-7c31-8b0a-cd90d81f357e",
+  "initial_cli_run": "/private/tmp/rein-ch08-review-1/run",
+  "cause": "shared initial Cargo target across anonymous products; Slate error source import/line mismatched its actual source, contaminating evaluator result",
+  "action": "SIGINT first review turn, retain raw; resume same independent reviewer via app task message with explicit Luna/medium and unique target per artifact plus serial full-check cleanup",
+  "no_product_feedback": true,
+  "formal_runs_unchanged": true,
+  "scores": "initial shared-target results ineligible; all corrected raw results stored under fresh output names",
+  "first_attempt_to_message": "active writer rejection; no message delivered until paused"
+}

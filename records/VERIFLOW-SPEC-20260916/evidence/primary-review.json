@@ -1,0 +1,19 @@
+{
+  "reviewer": "primary",
+  "diff": "final-review.patch",
+  "diff_sha256": "e58ff675b0a5a7a6c820ef94b81d8189421127fff341fedd6bcc378c0329e954",
+  "read_actual_diff": true,
+  "read_raw_results": true,
+  "checked": [
+    "Spec content binding",
+    "stale integrity versus applicability",
+    "fixture path identity",
+    "receipt/product classification",
+    "historical/current authorization incl prerequisite revisions",
+    "legacy compatibility",
+    "entry references templates examples Claude definitions",
+    "behavior limitations"
+  ],
+  "spec_sha256": "729bd063d6c03558799f4f62d6aaf7a97572e0889efe2be5b98dd77b2e67db0a",
+  "status": "approved for bounded integration; behavior limitations retained"
+}

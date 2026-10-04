@@ -1,0 +1,8 @@
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
+PRACTICE_ROOT="$(mktemp -d /tmp/rein-ch08-practice-1.XXXXXX)"
+cp -R fixtures/ch08-context/. "$PRACTICE_ROOT/"
+cp "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json"
+node -e 'const fs=require("fs"); const p=process.argv[1]+"/docs/early-runtime.md"; let s=fs.readFileSync(p,"utf8"); if(!s.includes("传输方式：JSON Lines")) process.exit(1); fs.writeFileSync(p,s.replace("传输方式：JSON Lines","传输方式：HTTP"));' "$PRACTICE_ROOT"
+npm run --silent ch08:compare -- --data-root "$PRACTICE_ROOT" --strategy on-demand >"$PRACTICE_ROOT/result.json"
+cmp "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json"
+node -e 'const fs=require("fs"); const a=fs.readFileSync(process.argv[1]); const b=fs.readFileSync(process.argv[2]); if(!a.equals(b)) process.exit(1); const o=JSON.parse(fs.readFileSync(process.argv[3])); if(o.results.length!==4) process.exit(1); const r=o.results.find(x=>x.taskId==="task-01"); const sourceMessages=r.messages.filter(x=>x.role==="user"&&x.content.includes("[来源:doc-01]")); if(!sourceMessages.some(m=>m.content.includes("传输方式：HTTP"))||!r.answer.rawAnswer.includes("传输方式：HTTP")||!r.answer.claims.some(c=>c.field==="传输方式"&&c.value==="HTTP"&&c.source==="doc-01")||r.quality!==0.5) process.exit(1); console.log(JSON.stringify({rawAnswer:r.answer.rawAnswer,quality:r.quality,oracleUnchanged:true,rows:o.results.length}))' "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json" "$PRACTICE_ROOT/result.json"

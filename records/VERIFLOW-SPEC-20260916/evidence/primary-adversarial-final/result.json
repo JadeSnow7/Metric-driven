@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "gate_count": 23,
+  "tool_sha256": {
+    "validate_task.py": "9847dfed8e5344df3c8ddabb7156a403aa59c09bff405985160310a8fe13c35f",
+    "integrate_boundary.py": "67250905b53d4381a89105facc3a3d8cc07bfb69de784d88ef272da88671a5cf",
+    "authorization_snapshot.py": "b47ec7c6f311a505b9992938efcd5d79bb2275a8076f6ca074793563f1a9f2c3",
+    "spec_contract.py": "454d4f64439179e5ff4f0c8823b957a80e2f9b194d0c059671035a159eed5d13",
+    "record_execution.py": "6d82ccb7477ed7b56ce41c50315c69ab165294bc9733ad1e6f84e250509aa1d8"
+  }
+}

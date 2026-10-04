@@ -1,0 +1,16 @@
+   Compiling production-rereview-one v0.1.0 (/private/tmp/rein-ch05-production-rereview-1/rust-probe)
+warning: unused import: `StopReason`
+ --> src/exhausted.rs:1:62
+  |
+1 | use rein_ch01_helloworld::rein::{run_agent_loop, OpenAiHttp, StopReason, ToolError, Workspace};
+  |                                                              ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `production-rereview-one` (bin "exhausted") generated 1 warning (run `cargo fix --bin "exhausted" -p production-rereview-one` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.62s
+     Running `/private/tmp/rein-production-rereview-build/debug/exhausted`
+
+thread 'main' (38609530) panicked at src/exhausted.rs:16:47:
+removal index (is 0) should be < len (is 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,70 @@
+{
+  "chapter": "06",
+  "accepted_at": "2026-09-14T14:24:36.574689+00:00",
+  "status": "passed",
+  "manifest_sha256": "e55a2581228533c22dcb969cb6e9f449f101fc9c785588143fc942ee2e49476b",
+  "files": 132,
+  "tar": {
+    "created_at": "2026-09-14T14:22:07.618209+00:00",
+    "files": 132,
+    "missing": [],
+    "extra": [],
+    "mismatches": [],
+    "manifest_sha256": "e55a2581228533c22dcb969cb6e9f449f101fc9c785588143fc942ee2e49476b",
+    "tar_sha256": "5f53f39c94f971671a3bdc24ac83ec980479d249004693f41927cd1cbe111078"
+  },
+  "patch": {
+    "files": 132,
+    "missing": [],
+    "extra": [],
+    "mismatches": [],
+    "patch_sha256": "5fe0f8026f9bad1a3e290389647182dbfd0735e3b0d5d5f30b7d0eb651711477",
+    "runs": [
+      {
+        "argv": [
+          "git",
+          "init",
+          "-q"
+        ],
+        "cwd": "/private/tmp/rein-ch06-main-snapshot-review/patch-recovered/rein-ch05",
+        "started_at": "2026-09-14T14:24:13.540990+00:00",
+        "ended_at": "2026-09-14T14:24:13.558523+00:00",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "apply",
+          "--binary",
+          "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch06-accepted/baseline.patch"
+        ],
+        "cwd": "/private/tmp/rein-ch06-main-snapshot-review/patch-recovered/rein-ch05",
+        "started_at": "2026-09-14T14:24:13.558532+00:00",
+        "ended_at": "2026-09-14T14:24:13.572508+00:00",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  "limits": [
+    "Later evolving-tree regression remains to be run",
+    "Live not required for ch06",
+    "Final evidence copying still in progress; original raw preserved"
+  ],
+  "helper_execution_evidence": "Original helper exit/interrupt raw missing. Main independent recovery is the acceptance basis.",
+  "helper_process_audit": {
+    "time": "2026-09-14T14:25:56.624691+00:00",
+    "argv": [
+      "ps",
+      "-axo",
+      "pid,ppid,comm,args"
+    ],
+    "exit_code": 0,
+    "matching_snapshot_helper_processes": [],
+    "stderr": "",
+    "scope": "only command-line snapshot helper instances; full process list not stored"
+  }
+}

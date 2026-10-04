@@ -1,0 +1,12 @@
+✔ resolves the TypeScript and Rust language routes (0.477833ms)
+✔ keeps only recognized common anchors and maps language-specific aliases (0.618583ms)
+✔ keeps chapter 01 common anchors available to both editions (0.077584ms)
+✔ does not invent language pairs for core and legacy chapter routes (0.075291ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.84925

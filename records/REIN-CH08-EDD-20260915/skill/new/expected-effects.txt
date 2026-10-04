@@ -1,0 +1,4 @@
+acceptance gate is independent of commit authorization and reuses local product/review checks
+record_execution captures actual argv/cwd/timestamps/exit/output and input hashes, with timeout and launch outcomes
+integrate_boundary requires source/target identity, per-file hashes, allowed paths, and preflight conflict checks
+writing/handoff guidance triggers writing reference reads, final Markdown command execution, staged ownership, and repeat-failure contract review

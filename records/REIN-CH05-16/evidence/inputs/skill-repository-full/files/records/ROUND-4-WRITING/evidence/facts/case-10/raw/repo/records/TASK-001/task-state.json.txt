@@ -1,0 +1,494 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "TASK-001",
+    "title": "库存服务：CSV 批量入库（import_csv）与低库存查询（low_stock）",
+    "mode": "new",
+    "status": "verified",
+    "source_ids": [
+      "SRC-001"
+    ],
+    "status_note": "实现与本地验收已通过；DEC-001..DEC-005 仍为 proposed（待用户确认），所以不标 completed"
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "使用 inventory.Inventory 的调用方（批量维护库存的人/脚本）",
+    "scenario": "从 name,quantity 表头的 CSV 批量入库；查询库存低于阈值的商品",
+    "problem": "现有 Inventory 只能逐个 add_item，没有批量导入和低库存查询",
+    "expected_outcome": "import_csv(path) 返回 (imported, skipped)，坏行跳过且不连累其他行；low_stock(threshold=5) 返回低于阈值的商品名并按字母排序",
+    "scope": "inventory.py 的 Inventory 类新增两个方法，tests/test_inventory.py 补测试，records/TASK-001 交接记录",
+    "acceptable_result": "两项行为与异常输入规则由测试固定并通过；既有测试不退化；端到端（真实 CSV 文件导入后查询低库存）通过；本地提交，不推送"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-14 用户原话（两项功能、都要测试、留跨会话记录、做完本地提交、不要推送）",
+      "summary": "Inventory.import_csv(path) 从表头 name,quantity 的 CSV 入库，返回 (imported, skipped)，skipped 为格式错误行行号（表头算第 1 行），坏行跳过不影响其他行；Inventory.low_stock(threshold=5) 返回低于阈值的商品名并按字母排序；两项都要测试；留下下次能接手的记录；本地提交，不推送",
+      "adoption": "accepted"
+    },
+    {
+      "id": "SRC-002",
+      "kind": "agent_inference",
+      "reference": "records/TASK-001/task-state.json decisions DEC-001..DEC-005",
+      "summary": "用户未定义的边界：什么算格式错误行、空行、表头不符/文件读不出时怎么办、排序大小写、默认阈值是否接 config",
+      "adoption": "proposed"
+    },
+    {
+      "id": "SRC-003",
+      "kind": "external_material",
+      "reference": "repo@547ce4e: inventory.py（add_item 拒绝 quantity<=0、同名累加、names() 用 sorted()）；config.py（LOW_STOCK_THRESHOLD = 5，未被任何代码引用）；README.md（测试命令）",
+      "summary": "仓库现有约定，作为默认决定的依据",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-001",
+      "source_ids": [
+        "SRC-001",
+        "SRC-003"
+      ],
+      "goal": "调用方能用一个 CSV 文件批量入库，并知道哪些行因格式错误被跳过",
+      "scope": [
+        "Inventory.import_csv(path) -> (imported, skipped)",
+        "坏行隔离与文件级错误处理",
+        "对应单元测试"
+      ],
+      "non_goals": [
+        "多行（引号内换行）CSV 记录",
+        "表头以外的列",
+        "持久化存储（库存仍只在内存中）"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "CSV 为 UTF-8（可带 BOM）",
+        "DEC-001..DEC-004 的默认规则待用户确认"
+      ],
+      "status": "verified",
+      "metric_ids": [
+        "MET-001",
+        "MET-003",
+        "MET-004"
+      ],
+      "implementation_task_ids": [
+        "IT-001"
+      ]
+    },
+    {
+      "id": "MT-002",
+      "source_ids": [
+        "SRC-001",
+        "SRC-003"
+      ],
+      "goal": "调用方能列出库存低于阈值的商品，便于补货",
+      "scope": [
+        "Inventory.low_stock(threshold=5) -> list[str]",
+        "对应单元测试"
+      ],
+      "non_goals": [
+        "把默认阈值接到 config.LOW_STOCK_THRESHOLD",
+        "阈值参数校验"
+      ],
+      "dependencies": [],
+      "assumptions": [
+        "“低于”指严格小于",
+        "DEC-005 的排序与默认值规则待用户确认"
+      ],
+      "status": "verified",
+      "metric_ids": [
+        "MET-002"
+      ],
+      "implementation_task_ids": [
+        "IT-002"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-001",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "import_csv 契约：计数、行号、坏行隔离、文件级错误不留半截导入",
+      "baseline": "方法不存在（repo@547ce4e）",
+      "target": "ImportCsvTests 全部通过，覆盖：有效行入库与计数；字段数不对/空 name/非整数/0 与负数/+3、1_000、非 ASCII 数字（如 ٣）被跳过且行号正确（表头=1）；未闭合引号、未加引号字段内的引号、引号后多余字符只跳过本行；跨行引号记录两半都跳过；引号字段（含逗号、双写引号、两侧空白）正确解析；20 万字符的 name 正常导入、超过 4300 位的 quantity 只跳过本行；空行忽略且不打乱行号；CRLF；同名累加；表头不符/空文件抛 ValueError、不可解码抛 UnicodeDecodeError，且库存不变；另有构造的超长恶意行单行解析 < 1000 ms",
+      "method": "python3 -m unittest discover -s tests -t . -v，检查 ImportCsvTests 原始输出与退出码",
+      "environment_data": "本机 Python 3.14.6；测试内用 tempfile 生成的 CSV",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003",
+        "EVD-005"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-002",
+      "main_task_id": "MT-002",
+      "kind": "mandatory_gate",
+      "name": "low_stock 契约：严格小于阈值、默认 5、按名称排序",
+      "baseline": "方法不存在（repo@547ce4e）",
+      "target": "LowStockTests 全部通过，覆盖：默认阈值下 4 在内、5 不在；自定义阈值两侧；结果与插入顺序无关地排序；空库存与阈值<=1 时返回空列表",
+      "method": "python3 -m unittest discover -s tests -t . -v，检查 LowStockTests 原始输出与退出码",
+      "environment_data": "本机 Python 3.14.6；内存中的 Inventory",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-003",
+      "main_task_id": "MT-001",
+      "kind": "non_regression",
+      "name": "既有 9 个测试（inventory 4 + pricing 5）不退化（整体约束，挂在 MT-001 仅因记录格式要求归属）",
+      "baseline": "repo@547ce4e 上 9 个测试通过，见 EVD-001",
+      "target": "改动后同一命令中既有 9 个测试仍全部通过",
+      "method": "python3 -m unittest discover -s tests -t . -v",
+      "environment_data": "本机 Python 3.14.6",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-004",
+      "main_task_id": "MT-001",
+      "kind": "mandatory_gate",
+      "name": "整体端到端：新进程从磁盘 CSV 导入后 low_stock 结果正确（跨 MT-001/MT-002，挂在 MT-001 仅因记录格式要求归属）",
+      "baseline": "不可用（两个方法都不存在）",
+      "target": "records/TASK-001/e2e_check.py 以退出码 0 结束，打印的 (imported, skipped)、count 和 low_stock 与脚本内预期一致",
+      "method": "python3 records/TASK-001/e2e_check.py（在仓库根目录运行，只写系统临时目录）",
+      "environment_data": "本机 Python 3.14.6；脚本内置的混合样本 CSV（含坏行、未闭合引号、跨行引号记录、空行、重复名）",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "status": "passed"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-001",
+      "main_task_id": "MT-001",
+      "source_ids": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "scope": "实现 Inventory.import_csv 及测试；编写端到端检查脚本",
+      "file_scope": [
+        "inventory.py",
+        "tests/test_inventory.py",
+        "records/TASK-001/e2e_check.py"
+      ],
+      "interface_constraints": [
+        "不改变 add_item/count/names 的现有行为",
+        "返回 tuple[int, list[int]]"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-001",
+        "MET-003",
+        "MET-004"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003",
+        "EVD-004",
+        "EVD-005"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    },
+    {
+      "id": "IT-002",
+      "main_task_id": "MT-002",
+      "source_ids": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "scope": "实现 Inventory.low_stock 及测试",
+      "file_scope": [
+        "inventory.py",
+        "tests/test_inventory.py"
+      ],
+      "interface_constraints": [
+        "签名 low_stock(threshold=5)，返回 list[str]"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-002"
+      ],
+      "support_reason": "",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "owner": "main-thread",
+      "status": "verified"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "path": "records/TASK-001/evidence/EVD-001-baseline-tests.txt",
+      "kind": "test_output",
+      "supports": [
+        "MET-003"
+      ],
+      "revision": "commit:547ce4ebe0389259d0d5db5a00330285f80101a1",
+      "sha256": "543ae14ef7a89e33dfccefb3d7f26039441478c532174b8a07a7486498675287",
+      "status": "stale",
+      "result": "passed",
+      "observed_at": "2026-09-13T23:10:00Z",
+      "note": "基线（改动前）9 个测试通过；仅作为 MET-003 的基线参考，已不对应当前补丁"
+    },
+    {
+      "id": "EVD-002",
+      "path": "records/TASK-001/evidence/EVD-002-unit-tests.txt",
+      "kind": "test_output",
+      "supports": [
+        "MET-001",
+        "MET-002",
+        "MET-003"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "sha256": "76ee54d26c93ff4581410cc9202196312830e0037019ba79674bd8bc1912f0fd",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-13T23:22:58Z",
+      "note": "30 个测试全部 ok（ImportCsvTests 17、LowStockTests 4、既有 InventoryTests 4 + ApplyDiscountTests 5），exit=0"
+    },
+    {
+      "id": "EVD-003",
+      "path": "records/TASK-001/evidence/EVD-003-mutation-check.txt",
+      "kind": "mutation_check",
+      "supports": [
+        "MET-001",
+        "MET-002"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "sha256": "b7073bfb229fad99fa05b35ee158b0b6dd7d905db962b6ad8098dd00ceecbf66",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-13T23:22:58Z",
+      "note": "8 个错误实现变体（含改回标准库 csv 宽松解析、未加引号字段允许引号、不还原双写引号）各自至少被 1 个测试抓到；只覆盖这 8 个变体"
+    },
+    {
+      "id": "EVD-004",
+      "path": "records/TASK-001/evidence/EVD-004-e2e.txt",
+      "kind": "e2e_output",
+      "supports": [
+        "MET-004"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "sha256": "1f37ece08db67880ce3dd26c5995031857d60b9858c77c29570d8ef7f09b6446",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-13T23:22:59Z",
+      "note": "E2E PASSED，exit=0；样本含跨行引号记录，两半都被跳过"
+    },
+    {
+      "id": "EVD-005",
+      "path": "records/TASK-001/evidence/EVD-005-adversarial-timing.txt",
+      "kind": "probe_output",
+      "supports": [
+        "MET-001"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "sha256": "9863616613da50c8d67c02d603248eea09255c9e2c32c39b28a3b378878e22a0",
+      "status": "current",
+      "result": "passed",
+      "observed_at": "2026-09-13T23:22:59Z",
+      "note": "9 种 20–40 万字符的构造行，单行解析最慢 19.32 ms（门槛 1000 ms，本机单次观察）；不证明不存在其他慢输入"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-001",
+      "implementation_task_ids": [
+        "IT-001"
+      ],
+      "paths": [
+        "inventory.py",
+        "tests/test_inventory.py"
+      ],
+      "summary": "Inventory.import_csv + 模块级 _split_two_fields/_unquote/_parse_stock_row（两字段 RFC 4180 引号规则的正则解析）；ImportCsvTests（17 个）",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003",
+        "EVD-004",
+        "EVD-005"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "status": "reviewed",
+      "review": "主线程阅读实际 diff；未经独立代理审查"
+    },
+    {
+      "id": "CHG-002",
+      "implementation_task_ids": [
+        "IT-002"
+      ],
+      "paths": [
+        "inventory.py",
+        "tests/test_inventory.py"
+      ],
+      "summary": "Inventory.low_stock；LowStockTests（4 个）",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-003",
+        "EVD-004"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "status": "reviewed",
+      "review": "主线程阅读实际 diff；未经独立代理审查"
+    },
+    {
+      "id": "CHG-003",
+      "implementation_task_ids": [
+        "IT-001",
+        "IT-002"
+      ],
+      "paths": [
+        "records/TASK-001"
+      ],
+      "summary": "端到端检查脚本 records/TASK-001/e2e_check.py 与跨会话记录（状态、摘要、日志、交接包、原始证据）",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "revision": "patch:547ce4ebe0389259d0d5db5a00330285f80101a1:eae90ace8e7b2ef2cd2ea3df4bacca41abf97fbaf542eb375fcde5333bb8e532",
+      "status": "reviewed",
+      "review": "主线程阅读；记录文件不影响产品行为"
+    }
+  ],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-001",
+      "MET-002",
+      "MET-003",
+      "MET-004"
+    ],
+    "evidence_ids": [
+      "EVD-002",
+      "EVD-004"
+    ],
+    "status": "passed"
+  },
+  "baseline": {
+    "git_ref": "547ce4ebe0389259d0d5db5a00330285f80101a1",
+    "worktree_status": "clean",
+    "ownership": "main 分支 547ce4e 开始时 git status 干净（仅忽略的 __pycache__）；本任务只写 inventory.py、tests/test_inventory.py、records/TASK-001/",
+    "prepared_at": "2026-09-13T23:10:00Z"
+  },
+  "authorization": {
+    "commit": {
+      "status": "authorized",
+      "source_id": "SRC-001"
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": "SRC-001"
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "passed",
+    "local_commit": "completed",
+    "push": "not_started",
+    "remote_ci": "unavailable",
+    "merge": "not_started",
+    "deploy": "not_started"
+  },
+  "actions": [
+    {
+      "id": "ACT-001",
+      "kind": "git_commit",
+      "authorization_action": "commit",
+      "status": "completed",
+      "idempotency_key": "TASK-001:commit:implementation+records@547ce4e",
+      "description": "本地提交 inventory.py、tests/test_inventory.py、records/TASK-001/（不含其他路径）",
+      "receipt": "git commit 6d1d31b2e151f37123f545d4edeccfb979bff38b on main (parent 547ce4e); 12 files: inventory.py, tests/test_inventory.py, records/TASK-001/**",
+      "completed_at": "2026-09-13T23:25:52Z"
+    },
+    {
+      "id": "ACT-002",
+      "kind": "git_commit",
+      "authorization_action": "commit",
+      "status": "completed",
+      "idempotency_key": "TASK-001:commit:records-receipt@6d1d31b",
+      "description": "仅提交 records/TASK-001 的回执更新（ACT-001 完成、摘要/日志/交接包）；本提交自身的 SHA 无法写进自身，用 git log 查看（6d1d31b 的直接子提交）",
+      "receipt": "见 git log：6d1d31b 之后、只改 records/TASK-001/ 的提交",
+      "completed_at": "2026-09-13T23:25:52Z"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "source_ids": [
+        "SRC-002",
+        "SRC-001"
+      ],
+      "summary": "每个物理行是一条记录，行号就是物理行号（表头=1）；每行单独解析，按 RFC 4180 引号规则：未加引号的字段不能含双引号或逗号，加引号的字段可含逗号、内部引号须双写，引号两侧允许空格/制表符；不支持引号内换行，跨行记录的每一行都记为坏行",
+      "basis": "整文件 csv.reader 遇到未闭合引号会把后续所有行吞进一个字段且不报错；逐行用 csv.reader 时，跨行引号记录的第二行（如 mini\",6）会被当作有效行导入成商品 'mini\"'（strict=True 也不拦）。两者都已在 Python 3.14.6 实测，都违反“不影响其他行”，因此改用显式两字段正则",
+      "status": "proposed"
+    },
+    {
+      "id": "DEC-002",
+      "source_ids": [
+        "SRC-002",
+        "SRC-003"
+      ],
+      "summary": "数据行有效条件：恰好 2 个符合 DEC-001 的字段；name 去首尾空白后非空（不限长度）；quantity 去首尾空白后只含 ASCII 数字且值 > 0。其余非空行记入 skipped（含 0/负数、3.0、+3、1_000、非 ASCII 数字（如 ٣）、超过 Python 4300 位整数转换上限的 quantity、12\" pizza 这类未加引号却含引号的值）",
+      "basis": "quantity>0 沿用 add_item 约定；int() 会接受 +3/1_000/非 ASCII 数字，改用正则让格式判定明确；超长数字会让 int() 抛 ValueError，捕获后按坏行处理以保持隔离",
+      "status": "proposed"
+    },
+    {
+      "id": "DEC-003",
+      "source_ids": [
+        "SRC-002"
+      ],
+      "summary": "空行（空或仅空白）忽略：不计入 imported，也不进 skipped，但仍占行号",
+      "basis": "空行不含数据，与 csv.DictReader 跳过空行的做法一致；避免文件末尾多余换行被报成错误。若用户希望空行也列入 skipped，需改一处判断和对应测试",
+      "status": "proposed"
+    },
+    {
+      "id": "DEC-004",
+      "source_ids": [
+        "SRC-002",
+        "SRC-003"
+      ],
+      "summary": "文件级问题整体失败且不导入任何行：第一行去 BOM 与字段两侧空白后不是 name,quantity（区分大小写）或文件为空 -> ValueError；文件不存在/不可按 UTF-8 解码 -> 原异常向上抛。先解析全部行再统一入库。同名多行累加，imported 按行计数",
+      "basis": "表头不符时无法确定列含义，逐行跳过没有意义；先解析后入库避免半截导入；累加沿用 add_item",
+      "status": "proposed"
+    },
+    {
+      "id": "DEC-005",
+      "source_ids": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "summary": "low_stock 用严格小于（用户原话“低于”）；默认值按用户签名写成字面量 5，不接 config.LOW_STOCK_THRESHOLD；排序用 sorted()，与 names() 一致（按 Unicode 码点，区分大小写，大写字母排在小写前）；不校验 threshold",
+      "basis": "严格小于来自用户原话；排序沿用 names()；config.py 当前未被任何代码使用，接入与否是用户决定",
+      "status": "proposed"
+    }
+  ],
+  "hypotheses": [],
+  "recovery_strategy": {
+    "trigger": "提交后发现行为或测试问题",
+    "steps": [
+      "未推送，本地 git revert 对应提交或在新提交中修正",
+      "重跑 python3 -m unittest discover -s tests -t . -v 与 python3 records/TASK-001/e2e_check.py"
+    ],
+    "owner": "main-thread（本任务执行会话）/ 用户"
+  }
+}

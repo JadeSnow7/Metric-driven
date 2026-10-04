@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-15T10:55:34.191350+00:00",
+  "original_files": 161,
+  "original_vs_initial_drift": [],
+  "production_vs_common_changed": [
+    "MIGRATIONS.md",
+    "README.md",
+    "docs/.vitepress/config.mts",
+    "docs/chapters/08.md",
+    "docs/index.md",
+    "docs/toc.md",
+    "examples/ch08-context-methods/README.md",
+    "examples/ch08-context-methods/docs/demo.md",
+    "examples/ch08-context-methods/entry.mjs",
+    "examples/ch08-context-methods/input/index.json",
+    "examples/ch08-context-methods/input/tasks.json",
+    "package.json",
+    "rust/examples/ch08_context.rs",
+    "rust/src/rein/context_methods.rs",
+    "rust/src/rein/mod.rs",
+    "rust/tests/ch08_context.rs",
+    "scripts/ch08-compare.mjs",
+    "scripts/ch08-verify.mjs"
+  ],
+  "head": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "ch01_sha256": "e07a2850ab31ca132fed9214256ccd746776bddfca2e48458fb25515ff8ea32d"
+}

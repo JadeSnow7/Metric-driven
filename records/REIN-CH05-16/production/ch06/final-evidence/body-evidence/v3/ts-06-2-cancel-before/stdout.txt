@@ -1,0 +1,22 @@
+{
+  "mode": "cancel-before",
+  "requests": 0,
+  "settledRequests": 0,
+  "result": {
+    "state": "failed",
+    "reason": "cancelled",
+    "messages": [
+      {
+        "role": "user",
+        "content": "读取 README.md 与 guide.md"
+      }
+    ],
+    "events": [
+      {
+        "type": "stopped",
+        "state": "failed",
+        "reason": "cancelled"
+      }
+    ]
+  }
+}

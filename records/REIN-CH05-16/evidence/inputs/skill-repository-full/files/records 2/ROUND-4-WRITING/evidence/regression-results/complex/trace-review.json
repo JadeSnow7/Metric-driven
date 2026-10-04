@@ -1,0 +1,10 @@
+{
+  "commands_observed": [
+    "git diff -- inventory.py records/TASK-001/task-summary.md records/TASK-001/task-state.json",
+    "git diff --check",
+    "git ls-files",
+    "git show HEAD:inventory.py",
+    "git status --short --branch"
+  ],
+  "review": "Observed commands are read-only. Final HEAD/refs/stash/worktrees unchanged. Trace coverage does not prove absence of every transient attempted command; fixtures have no real remote."
+}

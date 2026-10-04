@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--test",
+    "loop"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/rust",
+  "start": "2026-09-14T14:45:35.470024+00:00",
+  "end": "2026-09-14T14:45:37.806269+00:00",
+  "exit": 101,
+  "stdout": "\nrunning 12 tests\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\ntest ch07_context_rejects_invalid_history_and_required_overflow_without_dispatch ... ok\ntest ch07_context_stops_when_new_latest_group_does_not_fit ... ok\ntest nested_arguments_are_canonical_for_duplicate_detection ... ok\ntest ch07_context_keeps_goal_and_latest_tool_group_but_audits_all_history ... ok\ntest unknown_badargs_missing_file_are_feedback_and_can_recover ... ok\ntest ch07_context_tracks_latest_group_across_real_tool_rounds ... FAILED\ntest ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id ... FAILED\ntest model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok\ntest two_workspaces_search_then_read_and_pair_multiple_calls ... ok\ntest observer_cancels_between_tools_and_pending_model_is_dropped ... ok\ntest controls_stop_pending_model_and_zero_budget_without_dispatch ... ok\n\nfailures:\n\n---- ch07_context_tracks_latest_group_across_real_tool_rounds stdout ----\n\nthread 'ch07_context_tracks_latest_group_across_real_tool_rounds' (39812905) panicked at tests/loop.rs:728:5:\nassertion failed: prepared[1].0.iter().any(|id| id == \"g2\")\n\n---- ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id stdout ----\n\nthread 'ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id' (39812901) panicked at tests/loop.rs:839:5:\nassertion `left == right` failed\n  left: 2\n right: 1\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    ch07_context_allows_adjacent_seeded_groups_but_rejects_new_duplicate_id\n    ch07_context_tracks_latest_group_across_real_tool_rounds\n\ntest result: FAILED. 10 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.47s\n     Running tests/loop.rs (/private/tmp/rein-candidate03-build/debug/deps/loop-8ce302fc995cc4fc)\nerror: test failed, to rerun pass `--test loop`\n"
+}

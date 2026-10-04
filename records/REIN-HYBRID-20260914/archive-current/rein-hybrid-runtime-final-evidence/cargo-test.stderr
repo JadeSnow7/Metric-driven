@@ -1,0 +1,25 @@
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `max_message_bytes` is never read
+   --> src/rein/stdio_executor.rs:144:5
+    |
+122 | struct Wire {
+    |        ---- field in this struct
+...
+144 |     max_message_bytes: Option<usize>,
+    |     ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-hybrid-work-20260914/rust)
+warning: `rein-ch01-helloworld` (lib) generated 2 warnings (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+warning: `rein-ch01-helloworld` (lib test) generated 2 warnings (2 duplicates)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.86s
+     Running unittests src/lib.rs (/private/tmp/rein-hybrid-target/debug/deps/rein_ch01_helloworld-dff73a8251df3167)
+error: test failed, to rerun pass `--lib`

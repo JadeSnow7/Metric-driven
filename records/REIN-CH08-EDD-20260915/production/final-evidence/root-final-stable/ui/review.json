@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-15T11:04:41.183189+00:00",
+  "browser": "Codex in-app browser",
+  "url": "http://127.0.0.1:4189/Rein/chapters/08.html",
+  "observations": {
+    "rows": 16,
+    "eight_required_anchors": true,
+    "single_sidebar_ch08": true,
+    "language_switch_buttons": 0,
+    "final_opening_and_corrected_practice1": true,
+    "outline_click_focus": true,
+    "previous_page": "07-rust.html",
+    "next_page": "09.html; 待撰写",
+    "toc_ch08": "已提供; 可独立阅读; 限时免费",
+    "table": {
+      "clientWidth": 624,
+      "scrollWidth": 806,
+      "overflowX": "auto"
+    }
+  },
+  "evidence": "actual CUA AX/DOM and two screenshots in primary session public raw; no screenshot file exported",
+  "limitations": [
+    "old 4188 preview stayed stale after reload; did not count as final; created fresh preview 4189",
+    "old terminal session 5301 was unavailable to stop via write_stdin",
+    "no console-log assertion"
+  ],
+  "hashes": {
+    "docs/chapters/08.md": "bb18e600c6a05b82b1530774fc4cd19d60ed8e19e74a51a85ef699920026432b",
+    "docs/toc.md": "1ad67bb31a544eacd3249aba74489646eccf249b690e5f2b2640c4a9911d1dcb",
+    "docs/.vitepress/config.mts": "fda320614f6efe262f2657c66fba807d9b22f6d7e266e473860add0c77156691",
+    "docs/index.md": "f366546f5ccb1edc62ac0804d9f3c4a95153cfe5069fe62fa21c0d3eb1d2098b"
+  }
+}

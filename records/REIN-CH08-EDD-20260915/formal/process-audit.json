@@ -1,0 +1,121 @@
+{
+  "at": "2026-09-15T05:18:13.783907+00:00",
+  "facts": {
+    "A_visible_EDD_reads": 0,
+    "B_full_writing_reference_read": true,
+    "C_full_writing_reference_read": true,
+    "C_record_execution_calls": 4,
+    "B_acceptance_validator_calls": 0,
+    "C_acceptance_validator_calls": 0,
+    "C_final_Markdown_extraction_execution_visible": false,
+    "C_integration_tool_formal_applicable": false
+  },
+  "C_execution_records": [
+    {
+      "file": "docs-build.json",
+      "argv": [
+        "npm",
+        "run",
+        "--silent",
+        "build"
+      ],
+      "exit_code": 0,
+      "result": "passed",
+      "bound_inputs": [
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/docs/chapters/08.md",
+          "kind": "source",
+          "current_match": true
+        }
+      ],
+      "omitted_material_inputs": "build uses navigation/theme/other docs beyond bound chapter08"
+    },
+    {
+      "file": "ch08-verify.json",
+      "argv": [
+        "node",
+        "scripts/ch08-verify.mjs"
+      ],
+      "exit_code": 0,
+      "result": "passed",
+      "bound_inputs": [
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/scripts/ch08-verify.mjs",
+          "kind": "source",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/fixtures/ch08-context/index.json",
+          "kind": "fixture",
+          "current_match": true
+        }
+      ],
+      "omitted_material_inputs": "compare/verify/tests read six Markdown fixture bodies and shared runtime/host; these are not all included in this invocation bindings"
+    },
+    {
+      "file": "ch08-rust-test.json",
+      "argv": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--test",
+        "ch08_context"
+      ],
+      "exit_code": 0,
+      "result": "passed",
+      "bound_inputs": [
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/rust/src/rein/context_methods.rs",
+          "kind": "source",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/rust/tests/ch08_context.rs",
+          "kind": "test",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/fixtures/ch08-context/tasks.json",
+          "kind": "fixture",
+          "current_match": true
+        }
+      ],
+      "omitted_material_inputs": "compare/verify/tests read six Markdown fixture bodies and shared runtime/host; these are not all included in this invocation bindings"
+    },
+    {
+      "file": "ch08-compare.json",
+      "argv": [
+        "node",
+        "scripts/ch08-compare.mjs"
+      ],
+      "exit_code": 0,
+      "result": "passed",
+      "bound_inputs": [
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/rust/src/rein/context_methods.rs",
+          "kind": "source",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/rust/examples/ch08_context.rs",
+          "kind": "source",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/fixtures/ch08-context/index.json",
+          "kind": "fixture",
+          "current_match": true
+        },
+        {
+          "path": "/private/tmp/rein-ch08-formal-20260915/C/book/fixtures/ch08-context/tasks.json",
+          "kind": "fixture",
+          "current_match": true
+        }
+      ],
+      "omitted_material_inputs": "compare/verify/tests read six Markdown fixture bodies and shared runtime/host; these are not all included in this invocation bindings"
+    }
+  ],
+  "interpretation": "Record tool invoked and binds listed current files, but listing incomplete inputs is not full source/fixture provenance. Independent acceptance and final Markdown execution did not visibly trigger. Actual product correctness scored separately; absence of dedicated record format is not product penalty."
+}

@@ -1,0 +1,7 @@
+{
+  "time": "2026-09-15T05:57:55.325130+00:00",
+  "removed": "/private/tmp/rein-ch08-review-1/products/Quartz/target",
+  "approxBefore": "378M du",
+  "reason": "Reviewer 1 completed and raw/source sealed. Disk ENOSPC during reviewer 2; only completed reviewer compile cache removed.",
+  "sourceChanged": false
+}

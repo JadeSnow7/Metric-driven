@@ -1,0 +1,6 @@
+fbcc605dfd6c121216dfb021e13bb5b47cf1c913f83aa39d19bb7cd5624c48a9  records/REIN-CH08-EDD-20260915/skill/old/HEAD
+ea0470cf394a83928ab966cb303d0c6bab7601738b96168d5e91b495a26ff838  records/REIN-CH08-EDD-20260915/skill/old/status-skill.txt
+0c191690c9a2bc62bc4ea11fece462171b9d8b6603b03b7e8c0bbd2eded1e634  records/REIN-CH08-EDD-20260915/skill/old/unstaged.patch
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  records/REIN-CH08-EDD-20260915/skill/old/staged.patch
+893c019ac8cd855714dd3b9cfac79f2cbd00371e10ca6380b65fb5ff61bb01dd  records/REIN-CH08-EDD-20260915/skill/old/source-sha256.txt
+8a2e058b94c903b6a061053df320a05f9c96291522eea7ef7d33a09bc7e674f9  records/REIN-CH08-EDD-20260915/skill/old/copy-sha256.txt

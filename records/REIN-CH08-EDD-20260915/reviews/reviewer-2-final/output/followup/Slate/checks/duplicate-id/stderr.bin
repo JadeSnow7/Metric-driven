@@ -1,0 +1,69 @@
+error: failed to build archive at `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libsyn-3fe78051516bdbc3.rlib`: No space left on device (os error 28)
+
+error: could not compile `syn` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/rmetaIRWbho/full.rmeta`: No space left on device (os error 28)
+
+rustc-LLVM ERROR: IO failure on output stream: No space left on device
+error: could not compile `darling_core` (lib)
+
+Caused by:
+  failed to create file `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/.fingerprint/darling_core-d9c80b8df853bc7f/output-lib-darling_core`
+
+Caused by:
+  failed to parse process output: `/Users/huaodong/.rustup/toolchains/stable-aarch64-apple-darwin/bin/rustc --crate-name darling_core --edition=2021 /Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/darling_core-0.20.11/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="strsim"' --cfg 'feature="suggestions"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("diagnostics", "strsim", "suggestions"))' -C metadata=3d14a1bdadbcf680 -C extra-filename=-d9c80b8df853bc7f --out-dir /private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps -C strip=debuginfo -L dependency=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps --extern fnv=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libfnv-31c68aae84bb14a5.rmeta --extern ident_case=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libident_case-7df4fe63bc908b1b.rmeta --extern proc_macro2=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libproc_macro2-346f77904702082a.rmeta --extern quote=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libquote-497ff16876359277.rmeta --extern strsim=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libstrsim-1986d4ad11890c93.rmeta --extern syn=/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/libsyn-3fe78051516bdbc3.rmeta --cap-lints allow` (exit status: 101)
+error: could not compile `serde_core` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/deps/rmetaxp6H6u/full.rmeta`: No space left on device (os error 28)
+
+error: failed to run custom build command for `ring v0.17.14`
+
+Caused by:
+  process didn't exit successfully: `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/build/ring-ccc2b3f50613a2d1/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=CARGO_MANIFEST_DIR
+  cargo:rerun-if-env-changed=CARGO_PKG_NAME
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_MAJOR
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_MINOR
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_PATCH
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_PRE
+  cargo:rerun-if-env-changed=CARGO_MANIFEST_LINKS
+  cargo:rerun-if-env-changed=RING_PREGENERATE_ASM
+  cargo:rerun-if-env-changed=OUT_DIR
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ARCH
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_OS
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ENV
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ENDIAN
+  cargo:rerun-if-env-changed=CC_aarch64-apple-darwin
+  CC_aarch64-apple-darwin = None
+  cargo:rerun-if-env-changed=CC_aarch64_apple_darwin
+  CC_aarch64_apple_darwin = None
+  cargo:rerun-if-env-changed=HOST_CC
+  HOST_CC = None
+  cargo:rerun-if-env-changed=CC
+  CC = None
+  cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=MACOSX_DEPLOYMENT_TARGET
+  MACOSX_DEPLOYMENT_TARGET = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_aarch64_apple_darwin
+  CFLAGS_aarch64_apple_darwin = None
+  cargo:rerun-if-env-changed=CFLAGS_aarch64-apple-darwin
+  CFLAGS_aarch64-apple-darwin = None
+  cargo:warning=error: unable to open output file '/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o': 'No space left on device'
+  cargo:warning=1 error generated.
+
+  --- stderr
+
+
+  error occurred in cc-rs: command did not execute successfully (status code exit status: 1): env -u IPHONEOS_DEPLOYMENT_TARGET LC_ALL="C" "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "--target=arm64-apple-macosx" "-mmacosx-version-min=26.5" "-I" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/include" "-I" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/pregenerated" "-Wall" "-Wextra" "-fvisibility=hidden" "-std=c1x" "-Wall" "-Wbad-function-cast" "-Wcast-align" "-Wcast-qual" "-Wconversion" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wnested-externs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wsign-conversion" "-Wstrict-prototypes" "-Wundef" "-Wuninitialized" "-gfull" "-DNDEBUG" "-o" "/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o" "-c" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/crypto/poly1305/poly1305.c"
+
+
+error: failed to write `/private/tmp/rein-ch08-review-2/output/followup/Slate/target/debug/build/serde-1e201f18ee47358f/output`
+
+Caused by:
+  No space left on device (os error 28)
+error: could not compile `zerocopy` (lib) due to 1 previous error

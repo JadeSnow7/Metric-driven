@@ -1,0 +1,25 @@
+[
+  {
+    "name": "repository",
+    "argv": [
+      "python3",
+      "tools/validate_repository.py"
+    ],
+    "exit_code": 0,
+    "stdout": "repository validation passed (18 required files, local links checked)\nnote: this proves repository consistency, not workflow behavior or delivery authorization\n",
+    "stderr": "",
+    "at": "2026-09-14T04:44:51.892771+00:00"
+  },
+  {
+    "name": "diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "at": "2026-09-14T04:44:51.892771+00:00"
+  }
+]

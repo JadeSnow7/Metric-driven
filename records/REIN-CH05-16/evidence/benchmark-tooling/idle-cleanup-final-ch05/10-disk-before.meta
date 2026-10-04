@@ -1,0 +1,7 @@
+argv=df -h /private/tmp 
+cwd=/Users/huaodong/Documents/evidence-driven-development
+start=2026-09-14T13:05:40Z
+end=2026-09-14T13:05:40Z
+exit=1
+stdout=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/10-disk-before.stdout
+stderr=/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/10-disk-before.stderr

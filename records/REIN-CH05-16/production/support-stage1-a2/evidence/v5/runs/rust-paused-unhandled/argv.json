@@ -1,0 +1,1 @@
+["rustc", "--edition", "2021", "rust/examples/a2_state.rs", "-o", "/tmp/a2-state"]

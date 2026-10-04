@@ -1,0 +1,16 @@
+task-01	on-demand	completed	1	1520	doc-01,doc-04	2	1
+task-01	window	completed	0	2351	doc-03,doc-04,doc-05,doc-06	0	1
+task-01	summary	completed	1	1292	doc-01,doc-02,doc-03,doc-04,doc-05,doc-06	2	1
+task-01	retrieval	completed	1	2117	doc-01,doc-06,doc-02,doc-03,doc-04	2	1
+task-02	on-demand	completed	1	1456	doc-04,doc-06	1	1
+task-02	window	completed	1	2336	doc-03,doc-04,doc-05,doc-06	1	1
+task-02	summary	completed	1	1277	doc-01,doc-02,doc-03,doc-04,doc-05,doc-06	1	1
+task-02	retrieval	completed	1	1716	doc-06,doc-02,doc-05,doc-03,doc-04	1	1
+task-03	on-demand	completed	1	1555	doc-03,doc-05	2	1
+task-03	window	completed	0.5	2393	doc-03,doc-04,doc-05,doc-06	1	1
+task-03	summary	completed	1	1334	doc-01,doc-02,doc-03,doc-04,doc-05,doc-06	2	1
+task-03	retrieval	completed	1	2395	doc-05,doc-03,doc-01,doc-02	2	1
+task-04	on-demand	completed	1	133		0	1
+task-04	window	completed	1	2315	doc-03,doc-04,doc-05,doc-06	0	1
+task-04	summary	completed	1	1256	doc-01,doc-02,doc-03,doc-04,doc-05,doc-06	0	1
+task-04	retrieval	completed	1	1329	doc-02,doc-03,doc-05,doc-06,doc-01	0	1

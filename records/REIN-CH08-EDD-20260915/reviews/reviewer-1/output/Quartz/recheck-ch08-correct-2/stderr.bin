@@ -1,0 +1,4 @@
+error: failed to create directory `/Volumes/Data`
+
+Caused by:
+  Operation not permitted (os error 1)

@@ -1,0 +1,20 @@
+{
+  "label": "p17-ts-transport-escalated",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17",
+  "argv": [
+    "npm",
+    "test",
+    "--workspace",
+    "ts",
+    "--",
+    "--run",
+    "tests/transport.test.ts"
+  ],
+  "started_utc": "2026-09-14T11:17:16Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "\n> @rein/ts@0.0.0 test\n> vitest run --passWithNoTests --run tests/transport.test.ts\n\n\n RUN  v2.1.9 /private/tmp/rein-ch05-review-20260914/reviewer-1/package-17/ts\n\n ✓ tests/transport.test.ts (8 tests) 316ms\n\n Test Files  1 passed (1)\n      Tests  8 passed (8)\n   Start at  19:17:16\n   Duration  681ms (transform 52ms, setup 0ms, collect 52ms, tests 316ms, environment 0ms, prepare 54ms)\n\n"
+}

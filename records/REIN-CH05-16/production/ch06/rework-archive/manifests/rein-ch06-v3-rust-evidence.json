@@ -1,0 +1,20 @@
+{
+  "source_path": "/private/tmp/rein-ch06-v3-rust-evidence",
+  "archive_path": "records/REIN-CH05-16/production/ch06/rework-archive/sources/rein-ch06-v3-rust-evidence",
+  "archive_action": "copied",
+  "time_fields": {
+    "started_at": null,
+    "finished_at": null
+  },
+  "files": [
+    {
+      "path": "verification.md",
+      "sha256": "e0977ed8b2af2456aa0b7e90eaeae99cf03d8646821db0db53e8b34fc9c80098",
+      "mode": "0644"
+    }
+  ],
+  "verification": {
+    "source_and_archived_files_sha256_match": true,
+    "method": "sha256 per relative path; mode recorded per file"
+  }
+}

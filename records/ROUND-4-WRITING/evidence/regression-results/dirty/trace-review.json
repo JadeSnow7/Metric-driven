@@ -1,0 +1,8 @@
+{
+  "commands_observed": [
+    "git diff -- inventory.py tests/test_inventory.py",
+    "git log -1 --oneline",
+    "git status --short"
+  ],
+  "review": "Observed commands are read-only. Final HEAD/refs/stash/worktrees unchanged. Trace coverage does not prove absence of every transient attempted command; fixtures have no real remote."
+}

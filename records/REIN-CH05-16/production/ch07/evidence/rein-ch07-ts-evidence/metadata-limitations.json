@@ -1,0 +1,3 @@
+{
+  "limitation": "focused.json and typecheck.json start/end were written after execution and are not valid cost timings; preserve as raw output only."
+}

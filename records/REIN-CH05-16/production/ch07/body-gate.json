@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-09-14T15:15:18.263860+00:00",
+  "files": {
+    "docs/chapters/07.md": "d00073785477f8804503d028e094a45d7795cc2b82c841b597eb28b50af2893f",
+    "docs/chapters/07-rust.md": "7921f54043bd13e908b9d64920fd6497d31b340b9bbbcd1a984d563037a57240"
+  },
+  "anchors": [
+    "context-inputs",
+    "budget-estimate",
+    "atomic-history",
+    "managed-run",
+    "context-failure",
+    "practice-07-1",
+    "practice-07-2",
+    "practice-07-3"
+  ],
+  "review": [
+    "Both complete initial drafts read; all subsequent diffs reviewed against preserved drafts.",
+    "Verified setup and Node mutation commands, source snippets, 644/239 estimate and 239/238 boundary, error field semantics and actual offline adapter behavior.",
+    "Read TS v2 raw jobs and Rust v2 normal/failure/independent exercises; Rust v3 exact latest-a mutation asserted corrected A then original B; TS final Rust command matches same exercise input.",
+    "Main independent dynamic input and budget/history probes match lesson claims; exact source checks retain original00–04 and both lockfiles.",
+    "Root final docs build exit0 after both final body hashes."
+  ],
+  "evidence": [
+    "/private/tmp/rein-ch07-ts-body-evidence",
+    "/private/tmp/rein-ch07-rust-body-evidence",
+    "/private/tmp/rein-ch07-main-review-v3"
+  ],
+  "scope": "Offline book and code validation; final site language-switch UI and full-book link checks remain integration work.",
+  "snapshot_status": "ready_to_package"
+}

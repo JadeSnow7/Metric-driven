@@ -1,0 +1,22 @@
+{
+  "name": "mode-cancel-before",
+  "argv": [
+    "env",
+    "CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build",
+    "cargo",
+    "run",
+    "--quiet",
+    "--manifest-path",
+    "/private/tmp/rein-production-candidate-03/rust/Cargo.toml",
+    "--example",
+    "ch06_loop",
+    "--",
+    "cancel-before"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "start": "2026-09-14T13:47:52Z",
+  "end": "2026-09-14T13:47:52Z",
+  "exit": 0,
+  "stdout": "{\"mode\":\"cancel-before\",\"requests\":0,\"result\":{\"events\":[{\"reason\":\"cancelled\",\"state\":\"failed\",\"type\":\"stopped\"}],\"messages\":[{\"content\":\"查找 marker: ch06 并读取两个文件\",\"role\":\"user\"}],\"reason\":\"cancelled\",\"state\":\"failed\"},\"settledRequests\":0,\"skipped\":[],\"toolCalls\":[]}\n",
+  "stderr": ""
+}

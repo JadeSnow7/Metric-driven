@@ -1,0 +1,70 @@
+
+> @rein/ts@0.0.0 ch05:offline
+> node --import tsx examples/ch05-loop.ts workspace /private/tmp/rein-candidate03-modes.7UPfKq empty
+
+{
+  "state": "failed",
+  "reason": "empty_final",
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "请搜索 marker:，再读取命中的两个文件并总结。"
+        }
+      ],
+      "tools": [
+        {
+          "name": "search_files",
+          "description": "Search text in workspace files.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "needle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "needle"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "read_file",
+          "description": "Read one UTF-8 file in the workspace.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "model_received",
+      "turn": 1,
+      "message": {
+        "role": "assistant",
+        "content": "   ",
+        "toolCalls": []
+      },
+      "toolCallIds": [],
+      "text": "   "
+    },
+    {
+      "type": "stopped",
+      "state": "failed",
+      "reason": "empty_final"
+    }
+  ]
+}

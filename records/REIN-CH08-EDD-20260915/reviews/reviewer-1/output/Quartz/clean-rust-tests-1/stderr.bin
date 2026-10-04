@@ -1,0 +1,108 @@
+   Compiling syn v3.0.5
+   Compiling syn v2.0.119
+   Compiling ring v0.17.14
+   Compiling icu_properties_data v2.3.0
+   Compiling zerocopy v0.8.57
+   Compiling serde_core v1.0.229
+   Compiling httparse v1.10.1
+   Compiling core-foundation v0.10.1
+   Compiling tracing-core v0.1.36
+   Compiling subtle v2.6.1
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmetahXtbCx/full.rmeta`: No space left on device (os error 28)
+
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmetatzuscy/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `subtle` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `icu_properties_data` (lib) due to 1 previous error
+error: failed to write /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/libhttparse-34a9abbecc49a831.rmeta: No space left on device (os error 28)
+
+error: could not compile `httparse` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmetaGKbStC/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `core-foundation` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmetaAVyCCQ/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `tracing-core` (lib) due to 1 previous error
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/0bbbd18bda93c05b-aes_nohw-e486659e.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/0bbbd18bda93c05b-aes_nohw.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery-d0101cea.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery_inv-bf9f6b64.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery_inv.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-ecp_nistz-821916f7.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-ecp_nistz.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p256-83dc962c.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p256.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p384-37eef992.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p384.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-p256-f669d728.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-p256.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/aaa1ba3e455ee2e1-limbs-86e8fff2.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/aaa1ba3e455ee2e1-limbs.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a4019cc0736b0423-mem-57e985ee.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a4019cc0736b0423-mem.o (exists): No space left on device
+warning: ring@0.17.14: Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305-d24638ab.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o (exists): No space left on device
+warning: ring@0.17.14: error: unable to rename temporary '/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305-d24638ab.o.tmp' to output file '/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o': 'No space left on device'
+warning: ring@0.17.14: 1 error generated.
+error: failed to run custom build command for `ring v0.17.14`
+
+Caused by:
+  process didn't exit successfully: `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-ccc2b3f50613a2d1/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=CARGO_MANIFEST_DIR
+  cargo:rerun-if-env-changed=CARGO_PKG_NAME
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_MAJOR
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_MINOR
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_PATCH
+  cargo:rerun-if-env-changed=CARGO_PKG_VERSION_PRE
+  cargo:rerun-if-env-changed=CARGO_MANIFEST_LINKS
+  cargo:rerun-if-env-changed=RING_PREGENERATE_ASM
+  cargo:rerun-if-env-changed=OUT_DIR
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ARCH
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_OS
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ENV
+  cargo:rerun-if-env-changed=CARGO_CFG_TARGET_ENDIAN
+  cargo:rerun-if-env-changed=CC_aarch64-apple-darwin
+  CC_aarch64-apple-darwin = None
+  cargo:rerun-if-env-changed=CC_aarch64_apple_darwin
+  CC_aarch64_apple_darwin = None
+  cargo:rerun-if-env-changed=HOST_CC
+  HOST_CC = None
+  cargo:rerun-if-env-changed=CC
+  CC = None
+  cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=MACOSX_DEPLOYMENT_TARGET
+  MACOSX_DEPLOYMENT_TARGET = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_aarch64_apple_darwin
+  CFLAGS_aarch64_apple_darwin = None
+  cargo:rerun-if-env-changed=CFLAGS_aarch64-apple-darwin
+  CFLAGS_aarch64-apple-darwin = None
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/0bbbd18bda93c05b-aes_nohw-e486659e.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/0bbbd18bda93c05b-aes_nohw.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery-d0101cea.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery_inv-bf9f6b64.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/00c879ee3285a50d-montgomery_inv.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-ecp_nistz-821916f7.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-ecp_nistz.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p256-83dc962c.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p256.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p384-37eef992.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-gfp_p384.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-p256-f669d728.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a0330e891e733f4e-p256.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/aaa1ba3e455ee2e1-limbs-86e8fff2.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/aaa1ba3e455ee2e1-limbs.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a4019cc0736b0423-mem-57e985ee.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/a4019cc0736b0423-mem.o (exists): No space left on device
+  cargo:warning=Rename failed: /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305-d24638ab.o.tmp (exists) -> /private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o (exists): No space left on device
+  cargo:warning=error: unable to rename temporary '/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305-d24638ab.o.tmp' to output file '/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o': 'No space left on device'
+  cargo:warning=1 error generated.
+
+  --- stderr
+
+
+  error occurred in cc-rs: command did not execute successfully (status code exit status: 1): env -u IPHONEOS_DEPLOYMENT_TARGET LC_ALL="C" "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "--target=arm64-apple-macosx" "-mmacosx-version-min=26.5" "-I" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/include" "-I" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/pregenerated" "-Wall" "-Wextra" "-fvisibility=hidden" "-std=c1x" "-Wall" "-Wbad-function-cast" "-Wcast-align" "-Wcast-qual" "-Wconversion" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wnested-externs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wsign-conversion" "-Wstrict-prototypes" "-Wundef" "-Wuninitialized" "-gfull" "-DNDEBUG" "-o" "/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/build/ring-8c8713c5bc4eb77f/out/d5a9841f3dc6e253-poly1305.o" "-c" "/Users/huaodong/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ring-0.17.14/crypto/poly1305/poly1305.c"
+
+
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmetarKJ6jk/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `serde_core` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmeta641leh/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `syn` (lib) due to 1 previous error
+error: couldn't create a temp dir: No space left on device (os error 28) at path "/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmeta3B5VDY"
+
+error: could not compile `zerocopy` (lib) due to 1 previous error
+error: failed to write to `/private/tmp/rein-ch08-review-1/.cargo-target-Quartz-clean/debug/deps/rmeta3P19p5/full.rmeta`: No space left on device (os error 28)
+
+error: could not compile `syn` (lib) due to 1 previous error

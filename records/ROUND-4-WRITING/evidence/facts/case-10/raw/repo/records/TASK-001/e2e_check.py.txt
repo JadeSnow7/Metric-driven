@@ -1,0 +1,74 @@
+"""TASK-001 end-to-end acceptance check (MET-004).
+
+Run from anywhere: python3 records/TASK-001/e2e_check.py
+Writes a sample CSV to a system temp directory, imports it with the public
+Inventory API, queries low stock, prints what it observed and exits non-zero on
+any mismatch. It does not modify the repository.
+"""
+
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from inventory import Inventory  # noqa: E402
+
+SAMPLE = (
+    "name,quantity\n"  # 1 header
+    "apple,12\n"  # 2
+    "banana,3\n"  # 3
+    '"Widget, large",4\n'  # 4 quoted comma
+    '"broken,7\n'  # 5 unclosed quote -> skipped, must not swallow later lines
+    "cherry,not-a-number\n"  # 6 skipped
+    "\n"  # 7 blank -> ignored
+    "banana,1\n"  # 8 repeated name adds up
+    "date,0\n"  # 9 non-positive -> skipped
+    '"Gadget\n'  # 10 quoted field spanning lines -> skipped
+    'mini",6\n'  # 11 its second half must not be imported either
+    "elderberry,5\n"  # 12
+    "fig,2,extra\n"  # 13 too many fields -> skipped
+)
+
+EXPECTED = {
+    "import_csv": (5, [5, 6, 9, 10, 11, 13]),
+    "counts": {
+        "apple": 12, "banana": 4, "Widget, large": 4, "elderberry": 5,
+        "cherry": 0, "date": 0, "fig": 0, "Gadget": 0, 'mini"': 0,
+    },
+    "names": ["Widget, large", "apple", "banana", "elderberry"],
+    "low_stock()": ["Widget, large", "banana"],
+    "low_stock(13)": ["Widget, large", "apple", "banana", "elderberry"],
+    "low_stock(4)": [],
+}
+
+
+def main() -> int:
+    inventory = Inventory()
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "stock.csv"
+        path.write_text(SAMPLE, encoding="utf-8", newline="")
+        result = inventory.import_csv(path)
+
+    observed = {
+        "import_csv": result,
+        "counts": {name: inventory.count(name) for name in EXPECTED["counts"]},
+        "names": inventory.names(),
+        "low_stock()": inventory.low_stock(),
+        "low_stock(13)": inventory.low_stock(13),
+        "low_stock(4)": inventory.low_stock(4),
+    }
+    ok = True
+    for key, expected in EXPECTED.items():
+        match = observed[key] == expected
+        ok = ok and match
+        print(f"{'ok  ' if match else 'FAIL'} {key}: observed={observed[key]!r} expected={expected!r}")
+    types_ok = isinstance(result, tuple) and isinstance(result[0], int) and isinstance(result[1], list)
+    ok = ok and types_ok
+    print(f"{'ok  ' if types_ok else 'FAIL'} return type: {type(result).__name__}({type(result[0]).__name__}, {type(result[1]).__name__})")
+    print("E2E PASSED" if ok else "E2E FAILED")
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

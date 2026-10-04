@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "gate": "local-commit",
+  "current_revision": "patch:599c380a8dfeaadeff3a4d542b34071800996a29:728c014ff5d2a0d50c6819c85050d75c7547c7bb69d3c76da07aca8749382d2a",
+  "errors": [],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}

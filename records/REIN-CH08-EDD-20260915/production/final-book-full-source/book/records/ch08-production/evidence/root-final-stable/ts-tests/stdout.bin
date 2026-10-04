@@ -1,0 +1,27 @@
+
+> rein-book@0.1.0 test
+> npm run test --workspace ts
+
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-ch08-production-20260915/book/ts
+
+ ✓ tests/chat.test.ts (17 tests) 5ms
+ ✓ tests/config.test.ts (13 tests) 6ms
+ ✓ tests/recorded.test.ts (3 tests) 6ms
+ ✓ tests/ch07-context.test.ts (8 tests) 16ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 25ms
+ ✓ tests/hello.test.ts (18 tests) 30ms
+ ✓ tests/loop.test.ts (16 tests) 153ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/hybrid-host.test.ts (4 tests) 309ms
+ ✓ tests/transport.test.ts (8 tests) 299ms
+
+ Test Files  10 passed (10)
+      Tests  100 passed (100)
+   Start at  18:57:37
+   Duration  597ms (transform 264ms, setup 0ms, collect 673ms, tests 851ms, environment 1ms, prepare 569ms)
+

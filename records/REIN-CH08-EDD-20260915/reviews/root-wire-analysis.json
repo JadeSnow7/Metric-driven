@@ -1,0 +1,88 @@
+{
+  "method": "read-only normalize known public camelCase serialized fields to v2 estimator internal names, independent of pending v3; quality count checked against frozen oracle, grounding independently checked elsewhere",
+  "observations": {
+    "Quartz": {
+      "actual_wire_estimate_mismatch": [],
+      "over_budget": [],
+      "oracle_quality_mismatch": []
+    },
+    "Larch": {
+      "actual_wire_estimate_mismatch": [],
+      "over_budget": [
+        [
+          "task-01",
+          "window",
+          3813,
+          2400
+        ],
+        [
+          "task-01",
+          "summary",
+          2418,
+          2400
+        ],
+        [
+          "task-02",
+          "window",
+          3798,
+          2400
+        ],
+        [
+          "task-02",
+          "summary",
+          2403,
+          2400
+        ],
+        [
+          "task-03",
+          "window",
+          3855,
+          2400
+        ],
+        [
+          "task-03",
+          "summary",
+          2460,
+          2400
+        ],
+        [
+          "task-04",
+          "window",
+          3777,
+          2400
+        ]
+      ],
+      "oracle_quality_mismatch": [
+        [
+          "task-04",
+          "on-demand",
+          0.0,
+          1
+        ],
+        [
+          "task-04",
+          "window",
+          0.0,
+          1
+        ],
+        [
+          "task-04",
+          "summary",
+          0.0,
+          1
+        ],
+        [
+          "task-04",
+          "retrieval",
+          0.0,
+          1
+        ]
+      ]
+    },
+    "Slate": {
+      "actual_wire_estimate_mismatch": [],
+      "over_budget": [],
+      "oracle_quality_mismatch": []
+    }
+  }
+}

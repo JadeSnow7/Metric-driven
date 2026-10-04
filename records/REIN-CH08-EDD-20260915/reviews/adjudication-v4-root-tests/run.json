@@ -1,0 +1,43 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/private/tmp/rein-ch08-adjudication-v4",
+  "started_at": "2026-09-15T05:55:51.042796Z",
+  "ended_at": "2026-09-15T05:55:51.622312Z",
+  "elapsed_seconds": 0.5794708749745041,
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": 0,
+  "launch_error": null,
+  "stdout": "",
+  "stderr": "test_estimate_constants_and_tool_fields (test_supplemental.SupplementalTests.test_estimate_constants_and_tool_fields) ... ok\ntest_full_run_and_required_failures (test_supplemental.SupplementalTests.test_full_run_and_required_failures) ... ok\ntest_real_wire_sample_is_171_and_changed_value_is_174 (test_supplemental.SupplementalTests.test_real_wire_sample_is_171_and_changed_value_is_174) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.517s\n\nOK\n",
+  "stdout_base64": "",
+  "stderr_base64": "dGVzdF9lc3RpbWF0ZV9jb25zdGFudHNfYW5kX3Rvb2xfZmllbGRzICh0ZXN0X3N1cHBsZW1lbnRhbC5TdXBwbGVtZW50YWxUZXN0cy50ZXN0X2VzdGltYXRlX2NvbnN0YW50c19hbmRfdG9vbF9maWVsZHMpIC4uLiBvawp0ZXN0X2Z1bGxfcnVuX2FuZF9yZXF1aXJlZF9mYWlsdXJlcyAodGVzdF9zdXBwbGVtZW50YWwuU3VwcGxlbWVudGFsVGVzdHMudGVzdF9mdWxsX3J1bl9hbmRfcmVxdWlyZWRfZmFpbHVyZXMpIC4uLiBvawp0ZXN0X3JlYWxfd2lyZV9zYW1wbGVfaXNfMTcxX2FuZF9jaGFuZ2VkX3ZhbHVlX2lzXzE3NCAodGVzdF9zdXBwbGVtZW50YWwuU3VwcGxlbWVudGFsVGVzdHMudGVzdF9yZWFsX3dpcmVfc2FtcGxlX2lzXzE3MV9hbmRfY2hhbmdlZF92YWx1ZV9pc18xNzQpIC4uLiBvawoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpSYW4gMyB0ZXN0cyBpbiAwLjUxN3MKCk9LCg==",
+  "source_hashes_before": {
+    "test.exit": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "test.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supplemental_check.py": "46552677dc21be00a040caa8c81b93e22db44df8d3ad81775ff1ff73ce164154",
+    "test.stderr": "0217ac5da72bead938a00501b326121e671090ae4c6885cd70b4793b0351d8e8",
+    "tests/test_supplemental.py": "83513dcea47f36df3c841b5d332b265093e3ec3d1fab49640d3a05b2e7be6a86",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "088385b153180dfb032e7d8426fcb406ce8ce8fa454051546693e4b53d1361cb",
+    "__pycache__/supplemental_check.cpython-314.pyc": "44508f9f578a455a8f31c471e8baa26e065d933f364f6943756a7b5f62385561"
+  },
+  "source_hashes_after": {
+    "test.exit": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061",
+    "README.md": "f3290eb0535ee3c6353d0852298e9b5a7a382d5f656ab708b774b93f666a935f",
+    "test.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supplemental_check.py": "46552677dc21be00a040caa8c81b93e22db44df8d3ad81775ff1ff73ce164154",
+    "test.stderr": "0217ac5da72bead938a00501b326121e671090ae4c6885cd70b4793b0351d8e8",
+    "tests/test_supplemental.py": "83513dcea47f36df3c841b5d332b265093e3ec3d1fab49640d3a05b2e7be6a86",
+    "tests/__pycache__/test_supplemental.cpython-314.pyc": "088385b153180dfb032e7d8426fcb406ce8ce8fa454051546693e4b53d1361cb",
+    "__pycache__/supplemental_check.cpython-314.pyc": "44508f9f578a455a8f31c471e8baa26e065d933f364f6943756a7b5f62385561"
+  }
+}

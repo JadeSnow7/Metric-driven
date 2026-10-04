@@ -1,0 +1,7 @@
+Scope: build_argv/run_one only.
+Fixes: --skill is appended to the actual prompt sent through stdin; common and actual prompt text/hash are recorded separately; -o points to an absolute file under the external run directory; developer instructions are passed separately through -c; CARGO_TARGET_DIR and both --add-dir values are explicit.
+Capture: stdout and stderr are drained by selector-driven os.read chunks and flushed while the process runs, including stderr without a trailing newline. Raw malformed JSON remains in events.jsonl; terminal status is taken only from successfully parsed terminal events. Spawn, capture, interruption, and nonzero exit paths write ended metadata and preserve partial logs.
+Verification command (exit code 0): python3 -m py_compile tools/rein_benchmark.py tools/tests/test_rein_benchmark.py && python3 -m unittest tools.tests.test_rein_benchmark -v
+Verification result: Ran 5 tests in 1.226s; OK.
+The fake CLI consumed the bytes from actual-prompt.md for both runs: control received exactly the common prompt, while skill received the common prompt plus the exact frozen SKILL.md path. Metadata.actual_prompt matched those received bytes.
+Fake CLI assertions covered stdin, argv -o parsing, external final.md, usage, CARGO_TARGET_DIR, partial stderr, multiline role, skill/control prompt distinction, and spawn failure metadata. No real model was started.

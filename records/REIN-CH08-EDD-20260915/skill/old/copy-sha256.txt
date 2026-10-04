@@ -1,0 +1,15 @@
+524145d492222373faeb2b21daa9626e9dd5e26d6b5402c5619d23e5161350ff  records/REIN-CH08-EDD-20260915/skill/old/SKILL.md
+f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b  records/REIN-CH08-EDD-20260915/skill/old/agents/openai.yaml
+9f6e58631627885c91180ab0868f00f2178460675676c5cb32bb0e01640e9f45  records/REIN-CH08-EDD-20260915/skill/old/assets/templates/handoff.md
+bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354  records/REIN-CH08-EDD-20260915/skill/old/assets/templates/task-state.example.json
+e628e02810da77776603cf9382350c1eb2f2931ba94b5cf05ab6a2c28c5c021f  records/REIN-CH08-EDD-20260915/skill/old/assets/templates/task-summary.md
+64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174  records/REIN-CH08-EDD-20260915/skill/old/assets/templates/work-log.md
+4da5b99c6c4bd6350184574a9ce2955e3c514686d7dac17e2de260ee74e0d6bf  records/REIN-CH08-EDD-20260915/skill/old/assets/templates/writing-handoff.md
+4ba5583903e29af181ec78eb5daa69ee89611d526035d0ac9c6cdcd0017d6066  records/REIN-CH08-EDD-20260915/skill/old/references/delegation-and-handoffs.md
+3a8d7ed4d35d6bfe521d1fbedb9de17557d431e7a62d1a7b65a597bdfec121cc  records/REIN-CH08-EDD-20260915/skill/old/references/examples.md
+962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37  records/REIN-CH08-EDD-20260915/skill/old/references/metrics-and-evidence.md
+d6706b854d53daf13ad5e11377c8787769d41c2473230018be91f5cab937c884  records/REIN-CH08-EDD-20260915/skill/old/references/records.md
+732f6e765349a1d2f36a87d544da7d1f18af1197d6fc8a544bbea6928063cc27  records/REIN-CH08-EDD-20260915/skill/old/references/workflow.md
+d56e009c2817e0b39e5a2604b1aeb358e14a24afff0c474b75be50e8c7ca9fad  records/REIN-CH08-EDD-20260915/skill/old/references/writing.md
+fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd  records/REIN-CH08-EDD-20260915/skill/old/scripts/validate_task.py
+01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00  records/REIN-CH08-EDD-20260915/skill/old/tests/test_scenarios.py

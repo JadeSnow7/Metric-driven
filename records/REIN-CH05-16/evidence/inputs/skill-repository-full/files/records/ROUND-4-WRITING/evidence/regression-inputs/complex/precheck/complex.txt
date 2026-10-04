@@ -1,0 +1,140 @@
+test_accepts_str_path (tests.test_inventory.ImportCsvTests.test_accepts_str_path) ... ok
+test_bad_header_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_bad_header_raises_and_imports_nothing) ... ok
+test_blank_lines_are_ignored_but_keep_line_numbers (tests.test_inventory.ImportCsvTests.test_blank_lines_are_ignored_but_keep_line_numbers) ... ok
+test_crlf_line_endings (tests.test_inventory.ImportCsvTests.test_crlf_line_endings) ... ok
+test_header_only_imports_nothing (tests.test_inventory.ImportCsvTests.test_header_only_imports_nothing) ... ok
+test_header_with_bom_and_spaces_is_accepted (tests.test_inventory.ImportCsvTests.test_header_with_bom_and_spaces_is_accepted) ... ok
+test_imports_valid_rows (tests.test_inventory.ImportCsvTests.test_imports_valid_rows) ... ok
+test_long_values_do_not_affect_other_lines (tests.test_inventory.ImportCsvTests.test_long_values_do_not_affect_other_lines) ... ERROR
+test_malformed_rows_are_skipped_by_line_number (tests.test_inventory.ImportCsvTests.test_malformed_rows_are_skipped_by_line_number) ... ok
+test_missing_file_raises (tests.test_inventory.ImportCsvTests.test_missing_file_raises) ... ok
+test_quantity_must_be_positive_ascii_integer (tests.test_inventory.ImportCsvTests.test_quantity_must_be_positive_ascii_integer) ... FAIL
+test_quoted_fields (tests.test_inventory.ImportCsvTests.test_quoted_fields) ... FAIL
+test_quoted_newline_record_is_skipped_entirely (tests.test_inventory.ImportCsvTests.test_quoted_newline_record_is_skipped_entirely) ... FAIL
+test_repeated_names_add_up (tests.test_inventory.ImportCsvTests.test_repeated_names_add_up) ... ok
+test_stray_quotes_are_malformed (tests.test_inventory.ImportCsvTests.test_stray_quotes_are_malformed) ... FAIL
+test_unclosed_quote_only_skips_its_own_line (tests.test_inventory.ImportCsvTests.test_unclosed_quote_only_skips_its_own_line) ... FAIL
+test_undecodable_file_raises_and_imports_nothing (tests.test_inventory.ImportCsvTests.test_undecodable_file_raises_and_imports_nothing) ... ok
+test_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok
+test_custom_threshold_boundaries (tests.test_inventory.LowStockTests.test_custom_threshold_boundaries) ... ok
+test_default_threshold_is_five_and_exclusive (tests.test_inventory.LowStockTests.test_default_threshold_is_five_and_exclusive) ... ok
+test_empty_results (tests.test_inventory.LowStockTests.test_empty_results) ... ok
+test_result_is_sorted_regardless_of_insertion_order (tests.test_inventory.LowStockTests.test_result_is_sorted_regardless_of_insertion_order) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok
+
+======================================================================
+ERROR: test_long_values_do_not_affect_other_lines (tests.test_inventory.ImportCsvTests.test_long_values_do_not_affect_other_lines)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 135, in test_long_values_do_not_affect_other_lines
+    self.assertEqual(self.inventory.import_csv(path), (2, [3]))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/inventory.py", line 36, in import_csv
+    rows = list(csv.reader(handle))
+_csv.Error: field larger than field limit (131072)
+
+======================================================================
+FAIL: test_quantity_must_be_positive_ascii_integer (tests.test_inventory.ImportCsvTests.test_quantity_must_be_positive_ascii_integer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 87, in test_quantity_must_be_positive_ascii_integer
+    self.assertEqual(self.inventory.import_csv(path), (2, [2, 3, 4, 5, 6, 7]))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (3, [2, 3, 4, 5, 6]) != (2, [2, 3, 4, 5, 6, 7])
+
+First differing element 0:
+3
+2
+
+- (3, [2, 3, 4, 5, 6])
+?  ^
+
++ (2, [2, 3, 4, 5, 6, 7])
+?  ^                +++
+
+
+======================================================================
+FAIL: test_quoted_fields (tests.test_inventory.ImportCsvTests.test_quoted_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 104, in test_quoted_fields
+    self.assertEqual(self.inventory.import_csv(path), (3, []))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, [4]) != (3, [])
+
+First differing element 0:
+2
+3
+
+- (2, [4])
+?  ^   -
+
++ (3, [])
+?  ^
+
+
+======================================================================
+FAIL: test_quoted_newline_record_is_skipped_entirely (tests.test_inventory.ImportCsvTests.test_quoted_newline_record_is_skipped_entirely)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 123, in test_quoted_newline_record_is_skipped_entirely
+    self.assertEqual(self.inventory.import_csv(path), (1, [2, 3]))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, []) != (1, [2, 3])
+
+First differing element 0:
+2
+1
+
+- (2, [])
++ (1, [2, 3])
+
+======================================================================
+FAIL: test_stray_quotes_are_malformed (tests.test_inventory.ImportCsvTests.test_stray_quotes_are_malformed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 117, in test_stray_quotes_are_malformed
+    self.assertEqual(self.inventory.import_csv(path), (1, [2, 3, 4]))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (4, []) != (1, [2, 3, 4])
+
+First differing element 0:
+4
+1
+
+- (4, [])
++ (1, [2, 3, 4])
+
+======================================================================
+FAIL: test_unclosed_quote_only_skips_its_own_line (tests.test_inventory.ImportCsvTests.test_unclosed_quote_only_skips_its_own_line)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/complex/repo/tests/test_inventory.py", line 94, in test_unclosed_quote_only_skips_its_own_line
+    self.assertEqual(self.inventory.import_csv(path), (2, [2]))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, [2]) != (2, [2])
+
+First differing element 0:
+0
+2
+
+- (0, [2])
+?  ^
+
++ (2, [2])
+?  ^
+
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.013s
+
+FAILED (failures=5, errors=1)
+
+EXIT_CODE=1

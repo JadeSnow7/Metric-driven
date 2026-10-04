@@ -1,0 +1,11 @@
+{
+  "rust/tests/loop.rs": "3dbcc875e08f31bb51b0f4ae2acff39a3e0757165e281a6636dfc513854a1f6f",
+  "rust/examples/ch05_loop.rs": "529e448444cbf9f2a8c9a77b1fac35a3d065ddfda297546b975109f526fa5276",
+  "ts/tests/loop.test.ts": "9e705c2791967907c8c6954cd30b9fd7bb7a6bb40ea45c2ae09428418e7bc7f8",
+  "ts/examples/ch05-loop.ts": "d9a9700cd63047534299cb4f2f18dd58a8c37d5240404779f06ef08608703751",
+  "ts/examples/ch05-compare.ts": "a2a962278014df6b90f963dcf0b582267a9f133370032afc127fdd7a59a6a85e",
+  "rust/examples/ch05_compare.rs": "44b2098e13424d681f590bf9e34a7d87cbc5eff6b0546d5c22cd3a387dbc3251",
+  "scripts/ch05-compare.mjs": "10800973e24dae5c98f61538427b21cca23f04ef2b135095f81783857421fe99",
+  "package.json": "f202c0d0bf21653871e105f92904b6117120e5aa01e3d369c7cbdb93cd57976c",
+  "fixtures/cases/ch05-loop.json": "b5493a24edcf23c8cbe7d942863acf1bfa7d5c7b7f598b0784f9349569dbdce2"
+}

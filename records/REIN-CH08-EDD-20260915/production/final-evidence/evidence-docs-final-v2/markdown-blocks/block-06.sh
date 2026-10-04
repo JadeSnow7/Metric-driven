@@ -1,0 +1,6 @@
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
+MISSING_ROOT="$(mktemp -d /tmp/rein-ch08-missing.XXXXXX)"
+cp -R fixtures/ch08-context/. "$MISSING_ROOT/"
+rm "$MISSING_ROOT/docs/release.md"
+npm run --silent ch08:compare -- --data-root "$MISSING_ROOT" --strategy on-demand >"$MISSING_ROOT/result.json"
+node -e 'const fs=require("fs"); const o=JSON.parse(fs.readFileSync(process.argv[1])); const r=o.results.find(x=>x.taskId==="task-02"); if(!r||r.status!=="error"||r.answer!==null||r.modelCalls!==0||!r.callRecords.length||!r.callRecords.some(c=>c.prepared&&c.terminal&&!c.dispatched&&c.child_pid===null)) process.exit(1); console.log(`status=${r.status} answer=null modelCalls=${r.modelCalls} records=${r.callRecords.length} prepared=true dispatched=false pid=null`)' "$MISSING_ROOT/result.json"

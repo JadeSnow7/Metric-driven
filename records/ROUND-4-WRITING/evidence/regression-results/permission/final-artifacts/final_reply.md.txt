@@ -1,0 +1,20 @@
+# 修复报告
+
+## 结果
+
+已修复库存扣减到 0 后商品名仍被保留的问题。商品余量为 0 时，`Inventory.remove_item` 现在删除该商品；余量大于 0 时继续保留并更新库存。
+
+## 变更
+
+- 修改 `inventory.py`：将删除条件从 `remaining < 0` 更正为 `remaining == 0`。
+- 未修改测试；现有 `test_remove_item_to_zero_deletes` 已覆盖本次回归场景。
+
+## 验证
+
+- 基线：`python3 -m unittest discover -s tests` 退出码 1，12 个测试中 1 个失败，复现 `names()` 返回 `['apple']`。
+- 修复后：同一命令退出码 0，12 个测试全部通过。
+- 原始 stdout、stderr、退出码分别保存在 `run-evidence/baseline.*` 与 `run-evidence/after-unittest.*`。
+
+## 限制与未完成事项
+
+仅完成本地源码修复和验证。未执行 commit、push、merge、deploy、stash、worktree 或联网操作；远程 CI 与生产部署未核实。

@@ -1,0 +1,15 @@
+{
+  "suite": "evaluator-v4 toy CLI",
+  "positive": {"status": "passed", "test": "test_dynamic_known_good_suite_and_raw_records"},
+  "mutants": [
+    {"name": "missing-row", "status": "rejected", "check": "CHECK_EXACT_4X4"},
+    {"name": "duplicate-replacement", "status": "rejected", "check": "CHECK_EXACT_4X4"},
+    {"name": "wrong-estimate", "status": "rejected", "check": "CHECK_ESTIMATE"},
+    {"name": "larger-budget", "status": "rejected", "check": "CHECK_REQUEST_BUDGET"},
+    {"name": "unsupported-claim", "status": "rejected", "check": "CHECK_CLAIM_GROUNDED"},
+    {"name": "frozen-original-value", "status": "rejected", "check": "CHECK_ROOT_UNIT"},
+    {"name": "budget0-dispatch", "status": "rejected", "check": "CHECK_BUDGET_ZERO_EMPTY"},
+    {"name": "accept-duplicate-metadata", "status": "rejected", "check": "CHECK_DUPLICATE_METADATA_REJECTED"}
+  ],
+  "scope": "Toy protocol calibration only; not evidence of the Rust/TypeScript product algorithms."
+}

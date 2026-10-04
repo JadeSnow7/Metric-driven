@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T11:31:13.573300+00:00",
+  "files": {
+    "STATUS.md": "0a5ce11613ecd7c63b6fa869bb5261f44dda60f6af1e80fd92105a52e46e352d",
+    "REPORT.md": "a56ac7d8806a6f1739451bfcca891a226ad228a918149bef83e27e2da0db3c3d",
+    "production/root-final-review/final-review.json": "c73839587a0c4f3e8ea6994e8a493d8bfcf830d72c940d983dc368ba5bf9012c",
+    "production/root-final-review/reviewed-final.patch": "bc2de1f0f824e3b58d5019b92de97c98289ca039a0ac08f2e0dfaed8f962d2c4",
+    "production/delivery/manifest.json": "b9cb6b12c74f822d339e4a0de10ac3eb544dc4e42985b1306c30916240d2acc5",
+    "production/delivery/root-acceptance-execution.json": "f0b7afb77563daa409ef17920ebb861c846862f78ddeb82f21450c1eb0e61e7d",
+    "production/delivery/integration.json": "b1b1b60bf9c5e766b87481cf8cf9306a3250bca0ac33ffcc883456096ed89fbc",
+    "production/delivery/integration-tool-call-output.json": "effcd8d05934402245443d730e1a9087d7e7c81aefb41cb0d00f2a7af8994fd4",
+    "production/original-validation/final-review.json": "c4d502de6a8a219ce4e09a606a9fde9a6745a2409e54b4b3b993580a635d2c92",
+    "production/original-validation-seal.json": "5fbd8b1adfef379cc9d01ef1b040f2f4cbb54fafc1ca3d20d9fedfdcaec245d3",
+    "costs/phase-accounting.json": "edd2958d7c4fa606b167e833f87bea0eadbab2ced187d25393fdf169d05be58f",
+    "costs/primary-exact-usage-audit.json": "a55d9d8ee24e420a0eb5327fb4c6fa55de7c69b165ca2f41c678b41957f479ba"
+  },
+  "source_tar_status": "creating independently after scattered Documents archive read blocked; original accepted source intact",
+  "book_worktree_status": " M .github/workflows/test.yml\n M DECISIONS.md\n M MIGRATIONS.md\n M README.md\n M contracts/README.md\n M docs/.vitepress/config.mts\n M docs/.vitepress/theme/SourceVersionSwitch.vue\n M docs/.vitepress/theme/custom.css\n M docs/.vitepress/theme/sourceVersionState.test.ts\n M docs/.vitepress/theme/sourceVersionState.ts\n M docs/about.md\n M docs/appendices/a2.md\n M docs/chapters/01-rust.md\n M docs/chapters/01-ts-advanced.md\n M docs/chapters/01-ts.md\n M docs/chapters/01.md\n M docs/chapters/02.md\n M docs/chapters/03.md\n M docs/chapters/04.md\n M docs/chapters/05.md\n M docs/chapters/06.md\n M docs/chapters/07.md\n M docs/chapters/08.md\n M docs/chapters/15.md\n M docs/chapters/16.md\n M docs/index.md\n M docs/milestones/02.md\n M docs/readings/00-ts.md\n M docs/readings/00.md\n M docs/readings/02.md\n M docs/toc.md\n M package.json\n M reports/ch01-writing-plan.md\n M rust/Cargo.lock\n M rust/Cargo.toml\n M rust/src/lib.rs\n M ts/package.json\n M ts/src/transport.ts\n?? chapter-snapshots/\n?? contracts/extension-v0.1.md\n?? docs/chapters/05-rust.md\n?? docs/chapters/06-plugin.md\n?? docs/chapters/06-rust.md\n?? docs/chapters/07-rust.md\n?? examples/\n?? fixtures/cases/ch05-loop.json\n?? fixtures/cases/ch06-control.json\n?? fixtures/cases/ch07-context.json\n?? fixtures/cases/prerequisites.json\n?? fixtures/ch08-context/\n?? fixtures/hybrid-marker.txt\n?? fixtures/workspaces/prerequisites/\n?? reports/ch01-author-style.md\n?? rust/examples/ch05_compare.rs\n?? rust/examples/ch05_loop.rs\n?? rust/examples/ch06_loop.rs\n?? rust/examples/ch07_context.rs\n?? rust/examples/ch08_context.rs\n?? rust/examples/hybrid_stdio.rs\n?? rust/src/rein/\n?? rust/tests/ch08_context.rs\n?? rust/tests/loop.rs\n?? rust/tests/prerequisites.rs\n?? rust/tests/stdio_host.rs\n?? scripts/\n?? ts/examples/ch05-compare.ts\n?? ts/examples/ch05-live.ts\n?? ts/examples/ch05-loop.ts\n?? ts/examples/ch06-loop.ts\n?? ts/examples/ch07-context.ts\n?? ts/src/hybrid-host.ts\n?? ts/src/rein/\n?? ts/tests/ch07-context.test.ts\n?? ts/tests/fixtures/\n?? ts/tests/hybrid-host.test.ts\n?? ts/tests/loop.test.ts\n?? ts/tests/rein-prerequisites.test.ts\n"
+}

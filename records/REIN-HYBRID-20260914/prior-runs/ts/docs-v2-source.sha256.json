@@ -1,0 +1,17 @@
+{
+  "docs/.vitepress/config.mts": "07fee0b774e87c5776a4f8e127797c190440a1f165cfd75fca2307155804e979",
+  "docs/chapters/04.md": "ce4156f29f6e1cb87e8374d251c6a656c562a51ccdd7a656807579efffb7d6b8",
+  "docs/chapters/05-rust.md": "3a010e617928d8847f2646ea5a4bfe36899d56cfd4144df4d5ee7303f933f10c",
+  "docs/chapters/06-rust.md": "04adecf0d44ae5f7b3978a1b3f48643c76bf2cfe780c75e1b6ad784528e44eee",
+  "docs/chapters/06-plugin.md": "745e0a94c81897434767713a7102c0771c101baaea2f185b6891f6518b857697",
+  "docs/chapters/06.md": "688efbf9de85bcbaa6796583f3c9c0120089489304cbf78e20e8f7407f67555a",
+  "docs/chapters/07-rust.md": "6312778aab47f7cd2f13fee847dea136a668941c3fcef0132a388c4a47fb7d16",
+  "docs/chapters/07.md": "a64c36274f7f9fa560759673daed6739fe08190dac5bba16d1c68a8ee0b0c298",
+  "docs/about.md": "62f54512e505aed38713cf1c6d396008e0964c8f0ce3544f1e23859e2c598dde",
+  "docs/toc.md": "8cdfc2fd294966b207b671d579b23ac3661f94a57ce71d6fa8d0671cafed5f07",
+  "README.md": "22e76c555dd679e4b418a04d97f43249e76715ea5f039e4ac519902b40780862",
+  "DECISIONS.md": "c5704cafca5c17a974c66b6dafdb40391a712e497629e36d37035700f2f330fe",
+  "MIGRATIONS.md": "24f47d3724dd5262ec141d24d97c2f309e6905da9ce0a52d5cfdb3b04dc8a634",
+  "reports/ch01-author-style.md": "3241372f51d00d3a73fd5ce5e82d480415272cd93541abaadcad097f9d7979b7",
+  "scripts/check-book-links.mjs": "da58d635cfa463ad002e50d6e1567409c7d71a65fabbbcfe72ab254d2edf9ebb"
+}

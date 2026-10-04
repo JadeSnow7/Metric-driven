@@ -1,0 +1,1 @@
+{"finding":"document npm script does not exist","acceptable":"replace with current script while preserving intent","assertions":[{"file":"README.md","contains":"npm run check","reference":"package.json:scripts.check","require_retained_body":true},{"file":"README.md","does_not_contain":"old-check"},{"file":"README.md","contains":"validate the project"}]}

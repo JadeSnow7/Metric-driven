@@ -1,0 +1,21 @@
+file:///private/tmp/rein-production-20260914/node_modules/vitest/dist/chunks/cac.CB_9Zo9Q.js:403
+          throw new CACError(`Unknown option \`${name.length > 1 ? `--${name}` : `-${name}`}\``);
+                ^
+
+CACError: Unknown option `--runInBand`
+    at Command.checkUnknownOptions (file:///private/tmp/rein-production-20260914/node_modules/vitest/dist/chunks/cac.CB_9Zo9Q.js:403:17)
+    at CAC.runMatchedCommand (file:///private/tmp/rein-production-20260914/node_modules/vitest/dist/chunks/cac.CB_9Zo9Q.js:603:13)
+    at CAC.parse (file:///private/tmp/rein-production-20260914/node_modules/vitest/dist/chunks/cac.CB_9Zo9Q.js:544:12)
+    at file:///private/tmp/rein-production-20260914/node_modules/vitest/dist/cli.js:8:13
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.5.0
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/rein-production-20260914/ts
+npm error workspace @rein/ts@0.0.0
+npm error location /private/tmp/rein-production-20260914/ts
+npm error command failed
+npm error command sh -c vitest run --passWithNoTests --runInBand

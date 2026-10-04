@@ -1,0 +1,383 @@
+{
+  "schema_version": "1.0",
+  "kind": "production_final_cost_record",
+  "batch": "REIN-CH08-EDD-20260915",
+  "created_at": "2026-09-15T12:00:00Z",
+  "money": null,
+  "savings": null,
+  "semantics": "Each session retains actual per-turn usage and turn_token_usage. cached input is included in input; reasoning output is retained and not added. No phase split or money estimate.",
+  "sessions": [
+    {
+      "label": "old-repair",
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-05-00-01a0a3ab-2f67-75d0-a6d1-4f4465175911.jsonl",
+      "source_line_count": 652,
+      "turn_count": 6,
+      "turns": [
+        {
+          "turn_id": "01a0a3ab-2fcf-7d93-bc20-2953787ff998",
+          "started_at": "2026-09-15T06:05:00.309Z",
+          "completed_at": "2026-09-15T06:12:42.298Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T06:12:42.284Z",
+          "usage": {
+            "input_tokens": 96559,
+            "cached_input_tokens": 94976,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 298,
+            "reasoning_output_tokens": 52,
+            "total_tokens": 96857
+          },
+          "turn_token_usage": {
+            "input_tokens": 1347669,
+            "cached_input_tokens": 1259008,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 19276,
+            "reasoning_output_tokens": 1855,
+            "total_tokens": 1366945
+          }
+        },
+        {
+          "turn_id": "01a0a3b3-58e7-7610-a476-7b03f7b5bbd4",
+          "started_at": "2026-09-15T06:13:55.066Z",
+          "completed_at": "2026-09-15T06:16:11.571Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T06:16:11.566Z",
+          "usage": {
+            "input_tokens": 103510,
+            "cached_input_tokens": 102144,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 350,
+            "reasoning_output_tokens": 69,
+            "total_tokens": 103860
+          },
+          "turn_token_usage": {
+            "input_tokens": 914184,
+            "cached_input_tokens": 900864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4881,
+            "reasoning_output_tokens": 383,
+            "total_tokens": 919065
+          }
+        },
+        {
+          "turn_id": "01a0a3c0-a88d-7733-9dfb-04d22ad71e10",
+          "started_at": "2026-09-15T06:28:27.410Z",
+          "completed_at": "2026-09-15T06:33:43.436Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T06:33:43.431Z",
+          "usage": {
+            "input_tokens": 127932,
+            "cached_input_tokens": 126720,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 328,
+            "reasoning_output_tokens": 28,
+            "total_tokens": 128260
+          },
+          "turn_token_usage": {
+            "input_tokens": 2410265,
+            "cached_input_tokens": 2373632,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9894,
+            "reasoning_output_tokens": 847,
+            "total_tokens": 2420159
+          }
+        },
+        {
+          "turn_id": "01a0a3cf-47e6-7792-87fe-f2c813c5eeb4",
+          "started_at": "2026-09-15T06:44:25.720Z",
+          "completed_at": "2026-09-15T06:48:10.714Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T06:48:10.704Z",
+          "usage": {
+            "input_tokens": 141283,
+            "cached_input_tokens": 140032,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 644,
+            "reasoning_output_tokens": 12,
+            "total_tokens": 141927
+          },
+          "turn_token_usage": {
+            "input_tokens": 1638280,
+            "cached_input_tokens": 1617920,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7179,
+            "reasoning_output_tokens": 237,
+            "total_tokens": 1645459
+          }
+        },
+        {
+          "turn_id": "01a0a3e5-ea60-75c1-a5cc-85ee0f4dcd39",
+          "started_at": "2026-09-15T07:09:09.095Z",
+          "completed_at": "2026-09-15T07:11:20.991Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T07:11:20.982Z",
+          "usage": {
+            "input_tokens": 148552,
+            "cached_input_tokens": 146176,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 576,
+            "reasoning_output_tokens": 51,
+            "total_tokens": 149128
+          },
+          "turn_token_usage": {
+            "input_tokens": 1022327,
+            "cached_input_tokens": 1010944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3247,
+            "reasoning_output_tokens": 340,
+            "total_tokens": 1025574
+          }
+        },
+        {
+          "turn_id": "01a0a3e9-e973-7280-9d65-d7c9672cd70e",
+          "started_at": "2026-09-15T07:13:31.000Z",
+          "completed_at": null,
+          "status": null,
+          "usage_timestamp": "2026-09-15T07:17:39.550Z",
+          "usage": {
+            "input_tokens": 159367,
+            "cached_input_tokens": 158464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 165,
+            "reasoning_output_tokens": 60,
+            "total_tokens": 159532
+          },
+          "turn_token_usage": {
+            "input_tokens": 2470383,
+            "cached_input_tokens": 2314240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5009,
+            "reasoning_output_tokens": 1095,
+            "total_tokens": 2475392
+          }
+        }
+      ]
+    },
+    {
+      "label": "old-archive",
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T14-55-06-01a0a3d9-0fbf-7160-870a-6404b6341b9f.jsonl",
+      "source_line_count": 439,
+      "turn_count": 3,
+      "turns": [
+        {
+          "turn_id": "01a0a3d9-1057-78f1-af3e-6cd8c87af404",
+          "started_at": "2026-09-15T06:55:06.914Z",
+          "completed_at": "2026-09-15T07:08:42.804Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T07:08:42.794Z",
+          "usage": {
+            "input_tokens": 134057,
+            "cached_input_tokens": 132864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 537,
+            "reasoning_output_tokens": 62,
+            "total_tokens": 134594
+          },
+          "turn_token_usage": {
+            "input_tokens": 5045829,
+            "cached_input_tokens": 4918528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 22775,
+            "reasoning_output_tokens": 2774,
+            "total_tokens": 5068604
+          }
+        },
+        {
+          "turn_id": "01a0a3e8-5df3-7131-bad3-2ce6c8490b68",
+          "started_at": "2026-09-15T07:11:49.753Z",
+          "completed_at": "2026-09-15T07:13:05.224Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T07:13:05.215Z",
+          "usage": {
+            "input_tokens": 137170,
+            "cached_input_tokens": 135936,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 333,
+            "reasoning_output_tokens": 62,
+            "total_tokens": 137503
+          },
+          "turn_token_usage": {
+            "input_tokens": 545042,
+            "cached_input_tokens": 539648,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2346,
+            "reasoning_output_tokens": 471,
+            "total_tokens": 547388
+          }
+        },
+        {
+          "turn_id": "01a0a3eb-f157-7302-8a96-4fde57b5e0d2",
+          "started_at": "2026-09-15T07:15:44.096Z",
+          "completed_at": "2026-09-15T07:16:56.267Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T07:16:56.257Z",
+          "usage": {
+            "input_tokens": 146291,
+            "cached_input_tokens": 145152,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 251,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 146542
+          },
+          "turn_token_usage": {
+            "input_tokens": 1142177,
+            "cached_input_tokens": 1027072,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2898,
+            "reasoning_output_tokens": 431,
+            "total_tokens": 1145075
+          }
+        }
+      ]
+    },
+    {
+      "label": "final-body",
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-20-01a0a4b2-3f2d-7771-b2c1-06a5e8b7d202.jsonl",
+      "source_line_count": 285,
+      "turn_count": 2,
+      "turns": [
+        {
+          "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+          "started_at": "2026-09-15T10:52:20.191Z",
+          "completed_at": null,
+          "status": null,
+          "usage_timestamp": null,
+          "usage": null,
+          "turn_token_usage": null
+        },
+        {
+          "turn_id": "01a0a4b2-3f6c-7a33-b310-fc7e8714cd2d",
+          "started_at": "2026-09-15T10:52:20.210Z",
+          "completed_at": "2026-09-15T11:00:21.532Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T11:00:21.520Z",
+          "usage": {
+            "input_tokens": 77753,
+            "cached_input_tokens": 76544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 336,
+            "reasoning_output_tokens": 51,
+            "total_tokens": 78089
+          },
+          "turn_token_usage": {
+            "input_tokens": 2183098,
+            "cached_input_tokens": 2052096,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7335,
+            "reasoning_output_tokens": 1268,
+            "total_tokens": 2190433
+          }
+        }
+      ]
+    },
+    {
+      "label": "final-archive",
+      "source": "/Users/huaodong/.codex/sessions/2026/09/15/rollout-2026-09-15T18-52-47-01a0a4b2-a86e-71d3-8211-f351fb8b310e.jsonl",
+      "source_line_count": 608,
+      "turn_count": 5,
+      "turns": [
+        {
+          "turn_id": "01a0a4a8-4b16-7001-bc4e-d0c7265d6865",
+          "started_at": "2026-09-15T10:52:47.138Z",
+          "completed_at": null,
+          "status": null,
+          "usage_timestamp": null,
+          "usage": null,
+          "turn_token_usage": null
+        },
+        {
+          "turn_id": "01a0a4b2-a8af-7ac3-b72c-d2ecd7a30eeb",
+          "started_at": "2026-09-15T10:52:47.156Z",
+          "completed_at": "2026-09-15T10:54:57.509Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T10:54:57.504Z",
+          "usage": {
+            "input_tokens": 70884,
+            "cached_input_tokens": 70400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 427,
+            "reasoning_output_tokens": 20,
+            "total_tokens": 71311
+          },
+          "turn_token_usage": {
+            "input_tokens": 1167272,
+            "cached_input_tokens": 1118464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4167,
+            "reasoning_output_tokens": 706,
+            "total_tokens": 1171439
+          }
+        },
+        {
+          "turn_id": "01a0a4bb-1fdb-77e3-8544-e4553d81feac",
+          "started_at": "2026-09-15T11:02:01.994Z",
+          "completed_at": "2026-09-15T11:04:36.441Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T11:04:36.432Z",
+          "usage": {
+            "input_tokens": 83796,
+            "cached_input_tokens": 82688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 344,
+            "reasoning_output_tokens": 11,
+            "total_tokens": 84140
+          },
+          "turn_token_usage": {
+            "input_tokens": 649659,
+            "cached_input_tokens": 592896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4145,
+            "reasoning_output_tokens": 764,
+            "total_tokens": 653804
+          }
+        },
+        {
+          "turn_id": "01a0a4be-fa23-7672-84d5-24f23a617984",
+          "started_at": "2026-09-15T11:06:14.447Z",
+          "completed_at": "2026-09-15T11:15:04.944Z",
+          "status": "completed",
+          "usage_timestamp": "2026-09-15T11:15:04.932Z",
+          "usage": {
+            "input_tokens": 147694,
+            "cached_input_tokens": 146176,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 455,
+            "reasoning_output_tokens": 54,
+            "total_tokens": 148149
+          },
+          "turn_token_usage": {
+            "input_tokens": 4276433,
+            "cached_input_tokens": 4196352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11321,
+            "reasoning_output_tokens": 3176,
+            "total_tokens": 4287754
+          }
+        },
+        {
+          "turn_id": "01a0a4c8-0e87-7222-a842-87f266ec1520",
+          "started_at": "2026-09-15T11:16:09.495Z",
+          "completed_at": null,
+          "status": null,
+          "usage_timestamp": "2026-09-15T11:19:08.905Z",
+          "usage": {
+            "input_tokens": 159857,
+            "cached_input_tokens": 158464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 449,
+            "reasoning_output_tokens": 19,
+            "total_tokens": 160306
+          },
+          "turn_token_usage": {
+            "input_tokens": 1866372,
+            "cached_input_tokens": 1845248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5356,
+            "reasoning_output_tokens": 1168,
+            "total_tokens": 1871728
+          }
+        }
+      ]
+    }
+  ]
+}

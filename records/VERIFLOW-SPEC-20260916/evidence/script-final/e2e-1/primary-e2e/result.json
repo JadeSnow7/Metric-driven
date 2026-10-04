@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "checks": [
+    "record -> acceptance -> reload/resume; appended receipt preserves binding",
+    "same-label Spec bytes invalidate old execution; new execution works beside preserved history",
+    "actual local action -> unknown -> readback -> completed; duplicate and revoked next action blocked; history remains auditable"
+  ],
+  "command_count": 26,
+  "source_hashes_unchanged": false
+}

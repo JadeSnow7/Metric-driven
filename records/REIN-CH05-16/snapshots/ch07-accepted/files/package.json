@@ -1,0 +1,23 @@
+{
+  "name": "rein-book",
+  "version": "0.1.0",
+  "private": true,
+  "description": "《Rein：从零手写一个 Agent Harness》书籍网站与配套实现",
+  "workspaces": [
+    "ts"
+  ],
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "test": "npm run test --workspace ts",
+    "typecheck": "npm run typecheck --workspace ts",
+    "ch05:compare-all": "node scripts/ch05-compare.mjs",
+    "ch06:compare-all": "node scripts/ch06-compare.mjs"
+    ,"ch07:context": "npm run ch07:context --workspace ts"
+    ,"ch07:compare-all": "node scripts/ch07-compare.mjs"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  }
+}

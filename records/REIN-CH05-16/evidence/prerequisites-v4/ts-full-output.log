@@ -1,0 +1,35 @@
+
+> rein-book@0.1.0 typecheck
+> npm run typecheck --workspace ts
+
+
+> @rein/ts@0.0.0 typecheck
+> tsc --noEmit
+
+
+> rein-book@0.1.0 test
+> npm run test --workspace ts
+
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/ts
+
+ ✓ tests/chat.test.ts (17 tests) 4ms
+ ✓ tests/config.test.ts (13 tests) 5ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/recorded.test.ts (3 tests) 5ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 12ms
+stderr | tests/hello.test.ts > hello SDK entry points > 安全 CLI 缺配置时返回退出码 1，且不打印密钥
+失败（config）：REIN_BASE_URL 未设置。参考 ts/.env.example，复制为 ts/.env 后填写。
+
+ ✓ tests/hello.test.ts (18 tests) 24ms
+ ✓ tests/transport.test.ts (8 tests) 275ms
+
+ Test Files  7 passed (7)
+      Tests  72 passed (72)
+   Start at  18:28:48
+   Duration  502ms (transform 219ms, setup 0ms, collect 402ms, tests 326ms, environment 1ms, prepare 368ms)
+

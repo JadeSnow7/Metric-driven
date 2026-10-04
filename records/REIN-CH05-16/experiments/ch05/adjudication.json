@@ -1,0 +1,24 @@
+{
+  "adjudicated_at": "2026-09-14T11:33:08.941062+00:00",
+  "first_overall": {
+    "control": "failed",
+    "skill": "failed"
+  },
+  "core_behaviors": {
+    "control": "passed",
+    "skill": "passed"
+  },
+  "real_service": "not_run",
+  "review_reports": [
+    {
+      "path": "/private/tmp/rein-ch05-review-evidence-1/review.md",
+      "sha256": "006b7c8cc8952e1e2f8866d2055b7d27496058cce453ee53bdc6f7b457cd7fe4"
+    },
+    {
+      "path": "/private/tmp/rein-ch05-review-evidence-2/review-report.md",
+      "sha256": "b9d606a0d75c06eb0e9cfe37bcfe9842912f70530cd76676e8df3678f89b14f5"
+    }
+  ],
+  "production_repair_authorized": true,
+  "first_results_immutable": true
+}

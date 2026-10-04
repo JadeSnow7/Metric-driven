@@ -1,0 +1,18 @@
+{
+  "label": "p17-ts-demo",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-17",
+  "argv": [
+    "npm",
+    "run",
+    "ch05:offline",
+    "--workspace",
+    "ts"
+  ],
+  "started_utc": "2026-09-14T11:16:55Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "\n> @rein/ts@0.0.0 ch05:offline\n> node --import tsx examples/ch05-loop.ts\n\n{\n  \"answer\": \"读取完成：工具结果会进入下一轮。\",\n  \"reason\": \"completed\",\n  \"events\": [\n    {\n      \"type\": \"started\",\n      \"round\": 0\n    },\n    {\n      \"type\": \"model\",\n      \"round\": 1,\n      \"toolCallIds\": [\n        \"search-1\"\n      ],\n      \"text\": \"\"\n    },\n    {\n      \"type\": \"tool\",\n      \"round\": 1,\n      \"toolCallId\": \"search-1\",\n      \"name\": \"search_files\",\n      \"result\": {\n        \"toolCallId\": \"search-1\",\n        \"ok\": true,\n        \"output\": \"guide.md\"\n      }\n    },\n    {\n      \"type\": \"model\",\n      \"round\": 2,\n      \"toolCallIds\": [\n        \"read-1\"\n      ],\n      \"text\": \"\"\n    },\n    {\n      \"type\": \"tool\",\n      \"round\": 2,\n      \"toolCallId\": \"read-1\",\n      \"name\": \"read_file\",\n      \"result\": {\n        \"toolCallId\": \"read-1\",\n        \"ok\": true,\n        \"output\": \"# Loop\\n工具结果会进入下一轮。\\n\"\n      }\n    },\n    {\n      \"type\": \"model\",\n      \"round\": 3,\n      \"toolCallIds\": [],\n      \"text\": \"读取完成：工具结果会进入下一轮。\"\n    },\n    {\n      \"type\": \"stopped\",\n      \"reason\": \"completed\"\n    }\n  ]\n}\n"
+}

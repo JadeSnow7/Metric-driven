@@ -1,0 +1,251 @@
+{
+  "generatedAt": "2026-09-14T13:18:59.162Z",
+  "runs": [
+    {
+      "name": "ts-normal",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "normal"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-normal.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-normal.stderr"
+    },
+    {
+      "name": "ts-budget",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "budget"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-budget.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-budget.stderr"
+    },
+    {
+      "name": "ts-duplicate",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "duplicate"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-duplicate.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-duplicate.stderr"
+    },
+    {
+      "name": "ts-cancel",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "cancel"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-cancel.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-cancel.stderr"
+    },
+    {
+      "name": "ts-timeout",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "timeout"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-timeout.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-timeout.stderr"
+    },
+    {
+      "name": "ts-zero",
+      "argv": [
+        "npm",
+        "run",
+        "ch06:offline",
+        "--workspace",
+        "ts",
+        "--",
+        "zero"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/ts-zero.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/ts-zero.stderr"
+    },
+    {
+      "name": "rust-normal",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "normal"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-normal.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-normal.stderr"
+    },
+    {
+      "name": "rust-budget",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "budget"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-budget.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-budget.stderr"
+    },
+    {
+      "name": "rust-duplicate",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "duplicate"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-duplicate.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-duplicate.stderr"
+    },
+    {
+      "name": "rust-cancel",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "cancel"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-cancel.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-cancel.stderr"
+    },
+    {
+      "name": "rust-timeout",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "timeout"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-timeout.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-timeout.stderr"
+    },
+    {
+      "name": "rust-zero",
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "rust/Cargo.toml",
+        "--example",
+        "ch06_loop",
+        "--",
+        "zero"
+      ],
+      "cwd": "/private/tmp/rein-production-candidate-03",
+      "status": {
+        "start": null,
+        "end": null,
+        "exit": 0
+      },
+      "stdout": "/private/tmp/rein-ch06-production-evidence/rust-zero.stdout",
+      "stderr": "/private/tmp/rein-ch06-production-evidence/rust-zero.stderr"
+    }
+  ]
+}

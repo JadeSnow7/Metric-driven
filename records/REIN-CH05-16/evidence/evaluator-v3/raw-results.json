@@ -1,0 +1,99 @@
+{
+  "created_at": "2026-09-14T10:16:45.911220+00:00",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/tests",
+        "-v"
+      ],
+      "stdout": "",
+      "stderr": "test_comments_cannot_hide_bad_visible_content (test_rein_dataset.ReinDatasetTests) ... ok\ntest_independent_correct_candidates_satisfy_all_oracles (test_rein_dataset.ReinDatasetTests) ... ok\ntest_original_api_name_in_comment_is_still_rejected (test_rein_dataset.ReinDatasetTests) ... ok\ntest_original_faults_are_nine_failures_and_three_no_change_passes (test_rein_dataset.ReinDatasetTests) ... ok\ntest_all_skipped_unittest_does_not_pass (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_disabled_required_command_is_not_run_and_fails_gate (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_empty_and_no_required_commands_fail (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_fake_pass_zero_tests_and_bad_artifact_fail (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_quality_review_never_auto_passes (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_real_unittest_failure_is_not_counted_as_passed (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_runner_bound_counts_accumulate_cargo_harnesses (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_source_mutation_makes_old_report_stale (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_stale_hash_fails (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_success_records_streams_duration_and_artifact (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_unittest_failures_errors_and_skips_are_not_passed (test_rein_evaluate.ReinEvaluateTests) ... ok\ntest_unittest_zero_tests_does_not_pass (test_rein_evaluate.ReinEvaluateTests) ... ok\n\n----------------------------------------------------------------------\nRan 16 tests in 0.244s\n\nOK\n",
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "skill/evidence-driven-development/tests",
+        "-v"
+      ],
+      "stdout": "",
+      "stderr": "test_additional_evidence_does_not_invalidate_existing_evidence (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_authorization_requires_accepted_source (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_completed_push_is_not_repeated_on_resume (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_confirmed_dirty_dependency_allows_implementation (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_duplicate_side_effect_key_blocks_resume_record (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_edited_evidence_content_is_detected (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_evidence_becomes_stale_after_implementation_change (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_evidence_outside_record_directory_warns (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_existing_commit_authorization_satisfies_local_gate (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_full_delivery_chain_passes_when_honestly_recorded (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_malformed_types_are_reported_without_crashing (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_metric_cannot_exist_before_its_main_task (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_missing_evidence_hash_warns_on_record_and_blocks_local_commit (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_print_sha256_matches_recorded_hash (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_read_only_revision_preserves_preexisting_dirty_change (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_renamed_file_requires_review_of_original_path (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_repeat_detection_uses_authorization_action_not_kind (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_revision_ignores_local_diff_configuration (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_root_manifest_does_not_exclude_root_delivery_names (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_schema_1_0_is_rejected_with_migration_hint (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_staging_and_committing_new_files_keeps_revision_stable (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_status_and_log_updates_do_not_invalidate_behavioral_evidence (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_task_status_and_mode_are_validated (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_template_placeholders_warn_on_record_and_block_implementation (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_unauthorized_deploy_is_blocked (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_unauthorized_executed_action_warns_on_record_and_blocks_push (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_undetermined_mandatory_gate_is_not_passed (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_unreviewed_changed_path_blocks_local_commit (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_vague_request_blocks_implementation_but_record_is_valid (test_scenarios.EvidenceDrivenScenarios) ... ok\ntest_verified_subtask_does_not_override_failed_overall_result (test_scenarios.EvidenceDrivenScenarios) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 11.233s\n\nOK\n",
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/validate_repository.py"
+      ],
+      "stdout": "repository validation failed:\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: docs/guide.md\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: docs/guide.md\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/rereview-02.md: ./docs/guide.md\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: ./docs/guide.md\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: docs/missing.md\n- broken local link in records/REIN-CH05-16/evidence/preparation-review/review-01-transcript.md: docs/guide.md\n- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-01/workspace/README.md: docs/missing.md\n- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-02/workspace/docs/index.md: ../setup-old.md\n- broken local link in records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-03/workspace/docs/faq.md: ../api/v0.md\n- broken local link in records/REIN-CH05-16/handoffs/evaluation-repair-v3.md: ./docs/guide.md\n",
+      "stderr": "",
+      "exit": 1
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "py_compile",
+        "tools/rein_evaluate.py",
+        "tools/tests/test_rein_evaluate.py",
+        "tools/tests/test_rein_dataset.py"
+      ],
+      "stdout": "",
+      "stderr": "",
+      "exit": 0
+    }
+  ],
+  "source_hashes": {
+    "records/REIN-CH05-16/evidence/specs/chapter-16-cases.json": "f8ba2e10394db68d3a03a1612a7687b74cbb8f2d4ef3aed0f1c5623676174d30",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-01/expected.json": "cd540be9ad0291ccb9c5050761e839b689d0cde0185503e682db74a729e18155",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-01/workspace/README.md": "6af5e7d4e859e5cbb5fc4f8a84985e92117aaec43d895fb695f4c6714674ce5a",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-01/workspace/docs/guide.md": "dc4e05316220a9010466cdf3f41b9468723d982a97db9ab568d74a41ace38261",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-02/expected.json": "b9cb7247ec5defcccf9cf738aac4050dcd7d4ff76be6669b0f6d8f4994ccdab8",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-02/workspace/docs/index.md": "88ffd3a22bee44f2f3eca9b124d4f2c9ca46126eb8f68e1ee61f68cdd8da7a42",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-02/workspace/setup.md": "8ea033b3251609ba95703827cbd54db12f6147b2919db6fc5cfb66e65be922f9",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-03/expected.json": "44e8ffbcd217548d0dcf601e67b7b3ef0dc8c3093d0d56f39b479e97764afa8c",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-03/workspace/api.md": "b31c7c420a12257f731a3720fdba32d14db8a7e4e4568b1f998cd2bb3db3481b",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/broken-relative-link-03/workspace/docs/faq.md": "28c3631ac3ba5831e892e36ae56800b3f284b4dd11bc8a39988477ae5ab296d1",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-01/expected.json": "805dab8703974bc9105d359bc8b20b3e9c55e624e4046552777976787b1e35a6",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-01/workspace/README.md": "b2f9ede9133b82cc947590abbc6bce68f9d13b4e7154e3331bda1182d3228b2c",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-01/workspace/package.json": "a78751370131d4db721a72371969dec016d165b01a72818b187000861154317c",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-02/expected.json": "772296ffcc6fe2e0d451929fdc164f94e05117cf7d51e2cabfa4ce30ff95ccac",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-02/workspace/docs/run.md": "79f4f35720b666d6589e3855b878b269c94fe5173a2127d4cb11eaf5947419bc",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-02/workspace/package.json": "ba384e3143758b4874c33974bb4dd2b79764b0903ae1bf55fe33021c4ca56b97",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-02/workspace/src/cli.py": "1d7b34d4ec11e40f6b2623746c5a3c9eac1be94f67c90b5e23b714a45fa5fb05",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-03/expected.json": "c39bccaa5ec9c83f5f6bf960a53741dc7842aac43e76acfb9c206f868a4e7848",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-03/workspace/README.md": "90d2121d562daebc24d2163e521d4c8efe7e1d316cf86166b61cdd55b7eaefb8",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/expired-command-03/workspace/package.json": "9a9085780d37a225755b4785c1463bc706f24fdcb7240659695dc892a8e357fd",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-01/expected.json": "199bc32abf931783c5c58e979373992183ae00893edc66414af72719f02ac672",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-01/workspace/README.md": "d139c6562e6590798b9f31648ff169d29f0efa6e1b3c6630aa3a476ae05c94c4",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-01/workspace/package.json": "a78751370131d4db721a72371969dec016d165b01a72818b187000861154317c",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-02/expected.json": "56db569689aa108aeac44b46704486fd9f30eab1bb10452c6dff8a9f1ba806a7",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-02/workspace/docs/guide.md": "5c4f1294d557fd6935b20dd86d654d2d328fd0357dd0743b9bf6657990109027",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-02/workspace/docs/index.md": "826d85aad11cb420ad8e7acb86045d6117adefb0fef66e19cadf385bc5f73c8c",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-03/expected.json": "b90833ccacd1e032f917a65977994cf80b601abeb9a9f7df932b5f81815f0dac",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-03/workspace/docs/api.md": "c9223062a05b498ea511079861d16e591a2d7d2593c83d344f9d677dff6a823e",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/no-change-03/workspace/src/cli.py": "33f9bff855db99fcfa647ff32a6bb0ba7544096bfdbf5741b21013b718f0cfa1",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-01/expected.json": "213e671efaff810e2c819e70d3c953d7a4ad5808d5e92721227837ba37a6ca16",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-01/workspace/docs/api.md": "39f3cbc4f4e6b5eb1113bbe4dfde6ed90c706c3b4aa7dc54089c3842ce600b58",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-01/workspace/src/cli.py": "48848210d25035af889acc943d8f44b766e37b13dabb83a7a6c2829e2f5b4eed",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-02/expected.json": "342239ca9552e8a65b9475da2defeeadfed5e41fb97012f23698127522363798",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-02/workspace/README.md": "e40513107e9a456f0ccd1a37382ea33e3cad8fd01b4fd726e3d45f09e30acc5d",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-02/workspace/src/cli.py": "fb1d77586aafb86604fc25a626d1155fe25a9062ed078fa0d18b09e201790a71",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-03/expected.json": "92daa2614614e2f1580065e546bdbaa244da4438dd95ded96f2792a98d6f0e54",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-03/workspace/.env.example": "bb5e09101acb78cde33cc7bd2f141ba78ce49a82e313a9cd310c55e6f5e9fad5",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-03/workspace/config.schema.json": "97fd0269f664c0d5ad3c0d5fa852d23af081e095eadf71fdf4d74a3e9dec913a",
+    "records/REIN-CH05-16/evidence/specs/chapter-16/parameter-change-03/workspace/docs/config.md": "f12383810cf5489d3fbe1bf6aa6b97171e59b1634d7874baadcb577a27d30252",
+    "tools/rein_evaluate.py": "4e009932bcd7e31b40c83fda8f560270beedfdcd14adcb5657f77f7b1e65a304",
+    "tools/tests/test_rein_dataset.py": "5d922f80f739f2417db490883f0544efec085c21fe578ade9ea509d627e610e0",
+    "tools/tests/test_rein_evaluate.py": "44f99762489bb84f48cf4d41eab5148c54970961d0599d566c11964bdc09261f"
+  }
+}

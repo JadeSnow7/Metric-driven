@@ -1,0 +1,6 @@
+
+  vitepress v1.6.4
+
+
+If this is expected, you can disable this check via config. Refer: https://vitepress.dev/reference/site-config#ignoredeadlinks
+

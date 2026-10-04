@@ -1,0 +1,6 @@
+Target: /private/tmp/rein-ch05-review-20260914/targets
+Inspection: directory contained reviewer-1/reviewer-2 package debug/tmp Cargo target trees; du reported 4.6G.
+Process check: sandbox ps was denied; an escalated read-only ps/lsof check found no matching cargo/rustc process or open file. The failed sandbox query was treated as unverified until the escalated check completed.
+Action: removed only the explicitly authorized targets directory after the idle check.
+Verification: directory absent; df -h /private/tmp changed from 4.6Gi available to 9.0Gi available.
+Preserved: source, manifests, raw evidence, production artifacts, and all other target directories.

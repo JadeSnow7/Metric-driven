@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "npx",
+    "tsc",
+    "--noEmit"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/ts",
+  "start": "2026-09-14T14:29:33.684Z",
+  "end": "2026-09-14T14:29:33.684Z",
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

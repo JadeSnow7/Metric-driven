@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence-Driven Development"
+  short_description: "Turn uncertain work into verified, traceable delivery"
+  default_prompt: "Use $evidence-driven-development to turn this request into a scoped, evidence-backed implementation."

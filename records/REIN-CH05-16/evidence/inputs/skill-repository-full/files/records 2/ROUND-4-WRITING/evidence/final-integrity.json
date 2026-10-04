@@ -1,0 +1,68 @@
+{
+  "verified_at": "2026-09-14T04:42:27.581012+00:00",
+  "status": "passed",
+  "checks": {
+    "branch": true,
+    "head": true,
+    "only_intended_existing_files_changed": true,
+    "freeze-v1.json": {
+      "passed": true,
+      "checked_files": 102,
+      "mismatches": []
+    },
+    "regression-inputs.lock.json": {
+      "passed": true,
+      "checked_files": 64,
+      "mismatches": []
+    },
+    "historical_data": {
+      "benchmark.md": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "benchmark.json": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "report.json": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "rubric.lock": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "rubric-iteration-3.md": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "evals-iteration-3.json": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      },
+      "skill-at-handoff.md": {
+        "source_or_frozen_skill_unchanged": true,
+        "handoff_archive_unchanged": true
+      }
+    },
+    "style_samples": {
+      "/Users/huaodong/workspace/Agent-Learning/docs/chapters/01.md": true,
+      "/Users/huaodong/workspace/Agent-Learning/docs/chapters/02.md": true
+    },
+    "working_skill_equals_tested_candidate": true,
+    "regression_assertions_lock": true
+  },
+  "changed_existing_files": [
+    "skill/evidence-driven-development/SKILL.md",
+    "skill/evidence-driven-development/assets/templates/task-summary.md",
+    "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+    "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+    "skill/evidence-driven-development/references/examples.md",
+    "skill/evidence-driven-development/references/records.md",
+    "skill/evidence-driven-development/references/workflow.md"
+  ],
+  "new_skill_files": [
+    "references/writing.md"
+  ],
+  "note": "Initial tracked/untracked work preserved. Historical skill source intentionally changed; historical snapshot and handoff archive remain unchanged. No test or validator source changed."
+}

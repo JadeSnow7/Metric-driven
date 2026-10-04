@@ -1,0 +1,14 @@
+{
+  "label": "diff-check",
+  "argv": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789554439.143289,
+  "ended_at_epoch": 1789554439.1636171,
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

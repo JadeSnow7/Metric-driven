@@ -1,0 +1,127 @@
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:1:
+-use rein_ch01_helloworld::{load_config, rein::{run_agent_loop, OpenAiHttp, ReqwestHttp, ToolError, Workspace}};
+-use std::{future::Future, pin::Pin, sync::{Arc, Mutex}};
++use rein_ch01_helloworld::{
++    load_config,
++    rein::{run_agent_loop, OpenAiHttp, ReqwestHttp, ToolError, Workspace},
++};
++use std::{
++    future::Future,
++    pin::Pin,
++    sync::{Arc, Mutex},
++};
+ 
+-struct Replay { calls: Arc<Mutex<usize>>, single: bool }
++struct Replay {
++    calls: Arc<Mutex<usize>>,
++    single: bool,
++}
+ impl OpenAiHttp for Replay {
+-    fn post<'a>(&'a self, _: &'a str, _: &'a str, body: serde_json::Value) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>> {
+-        let mut turn = self.calls.lock().unwrap(); *turn += 1;
++    fn post<'a>(
++        &'a self,
++        _: &'a str,
++        _: &'a str,
++        body: serde_json::Value,
++    ) -> Pin<Box<dyn Future<Output = Result<String, ToolError>> + Send + 'a>> {
++        let mut turn = self.calls.lock().unwrap();
++        *turn += 1;
+         let n = *turn;
+-        let tool_messages: Vec<String> = body["messages"].as_array().into_iter().flatten().filter(|m| m["role"] == "tool").filter_map(|m| m["content"].as_str().map(str::to_owned)).collect();
++        let tool_messages: Vec<String> = body["messages"]
++            .as_array()
++            .into_iter()
++            .flatten()
++            .filter(|m| m["role"] == "tool")
++            .filter_map(|m| m["content"].as_str().map(str::to_owned))
++            .collect();
+         let response = if self.single && n == 1 {
+             serde_json::json!({"choices":[{"message":{"role":"assistant","content":null,"tool_calls":[{"id":"read-1","type":"function","function":{"name":"read_file","arguments":"{\"path\":\"README.md\"}"}}]}}]}).to_string()
+         } else if !self.single && n == 1 {
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:13:
+             serde_json::json!({"choices":[{"message":{"role":"assistant","content":null,"tool_calls":[{"id":"search-1","type":"function","function":{"name":"search_files","arguments":"{\"needle\":\"marker:\"}"}}]}}]}).to_string()
+         } else if !self.single && n == 2 {
+-            let paths: Vec<&str> = tool_messages.first().map(|s| s.lines().take(2).collect()).unwrap_or_default();
++            let paths: Vec<&str> = tool_messages
++                .first()
++                .map(|s| s.lines().take(2).collect())
++                .unwrap_or_default();
+             let calls: Vec<_> = paths.iter().enumerate().map(|(i, path)| serde_json::json!({"id":format!("read-{}", i+1),"type":"function","function":{"name":"read_file","arguments":serde_json::json!({"path":path}).to_string()}})).collect();
+             serde_json::json!({"choices":[{"message":{"role":"assistant","content":null,"tool_calls":calls}}]}).to_string()
+         } else {
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:19:
+-            let answer = if self.single { format!("单文件内容：{}", tool_messages.first().map(String::as_str).unwrap_or("").trim()) } else { format!("多文件摘要：{}", tool_messages.iter().skip(1).map(|s| s.trim()).collect::<Vec<_>>().join(" | ")) };
+-            serde_json::json!({"choices":[{"message":{"role":"assistant","content":answer}}]}).to_string()
++            let answer = if self.single {
++                format!(
++                    "单文件内容：{}",
++                    tool_messages
++                        .first()
++                        .map(String::as_str)
++                        .unwrap_or("")
++                        .trim()
++                )
++            } else {
++                format!(
++                    "多文件摘要：{}",
++                    tool_messages
++                        .iter()
++                        .skip(1)
++                        .map(|s| s.trim())
++                        .collect::<Vec<_>>()
++                        .join(" | ")
++                )
++            };
++            serde_json::json!({"choices":[{"message":{"role":"assistant","content":answer}}]})
++                .to_string()
+         };
+         Box::pin(async move { Ok(response) })
+     }
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:26:
+ #[tokio::main]
+ async fn main() {
+     let single = std::env::args().nth(1).as_deref() == Some("single");
+-    let root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../fixtures/workspaces/prerequisites");
++    let root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++        .join("../fixtures/workspaces/prerequisites");
+     if std::env::args().any(|arg| arg == "--live") {
+         let config = load_config().expect("REIN_BASE_URL/REIN_API_KEY/REIN_MODEL are required");
+         let http = ReqwestHttp::new(std::time::Duration::from_secs(30)).expect("HTTP client");
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:33:
+-        let result = run_agent_loop(&http, &config.base_url, &config.api_key, &config.model, &Workspace { root }, "请搜索 marker: 并读取命中文件", 4).await;
++        let result = run_agent_loop(
++            &http,
++            &config.base_url,
++            &config.api_key,
++            &config.model,
++            &Workspace { root },
++            "请搜索 marker: 并读取命中文件",
++            4,
++        )
++        .await;
+         println!("{}", serde_json::to_string_pretty(&result).unwrap());
+         return;
+     }
+Diff in /private/tmp/rein-production-20260914/rust/examples/ch05_loop.rs:37:
+-    let result = run_agent_loop(&Replay { calls: Arc::new(Mutex::new(0)), single }, "offline://replay", "offline", "demo", &Workspace { root }, if single { "读取 README.md" } else { "先搜索 marker:，再读取命中的两个文件" }, 32).await;
++    let result = run_agent_loop(
++        &Replay {
++            calls: Arc::new(Mutex::new(0)),
++            single,
++        },
++        "offline://replay",
++        "offline",
++        "demo",
++        &Workspace { root },
++        if single {
++            "读取 README.md"
++        } else {
++            "先搜索 marker:，再读取命中的两个文件"
++        },
++        32,
++    )
++    .await;
+     println!("{}", serde_json::to_string_pretty(&result).unwrap());
+ }
+ 

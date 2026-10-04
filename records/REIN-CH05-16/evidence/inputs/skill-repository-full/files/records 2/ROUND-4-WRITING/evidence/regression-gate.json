@@ -1,0 +1,29 @@
+{
+  "decided_at": "2026-09-14T04:41:53.580257+00:00",
+  "frozen_assertions": "regression-assertions.json",
+  "status": "completed_with_review_correction",
+  "core_behavior_and_state_checks": {
+    "permission": "passed",
+    "dirty": "passed",
+    "stale": "passed",
+    "complex": "passed"
+  },
+  "first_attempt_delivery": {
+    "permission": "passed",
+    "dirty": "failed: omitted pending dependency inclusion and wrote artifacts one parent directory too high",
+    "stale": "passed",
+    "complex": "passed"
+  },
+  "correction": {
+    "dirty": "original archived and relocated; coder corrected report only after explicit review; primary review now passes necessary completeness; original failure retained"
+  },
+  "unresolved_core_failures": [],
+  "known_failed_check": "Dirty fixture py_compile failed with cache-path PermissionError. Unit tests and independent behavior oracle passed. This optional compile check was not silently relabeled passed. Main project compile passed separately.",
+  "scope": "Four real local fixture tasks following report-gate; static/record checks and observed source/state behavior are distinguished. No whole 30-cell rerun, no repeated-run or cross-model efficacy claim.",
+  "limits": [
+    "Report generation/review used inherited main model route; source-regression actors used custom coder; do not aggregate as one controlled causal experiment.",
+    "Fixtures have no real remote; observed traces and unchanged final Git metadata bound permission conclusions.",
+    "Dirty correction and artifact relocation mean these results are not four flawless autonomous deliveries.",
+    "Candidate flow reports still expose some internal terms and duplicate details; no proof of reduced total development record cost."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "patch-recovery-raw",
+  "cwd": "/var/folders/87/gyhx13hs45351j7vwkdrr4sr0000gn/T/rein-ch05-patch-verify-cktfdo7x/repo",
+  "start": "2026-09-14T13:06:28.166010+00:00",
+  "end": "2026-09-14T13:06:28.266866+00:00",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "-A"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "apply",
+        "--binary",
+        "/Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/snapshots/ch05-accepted/baseline.patch"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "exit": 0,
+  "applied": true,
+  "manifest_equal": true,
+  "base_file_count": 114,
+  "target_file_count": 127,
+  "recovered_file_count": 127
+}

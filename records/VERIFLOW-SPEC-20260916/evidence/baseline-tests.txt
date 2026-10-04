@@ -1,0 +1,66 @@
+test_acceptance_gate_does_not_require_commit_authorization (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_additional_evidence_does_not_invalidate_existing_evidence (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_authorization_requires_accepted_source (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_confirmed_dirty_dependency_allows_implementation (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_duplicate_side_effect_key_blocks_resume_record (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_edited_evidence_content_is_detected (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_evidence_becomes_stale_after_implementation_change (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_evidence_outside_record_directory_warns (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_execution_failure_cannot_be_claimed_passed_by_outer_record (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_execution_record_rejects_boolean_exit_code_and_empty_argv (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_execution_record_rejects_truthy_string_flags (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_existing_commit_authorization_satisfies_local_gate (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_legacy_completed_push_is_not_repeated_on_resume (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_legacy_execution_record_with_absolute_input_passes_then_stales (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_legacy_full_delivery_chain_passes_when_honestly_recorded (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_legacy_repeat_detection_uses_authorization_action_not_kind (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_legacy_unauthorized_deploy_is_blocked (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_malformed_types_are_reported_without_crashing (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_metric_cannot_exist_before_its_main_task (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_missing_evidence_hash_warns_on_record_and_blocks_local_commit (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_print_sha256_matches_recorded_hash (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_read_only_revision_preserves_preexisting_dirty_change (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_renamed_file_requires_review_of_original_path (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_revision_ignores_local_diff_configuration (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_root_manifest_does_not_exclude_root_delivery_names (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_schema_1_0_is_rejected_with_migration_hint (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_staging_and_committing_new_files_keeps_revision_stable (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_status_and_log_updates_do_not_invalidate_behavioral_evidence (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_task_status_and_mode_are_validated (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_template_placeholders_warn_on_record_and_block_implementation (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_unauthorized_executed_action_warns_on_record_and_blocks_push (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_undetermined_mandatory_gate_is_not_passed (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_unreviewed_changed_path_blocks_local_commit (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_vague_request_blocks_implementation_but_record_is_valid (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_verified_subtask_does_not_override_failed_overall_result (test_scenarios.EvidenceDrivenScenarios) ... ok
+test_custom_migration_uses_action_gate (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_deferred_metric_needs_a_decision_and_stops_at_merge (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_execution_evidence_survives_moving_the_worktree (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_execution_record_carries_the_revision_it_ran_against (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_execution_verified_metric_rejects_hand_written_reports (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_follow_up_commit_after_review_is_allowed_but_exact_repeat_is_not (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_foreign_changes_allow_honest_commit_and_push (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_foreign_path_cannot_overlap_task_files (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_full_delivery_chain_binds_each_step_to_a_revision (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_honest_missing_output_record_is_valid_but_cannot_pass (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_hung_git_is_an_operational_error (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_implementation_warns_about_unlisted_changes (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_legacy_unresolved_action_also_blocks (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_planned_intent_passes_gate_but_in_progress_blocks_it (test_scenarios.SchemaOneTwoScenarios)
+Documented order: write planned, run the gate, then mark in_progress and execute. ... ok
+test_push_rejects_unreviewed_committed_paths (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_push_repeat_is_per_revision_and_respects_scope (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_unresolved_commit_or_push_blocks_until_verified (test_scenarios.SchemaOneTwoScenarios) ... ok
+test_execution_records_failure_timeout_and_empty_output (test_tools.ToolBehaviorTests) ... ok
+test_integration_each_boundary_failure_reports_specific_error (test_tools.ToolBehaviorTests) ... ok
+test_integration_preflights_all_files_and_rejects_parent_symlink (test_tools.ToolBehaviorTests) ... ok
+test_integration_rejects_scope_drift_and_conflict (test_tools.ToolBehaviorTests) ... ok
+test_recorder_preserves_empty_command_arguments (test_tools.ToolBehaviorTests) ... ok
+test_recorder_refuses_destination_created_by_command (test_tools.ToolBehaviorTests) ... ok
+test_result_precedence_and_launch_failures (test_tools.ToolBehaviorTests) ... ok
+test_revision_binding_matches_validator_and_detects_changes_during_run (test_tools.ToolBehaviorTests) ... ok
+
+----------------------------------------------------------------------
+Ran 60 tests in 96.677s
+
+OK

@@ -1,0 +1,4 @@
+reviewer-1 package-17 forbidden_author_or_manifest [] snapshot_metadata [] source_root_count 6
+reviewer-1 package-42 forbidden_author_or_manifest [] snapshot_metadata [] source_root_count 6
+reviewer-2 package-17 forbidden_author_or_manifest [] snapshot_metadata [] source_root_count 6
+reviewer-2 package-42 forbidden_author_or_manifest [] snapshot_metadata [] source_root_count 6

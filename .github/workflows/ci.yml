@@ -22,6 +22,8 @@ jobs:
       - name: Validate repository structure and links
         run: python3 tools/validate_repository.py
       - name: Compile Python helpers
-        run: python3 -m py_compile tools/*.py skill/evidence-driven-development/scripts/*.py skill/evidence-driven-development/tests/*.py
+        run: python3 -m py_compile tools/*.py skill/veriflow/scripts/*.py skill/veriflow/tests/*.py
       - name: Run isolated workflow scenarios
-        run: python3 -m unittest discover -s skill/evidence-driven-development/tests -v
+        run: python3 -m unittest discover -s skill/veriflow/tests -v
+      - name: Test repository and Claude Code definition checks
+        run: python3 -m unittest tools/tests/test_validate_repository.py -v

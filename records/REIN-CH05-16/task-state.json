@@ -1,0 +1,1138 @@
+{
+  "schema_version": "1.1",
+  "task": {
+    "id": "TASK-REIN-CH05-16",
+    "title": "Rein ch05–16 双语言交付与skill执行增量实验",
+    "mode": "new",
+    "status": "in_progress",
+    "source_ids": [
+      "SRC-001"
+    ]
+  },
+  "discovery": {
+    "status": "ready",
+    "user": "Rein读者与skill维护者",
+    "scenario": "按章跟做双语言Harness并检验执行代理加载skill的增量",
+    "problem": "ch05–16均为占位，前置工具和合同未整合；尚无真实整章对照证据",
+    "expected_outcome": "24篇完整中文正文、双语言实现及配套、四章首轮对照证据、最终回写",
+    "scope": "用户2026-09-14已批准的完整方案",
+    "acceptable_result": "每章行为与正文可复跑，诚实区分首轮与最终交付、离线与真实服务"
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "kind": "user_requirement",
+      "reference": "conversation:2026-09-14:PLEASE-IMPLEMENT-THIS-PLAN",
+      "summary": "用户完整批准此前讨论方案，包含当前dirty快照、隔离实验及最终回写；未授权提交和发布",
+      "adoption": "accepted"
+    }
+  ],
+  "main_tasks": [
+    {
+      "id": "MT-PREP",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "冻结输入与最小双语言基线",
+      "scope": [
+        "冻结输入与最小双语言基线"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [],
+      "assumptions": [],
+      "status": "in_progress",
+      "metric_ids": [
+        "MET-PREP"
+      ],
+      "implementation_task_ids": [
+        "IT-PREP"
+      ]
+    },
+    {
+      "id": "MT-05",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "核心 Agent Loop",
+      "scope": [
+        "核心 Agent Loop"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-PREP"
+      ],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-05"
+      ],
+      "implementation_task_ids": [
+        "IT-05"
+      ]
+    },
+    {
+      "id": "MT-06",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "循环控制",
+      "scope": [
+        "循环控制"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-05"
+      ],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-06"
+      ],
+      "implementation_task_ids": [
+        "IT-06"
+      ]
+    },
+    {
+      "id": "MT-07",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "上下文管理",
+      "scope": [
+        "上下文管理"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-06"
+      ],
+      "assumptions": [],
+      "status": "verified",
+      "metric_ids": [
+        "MET-07"
+      ],
+      "implementation_task_ids": [
+        "IT-07"
+      ],
+      "progress": "Code, bodies and138-file snapshot/patch independently verified. Raw evidence archive finishing separately."
+    },
+    {
+      "id": "MT-08",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "上下文策略比较",
+      "scope": [
+        "上下文策略比较"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-07"
+      ],
+      "assumptions": [],
+      "status": "in_progress",
+      "metric_ids": [
+        "MET-08"
+      ],
+      "implementation_task_ids": [
+        "IT-08"
+      ],
+      "progress": "Common input product specification under preparation review; no formal implementation started."
+    },
+    {
+      "id": "MT-09",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "验收与验证器",
+      "scope": [
+        "验收与验证器"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-08"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-09"
+      ],
+      "implementation_task_ids": [
+        "IT-09"
+      ]
+    },
+    {
+      "id": "MT-10",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "失败反馈",
+      "scope": [
+        "失败反馈"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-09"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-10"
+      ],
+      "implementation_task_ids": [
+        "IT-10"
+      ]
+    },
+    {
+      "id": "MT-11",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "防御性编程",
+      "scope": [
+        "防御性编程"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-10"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-11"
+      ],
+      "implementation_task_ids": [
+        "IT-11"
+      ]
+    },
+    {
+      "id": "MT-12",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "权限与差异审查",
+      "scope": [
+        "权限与差异审查"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-11"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-12"
+      ],
+      "implementation_task_ids": [
+        "IT-12"
+      ]
+    },
+    {
+      "id": "MT-13",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "计划与恢复",
+      "scope": [
+        "计划与恢复"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-12"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-13"
+      ],
+      "implementation_task_ids": [
+        "IT-13"
+      ]
+    },
+    {
+      "id": "MT-14",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "多智能体协作",
+      "scope": [
+        "多智能体协作"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-13"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-14"
+      ],
+      "implementation_task_ids": [
+        "IT-14"
+      ]
+    },
+    {
+      "id": "MT-15",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "外部扩展",
+      "scope": [
+        "外部扩展"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-14"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-15"
+      ],
+      "implementation_task_ids": [
+        "IT-15"
+      ]
+    },
+    {
+      "id": "MT-16",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "仓库文档维护",
+      "scope": [
+        "仓库文档维护"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-15"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-16"
+      ],
+      "implementation_task_ids": [
+        "IT-16"
+      ]
+    },
+    {
+      "id": "MT-SUPPORT",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "配套正文和站点集成",
+      "scope": [
+        "配套正文和站点集成"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-PREP"
+      ],
+      "assumptions": [],
+      "status": "in_progress",
+      "metric_ids": [
+        "MET-SUPPORT"
+      ],
+      "implementation_task_ids": [
+        "IT-SUPPORT"
+      ],
+      "progress": "Stage1 and A2 passed body and 232-file archive verification; later support remains."
+    },
+    {
+      "id": "MT-BENCH",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "四章成对评估",
+      "scope": [
+        "四章成对评估"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-PREP"
+      ],
+      "assumptions": [],
+      "status": "in_progress",
+      "metric_ids": [
+        "MET-BENCH"
+      ],
+      "implementation_task_ids": [
+        "IT-BENCH"
+      ]
+    },
+    {
+      "id": "MT-DELIVERY",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "goal": "整体验收与原仓库回写",
+      "scope": [
+        "整体验收与原仓库回写"
+      ],
+      "non_goals": [
+        "提交、推送、发布",
+        "重写00–04手工正文"
+      ],
+      "dependencies": [
+        "MT-PREP"
+      ],
+      "assumptions": [],
+      "status": "defined",
+      "metric_ids": [
+        "MET-DELIVERY"
+      ],
+      "implementation_task_ids": [
+        "IT-DELIVERY"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "MET-PREP",
+      "main_task_id": "MT-PREP",
+      "kind": "mandatory_gate",
+      "name": "冻结输入与最小双语言基线交付与证据对应",
+      "baseline": "Git状态已读，快照与工程准备未完成",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-05",
+      "main_task_id": "MT-05",
+      "kind": "mandatory_gate",
+      "name": "核心 Agent Loop交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined",
+      "frozen_chapter_result": "passed",
+      "frozen_evidence": "records/REIN-CH05-16/experiments/ch05/production-final/main-snapshot-verification.json",
+      "final_integration_status": "not_run"
+    },
+    {
+      "id": "MET-06",
+      "main_task_id": "MT-06",
+      "kind": "mandatory_gate",
+      "name": "循环控制交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [
+        "production/ch06/code-gate.json",
+        "production/ch06/body-gate.json",
+        "production/ch06/snapshot-gate.json"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "MET-07",
+      "main_task_id": "MT-07",
+      "kind": "mandatory_gate",
+      "name": "上下文管理交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-08",
+      "main_task_id": "MT-08",
+      "kind": "mandatory_gate",
+      "name": "上下文策略比较交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-09",
+      "main_task_id": "MT-09",
+      "kind": "mandatory_gate",
+      "name": "验收与验证器交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-10",
+      "main_task_id": "MT-10",
+      "kind": "mandatory_gate",
+      "name": "失败反馈交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-11",
+      "main_task_id": "MT-11",
+      "kind": "mandatory_gate",
+      "name": "防御性编程交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-12",
+      "main_task_id": "MT-12",
+      "kind": "mandatory_gate",
+      "name": "权限与差异审查交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-13",
+      "main_task_id": "MT-13",
+      "kind": "mandatory_gate",
+      "name": "计划与恢复交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-14",
+      "main_task_id": "MT-14",
+      "kind": "mandatory_gate",
+      "name": "多智能体协作交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-15",
+      "main_task_id": "MT-15",
+      "kind": "mandatory_gate",
+      "name": "外部扩展交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-16",
+      "main_task_id": "MT-16",
+      "kind": "mandatory_gate",
+      "name": "仓库文档维护交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-SUPPORT",
+      "main_task_id": "MT-SUPPORT",
+      "kind": "mandatory_gate",
+      "name": "配套正文和站点集成交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-BENCH",
+      "main_task_id": "MT-BENCH",
+      "kind": "mandatory_gate",
+      "name": "四章成对评估交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    },
+    {
+      "id": "MET-DELIVERY",
+      "main_task_id": "MT-DELIVERY",
+      "kind": "mandatory_gate",
+      "name": "整体验收与原仓库回写交付与证据对应",
+      "baseline": "尚未交付；测量在实施与审查中进行",
+      "target": "按批准方案完成本单元实际产物与对应核查；不以自报通过替代证据",
+      "method": "实际diff、冻结命令输出与独立评审",
+      "environment_data": "冻结的Rein与skill工作区、受控样例",
+      "evidence_ids": [],
+      "status": "undetermined"
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "id": "IT-PREP",
+      "main_task_id": "MT-PREP",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "冻结输入与最小双语言基线",
+      "file_scope": [
+        "tools/rein_experiment.py",
+        "records/REIN-CH05-16/evidence/inputs",
+        "records/REIN-CH05-16/work/production"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-PREP"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "bootstrap / evaluation_tools",
+      "status": "in_progress"
+    },
+    {
+      "id": "IT-05",
+      "main_task_id": "MT-05",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "核心 Agent Loop",
+      "file_scope": [
+        "/private/tmp/rein-production-candidate-03",
+        "records/REIN-CH05-16/experiments/ch05/production-final"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-05"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "root accepted frozen chapter 05",
+      "status": "verified"
+    },
+    {
+      "id": "IT-06",
+      "main_task_id": "MT-06",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "循环控制",
+      "file_scope": [
+        "/private/tmp/rein-production-candidate-03",
+        "/private/tmp/rein-ch06-production-evidence"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-06"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "ch06_body_author (two bodies); ch06_archive (evidence); main-thread (review)",
+      "status": "verified"
+    },
+    {
+      "id": "IT-07",
+      "main_task_id": "MT-07",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "上下文管理",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-07"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "ch07_typescript and ch07_rust with disjoint ownership",
+      "status": "in_progress"
+    },
+    {
+      "id": "IT-08",
+      "main_task_id": "MT-08",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "上下文策略比较",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-08"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-09",
+      "main_task_id": "MT-09",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "验收与验证器",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-09"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-10",
+      "main_task_id": "MT-10",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "失败反馈",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-10"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-11",
+      "main_task_id": "MT-11",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "防御性编程",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-11"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-12",
+      "main_task_id": "MT-12",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "权限与差异审查",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-12"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-13",
+      "main_task_id": "MT-13",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "计划与恢复",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-13"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-14",
+      "main_task_id": "MT-14",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "多智能体协作",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-14"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-15",
+      "main_task_id": "MT-15",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "外部扩展",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-15"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-16",
+      "main_task_id": "MT-16",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "仓库文档维护",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-16"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-SUPPORT",
+      "main_task_id": "MT-SUPPORT",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "配套正文和站点集成",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-SUPPORT"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    },
+    {
+      "id": "IT-BENCH",
+      "main_task_id": "MT-BENCH",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "四章成对评估",
+      "file_scope": [
+        "tools/rein_evaluate.py",
+        "tools/tests/test_rein_evaluate.py",
+        "records/REIN-CH05-16/evidence/specs",
+        "records/REIN-CH05-16/evidence/evaluator-selftest"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-BENCH"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "evaluation_tools",
+      "status": "in_progress"
+    },
+    {
+      "id": "IT-DELIVERY",
+      "main_task_id": "MT-DELIVERY",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "scope": "整体验收与原仓库回写",
+      "file_scope": [
+        "records/REIN-CH05-16"
+      ],
+      "interface_constraints": [
+        "源码单一演进树；TS/Rust共享行为合同；原稿与无关dirty改动保留"
+      ],
+      "dependencies": [],
+      "acceptance": [
+        "MET-DELIVERY"
+      ],
+      "support_reason": "",
+      "evidence_ids": [],
+      "owner": "pending bounded coder dispatch",
+      "status": "planned"
+    }
+  ],
+  "evidence": [],
+  "changes": [],
+  "overall_acceptance": {
+    "metric_ids": [
+      "MET-PREP",
+      "MET-05",
+      "MET-06",
+      "MET-07",
+      "MET-08",
+      "MET-09",
+      "MET-10",
+      "MET-11",
+      "MET-12",
+      "MET-13",
+      "MET-14",
+      "MET-15",
+      "MET-16",
+      "MET-SUPPORT",
+      "MET-BENCH",
+      "MET-DELIVERY"
+    ],
+    "evidence_ids": [],
+    "status": "undetermined"
+  },
+  "baseline": {
+    "git_ref": "1a10fca5d408004a354da5f61e6f449c09801f23",
+    "worktree_status": "dirty_dependency_confirmed",
+    "ownership": "用户明确选择冻结当前两个dirty工作区；已有修改归原作者，快照为输入不丢弃；Rein HEAD 1dfa82b9d90196c2294f61914d2017449e5548e3",
+    "prepared_at": "2026-09-14T09:44:50Z"
+  },
+  "authorization": {
+    "commit": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "push": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "merge": {
+      "status": "not_authorized",
+      "source_id": null
+    },
+    "deploy": {
+      "status": "not_authorized",
+      "source_id": null
+    }
+  },
+  "delivery": {
+    "local_validation": "not_started",
+    "local_commit": "not_started",
+    "push": "not_started",
+    "remote_ci": "not_started",
+    "merge": "not_started",
+    "deploy": "not_started",
+    "current_production_root": "/private/tmp/rein-production-candidate-03",
+    "ch05_offline_code": "passed",
+    "ch05_live": {
+      "status": "failed",
+      "ts": "one dispatch; HTTP 400; zero tools",
+      "rust": "one dispatch; request failed; zero tools; underlying cause undetermined",
+      "usage": null,
+      "evidence": "/private/tmp/rein-ch05-live-evidence",
+      "retry": false
+    },
+    "accepted_chapters": {
+      "05": {
+        "offline": "passed",
+        "docs": "passed",
+        "portable_recovery": "passed",
+        "live": "failed",
+        "snapshot": "records/REIN-CH05-16/snapshots/ch05-accepted",
+        "manifest_sha256": "b0b8fd29880fa92f74af8a65b8db04c1fc5ac52bf5401872ddcfa32e8b624f50",
+        "accepted_file_count": 127,
+        "final_evolving_tree_regression": "not_run"
+      },
+      "06": {
+        "offline": "passed",
+        "docs": "passed",
+        "portable_recovery": "passed",
+        "live": "not_required_not_run",
+        "snapshot": "records/REIN-CH05-16/snapshots/ch06-accepted",
+        "manifest_sha256": "e55a2581228533c22dcb969cb6e9f449f101fc9c785588143fc942ee2e49476b",
+        "accepted_file_count": 132,
+        "final_evolving_tree_regression": "not_run"
+      }
+    },
+    "ch06_current_status": "accepted offline code, bodies and portable recovery; 393 final evidence hashes main verified",
+    "ch06_code_gate": "records/REIN-CH05-16/production/ch06/code-gate.json",
+    "ch06_body_gate": "records/REIN-CH05-16/production/ch06/body-gate.json",
+    "ch07_current_status": "code rework; TS 92 tests passed but independent malformed-result probe failed; Rust additional tests/full validation pending; bodies not begun"
+  },
+  "actions": [],
+  "decisions": [
+    {
+      "id": "DEC-007",
+      "summary": "ch05 formal pair launched only after replacing accidental packaging input with shared product clarification; 117 files per arm hash equal. Full skill repository late archive remains incomplete due cloud Git object I/O. Tested skill resource and pre-ch05 baseline were previously verified independently.",
+      "source_id": "SRC-001"
+    },
+    {
+      "id": "DEC-008",
+      "summary": "Both ch05 arms ended normally with turn.completed and exit0; source/body claims remain unreviewed. First sealing now assigned before any grading. Usage stored verbatim; no advantage conclusion before independent review.",
+      "source_id": "SRC-001"
+    },
+    {
+      "id": "DEC-009",
+      "summary": "ch05 first adjudication saved: both core behaviors passed, both complete chapter deliveries failed; separate skill production rework authorized. Full source archive recovered 399 paths, main verified all hashes and exact390-file Git tree. README/ROUND5 are labelled late collection; equality to first moment remains unasserted.",
+      "source_id": "SRC-001"
+    },
+    {
+      "id": "DEC-010",
+      "summary": "Production ch05 v1 remains failed after independent rereview and main source inspection; preserve v1 before bounded code v2 and dedicated full tutorial authoring. Benchmark tooling v1 rejected pending role/run/recovery/package fixes.",
+      "source_id": "SRC-001"
+    },
+    {
+      "id": "DEC-011",
+      "summary": "Production copy overwritten by prior coder despite explicit old-baseline prohibition. First arm a122/b123 hashes independently rechecked all pass; original Rein unmodified by task. Prior v1 archive is partial and v2 metadata is hand-written summary. Reconstruct from actual tool write records in fresh directory; never relabel reconstructed artifacts as original freezes. Prior writer retired from source ownership.",
+      "source_id": "SRC-001"
+    },
+    {
+      "id": "DEC-012",
+      "summary": "Main verified reconstructed product-v1 and product-v2 manifests: each126 files, no missing/extra/hash mismatch; all7 historical v2 source hashes match. New candidate03 copied only from verified product-v2, with separate dependencies. Code owner limited to remaining dynamic tests/shared fixture/real raw checks; body owner restricted to two Markdown chapters. Old production directories remain unused.",
+      "source_id": "SRC-001"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "HYP-001",
+      "mechanism": "共同产品方案下额外加载冻结skill可能影响首次实现、写作、证据与交接质量",
+      "budget": "ch05/08/12/14各组一次全新coder运行；首次final或明确阻塞封存；不预设改进比例",
+      "exit_condition": "四对结果均封存与评估；资源中断保留删失，生产修复独立记录"
+    }
+  ],
+  "recovery_strategy": {
+    "trigger": "上下文恢复、代理中断或原目录变化",
+    "steps": [
+      "读取当前摘要和工作日志",
+      "核查快照、产物hash、执行者与首轮封存状态",
+      "不重跑已完成副作用；冲突保留两方内容"
+    ],
+    "owner": "main-thread",
+    "input_archive_gap": "Original initial/pre directories remain incomplete; original hash manifests recovered; exact retrospective reconstructions verified 106/106 and114/114, new valid archives and source provenance retained."
+  }
+}

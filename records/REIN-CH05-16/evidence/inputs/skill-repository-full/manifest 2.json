@@ -1,0 +1,2445 @@
+{
+  "kind": "rein-full-input-archive",
+  "created_at": "2026-09-14T10:46:55.051755+00:00",
+  "source_head": "1a10fca5d408004a354da5f61e6f449c09801f23",
+  "source": "current local working tree with bounded source overrides",
+  "method": "git ls-files -z enumerated 390 tracked paths; each path copied individually from the local working tree preserving mode; 9 explicitly listed pre-existing ROUND-5-WRITING untracked files added; no Git clone/fetch/archive/diff used",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "02e46324cab0cbf3646f605a857cb2ed745f66d7ec7e4488f6da725475573e58",
+      "mode": 420
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "f8c3c5b079332d5a21b3d8894bc6e1b61ab21436aaabd368939dbab8c86daff4",
+      "mode": 436
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "mode": 420
+    },
+    {
+      "path": "README.md",
+      "sha256": "5c10ce09a7e723c2e4e077a2770d82f407c2331577b104c25cebb130675ca6d8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/attempts.jsonl",
+      "sha256": "9c28c298529b6976490651f7cdbd6e7a3d7bda9d8fc8d00711eb8c849426ea4c",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/baseline.json",
+      "sha256": "8f2374fde130693b3398e8e23f9414c86a75a2bf950549e764b8023de0e118a2",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind-mapping.json",
+      "sha256": "1e4e4b0af02b19b557b38c4e91af7109f15eb03fc09a94b151ceb01260700de3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-1/R1/final_reply.md",
+      "sha256": "01f33f0e90a234c8aae258f8579fae4b493e308257df90e37e1b96a554537a16",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-1/R2/final_reply.md",
+      "sha256": "ccdfaf25e0e48f6bc9d80245d61ee9318af8ee0b50bd49a94e4068bfb24db2cd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-10/R1/final_reply.md",
+      "sha256": "be523a02cd9023915a9d9c8ce6a12ea1994058b01d75a4c147493bbbe6921c32",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-10/R1/task-summary.md",
+      "sha256": "33daeac803de11aff92c2dbba4728f6e03c25a5f6e8689dc2e27ac5c9cfbe618",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-10/R2/final_reply.md",
+      "sha256": "3ca1bdc653a0a7680c3e32cfa416fabc0fdd65c369fb05ddb2245728fdfd6f93",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-10/R2/task-summary.md",
+      "sha256": "0c80c2b780858c8d61c9e9d31e622e2ca213256ef25d51f800fd51762ad97188",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-2/R1/final_reply.md",
+      "sha256": "42804e13f76e437a7fd596f0b819e651a8e1959632047cfd589987fdaa23df89",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-2/R2/final_reply.md",
+      "sha256": "c87d0c8361cda910350a22aac1530608fc9cb8425f9acc16b00ff723554c970d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-6/R1/final_reply.md",
+      "sha256": "fc4c262ee396e599b41f02664e28bd965dd7c3a417503bb9382ea49d85ce5460",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-6/R1/task-summary.md",
+      "sha256": "f61e262c909983689d061a9c36fcbf3873b3a9bd666aa7340eb0f08f3f0b797f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-6/R2/final_reply.md",
+      "sha256": "28cf6e7f22793f1a7de5dda63e4cdaa5aac27fffd2fa08f605d9d3c25958e7ee",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/blind/case-6/R2/task-summary.md",
+      "sha256": "4061b64b721b8668f789438a967bcf2eaed87d5800f3b4b70a54baea9804ac86",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/SKILL.md",
+      "sha256": "253243545c33832949084010de2d75b6751d4750262e3924516913d257a32a4f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/agents/openai.yaml",
+      "sha256": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/handoff.md",
+      "sha256": "6b68dceed660a29326a5c0155e3095da5a6b75b6d426222196f83ac66cbff179",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-state.example.json",
+      "sha256": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-summary.md",
+      "sha256": "db7adf007be6db4bfaa01076d498cafdd7c3c9b710b9726d038ae8069268c472",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/work-log.md",
+      "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/writing-handoff.md",
+      "sha256": "a4c191fa74f4edbe74b46ac3252c3c5d8c26f43ed5791c19e4c73e37c8eee7d3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/delegation-and-handoffs.md",
+      "sha256": "2e6059b7813d01ee46080ba0a144f2a698fa9027a14519e3b0abed2c9ef82d3f",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/examples.md",
+      "sha256": "3a8d7ed4d35d6bfe521d1fbedb9de17557d431e7a62d1a7b65a597bdfec121cc",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/metrics-and-evidence.md",
+      "sha256": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/records.md",
+      "sha256": "d6706b854d53daf13ad5e11377c8787769d41c2473230018be91f5cab937c884",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/workflow.md",
+      "sha256": "3ee006009bef289a25891385a12dd3bfb872532ea9d2281f46269ea8067887f7",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/references/writing.md",
+      "sha256": "9da692064bd75919a26ae84e79c8e6843fad77376a9bb5584cd903c629b75ea8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/scripts/validate_task.py",
+      "sha256": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+      "mode": 493
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/candidate-v1/tests/test_scenarios.py",
+      "sha256": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/compile.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/final-document-checks.json",
+      "sha256": "89ce94f338b87e25b3d95c0eac7e3e3c6e01b860a97a7e8d11868818f9616966",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/final-task-record.json",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/post-push-record.json",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/pre-commit-gate-attempt-1.json",
+      "sha256": "49407e45856108230b3838a51058a7587fec2a543a9dab0264abd6ecc9682dcb",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/pre-commit-gate.json",
+      "sha256": "9bcdeba0037931420934822ff7da4f77d80ba57051854b5c16cbad41a6ef9d42",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/pre-push-gate.json",
+      "sha256": "a1b75461f7d504f240d87f26fa5765b81e60c29a529c438ac2254b01a475c783",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/repository.txt",
+      "sha256": "e5943c7794222f7962cbee3ff341c25bb0b016be4b1cda23ffa96eabdb01b32f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/results.json",
+      "sha256": "1b602e6ca00fc8f97f18b8fc54af233671d5ab74f9addfe722bdf6f5e4e83d7e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/scenario-tests.txt",
+      "sha256": "b5f3ffbccef05d44e2ad94caf3beae2cf1058d42059a00c6873fdd5b0e877d85",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/skill.txt",
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/checks/staged-whitespace-review.json",
+      "sha256": "a08a3e9d6b82108f7408ea254cba6613108a94d748ffafafbf22028a4d01c012",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/cost-summary.json",
+      "sha256": "9ce243da6bed8dc4f03205c2779658ac6c1c4410aef25f5b351b0ca5ef4ac65f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/SKILL.md",
+      "sha256": "2c24dd9113191fc02aa054eabab3ada1d86e06bf79d16b48a8edf5c8873108b4",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/agents/openai.yaml",
+      "sha256": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/handoff.md",
+      "sha256": "6b68dceed660a29326a5c0155e3095da5a6b75b6d426222196f83ac66cbff179",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-state.example.json",
+      "sha256": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-summary.md",
+      "sha256": "ca00d0b2d102052296b616c79ebfd07be1cffe62d092224eb3b90ea3c632ce77",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/work-log.md",
+      "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/writing-handoff.md",
+      "sha256": "9e20afa9624eb8ba77ca96efc88105683964d824453ff8720b36a3f66bef5bf8",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/references/delegation-and-handoffs.md",
+      "sha256": "cf2d2751ab83ac5f830116f6ca8ab1fde83b347fa9ce185ffc744e1271c12716",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/references/examples.md",
+      "sha256": "0d3832f9b8a77355edc709d14a6380455c697859eaf6e9eafba6de8f1acb4b6b",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/references/metrics-and-evidence.md",
+      "sha256": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/references/records.md",
+      "sha256": "1e522a1973e08e944c417eca4e23959e577635ed5b8aadc8fadf0a5ef31fcbdc",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/references/workflow.md",
+      "sha256": "c7dade9a4a5904332c60819d57fdafa7d80ba9f549dfd65c4b987eb2b9c1c4a9",
+      "mode": 436
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/scripts/validate_task.py",
+      "sha256": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+      "mode": 493
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/current-skill/tests/test_scenarios.py",
+      "sha256": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/delivery-receipt.json",
+      "sha256": "e01fe1090fec2436ce2027d4987725248c2f71570aba2ae3b4b0261d5ccf93eb",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/evaluation-spec.json",
+      "sha256": "160c40cfe1b472dbc3811fda3a26bed7bbd0414d88c7ae0638417f61897ef1a2",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/facts.json",
+      "sha256": "d83b12aad2449d32c3318ef6d0c2b377af28c76fcba12dcbe2c4194d42d83283",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/eval_metadata.json",
+      "sha256": "a33782c0ff7eb7bf56ab185224ffdcebb62619537ed1cc98fa5d5f572680d733",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/final_reply.md.txt",
+      "sha256": "569d12c4b0c9581423625f0fdb3a0f1a7977c382690007e3b458f8691daee5d0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/git_state.md.txt",
+      "sha256": "39a802b0b4ad5b27c5823931b5557900cadf492a2c7c2fb6b11a66d9cc688828",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/grading.json",
+      "sha256": "1ce17ee75b6e6106658da82f2e689637a1975c5f5410ddfdefbcdb2e30b3c12f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/records_snapshot.md.txt",
+      "sha256": "9048541ede69bf08dd155891e2f7ed6f0a81c7a87c47687c41527c95bdc3a059",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/inventory.py.txt",
+      "sha256": "e285bca4c52ac1b74b21334526c756c0e49ba887c5a4ae0f09d4f28d503bfb43",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/pricing.py.txt",
+      "sha256": "4577a6dcc23369db937290d64d5f120b75f9cce5252a4e2562ac0331722538d7",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_inventory.py.txt",
+      "sha256": "abbcaefb987eed46d46d3c970a0256f73ca2152683625b451bc68fb61ec4e53a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_pricing.py.txt",
+      "sha256": "b446d1437007b10be73010129f4f1742e130592453bdbbaae673e636991a6aa0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/timing.json",
+      "sha256": "11888eb2545830bb6bc8ed1e8a21ccc8d31c534684d86373ffce5f82b95f4e45",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-1/raw/transcript.md.txt",
+      "sha256": "7cc672f88fca78cbccdab025a1b51fbebdde545429111b5068d3f9dbafd123e6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/facts.json",
+      "sha256": "e1f282542d313eb0f30bcc288cfc08550ae5dad683df15cbc7a40bc0d5ff9035",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/eval_metadata.json",
+      "sha256": "51f18f57fe53fe0e61266c0deb587dea07460fce2d6893d32a1d30155ed07ac1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/final_reply.md.txt",
+      "sha256": "5824d44405b9c7749d6e5619c2d0ae94b53a0f4f91725eb137894beaa6cdf08f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/git_state.md.txt",
+      "sha256": "71871984238b646b85a67f7e69504a2f71d63b092c9b51a9318013b4b7bf0e54",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/grading.json",
+      "sha256": "712cf4f421a3cc46e0f0bcfe1ad33dca2f9acc25596303e9f350af0892e5c23f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/records_snapshot.md.txt",
+      "sha256": "ddc2eb9c958e84231100ac58630ecde4192874ecb6c3ae97d7bb31125ae6a447",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/inventory.py.txt",
+      "sha256": "444308a8b2920d098ca80dcdb6746dd2815a11c6141d2e8f8b28f18fa77f236e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/e2e_check.py.txt",
+      "sha256": "0c92472888b7e2b5e60d37bc3f45d0cd0e6df5f8323537959e0c036b25a5c500",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-001-baseline-tests.txt.txt",
+      "sha256": "543ae14ef7a89e33dfccefb3d7f26039441478c532174b8a07a7486498675287",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt",
+      "sha256": "76ee54d26c93ff4581410cc9202196312830e0037019ba79674bd8bc1912f0fd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt",
+      "sha256": "b7073bfb229fad99fa05b35ee158b0b6dd7d905db962b6ad8098dd00ceecbf66",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt",
+      "sha256": "1f37ece08db67880ce3dd26c5995031857d60b9858c77c29570d8ef7f09b6446",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt",
+      "sha256": "9863616613da50c8d67c02d603248eea09255c9e2c32c39b28a3b378878e22a0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/handoffs/HANDOFF-001.md.txt",
+      "sha256": "3fdf3a91affbf174fb8499831dc2ca48bb57ee6c607fb54552e81d320ac8994e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-state.json.txt",
+      "sha256": "b7706cf002cdeb30296d56df05d2a860289a4b72447e3d33ca01040a0952a322",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-summary.md.txt",
+      "sha256": "f55818a44a687069d373b603d206584adae3207f56986a2298af16af82ffe75a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/work-log.md.txt",
+      "sha256": "b6000903c4aec1e011ac5452a39bb607197aba345d33d15c7b3f24685a39aec7",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_inventory.py.txt",
+      "sha256": "550e4c9e6436850541b5edc394fae19475f1f8fe7c19e897da9fff3913cbf5a5",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/timing.json",
+      "sha256": "00a3b0dec308cf1732dca13297ab3405000e54b724454c522002682d7f02ad5e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-10/raw/transcript.md.txt",
+      "sha256": "ce602ca62c7264024dc2f2315895c25a30177b46f11e3acf22ea52ff009dae3a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/facts.json",
+      "sha256": "d605ed0f2768fcfa1477bbff3dae530babdfae34d8fea772a14305dfa90b6dc3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/eval_metadata.json",
+      "sha256": "713c0ce39bac1116059e8da27c51b11a31b4f7f93b776c0eb259bda531fd5609",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/final_reply.md.txt",
+      "sha256": "17145104f923fae2d2557751abead9f4de7bdde448592cbf47c8d0362eaf2f1a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/git_state.md.txt",
+      "sha256": "1e63f04eb4564ef52f1da5ed761bffc8b04cf8e40963a8f69696139ba1a945a1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/grading.json",
+      "sha256": "c03cce1ff86608b40cdef0f98def15c9830df001fb7466eb85248d0833793f63",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/records_snapshot.md.txt",
+      "sha256": "9048541ede69bf08dd155891e2f7ed6f0a81c7a87c47687c41527c95bdc3a059",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/inventory.py.txt",
+      "sha256": "e285bca4c52ac1b74b21334526c756c0e49ba887c5a4ae0f09d4f28d503bfb43",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_inventory.py.txt",
+      "sha256": "abbcaefb987eed46d46d3c970a0256f73ca2152683625b451bc68fb61ec4e53a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/timing.json",
+      "sha256": "ca716fe4bfc36ce19e4ccd022b07dc9191e2233e1b5255ca9b24c7aadd5453ac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-2/raw/transcript.md.txt",
+      "sha256": "cfd3f75995fe095cc91ea8986fa33f9e8ff9ff2a4035336830ad68e90d1c8696",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/facts.json",
+      "sha256": "b03fe439585f5e2f45d2bb547aa9691e973aadc1d2d1e06ffe45dff7839a71cc",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/eval_metadata.json",
+      "sha256": "7e04a708a5f179f75d076b297597d6a3edcaf84884c7099ca580b4d8ac55caea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/final_reply.md.txt",
+      "sha256": "329af46f2e73401a9f11acf7b6494a42df99c00c4985ba4f47d367eefd06bb03",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/git_state.md.txt",
+      "sha256": "334b9197b6fbbc5ddca485595ce2989366e9506617d2ecaf31601a60cb5ab544",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/grading.json",
+      "sha256": "1d23c2c0b6d77eaebdaca979538090d2342b754e325fae2e92c4ab385e963c88",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/records_snapshot.md.txt",
+      "sha256": "17e42414163ac9c4fea31654938aaaa54de7fbfcf055be45871f3fdc0b38d738",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/inventory.py.txt",
+      "sha256": "6bbae2f6c154b79b96d02311c0afe3ce3f85426302e560155bc945037a5bac4f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/records/TASK-008/task-summary.md.txt",
+      "sha256": "e7ae4017a549dd8c53209525d1496f9cc31ef03de7be2ae6833027cc00de2bf7",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/timing.json",
+      "sha256": "354dd21d0cdac103a846aec92f41463e458bfd9abed5ff90ddf711512f2898f3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/facts/case-6/raw/transcript.md.txt",
+      "sha256": "ebd2da246ad1696de1a69966b2a7f2e205af01c0a87b46d1462d06918a8d29e1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/final-integrity.json",
+      "sha256": "4b55126f2e5e5a5726be90f5cc248b7b972103ede6221cbd37f198e5ee408bfa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/fixture-preparation.json",
+      "sha256": "5209e71f4b5a9caa52509282acc9837967aa7419e5fed75022f601ba1c077209",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/freeze-v1.json",
+      "sha256": "42deb848a56bd260e189e935cfd0112ef584692374497eda0d2085fa4210a364",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/generation-prompt.txt",
+      "sha256": "920d1c95e6b9055577056203a34089a456ba72761b0bb62ef8cdff7c3081c586",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/handoff-working-tree.patch",
+      "sha256": "0934260c8695e9452dc2e4960efaba79dd74468e6f521ae113bcbab5da82b68b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/incremental-skill.patch",
+      "sha256": "608a70569e7c2f2c94be7055663c23da57b22f09e130822ab7f9795e36668ff8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-assertions.json",
+      "sha256": "83c10b6c7c3a605b9c0f7aedcc5066c57adf934f17c2799a6968742ffa9a9395",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-assertions.lock",
+      "sha256": "598cb971f6e3b2c2e74f066d7a865f0e6cba1ed4d4d6f76850d2a04a037fc94e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-gate.json",
+      "sha256": "e416c8b07eab44a486f21430b60441e1295d52ac04cc6b95a18716cb6906259d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-harness-brief.json",
+      "sha256": "eb359c676864265a793517902234b14b7fa813c052af3477c2b9b59337f91e70",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-harness-rejected-v1.py.txt",
+      "sha256": "ea36f64358b2599af2a8bf4dc57054edb9fe32bbb3188b34ac10c0a682af906d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-input-preflight.json",
+      "sha256": "74549eb5f560cede8ab7c1341c7b29ca63f862e31d473770f3e442b942b93151",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs.lock.json",
+      "sha256": "9cbbd0e0c3df07cc43d15e6434023a2674d63c09d0950055747b781554db0e34",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/BASELINE.json",
+      "sha256": "8bc7d3343df502b33d59aea665bc55f64f7e9707b2c29f66084ef281818a2d09",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/REQUEST.txt",
+      "sha256": "7ae6ed77e74bf8478bcf6568ccadaca3eb12f73ee43bcf3d2bf6b797b57af3ee",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/baseline-behavior-independent.txt",
+      "sha256": "9d393237149adc3aaba01728ac148612fcef0ee1a9898bee69e60f31637bcd09",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/inventory.py.txt",
+      "sha256": "6b3a40ac2d2deec7ceb4060aac2642d773aa99b06e97343d1e8b7e5d917b6188",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-state.json.txt",
+      "sha256": "ecf2351a9bb0dbca3d7c0862e58388174fb1f3399de0f24de6e9647f7b1f342b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-summary.md.txt",
+      "sha256": "fbd6426555b07934dfec424f2621fbf5bc88a834830fc027d4c8a2f2731ade23",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_inventory.py.txt",
+      "sha256": "550e4c9e6436850541b5edc394fae19475f1f8fe7c19e897da9fff3913cbf5a5",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/initial-record-gate.json",
+      "sha256": "16add25a393a5d4acf21dde991962a79828ac675de05c4dd0416cca5f25eb7e8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-implementation.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-record.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex.txt",
+      "sha256": "cbba298eda1a4526b2464854f875db4fa42f75e8978a7445014e4a8959e80fce",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-baseline-original.json",
+      "sha256": "a620d5173f012e515d69f6705130b66435217559a288b8dcff85e51b1536d86d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-state-original.json",
+      "sha256": "67984ff9bd907b3ea5a806f483c7748f782705c4e25906b2ccbbd5faa8b7e1b0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/BASELINE.json",
+      "sha256": "7e0899d0cb021d1a974c640f4b78d71209d2154ec89383d56493ef1e6ddcc49a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/REQUEST.txt",
+      "sha256": "bc2b3144960700dcff5effd028e742776da269677841b4024ef8981897f1b8c5",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/config.py.txt",
+      "sha256": "a6b642d79fa6b45cc6fff99c261587927a8d85b0bd34bd31c2f55e7befe6ce1f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/inventory.py.txt",
+      "sha256": "e285bca4c52ac1b74b21334526c756c0e49ba887c5a4ae0f09d4f28d503bfb43",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_inventory.py.txt",
+      "sha256": "abbcaefb987eed46d46d3c970a0256f73ca2152683625b451bc68fb61ec4e53a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/precheck/dirty.txt",
+      "sha256": "2d2adee203b63cc888f2a37b097727c9ea2dade4b21aff2126f3cad10e1f174f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/prepared-baseline-original.json",
+      "sha256": "4457679b4cd53a6818440de3d25f38917db3f426a788379abe3c93a7997d18d9",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/BASELINE.json",
+      "sha256": "0e0172d840357b928820812de1dffea5b59f8363081fbbabfe9974fe46f41f8e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/REQUEST.txt",
+      "sha256": "24e7845a1476ac727a2d6014262c514af08a18614a2542368c7d6fa709c35f41",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/README.md.txt",
+      "sha256": "9a204baed37d3f0bf134f8ab382d6f238c794a056813d9d75546caa64f13408e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/inventory.py.txt",
+      "sha256": "883d9a36f9dccaa0404c91bda690cfd8bd9396dcb846621f6691f4a924f46c3a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/precheck/permission.txt",
+      "sha256": "5c02c341052ce468a711c5febe61d7f6d3e498e446ea60910b76f7cba5c34193",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/permission/prepared-baseline-original.json",
+      "sha256": "4a0f35b88af040316cccd1da5f32edbaa8907642c92c29056abafb4646721ae8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/BASELINE.json",
+      "sha256": "cfb711f8521225251b8a31399f182fcd012173a6968add7e91ea01a52ade10af",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/REQUEST.txt",
+      "sha256": "80ff12e7075514fc89ec061ab791627413b04b68c20d7539ea4f0a197e73d995",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/baseline-behavior-independent.txt",
+      "sha256": "e26a5b86f09513b9f081c8c138a4f448b8c76e4286d6162f24f575671d8ef0f8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/inventory.py.txt",
+      "sha256": "883d9a36f9dccaa0404c91bda690cfd8bd9396dcb846621f6691f4a924f46c3a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "812b7b5587ffa178cf17c86d90dce1eccf47b636040e7bc8ad41f5f3f195a2a8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-state.json.txt",
+      "sha256": "b800384c28811e87670f4df07bb0e93a807be425010df5f6b4f3b0eebbe45bab",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-summary.md.txt",
+      "sha256": "fbd6426555b07934dfec424f2621fbf5bc88a834830fc027d4c8a2f2731ade23",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/initial-record-gate.json",
+      "sha256": "16add25a393a5d4acf21dde991962a79828ac675de05c4dd0416cca5f25eb7e8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-implementation.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-record.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale.txt",
+      "sha256": "cecc5ae63c636cc93500cd4942dae6cb9e65a264883098bd6589d6102cc86401",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-baseline-original.json",
+      "sha256": "5f66d1ee8e2b8bccedd09799f48d42c16e765d5f31475e92e68e0c11b49576cd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-state-original.json",
+      "sha256": "c97898cda25cfa504a053bbf609d9e4e12c2a4dc093ae6c9aea4de57010f4b8c",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/artifact-manifest.json",
+      "sha256": "ce4f6e5dbebba24909cc15672ddd08b56170e032e1728cdf76ef00618ba508eb",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/behavior.txt",
+      "sha256": "722924e2898821b0b63903fdcb63c5a737c5fe085337e970dd69f35a92dd9c5c",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/diff.txt",
+      "sha256": "b3063addc0d433c317c51ceaf1c1e9ddde044554db2799d14406f1468103db33",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/BASELINE.json.txt",
+      "sha256": "8bc7d3343df502b33d59aea665bc55f64f7e9707b2c29f66084ef281818a2d09",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/REQUEST.txt.txt",
+      "sha256": "7ae6ed77e74bf8478bcf6568ccadaca3eb12f73ee43bcf3d2bf6b797b57af3ee",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/final_reply.md.txt",
+      "sha256": "5cd0d48abc25c574f2dbc8109299475e604162e6c771da2a369b82f803c60364",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/git-trace.log.txt",
+      "sha256": "8d83ceee95169dba82cec6c5e6065be9aea2971423ca451f5ac35a09ba4ee2cf",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-implementation.txt.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-record.txt.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex.txt.txt",
+      "sha256": "cbba298eda1a4526b2464854f875db4fa42f75e8978a7445014e4a8959e80fce",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/inventory.py.txt",
+      "sha256": "9f409e87835619f1896dab7fddccddeee1b93dd82ee504a7ee597320c85a0e33",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/current-tests.txt.txt",
+      "sha256": "1fee7ff4ab0288d30942cbd9d4a18a52776c9443e6fe028d9078ff3f478dcdea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "7c7b62d523c3e54d90f3091ed3d3804963729732d50330d123edde5ad0e26147",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/state-validation.txt.txt",
+      "sha256": "cf7735f12804bb03a9179aa39a5160d9b8aa9964f3551c459e96e66e53872f11",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+      "sha256": "bb8b60345dbb32a65fd44b4732158c8a7345ebdef24dfbbae50c7a15f0c5c014",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+      "sha256": "709fd4ec41fcc2b51e74ef4bad24478129c94b67bcfed369b752431f4790ead3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "550e4c9e6436850541b5edc394fae19475f1f8fe7c19e897da9fff3913cbf5a5",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/current-tests.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.txt.txt",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/head.txt",
+      "sha256": "749f8d045cc30010d18a7009aa057d6171c10f75094e49885a6e6155f3953cfd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/input-to-final-source.patch",
+      "sha256": "a9b8415babf4537be5cf4e5013d4c32e84231c60e18d1b43489fbcd936672d3b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/record.txt",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/refs.txt",
+      "sha256": "5db0697e73db1f84cdfe14f7d719ce05d947ec52e81e15e5a8ea2c5562f4370d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/remotes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/stash.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/status.txt",
+      "sha256": "18d9bdd475ef058755cec6b37ff088933e2cedf5c9329e41ede483cf0c7ec7cb",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/tests.txt",
+      "sha256": "a4e73b376b94db769e1db8c76a9951a203bbc081b0d0ce08f2120e54358bc36a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/trace-review.json",
+      "sha256": "3fbb378bacd847a924d4e9998d3bcb1ad54e58bcf46c89997aeb229ba248f97d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/verification.json",
+      "sha256": "0edebbef168969b78e3b66f93796ce4178a1fc72196c0d82754ec011f3935b84",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/complex/worktrees.txt",
+      "sha256": "f6b185266efbab9c6d72be06991e00c907571bc92e0cd31a9d838b4990e13f4d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/commands.txt",
+      "sha256": "646aa28abfc745ede6d5bae7a1c9571a5b001fbe1564601a95d823c77cfe5740",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-diff.txt",
+      "sha256": "86c7c569c5ddb909615bb367d42db21f7cdcad0062dfe07d1c877e88a63fc5fe",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-status.txt",
+      "sha256": "067ef7b358ec870203e70f19a5dae8ab48b7e877284d7e87c0688d3c9e9f88e2",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/py-compile.txt",
+      "sha256": "031689b5d3f3bfe8f5bf950721d35a95a26b949783dc152fd27983c991719f2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/unittest-discover.txt",
+      "sha256": "6b2a16461e18aa98f48e56231b942dae51fde5f0f62ad1b94be4a3efb883174f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-final-original.md.txt",
+      "sha256": "f21ed1332dabfd8f1d6ca647e89e34a5c845d28ca5299c84cc66068f641a56eb",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-location-issue.json",
+      "sha256": "e013853a3749dc8c1a87f6ef843141b56eec073ec89fcc57dd94e9f9b1d2bdb8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-manifest.json",
+      "sha256": "4d333ea3f0180d73b609320dfea30756dad05e0277769b39771bc28dfffa825c",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/behavior.txt",
+      "sha256": "f8d8f4cc6831fee46978dcb8042b8b2d7ee33ac5915c604e594ef2bae5895787",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/diff.txt",
+      "sha256": "e2d6b789162b8d68fa3e79aef426dfe5e1613da08445eb677ce712564e336ce6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/BASELINE.json.txt",
+      "sha256": "7e0899d0cb021d1a974c640f4b78d71209d2154ec89383d56493ef1e6ddcc49a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/REQUEST.txt.txt",
+      "sha256": "bc2b3144960700dcff5effd028e742776da269677841b4024ef8981897f1b8c5",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/final_reply.md.txt",
+      "sha256": "9dd94ca2772e7e55fc6c8e3a773c1b9e1df0c07b06df28eee672efeb75c86fc9",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/git-trace.log.txt",
+      "sha256": "01ff5e98bbe8b996b9e2cca1e98df69e0f98bd8321e15d6c1ce0d7f7a428c551",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/precheck/dirty.txt.txt",
+      "sha256": "2d2adee203b63cc888f2a37b097727c9ea2dade4b21aff2126f3cad10e1f174f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/config.py.txt",
+      "sha256": "a6b642d79fa6b45cc6fff99c261587927a8d85b0bd34bd31c2f55e7befe6ce1f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/inventory.py.txt",
+      "sha256": "a6d87806090a64310482be8600419975a5aa7161b188adca74fa69ea4ae4e057",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "60cb11872f318c5e4fa35f5484f6d9c8d79c1ed55a9e7255f41e33f69ddfd955",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/commands.txt.txt",
+      "sha256": "646aa28abfc745ede6d5bae7a1c9571a5b001fbe1564601a95d823c77cfe5740",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-diff.txt.txt",
+      "sha256": "86c7c569c5ddb909615bb367d42db21f7cdcad0062dfe07d1c877e88a63fc5fe",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-status.txt.txt",
+      "sha256": "067ef7b358ec870203e70f19a5dae8ab48b7e877284d7e87c0688d3c9e9f88e2",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/py-compile.txt.txt",
+      "sha256": "031689b5d3f3bfe8f5bf950721d35a95a26b949783dc152fd27983c991719f2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/unittest-discover.txt.txt",
+      "sha256": "6b2a16461e18aa98f48e56231b942dae51fde5f0f62ad1b94be4a3efb883174f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/git-status.txt",
+      "sha256": "067ef7b358ec870203e70f19a5dae8ab48b7e877284d7e87c0688d3c9e9f88e2",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/head.txt",
+      "sha256": "342ea1809ba5ef7f03425bd61c283c92a776e2cbe1b96ef13788733e51dc1cc9",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/input-to-final-source.patch",
+      "sha256": "995bfee591fba67a500b2a54864ee127cfb63833ba3018a8f707af723f706eb7",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/refs.txt",
+      "sha256": "0651c122895341771bed6050c1291d9978cb4d3776f3236269a4f196267bf474",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/remotes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/stash.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/tests.txt",
+      "sha256": "44d3611daceeba2d16e7aa80c8bda5755aade7d57acf8ae36adabbab33cc78a0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/trace-review.json",
+      "sha256": "59d0730a6ac3d340114439facd543093fd77e6f2bc861f0a2c6981ef6de120de",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/verification.json",
+      "sha256": "1a2cbe433188ba8bdf8b87db4c0ccf8bd3d0dd542ef8d03f9e86a1ab4d0b2e95",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/dirty/worktrees.txt",
+      "sha256": "7dafd5828feea27208d385214140b8ffea676fdb00d798d7baebba1bd67a15fa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/artifact-manifest.json",
+      "sha256": "f435ef5189c318f1abf726d2091ac5101766437e4329f3dbdac246b093b7f21f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/behavior.txt",
+      "sha256": "94369aa2c26ebe442da7997a96e8af1081da4ae8b700630644c097e19af2e2e4",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/diff.txt",
+      "sha256": "9c0b556b4d7c8940833122c31de8305f301c3ad9c730b9c65dcf6c080ee99c9b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/BASELINE.json.txt",
+      "sha256": "0e0172d840357b928820812de1dffea5b59f8363081fbbabfe9974fe46f41f8e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/REQUEST.txt.txt",
+      "sha256": "24e7845a1476ac727a2d6014262c514af08a18614a2542368c7d6fa709c35f41",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/final_reply.md.txt",
+      "sha256": "31230fa56d7c9a4b85b7a9f238e1d43ffdcbb82d0e6c5c3e6c4539934f92e690",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/git-trace.log.txt",
+      "sha256": "718551bf36e8c2e61f50066be8d632c1062e0c98acf3d5086c6104dabcebcc1c",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/precheck/permission.txt.txt",
+      "sha256": "5c02c341052ce468a711c5febe61d7f6d3e498e446ea60910b76f7cba5c34193",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/README.md.txt",
+      "sha256": "9a204baed37d3f0bf134f8ab382d6f238c794a056813d9d75546caa64f13408e",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/inventory.py.txt",
+      "sha256": "6bbae2f6c154b79b96d02311c0afe3ce3f85426302e560155bc945037a5bac4f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stderr.txt",
+      "sha256": "72f09eca554e87a45b7156c6109520cf15e8b6ec157dc5c033610649b49b8698",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stderr.txt",
+      "sha256": "6ea782db5811e302a11232b65c162ba6a835b3f16203b2a4419b0001ba98c015",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/git-status.txt",
+      "sha256": "cfb10c88f31c4dc7a0927ce6a4217e24d629ac257ed1cb493ce32b0aa47eb0b1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/head.txt",
+      "sha256": "ca6b24bde7f62333ceac23ea56b7854279dc6e7f063465eb81e667383ad7aaec",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/input-to-final-source.patch",
+      "sha256": "b1f9561830fdf413cf6db4e40819edde63e4c5148d177a73aa6e43d2a83e10f0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/refs.txt",
+      "sha256": "7e3f1cc1ffabf98203a5a769835961454c7c9099f4b95b6a836d02317e1f4bbf",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/remotes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/stash.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/tests.txt",
+      "sha256": "4680a9c0fa09612d7372c53b4495a307430642b7d68da6d0897fed211145dccf",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/trace-review.json",
+      "sha256": "5a4252e185644ed435f239e128eae89ff68748a5e4023e49051ae2558111d29b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/verification.json",
+      "sha256": "33ed55d908f9fb07c988b77a93ab1c70ecea9816137272d3b8e42bb5175edf91",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/permission/worktrees.txt",
+      "sha256": "86e93ffba7131ce2e8a347002190b16b8cfee6d3948f05cb6a2380dbcebc3243",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/artifact-manifest.json",
+      "sha256": "e168be4bcaee67eec81aaeb65baa1e061159b9cc4441d68c350d936cec046576",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/diff.txt",
+      "sha256": "31252f0091c0d8cfbc34055c56a1aebde415886ddce45a42b3fc92ae80290e95",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/BASELINE.json.txt",
+      "sha256": "cfb711f8521225251b8a31399f182fcd012173a6968add7e91ea01a52ade10af",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/REQUEST.txt.txt",
+      "sha256": "80ff12e7075514fc89ec061ab791627413b04b68c20d7539ea4f0a197e73d995",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/final_reply.md.txt",
+      "sha256": "9fbec7097da6902be2be592ecc3f204237a09f4d674e9884b910e413943bd286",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/git-trace.log.txt",
+      "sha256": "9f686cbd75f3688ecd92dff0d5fc4b32b1050270a220470c4b4eb3de12851284",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-implementation.txt.txt",
+      "sha256": "3badd32669b1a1540cc3084880cb019092513b962da26a4706d0b55e92fcd3c6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-record.txt.txt",
+      "sha256": "321162fb4638b45608a4a98a54cb3d5d16f2a32ca3acf02b8062c3f461dbbf17",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale.txt.txt",
+      "sha256": "cecc5ae63c636cc93500cd4942dae6cb9e65a264883098bd6589d6102cc86401",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/.gitignore.txt",
+      "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/README.md.txt",
+      "sha256": "018714c1bbffbf3fdfa5e90abb50a149ea4bdfb8e7a7b356b811a4c6e10c146d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/config.py.txt",
+      "sha256": "c331bdf820518018e5de77525368388568519c0e0575dd38736a21d055edb844",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/inventory.py.txt",
+      "sha256": "883d9a36f9dccaa0404c91bda690cfd8bd9396dcb846621f6691f4a924f46c3a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/pricing.py.txt",
+      "sha256": "2d786e11da66c264e772c14d5ff4fd497e26407eaa18e3ac6c467fbdf3963b2b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stderr.txt",
+      "sha256": "0dc3621737011a5e80a3f6854c6a006adcc91d3ec0f9d694ea3e82115f5a522f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+      "sha256": "812b7b5587ffa178cf17c86d90dce1eccf47b636040e7bc8ad41f5f3f195a2a8",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+      "sha256": "1ddb17997686576cf6abf8d7451b0d51a0d567371c0ba5294c0ba1b4ae8f2223",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+      "sha256": "5b8ef438083fbec9c281460c6c55a8a1efc0651492bd6c7687526b77f988dcfd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/work-log.md.txt",
+      "sha256": "a0eeb65b23180f4f9d86dad6e090ac7975bc101f35ea07d3b431fd0ef24ed929",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/__init__.py.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_inventory.py.txt",
+      "sha256": "a78c9dad2706ced6bdcc9b229cb7d6478c37454557d468b340cc48f6752db1ea",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_pricing.py.txt",
+      "sha256": "00f11a261660cb02fb2bc1e88c643d3e6be3553b3174ddf866cbb7a9888e0bac",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/head.txt",
+      "sha256": "8dfce956958a1a1ee5384acee383422b5a979db7baac2d00d09529c0af5aa0d6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/input-to-final-source.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/record.txt",
+      "sha256": "f9523b1e6fb6595574b53c4bb4a6dda70c9fc069958904e84b3954284bcb91aa",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/refs.txt",
+      "sha256": "747aa5ba807a88405cd53bef012af0d3723aec1ad11895808dab93c90077d5be",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/remotes.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/stash.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/status.txt",
+      "sha256": "8a735bc16abd7965cf0fb319b892a0a917690d3975b1b191bbd0f60c3f5f068b",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/tests.txt",
+      "sha256": "ff6d90973679ff5e75d0f929c4ff90bc071504d2b4f783b7ae5427e3ae92d57a",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/trace-review.json",
+      "sha256": "fa9468766e68d678c40b61eb0e6fcc290e29a2f080978ab096a34b2634b6030d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/verification.json",
+      "sha256": "152cc842ae54db03a90e397db0de3e2c503cd1f37ad8826f7c30eac9afae7701",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/regression-results/stale/worktrees.txt",
+      "sha256": "a3721ec2eafb279445f27875339150d33a66040c3169b69c9a37c6b118ffb9ef",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/rejected-harness-review.json",
+      "sha256": "d4951a3e3226c96bcfc9851458d9d3a425ab66082d21a547c0081e4e598de7c1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/report-gate.json",
+      "sha256": "49c3482a0089ae9617cca61e4ba1d4d07195bdaf22e3904cbd9959b38d04b4e6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/report-measurements.json",
+      "sha256": "54fd08d6da763a0c9da388616b974af14f31fc499256667957f8d96c4846b72f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-1/candidate-v1/final_reply.md",
+      "sha256": "01f33f0e90a234c8aae258f8579fae4b493e308257df90e37e1b96a554537a16",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-1/current/final_reply.md",
+      "sha256": "ccdfaf25e0e48f6bc9d80245d61ee9318af8ee0b50bd49a94e4068bfb24db2cd",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/final_reply.md",
+      "sha256": "be523a02cd9023915a9d9c8ce6a12ea1994058b01d75a4c147493bbbe6921c32",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/task-summary.md",
+      "sha256": "33daeac803de11aff92c2dbba4728f6e03c25a5f6e8689dc2e27ac5c9cfbe618",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-10/current/final_reply.md",
+      "sha256": "3ca1bdc653a0a7680c3e32cfa416fabc0fdd65c369fb05ddb2245728fdfd6f93",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-10/current/task-summary.md",
+      "sha256": "0c80c2b780858c8d61c9e9d31e622e2ca213256ef25d51f800fd51762ad97188",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-2/candidate-v1/final_reply.md",
+      "sha256": "42804e13f76e437a7fd596f0b819e651a8e1959632047cfd589987fdaa23df89",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-2/current/final_reply.md",
+      "sha256": "c87d0c8361cda910350a22aac1530608fc9cb8425f9acc16b00ff723554c970d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/final_reply.md",
+      "sha256": "28cf6e7f22793f1a7de5dda63e4cdaa5aac27fffd2fa08f605d9d3c25958e7ee",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/task-summary.md",
+      "sha256": "4061b64b721b8668f789438a967bcf2eaed87d5800f3b4b70a54baea9804ac86",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-6/current/final_reply.md",
+      "sha256": "fc4c262ee396e599b41f02664e28bd965dd7c3a417503bb9382ea49d85ce5460",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reports/case-6/current/task-summary.md",
+      "sha256": "f61e262c909983689d061a9c36fcbf3873b3a9bd666aa7340eb0f08f3f0b797f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reviews/reviewer-1.json",
+      "sha256": "de7989abba5c9690a4dc98302451bdf9eba2aeb9011233150b66dd4bba675584",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/reviews/reviewer-2.json",
+      "sha256": "426c0e372c50f67817793a8ca628f9a526feb5436c210670801da05ea6780ce6",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/round3-provenance.json",
+      "sha256": "37d659f896b9d5f2432f377fc39c30e1f76ce4dcf9851d922e5d3a8c4083d9a3",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/style-sources.json",
+      "sha256": "098625586694f1dac5dcf5cf1dd5fc3d64a897aea232559b767161f84ca0bbe9",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/evidence/validation-environment.json",
+      "sha256": "2f12f75d5d5afe5b8ca640fcf75550d39f74fa6bf759635ec06642800fed4ee1",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/task-state.json",
+      "sha256": "2d53f6e6a4bdd220dc5836b5bdb37dc22bc90b344fd773bdd5484009034257af",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/task-summary.md",
+      "sha256": "abf6750e82329447f141b5b4bb64f130947f437677df887ce3e9ec26cef449bc",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-4-WRITING/work-log.md",
+      "sha256": "de107cc6c62913424975ce08429f4b6d17a81c6070f796e7c0a13f39b6142e60",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-input.md",
+      "sha256": "49c4f9aa2200b37d0bc6dffde15276d2c04743567cc795c984748a7d37fe2a8d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-output.md",
+      "sha256": "e551fb5138d4b16d94b75ebf6c6ccc98479c75955c4421db9e7fc7450b158f67",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/forward-review.md",
+      "sha256": "c4542f2698d89728ccaddab8af737f96fcddb392323316a5980d9dca781db602",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/repository-check.txt",
+      "sha256": "e5943c7794222f7962cbee3ff341c25bb0b016be4b1cda23ffa96eabdb01b32f",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/review-criteria.md",
+      "sha256": "e9cb803a7776d86883092211139b48ed4282fb3a1d5ba79da869381bdcce4139",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/skill-check.txt",
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/evidence/unit-tests.txt",
+      "sha256": "9d30bd4d0f9927f88a2646cabcf25b9799d5c590c7d4809eab521519ff4d3810",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/task-summary.md",
+      "sha256": "5cffebcf4bfb7387b75b776c75ce54adae2976a9db55436c177eeaf0287df50d",
+      "mode": 420
+    },
+    {
+      "path": "records/ROUND-5-WRITING/work-log.md",
+      "sha256": "4d60fbeda4e4e14b6fbbfc022480e73c80b35d4c3af5dcec875f63e8c8c6e969",
+      "mode": 420
+    },
+    {
+      "path": "review-iteration-2.md",
+      "sha256": "061a8147b4182146ab287eea7c3e59c141b98f140c7cf7057033d72cfb9b75d4",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/SKILL.md",
+      "sha256": "524145d492222373faeb2b21daa9626e9dd5e26d6b5402c5619d23e5161350ff",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/agents/openai.yaml",
+      "sha256": "f5f899c24a92c5fda6c84bed5005a2e0c418d921fbf2e4e780c409f716fcbc6b",
+      "mode": 436
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/handoff.md",
+      "sha256": "9f6e58631627885c91180ab0868f00f2178460675676c5cb32bb0e01640e9f45",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/task-state.example.json",
+      "sha256": "bc8a320d7c98cbcafebc555a40310acfa7d1007ba8693fd4e10a6025acb7f354",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/task-summary.md",
+      "sha256": "e628e02810da77776603cf9382350c1eb2f2931ba94b5cf05ab6a2c28c5c021f",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/work-log.md",
+      "sha256": "64a498f3a57ded04e8bf85f74964a941acca4d2e99fa49b722fe484ab49e2174",
+      "mode": 436
+    },
+    {
+      "path": "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+      "sha256": "4da5b99c6c4bd6350184574a9ce2955e3c514686d7dac17e2de260ee74e0d6bf",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+      "sha256": "4ba5583903e29af181ec78eb5daa69ee89611d526035d0ac9c6cdcd0017d6066",
+      "mode": 436
+    },
+    {
+      "path": "skill/evidence-driven-development/references/examples.md",
+      "sha256": "3a8d7ed4d35d6bfe521d1fbedb9de17557d431e7a62d1a7b65a597bdfec121cc",
+      "mode": 436
+    },
+    {
+      "path": "skill/evidence-driven-development/references/metrics-and-evidence.md",
+      "sha256": "962790c895d8542949f1f31986c0a783a37a881ebd48e29de464341996272f37",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/records.md",
+      "sha256": "d6706b854d53daf13ad5e11377c8787769d41c2473230018be91f5cab937c884",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/references/workflow.md",
+      "sha256": "732f6e765349a1d2f36a87d544da7d1f18af1197d6fc8a544bbea6928063cc27",
+      "mode": 436
+    },
+    {
+      "path": "skill/evidence-driven-development/references/writing.md",
+      "sha256": "d56e009c2817e0b39e5a2604b1aeb358e14a24afff0c474b75be50e8c7ca9fad",
+      "mode": 420
+    },
+    {
+      "path": "skill/evidence-driven-development/scripts/validate_task.py",
+      "sha256": "fec30f379549e02e8fb208ff7238014c392719d3f908a2215d97b88ea4bbe1bd",
+      "mode": 493
+    },
+    {
+      "path": "skill/evidence-driven-development/tests/test_scenarios.py",
+      "sha256": "01ef0b5e92cc54f39bcb1718e409113d40daf4cf5f87118366d9f744281cef00",
+      "mode": 420
+    },
+    {
+      "path": "tools/validate_repository.py",
+      "sha256": "9b26980a52c241c13b0ac5f3510f9abfef73163f49be7b24690c91cb9c73324f",
+      "mode": 493
+    }
+  ],
+  "tracked_inventory": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "records/ROUND-4-WRITING/evidence/attempts.jsonl",
+    "records/ROUND-4-WRITING/evidence/baseline.json",
+    "records/ROUND-4-WRITING/evidence/blind-mapping.json",
+    "records/ROUND-4-WRITING/evidence/blind/case-1/R1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-1/R2/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-10/R1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-10/R1/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-10/R2/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-10/R2/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-2/R1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-2/R2/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-6/R1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-6/R1/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-6/R2/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/blind/case-6/R2/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/SKILL.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/agents/openai.yaml",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/handoff.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-state.example.json",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/work-log.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/assets/templates/writing-handoff.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/delegation-and-handoffs.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/examples.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/metrics-and-evidence.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/records.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/workflow.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/references/writing.md",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/scripts/validate_task.py",
+    "records/ROUND-4-WRITING/evidence/candidate-v1/tests/test_scenarios.py",
+    "records/ROUND-4-WRITING/evidence/checks/compile.txt",
+    "records/ROUND-4-WRITING/evidence/checks/diff-check.txt",
+    "records/ROUND-4-WRITING/evidence/checks/final-document-checks.json",
+    "records/ROUND-4-WRITING/evidence/checks/final-task-record.json",
+    "records/ROUND-4-WRITING/evidence/checks/post-push-record.json",
+    "records/ROUND-4-WRITING/evidence/checks/pre-commit-gate-attempt-1.json",
+    "records/ROUND-4-WRITING/evidence/checks/pre-commit-gate.json",
+    "records/ROUND-4-WRITING/evidence/checks/pre-push-gate.json",
+    "records/ROUND-4-WRITING/evidence/checks/repository.txt",
+    "records/ROUND-4-WRITING/evidence/checks/results.json",
+    "records/ROUND-4-WRITING/evidence/checks/scenario-tests.txt",
+    "records/ROUND-4-WRITING/evidence/checks/skill.txt",
+    "records/ROUND-4-WRITING/evidence/checks/staged-whitespace-review.json",
+    "records/ROUND-4-WRITING/evidence/cost-summary.json",
+    "records/ROUND-4-WRITING/evidence/current-skill/SKILL.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/agents/openai.yaml",
+    "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/handoff.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-state.example.json",
+    "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/work-log.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/assets/templates/writing-handoff.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/references/delegation-and-handoffs.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/references/examples.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/references/metrics-and-evidence.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/references/records.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/references/workflow.md",
+    "records/ROUND-4-WRITING/evidence/current-skill/scripts/validate_task.py",
+    "records/ROUND-4-WRITING/evidence/current-skill/tests/test_scenarios.py",
+    "records/ROUND-4-WRITING/evidence/delivery-receipt.json",
+    "records/ROUND-4-WRITING/evidence/evaluation-spec.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/facts.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/eval_metadata.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/git_state.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/grading.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/records_snapshot.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/timing.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-1/raw/transcript.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/facts.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/eval_metadata.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/git_state.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/grading.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/records_snapshot.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/e2e_check.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-001-baseline-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-002-unit-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-003-mutation-check.txt.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-004-e2e.txt.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/evidence/EVD-005-adversarial-timing.txt.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/handoffs/HANDOFF-001.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-state.json.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/records/TASK-001/work-log.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/timing.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-10/raw/transcript.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/facts.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/eval_metadata.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/git_state.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/grading.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/records_snapshot.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/timing.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-2/raw/transcript.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/facts.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/eval_metadata.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/git_state.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/grading.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/records_snapshot.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/records/TASK-008/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/timing.json",
+    "records/ROUND-4-WRITING/evidence/facts/case-6/raw/transcript.md.txt",
+    "records/ROUND-4-WRITING/evidence/final-integrity.json",
+    "records/ROUND-4-WRITING/evidence/fixture-preparation.json",
+    "records/ROUND-4-WRITING/evidence/freeze-v1.json",
+    "records/ROUND-4-WRITING/evidence/generation-prompt.txt",
+    "records/ROUND-4-WRITING/evidence/handoff-working-tree.patch",
+    "records/ROUND-4-WRITING/evidence/incremental-skill.patch",
+    "records/ROUND-4-WRITING/evidence/regression-assertions.json",
+    "records/ROUND-4-WRITING/evidence/regression-assertions.lock",
+    "records/ROUND-4-WRITING/evidence/regression-gate.json",
+    "records/ROUND-4-WRITING/evidence/regression-harness-brief.json",
+    "records/ROUND-4-WRITING/evidence/regression-harness-rejected-v1.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-input-preflight.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs.lock.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/BASELINE.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/REQUEST.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/baseline-behavior-independent.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/evidence/old-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-state.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/records/TASK-001/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/files/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/initial-record-gate.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-implementation.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex-validator-record.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/precheck/complex.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-baseline-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/complex/prepared-state-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/BASELINE.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/REQUEST.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/files/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/precheck/dirty.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/dirty/prepared-baseline-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/BASELINE.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/REQUEST.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/files/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/precheck/permission.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/permission/prepared-baseline-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/BASELINE.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/REQUEST.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/baseline-behavior-independent.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/evidence/old-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-state.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/records/TASK-001/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/files/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/initial-record-gate.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-implementation.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale-validator-record.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/precheck/stale.txt",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-baseline-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-inputs/stale/prepared-state-original.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/artifact-manifest.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/behavior.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/diff.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/BASELINE.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/REQUEST.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/git-trace.log.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-implementation.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex-validator-record.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/precheck/complex.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/current-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/evidence/state-validation.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/current-tests.exit.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.exit.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/final-artifacts/run-evidence/state-validation-final.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/head.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/input-to-final-source.patch",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/record.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/refs.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/remotes.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/stash.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/status.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/tests.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/trace-review.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/verification.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/complex/worktrees.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/commands.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-diff.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/git-status.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/py-compile.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-evidence-original/unittest-discover.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/agent-final-original.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-location-issue.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/artifact-manifest.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/behavior.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/diff.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/BASELINE.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/REQUEST.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/git-trace.log.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/precheck/dirty.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/commands.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-diff.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/git-status.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/py-compile.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/final-artifacts/run-evidence/unittest-discover.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/git-status.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/head.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/input-to-final-source.patch",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/refs.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/remotes.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/stash.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/tests.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/trace-review.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/verification.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/dirty/worktrees.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/artifact-manifest.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/behavior.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/diff.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/BASELINE.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/REQUEST.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/git-trace.log.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/precheck/permission.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.exit.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stderr.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/after-unittest.stdout.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.exit.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stderr.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/final-artifacts/run-evidence/baseline.stdout.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/git-status.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/head.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/input-to-final-source.patch",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/refs.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/remotes.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/stash.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/tests.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/trace-review.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/verification.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/permission/worktrees.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/artifact-manifest.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/diff.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/BASELINE.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/REQUEST.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/final_reply.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/git-trace.log.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-implementation.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale-validator-record.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/precheck/stale.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/.gitignore.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/README.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/config.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.exit.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stderr.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/current-tests.stdout.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/evidence/old-tests.txt.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-state.json.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/task-summary.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/records/TASK-001/work-log.md.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/__init__.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_inventory.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/final-artifacts/repo/tests/test_pricing.py.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/head.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/input-to-final-source.patch",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/record.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/refs.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/remotes.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/stash.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/status.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/tests.txt",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/trace-review.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/verification.json",
+    "records/ROUND-4-WRITING/evidence/regression-results/stale/worktrees.txt",
+    "records/ROUND-4-WRITING/evidence/rejected-harness-review.json",
+    "records/ROUND-4-WRITING/evidence/report-gate.json",
+    "records/ROUND-4-WRITING/evidence/report-measurements.json",
+    "records/ROUND-4-WRITING/evidence/reports/case-1/candidate-v1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-1/current/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-10/candidate-v1/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-10/current/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-10/current/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-2/candidate-v1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-2/current/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-6/candidate-v1/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-6/current/final_reply.md",
+    "records/ROUND-4-WRITING/evidence/reports/case-6/current/task-summary.md",
+    "records/ROUND-4-WRITING/evidence/reviews/reviewer-1.json",
+    "records/ROUND-4-WRITING/evidence/reviews/reviewer-2.json",
+    "records/ROUND-4-WRITING/evidence/round3-provenance.json",
+    "records/ROUND-4-WRITING/evidence/style-sources.json",
+    "records/ROUND-4-WRITING/evidence/validation-environment.json",
+    "records/ROUND-4-WRITING/task-state.json",
+    "records/ROUND-4-WRITING/task-summary.md",
+    "records/ROUND-4-WRITING/work-log.md",
+    "review-iteration-2.md",
+    "skill/evidence-driven-development/SKILL.md",
+    "skill/evidence-driven-development/agents/openai.yaml",
+    "skill/evidence-driven-development/assets/templates/handoff.md",
+    "skill/evidence-driven-development/assets/templates/task-state.example.json",
+    "skill/evidence-driven-development/assets/templates/task-summary.md",
+    "skill/evidence-driven-development/assets/templates/work-log.md",
+    "skill/evidence-driven-development/assets/templates/writing-handoff.md",
+    "skill/evidence-driven-development/references/delegation-and-handoffs.md",
+    "skill/evidence-driven-development/references/examples.md",
+    "skill/evidence-driven-development/references/metrics-and-evidence.md",
+    "skill/evidence-driven-development/references/records.md",
+    "skill/evidence-driven-development/references/workflow.md",
+    "skill/evidence-driven-development/references/writing.md",
+    "skill/evidence-driven-development/scripts/validate_task.py",
+    "skill/evidence-driven-development/tests/test_scenarios.py",
+    "tools/validate_repository.py"
+  ],
+  "untracked_inventory": [
+    "records/ROUND-5-WRITING/evidence/forward-input.md",
+    "records/ROUND-5-WRITING/evidence/forward-output.md",
+    "records/ROUND-5-WRITING/evidence/forward-review.md",
+    "records/ROUND-5-WRITING/evidence/repository-check.txt",
+    "records/ROUND-5-WRITING/evidence/review-criteria.md",
+    "records/ROUND-5-WRITING/evidence/skill-check.txt",
+    "records/ROUND-5-WRITING/evidence/unit-tests.txt",
+    "records/ROUND-5-WRITING/task-summary.md",
+    "records/ROUND-5-WRITING/work-log.md"
+  ],
+  "overrides": {
+    "skill/evidence-driven-development/SKILL.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/agents/openai.yaml": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/assets/templates/handoff.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/assets/templates/task-state.example.json": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/assets/templates/task-summary.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/assets/templates/work-log.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/assets/templates/writing-handoff.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/delegation-and-handoffs.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/examples.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/metrics-and-evidence.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/records.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/workflow.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/references/writing.md": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/scripts/validate_task.py": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "skill/evidence-driven-development/tests/test_scenarios.py": "initial-skill-carrier:records/REIN-CH05-16/evidence/inputs/skill/tree/files",
+    "tools/validate_repository.py": "git-show:1a10fca5d408004a354da5f61e6f449c09801f23"
+  },
+  "expected_counts": {
+    "tracked": 390,
+    "untracked": 9,
+    "total": 399,
+    "initial_skill_files": 15
+  },
+  "limitations": [
+    "README, CI, original tools, and other non-skill tracked files were collected at this later collection time; their equality with the initial 09:44 collection moment is not asserted.",
+    "The 15 skill files retain the previously verified initial carrier contents and hashes.",
+    "tools/validate_repository.py is archived from the specified HEAD object because the working-tree file was changed by this task.",
+    "This is a source-reconstructed input file tree, not a new Git commit; Git metadata is not included.",
+    "No .env or authentication files were archived."
+  ],
+  "excluded_later_outputs": [
+    "records/REIN-CH05-16",
+    "tools/rein_evaluate.py",
+    "tools/rein_experiment.py",
+    "tools/test_rein_experiment.py",
+    "tools/tests"
+  ]
+}\n

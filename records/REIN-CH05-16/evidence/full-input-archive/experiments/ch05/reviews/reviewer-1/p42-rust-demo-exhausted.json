@@ -1,0 +1,19 @@
+{
+  "label": "p42-rust-demo-exhausted",
+  "cwd": "/private/tmp/rein-ch05-review-evidence-1/p42-rust-probe",
+  "argv": [
+    "cargo",
+    "run",
+    "--locked",
+    "--offline",
+    "--bin",
+    "exhausted"
+  ],
+  "started_utc": "2026-09-14T11:24:10Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 101,
+  "output": "   Compiling review-p42 v0.1.0 (/private/tmp/rein-ch05-review-evidence-1/p42-rust-probe)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s\n     Running `/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/exhausted`\n\nthread 'main' (38441364) panicked at src/exhausted.rs:18:51:\nremoval index (is 0) should be < len (is 0)\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+}

@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "timestamp": "2026-09-15T04:50:17.615Z",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high"
+    },
+    {
+      "timestamp": "2026-09-15T05:46:24.855Z",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "minimal"
+    },
+    {
+      "timestamp": "2026-09-15T05:49:10.934Z",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high"
+    }
+  ],
+  "source_thread": "01a0a385-8626-7580-ad01-4f88a3067a4d",
+  "action": "App-resumed coder wrongly dispatched work to primary with thinking=minimal and waited. Main sent stop, restored previous high setting and assigned bounded v4 to custom collaboration coder. Formal A/B/C settings unaffected. v3 not used for scoring.",
+  "root_turn_sampling_limit": "thread setting events recorded; do not infer unobservable per-token effort change timing from UI setting alone"
+}

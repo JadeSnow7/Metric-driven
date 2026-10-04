@@ -1,0 +1,55 @@
+{
+  "argv": [],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "startedAt": "2026-09-14T15:27:33.100Z",
+  "endedAt": "2026-09-14T15:27:33.338Z",
+  "exit": 0,
+  "stdout": "prepared common input; no model or formal execution started\n",
+  "stderr": "",
+  "sourceSnapshot": "/private/tmp/rein-ch07-main-snapshot-review/tar-recovered/rein-ch07",
+  "sourceManifest": "records/REIN-CH05-16/snapshots/ch07-accepted/manifest.json",
+  "outputRoot": "/private/tmp/rein-ch08-common-input-v2",
+  "manifestPath": "/private/tmp/rein-ch08-common-input-v2/fixtures/ch08-context/manifest.json",
+  "newFiles": {
+    "fixtures/ch08-context/docs/01-runtime.md": {
+      "bytes": 713,
+      "sha256": "c5564c3d1b79b264663b0198752d744ab969dc89c3a0db4193e670892f2adbb3"
+    },
+    "fixtures/ch08-context/docs/02-cache.md": {
+      "bytes": 715,
+      "sha256": "633b30d4330c93a1086989fc08b635e2c541a71681b9003fc41893083fbf74e3"
+    },
+    "fixtures/ch08-context/docs/03-approval.md": {
+      "bytes": 842,
+      "sha256": "5bed5d8d8fde7cbdf836c532ebcf45f48600067c66a83776de176529beaf0194"
+    },
+    "fixtures/ch08-context/docs/04-index.md": {
+      "bytes": 813,
+      "sha256": "4e628444667556897b71e3096414bf6681614bc4444860dbb6d4016a58071651"
+    },
+    "fixtures/ch08-context/docs/05-failure.md": {
+      "bytes": 703,
+      "sha256": "320bccabb65aac5b5dde22f8527c46444fee0efb55aa209b03007f093b376233"
+    },
+    "fixtures/ch08-context/docs/06-release.md": {
+      "bytes": 838,
+      "sha256": "2ff783da3c92d6d07eda3ed2ca171c006eb9f7e2bf25fdca8e046995333aa8ae"
+    },
+    "fixtures/ch08-context/index.json": {
+      "bytes": 1367,
+      "sha256": "e050ea3de880ec20da2c2ec6a7a94669ff80b7dd0c96bd04264f9dc47f994121"
+    },
+    "fixtures/ch08-context/tasks.json": {
+      "bytes": 1536,
+      "sha256": "10161f105cc1f97bbfd122bf0bacb14cbe0df1b5cc9ac4d8c69711c0b1ab2758"
+    },
+    "fixtures/ch08-context/README.md": {
+      "bytes": 806,
+      "sha256": "09c3b3cc8fc9c7ca2ba09da0ea68ead341e5b79806cf3743eea6e91359e6d362"
+    },
+    "fixtures/ch08-context/manifest.json": {
+      "bytes": 1286,
+      "sha256": "a5192e89bb860887e718793483e1fa192d93534888dbaff6440431fc294aec22"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+[
+  {
+    "language": "ts",
+    "mode": "normal",
+    "reason": "final_answer",
+    "answer": "完成：marker: ch06",
+    "model_requests": 2,
+    "tools": [
+      {
+        "id": "read",
+        "name": "read_file"
+      }
+    ],
+    "skipped": []
+  },
+  {
+    "language": "ts",
+    "mode": "duplicate",
+    "reason": "duplicate_action",
+    "answer": null,
+    "model_requests": 2,
+    "tools": [
+      {
+        "id": "duplicate-1",
+        "name": "read_file"
+      }
+    ],
+    "skipped": [
+      "duplicate-2"
+    ]
+  },
+  {
+    "language": "ts",
+    "mode": "budget",
+    "reason": "tool_budget_exhausted",
+    "answer": null,
+    "model_requests": 1,
+    "tools": [
+      {
+        "id": "one",
+        "name": "read_file"
+      }
+    ],
+    "skipped": [
+      "two"
+    ]
+  },
+  {
+    "language": "rust",
+    "mode": "normal",
+    "reason": "final_answer",
+    "answer": "完成",
+    "model_requests": 2,
+    "tools": [
+      {
+        "id": "read",
+        "name": "read_file"
+      }
+    ],
+    "skipped": []
+  },
+  {
+    "language": "rust",
+    "mode": "duplicate",
+    "reason": "duplicate_action",
+    "answer": null,
+    "model_requests": 1,
+    "tools": [
+      {
+        "id": "call-0",
+        "name": "read_file"
+      }
+    ],
+    "skipped": [
+      "second"
+    ]
+  },
+  {
+    "language": "rust",
+    "mode": "budget",
+    "reason": "tool_budget_exhausted",
+    "answer": null,
+    "model_requests": 1,
+    "tools": [
+      {
+        "id": "call-0",
+        "name": "read_file"
+      }
+    ],
+    "skipped": [
+      "second"
+    ]
+  }
+]

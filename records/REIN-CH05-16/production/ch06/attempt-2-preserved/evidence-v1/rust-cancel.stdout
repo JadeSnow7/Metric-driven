@@ -1,0 +1,64 @@
+{
+  "mode": "cancel",
+  "result": {
+    "events": [
+      {
+        "messages": [
+          {
+            "content": "读取 README.md",
+            "role": "user"
+          }
+        ],
+        "tools": [
+          {
+            "description": "Search text in workspace files.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "needle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "needle"
+              ],
+              "type": "object"
+            },
+            "name": "search_files"
+          },
+          {
+            "description": "Read one UTF-8 file in the workspace.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "type": "object"
+            },
+            "name": "read_file"
+          }
+        ],
+        "turn": 1,
+        "type": "model_requested"
+      },
+      {
+        "reason": "cancelled",
+        "state": "failed",
+        "type": "stopped"
+      }
+    ],
+    "messages": [
+      {
+        "content": "读取 README.md",
+        "role": "user"
+      }
+    ],
+    "reason": "cancelled",
+    "state": "failed"
+  }
+}

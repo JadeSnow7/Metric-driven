@@ -1,0 +1,173 @@
+{
+  "source_root": "/private/tmp/rein-ch08-production-20260915/book",
+  "target_root": "/Users/huaodong/workspace/Agent-Learning",
+  "root_head": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "target_base": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "status": "preflight_ready",
+  "allowed_paths": [
+    "MIGRATIONS.md",
+    "README.md",
+    "docs/.vitepress/config.mts",
+    "docs/chapters/08.md",
+    "docs/index.md",
+    "docs/toc.md",
+    "examples/ch08-context-methods/README.md",
+    "examples/ch08-context-methods/docs/demo.md",
+    "examples/ch08-context-methods/entry.mjs",
+    "examples/ch08-context-methods/input/index.json",
+    "examples/ch08-context-methods/input/tasks.json",
+    "package.json",
+    "rust/examples/ch08_context.rs",
+    "rust/src/rein/context_methods.rs",
+    "rust/src/rein/mod.rs",
+    "rust/tests/ch08_context.rs",
+    "scripts/ch08-compare.mjs",
+    "scripts/ch08-verify.mjs",
+    "fixtures/ch08-context/docs/approval.md",
+    "fixtures/ch08-context/docs/cache.md",
+    "fixtures/ch08-context/docs/early-runtime.md",
+    "fixtures/ch08-context/docs/failure.md",
+    "fixtures/ch08-context/docs/indexing.md",
+    "fixtures/ch08-context/docs/release.md",
+    "fixtures/ch08-context/index.json",
+    "fixtures/ch08-context/tasks.json"
+  ],
+  "files": [
+    {
+      "path": "MIGRATIONS.md",
+      "source_sha256": "5979db32214111964ab3f03d5ecd6b535e877e31cd38493d77b5eedaafe4df26",
+      "target_sha256": "c23f3fcaafb1312c64eb74cc7cd80f679ce8d32a57b7053ba287300934f73f7e"
+    },
+    {
+      "path": "README.md",
+      "source_sha256": "211cbc1a020fe786ee1c70690735cbd00ef549ab084c0561e44e1c5bd20c2eef",
+      "target_sha256": "c4969c1737653c68b501c93aec057e3c2f4e609a94efba6819f9cb6cf2013438"
+    },
+    {
+      "path": "docs/.vitepress/config.mts",
+      "source_sha256": "fda320614f6efe262f2657c66fba807d9b22f6d7e266e473860add0c77156691",
+      "target_sha256": "78e28b2424c97c37f744fcc7ed5aa80461ce5008edf895713a79dcbb1a49d5bb"
+    },
+    {
+      "path": "docs/chapters/08.md",
+      "source_sha256": "bb18e600c6a05b82b1530774fc4cd19d60ed8e19e74a51a85ef699920026432b",
+      "target_sha256": "26cc3c5d733b22e6c852d69b939f009af445ab0a008664413c63c491cc5bf929"
+    },
+    {
+      "path": "docs/index.md",
+      "source_sha256": "f366546f5ccb1edc62ac0804d9f3c4a95153cfe5069fe62fa21c0d3eb1d2098b",
+      "target_sha256": "fc1f9fdd7c3f092f00719da3d837e98af9c84fd589ca8cba540b78398a8da5c2"
+    },
+    {
+      "path": "docs/toc.md",
+      "source_sha256": "1ad67bb31a544eacd3249aba74489646eccf249b690e5f2b2640c4a9911d1dcb",
+      "target_sha256": "4487f428ee9099922f0f0a91e132dccc22871ccbd8e14b0ae811a9d8d7d123ea"
+    },
+    {
+      "path": "examples/ch08-context-methods/README.md",
+      "source_sha256": "1c22a16fdab8622f6421b26bbc408b7d13d267ec0aa35e72d9038bde21b37e50",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "examples/ch08-context-methods/docs/demo.md",
+      "source_sha256": "cb8bd12410959fff115be826746e23773f8ac5f659349e9aa31ca852e1595a4f",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "examples/ch08-context-methods/entry.mjs",
+      "source_sha256": "0cde374c6692fa9679e36ff66f80d7eaf70b6ecfc028f0ef122d519a45e5ae0e",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "examples/ch08-context-methods/input/index.json",
+      "source_sha256": "e8d5ac55010c69cd3d4e9599d6ee9b90438be388f4ad4d9b34f2602e9f97ba89",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "examples/ch08-context-methods/input/tasks.json",
+      "source_sha256": "a4e6cbaaefcb71c1a7f820b3ad4ee602f03ce5c7b49917a145e027e2623421a8",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "package.json",
+      "source_sha256": "cd6956aa2a2fd2e24b06c13d5b860098cd70317c6101db95697d194cdd67258a",
+      "target_sha256": "0d5e105de39340d3fe24f8729345bd3628a302b20d37905a14e6e725d39569b7"
+    },
+    {
+      "path": "rust/examples/ch08_context.rs",
+      "source_sha256": "672707a25fb39bd6d6b28da9002d4c7633baabfda85a4817f6de9fa0b16bb481",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "rust/src/rein/context_methods.rs",
+      "source_sha256": "e19505c7215f4bb531379fa21d785e0e661ab49756ba3f43ef0cee4f6117019d",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "rust/src/rein/mod.rs",
+      "source_sha256": "75f3c5bf75031ffbccc69e21b61cb6d456d9a2a1b47bcd667f53a2f878445231",
+      "target_sha256": "b498eeb094366258897ca3bc637e6eb59c9778d5b4600cb3b7a599ef807850d3"
+    },
+    {
+      "path": "rust/tests/ch08_context.rs",
+      "source_sha256": "e30e7290de13bca5899faaa77ae679204d332c47c2b2f23e20e572e49bdb8719",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "scripts/ch08-compare.mjs",
+      "source_sha256": "25b8f04ac964db52562ad1381094ea34c0e459ad63a84df242f88d90c7119004",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "scripts/ch08-verify.mjs",
+      "source_sha256": "1f1bacb7f670b8dd4c318a8ac10705a6fc43069408d0661a97515742d3b69dc5",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/approval.md",
+      "source_sha256": "afdfc0374b5710feb2d0b27433a8e98c0f756d0f76fe1ccf2b0931bec52cee98",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/cache.md",
+      "source_sha256": "833601dc2efd3efafbe1c16f189d3f0e436c587d0ff400055d8237ff2c02d9a5",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/early-runtime.md",
+      "source_sha256": "5e36685c18ba08e0403135041b8deb890c32a06f490792c576ca9b8b479b98ff",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/failure.md",
+      "source_sha256": "114598f59b1096e18228b860d866e7cee61bd1730dca6d96115422f540650f54",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/indexing.md",
+      "source_sha256": "2f9050b2c5b409c1f93d257c3a6391472a0b34b70a4b6fc7bca931c0eec8eeaf",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/docs/release.md",
+      "source_sha256": "0cce602ba54f75104cb0b4299883d1308d0baf323e2484caf23f5242454c53fb",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/index.json",
+      "source_sha256": "3b16422b2991a9e4426eba9dbfe55e2fde9e51a71c5af57819d2976f4b57681a",
+      "target_sha256": "absent"
+    },
+    {
+      "path": "fixtures/ch08-context/tasks.json",
+      "source_sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1",
+      "target_sha256": "absent"
+    }
+  ],
+  "generated_at": "2026-09-15T11:00:00Z",
+  "notes": [
+    "Generated after source and manuscript freeze.",
+    "No directory entry and no null hash; each entry is a regular file.",
+    "Not an authorization or product acceptance record."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "label": "cargo-cache-isolation-clean",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "clean",
+    "-p",
+    "rein-ch01-helloworld"
+  ],
+  "started_utc": "2026-09-14T11:20:58Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 0,
+  "output": "     Removed 1834 files, 332.1MiB total\n"
+}

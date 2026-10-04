@@ -1,0 +1,14 @@
+{
+  "ok": false,
+  "gate": "local-commit",
+  "current_revision": "patch:1dfa82b9d90196c2294f61914d2017449e5548e3:0aae6ae0f11bf9fba95b90de7b4d9780112e5a1d43fa9e4f6af62ea64bd40aca",
+  "errors": [
+    {
+      "code": "AUTH_COMMIT",
+      "message": "commit is not authorized"
+    }
+  ],
+  "warnings": [],
+  "limits": "Structural consistency is not proof of product success or authorization authenticity."
+}
+

@@ -1,0 +1,9 @@
+{
+  "at": "2026-09-15T06:32:56.084825+00:00",
+  "path": "/private/tmp/rein-ch08-production-20260915/cargo-target",
+  "before": "1.1G target; 219MiB free",
+  "after": "1.3GiB free",
+  "inspection": "Escalated ps found no cargo/rustc/ch08_context processes; owner told to pause, cache renamed then removed; owner told to resume using explicit debug0/incremental0.",
+  "removed": "Regenerable compile cache only; no source or evidence removed",
+  "cause": "Multiple build profile cache suspected from size; precise attribution not established."
+}

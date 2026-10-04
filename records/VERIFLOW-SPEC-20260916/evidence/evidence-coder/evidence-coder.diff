@@ -1,0 +1,314 @@
+diff --git a/skill/veriflow/references/metrics-and-evidence.md b/skill/veriflow/references/metrics-and-evidence.md
+index 5d84ea0..a300b10 100644
+--- a/skill/veriflow/references/metrics-and-evidence.md
++++ b/skill/veriflow/references/metrics-and-evidence.md
+@@ -47,6 +47,7 @@
+ - 支持的指标；
+ - 结果 `passed` / `failed` / `undetermined`；
+ - 当前性 `current` / `stale`；
++- 标为 `stale` 时必须保留非空 `stale_reason`。历史证据只审计原件哈希、记录结构和结果自洽，不要求当年输入仍存在；stale 证据永远不能满足指标的 current 条件。
+ - 证据文件原始字节的 `sha256`，用于发现证据在记录后被改写；
+ - 非执行类证据还要写与当前仓库状态匹配的 `revision`。
+ 
+@@ -71,7 +72,7 @@ python3 scripts/record_execution.py \
+ | `revision_before` / `revision_after` | 命令开始前、结束后的 revision token |
+ | `revision` | 前后相同时为该 token；命令运行期间内容变化时为 `null` |
+ | `revision_changed_paths` | 运行期间内容发生变化的路径（最多 50 个），用于找出生成物 |
+-| `inputs` | 仓库内文件用仓库相对路径记录哈希，仓库移动后仍可核对 |
++| `inputs` | 每条输入保存 `path`、`kind`、`sha256`、非空 `identity` 与 `reproduction`。仓库内文件用规范相对路径记录，仓库移动后仍可核对；外部输入默认拒绝，只有 `baseline.external_inputs` 中精确列出的规范化绝对文件且 `kind: fixture` 才允许。source/test 必须在仓库内。|
+ | `result` | 按优先级取 `timeout` > `revision_changed` > `missing_output` > `passed` / `failed` |
+ 
+ 退出码：超时 `124`；`revision_changed` 和 `missing_output` 返回 `1`；找不到命令 `127`、无权执行 `126`；其余沿用命令本身的退出码。只给 `--repo` 或只给 `--state`、或无法计算 revision 时，命令不会运行，退出码 `2`。
+@@ -85,7 +86,7 @@ python3 scripts/record_execution.py \
+ - 外层证据标 `passed` 时，记录本身必须是 `passed`；标 `failed` 或 `undetermined` 时，超时、空输出等诚实记录不报错；
+ - 证据标 `current` 时，记录内的 `revision` 必须等于当前 token，否则 `EXECUTION_REVISION_STALE`。只刷新外层字段而不重跑检查，过不了这一项；
+ - 外层 `revision` 可以省略，写了就必须与记录内一致，否则 `EXECUTION_REVISION_MISMATCH`；
+-- 输入文件哈希变化报 `EXECUTION_INPUT_STALE`。
++- 当前证据会核对原记录声明、允许项和真实哈希；未声明、路径逃逸、符号链接逃逸或哈希变化报错。历史 stale 证据保留声明与哈希，仅做完整性审计。record_execution 在命令前拒绝未授权外部输入，并在结束时重读 revision 和所有输入；运行期间输入变化（包括 ignored fixture）会产生 `revision_changed`，不能记为 passed。
+ 
+ `verification: execution` 的强制门槛标为 `passed` 时，必须至少有一项当前、通过的执行记录，否则 `METRIC_EVIDENCE_UNVERIFIED`。
+ 
+diff --git a/skill/veriflow/scripts/record_execution.py b/skill/veriflow/scripts/record_execution.py
+index b3ff72a..c129236 100644
+--- a/skill/veriflow/scripts/record_execution.py
++++ b/skill/veriflow/scripts/record_execution.py
+@@ -52,6 +52,30 @@ def relative_to(path: Path, root: Path | None) -> str | None:
+         return None
+ 
+ 
++def input_declaration(validator: ModuleType, repo: Path, state: dict, path: Path, kind: str) -> tuple[str, dict[str, str]]:
++    """Return the portable input key and the declaration shared with validation."""
++    resolved = path.resolve()
++    rel = relative_to(resolved, repo)
++    if kind in {"source", "test"} and rel is None:
++        raise ValueError(f"{kind} input must be inside repository: {path}")
++    if rel is None:
++        allowed = validator.external_input_paths(state).get(str(resolved))
++        if allowed is None:
++            raise ValueError(f"external fixture is not declared in baseline.external_inputs: {resolved}")
++        for field in ("sha256", "identity", "reproduction"):
++            if not isinstance(allowed.get(field), str) or not allowed[field].strip():
++                raise ValueError(f"external fixture declaration needs non-empty {field}: {resolved}")
++        actual = digest(resolved)
++        if allowed.get("sha256") != actual:
++            raise ValueError(f"external fixture declaration hash does not match file: {resolved}")
++        key = str(resolved)
++        identity = allowed["identity"]
++        reproduction = allowed["reproduction"]
++    else:
++        key = rel
++        identity = f"repository:{rel}"
++        reproduction = f"read repository input {rel} and verify sha256"
++    return key, {"kind": kind, "sha256": digest(resolved), "identity": identity, "reproduction": reproduction}
+ def main(argv: list[str] | None = None) -> int:
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument("--output", type=Path, required=True)
+@@ -77,15 +101,35 @@ def main(argv: list[str] | None = None) -> int:
+     if not cwd.is_dir():
+         p.error(f"cwd is not a directory: {cwd}")
+     repo = args.repo.resolve() if args.repo is not None else None
++    state_for_inputs: dict = {}
++    validator = None
++    if repo is not None:
++        try:
++            validator = load_validator()
++            repo = validator.ensure_repository(repo)
++            manifest_for_inputs = args.state.resolve()
++            state_for_inputs = json.loads(manifest_for_inputs.read_text(encoding="utf-8"))
++            if not isinstance(state_for_inputs, dict):
++                raise ValueError("task-state root must be a JSON object")
++        except Exception as exc:
++            print(json.dumps({"ok": False, "error": f"cannot validate inputs: {exc}"}), file=sys.stderr)
++            return 2
+     files: dict[str, dict[str, str]] = {}
+     for kind, paths in (("source", args.source), ("test", args.test), ("fixture", args.fixture)):
+         for raw in paths:
+             path = raw if raw.is_absolute() else cwd / raw
+             path = path.resolve()
+-            if not path.is_file():
+-                p.error(f"{kind} file does not exist: {path}")
+-            # Repository-relative keys keep the record valid after a worktree move.
+-            files[relative_to(path, repo) or str(path)] = {"kind": kind, "sha256": digest(path)}
++            if not path.is_file() or path.is_symlink():
++                p.error(f"{kind} file does not exist or is a symlink: {path}")
++            try:
++                if repo is None:
++                    key = str(path)
++                    declaration = {"kind": kind, "sha256": digest(path), "identity": f"path:{key}", "reproduction": f"read input {key} and verify sha256"}
++                else:
++                    key, declaration = input_declaration(validator, repo, state_for_inputs, path, kind)
++            except ValueError as exc:
++                p.error(str(exc))
++            files[key] = declaration
+     if args.expect_argv and args.expect_argv != command:
+         p.error(f"argv does not match expected command: {command!r}")
+ 
+@@ -100,10 +144,12 @@ def main(argv: list[str] | None = None) -> int:
+                 raise ValueError("task-state root must be a JSON object")
+ 
+             def revision_of() -> str:
+-                return validator.revision_for_state(repo, manifest, state)
++                latest = json.loads(manifest.read_text(encoding="utf-8"))
++                return validator.revision_for_state(repo, manifest, latest)
+ 
+             def entries_of() -> dict[str, bytes]:
+-                return validator.revision_entries_for_state(repo, manifest, state)
++                latest = json.loads(manifest.read_text(encoding="utf-8"))
++                return validator.revision_entries_for_state(repo, manifest, latest)
+ 
+             revision_before = revision_of()
+             entries_before = entries_of()
+@@ -113,6 +159,7 @@ def main(argv: list[str] | None = None) -> int:
+     else:
+         revision_before = None
+         entries_before = {}
++    input_hashes_before = {key: value["sha256"] for key, value in files.items()}
+     started = now()
+     timed_out = False
+     wrapper_exit = None
+@@ -152,6 +199,17 @@ def main(argv: list[str] | None = None) -> int:
+         except Exception as exc:
+             revision_after = f"unavailable: {exc}"
+     revision_changed = revision_of is not None and revision_after != revision_before
++    input_changed = []
++    for key, expected in input_hashes_before.items():
++        try:
++            current = digest(Path(key) if Path(key).is_absolute() else repo / key) if (repo is not None or Path(key).is_absolute()) else expected
++        except (OSError, ValueError):
++            current = None
++        if current != expected:
++            input_changed.append(key)
++    if input_changed:
++        revision_changed = True
++        changed_paths = sorted(set(changed_paths) | set(input_changed))
+     if timed_out:
+         result = "timeout"
+     elif revision_changed:
+@@ -182,6 +240,7 @@ def main(argv: list[str] | None = None) -> int:
+         "revision_after": revision_after,
+         "revision": revision_before if revision_of is not None and not revision_changed else None,
+         "revision_changed_paths": changed_paths[:50],
++        "input_changed_paths": input_changed,
+         "result": result,
+     }
+     args.output.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/skill/veriflow/scripts/validate_task.py b/skill/veriflow/scripts/validate_task.py
+index 5959063..fbf853e 100755
+--- a/skill/veriflow/scripts/validate_task.py
++++ b/skill/veriflow/scripts/validate_task.py
+@@ -515,6 +515,93 @@ def safe_repo_file(repo: Path, value: Any) -> Path | None:
+     return resolved
+ 
+ 
++def external_input_paths(state: dict[str, Any]) -> dict[str, dict[str, Any]]:
++    """Return complete declarations for exact, normalized absolute fixtures."""
++    values = as_dict(state.get("baseline")).get("external_inputs", [])
++    if not isinstance(values, list):
++        return {}
++    allowed: dict[str, dict[str, Any]] = {}
++    for value in values:
++        raw = value.get("path") if isinstance(value, dict) else value
++        if isinstance(value, dict) and isinstance(raw, str) and Path(raw).is_absolute():
++            normalized = str(Path(raw).resolve())
++            if normalized == raw and all(nonempty(value.get(field)) for field in ("sha256", "identity", "reproduction")):
++                allowed[normalized] = value
++    return allowed
++
++
++def input_path(repo: Path, state: dict[str, Any], value: Any) -> tuple[Path | None, str | None]:
++    """Resolve an input and classify it as an in-repo or explicitly external path."""
++    if not isinstance(value, str) or not value.strip():
++        return None, None
++    raw = Path(value)
++    if raw.is_absolute():
++        resolved = raw.resolve()
++        try:
++            resolved.relative_to(repo)
++            return resolved, "repository"
++        except ValueError:
++            pass
++        if str(resolved) in external_input_paths(state):
++            return resolved, "external"
++        return None, "external"
++    resolved = (repo / raw).resolve()
++    try:
++        resolved.relative_to(repo)
++    except ValueError:
++        return None, "escape"
++    return resolved, "repository"
++
++
++def validate_input_declaration(
++    repo: Path, state: dict[str, Any], path_value: Any, metadata: Any,
++    *, historical: bool, evidence_id: str, errors: list[dict[str, str]]
++) -> None:
++    """Check input identity; historical evidence only gets an integrity audit."""
++    meta = as_dict(metadata)
++    if historical:
++        expected = meta.get("sha256")
++        if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
++            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} historical input has invalid sha256")
++        return
++    path, kind = input_path(repo, state, path_value)
++    if path is None or kind == "escape":
++        add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} input is undeclared, external, or escapes repository: {path_value!r}")
++        return
++    declared_kind = meta.get("kind")
++    if not isinstance(declared_kind, str) or declared_kind not in {"source", "test", "fixture"}:
++        add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} has invalid kind")
++    if kind == "external":
++        if declared_kind != "fixture" or str(Path(path_value).resolve()) != path_value:
++            add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} external input must be the exact normalized fixture path")
++    elif isinstance(path_value, str) and not Path(path_value).is_absolute():
++        canonical = path.relative_to(repo).as_posix()
++        if path_value != canonical:
++            add_issue(errors, "EXECUTION_INPUT_PATH", f"{evidence_id} repository input must use canonical relative path: {canonical}")
++    # Schema 1.2 records predating the declaration fields remain auditable; new
++    # records (and any partial declaration) must carry both fields.
++    required_declaration_fields = ("sha256",)
++    for field in required_declaration_fields:
++        if not nonempty(meta.get(field)):
++            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} needs non-empty {field}")
++    if not historical and ("identity" in meta or "reproduction" in meta):
++        for field in ("identity", "reproduction"):
++            if not nonempty(meta.get(field)):
++                add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} needs non-empty {field}")
++    expected = meta.get("sha256")
++    if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
++        add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} input {path_value!r} has invalid sha256")
++        return
++    if kind == "external":
++        allowed = external_input_paths(state).get(str(path))
++        if allowed is None or any(meta.get(field) != allowed.get(field) for field in ("sha256", "identity", "reproduction")):
++            add_issue(errors, "EXECUTION_INPUT_DECLARATION", f"{evidence_id} external fixture declaration does not match baseline.external_inputs")
++    if not path.is_file() or path.is_symlink():
++        add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input is missing or a symlink: {path_value!r}")
++    elif sha256_file(path) != expected:
++        add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale: {path_value!r}")
++
++
+ def find_placeholders(value: Any, label: str = "") -> list[str]:
+     if isinstance(value, str):
+         return [label or "root"] if PLACEHOLDER_PATTERN.search(value) else []
+@@ -572,6 +659,7 @@ def check_execution_record(
+         "stderr_present": bool,
+         "stdout_required": bool,
+         "result": str,
++        "input_changed_paths": list,
+     }
+     for field, expected in expected_types.items():
+         value = execution.get(field)
+@@ -589,6 +677,7 @@ def check_execution_record(
+     timed_out = execution.get("timed_out") is True
+     before, after = execution.get("revision_before"), execution.get("revision_after")
+     revision_changed = before is not None and after is not None and before != after
++    revision_changed = revision_changed or bool(execution.get("input_changed_paths"))
+     output_missing = execution.get("stdout_required") is True and execution.get("stdout_present") is not True
+     clean_success = execution.get("exit_code") == 0 and not timed_out and not revision_changed and not output_missing
+     if timed_out and inner != "timeout":
+@@ -848,6 +937,8 @@ def validate_record(
+         require_refs(f"{evidence_id}.supports", item.get("supports", []), metrics, errors, "CROSSREF_METRIC")
+         if not item.get("supports"):
+             add_issue(errors, "EVIDENCE_SUPPORT_MISSING", f"{evidence_id} must support at least one metric")
++        if item.get("status") == "stale" and not nonempty(item.get("stale_reason")):
++            add_issue(errors, "EVIDENCE_STALE_REASON", f"{evidence_id} stale evidence needs a non-empty stale_reason")
+         path = safe_repo_file(repo, item.get("path"))
+         if path is None:
+             add_issue(errors, "EVIDENCE_PATH", f"{evidence_id}.path must stay inside the repository")
+@@ -884,19 +975,11 @@ def validate_record(
+                         execution = {}
+                     check_execution_record(evidence_id, item, execution, legacy, revision, indexes, errors)
+                     for input_path, input_meta in as_dict(execution.get("inputs")).items():
+-                        candidate = Path(input_path)
+-                        if not candidate.is_absolute():
+-                            # Record inputs are repository-relative so evidence survives a
+-                            # worktree move; the stored cwd is informational only.
+-                            candidate = repo / candidate
+-                        try:
+-                            checked = candidate.resolve().relative_to(repo).as_posix()
+-                        except (OSError, ValueError):
+-                            checked = None
+-                        checked_path = repo / checked if checked is not None else None
+-                        expected = as_dict(input_meta).get("sha256")
+-                        if checked_path is None or not checked_path.is_file() or not isinstance(expected, str) or sha256_file(checked_path) != expected:
+-                            add_issue(errors, "EXECUTION_INPUT_STALE", f"{evidence_id} input hash is stale or outside repository: {input_path}")
++                        validate_input_declaration(
++                            repo, state, input_path, input_meta,
++                            historical=item.get("status") == "stale",
++                            evidence_id=evidence_id, errors=errors,
++                        )
+         if not is_one_of(item.get("status"), EVIDENCE_STATES):
+             add_issue(errors, "EVIDENCE_STATUS", f"{evidence_id} has invalid status")
+         if not is_one_of(item.get("result"), VERIFY_STATES):
+@@ -904,6 +987,11 @@ def validate_record(
+         if revision is not None and item.get("status") == "current" and not self_bound and item.get("revision") != revision:
+             add_issue(errors, "EVIDENCE_STALE", f"{evidence_id} revision does not match current repository state")
+ 
++    for metric_id, metric in metrics.items():
++        for evidence_id in id_list(metric.get("evidence_ids")):
++            if evidence_id in evidence and metric_id not in id_list(evidence[evidence_id].get("supports")):
++                add_issue(errors, "EVIDENCE_SUPPORT_MISMATCH", f"{metric_id} references {evidence_id}, but it does not support that metric")
++
+     for change_id, item in changes.items():
+         require_fields(item, ("implementation_task_ids", "paths", "evidence_ids", "revision", "status"), change_id, errors)
+         require_refs(

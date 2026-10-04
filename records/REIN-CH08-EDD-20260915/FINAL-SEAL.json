@@ -1,0 +1,30 @@
+{
+  "sealed_at": "2026-09-15T11:33:05.560376+00:00",
+  "status": "completed_local",
+  "new_skill_unchanged_files": 18,
+  "final_source_files": 179,
+  "original_baseline_preserved_files": 153,
+  "changed_or_added_paths": 26,
+  "artifacts": {
+    "STATUS.md": "9d2c7abf32aa60fd927a3e5721ba891fa1443dce414027774db9cd60a6ce4d99",
+    "REPORT.md": "fe8b7a78d2c7349cb7db1e3c51e9fcf366eca6b163b8d8c4af22917eb0377de2",
+    "production/root-final-review/final-review.json": "c73839587a0c4f3e8ea6994e8a493d8bfcf830d72c940d983dc368ba5bf9012c",
+    "production/root-final-review/reviewed-final.patch": "bc2de1f0f824e3b58d5019b92de97c98289ca039a0ac08f2e0dfaed8f962d2c4",
+    "production/delivery/manifest.json": "b9cb6b12c74f822d339e4a0de10ac3eb544dc4e42985b1306c30916240d2acc5",
+    "production/delivery/root-acceptance-execution.json": "f0b7afb77563daa409ef17920ebb861c846862f78ddeb82f21450c1eb0e61e7d",
+    "production/delivery/integration.json": "b1b1b60bf9c5e766b87481cf8cf9306a3250bca0ac33ffcc883456096ed89fbc",
+    "production/delivery/integration-tool-call-output.json": "effcd8d05934402245443d730e1a9087d7e7c81aefb41cb0d00f2a7af8994fd4",
+    "production/original-validation/final-review.json": "c4d502de6a8a219ce4e09a606a9fde9a6745a2409e54b4b3b993580a635d2c92",
+    "production/original-validation-seal.json": "5fbd8b1adfef379cc9d01ef1b040f2f4cbb54fafc1ca3d20d9fedfdcaec245d3",
+    "production/final-book-source.tar.gz": "ab225920c5bbec69b1f5abef2eedebedffe4bc7c97b9cecc2187151f810bf6f4",
+    "production/final-book-source-seal.json": "145e0c7d3b85ebce524a56e37fd60e1ad6337b055dc350937b3ed3f15c166d65",
+    "production/final-book-source-root-verification.json": "eeaf02fa731f96348f2a151eaa5917744a576b90ebf01e4e38c01907401154eb",
+    "costs/phase-accounting.json": "edd2958d7c4fa606b167e833f87bea0eadbab2ced187d25393fdf169d05be58f",
+    "costs/primary-exact-usage-audit.json": "a55d9d8ee24e420a0eb5327fb4c6fa55de7c69b165ca2f41c678b41957f479ba"
+  },
+  "limits": [
+    "Formal first-run artifacts/scoring remain immutable; production version is separate",
+    "Offline only; no commit/tag/push/deploy",
+    "Raw usage as-of snapshots are not final billing; no fee or savings estimates"
+  ]
+}

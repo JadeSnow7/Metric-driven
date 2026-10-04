@@ -1,0 +1,19 @@
+{
+  "commands": [
+    {"argv":["python3","-m","unittest","discover","-s","tools/tests","-v"],"exit":0,"stdout":"","stderr":"Ran 21 tests ... OK"},
+    {"argv":["python3","-m","unittest","discover","-s","tools","-p","test_rein_experiment.py","-v"],"exit":0,"stdout":"","stderr":"Ran 4 tests ... OK"},
+    {"argv":["python3","-m","unittest","discover","-s","skill/evidence-driven-development/tests","-v"],"exit":0,"stdout":"","stderr":"Ran 30 tests ... OK"},
+    {"argv":["python3","tools/validate_repository.py"],"exit":0,"stdout":"repository validation passed (18 required files, local links checked)\nnote: this proves repository consistency, not workflow behavior or delivery authorization\n","stderr":""},
+    {"argv":["python3","-m","py_compile","tools/rein_evaluate.py","tools/tests/test_rein_evaluate.py","tools/tests/test_rein_dataset.py","tools/validate_repository.py"],"exit":0,"stdout":"","stderr":""},
+    {"argv":["git","diff","--check","--","tools/rein_evaluate.py","tools/tests/test_rein_evaluate.py","tools/tests/test_rein_dataset.py","tools/validate_repository.py","records/REIN-CH05-16/evidence/specs/chapter-16"],"exit":0,"stdout":"","stderr":""}
+  ],
+  "specific_regressions": {
+    "parameter-change-01": "real parser rejects --timeout 5 and accepts --timeout-seconds 5",
+    "parameter-change-02": "real parser accepts --workspace src and rejects --root-dir src",
+    "broken-relative-link-01": "actual case oracle accepts See [Guide](docs/guide.md). and See [the guide](./docs/guide.md).",
+    "broken-links_comments": "visible broken link plus HTML-comment repair fails; comment-only repair fails",
+    "workspace_integrity": "all modified candidates preserve every non-target file hash; no-change remains full-tree equal",
+    "statistics": "Cargo 9/8/0/1; unittest Ran-minus-skipped; pytest 3/2/1/3; Vitest 8/8/0/1",
+    "manual_review": "technical success with require_review is undetermined"
+  }
+}

@@ -1,0 +1,5 @@
+npm run typecheck --workspace ts
+npm test --workspace ts -- tests/loop.test.ts
+npm run ch06:offline --workspace ts -- <mode> for 10 fixture modes
+custom workspace: npm run ch06:offline --workspace ts -- normal <absolute-workspace>
+npm test --workspace ts (sandbox escalation; 8 files, 87 tests)

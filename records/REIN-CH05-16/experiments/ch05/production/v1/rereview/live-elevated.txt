@@ -1,0 +1,109 @@
+[
+  {
+    "language": "ts",
+    "mode": "success",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:live",
+      "--",
+      "--live",
+      "/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4",
+      "read README"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914/ts",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 2,
+      "reason": "final_answer",
+      "no_retry_and_bound": true,
+      "actual_tool_result_in_next_request": true
+    }
+  },
+  {
+    "language": "ts",
+    "mode": "limit",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:live",
+      "--",
+      "--live",
+      "/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4",
+      "read README"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914/ts",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 4,
+      "reason": "max_turns",
+      "no_retry_and_bound": true
+    }
+  },
+  {
+    "language": "ts",
+    "mode": "error",
+    "argv": [
+      "npm",
+      "run",
+      "ch05:live",
+      "--",
+      "--live",
+      "/private/tmp/rein-ch05-production-rereview-1/live-ws-kkvg8rr4",
+      "read README"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914/ts",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 1,
+      "reason": "model_error",
+      "no_retry_and_bound": true
+    }
+  },
+  {
+    "language": "rust",
+    "mode": "success",
+    "argv": [
+      "/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop",
+      "--live"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 2,
+      "reason": "FinalAnswer",
+      "no_retry_and_bound": true,
+      "actual_tool_result_in_next_request": true
+    }
+  },
+  {
+    "language": "rust",
+    "mode": "limit",
+    "argv": [
+      "/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop",
+      "--live"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 4,
+      "reason": "MaxTurns",
+      "no_retry_and_bound": true
+    }
+  },
+  {
+    "language": "rust",
+    "mode": "error",
+    "argv": [
+      "/private/tmp/rein-production-rereview-build/debug/examples/ch05_loop",
+      "--live"
+    ],
+    "cwd": "/private/tmp/rein-production-20260914",
+    "exit_code": 0,
+    "checks": {
+      "request_count": 1,
+      "reason": "ModelError",
+      "no_retry_and_bound": true
+    }
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "rust/Cargo.toml",
+    "loop"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T14:58:44.784Z",
+  "end": "2026-09-14T14:58:51.879Z",
+  "elapsedMs": 7094.798916,
+  "exit": 0,
+  "stdout": "\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 1 test\ntest loop_wire_values_are_snake_case_and_fields_camel_case ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s\n\n",
+  "stderr": "   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.44s\n     Running unittests src/lib.rs (/private/tmp/rein-candidate03-build/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)\n     Running unittests src/bin/hello.rs (/private/tmp/rein-candidate03-build/debug/deps/hello-e891c8ec077baf1a)\n     Running unittests src/main.rs (/private/tmp/rein-candidate03-build/debug/deps/rein_ch01_helloworld-99d76be240253315)\n     Running tests/loop.rs (/private/tmp/rein-candidate03-build/debug/deps/loop-8ce302fc995cc4fc)\n     Running tests/prerequisites.rs (/private/tmp/rein-candidate03-build/debug/deps/prerequisites-f3a192991d055a1f)\n"
+}

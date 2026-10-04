@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--manifest-path",
+    "rust/Cargo.toml",
+    "--test",
+    "ch08_context"
+  ],
+  "cwd": "/private/tmp/rein-ch08-formal-20260915/C/book",
+  "started_at": "2026-09-15T05:04:35.114668Z",
+  "ended_at": "2026-09-15T05:04:35.480346Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "\nrunning 2 tests\ntest zero_budget_does_not_dispatch ... ok\ntest reads_real_node_and_unknown_stays_empty ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s\n\n",
+  "stderr": "warning: unused variable: `workspace`\n   --> src/rein/loop.rs:326:5\n    |\n326 |     workspace: &Workspace,\n    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)\n    Finished `test` profile [unoptimized] target(s) in 0.06s\n     Running tests/ch08_context.rs (/private/tmp/rein-ch08-formal-20260915/C/run/cargo-target/debug/deps/ch08_context-bf841b87d4c6dc5a)\n",
+  "stdout_base64": "CnJ1bm5pbmcgMiB0ZXN0cwp0ZXN0IHplcm9fYnVkZ2V0X2RvZXNfbm90X2Rpc3BhdGNoIC4uLiBvawp0ZXN0IHJlYWRzX3JlYWxfbm9kZV9hbmRfdW5rbm93bl9zdGF5c19lbXB0eSAuLi4gb2sKCnRlc3QgcmVzdWx0OiBvay4gMiBwYXNzZWQ7IDAgZmFpbGVkOyAwIGlnbm9yZWQ7IDAgbWVhc3VyZWQ7IDAgZmlsdGVyZWQgb3V0OyBmaW5pc2hlZCBpbiAwLjI2cwoK",
+  "stderr_base64": "d2FybmluZzogdW51c2VkIHZhcmlhYmxlOiBgd29ya3NwYWNlYAogICAtLT4gc3JjL3JlaW4vbG9vcC5yczozMjY6NQogICAgfAozMjYgfCAgICAgd29ya3NwYWNlOiAmV29ya3NwYWNlLAogICAgfCAgICAgXl5eXl5eXl5eIGhlbHA6IGlmIHRoaXMgaXMgaW50ZW50aW9uYWwsIHByZWZpeCBpdCB3aXRoIGFuIHVuZGVyc2NvcmU6IGBfd29ya3NwYWNlYAogICAgfAogICAgPSBub3RlOiBgI1t3YXJuKHVudXNlZF92YXJpYWJsZXMpXWAgKHBhcnQgb2YgYCNbd2Fybih1bnVzZWQpXWApIG9uIGJ5IGRlZmF1bHQKCndhcm5pbmc6IGByZWluLWNoMDEtaGVsbG93b3JsZGAgKGxpYikgZ2VuZXJhdGVkIDEgd2FybmluZyAocnVuIGBjYXJnbyBmaXggLS1saWIgLXAgcmVpbi1jaDAxLWhlbGxvd29ybGRgIHRvIGFwcGx5IDEgc3VnZ2VzdGlvbikKICAgIEZpbmlzaGVkIGB0ZXN0YCBwcm9maWxlIFt1bm9wdGltaXplZF0gdGFyZ2V0KHMpIGluIDAuMDZzCiAgICAgUnVubmluZyB0ZXN0cy9jaDA4X2NvbnRleHQucnMgKC9wcml2YXRlL3RtcC9yZWluLWNoMDgtZm9ybWFsLTIwMjYwOTE1L0MvcnVuL2NhcmdvLXRhcmdldC9kZWJ1Zy9kZXBzL2NoMDhfY29udGV4dC1iZjg0MWI4N2Q0YzZkYzVhKQo=",
+  "stdout_present": true,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {
+    "/private/tmp/rein-ch08-formal-20260915/C/book/rust/src/rein/context_methods.rs": {
+      "kind": "source",
+      "sha256": "72272177efc1a20f713ff64a4fbb8ffbd978924b7a934abd667f869d1f535014"
+    },
+    "/private/tmp/rein-ch08-formal-20260915/C/book/rust/tests/ch08_context.rs": {
+      "kind": "test",
+      "sha256": "fd46ba702cfc02e11a05b7648a44d8660b8d09aad49dbc41e7175498c176e6e6"
+    },
+    "/private/tmp/rein-ch08-formal-20260915/C/book/fixtures/ch08-context/tasks.json": {
+      "kind": "fixture",
+      "sha256": "41d4c4d3a9200136e362ca39a0e05e52286893e9f6f920e59eee8d261301d0f1"
+    }
+  },
+  "result": "passed"
+}

@@ -1,0 +1,737 @@
+diff --git a/contracts/README.md b/contracts/README.md
+index 58cce38..281367a 100644
+--- a/contracts/README.md
++++ b/contracts/README.md
+@@ -9,4 +9,4 @@
+ 
+ TypeScript 的 `ts/src/rein/contracts.ts` 与 Rust 的 `rust/src/rein/mod.rs` 共享四个可序列化概念：`Message` 表示对话消息，`ToolCall` 表示模型请求的工具动作，`ToolResult` 表示带 `ok` 与结构化错误的工具结果，`Turn` 把一轮消息、调用和结果成组保存。wire JSON 使用 camelCase（如 `toolCallId`、`toolCalls`、`toolResults`、`inputSchema`）；Rust 内部字段仍可使用 snake_case 并由 serde 映射。可选字段在 Rust 为 `None` 时省略，输入仍兼容缺失或 `null`，与 TS optional 对齐；`canonical_sample` 是两端共享的 canonical JSON 样例。`read_file` 与 `search_files` 只接受 workspace 内路径或关键词；工具错误码包括 `path_escape`、`path_invalid`、`read_failed`、`search_failed`、`workspace_invalid`、`arguments_invalid` 和 `unknown_tool`。TS 以 `ToolResult` 返回，Rust 也以 `ToolResult` 返回；解析与传输层错误则由 TS 抛出 `Error`、Rust 返回 `Result`。这不是对所有底层路径错误细节的隐藏承诺。
+ 
+-OpenAI 适配器使用现有配置和 transport，单次非流式调用，不自动重试；它序列化完整 messages/tools，并保留多个 `tool_calls` 及其 JSON arguments。Anthropic 前置适配器转换 system、text、tool_use、tool_result；回放输入是 Anthropic wire JSON，不是 `ModelTurn` 对象，按输入顺序消费，用尽后 TS 抛出 `Error('replay exhausted')`，Rust 返回 `code='replay_exhausted'`。Rust 的具体 HTTP 入口是 `rein::openai_complete`，通过 `rein::OpenAiHttp`（生产实现为 `ReqwestHttp`）发送请求；TS 入口是 `createOpenAIAdapter`。例如模型返回 `{"tool_calls":[{"id":"call-1","name":"read_file","arguments":{"path":"README.md"}}]}`，工具执行后追加 `{"role":"tool","toolCallId":"call-1","content":"..."}`，下一轮仍携带同一 id。这些 API 是 ch05 Agent Loop 的输入，不包含循环控制。
++OpenAI 适配器使用现有配置和 transport，单次非流式调用，不自动重试；它序列化完整 messages/tools，并保留多个 `tool_calls` 及其 JSON arguments。Anthropic 前置适配器转换 system、text、tool_use、tool_result；回放输入是 Anthropic wire JSON，不是 `ModelTurn` 对象，按输入顺序消费，用尽后 TS 抛出 `Error('replay exhausted')`，Rust 返回 `code='replay_exhausted'`。Rust 的具体 HTTP 入口是 `rein::openai_complete`，通过 `rein::OpenAiHttp`（生产实现为 `ReqwestHttp`）发送请求；TS 入口是 `createOpenAIAdapter`。例如模型返回 `{"tool_calls":[{"id":"call-1","name":"read_file","arguments":{"path":"README.md"}}]}`，工具执行后追加 `{"role":"tool","toolCallId":"call-1","content":"..."}`，下一轮仍携带同一 id。这些 API 的定位由本任务可恢复快照与合同变化记录确定，不依赖预先固定的 Git tag；它们不包含循环控制。
+diff --git a/new/docs/chapters/05-rust.md b/docs/chapters/05-rust.md
+new file mode 100644
+index 0000000..a434794
+--- /dev/null
++++ b/docs/chapters/05-rust.md
+@@ -0,0 +1,39 @@
++---
++prev: { text: 04 统一模型适配, link: /chapters/04.html }
++next: { text: 06 预算、取消与超时 · 待撰写, link: /chapters/06.html }
++---
++
++# 05 核心 Agent Loop（Rust）
++
++模型要求搜索和读取时，Rust 程序要执行工作区工具，把每个结果作为带原调用 ID 的 `tool` 消息放回历史，再继续请求。本章在前置消息合同、适配器和只读工具之上加入循环；预算、取消和超时留到第06章。
++
++<span id="knowledge-loop"></span>
++<span id="知识点-循环与工具结果配对"></span>
++
++## 运行离线演示
++
++```bash
++cd rust
++CARGO_TARGET_DIR=/tmp/rein-ch05-target cargo fmt -- --check
++CARGO_TARGET_DIR=/tmp/rein-ch05-target cargo run --locked --offline --bin ch05_loop
++```
++
++示例临时创建 `guide.md`，离线模型依次请求 `search_files` 和 `read_file`。输出 JSON 应包含 `search-1`、`read-1`、工具结果以及 `completed`；文件内容由 `dispatch_readonly` 真实读取，不是回放硬编码。
++
++## 实现和失败路径
++
++`rust/src/rein/mod.rs` 的 `LoopAdapter` 只负责一次 `complete`。`run_agent_loop` 保存消息与 `LoopEvent`：先记录 `Model`，再按声明顺序执行工具并记录 `Tool`。工具成功消息使用真实文本，失败消息使用包含结构化错误的 JSON。没有工具且非空文本才是 `Completed`；空文本为 `EmptyFinal`，适配器错误为 `ModelError`，超过调用方给定轮数为 `MaxRounds`。
++
++`tool_call_id` 是关联键，多个调用不会串线。消息历史供模型使用，事件序列供人和测试核查。真实接入可在 adapter 中包装已有 `openai_complete`，并显式使用 `REIN_BASE_URL`、`REIN_API_KEY`、`REIN_MODEL`；本示例不读密钥、不联网。
++
++```bash
++CARGO_TARGET_DIR=/tmp/rein-ch05-target cargo test --locked --offline loop_
++```
++
++本章测试验证真实文件内容、多调用顺序、未知工具失败、模型错误与空最终回答。
++
++<span id="failure-paths"></span>
++
++## 练习 05
++
++让离线模型先读取不存在的 `missing.md`，再依据 `path_invalid` 回答；修改 `guide.md` 为自己的句子。验收：事件含失败调用 ID 和 `ok=false`，错误码为 `path_invalid`，最终停止原因仍为 `completed`，并且读取文本随文件内容变化。
+diff --git a/docs/chapters/05.md b/docs/chapters/05.md
+index 3dd13c6..5eb693b 100644
+--- a/docs/chapters/05.md
++++ b/docs/chapters/05.md
+@@ -1,5 +1,48 @@
++---
++prev: { text: 04 统一模型适配, link: /chapters/04.html }
++next: { text: 06 预算、取消与超时 · 待撰写, link: /chapters/06.html }
++---
++
+ # 05 核心 Agent Loop
+ 
+-**状态：待撰写｜限时免费**
++一次模型请求只能得到一次决定；当模型要求搜索和读取时，程序必须执行真实工具，把结果按原调用 ID 放回消息历史，再发起下一轮。本章实现这个循环，预算、取消和超时留到第06章。
++
++<span id="knowledge-loop"></span>
++<span id="知识点-循环与工具结果配对"></span>
++
++## 运行离线演示
++
++在仓库根目录执行：
++
++```bash
++npm ci
++npm run typecheck --workspace ts
++npm run ch05:offline --workspace ts
++```
++
++演示临时写入 `guide.md`，确定性模型先请求 `search_files`，再请求 `read_file`，最后回答。输出应包含 `search-1`、`read-1`、真实文件内容和 `"reason": "completed"`。回放只决定下一步，工具输出来自当前工作区；修改文件内容后，读取事件也会变化。
++
++## 循环如何工作
++
++`ts/src/rein/loop.ts` 的 `runAgentLoop` 保留 `messages` 和 `events`。assistant 消息中的多个 `toolCalls` 按声明顺序执行，并追加：
++
++```text
++toolCallId="search-1" -> role="tool", content=真实搜索结果
++toolCallId="read-1"   -> role="tool", content=真实文件内容
++```
++
++适配器下一次收到完整历史，因此不会把结果错配给别的调用。没有工具调用且文本非空才是 `completed`；空文本是 `empty_final`。未知工具、参数错误、越界或读取失败都会成为结构化失败，模型错误则成为 `model_error`。默认 32 轮后停止为 `max_rounds`。
++
++事件同时记录轮次、调用 ID、工具结果和停止原因，可检查并重放运行过程；事件不是给模型的历史，真实工具消息仍必须送入下一轮。
++
++```bash
++npm test --workspace ts -- --run tests/loop.test.ts
++```
++
++测试覆盖最终回答、搜索→读取、同轮多调用 ID 顺序、失败反馈、模型失败、空回答和轮次保护。真实模型接入应复用已有 `createOpenAIAdapter`，显式提供 `REIN_*` 配置并把本章冒烟限制在 4 次以内；离线流程不读取密钥。
++
++<span id="failure-paths"></span>
++
++## 练习 05
+ 
+-本章计划让 Rein 从一次工具调用发展为搜索、读取与回答的连续行动。
++让示例先调用不存在的 `missing.md`，再根据 `path_invalid` 返回解释；同时修改 `guide.md` 内容。验收：工具事件的 `ok` 为 `false` 且错误码为 `path_invalid`，最后仍为 `completed`；换文件后读取结果随之改变。
+diff --git a/new/rust/src/bin/ch05_loop.rs b/rust/src/bin/ch05_loop.rs
+new file mode 100644
+index 0000000..a127dd5
+--- /dev/null
++++ b/rust/src/bin/ch05_loop.rs
+@@ -0,0 +1,104 @@
++use rein_ch01_helloworld::rein::{
++    run_agent_loop, LoopAdapter, Message, ModelTurn, ToolCall, ToolDefinition, ToolError, Workspace,
++};
++use std::{future::Future, pin::Pin};
++struct OfflineModel {
++    round: usize,
++}
++impl LoopAdapter for OfflineModel {
++    fn complete<'a>(
++        &'a mut self,
++        messages: &'a [Message],
++        _tools: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++        self.round += 1;
++        let make = |id: &str, name: &str, args: serde_json::Value| ToolCall {
++            id: id.into(),
++            name: name.into(),
++            arguments: args,
++        };
++        let turn = match self.round {
++            1 => {
++                let calls = vec![make(
++                    "search-1",
++                    "search_files",
++                    serde_json::json!({"needle":"工具结果"}),
++                )];
++                ModelTurn {
++                    message: Message {
++                        role: "assistant".into(),
++                        content: String::new(),
++                        tool_call_id: None,
++                        tool_calls: calls.clone(),
++                    },
++                    tool_calls: calls,
++                }
++            }
++            2 => {
++                let calls = vec![make(
++                    "read-1",
++                    "read_file",
++                    serde_json::json!({"path":"guide.md"}),
++                )];
++                ModelTurn {
++                    message: Message {
++                        role: "assistant".into(),
++                        content: String::new(),
++                        tool_call_id: None,
++                        tool_calls: calls.clone(),
++                    },
++                    tool_calls: calls,
++                }
++            }
++            _ => ModelTurn {
++                message: Message {
++                    role: "assistant".into(),
++                    content: messages
++                        .iter()
++                        .find(|m| m.role == "tool")
++                        .map(|m| format!("读取完成：{}", m.content.trim()))
++                        .unwrap_or_else(|| "读取完成".into()),
++                    tool_call_id: None,
++                    tool_calls: vec![],
++                },
++                tool_calls: vec![],
++            },
++        };
++        Box::pin(async move { Ok(turn) })
++    }
++}
++#[tokio::main]
++async fn main() {
++    let root = std::env::temp_dir().join(format!("rein-ch05-demo-{}", std::process::id()));
++    let _ = std::fs::remove_dir_all(&root);
++    std::fs::create_dir_all(&root).unwrap();
++    std::fs::write(root.join("guide.md"), "# Loop\n工具结果会进入下一轮。\n").unwrap();
++    let tools = vec![
++        ToolDefinition {
++            name: "search_files".into(),
++            description: "搜索文本文件".into(),
++            input_schema: serde_json::json!({"type":"object"}),
++        },
++        ToolDefinition {
++            name: "read_file".into(),
++            description: "读取文本文件".into(),
++            input_schema: serde_json::json!({"type":"object"}),
++        },
++    ];
++    let mut model = OfflineModel { round: 0 };
++    let result = run_agent_loop(
++        &mut model,
++        &[Message {
++            role: "user".into(),
++            content: "搜索并读取 guide.md".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        }],
++        &Workspace { root: root.clone() },
++        &tools,
++        32,
++    )
++    .await;
++    println!("{}", serde_json::to_string_pretty(&serde_json::json!({"answer": result.answer, "reason": result.reason, "events": result.events})).unwrap());
++    let _ = std::fs::remove_dir_all(root);
++}
+diff --git a/rust/src/rein/mod.rs b/rust/src/rein/mod.rs
+index b72e288..5a2a147 100644
+--- a/rust/src/rein/mod.rs
++++ b/rust/src/rein/mod.rs
+@@ -581,6 +581,145 @@ fn invalid_result(id: &str, message: &str) -> ToolResult {
+     }
+ }
+ 
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(tag = "type", rename_all = "camelCase")]
++pub enum LoopEvent {
++    Started {
++        round: usize,
++    },
++    Model {
++        round: usize,
++        tool_call_ids: Vec<String>,
++        text: String,
++    },
++    Tool {
++        round: usize,
++        tool_call_id: String,
++        name: String,
++        result: ToolResult,
++    },
++    Stopped {
++        reason: StopReason,
++    },
++}
++
++#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
++#[serde(rename_all = "snake_case")]
++pub enum StopReason {
++    Completed,
++    EmptyFinal,
++    ModelError,
++    MaxRounds,
++}
++
++#[derive(Clone, Debug, PartialEq, Eq)]
++pub struct LoopResult {
++    pub ok: bool,
++    pub answer: Option<String>,
++    pub reason: StopReason,
++    pub messages: Vec<Message>,
++    pub events: Vec<LoopEvent>,
++}
++
++pub trait LoopAdapter {
++    fn complete<'a>(
++        &'a mut self,
++        messages: &'a [Message],
++        tools: &'a [ToolDefinition],
++    ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>>;
++}
++
++pub async fn run_agent_loop<A: LoopAdapter>(
++    adapter: &mut A,
++    initial: &[Message],
++    workspace: &Workspace,
++    tools: &[ToolDefinition],
++    max_rounds: usize,
++) -> LoopResult {
++    let mut messages = initial.to_vec();
++    let mut events = vec![LoopEvent::Started { round: 0 }];
++    for round in 1..=max_rounds {
++        let turn = match adapter.complete(&messages, tools).await {
++            Ok(turn) => turn,
++            Err(_) => {
++                events.push(LoopEvent::Stopped {
++                    reason: StopReason::ModelError,
++                });
++                return LoopResult {
++                    ok: false,
++                    answer: None,
++                    reason: StopReason::ModelError,
++                    messages,
++                    events,
++                };
++            }
++        };
++        let ids = turn.tool_calls.iter().map(|call| call.id.clone()).collect();
++        events.push(LoopEvent::Model {
++            round,
++            tool_call_ids: ids,
++            text: turn.message.content.clone(),
++        });
++        let final_text = turn.message.content.clone();
++        messages.push(turn.message);
++        if turn.tool_calls.is_empty() {
++            if final_text.trim().is_empty() {
++                events.push(LoopEvent::Stopped {
++                    reason: StopReason::EmptyFinal,
++                });
++                return LoopResult {
++                    ok: false,
++                    answer: None,
++                    reason: StopReason::EmptyFinal,
++                    messages,
++                    events,
++                };
++            }
++            let answer = final_text;
++            events.push(LoopEvent::Stopped {
++                reason: StopReason::Completed,
++            });
++            return LoopResult {
++                ok: true,
++                answer: Some(answer),
++                reason: StopReason::Completed,
++                messages,
++                events,
++            };
++        }
++        for call in turn.tool_calls {
++            let result = dispatch_readonly(&call, workspace);
++            let content = if result.ok {
++                result.output.clone().unwrap_or_default()
++            } else {
++                serde_json::json!({"error": result.error}).to_string()
++            };
++            messages.push(Message {
++                role: "tool".into(),
++                content,
++                tool_call_id: Some(result.tool_call_id.clone()),
++                tool_calls: Vec::new(),
++            });
++            events.push(LoopEvent::Tool {
++                round,
++                tool_call_id: call.id,
++                name: call.name,
++                result,
++            });
++        }
++    }
++    events.push(LoopEvent::Stopped {
++        reason: StopReason::MaxRounds,
++    });
++    LoopResult {
++        ok: false,
++        answer: None,
++        reason: StopReason::MaxRounds,
++        messages,
++        events,
++    }
++}
++
+ #[cfg(test)]
+ mod tests {
+     use super::*;
+@@ -614,4 +753,136 @@ mod tests {
+         assert!(!result.ok);
+         assert!(result.error.is_some());
+     }
++
++    struct Replay {
++        turns: Vec<Result<ModelTurn, ToolError>>,
++        index: usize,
++    }
++
++    impl LoopAdapter for Replay {
++        fn complete<'a>(
++            &'a mut self,
++            _messages: &'a [Message],
++            _tools: &'a [ToolDefinition],
++        ) -> Pin<Box<dyn Future<Output = Result<ModelTurn, ToolError>> + Send + 'a>> {
++            let result = self.turns.get(self.index).cloned().unwrap_or_else(|| {
++                Err(ToolError {
++                    code: "exhausted".into(),
++                    message: "exhausted".into(),
++                })
++            });
++            self.index += 1;
++            Box::pin(async move { result })
++        }
++    }
++
++    fn model(text: &str, calls: Vec<ToolCall>) -> ModelTurn {
++        ModelTurn {
++            message: Message {
++                role: "assistant".into(),
++                content: text.into(),
++                tool_call_id: None,
++                tool_calls: calls.clone(),
++            },
++            tool_calls: calls,
++        }
++    }
++
++    #[tokio::test]
++    async fn loop_reads_real_content_and_pairs_multiple_results() {
++        let root = std::env::temp_dir().join(format!("rein-loop-{}", std::process::id()));
++        let _ = std::fs::remove_dir_all(&root);
++        std::fs::create_dir_all(&root).unwrap();
++        std::fs::write(root.join("a.txt"), "真实 Rust 内容").unwrap();
++        let calls = vec![
++            ToolCall {
++                id: "a".into(),
++                name: "search_files".into(),
++                arguments: serde_json::json!({"needle":"真实"}),
++            },
++            ToolCall {
++                id: "b".into(),
++                name: "read_file".into(),
++                arguments: serde_json::json!({"path":"a.txt"}),
++            },
++        ];
++        let mut adapter = Replay {
++            turns: vec![Ok(model("", calls)), Ok(model("完成", vec![]))],
++            index: 0,
++        };
++        let result = run_agent_loop(
++            &mut adapter,
++            &[],
++            &Workspace { root: root.clone() },
++            &[],
++            32,
++        )
++        .await;
++        assert!(result.ok);
++        assert_eq!(
++            result
++                .events
++                .iter()
++                .filter_map(
++                    |event| if let LoopEvent::Tool { tool_call_id, .. } = event {
++                        Some(tool_call_id.as_str())
++                    } else {
++                        None
++                    }
++                )
++                .collect::<Vec<_>>(),
++            vec!["a", "b"]
++        );
++        assert!(result
++            .messages
++            .iter()
++            .any(|message| message.content.contains("真实 Rust 内容")));
++        let _ = std::fs::remove_dir_all(root);
++    }
++
++    #[tokio::test]
++    async fn loop_records_failures_and_stops_explicitly() {
++        let root = std::env::temp_dir().join(format!("rein-loop-failure-{}", std::process::id()));
++        std::fs::create_dir_all(&root).unwrap();
++        let call = ToolCall {
++            id: "bad".into(),
++            name: "unknown".into(),
++            arguments: serde_json::json!({}),
++        };
++        let mut adapter = Replay {
++            turns: vec![Ok(model("", vec![call]))],
++            index: 0,
++        };
++        let result =
++            run_agent_loop(&mut adapter, &[], &Workspace { root: root.clone() }, &[], 1).await;
++        assert_eq!(result.reason, StopReason::MaxRounds);
++        assert!(result.events.iter().any(|event| matches!(event, LoopEvent::Tool { result, .. } if result.error.as_ref().map(|error| error.code.as_str()) == Some("unknown_tool"))));
++        let _ = std::fs::remove_dir_all(root);
++    }
++
++    #[tokio::test]
++    async fn loop_distinguishes_model_error_and_empty_final() {
++        let root = Workspace {
++            root: std::env::current_dir().unwrap(),
++        };
++        let mut error = Replay {
++            turns: vec![Err(ToolError {
++                code: "model".into(),
++                message: "down".into(),
++            })],
++            index: 0,
++        };
++        assert_eq!(
++            run_agent_loop(&mut error, &[], &root, &[], 32).await.reason,
++            StopReason::ModelError
++        );
++        let mut empty = Replay {
++            turns: vec![Ok(model("", vec![]))],
++            index: 0,
++        };
++        assert_eq!(
++            run_agent_loop(&mut empty, &[], &root, &[], 32).await.reason,
++            StopReason::EmptyFinal
++        );
++    }
+ }
+diff --git a/new/task-inputs/ch05-product-clarifications.md b/task-inputs/ch05-product-clarifications.md
+new file mode 100644
+index 0000000..0bf2d7f
+--- /dev/null
++++ b/task-inputs/ch05-product-clarifications.md
+@@ -0,0 +1,24 @@
++# 第05章共同产品补充说明
++
++本章交付一个真实可运行的核心 Agent Loop，以及 TypeScript、Rust 两篇完整中文教程。现有只读工具、统一消息合同、OpenAI 兼容非流式适配器、Anthropic 离线转换和共享样例是本章的最小前置工程。正文开篇说明如何接入，不把它们表述为前四章已完整交付。
++
++## 核心行为
++
++- 循环真实调用模型适配器；模型要求工具时，执行已注册的搜索与读取工具，把工具结果连同原调用 ID 放回消息历史，再次调用模型，直到获得最终回答。
++- 工具操作真实的指定工作区文件。离线演示用确定性模型回放替代网络模型，仍必须真实搜索、读取和回传文件结果，不能把工具输出写死在回放里。
++- 支持一次模型消息中多个工具调用，按声明顺序执行；每个调用恰有一个匹配 ID 的结果，再继续模型轮次。记录能核查此顺序及对应关系的运行事件和显式状态。
++- 未知工具、工具参数错误和文件读取失败作为结构化工具失败回传，不能冒充成功；模型可根据反馈继续行动。模型适配器错误使运行失败，保存已发生事件，不能生成虚假的最终回答。
++- 只有不含工具调用且包含非空文本的模型回复才是正常最终回答。空回复为明确失败。为防止失控提供默认最多32次模型轮次的基本保护，并返回可解释的停止原因；更完整的预算、取消、超时和重复检测留到第06章。
++- 保持已有 hello 功能与前置消息、工具和模型接口兼容。接口扩展说明用途，内部实现遵循各自语言习惯。
++
++## 演示与测试
++
++提供单文件读取演示和多文件搜索后读取再总结的演示，能从正文命令直接执行。测试至少覆盖：正常最终回答；搜索→读取→回答；同轮多调用的 ID 配对与顺序；未知工具或读取失败的反馈；模型失败；空最终回复；基本轮次保护。检查模型收到的后续请求包含实际工具结果，而不是只检查工具被调用过。至少用两套不同的临时工作区内容验证结果受真实文件内容影响。
++
++离线流程不得需要个人密钥。另提供可供后续单独真实冒烟使用的明确入口，复用 REIN_* 配置约定，便于限制最多4次模型调用且不自动重试。本次执行者只验证离线流程，不读取个人配置和凭据，不调用真实服务。
++
++## 两篇正文
++
++路径为 docs/chapters/05.md 和 docs/chapters/05-rust.md。都用中文写成可完整跟做的教程，包含承接问题、环境及目录、可复制的命令、具体输入和预期输出、机制解释、关键源码对应、失败处理和练习。说明为何需要循环、模型消息与工具结果如何配对、状态如何终止；不要仅列接口或写工作报告。读者通过正文可以复现实验并理解设计。语言知识在需要处解释。两篇共享章节号、显式知识点锚点和练习编号，每个练习有任务与可观察验收。
++
++保留00–04原正文和本任务以外文件，不改导航、不提前实现后续章节、不引用尚未存在的标签。验证命令应与实际目录和脚本一致。
+diff --git a/new/task-inputs/chapter-05.json b/task-inputs/chapter-05.json
+new file mode 100644
+index 0000000..1adfd2c
+--- /dev/null
++++ b/task-inputs/chapter-05.json
+@@ -0,0 +1 @@
++{"schema_version":"rein-chapter-acceptance-v1","chapter":"ch05","title":"核心 Agent Loop","checks":[{"id":"tool-search-read","observable":"能搜索并读取多个文件，将每次调用与对应结果关联"},{"id":"continue-call","observable":"工具结果可驱动下一次调用并最终产生回答"},{"id":"failure-stop","observable":"工具失败被记录，循环不会伪造成功"},{"id":"events-state","observable":"运行状态和事件序列可重放，正常终止原因明确"}],"documentation":{"typescript":true,"rust":true,"anchors":true,"exercises_aligned":true}}
+diff --git a/new/task-inputs/product-spec.md b/task-inputs/product-spec.md
+new file mode 100644
+index 0000000..e14fcb8
+--- /dev/null
++++ b/task-inputs/product-spec.md
+@@ -0,0 +1,13 @@
++# REIN ch05–16 公共产品规格
++
++本规格只描述交付物和可观察行为，适用于 TypeScript 与 Rust 实现。已有手工正文作为现有材料保留，新增内容不得覆盖它。
++
++交付包括 ch05–ch16 各一篇 TypeScript 正文和一篇 Rust 正文（共 24 篇），每篇都能从对应仓库状态开始执行。正文必须说明承接问题、运行命令、输入与预期输出、关键实现、失败处理和练习；两种语言使用相同章节编号、锚点、练习编号及行为验收。章节需要的独立示例在 ch08、09、11、12、14 各提供 TypeScript 与 Rust 版本，共 10 个；阶段汇总 1–3 和附录 A.1–A.5 与章节链接同步。
++
++章节能力按验收清单中的可观察行为交付：ch05 工具循环与事件；ch06 预算、重复、取消、超时；ch07 规则／目标／历史／结果的上下文管理；ch08 按需读取、窗口、摘要、检索四法及统一比较入口；ch09 结构化验收与多种验证器；ch10 分类反馈、有限修复、重规划和人工接管；ch11 参数、路径、信任边界、凭据和幂等防护；ch12 权限、差异、基线绑定和批准后应用；ch13 依赖、审查节点、持久化恢复和副作用未知处理；ch14 有界委派、预算、取消、证据汇总和冲突检测；ch15 本地 stdio MCP 文档检索、权限、超时和清理；ch16 发现文档差异、检索依据、提出补丁、批准应用和验证。
++
++所有功能验收必须有可运行的离线输入和结果证据。退出码为零只能证明进程结束；必须同时满足清单要求的产物、输出、测试数量和行为断言。缺失命令、未运行、缺失或哈希过期的产物、零测试均不得计为通过。真实模型／外部服务调用单独记录，缺失用量写 `null`，不得推算 token 或延迟。
++
++测试 runner 名称和输出中的测试数量只是可观察 provenance 检查，不是抵抗恶意命令伪装的独立证明；调用方必须在执行前冻结 argv、工作目录和 source 指纹。
++
++文稿是否完整、可跟做、解释是否充分由人工审查；机器评估将文稿质量保持为 `unreviewed`，不会因为文件存在、关键词或字数自动宣布通过。等价地满足语义验收的实现允许不同源码和补丁字节表示。
+diff --git a/new/ts/examples/ch05-loop.ts b/ts/examples/ch05-loop.ts
+new file mode 100644
+index 0000000..6b3edca
+--- /dev/null
++++ b/ts/examples/ch05-loop.ts
+@@ -0,0 +1,17 @@
++import { mkdtemp, writeFile, rm } from 'node:fs/promises'
++import { join } from 'node:path'
++import { tmpdir } from 'node:os'
++import { replayAdapter, runAgentLoop } from '../src/rein/loop'
++import type { ModelTurn } from '../src/rein/contracts'
++
++const turn = (content: string, toolCalls: ModelTurn['toolCalls'] = []): ModelTurn => ({ message: { role: 'assistant', content, toolCalls }, toolCalls })
++const root = await mkdtemp(join(tmpdir(), 'rein-ch05-demo-'))
++try {
++  await writeFile(join(root, 'guide.md'), '# Loop\n工具结果会进入下一轮。\n')
++  const result = await runAgentLoop(replayAdapter([
++    turn('', [{ id: 'search-1', name: 'search_files', arguments: { needle: '工具结果' } }]),
++    turn('', [{ id: 'read-1', name: 'read_file', arguments: { path: 'guide.md' } }]),
++    turn('读取完成：工具结果会进入下一轮。'),
++  ]), [{ role: 'user', content: '搜索并读取 guide.md' }], { root })
++  console.log(JSON.stringify({ answer: result.answer, reason: result.reason, events: result.events }, null, 2))
++} finally { await rm(root, { recursive: true, force: true }) }
+diff --git a/ts/package.json b/ts/package.json
+index 7eae03d..3158bd0 100644
+--- a/ts/package.json
++++ b/ts/package.json
+@@ -8,6 +8,7 @@
+     "test": "vitest run --passWithNoTests",
+     "test:watch": "vitest",
+     "typecheck": "tsc --noEmit"
++    ,"ch05:offline": "node --import tsx examples/ch05-loop.ts"
+   },
+   "devDependencies": {
+     "@types/node": "^22.10.2",
+diff --git a/new/ts/src/rein/loop.ts b/ts/src/rein/loop.ts
+new file mode 100644
+index 0000000..4d153ef
+--- /dev/null
++++ b/ts/src/rein/loop.ts
+@@ -0,0 +1,73 @@
++import type { ChatAdapter, Message, ToolCall, ToolDefinition, ToolResult } from './contracts'
++import { dispatchReadonly, type Workspace } from './readonly'
++
++export type LoopEvent =
++  | { readonly type: 'started'; readonly round: number }
++  | { readonly type: 'model'; readonly round: number; readonly toolCallIds: readonly string[]; readonly text: string }
++  | { readonly type: 'tool'; readonly round: number; readonly toolCallId: string; readonly name: string; readonly result: ToolResult }
++  | { readonly type: 'stopped'; readonly reason: StopReason }
++
++export type StopReason = 'completed' | 'empty_final' | 'model_error' | 'max_rounds'
++
++export interface LoopResult {
++  readonly ok: boolean
++  readonly answer?: string
++  readonly reason: StopReason
++  readonly messages: readonly Message[]
++  readonly events: readonly LoopEvent[]
++}
++
++export const readonlyToolDefinitions: readonly ToolDefinition[] = [
++  { name: 'search_files', description: '在工作区文本文件中搜索关键词', inputSchema: { type: 'object', properties: { needle: { type: 'string' } }, required: ['needle'], additionalProperties: false } },
++  { name: 'read_file', description: '读取工作区内的一个文本文件', inputSchema: { type: 'object', properties: { path: { type: 'string' } }, required: ['path'], additionalProperties: false } },
++]
++
++export async function runAgentLoop(
++  adapter: ChatAdapter,
++  initialMessages: readonly Message[],
++  workspace: Workspace,
++  options: { readonly maxRounds?: number; readonly tools?: readonly ToolDefinition[] } = {},
++): Promise<LoopResult> {
++  const maxRounds = options.maxRounds ?? 32
++  const tools = options.tools ?? readonlyToolDefinitions
++  const messages: Message[] = [...initialMessages]
++  const events: LoopEvent[] = [{ type: 'started', round: 0 }]
++  for (let round = 1; round <= maxRounds; round += 1) {
++    let turn
++    try { turn = await adapter.complete(messages, tools) }
++    catch (error) {
++      events.push({ type: 'stopped', reason: 'model_error' })
++      return { ok: false, reason: 'model_error', messages, events }
++    }
++    messages.push(turn.message)
++    events.push({ type: 'model', round, toolCallIds: turn.toolCalls.map(call => call.id), text: turn.message.content })
++    if (turn.toolCalls.length === 0) {
++      if (turn.message.content.trim().length === 0) {
++        events.push({ type: 'stopped', reason: 'empty_final' })
++        return { ok: false, reason: 'empty_final', messages, events }
++      }
++      events.push({ type: 'stopped', reason: 'completed' })
++      return { ok: true, answer: turn.message.content, reason: 'completed', messages, events }
++    }
++    for (const call of turn.toolCalls) {
++      const result = await dispatchReadonly(call, workspace)
++      const content = result.ok ? result.output ?? '' : JSON.stringify({ error: result.error })
++      messages.push({ role: 'tool', toolCallId: result.toolCallId, content })
++      events.push({ type: 'tool', round, toolCallId: call.id, name: call.name, result })
++    }
++  }
++  events.push({ type: 'stopped', reason: 'max_rounds' })
++  return { ok: false, reason: 'max_rounds', messages, events }
++}
++
++export function replayAdapter(turns: readonly (Pick<import('./contracts').ModelTurn, 'message' | 'toolCalls'> | Error)[]): ChatAdapter & { readonly receivedMessages: readonly (readonly Message[])[] } {
++  let index = 0
++  const receivedMessages: (readonly Message[])[] = []
++  return { receivedMessages, async complete(messages) {
++    receivedMessages.push(structuredClone(messages))
++    const turn = turns[index++]
++    if (turn === undefined) throw new Error('replay exhausted')
++    if (turn instanceof Error) throw turn
++    return turn
++  } }
++}
+diff --git a/new/ts/tests/loop.test.ts b/ts/tests/loop.test.ts
+new file mode 100644
+index 0000000..56629b3
+--- /dev/null
++++ b/ts/tests/loop.test.ts
+@@ -0,0 +1,54 @@
++import { describe, expect, it } from 'vitest'
++import { mkdtemp, writeFile, rm } from 'node:fs/promises'
++import { join } from 'node:path'
++import { tmpdir } from 'node:os'
++import { replayAdapter, runAgentLoop } from '../src/rein/loop'
++import type { Message, ModelTurn } from '../src/rein/contracts'
++
++const assistant = (content: string, toolCalls: ModelTurn['toolCalls'] = []): ModelTurn => ({ message: { role: 'assistant', content, toolCalls }, toolCalls })
++
++describe('core agent loop', () => {
++  it('returns a normal final answer', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
++    try { const result = await runAgentLoop(replayAdapter([assistant('完成')]), [{ role: 'user', content: 'hi' }], { root }); expect(result).toMatchObject({ ok: true, answer: '完成', reason: 'completed' }); expect(result.events.at(-1)).toEqual({ type: 'stopped', reason: 'completed' }) } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('searches and then reads real file contents before answering', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
++    try {
++      await writeFile(join(root, 'notes.txt'), '真实内容：蓝色书签')
++      const result = await runAgentLoop(replayAdapter([
++        assistant('', [{ id: 's1', name: 'search_files', arguments: { needle: '蓝色' } }]),
++        assistant('', [{ id: 'r1', name: 'read_file', arguments: { path: 'notes.txt' } }]),
++        assistant('蓝色书签'),
++      ]), [{ role: 'user', content: '找蓝色并总结' }], { root })
++      expect(result.ok).toBe(true); expect(result.answer).toBe('蓝色书签')
++      expect(result.messages.some(message => message.content.includes('notes.txt'))).toBe(true)
++      expect(result.messages.some(message => message.content.includes('真实内容'))).toBe(true)
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('keeps multiple call order and ids, and feeds failures back', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
++    try {
++      await writeFile(join(root, 'a.txt'), 'a')
++      const result = await runAgentLoop(replayAdapter([
++        assistant('', [{ id: 'a', name: 'read_file', arguments: { path: 'a.txt' } }, { id: 'b', name: 'no_such_tool', arguments: {} }]),
++        assistant('已说明失败'),
++      ]), [{ role: 'user', content: '读文件' }], { root })
++      expect(result.ok).toBe(true)
++      expect(result.events.filter(event => event.type === 'tool').map(event => event.toolCallId)).toEqual(['a', 'b'])
++      expect(result.messages.filter(message => message.role === 'tool').map(message => message.toolCallId)).toEqual(['a', 'b'])
++      expect(result.messages.at(-1)?.content).toBe('已说明失败')
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++
++  it('records model errors, empty answers, and max-round protection', async () => {
++    const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
++    try {
++      await expect(runAgentLoop(replayAdapter([new Error('down')]), [], { root })).resolves.toMatchObject({ ok: false, reason: 'model_error' })
++      await expect(runAgentLoop(replayAdapter([assistant('')]), [], { root })).resolves.toMatchObject({ ok: false, reason: 'empty_final' })
++      await expect(runAgentLoop(replayAdapter([assistant('', [{ id: 'x', name: 'nope', arguments: {} }])]), [], { root }, { maxRounds: 1 })).resolves.toMatchObject({ ok: false, reason: 'max_rounds' })
++    } finally { await rm(root, { recursive: true, force: true }) }
++  })
++})

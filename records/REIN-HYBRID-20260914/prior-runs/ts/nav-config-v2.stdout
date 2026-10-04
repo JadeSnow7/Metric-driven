@@ -1,0 +1,13 @@
+✔ resolves the TypeScript and Rust language routes (0.577167ms)
+✔ keeps only recognized common anchors and maps language-specific aliases (0.117959ms)
+✔ keeps chapter 01 common anchors available to both editions (0.069625ms)
+✔ does not invent language pairs for core and legacy chapter routes (0.08ms)
+✔ sidebar uses the Rust core route and exposes the plugin adjunct (0.543ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.73675

@@ -1,0 +1,10 @@
+
+> rein-book@0.1.0 ch06:compare-all
+> node scripts/ch06-compare.mjs
+
+{"mode":"normal","typescript":"final_answer","rust":"final_answer"}
+{"mode":"budget","typescript":"tool_budget_exhausted","rust":"tool_budget_exhausted"}
+{"mode":"duplicate","typescript":"duplicate_action","rust":"duplicate_action"}
+{"mode":"cancel","typescript":"cancelled","rust":"cancelled"}
+{"mode":"timeout","typescript":"timeout","rust":"timeout"}
+{"mode":"zero","typescript":"max_turns","rust":"max_turns"}

@@ -1,0 +1,2 @@
+repository validation passed (18 required files, local links checked)
+note: this proves repository consistency, not workflow behavior or delivery authorization

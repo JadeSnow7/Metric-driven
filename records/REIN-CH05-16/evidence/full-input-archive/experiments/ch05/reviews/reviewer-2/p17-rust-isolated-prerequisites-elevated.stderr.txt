@@ -1,0 +1,2 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running tests/prerequisites.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-2/package-17/debug/deps/prerequisites-7d18e22f535783fc)

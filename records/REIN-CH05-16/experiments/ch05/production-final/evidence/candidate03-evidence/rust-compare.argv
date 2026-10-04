@@ -1,0 +1,1 @@
+env CARGO_TARGET_DIR=/private/tmp/rein-candidate03-build cargo run --manifest-path rust/Cargo.toml --example ch05_compare -- fixtures/cases/ch05-loop.json

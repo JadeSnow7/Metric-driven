@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T05:16:13.210512+00:00",
+  "cause": "149MiB free. First-review interrupted turn left unused Larch and contaminated shared build caches. Current process confirmed operating Quartz, no active process in removed directories. Only regenerable cache removed.",
+  "paths": [
+    {
+      "path": "/private/tmp/rein-ch08-review-1/.cargo-target-Larch",
+      "before": "570M\t/private/tmp/rein-ch08-review-1/.cargo-target-Larch\n",
+      "removed": true
+    },
+    {
+      "path": "/private/tmp/rein-ch08-review-1/run/cargo-target",
+      "before": "380M\t/private/tmp/rein-ch08-review-1/run/cargo-target\n",
+      "removed": true
+    }
+  ]
+}

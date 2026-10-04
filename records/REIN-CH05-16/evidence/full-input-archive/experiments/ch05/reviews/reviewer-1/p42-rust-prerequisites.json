@@ -1,0 +1,19 @@
+{
+  "label": "p42-rust-prerequisites",
+  "cwd": "/private/tmp/rein-ch05-review-20260914/reviewer-1/package-42/rust",
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--test",
+    "prerequisites"
+  ],
+  "started_utc": "2026-09-14T11:23:42Z",
+  "environment_overrides": {
+    "CARGO_TARGET_DIR": "/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42"
+  },
+  "REIN_environment": "all inherited REIN_* removed; no credential files read",
+  "exit_code": 101,
+  "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s\n     Running tests/prerequisites.rs (/private/tmp/rein-ch05-review-20260914/targets/reviewer-1/package-42/debug/deps/prerequisites-f3a192991d055a1f)\n\nrunning 5 tests\ntest tools_use_real_fixture_and_bind_actual_ids ... ok\ntest symlink_escape_is_rejected ... ok\ntest shared_fixture_and_replay_are_structured ... ok\ntest malformed_shared_fixture_responses_are_rejected_and_optional_json_is_canonical ... ok\ntest concrete_reqwest_captures_two_openai_turns_and_tool_results ... FAILED\n\nfailures:\n\n---- concrete_reqwest_captures_two_openai_turns_and_tool_results stdout ----\n\nthread 'concrete_reqwest_captures_two_openai_turns_and_tool_results' (38436767) panicked at tests/prerequisites.rs:188:59:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: \"Operation not permitted\" }\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    concrete_reqwest_captures_two_openai_turns_and_tool_results\n\ntest result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\nerror: test failed, to rerun pass `--test prerequisites`\n"
+}

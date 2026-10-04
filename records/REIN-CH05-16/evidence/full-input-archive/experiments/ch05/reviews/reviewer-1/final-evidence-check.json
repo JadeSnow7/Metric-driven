@@ -1,0 +1,43 @@
+{
+  "package-17": {
+    "fingerprinted_file_count": 60,
+    "changed_files": [],
+    "anchors": {
+      "05.md": [
+        "knowledge-loop",
+        "知识点-循环与工具结果配对",
+        "failure-paths"
+      ],
+      "05-rust.md": [
+        "knowledge-loop",
+        "知识点-循环与工具结果配对",
+        "failure-paths"
+      ]
+    },
+    "anchor_sets_match": true
+  },
+  "package-42": {
+    "fingerprinted_file_count": 61,
+    "changed_files": [],
+    "anchors": {
+      "05.md": [
+        "ch05-loop",
+        "message-tool-pairing",
+        "tool-loop-mechanism",
+        "failure-paths",
+        "event-replay",
+        "exercises"
+      ],
+      "05-rust.md": [
+        "ch05-loop",
+        "message-tool-pairing",
+        "tool-loop-mechanism",
+        "event-replay",
+        "failure-paths",
+        "exercises"
+      ]
+    },
+    "anchor_sets_match": true
+  },
+  "report_evidence_paths_missing": []
+}

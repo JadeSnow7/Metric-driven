@@ -1,0 +1,35 @@
+test_add_and_count (tests.test_inventory.InventoryTests.test_add_and_count) ... ok
+test_names_sorted (tests.test_inventory.InventoryTests.test_names_sorted) ... ok
+test_rejects_non_positive_quantity (tests.test_inventory.InventoryTests.test_rejects_non_positive_quantity) ... ok
+test_remove_item_insufficient (tests.test_inventory.InventoryTests.test_remove_item_insufficient) ... ok
+test_remove_item_partial (tests.test_inventory.InventoryTests.test_remove_item_partial) ... ok
+test_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests.test_remove_item_to_zero_deletes) ... FAIL
+test_unknown_item_count_is_zero (tests.test_inventory.InventoryTests.test_unknown_item_count_is_zero) ... ok
+test_full_discount (tests.test_pricing.ApplyDiscountTests.test_full_discount) ... ok
+test_half_cent_rounds_up (tests.test_pricing.ApplyDiscountTests.test_half_cent_rounds_up) ... ok
+test_invalid_rate (tests.test_pricing.ApplyDiscountTests.test_invalid_rate) ... ok
+test_no_discount (tests.test_pricing.ApplyDiscountTests.test_no_discount) ... ok
+test_regular_discount (tests.test_pricing.ApplyDiscountTests.test_regular_discount) ... ok
+
+======================================================================
+FAIL: test_remove_item_to_zero_deletes (tests.test_inventory.InventoryTests.test_remove_item_to_zero_deletes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/edd-r4-fixtures-8gys1wek/permission/repo/tests/test_inventory.py", line 36, in test_remove_item_to_zero_deletes
+    self.assertEqual(inventory.names(), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['apple'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'apple'
+
+- ['apple']
++ []
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+FAILED (failures=1)
+
+EXIT_CODE=1

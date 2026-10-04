@@ -1,0 +1,6 @@
+{
+  "source_sha256": "474e8b5ec72636b152fdfd01fcf85732da5227ff546c51f9a6bf10b2f86bd939",
+  "empty_manifest_status": "passed",
+  "fake_test_count_status": "passed",
+  "fake_observed_count": 3
+}

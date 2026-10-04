@@ -1,0 +1,144 @@
+--- /dev/null	2026-09-14 20:51:39
++++ tools/rein_chapter_snapshot.py	2026-09-14 20:45:48
+@@ -0,0 +1,112 @@
++#!/usr/bin/env python3
++"""Create a portable, independently recoverable chapter snapshot."""
++from __future__ import annotations
++import argparse, hashlib, json, os, shutil, subprocess, tarfile, tempfile
++from pathlib import Path
++
++SKIP_DIRS = {'.git', 'node_modules', 'target', '.cargo-target', 'build', 'dist', 'deps', 'task-inputs', 'chapter-snapshots', 'evidence', 'experiments', 'work', 'snapshots'}
++SKIP_FILES = {'.env'}
++
++def digest(path: Path) -> str:
++    h = hashlib.sha256()
++    with path.open('rb') as f:
++        for chunk in iter(lambda: f.read(1024 * 1024), b''): h.update(chunk)
++    return h.hexdigest()
++
++def manifest(root: Path) -> list[dict]:
++    rows=[]
++    for current, dirs, files in os.walk(root, topdown=True, followlinks=False):
++        dirs[:] = [d for d in sorted(dirs) if d not in SKIP_DIRS and not d.startswith('.env.')]
++        files = sorted(files)
++        dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith('.env.')]
++        for name in list(dirs):
++            p=Path(current)/name
++            if p.is_symlink():
++                dirs.remove(name); rel=p.relative_to(root).as_posix(); target=os.readlink(p)
++                if not p.resolve().is_relative_to(root.resolve()): raise RuntimeError(f'symlink escapes source: {rel}')
++                rows.append({'path':rel,'symlink':target,'mode':p.lstat().st_mode & 0o777})
++        for name in files:
++            if name in SKIP_FILES or (name.startswith('.env.') and name != '.env.example'): continue
++            p=Path(current)/name; rel=p.relative_to(root).as_posix()
++            if p.is_symlink():
++                if not p.resolve().is_relative_to(root.resolve()): raise RuntimeError(f'symlink escapes source: {rel}')
++                rows.append({'path':rel,'symlink':os.readlink(p),'mode':p.lstat().st_mode & 0o777})
++            else: rows.append({'path':rel,'sha256':digest(p),'mode':p.stat().st_mode & 0o777})
++    return sorted(rows,key=lambda x:x['path'])
++
++def copy_filtered(src: Path, dst: Path) -> None:
++    if dst.exists(): raise RuntimeError(f'refusing overwrite: {dst}')
++    dst.mkdir(parents=True)
++    for current, dirs, files in os.walk(src, topdown=True, followlinks=False):
++        rel=Path(current).relative_to(src); target_dir=dst/rel; target_dir.mkdir(parents=True,exist_ok=True)
++        dirs[:] = sorted(dirs)
++        for name in list(dirs):
++            p=Path(current)/name
++            if name in SKIP_DIRS or name.startswith('.env.'):
++                dirs.remove(name); continue
++            if p.is_symlink():
++                dirs.remove(name)
++                if not p.resolve().is_relative_to(src.resolve()): raise RuntimeError(f'symlink escapes source: {p.relative_to(src)}')
++                (target_dir/name).symlink_to(os.readlink(p))
++        for name in sorted(files):
++            if name in SKIP_FILES or (name.startswith('.env.') and name != '.env.example'): continue
++            p=Path(current)/name
++            if p.is_symlink():
++                if not p.resolve().is_relative_to(src.resolve()): raise RuntimeError(f'symlink escapes source: {p.relative_to(src)}')
++                (target_dir/name).symlink_to(os.readlink(p))
++            else: shutil.copy2(p,target_dir/name)
++
++def git_patch(base: Path, result: Path, patch_path: Path) -> None:
++    with tempfile.TemporaryDirectory() as td:
++        td=Path(td); repo=td/'repo'; shutil.copytree(base,repo,symlinks=True); subprocess.run(['git','-C',str(repo),'init','-q'],check=True,capture_output=True)
++        subprocess.run(['git','-C',str(repo),'add','-A'],check=True,capture_output=True); base_tree=subprocess.check_output(['git','-C',str(repo),'write-tree'],text=True).strip()
++        for child in repo.iterdir():
++            if child.name=='.git': continue
++            if child.is_dir() and not child.is_symlink(): shutil.rmtree(child)
++            else: child.unlink()
++        for child in result.iterdir():
++            dest=repo/child.name
++            if child.is_dir() and not child.is_symlink(): shutil.copytree(child,dest,symlinks=True)
++            elif child.is_symlink(): dest.symlink_to(os.readlink(child))
++            else: shutil.copy2(child,dest)
++        subprocess.run(['git','-C',str(repo),'add','-A'],check=True,capture_output=True); result_tree=subprocess.check_output(['git','-C',str(repo),'write-tree'],text=True).strip()
++        patch=subprocess.check_output(['git','-C',str(repo),'diff','--binary',base_tree,result_tree],text=True); patch_path.write_text(patch)
++
++def make_tar(files: Path, chapter: str, destination: Path) -> None:
++    with tarfile.open(destination,'w:gz') as tar: tar.add(files,arcname=f'rein-ch{chapter}',recursive=True)
++
++def snapshot(source: Path, chapter: str, output: Path, baseline: Path|None=None, portable_output: Path|None=None) -> Path:
++    source=source.resolve(); output=output.resolve(); chapter=str(chapter).removeprefix('ch').zfill(2)
++    if not source.is_dir(): raise RuntimeError('source is not a directory')
++    if output.exists(): raise RuntimeError(f'refusing overwrite: {output}')
++    if baseline and not baseline.is_dir(): raise RuntimeError('baseline is not a directory')
++    output.mkdir(parents=True)
++    files=output/'files'; copy_filtered(source,files)
++    current_manifest=manifest(files); (output/'manifest.json').write_text(json.dumps({'chapter':f'ch{chapter}','files':current_manifest},ensure_ascii=False,indent=2)+'\n')
++    tar_path=output/f'rein-ch{chapter}.tar.gz'; make_tar(files,chapter,tar_path)
++    with tempfile.TemporaryDirectory() as td:
++        recovered=Path(td)/'recovered';
++        if baseline:
++            base=Path(td)/'base'; copy_filtered(baseline.resolve(),base); patch_path=output/'baseline.patch'; git_patch(base,files,patch_path)
++            copy_filtered(base,recovered)
++            recovered_check = recovered
++            if patch_path.read_bytes():
++                repo=Path(td)/'apply'; shutil.copytree(recovered,repo,symlinks=True); subprocess.run(['git','-C',str(repo),'init','-q'],check=True,capture_output=True)
++                applied=subprocess.run(['git','-C',str(repo),'apply','--binary',str(patch_path)],capture_output=True)
++                if applied.returncode: raise RuntimeError('baseline Git patch failed to apply')
++                recovered_check = repo
++            if manifest(recovered_check)!=current_manifest: raise RuntimeError('baseline recovery manifest mismatch')
++        else:
++            copy_filtered(files,recovered)
++            if manifest(recovered)!=current_manifest: raise RuntimeError('snapshot recovery manifest mismatch')
++    if portable_output:
++        portable_output=portable_output.resolve()
++        if portable_output.exists(): raise RuntimeError(f'refusing overwrite: {portable_output}')
++        portable_output.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(tar_path,portable_output)
++    return output
++
++def main() -> int:
++    p=argparse.ArgumentParser(); p.add_argument('--source',type=Path,required=True); p.add_argument('--chapter',required=True); p.add_argument('--output',type=Path,required=True); p.add_argument('--baseline',type=Path); p.add_argument('--portable-output',type=Path); a=p.parse_args()
++    try: snapshot(a.source,a.chapter,a.output,a.baseline,a.portable_output); return 0
++    except (OSError,RuntimeError,subprocess.SubprocessError) as e: print(f'rein_chapter_snapshot: error: {e}',file=__import__('sys').stderr); return 2
++if __name__=='__main__': raise SystemExit(main())
+--- /dev/null	2026-09-14 20:51:39
++++ tools/tests/test_rein_chapter_snapshot.py	2026-09-14 20:51:32
+@@ -0,0 +1,26 @@
++import json, stat, tempfile, unittest
++from pathlib import Path
++from tools import rein_chapter_snapshot as snap
++
++class SnapshotTests(unittest.TestCase):
++  def test_filtered_portable_snapshot_and_recovery(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); src=t/'src'; src.mkdir(); (src/'README.md').write_text('chapter'); (src/'package-lock.json').write_text('{}'); (src/'empty').write_bytes(b''); (src/'blob').write_bytes(bytes([0,255])); (src/'tool').write_text('#!/bin/sh\n'); (src/'tool').chmod(0o755); (src/'link').symlink_to('README.md')
++      for name in ('node_modules','target','evidence','experiments','task-inputs','chapter-snapshots'): (src/name).mkdir(); (src/name/'ignored').write_text('x')
++      (src/'.env').write_text('SECRET'); (src/'.env.example').write_text('SAFE=')
++      out=t/'snap'; portable=t/'portable.tar.gz'; snap.snapshot(src,'05',out,portable_output=portable); data=json.loads((out/'manifest.json').read_text()); paths={x['path'] for x in data['files']}
++      self.assertEqual(paths,{'README.md','blob','empty','link','package-lock.json','tool','.env.example'}); self.assertTrue((out/'rein-ch05.tar.gz').exists()); self.assertTrue(portable.exists()); self.assertTrue((out/'files/link').is_symlink()); self.assertTrue((out/'files/tool').stat().st_mode & stat.S_IXUSR)
++      import tarfile
++      with tarfile.open(out/'rein-ch05.tar.gz') as archive: self.assertTrue(all(member.name == 'rein-ch05' or member.name.startswith('rein-ch05/') for member in archive.getmembers()))
++  def test_binary_empty_mode_and_unchanged_baseline_patch(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); base=t/'base'; base.mkdir(); (base/'blob').write_bytes(bytes([0,255])+b'base'); (base/'tool').write_text('x'); (base/'tool').chmod(0o644)
++      src=t/'src'; snap.copy_filtered(base,src); (src/'blob').write_bytes(bytes([0,255])+b'changed'); (src/'empty').write_bytes(b''); (src/'tool').chmod(0o755); out=t/'snap'; snap.snapshot(src,'05',out,base); self.assertIn(b'GIT binary patch',(out/'baseline.patch').read_bytes()); self.assertTrue((out/'files/empty').exists()); self.assertTrue((out/'files/tool').stat().st_mode & stat.S_IXUSR)
++      same=t/'same'; snap.copy_filtered(base,same); out2=t/'same-snap'; snap.snapshot(same,'05',out2,base); self.assertEqual((out2/'baseline.patch').read_bytes(),b'')
++  def test_rejects_existing_output_and_outside_symlink(self):
++    with tempfile.TemporaryDirectory() as d:
++      t=Path(d); src=t/'src'; src.mkdir(); (src/'out').symlink_to('/tmp');
++      with self.assertRaises(RuntimeError): snap.snapshot(src,'05',t/'out')
++      (src/'out').unlink(); (src/'ok').write_text('x'); dest=t/'existing'; dest.mkdir()
++      with self.assertRaises(RuntimeError): snap.snapshot(src,'05',dest)
++if __name__=='__main__': unittest.main()

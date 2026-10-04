@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T12:55:30.332076+00:00",
+  "end": "2026-09-14T12:55:33.153221+00:00",
+  "exit": 0,
+  "stdout": "\n> rein-book@0.1.0 build\n> vitepress build docs\n\n\n  vitepress v1.6.4\n\nbuild complete in 2.53s.\n",
+  "stderr": "- building client + server bundles...\n\u001b[32m✓\u001b[0m building client + server bundles...\n- rendering pages...\n\u001b[32m✓\u001b[0m rendering pages...\n",
+  "doc_hashes": {
+    "docs/chapters/05.md": "16bb9258c31ce754ab119ee35d1e8f360ba8bcddc84f24d53756f6fcc5efea6a",
+    "docs/chapters/05-rust.md": "c444825584aec7f6869baea9b6132d12424530011cdc59984d17160cc5e4e9fc"
+  }
+}

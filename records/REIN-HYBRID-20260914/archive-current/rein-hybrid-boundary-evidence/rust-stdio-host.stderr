@@ -1,0 +1,19 @@
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-hybrid-work-20260914/rust)
+warning: unused variable: `workspace`
+   --> src/rein/loop.rs:326:5
+    |
+326 |     workspace: &Workspace,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_workspace`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rein-ch01-helloworld` (lib) generated 1 warning (run `cargo fix --lib -p rein-ch01-helloworld` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.91s
+     Running tests/stdio_host.rs (/private/tmp/rein-hybrid-target/debug/deps/stdio_host-a1a48f56b31380c9)
+
+thread 'malformed_and_identity_faults_stop_without_second_model_call' (40683623) panicked at tests/stdio_host.rs:197:9:
+assertion `left == right` failed: ready_hang
+  left: NotDispatched
+ right: OutcomeUnknown
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+error: test failed, to rerun pass `--test stdio_host`

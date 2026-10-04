@@ -1,0 +1,45 @@
+   1 import { describe, expect, it } from 'vitest'
+   2 import { runAgentLoop } from '../src/rein/loop'
+   3 import type { ChatAdapter, ModelTurn } from '../src/rein/contracts'
+   4 import { mkdtemp, writeFile, rm } from 'node:fs/promises'
+   5 import { join } from 'node:path'
+   6 import { tmpdir } from 'node:os'
+   7 
+   8 const turn = (content: string, toolCalls: ModelTurn['toolCalls'] = []): ModelTurn => ({ message: { role: 'assistant', content, toolCalls }, toolCalls })
+   9 const tool = (id: string, name: string, args: Record<string, unknown>) => ({ id, name, arguments: args })
+  10 
+  11 describe('ch05 agent loop', () => {
+  12   it('searches and reads real content, then sends both results to the next model turn', async () => {
+  13     const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
+  14     try {
+  15       await writeFile(join(root, 'a.txt'), 'alpha secret')
+  16       await writeFile(join(root, 'b.txt'), 'beta')
+  17       const received: any[][] = []
+  18       const adapter: ChatAdapter = { async complete(messages) { received.push(structuredClone(messages) as any); return received.length === 1 ? turn('', [tool('s', 'search_files', { needle: 'secret' }), tool('r', 'read_file', { path: 'a.txt' })]) : turn('总结：alpha secret') } }
+  19       const result = await runAgentLoop(adapter, { root }, 'inspect')
+  20       expect(result.answer).toBe('总结：alpha secret')
+  21       expect(received[1]?.filter(m => m.role === 'tool').map(m => m.content)).toEqual(['a.txt', 'alpha secret'])
+  22       expect(result.events.filter(e => e.type === 'tool_result').map(e => e.toolCallId)).toEqual(['s', 'r'])
+  23     } finally { await rm(root, { recursive: true, force: true }) }
+  24   })
+  25 
+  26   it('returns structured failures and protects the turn budget', async () => {
+  27     const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
+  28     try {
+  29       const adapter: ChatAdapter = { async complete() { return turn('', [tool('bad', 'unknown', {})]) } }
+  30       const result = await runAgentLoop(adapter, { root }, 'inspect', { maxTurns: 2 })
+  31       expect(result.reason).toBe('max_turns')
+  32       expect(result.events.some(e => e.type === 'tool_result' && !e.result.ok && e.result.error?.code === 'unknown_tool')).toBe(true)
+  33     } finally { await rm(root, { recursive: true, force: true }) }
+  34   })
+  35 
+  36   it('does not invent an answer for model errors or empty final messages', async () => {
+  37     const root = await mkdtemp(join(tmpdir(), 'rein-loop-'))
+  38     try {
+  39       const failed = await runAgentLoop({ async complete() { throw new Error('offline failure') } }, { root }, 'x')
+  40       expect(failed).toMatchObject({ state: 'failed', reason: 'model_error', error: 'offline failure' })
+  41       const empty = await runAgentLoop({ async complete() { return turn('   ') } }, { root }, 'x')
+  42       expect(empty).toMatchObject({ state: 'failed', reason: 'empty_final' })
+  43     } finally { await rm(root, { recursive: true, force: true }) }
+  44   })
+  45 })

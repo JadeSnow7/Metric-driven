@@ -1,0 +1,115 @@
+{
+  "schema": "ch06-preserved-v1",
+  "source": "candidate-03-current-at-v2",
+  "status": "preserved-not-accepted",
+  "files": [
+    {
+      "path": "docs/chapters/06-rust.md",
+      "sha256": "9e66e1078d0fd47d75ac12d360c57aed55ab60d1376cfdc993d30ea9e4d6ba4c",
+      "mode": "644",
+      "bytes": 4778
+    },
+    {
+      "path": "docs/chapters/06.md",
+      "sha256": "f034813b08e602451af84f197695acae35b97fe706ae4bff329b86341f7f7f6a",
+      "mode": "644",
+      "bytes": 4145
+    },
+    {
+      "path": "fixtures/cases/ch06-control.json",
+      "sha256": "69ea956e3c59d301c88e623da2676747f883ebd2d428a722da7958d1daaed778",
+      "mode": "644",
+      "bytes": 236
+    },
+    {
+      "path": "package.json",
+      "sha256": "8deffe20bf8d442a49d4eb29b1674d4ff1203e6672daa35515b8558302892bbb",
+      "mode": "644",
+      "bytes": 585
+    },
+    {
+      "path": "rust/examples/ch05_compare.rs",
+      "sha256": "4130b3e9dd28161d2e74b02a7b85a81b7f61c240b792aa402e575d80f060a1cb",
+      "mode": "644",
+      "bytes": 3208
+    },
+    {
+      "path": "rust/examples/ch05_loop.rs",
+      "sha256": "529e448444cbf9f2a8c9a77b1fac35a3d065ddfda297546b975109f526fa5276",
+      "mode": "644",
+      "bytes": 9986
+    },
+    {
+      "path": "rust/examples/ch06_loop.rs",
+      "sha256": "c3646d504883e339f81caa8bda5ddcd68b47596dfd41b1de6a3b09b5f388e358",
+      "mode": "644",
+      "bytes": 3612
+    },
+    {
+      "path": "rust/src/rein/loop.rs",
+      "sha256": "d11dec91ce06af8938c002796448bc86848319a73fcc3f14ec09519df395d7c8",
+      "mode": "644",
+      "bytes": 15173
+    },
+    {
+      "path": "rust/src/rein/mod.rs",
+      "sha256": "7a694b37661fff177437d7fef95369b0a96b31d80179488c9b65e5c5410bf142",
+      "mode": "644",
+      "bytes": 20852
+    },
+    {
+      "path": "rust/tests/loop.rs",
+      "sha256": "7ce4463186cc6085292a80a636e68161e22b1b02faa01a4f99cf9159ec0ed9d2",
+      "mode": "644",
+      "bytes": 11592
+    },
+    {
+      "path": "scripts/ch06-compare.mjs",
+      "sha256": "f46d2ab2ebef47496b7cbc7b45b57e0a10e51a4bb46b8d1ad56660fbc09772af",
+      "mode": "644",
+      "bytes": 1161
+    },
+    {
+      "path": "ts/examples/ch06-loop.ts",
+      "sha256": "a4a2b25b493a3a48586fa2456f082449c03b1455bf6155114802aa2efbe12b02",
+      "mode": "644",
+      "bytes": 1919
+    },
+    {
+      "path": "ts/package.json",
+      "sha256": "33fb35b7ce3b1dfe88af1cc2ac414ec6e1d20a116d89afbc62eee84b38643884",
+      "mode": "644",
+      "bytes": 697
+    },
+    {
+      "path": "ts/src/rein/adapters.ts",
+      "sha256": "497f64b474dcf12cf20d2cd1009becf88ca6da1a40f064bc35f22bfd64efca50",
+      "mode": "644",
+      "bytes": 6474
+    },
+    {
+      "path": "ts/src/rein/contracts.ts",
+      "sha256": "541936da3959f8cbdb9e5d60a87b6f9e312a8b171deb24dd9bf9f80884dae3fa",
+      "mode": "644",
+      "bytes": 1133
+    },
+    {
+      "path": "ts/src/rein/loop.ts",
+      "sha256": "b4278fcae46163e94e3238a786bc36cec6ff634243465021481be93c41a5e6eb",
+      "mode": "644",
+      "bytes": 8309
+    },
+    {
+      "path": "ts/src/transport.ts",
+      "sha256": "9a99d77fef5acfb8112a7fbbcbf9c139e7735e6d58c2c721ab8c1e81492e1ead",
+      "mode": "644",
+      "bytes": 4202
+    },
+    {
+      "path": "ts/tests/loop.test.ts",
+      "sha256": "36a9921604719b22a87a46a2d139f59e8444d516e624fd279504a14f45b9810e",
+      "mode": "644",
+      "bytes": 10593
+    }
+  ]
+}

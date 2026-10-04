@@ -1,0 +1,1 @@
+2026-09-15T05:39:26.136378Z ERROR codex_core::session: failed to record rollout items: thread 01a0a391-2d7a-77f1-8c2b-b749249e84df not found

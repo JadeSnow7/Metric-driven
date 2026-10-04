@@ -1,0 +1,1 @@
+{"finding":"configuration key differs from current schema","acceptable":"use current key and keep endpoint meaning","assertions":[{"file":"docs/config.md","contains":"REIN_BASE_URL","reference":"config.schema.json:required and .env.example","require_retained_body":true},{"file":"docs/config.md","does_not_contain_token":"API_URL"},{"file":"docs/config.md","contains":"endpoint"}]}

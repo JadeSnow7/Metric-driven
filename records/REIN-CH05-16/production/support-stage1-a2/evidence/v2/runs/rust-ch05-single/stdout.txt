@@ -1,0 +1,194 @@
+{
+  "state": "completed",
+  "reason": "final_answer",
+  "answer": "单文件内容：marker: ch06 alpha",
+  "messages": [
+    {
+      "role": "user",
+      "content": "读取 README.md"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "toolCalls": [
+        {
+          "id": "read-1",
+          "name": "read_file",
+          "arguments": {
+            "path": "README.md"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "content": "marker: ch06 alpha\n",
+      "toolCallId": "read-1"
+    },
+    {
+      "role": "assistant",
+      "content": "单文件内容：marker: ch06 alpha"
+    }
+  ],
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "读取 README.md"
+        }
+      ],
+      "tools": [
+        {
+          "name": "search_files",
+          "description": "Search text in workspace files.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "needle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "needle"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "read_file",
+          "description": "Read one UTF-8 file in the workspace.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          }
+        }
+      ]
+    },
+    {
+      "type": "model_received",
+      "turn": 1,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "toolCalls": [
+          {
+            "id": "read-1",
+            "name": "read_file",
+            "arguments": {
+              "path": "README.md"
+            }
+          }
+        ]
+      },
+      "toolCallIds": [
+        "read-1"
+      ],
+      "text": ""
+    },
+    {
+      "type": "tool_result",
+      "turn": 1,
+      "call": {
+        "id": "read-1",
+        "name": "read_file",
+        "arguments": {
+          "path": "README.md"
+        }
+      },
+      "toolCallId": "read-1",
+      "result": {
+        "toolCallId": "read-1",
+        "ok": true,
+        "output": "marker: ch06 alpha\n"
+      }
+    },
+    {
+      "type": "model_requested",
+      "turn": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "读取 README.md"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "toolCalls": [
+            {
+              "id": "read-1",
+              "name": "read_file",
+              "arguments": {
+                "path": "README.md"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "marker: ch06 alpha\n",
+          "toolCallId": "read-1"
+        }
+      ],
+      "tools": [
+        {
+          "name": "search_files",
+          "description": "Search text in workspace files.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "needle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "needle"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "read_file",
+          "description": "Read one UTF-8 file in the workspace.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          }
+        }
+      ]
+    },
+    {
+      "type": "model_received",
+      "turn": 2,
+      "message": {
+        "role": "assistant",
+        "content": "单文件内容：marker: ch06 alpha"
+      },
+      "toolCallIds": [],
+      "text": "单文件内容：marker: ch06 alpha"
+    },
+    {
+      "type": "stopped",
+      "state": "completed",
+      "reason": "final_answer"
+    }
+  ]
+}

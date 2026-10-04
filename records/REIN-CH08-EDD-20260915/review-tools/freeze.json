@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T05:03:22.822790+00:00",
+  "sha256": "4b41fa19e5eb29a34a6123ff891a88083b44437d3f24dc9994a544e33783b592",
+  "root_test": "root-verification/run.json",
+  "coverage": "success, exit7, timeout, missing executable, existing output, before/after mutation, nested build exclusion and navigation source inclusion",
+  "applicability": "same helper for both independent reviewers across three sealed products; separate preparation cost; not supplied to formal A/B/C"
+}

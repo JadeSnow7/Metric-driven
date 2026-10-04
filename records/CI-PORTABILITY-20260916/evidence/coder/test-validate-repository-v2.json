@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "tools/tests/test_validate_repository.py",
+    "-v"
+  ],
+  "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+  "started_at": "2026-09-16T06:37:15.337520Z",
+  "ended_at": "2026-09-16T06:37:15.401091Z",
+  "exit_code": 0,
+  "timed_out": false,
+  "wrapper_exit_code": null,
+  "stdout": "",
+  "stderr": "test_plugin_links_must_point_at_the_shipped_skill (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_reviewer_is_read_only_and_agents_do_not_delegate (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_shipped_definitions_pass (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_skill_description_limit_and_malformed_frontmatter (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_subagent_must_be_pinned_to_sonnet (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_valid_fixture_passes (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok\ntest_archived_product_copies_are_excluded_but_live_summaries_are_checked (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\ntest_code_examples_are_not_scanned_but_real_links_remain_visible (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\ntest_local_links_reject_absolute_and_escape_paths (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\ntest_main_link_scan_skips_external_fragments_and_parses_angles (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\ntest_only_sealed_c_final_is_archived (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\ntest_only_task_experiment_and_snapshot_trees_are_excluded (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.021s\n\nOK\n",
+  "stdout_base64": "",
+  "stderr_base64": "dGVzdF9wbHVnaW5fbGlua3NfbXVzdF9wb2ludF9hdF90aGVfc2hpcHBlZF9za2lsbCAodG9vbHMudGVzdHMudGVzdF92YWxpZGF0ZV9yZXBvc2l0b3J5LkNsYXVkZUNvZGVEZWZpbml0aW9uVGVzdHMpIC4uLiBvawp0ZXN0X3Jldmlld2VyX2lzX3JlYWRfb25seV9hbmRfYWdlbnRzX2RvX25vdF9kZWxlZ2F0ZSAodG9vbHMudGVzdHMudGVzdF92YWxpZGF0ZV9yZXBvc2l0b3J5LkNsYXVkZUNvZGVEZWZpbml0aW9uVGVzdHMpIC4uLiBvawp0ZXN0X3NoaXBwZWRfZGVmaW5pdGlvbnNfcGFzcyAodG9vbHMudGVzdHMudGVzdF92YWxpZGF0ZV9yZXBvc2l0b3J5LkNsYXVkZUNvZGVEZWZpbml0aW9uVGVzdHMpIC4uLiBvawp0ZXN0X3NraWxsX2Rlc2NyaXB0aW9uX2xpbWl0X2FuZF9tYWxmb3JtZWRfZnJvbnRtYXR0ZXIgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5DbGF1ZGVDb2RlRGVmaW5pdGlvblRlc3RzKSAuLi4gb2sKdGVzdF9zdWJhZ2VudF9tdXN0X2JlX3Bpbm5lZF90b19zb25uZXQgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5DbGF1ZGVDb2RlRGVmaW5pdGlvblRlc3RzKSAuLi4gb2sKdGVzdF92YWxpZF9maXh0dXJlX3Bhc3NlcyAodG9vbHMudGVzdHMudGVzdF92YWxpZGF0ZV9yZXBvc2l0b3J5LkNsYXVkZUNvZGVEZWZpbml0aW9uVGVzdHMpIC4uLiBvawp0ZXN0X2FyY2hpdmVkX3Byb2R1Y3RfY29waWVzX2FyZV9leGNsdWRlZF9idXRfbGl2ZV9zdW1tYXJpZXNfYXJlX2NoZWNrZWQgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5WYWxpZGF0ZVJlcG9zaXRvcnlUZXN0cykgLi4uIG9rCnRlc3RfY29kZV9leGFtcGxlc19hcmVfbm90X3NjYW5uZWRfYnV0X3JlYWxfbGlua3NfcmVtYWluX3Zpc2libGUgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5WYWxpZGF0ZVJlcG9zaXRvcnlUZXN0cykgLi4uIG9rCnRlc3RfbG9jYWxfbGlua3NfcmVqZWN0X2Fic29sdXRlX2FuZF9lc2NhcGVfcGF0aHMgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5WYWxpZGF0ZVJlcG9zaXRvcnlUZXN0cykgLi4uIG9rCnRlc3RfbWFpbl9saW5rX3NjYW5fc2tpcHNfZXh0ZXJuYWxfZnJhZ21lbnRzX2FuZF9wYXJzZXNfYW5nbGVzICh0b29scy50ZXN0cy50ZXN0X3ZhbGlkYXRlX3JlcG9zaXRvcnkuVmFsaWRhdGVSZXBvc2l0b3J5VGVzdHMpIC4uLiBvawp0ZXN0X29ubHlfc2VhbGVkX2NfZmluYWxfaXNfYXJjaGl2ZWQgKHRvb2xzLnRlc3RzLnRlc3RfdmFsaWRhdGVfcmVwb3NpdG9yeS5WYWxpZGF0ZVJlcG9zaXRvcnlUZXN0cykgLi4uIG9rCnRlc3Rfb25seV90YXNrX2V4cGVyaW1lbnRfYW5kX3NuYXBzaG90X3RyZWVzX2FyZV9leGNsdWRlZCAodG9vbHMudGVzdHMudGVzdF92YWxpZGF0ZV9yZXBvc2l0b3J5LlZhbGlkYXRlUmVwb3NpdG9yeVRlc3RzKSAuLi4gb2sKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUmFuIDEyIHRlc3RzIGluIDAuMDIxcwoKT0sK",
+  "stdout_present": false,
+  "stderr_present": true,
+  "stdout_required": false,
+  "inputs": {},
+  "repo": "/Users/huaodong/Documents/evidence-driven-development",
+  "cwd_relative": ".",
+  "revision_before": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision_after": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
+  "revision_changed_paths": [],
+  "result": "passed"
+}

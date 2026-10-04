@@ -1,0 +1,3 @@
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-20260914/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.04s
+     Running tests/loop.rs (/private/tmp/rein-production-build-20260914/debug/deps/loop-8ce302fc995cc4fc)

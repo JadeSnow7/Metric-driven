@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-09-14T15:01:02.398484+00:00",
+  "files": {
+    "docs/milestones/02.md": "e40f81e99bdf52d4309d9e620537b698672d253c5fa56eda631cd5eac10bc9bc",
+    "docs/appendices/a2.md": "88e9715eb660588e5edd7d062c0ed8252b4f3fd1cf96d00447e9a956ac1bd2b0"
+  },
+  "evidence": "/private/tmp/rein-stage1-support-evidence",
+  "review": [
+    "Read both complete final pages, checked commands and expected actual outputs against ch05/ch06 code and eight v2 execution logs.",
+    "Read v5 extracted-code compile logs: TS original 0, missing Paused branch 2 with TS2366, handled 0; Rust original 0, missing Paused branch 1 with E0004, handled 0.",
+    "Read v5 docs build stdout and exit0.",
+    "Prior v4 document used wrong LoopState names despite reported validation; rejected and corrected before acceptance."
+  ],
+  "archive_status": "passed",
+  "boundaries": [
+    "Local offline tutorial and compiler checks only; no new live model claim.",
+    "Snapshot06 remains immutable; support pages enter the next accepted snapshot."
+  ],
+  "archive_verification": "main-archive-verification.json"
+}

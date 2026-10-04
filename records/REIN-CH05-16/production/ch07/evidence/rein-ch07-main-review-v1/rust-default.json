@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/private/tmp/rein-candidate03-build/debug/examples/ch07_context"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03",
+  "start": "2026-09-14T14:36:08.665692+00:00",
+  "end": "2026-09-14T14:36:08.675794+00:00",
+  "elapsed": 0.010102583095431328,
+  "exit": 101,
+  "stdout": "",
+  "stderr": "\nthread 'main' (39744914) panicked at examples/ch07_context.rs:96:61:\nread case file: Os { code: 2, kind: NotFound, message: \"No such file or directory\" }\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+}

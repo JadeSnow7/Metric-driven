@@ -1,0 +1,57 @@
+{
+  "chapter": "06",
+  "scope": "current code and examples; full chapter pending body and snapshot",
+  "status": "passed",
+  "reviewed_at": "2026-09-14T13:57:55.077841+00:00",
+  "source_hashes": {
+    "ts/src/rein/loop.ts": "f4f275c63c9f182da4e4ce8bb2d51c92002877d0da4acf115733a7caad11c006",
+    "ts/src/rein/contracts.ts": "541936da3959f8cbdb9e5d60a87b6f9e312a8b171deb24dd9bf9f80884dae3fa",
+    "ts/src/rein/adapters.ts": "497f64b474dcf12cf20d2cd1009becf88ca6da1a40f064bc35f22bfd64efca50",
+    "ts/src/transport.ts": "9a99d77fef5acfb8112a7fbbcbf9c139e7735e6d58c2c721ab8c1e81492e1ead",
+    "ts/tests/loop.test.ts": "bf2a7d388db3bcf491a65739522b6cb35587c64f50887ff6c22fad47f0518a36",
+    "ts/examples/ch06-loop.ts": "62570bfa091919d9f26a86cf7117f7d738eb135716a1f2aeb9496370cbc56275",
+    "ts/package.json": "33fb35b7ce3b1dfe88af1cc2ac414ec6e1d20a116d89afbc62eee84b38643884",
+    "rust/src/rein/loop.rs": "c5161261c51e76f34ab70b2bf2c2b640bae2b574ec1460ef7aa6af071fed7ead",
+    "rust/src/rein/mod.rs": "8e4e65fa7747903f720d6504e712c8a20c4b3b60c0a1d03a0798615ff8edf22b",
+    "rust/tests/loop.rs": "9a4dc91fdb79e5d5daf79faabf7e6df089b43606888b35938620467ac2852846",
+    "rust/examples/ch06_loop.rs": "9720dbbe4ed4d8c2a24c63fc91d2e7ee1b5a6bfbc7fe7a9e93bdf7269b8fb90c",
+    "scripts/ch06-compare.mjs": "e6451a2766d9cbd846bad6de13c73cc60a23689f4b715dafed2de15588acf275",
+    "fixtures/cases/ch06-control.json": "80abc9453435f75565390ad15f5ec1b46bfa0ac9c5502da957bc331eef6c8408",
+    "package.json": "8deffe20bf8d442a49d4eb29b1674d4ff1203e6672daa35515b8558302892bbb"
+  },
+  "checks": {
+    "typescript_complete_suite": {
+      "passed": 88,
+      "failed": 0,
+      "evidence": "/private/tmp/rein-ch06-v4-ts-evidence/full-test.stdout"
+    },
+    "rust_complete_suite": {
+      "passed": 21,
+      "failed": 0,
+      "evidence": "/private/tmp/rein-ch06-v4-rust-evidence/raw/cargo-test.json"
+    },
+    "shared_control_scenarios": {
+      "count": 10,
+      "status": "passed",
+      "evidence": "/private/tmp/rein-ch06-main-final-review/compare.json"
+    },
+    "dynamic_inputs": {
+      "status": "passed",
+      "evidence": "/private/tmp/rein-ch06-main-final-review/observations.json"
+    },
+    "ch05_regression": {
+      "status": "passed",
+      "evidence": "/private/tmp/rein-ch06-main-review-v4/ch05-regression.json"
+    },
+    "sync_abort_then_throw": {
+      "status": "passed",
+      "evidence": "/private/tmp/rein-ch06-main-review-v4/sync-abort-throw.json"
+    }
+  },
+  "limits": [
+    "No live smoke required for chapter06; none run",
+    "Cancellation prevents subsequent dispatch and isolates or drops local waiting; it cannot retract server work",
+    "Nonexistent workspace error text differs by language; both model_error with only search dispatched and no answer",
+    "Current full book, ch07-16, UI and original Rein backwrite not completed"
+  ]
+}

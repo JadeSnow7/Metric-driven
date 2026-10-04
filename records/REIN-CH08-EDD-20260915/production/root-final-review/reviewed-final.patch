@@ -1,0 +1,1566 @@
+--- common/MIGRATIONS.md
++++ production/MIGRATIONS.md
+@@ -1,4 +1,10 @@
+ # Migrations
++
++## ch08
++
++第08章加入 Rust `context_methods` 四策略比较、真实 Node `read_file` 混合入口、独立示例与离线验收命令；不运行真实模型服务。
++
++状态：正文与入口已提供；当前版本以最终源码、fixture 和实际执行记录核对四策略输出、独立练习、异常路径及文档构建。第 09 章仍未实现。
+ 
+ ## ch05 loop contract（历史基线）
+ 
+@@ -16,7 +22,7 @@
+ | 任务 | 交付物 | 依赖 | 验收 |
+ | --- | --- | --- | --- |
+ | SDK 提炼 | 从实际调用抽出 TS SDK 接口 | core 调用稳定 | SDK 由真实调用驱动并保留 IDs/evidence |
+-| 08 context | 同一任务、同一预算下的四种上下文策略材料 | core 状态与消息快照 | 四策略输出可复算，并分别记录估算 token 与真实 token 的边界 |
++| 08 context | 同一任务、同一预算下的四种上下文策略材料 | core 状态与消息快照 | 四策略输出可复算，并分别记录上下文估算单位与服务实际 token 的边界 |
+ | 09 validators | evidence binding 验证器 | 08 context | 按 task/call/targetVersion/rule 绑定证据；验证通过不等同任务成功 |
+ | 10 repair + unknown | 失败反馈、未知结果处理 | validators、断连结果 | 未知结果不自动重放，修复路径有明确终态 |
+ | 11 boundary | 参数、路径和信任边界；若需限制进程副作用，交付实际代理或隔离机制 | host 协议与工具权限 | 未授权路径和进程边界有真实失败证据；不把本轮 trusted Node 当作 sandbox |
+--- common/README.md
++++ production/README.md
+@@ -8,12 +8,12 @@
+ 
+ | 目录 | 用途 | 当前状态 |
+ | --- | --- | --- |
+-| `docs/chapters/` | 00–16 章正文 | 01–03 章以 TypeScript 快速入门，Rust hello 可选；05–07 章已有 Rust core 与旧 TS 对照，06 plugin 教程已提供并完成离线实验核验，其余按混合路线规划 |
++| `docs/chapters/` | 00–16 章正文 | 01–03 章以 TypeScript 快速入门，Rust hello 可选；05–07 章有 Rust core 与旧 TS 对照，06 plugin 已提供；08 章是 Rust core + Node 宿主的四方法正文，其余按混合路线规划 |
+ | `docs/readings/` | 阅读材料 0–3 | 阅读 0 与阅读材料 2 已提供；其余待撰写 |
+ | `docs/milestones/` | 第一阶段小结与三次阶段汇总 | 阶段汇总 1 已提供；其余待撰写 |
+ | `docs/appendices/` | 实现对照与深入讨论 A.1–A.5 | A.2 已提供；其余待撰写 |
+ | `ts/` | TypeScript 入门、Node host、领域插件与历史 loop 对照 | 第 01 章实现、host 与测试材料已落地 |
+-| `rust/` | Rust core 05–07、M1 stdio host 与测试 | core 与 M1 离线实验已核验 |
++| `rust/` | Rust core 05–08、M1 stdio host 与测试 | 05–07 core 与 M1 离线材料已提供；08 core 合同测试按独立记录核验 |
+ | `contracts/` | provider 模型适配合同与扩展进程通信合同 | 两条边界分别记录 |
+ | `fixtures/` | 共享验收输入、模型响应与 hybrid marker | 现有录制、工具输入和 hybrid marker 可按章节使用 |
+ 
+@@ -77,7 +77,7 @@
+ 
+ 网站：https://jadesnow7.github.io/Rein/
+ 
+-当前仓库包含首页、阅读指南、规划目录、第 01 章 TypeScript 修订正文与 Rust 版本、阅读 0 的公共导读与双语言预备材料，以及 05–07 Rust core、Node host 和 hybrid M1 离线材料。`hybrid:demo` 与 `hybrid:verify` 是本地入口，最终全站放行仍需按证据记录核验。
++当前仓库包含首页、阅读指南、规划目录、第 01 章 TypeScript 修订正文与 Rust 版本、阅读 0 的公共导读与双语言预备材料，以及 05–07 Rust core 对照材料和第 08 章 Rust core + Node host 混合入口。`ch08:compare`、`ch08:verify` 是第 08 章本地入口，输出范围是离线上下文合同与本地进程记录。
+ 
+ 本书目前限时免费。在持续更新过程中，部分限时免费章节将逐步转为收费；标注"永久免费"的章节将保持免费开放。具体收费范围、时间和价格以届时公告为准。GitHub 与 Pages 的公开历史会保留；政策说明不构成付费墙，未来付费交付将使用独立系统。
+ 
+--- common/docs/.vitepress/config.mts
++++ production/docs/.vitepress/config.mts
+@@ -33,7 +33,7 @@
+           { text: '04 统一协议 · 初稿', link: '/chapters/04.html' }, { text: '05 核心 Agent Loop（Rust core）', link: '/chapters/05-rust.html' }, { text: '06 循环控制（Rust core）', link: '/chapters/06-rust.html' }, { text: '06 插件附页 · 已提供', link: '/chapters/06-plugin.html' }, { text: '阅读材料 2 · 已提供', link: '/readings/02.html' }, { text: '阅读材料 3 · 待撰写', link: '/readings/03.html' }, { text: '阶段汇总 1 · 已提供', link: '/milestones/02.html' }
+         ] },
+         { text: '第三阶段 · 可靠性', collapsed: true, items: [
+-          { text: '07 上下文管理（Rust core）', link: '/chapters/07-rust.html' }, { text: '08 上下文管理方法 · 计划', link: '/chapters/08.html' }, { text: '09 验收条件与验证器 · 计划', link: '/chapters/09.html' }, { text: '10 失败反馈 · 计划', link: '/chapters/10.html' }, { text: '11 防御性编程 · 计划', link: '/chapters/11.html' }, { text: '12 权限管理 · 计划', link: '/chapters/12.html' }, { text: '阶段汇总 2 · 计划', link: '/milestones/03.html' }
++          { text: '07 上下文管理（Rust core）', link: '/chapters/07-rust.html' }, { text: '08 上下文管理方法 · 已提供', link: '/chapters/08.html' }, { text: '09 验收条件与验证器 · 计划', link: '/chapters/09.html' }, { text: '10 失败反馈 · 计划', link: '/chapters/10.html' }, { text: '11 防御性编程 · 计划', link: '/chapters/11.html' }, { text: '12 权限管理 · 计划', link: '/chapters/12.html' }, { text: '阶段汇总 2 · 计划', link: '/milestones/03.html' }
+         ] },
+         { text: '第四阶段 · 应用', collapsed: true, items: [
+           { text: '13 计划与任务审查 · 计划', link: '/chapters/13.html' }, { text: '14 受限委派 · 计划', link: '/chapters/14.html' }, { text: '15 外部扩展 · 计划', link: '/chapters/15.html' }, { text: '16 垂直领域设计方法论 · 计划', link: '/chapters/16.html' }, { text: '阶段汇总 3 · 计划', link: '/milestones/04.html' }
+--- common/docs/chapters/08.md
++++ production/docs/chapters/08.md
+@@ -1,5 +1,208 @@
+-# 08 上下文管理方法：四种做法的横向对比
+-
+-**状态：待撰写｜可独立阅读｜限时免费**
+-
+-本章计划比较按需读取、窗口裁剪、摘要与检索，并以同一组任务测量指标。
++# 08 上下文管理方法：同一份资料的四种取法
++
++长历史由四个对象共同管理：规则说明约束，目标保存任务与问题，完整历史保留交互，发送上下文决定本次回答实际看到的消息；[第07章](./07-rust.md) 对这四个对象有完整回顾。本章把问题落到同一份六文档资料和四个任务上，观察哪些消息真正进入回答器，以及证据缺失时系统如何停在可解释的结果上。继续把完整历史原样塞给回答器，会让消息变长，却无法说明哪些资料真正有用；裁剪之后，回答又可能看似完整而没有依据。
++
++以下命令都从 Rein 仓库根目录执行，并假定已经完成 `npm ci`、拥有 Node.js、Rust/Cargo 和本地 `node_modules`。先确认位置：
++
++```bash
++test -f package.json && test -d node_modules && test -f rust/Cargo.toml
++```
++
++入口仍是 Rust core 的 `context_methods`：Rust 负责方法选择、预算和证据采纳，通过既有 `StdioExecutor` 启动真实 Node `read_file` 宿主。TypeScript 只承担领域文件工具，不复制 Harness，也不扩展 M1 协议。独立进程提供进程边界，不自动成为安全沙箱。回答器是离线共同回答器，只看最终 `messages`，不会读取 `expectedFacts`，不会调用真实模型服务。
++
++<a id="methods-entry"></a>
++
++## 从运行实验开始
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++npm run --silent ch08:compare
++```
++
++输出固定为四任务乘四方法的16行。每行包含 messages、读取操作、估算单位、来源、离线回答、质量和 StdioExecutor 的真实进程记录。估算是 UTF-8 消息单位，不是服务 token；本章不调用真实模型服务。可以用下面的断言检查默认根对象和行数：
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++npm run --silent ch08:compare | node -e 'let x="";process.stdin.on("data",d=>x+=d).on("end",()=>{const o=JSON.parse(x); if(o.unit!=="estimated-bytes-v1"||o.serviceTokens!==null||o.results.length!==16) process.exit(1); console.log(`rows=${o.results.length} unit=${o.unit} serviceTokens=${o.serviceTokens}`)})'
++```
++
++预期短输出为 `rows=16 unit=estimated-bytes-v1 serviceTokens=null`。这只证明默认数据的离线输出形状，不证明真实模型质量、网络延迟或线上吞吐量。
++
++<a id="fixed-dataset"></a>
++
++## 固定资料与回答边界
++
++索引只保存 `unit`、预算和文档的 `id/path/title/keywords/order`，事实只在六份 Markdown 正文。四个任务分别询问早期传输方式与协议、最新发布检查命令、批准与失败处理、资料未提供的生产吞吐量。每条规则是独立 system message，问题是普通 `user` message；读取结果也作为普通 `user` message，但必须带精确前缀 `[来源:docId]\n`。回答器只看 messages，不能读取 expectedFacts，也不能由 taskId 选择答案。
++
++`quality` 是正确且在来源消息中出现的必需事实数除以必需事实总数，范围 0..1：两个事实找到一个就是 0.5，两个都是 1，没有依据就是 0。task-04 没有必需事实，claims 为空且 `insufficientEvidence=true` 时，unknown 才是 1。没有依据的 claims 必须进入 `unsupportedClaims`。`selectedSources` 是最终进入 messages 的去重来源。
++
++<a id="four-methods"></a>
++
++## 四种方法
++
++### on-demand：索引命中后才读取
++
++输入是 question、rules 和 index 元数据。Rust 先检查 title/keywords，再对命中的文档发 `read_file`；未命中文档没有 read operation。返回正文被包装成 `[来源:doc-01]` 的 user message，task-01 因此能看到 `传输方式：JSON Lines` 与 `协议版本：rein-extension/0.1`。关键词只导航，不是事实；索引写着“协议”并不能单独生成 claim。
++
++### window：按 paragraph 保持最近后缀
++
++输入仍是按 order 读出的正文段落。Rust 从最近的完整 paragraph 后缀开始尝试放入 messages，预算不够就丢最早片段；rules/question 永不裁剪，来源片段可以整段消失。保留的 paragraph 按 `(order, paragraphIndex)` 恢复原序，调用历史仍留在 operations/callRecords。若 task-03 的两个来源中只保留批准段落，回答仍成功但只能有一个 claim，quality 就是 0.5；若 task-01 的两个事实在同一段中而该段被整段删除，quality 才会是 0。
++
++### summary：压缩背景，保留事实行
++
++输入是实际读取的段落，操作是筛出含 `字段：值` 且非背景的行。`doc-01` 的背景自然段被丢弃，两个事实行和来源前缀仍进入 user message，所以 rawAnswer 仍能引用 JSON Lines。修改正文为 HTTP 后，summary 读取到新行就会使用 HTTP；这是规则式离线提取，不是 LLM 摘要。
++
++### retrieval：正文段落评分后选取
++
++输入是完整正文段落和 question 词：ASCII 词按完整词匹配，非 ASCII 文本使用连续 2..8 字符 n-gram。Rust 为每个候选 paragraph 记录 `type=retrieval`、`score`、`source`、`order`、`paragraphIndex`、`text`、`selected`，按 score 再按 order/index 稳定排序。task-03 的批准规则与失败处理段落有匹配词，因而可进入 messages；改成无匹配词后候选仍可被记录为 0 分，但 selected 全为 false，最终来源为空。score 是选择信号，不是答案或 task ID 查表，也不是嵌入检索能力。
++
++实现定位可以从 `rust/src/rein/context_methods.rs` 的 `base`、`run_one_with_executor`、`paragraphs` 和 `answer` 开始：先组装 rules/question，预算通过后读取正文，再给段落保存来源/order/index，最后只把最终 messages 交给回答器。预算检查的关键形状是：
++
++```rust
++let mut messages = base(&task_view);
++if budget == 0 || estimated_units(&messages) > budget {
++    return empty(task, strategy, budget, "context_budget_exhausted", start);
++}
++// read_file -> paragraphs -> strategy selection -> sourced user messages
++let answer = answer(&messages);
++```
++
++因此权威预算检查发生在文档读取之前；裁剪、评分和 call record 仍以该文件的完整实现为准。
++
++你可以把每行的消息构建想成三步：先放入两条独立 rule 的 `system` 消息，再放入 question 的普通 `user` 消息；每次真实读取通过 StdioExecutor 产生一条 operations 与一条 callRecords，最终只把带 `[来源:docId]` 的正文作为普通 `user` message 放入回答上下文；方法在这个阶段筛选、裁剪或改写正文消息；最后把剩下的 messages 原样交给同一个回答器。于是 task-01 的 `doc-01` 事实若被保留，rawAnswer 会出现 `JSON Lines` 和 `rein-extension/0.1`；window 若裁掉其中一段，claims 只能覆盖仍在消息中的事实；summary 去掉背景段仍能保留字段行；retrieval 即使给 `doc-03` 较高分，也必须从实际段落找到字段，不能从分数推导答案。真实调用历史只看 operations/callRecords，不能根据 message role 猜工具调用。
++
++<a id="compare-results"></a>
++
++## 比较结果
++
++任务一验证传输方式与协议版本，任务二验证发布检查命令，任务三跨批准与失败文档，任务四询问资料没有给出的生产吞吐量。每行字段包括 `taskId,strategy,question,budget,status,messages,estimatedUnits,selectedSources,operations,answer,quality,unsupportedClaims,elapsedMs,serviceTokens,modelCalls,callRecords`。`serviceTokens` 始终为 null；`elapsedMs` 只覆盖本地构造、离线回答和评分的单调时钟。budget 为0在文档 I/O 前返回 `context_budget_exhausted`，modelCalls、operations、callRecords 都是0，answer 为 null，estimatedUnits 为0，quality 为 null。
++
++可用下列命令生成真实短表，不手写结果：
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++npm run --silent ch08:compare | node -e 'let x="";process.stdin.on("data",d=>x+=d).on("end",()=>{const o=JSON.parse(x); for(const r of o.results) console.log([r.taskId,r.strategy,r.status,r.quality,r.estimatedUnits,r.selectedSources.join(","),r.answer?.claims.length??"null",r.modelCalls].join("\t"))})'
++```
++
++比较时固定 data-root、任务、预算和版本，只改变 strategy。`modelCalls:1` 是一次离线回答器调用，不是供应商模型调用。
++
++在本章配套实现、冻结示例数据和默认预算 2400 下，实际运行得到下面的短表。表中不写会随进程变化的 pid 与 elapsedMs；批次记录保存了精确版本哈希：
++
++| task | strategy | status | quality | estimatedUnits | selectedSources | claims | modelCalls |
++| --- | --- | --- | ---: | ---: | --- | ---: | ---: |
++| task-01 | on-demand | completed | 1.0 | 1520 | doc-01,doc-04 | 2 | 1 |
++| task-01 | window | completed | 0.0 | 2351 | doc-03,doc-04,doc-05,doc-06 | 0 | 1 |
++| task-01 | summary | completed | 1.0 | 1292 | doc-01,doc-02,doc-03,doc-04,doc-05,doc-06 | 2 | 1 |
++| task-01 | retrieval | completed | 1.0 | 2117 | doc-01,doc-06,doc-02,doc-03,doc-04 | 2 | 1 |
++| task-02 | on-demand | completed | 1.0 | 1456 | doc-04,doc-06 | 1 | 1 |
++| task-02 | window | completed | 1.0 | 2336 | doc-03,doc-04,doc-05,doc-06 | 1 | 1 |
++| task-02 | summary | completed | 1.0 | 1277 | doc-01,doc-02,doc-03,doc-04,doc-05,doc-06 | 1 | 1 |
++| task-02 | retrieval | completed | 1.0 | 1716 | doc-06,doc-02,doc-05,doc-03,doc-04 | 1 | 1 |
++| task-03 | on-demand | completed | 1.0 | 1555 | doc-03,doc-05 | 2 | 1 |
++| task-03 | window | completed | 0.5 | 2393 | doc-03,doc-04,doc-05,doc-06 | 1 | 1 |
++| task-03 | summary | completed | 1.0 | 1334 | doc-01,doc-02,doc-03,doc-04,doc-05,doc-06 | 2 | 1 |
++| task-03 | retrieval | completed | 1.0 | 2395 | doc-05,doc-03,doc-01,doc-02 | 2 | 1 |
++| task-04 | on-demand | completed | 1.0 | 133 | （无） | 0 | 1 |
++| task-04 | window | completed | 1.0 | 2315 | doc-03,doc-04,doc-05,doc-06 | 0 | 1 |
++| task-04 | summary | completed | 1.0 | 1256 | doc-01,doc-02,doc-03,doc-04,doc-05,doc-06 | 0 | 1 |
++| task-04 | retrieval | completed | 1.0 | 1329 | doc-02,doc-03,doc-05,doc-06,doc-01 | 0 | 1 |
++
++这组结果说明 window 在 task-01 的默认预算下没有保留 doc-01，所以两个事实都没有依据；task-03 则保留了两个来源中的一个，quality 为 0.5。task-04 的 quality 为 1.0 表示“零个必需事实正确地保持为空”，不是猜中了吞吐量。
++
++<a id="method-failure"></a>
++
++## 故障是可观察终态
++
++缺失文件、越界路径、协议响应异常和 Node 宿主异常返回 `error`、answer 为 null、modelCalls 为0，并保留真实 callRecords。记录中的 dispatched、reaped、child_pid、exit_code 和 terminal 来自进程生命周期，不能用 passed 字段或策略名替代行为。重复 ID/order、非法 path 或非法 CLI 则非零退出，不能折叠成普通结果行。
++
++预算和故障的最小检查：
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++BAD_ROOT="$(mktemp -d /tmp/rein-ch08-bad-metadata.XXXXXX)"
++cp -R fixtures/ch08-context/. "$BAD_ROOT/"
++node -e 'const fs=require("fs"); const p=process.argv[1]+"/index.json"; const x=JSON.parse(fs.readFileSync(p)); x.documents[1].order=x.documents[0].order; fs.writeFileSync(p,JSON.stringify(x));' "$BAD_ROOT"
++if npm run --silent ch08:compare -- --data-root "$BAD_ROOT" >"$BAD_ROOT/invalid.out" 2>"$BAD_ROOT/invalid.err"; then exit 1; fi
++rg -n "duplicate|invalid|metadata|order" "$BAD_ROOT/invalid.err"
++```
++
++缺文件也要保留真实失败记录。这个副本只删临时目录中的发布文档：
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++MISSING_ROOT="$(mktemp -d /tmp/rein-ch08-missing.XXXXXX)"
++cp -R fixtures/ch08-context/. "$MISSING_ROOT/"
++rm "$MISSING_ROOT/docs/release.md"
++npm run --silent ch08:compare -- --data-root "$MISSING_ROOT" --strategy on-demand >"$MISSING_ROOT/result.json"
++node -e 'const fs=require("fs"); const o=JSON.parse(fs.readFileSync(process.argv[1])); const r=o.results.find(x=>x.taskId==="task-02"); if(!r||r.status!=="error"||r.answer!==null||r.modelCalls!==0||!r.callRecords.length||!r.callRecords.some(c=>c.prepared&&c.terminal&&!c.dispatched&&c.child_pid===null)) process.exit(1); console.log(`status=${r.status} answer=null modelCalls=${r.modelCalls} records=${r.callRecords.length} prepared=true dispatched=false pid=null`)' "$MISSING_ROOT/result.json"
++```
++
++预期输出包含 `status=error answer=null modelCalls=0 records=...`，具体 pid、退出码和 terminal 由本机进程产生。
++
++## 独立练习
++
++三项练习复制资料到绝对临时目录，不修改冻结 fixture。
++
++<a id="practice-08-1"></a>
++
++### 练习一：修改事实
++
++复制资料到绝对临时目录，将真实文档的 `传输方式：JSON Lines` 改为 `传输方式：HTTP`，保留旧 oracle，然后运行：
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++PRACTICE_ROOT="$(mktemp -d /tmp/rein-ch08-practice-1.XXXXXX)"
++cp -R fixtures/ch08-context/. "$PRACTICE_ROOT/"
++cp "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json"
++node -e 'const fs=require("fs"); const p=process.argv[1]+"/docs/early-runtime.md"; let s=fs.readFileSync(p,"utf8"); if(!s.includes("传输方式：JSON Lines")) process.exit(1); fs.writeFileSync(p,s.replace("传输方式：JSON Lines","传输方式：HTTP"));' "$PRACTICE_ROOT"
++npm run --silent ch08:compare -- --data-root "$PRACTICE_ROOT" --strategy on-demand >"$PRACTICE_ROOT/result.json"
++cmp "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json"
++node -e 'const fs=require("fs"); const a=fs.readFileSync(process.argv[1]); const b=fs.readFileSync(process.argv[2]); if(!a.equals(b)) process.exit(1); const o=JSON.parse(fs.readFileSync(process.argv[3])); if(o.results.length!==4) process.exit(1); const r=o.results.find(x=>x.taskId==="task-01"); const sourceMessages=r.messages.filter(x=>x.role==="user"&&x.content.includes("[来源:doc-01]")); if(!sourceMessages.some(m=>m.content.includes("传输方式：HTTP"))||!r.answer.rawAnswer.includes("传输方式：HTTP")||!r.answer.claims.some(c=>c.field==="传输方式"&&c.value==="HTTP"&&c.source==="doc-01")||r.quality!==0.5) process.exit(1); console.log(JSON.stringify({rawAnswer:r.answer.rawAnswer,quality:r.quality,oracleUnchanged:true,rows:o.results.length}))' "$PRACTICE_ROOT/tasks.json" "$PRACTICE_ROOT/tasks.oracle.json" "$PRACTICE_ROOT/result.json"
++```
++
++核对 task-01 的 messages 与 `answer.rawAnswer` 使用 HTTP、来源仍为 doc-01；旧 oracle 仍有 JSON Lines，因此 quality 应为0.5。它证明离线回答器读取真实 messages，不证明模型或 HTTP 服务性能。
++
++<a id="practice-08-2"></a>
++
++### 练习二：零预算
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++ZERO_ROOT="$(mktemp -d /tmp/rein-ch08-practice-2.XXXXXX)"
++cp -R fixtures/ch08-context/. "$ZERO_ROOT/"
++npm run --silent ch08:compare -- --data-root "$ZERO_ROOT" --budget 0 >"$ZERO_ROOT/result.json"
++node -e 'const fs=require("fs"); const o=JSON.parse(fs.readFileSync(process.argv[1])); if(o.results.length!==16||!o.results.every(r=>r.status==="context_budget_exhausted"&&r.messages.length===0&&r.operations.length===0&&r.callRecords.length===0&&r.answer===null&&r.modelCalls===0&&r.estimatedUnits===0&&r.quality===null)) process.exit(1); console.log(`rows=${o.results.length} status=context_budget_exhausted messages=0 operations=0 callRecords=0 answer=null modelCalls=0`)' "$ZERO_ROOT/result.json"
++```
++
++预期每行 `context_budget_exhausted`，messages、operations、callRecords 为空，modelCalls 为0。
++
++<a id="practice-08-3"></a>
++
++### 练习三：检索遗漏
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++RETRIEVAL_ROOT="$(mktemp -d /tmp/rein-ch08-practice-3.XXXXXX)"
++cp -R fixtures/ch08-context/. "$RETRIEVAL_ROOT/"
++cp "$RETRIEVAL_ROOT/tasks.json" "$RETRIEVAL_ROOT/tasks.before.json"
++npm run --silent ch08:compare -- --data-root "$RETRIEVAL_ROOT" --strategy retrieval >"$RETRIEVAL_ROOT/before.json"
++node -e 'const fs=require("fs"); const p=process.argv[1]+"/tasks.json"; const x=JSON.parse(fs.readFileSync(p)); x.tasks.find(t=>t.id==="task-03").question="zzqnomatch902"; fs.writeFileSync(p,JSON.stringify(x));' "$RETRIEVAL_ROOT"
++npm run --silent ch08:compare -- --data-root "$RETRIEVAL_ROOT" --strategy retrieval >"$RETRIEVAL_ROOT/after.json"
++node -e 'const fs=require("fs"); const before=JSON.parse(fs.readFileSync(process.argv[1])).results.find(x=>x.taskId==="task-03"); const after=JSON.parse(fs.readFileSync(process.argv[2])).results.find(x=>x.taskId==="task-03"); const scoredBefore=before.operations.filter(x=>x.type==="retrieval"); const scoredAfter=after.operations.filter(x=>x.type==="retrieval"); if(!before.selectedSources.includes("doc-03")||!before.selectedSources.includes("doc-05")||before.quality!==1||!after.answer||after.answer.claims.length!==0||!after.answer.insufficientEvidence||after.quality!==0||!scoredAfter.length||scoredAfter.some(x=>x.score!==0||x.selected!==false)||after.selectedSources.length!==0||!scoredBefore.length) process.exit(1); console.log(JSON.stringify({before:{sources:before.selectedSources,quality:before.quality,candidates:scoredBefore.length},after:{sources:after.selectedSources,quality:after.quality,candidates:scoredAfter.length,allZero:true,claims:after.answer.claims.length}}))' "$RETRIEVAL_ROOT/before.json" "$RETRIEVAL_ROOT/after.json"
++```
++
++修改 task-03 的 query 词后比较 selectedSources、段落 score 与 quality；缺少来源时 quality 下降，claims 不凭空补齐。这里证明 retrieval 的离线正文评分，不证明召回率、生产 token、延迟或容量。下一章第09章仍未实现。
++
++## Rust 到 Node 的专项检查
++
++```bash
++export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/rust/target}"
++cargo test --locked --manifest-path rust/Cargo.toml --test ch08_context
++npm run --silent ch08:verify
++```
++
++第一条覆盖 Rust 的方法、预算、回答和记录契约；第二条进入真实 Rust→Node `read_file` 路径并运行 `examples/ch08-context-methods/README.md` 的独立演示。两条都是离线检查，不启动真实模型服务；缺少宿主能力时应保留原始错误并标为未判定。
++
++## 本章结论
++
++上下文管理不是随意截短字符串：Rust authority 决定预算和证据，Node 提供实际领域文件，带来源的最终 messages 构成回答边界。on-demand 省掉不相关 I/O；window 保留有序历史但可能裁掉事实；summary 规则式提取事实行并保留来源；retrieval 用正文匹配和稳定排序寻找片段。这些实验只证明本地消息构造、证据来源、预算终态、离线回答和真实进程记录，不能证明供应商模型性能、服务 token、网络延迟、线上容量、安全沙箱或生产吞吐量。
+--- common/docs/index.md
++++ production/docs/index.md
+@@ -30,7 +30,7 @@
+ 
+ ## 现在可以读什么
+ 
+-默认从[第 01 章 TypeScript 正文（修订中）](./chapters/01.md)开始理解真实调用，Rust hello 是可选准备。需要补充终端、HTTP、配置、类型、异步或错误处理知识时，再按需查阅[阅读 0 公共导读](./readings/00.md)及 [TS](./readings/00-ts.md) / [Rust](./readings/00-rust.md) 版。05–07 章沿 Rust core 与 TypeScript plugin 的混合路线推进，当前 M1 已完成离线实验核验；旧 TS 页面保留为历史对照。阅读 0 的示例与练习是可选自测，不是进入正文的条件。
++默认从[第 01 章 TypeScript 正文（修订中）](./chapters/01.md)开始理解真实调用，Rust hello 是可选准备。需要补充终端、HTTP、配置、类型、异步或错误处理知识时，再按需查阅[阅读 0 公共导读](./readings/00.md)及 [TS](./readings/00-ts.md) / [Rust](./readings/00-rust.md) 版。05–08 章沿 Rust core 与 TypeScript plugin 的混合路线推进，08 章已完成四方法离线实验；旧 TS 页面保留为历史对照。阅读 0 的示例与练习是可选自测，不是进入正文的条件。
+ 
+ <span id="先从一次完整任务开始"></span>
+ 
+--- common/docs/toc.md
++++ production/docs/toc.md
+@@ -9,8 +9,9 @@
+ | 阅读 0 基础知识补充 | [已提供](./readings/00.md) | [知识补充与可选示例已提供](./readings/00-ts.md) | [知识补充与可选示例已提供](./readings/00-rust.md) | 永久免费 |
+ | 01 HelloWorld——从模型调用开始 | — | [正文修订中；SDK 实现已存在](./chapters/01.md) | [正文与 SDK 调用实现已提供](./chapters/01-rust.md) | 永久免费 |
+ | 03、04 章 | 初稿，待审阅 | TypeScript 正文含离线练习 | Rust 按需对照 | 见各条目 |
+-| 05–07 章 | Rust core 与历史对照 | 旧 TS 正文保留为历史对照；06 Plugin 已提供并完成离线 M1 实验核验 | core 与 M1 离线能力已核验 | 见各条目 |
+-| 08–16 章 | 按混合路线规划 | 宿主、SDK、领域 plugin | Rust core 增量能力 | 见各条目 |
++| 05–07 章 | Rust core 与历史对照 | 旧 TS 正文保留为历史对照 | Rust core 与 M1 离线能力已核验 | 见各条目 |
++| 08 章 | [Rust core 与 Node 领域宿主的四方法正文](./chapters/08.md) | 本章使用混合入口，不提供 TS 语言副本 | 四策略离线输出与独立练习按当前源码核验 | 限时免费 |
++| 09–16 章 | 按混合路线规划 | 宿主、SDK、领域 plugin | Rust core 增量能力 | 见各条目 |
+ | 阅读 1、3、阶段汇总、附录 | 按各条目状态 | 按需配套 | 按需配套 | 见各条目 |
+ 
+ 「可独立阅读」描述章节完成后的取用方式；「永久免费」与「限时免费」描述开放安排，均不表示内容已经完成。发布节点也是后续目标，达到验收后才记录实际发布。
+@@ -111,7 +112,7 @@
+ 
+ 从历史过长的失败开始，组织规则、目标、工具结果和运行历史，建立可观察的上下文预算。
+ 
+-### 08 上下文管理方法，四种做法的横向对比（待撰写·可独立阅读·限时免费） {#ch08}
++### 08 上下文管理方法，四种做法的横向对比（已提供·可独立阅读·限时免费） {#ch08}
+ 
+ [进入章节页面 →](./chapters/08.md)
+ 
+--- common/examples/ch08-context-methods/README.md
++++ production/examples/ch08-context-methods/README.md
+@@ -0,0 +1,9 @@
++# 第08章独立示例
++
++这是一个可复制的最小资料集。入口从仓库根目录运行，通过 `scripts/ch08-compare.mjs` 进入 Rust core，再由 core 通过既有协议启动真实 Node `read_file` 宿主。
++
++```bash
++node examples/ch08-context-methods/entry.mjs
++```
++
++它复制本目录自有的 `input/index.json`、`input/tasks.json` 和 `docs/`，输出四种策略的可检查结果，并验证 JSON Lines、来源 `doc-demo`、quality 1 以及真实进程 records。示例只验证离线回答，不调用真实模型服务；Rust 到 Node 的 `read_file` 进程边界仍会实际运行。正文中的 mutation 练习另行展示旧 oracle 与新资料不一致的情况。
+--- common/examples/ch08-context-methods/docs/demo.md
++++ production/examples/ch08-context-methods/docs/demo.md
+@@ -0,0 +1,4 @@
++# 演示资料
++
++传输方式：JSON Lines
++协议版本：rein-extension/0.1
+--- common/examples/ch08-context-methods/entry.mjs
++++ production/examples/ch08-context-methods/entry.mjs
+@@ -0,0 +1,19 @@
++import { cpSync, mkdtempSync } from 'node:fs'
++import { tmpdir } from 'node:os'
++import { resolve } from 'node:path'
++import { fileURLToPath } from 'node:url'
++import { spawnSync } from 'node:child_process'
++const root = resolve(fileURLToPath(new URL('../..', import.meta.url)))
++const work = mkdtempSync(resolve(tmpdir(), 'rein-ch08-example-'))
++cpSync(fileURLToPath(new URL('input', import.meta.url)), resolve(work, 'input'), { recursive: true })
++cpSync(fileURLToPath(new URL('docs', import.meta.url)), resolve(work, 'input/docs'), { recursive: true })
++const r = spawnSync('node', ['scripts/ch08-compare.mjs', '--data-root', resolve(work, 'input')], { cwd: root, encoding: 'utf8' })
++if (r.status !== 0) { process.stderr.write(r.stderr); process.exit(r.status ?? 1) }
++const out = JSON.parse(r.stdout)
++if (out.results.length !== 4) throw new Error('example must produce four strategies')
++for (const row of out.results) {
++  const claim = row.answer?.claims?.find((item) => item.field === '传输方式')
++  if (row.status !== 'completed' || !claim || claim.value !== 'JSON Lines' || claim.source !== 'doc-demo' || row.quality !== 1) throw new Error(`unexpected result for ${row.strategy}`)
++  if (!row.callRecords.length || !row.callRecords.every((record) => record.dispatched && record.reaped && record.terminal)) throw new Error(`missing real call record for ${row.strategy}`)
++}
++console.log(JSON.stringify({ example: 'ch08-context-methods', rows: out.results.length, results: out.results.map((row) => ({ strategy: row.strategy, quality: row.quality, source: row.answer.claims[0].source })) }))
+--- common/examples/ch08-context-methods/input/index.json
++++ production/examples/ch08-context-methods/input/index.json
+@@ -0,0 +1 @@
++{"unit":"estimated-bytes-v1","budget":2400,"documents":[{"id":"doc-demo","path":"docs/demo.md","title":"演示资料","keywords":["传输","协议"],"order":1}]}
+--- common/examples/ch08-context-methods/input/tasks.json
++++ production/examples/ch08-context-methods/input/tasks.json
+@@ -0,0 +1 @@
++{"tasks":[{"id":"demo-01","question":"传输方式是什么？","rules":["只根据实际读取的资料回答","每个事实必须给出来源"],"budget":2400,"unknown":false,"expectedFacts":[{"field":"传输方式","value":"JSON Lines","source":"doc-demo"}]}]}
+--- common/package.json
++++ production/package.json
+@@ -16,6 +16,8 @@
+     "ch06:compare-all": "node scripts/ch06-compare.mjs",
+     "ch07:context": "npm run ch07:context --workspace ts",
+     "ch07:compare-all": "node scripts/ch07-compare.mjs",
++    "ch08:compare": "node scripts/ch08-compare.mjs",
++    "ch08:verify": "node scripts/ch08-verify.mjs",
+     "hybrid:verify": "npm run typecheck --workspace ts && npm test --workspace ts && cargo fmt --manifest-path rust/Cargo.toml -- --check && cargo check --locked --manifest-path rust/Cargo.toml && cargo test --locked --manifest-path rust/Cargo.toml && cargo run --quiet --locked --manifest-path rust/Cargo.toml --example hybrid_stdio -- normal",
+     "hybrid:demo": "cargo run --quiet --manifest-path rust/Cargo.toml --example hybrid_stdio -- normal",
+     "hybrid:scenario": "cargo run --quiet --manifest-path rust/Cargo.toml --example hybrid_stdio --"
+--- common/rust/examples/ch08_context.rs
++++ production/rust/examples/ch08_context.rs
+@@ -0,0 +1,69 @@
++use rein_ch01_helloworld::rein::context_methods::{run_one, validate, Index, Row, Tasks};
++use serde::Serialize;
++use std::{env, fs, path::PathBuf};
++
++#[derive(Serialize)]
++struct Output {
++    unit: String,
++    #[serde(rename = "serviceTokens")]
++    service_tokens: Option<usize>,
++    results: Vec<Row>,
++}
++fn main() {
++    let mut args = env::args().skip(1);
++    let root = PathBuf::from(
++        args.next()
++            .unwrap_or_else(|| "fixtures/ch08-context".into()),
++    );
++    let mut budget: Option<usize> = None;
++    let mut strategy: Option<String> = None;
++    while let Some(arg) = args.next() {
++        let (key, value) = arg.split_once('=').unwrap_or((arg.as_str(), ""));
++        match key {
++            "--budget" if budget.is_none() && !value.is_empty() => {
++                let parsed: usize = value.parse().map_err(|_| "invalid budget").unwrap();
++                if parsed > 9_007_199_254_740_991 {
++                    panic!("invalid budget: exceeds MAX_SAFE_INTEGER")
++                }
++                budget = Some(parsed);
++            }
++            "--strategy" if strategy.is_none() && !value.is_empty() => {
++                if !matches!(value, "on-demand" | "window" | "summary" | "retrieval") {
++                    panic!("invalid strategy")
++                }
++                strategy = Some(value.to_owned());
++            }
++            _ => panic!("invalid or duplicate argument: {arg}"),
++        }
++    }
++    let index: Index =
++        serde_json::from_str(&fs::read_to_string(root.join("index.json")).expect("read index"))
++            .expect("valid index");
++    let tasks: Tasks =
++        serde_json::from_str(&fs::read_to_string(root.join("tasks.json")).expect("read tasks"))
++            .expect("valid tasks");
++    validate(&index, &tasks, &root).expect("invalid metadata");
++    let strategies: Vec<&str> = strategy
++        .as_deref()
++        .map(|s| vec![s])
++        .unwrap_or_else(|| vec!["on-demand", "window", "summary", "retrieval"]);
++    let rt = tokio::runtime::Runtime::new().unwrap();
++    let results = rt.block_on(async {
++        let mut out = Vec::new();
++        for task in &tasks.tasks {
++            for s in &strategies {
++                out.push(run_one(&index, task, s, &root, budget).await);
++            }
++        }
++        out
++    });
++    println!(
++        "{}",
++        serde_json::to_string(&Output {
++            unit: index.unit,
++            service_tokens: None,
++            results
++        })
++        .unwrap()
++    );
++}
+--- common/rust/src/rein/context_methods.rs
++++ production/rust/src/rein/context_methods.rs
+@@ -0,0 +1,521 @@
++use super::stdio_executor::CallRecord;
++use super::{
++    estimated_units, ControlSignal, ExecutorResult, Message, StdioExecutor, ToolCall, ToolExecutor,
++};
++use serde::{Deserialize, Serialize};
++use std::{collections::HashSet, path::Path, time::Instant};
++
++#[derive(Clone, Debug, Deserialize)]
++pub struct Index {
++    pub unit: String,
++    pub budget: usize,
++    pub documents: Vec<Document>,
++}
++#[derive(Clone, Debug, Deserialize)]
++pub struct Document {
++    pub id: String,
++    pub path: String,
++    pub title: String,
++    pub keywords: Vec<String>,
++    pub order: usize,
++}
++#[derive(Clone, Debug, Deserialize)]
++pub struct Task {
++    pub id: String,
++    pub question: String,
++    pub rules: Vec<String>,
++    pub budget: usize,
++}
++#[derive(Clone, Debug, Deserialize)]
++pub struct Tasks {
++    pub tasks: Vec<Task>,
++}
++#[derive(Clone, Debug, Serialize)]
++pub struct Answer {
++    #[serde(rename = "rawAnswer")]
++    pub raw_answer: String,
++    pub claims: Vec<Claim>,
++    #[serde(rename = "insufficientEvidence")]
++    pub insufficient_evidence: bool,
++}
++#[derive(Clone, Debug, Serialize)]
++pub struct Claim {
++    pub field: String,
++    pub value: String,
++    pub source: String,
++}
++#[derive(Clone, Debug, Serialize)]
++pub struct Row {
++    #[serde(rename = "taskId")]
++    pub task_id: String,
++    pub strategy: String,
++    pub question: String,
++    pub budget: usize,
++    pub status: String,
++    pub messages: Vec<Message>,
++    #[serde(rename = "estimatedUnits")]
++    pub estimated_units: usize,
++    #[serde(rename = "selectedSources")]
++    pub selected_sources: Vec<String>,
++    pub operations: Vec<serde_json::Value>,
++    pub answer: Option<Answer>,
++    pub quality: Option<f64>,
++    #[serde(rename = "unsupportedClaims")]
++    pub unsupported_claims: Vec<serde_json::Value>,
++    #[serde(rename = "elapsedMs")]
++    pub elapsed_ms: u128,
++    #[serde(rename = "serviceTokens")]
++    pub service_tokens: Option<usize>,
++    #[serde(rename = "modelCalls")]
++    pub model_calls: usize,
++    #[serde(rename = "callRecords")]
++    pub call_records: Vec<CallRecord>,
++}
++#[derive(Clone, Debug)]
++struct Paragraph {
++    source: String,
++    order: usize,
++    paragraph_index: usize,
++    text: String,
++}
++struct TaskView<'a> {
++    question: &'a str,
++    rules: &'a [String],
++}
++
++pub fn validate(index: &Index, tasks: &Tasks, root: &Path) -> Result<(), String> {
++    if index.unit != "estimated-bytes-v1" {
++        return Err("invalid metadata unit".into());
++    }
++    const MAX_SAFE: usize = 9_007_199_254_740_991;
++    if index.budget > MAX_SAFE || tasks.tasks.iter().any(|t| t.budget > MAX_SAFE) {
++        return Err("budget exceeds MAX_SAFE_INTEGER".into());
++    }
++    if index.documents.iter().any(|d| d.id.is_empty())
++        || !unique(index.documents.iter().map(|d| &d.id))
++    {
++        return Err("duplicate or empty document id".into());
++    }
++    if !unique(index.documents.iter().map(|d| &d.order)) {
++        return Err("duplicate document order".into());
++    }
++    for d in &index.documents {
++        let p = Path::new(&d.path);
++        if d.path.is_empty()
++            || p.is_absolute()
++            || d.path
++                .split('/')
++                .any(|x| x.is_empty() || x == "." || x == "..")
++            || !root.join(p).starts_with(root)
++        {
++            return Err(format!("invalid path for {}", d.id));
++        }
++    }
++    if tasks.tasks.iter().any(|t| t.id.is_empty()) || !unique(tasks.tasks.iter().map(|t| &t.id)) {
++        return Err("duplicate or empty task id".into());
++    }
++    Ok(())
++}
++fn unique<'a, T: Eq + std::hash::Hash + 'a>(mut it: impl Iterator<Item = &'a T>) -> bool {
++    let mut s = HashSet::new();
++    it.all(|x| s.insert(x))
++}
++fn docs_for(index: &Index, v: &TaskView<'_>, strategy: &str) -> Vec<Document> {
++    let mut d = index.documents.clone();
++    if strategy == "on-demand" {
++        d.retain(|x| {
++            v.question.contains(&x.title) || x.keywords.iter().any(|k| v.question.contains(k))
++        });
++    }
++    d.sort_by_key(|x| x.order);
++    d
++}
++fn paragraphs(d: &Document, b: &str) -> Vec<Paragraph> {
++    b.split("\n\n")
++        .enumerate()
++        .filter(|(_, s)| !s.trim().is_empty())
++        .map(|(i, s)| Paragraph {
++            source: d.id.clone(),
++            order: d.order,
++            paragraph_index: i,
++            text: s.into(),
++        })
++        .collect()
++}
++fn facts(p: &Paragraph) -> String {
++    p.text
++        .lines()
++        .filter(|l| l.contains('：') && !l.starts_with("背景"))
++        .collect::<Vec<_>>()
++        .join("\n")
++}
++fn terms(q: &str) -> Vec<String> {
++    let mut out = Vec::new();
++    let mut ascii = String::new();
++    let mut chinese = Vec::new();
++    let flush = |out: &mut Vec<String>, run: &mut Vec<char>| {
++        for n in 2..=run.len().min(8) {
++            for w in run.windows(n) {
++                out.push(w.iter().collect());
++            }
++        }
++        run.clear();
++    };
++    for ch in q.chars() {
++        if ch.is_ascii_alphanumeric() {
++            flush(&mut out, &mut chinese);
++            ascii.push(ch.to_ascii_lowercase());
++        } else {
++            if !ascii.is_empty() {
++                out.push(std::mem::take(&mut ascii));
++            }
++            if ch.is_alphabetic() && !ch.is_ascii() {
++                chinese.push(ch);
++            } else {
++                flush(&mut out, &mut chinese);
++            }
++        }
++    }
++    if !ascii.is_empty() {
++        out.push(ascii);
++    }
++    flush(&mut out, &mut chinese);
++    out.sort();
++    out.dedup();
++    out
++}
++fn term_matches(body: &str, term: &str) -> bool {
++    if term.chars().all(|c| c.is_ascii_alphanumeric()) {
++        body.split(|c: char| !c.is_ascii_alphanumeric())
++            .any(|word| word.eq_ignore_ascii_case(term))
++    } else {
++        body.contains(term)
++    }
++}
++
++fn fields(q: &str) -> Vec<(&'static str, Vec<&'static str>)> {
++    let mut v = vec![];
++    if q.contains("传输方式") {
++        v.push(("传输方式", vec!["传输方式", "交换方式"]));
++    }
++    if q.contains("协议") {
++        v.push(("协议版本", vec!["协议版本", "协议"]));
++    }
++    if q.contains("检查命令") {
++        v.push(("检查命令", vec!["检查命令", "验收命令"]));
++    }
++    if q.contains("批准") {
++        v.push(("批准状态", vec!["批准状态", "批准"]));
++    }
++    if q.contains("处理动作") || q.contains("怎么处理") || q.contains("如何处理") {
++        v.push(("处理动作", vec!["处理动作", "恢复动作"]));
++    }
++    if q.contains("吞吐量") {
++        v.push(("生产吞吐量", vec!["生产吞吐量", "吞吐量"]));
++    }
++    v
++}
++fn parse_claims(m: &[Message], q: &str) -> Vec<Claim> {
++    let f = fields(q);
++    let mut o = vec![];
++    for x in m
++        .iter()
++        .filter(|x| x.role == "user" && x.content.starts_with("[来源:"))
++    {
++        let s = x
++            .content
++            .lines()
++            .next()
++            .and_then(|x| x.strip_prefix("[来源:"))
++            .and_then(|x| x.strip_suffix(']'))
++            .unwrap_or("");
++        for l in x.content.lines().skip(1) {
++            if let Some((k, v)) = l.split_once('：') {
++                if let Some((canon, _)) = f.iter().find(|(_, a)| a.iter().any(|z| *z == k)) {
++                    o.push(Claim {
++                        field: (*canon).into(),
++                        value: v.trim().into(),
++                        source: s.into(),
++                    });
++                }
++            }
++        }
++    }
++    o
++}
++fn answer(m: &[Message]) -> Answer {
++    let q = m
++        .iter()
++        .find(|x| x.role == "user" && !x.content.starts_with("[来源:"))
++        .map(|x| x.content.as_str())
++        .unwrap_or("");
++    let c = parse_claims(m, q);
++    Answer {
++        raw_answer: c
++            .iter()
++            .map(|x| format!("{}：{}（来源：{}）", x.field, x.value, x.source))
++            .collect::<Vec<_>>()
++            .join("\n"),
++        insufficient_evidence: c.is_empty(),
++        claims: c,
++    }
++}
++fn quality(root: &Path, id: &str, c: &[Claim]) -> Result<f64, String> {
++    let text = std::fs::read_to_string(root.join("tasks.json"))
++        .map_err(|_| "oracle unavailable".to_owned())?;
++    let x: serde_json::Value =
++        serde_json::from_str(&text).map_err(|_| "oracle invalid JSON".to_owned())?;
++    let task = x["tasks"]
++        .as_array()
++        .and_then(|a| a.iter().find(|t| t["id"] == id))
++        .ok_or_else(|| "oracle expectedFacts missing".to_owned())?;
++    let f = task["expectedFacts"]
++        .as_array()
++        .ok_or_else(|| "oracle expectedFacts missing".to_owned())?;
++    if f.is_empty() {
++        if task["unknown"] != true {
++            return Err("oracle has empty expectedFacts without unknown=true".into());
++        }
++        return Ok(if c.is_empty() { 1.0 } else { 0.0 });
++    };
++    Ok(f.iter()
++        .filter(|z| {
++            c.iter()
++                .any(|a| z["field"] == a.field && z["value"] == a.value && z["source"] == a.source)
++        })
++        .count() as f64
++        / f.len() as f64)
++}
++fn base(v: &TaskView<'_>) -> Vec<Message> {
++    let mut m = v
++        .rules
++        .iter()
++        .map(|c| Message {
++            role: "system".into(),
++            content: c.clone(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        })
++        .collect::<Vec<_>>();
++    m.push(Message {
++        role: "user".into(),
++        content: v.question.into(),
++        tool_call_id: None,
++        tool_calls: vec![],
++    });
++    m
++}
++fn empty(t: &Task, s: &str, b: usize, status: &str, start: Instant) -> Row {
++    Row {
++        task_id: t.id.clone(),
++        strategy: s.into(),
++        question: t.question.clone(),
++        budget: b,
++        status: status.into(),
++        messages: vec![],
++        estimated_units: 0,
++        selected_sources: vec![],
++        operations: vec![],
++        answer: None,
++        quality: None,
++        unsupported_claims: vec![],
++        elapsed_ms: start.elapsed().as_millis(),
++        service_tokens: None,
++        model_calls: 0,
++        call_records: vec![],
++    }
++}
++
++pub async fn run_one(
++    index: &Index,
++    task: &Task,
++    strategy: &str,
++    root: &Path,
++    budget_override: Option<usize>,
++) -> Row {
++    run_one_with_executor(
++        index,
++        task,
++        strategy,
++        root,
++        budget_override,
++        StdioExecutor::new(root),
++    )
++    .await
++}
++pub async fn run_one_with_executor(
++    index: &Index,
++    task: &Task,
++    strategy: &str,
++    root: &Path,
++    budget_override: Option<usize>,
++    mut executor: StdioExecutor,
++) -> Row {
++    let start = Instant::now();
++    let budget = budget_override.unwrap_or(task.budget);
++    const MAX_SAFE: usize = 9_007_199_254_740_991;
++    if budget > MAX_SAFE {
++        return empty(task, strategy, budget, "error", start);
++    }
++    let v = TaskView {
++        question: &task.question,
++        rules: &task.rules,
++    };
++    let mut m = base(&v);
++    if budget == 0 || estimated_units(&m) > budget {
++        return empty(task, strategy, budget, "context_budget_exhausted", start);
++    }
++    if !matches!(strategy, "on-demand" | "window" | "summary" | "retrieval") {
++        return empty(task, strategy, budget, "error", start);
++    }
++    let docs = docs_for(index, &v, strategy);
++    let mut ps = vec![];
++    let mut ops = vec![];
++    executor.env.push((
++        "REIN_HYBRID_WORKSPACE".into(),
++        root.to_string_lossy().into_owned(),
++    ));
++    for (n, d) in docs.iter().enumerate() {
++        let call = ToolCall {
++            id: format!("call-{}", n + 1),
++            name: "read_file".into(),
++            arguments: serde_json::json!({"path":d.path}),
++        };
++        match executor.execute(&call, &ControlSignal::new(), None).await {
++            ExecutorResult::Completed(r) if r.ok => {
++                let p = paragraphs(d, &r.output.unwrap_or_default());
++                ops.push(serde_json::json!({"type":"read_file","path":d.path,"callId":call.id,"strategy":strategy,"paragraphs":p.len(),"score":serde_json::Value::Null}));
++                ps.extend(p)
++            }
++            _ => {
++                let mut r = empty(task, strategy, budget, "error", start);
++                r.messages = m;
++                r.estimated_units = estimated_units(&r.messages);
++                r.operations = ops;
++                r.call_records = executor.records();
++                return r;
++            }
++        }
++    }
++    let mut chosen = if strategy == "retrieval" {
++        let ts = terms(v.question);
++        let mut scored = ps
++            .iter()
++            .map(|p| {
++                let n = ts.iter().filter(|t| term_matches(&p.text, t)).count();
++                (n, p)
++            })
++            .collect::<Vec<_>>();
++        scored.sort_by(|a, b| {
++            b.0.cmp(&a.0)
++                .then(a.1.order.cmp(&b.1.order))
++                .then(a.1.paragraph_index.cmp(&b.1.paragraph_index))
++        });
++        for (n, p) in &scored {
++            ops.push(serde_json::json!({"type":"retrieval","source":p.source,"order":p.order,"paragraphIndex":p.paragraph_index,"score":n,"text":p.text,"selected":false}));
++        }
++        scored
++            .into_iter()
++            .filter(|(n, _)| *n > 0)
++            .map(|(_, p)| p.clone())
++            .collect()
++    } else if strategy == "summary" {
++        ps.iter()
++            .filter(|p| !facts(p).is_empty())
++            .cloned()
++            .collect()
++    } else {
++        ps.clone()
++    };
++    if strategy == "window" {
++        chosen.reverse()
++    }
++    let mut accepted = vec![];
++    for p in chosen {
++        let text = if strategy == "summary" {
++            facts(&p)
++        } else {
++            p.text.clone()
++        };
++        let msg = Message {
++            role: "user".into(),
++            content: format!("[来源:{}]\n{}", p.source, text),
++            tool_call_id: None,
++            tool_calls: vec![],
++        };
++        if estimated_units(&m) + estimated_units(std::slice::from_ref(&msg)) > budget {
++            if strategy == "window" {
++                break;
++            } else {
++                continue;
++            }
++        }
++        accepted.push(p);
++        m.push(msg);
++    }
++    if strategy == "window" {
++        accepted.sort_by_key(|p| (p.order, p.paragraph_index));
++        let start_i = task.rules.len() + 1;
++        m.truncate(start_i);
++        for p in &accepted {
++            m.push(Message {
++                role: "user".into(),
++                content: format!(
++                    "[来源:{}]\n{}",
++                    p.source,
++                    if strategy == "summary" {
++                        facts(p)
++                    } else {
++                        p.text.clone()
++                    }
++                ),
++                tool_call_id: None,
++                tool_calls: vec![],
++            });
++        }
++    }
++    for op in ops.iter_mut().filter(|o| o["type"] == "retrieval") {
++        op["selected"] = serde_json::json!(accepted.iter().any(|p| p.source == op["source"]
++            && serde_json::Value::from(p.paragraph_index) == op["paragraphIndex"]));
++    }
++    let mut selected = vec![];
++    for p in &accepted {
++        if !selected.contains(&p.source) {
++            selected.push(p.source.clone());
++        }
++    }
++    let a = answer(&m);
++    let q = match quality(root, &task.id, &a.claims) {
++        Ok(v) => v,
++        Err(e) => {
++            let mut r = empty(task, strategy, budget, "error", start);
++            r.messages = m;
++            r.estimated_units = estimated_units(&r.messages);
++            r.selected_sources = selected;
++            r.operations = ops;
++            r.answer = Some(a);
++            r.model_calls = 1;
++            r.call_records = executor.records();
++            r.unsupported_claims = vec![serde_json::json!({"error":e})];
++            return r;
++        }
++    };
++    Row {
++        task_id: task.id.clone(),
++        strategy: strategy.into(),
++        question: task.question.clone(),
++        budget,
++        status: "completed".into(),
++        estimated_units: estimated_units(&m),
++        messages: m,
++        selected_sources: selected,
++        operations: ops,
++        quality: Some(q),
++        answer: Some(a),
++        unsupported_claims: vec![],
++        elapsed_ms: start.elapsed().as_millis(),
++        service_tokens: None,
++        model_calls: 1,
++        call_records: executor.records(),
++    }
++}
+--- common/rust/src/rein/mod.rs
++++ production/rust/src/rein/mod.rs
+@@ -4,6 +4,7 @@
+ use std::pin::Pin;
+ use std::time::Duration;
+ 
++pub mod context_methods;
+ pub mod r#loop;
+ pub mod stdio_executor;
+ pub use r#loop::{
+--- common/rust/tests/ch08_context.rs
++++ production/rust/tests/ch08_context.rs
+@@ -0,0 +1,507 @@
++use rein_ch01_helloworld::rein::context_methods::{
++    run_one_with_executor, validate, Document, Index, Task, Tasks,
++};
++use rein_ch01_helloworld::rein::{estimated_units, Message, StdioExecutor};
++use std::{
++    fs,
++    path::{Path, PathBuf},
++    process::{self, Command},
++    sync::atomic::{AtomicUsize, Ordering},
++};
++
++static SEQ: AtomicUsize = AtomicUsize::new(0);
++fn book() -> PathBuf {
++    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
++        .parent()
++        .unwrap()
++        .to_path_buf()
++}
++fn unique_root() -> PathBuf {
++    let p = std::env::temp_dir().join(format!(
++        "rein-ch08-v3-{}-{}",
++        process::id(),
++        SEQ.fetch_add(1, Ordering::Relaxed)
++    ));
++    fs::create_dir(&p).unwrap();
++    fs::create_dir(p.join("docs")).unwrap();
++    p
++}
++fn fixture() -> (PathBuf, Index, Vec<Task>) {
++    let p = unique_root();
++    let docs = [
++        (
++            "early",
++            "背景早期\n\n传输方式：JSON Lines\n协议版本：rein-extension/0.1\n",
++        ),
++        ("latest", "背景发布\n\n检查命令：npm test\n"),
++        ("approved", "批准状态：approved\n"),
++        ("failed", "处理动作：deploy\n"),
++        ("background", "背景自然段\n"),
++        ("other", "无关事实：never\n"),
++    ];
++    for (id, body) in docs {
++        fs::write(p.join("docs").join(format!("{id}.md")), body).unwrap();
++    }
++    let documents = [
++        "early",
++        "latest",
++        "approved",
++        "failed",
++        "background",
++        "other",
++    ]
++    .into_iter()
++    .enumerate()
++    .map(|(n, id)| Document {
++        id: id.into(),
++        path: format!("docs/{id}.md"),
++        title: id.into(),
++        keywords: vec![id.into()],
++        order: n + 1,
++    })
++    .collect();
++    let index = Index {
++        unit: "estimated-bytes-v1".into(),
++        budget: 2400,
++        documents,
++    };
++    let rules = vec![
++        "只根据实际读取的资料回答".into(),
++        "每个事实必须给出来源".into(),
++    ];
++    let tasks = vec![
++        Task {
++            id: "task-01".into(),
++            question: "传输方式和协议版本是什么？".into(),
++            rules: rules.clone(),
++            budget: 2400,
++        },
++        Task {
++            id: "task-02".into(),
++            question: "检查命令是什么？".into(),
++            rules: rules.clone(),
++            budget: 2400,
++        },
++        Task {
++            id: "task-03".into(),
++            question: "批准状态和处理动作是什么？".into(),
++            rules: rules.clone(),
++            budget: 2400,
++        },
++        Task {
++            id: "task-04".into(),
++            question: "生产吞吐量是多少？".into(),
++            rules,
++            budget: 2400,
++        },
++    ];
++    fs::write(p.join("tasks.json"), r#"{"tasks":[{"id":"task-01","expectedFacts":[{"field":"传输方式","value":"JSON Lines","source":"early"},{"field":"协议版本","value":"rein-extension/0.1","source":"early"}]},{"id":"task-02","expectedFacts":[{"field":"检查命令","value":"npm test","source":"latest"}]},{"id":"task-03","expectedFacts":[{"field":"批准状态","value":"approved","source":"approved"},{"field":"处理动作","value":"deploy","source":"failed"}]},{"id":"task-04","expectedFacts":[],"unknown":true}]}"#).unwrap();
++    (p, index, tasks)
++}
++fn executor(p: &Path, fault: Option<&str>) -> StdioExecutor {
++    let mut e = StdioExecutor::new(p);
++    e.code_root = book();
++    if let Some(mode) = fault {
++        e.host_script = book().join("ts/tests/fixtures/hybrid-fault-host.ts");
++        e.env.push(("REIN_HYBRID_FAULT_MODE".into(), mode.into()));
++    }
++    e
++}
++async fn run(
++    i: &Index,
++    t: &Task,
++    s: &str,
++    p: &Path,
++    b: Option<usize>,
++) -> rein_ch01_helloworld::rein::context_methods::Row {
++    run_one_with_executor(i, t, s, p, b, executor(p, None)).await
++}
++
++#[tokio::test]
++async fn default_matrix_preserves_rules_and_exact_estimates() {
++    let (p, i, ts) = fixture();
++    for t in &ts {
++        for s in ["on-demand", "window", "summary", "retrieval"] {
++            let r = run(&i, t, s, &p, None).await;
++            assert_eq!(r.status, "completed");
++            assert_eq!(r.estimated_units, estimated_units(&r.messages));
++            assert!(r.estimated_units <= t.budget);
++            assert_eq!(
++                r.messages
++                    .iter()
++                    .filter(|m| m.role == "system")
++                    .map(|m| &m.content)
++                    .collect::<Vec<_>>(),
++                t.rules.iter().collect::<Vec<_>>()
++            );
++            assert_eq!(
++                r.messages
++                    .iter()
++                    .find(|m| m.role == "user" && !m.content.starts_with("[来源:"))
++                    .unwrap()
++                    .content,
++                t.question
++            );
++            assert_eq!(r.service_tokens, None);
++            assert_eq!(r.model_calls, 1);
++            if t.id == "task-04" {
++                let a = r.answer.unwrap();
++                assert!(a.claims.is_empty() && a.insufficient_evidence);
++                assert_eq!(r.quality, Some(1.0));
++            }
++        }
++    }
++}
++
++#[tokio::test]
++async fn jsonl_mutation_flows_through_http_source_and_oracle() {
++    let (p, mut i, ts) = fixture();
++    fs::write(
++        p.join("docs/early.md"),
++        "背景删除\n\n传输方式：HTTP\n协议版本：rein-extension/0.1\n真实背景应被summary删除\n",
++    )
++    .unwrap();
++    i.documents[0].keywords = vec!["传输".into(), "协议".into()];
++    let before = fs::read(p.join("tasks.json")).unwrap();
++    let r = run(&i, &ts[0], "summary", &p, None).await;
++    assert_eq!(fs::read(p.join("tasks.json")).unwrap(), before);
++    let a = r.answer.unwrap();
++    assert!(a.raw_answer.contains("HTTP") && a.raw_answer.contains("0.1"));
++    assert_eq!(r.quality, Some(0.5));
++    assert!(r
++        .messages
++        .iter()
++        .filter(|m| m.role == "user" && m.content.starts_with("[来源:"))
++        .all(|m| !m.content.contains("真实背景")));
++}
++
++#[tokio::test]
++async fn budget_boundaries_are_empty_and_do_not_dispatch() {
++    let (p, i, mut ts) = fixture();
++    ts[0].rules = vec!["r".into()];
++    ts[0].question = "q".into();
++    let base = estimated_units(&[
++        Message {
++            role: "system".into(),
++            content: "r".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++        Message {
++            role: "user".into(),
++            content: "q".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++    ]);
++    for s in ["on-demand", "window", "summary", "retrieval"] {
++        for b in [0, base - 1] {
++            let r = run(&i, &ts[0], s, &p, Some(b)).await;
++            assert_eq!(r.status, "context_budget_exhausted");
++            assert!(
++                r.messages.is_empty()
++                    && r.operations.is_empty()
++                    && r.call_records.is_empty()
++                    && r.answer.is_none()
++            );
++        }
++    }
++}
++
++#[tokio::test]
++async fn window_budget_keeps_exact_latest_two_complete_source_messages() {
++    let (p, mut i, mut ts) = fixture();
++    i.documents.truncate(1);
++    ts[0].rules = vec!["r".into()];
++    ts[0].question = "无匹配词".into();
++    fs::write(
++        p.join("docs/early.md"),
++        "第一段\n\n第二段\n\n第三段\n\n第四段\n",
++    )
++    .unwrap();
++    let base = vec![
++        Message {
++            role: "system".into(),
++            content: "r".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++        Message {
++            role: "user".into(),
++            content: "无匹配词".into(),
++            tool_call_id: None,
++            tool_calls: vec![],
++        },
++    ];
++    let wanted = ["第三段", "第四段"]
++        .iter()
++        .enumerate()
++        .map(|(n, text)| Message {
++            role: "user".into(),
++            content: if n == 0 {
++                format!("[来源:early]\n{text}")
++            } else {
++                format!("[来源:early]\n{text}\n")
++            },
++            tool_call_id: None,
++            tool_calls: vec![],
++        })
++        .collect::<Vec<_>>();
++    let budget = estimated_units(&base) + estimated_units(&wanted);
++    let r = run(&i, &ts[0], "window", &p, Some(budget)).await;
++    let sources = r
++        .messages
++        .iter()
++        .filter(|m| m.role == "user" && m.content.starts_with("[来源:"))
++        .map(|m| m.content.clone())
++        .collect::<Vec<_>>();
++    assert_eq!(
++        sources,
++        wanted.iter().map(|m| m.content.clone()).collect::<Vec<_>>()
++    );
++}
++
++#[tokio::test]
++async fn retrieval_scores_body_only_and_unknown_query_is_empty() {
++    let (p, mut i, mut ts) = fixture();
++    ts[0].question = "稀有词".into();
++    i.documents[0].keywords = vec!["metadata".into()];
++    i.documents[5].keywords = vec!["稀有词".into()];
++    fs::write(p.join("docs/early.md"), "metadata-only\n").unwrap();
++    fs::write(p.join("docs/other.md"), "正文稀有词\n").unwrap();
++    let r = run(&i, &ts[0], "retrieval", &p, None).await;
++    let ops = r
++        .operations
++        .iter()
++        .filter(|o| o["type"] == "retrieval")
++        .collect::<Vec<_>>();
++    assert!(ops.iter().all(|o| o["text"].is_string()
++        && o["order"].is_number()
++        && o["score"].is_number()
++        && o["selected"].is_boolean()));
++    let early = ops.iter().find(|o| o["source"] == "early").unwrap()["score"]
++        .as_u64()
++        .unwrap();
++    let other = ops.iter().find(|o| o["source"] == "other").unwrap()["score"]
++        .as_u64()
++        .unwrap();
++    assert_eq!(early, 0);
++    assert!(other > early);
++    ts[3].question = "zzqnomatch902".into();
++    let empty = run(&i, &ts[3], "retrieval", &p, None).await;
++    assert!(empty.selected_sources.is_empty());
++    let a = empty.answer.unwrap();
++    assert!(a.claims.is_empty() && a.insufficient_evidence);
++    assert_eq!(empty.quality, Some(1.0));
++}
++
++#[tokio::test]
++async fn unknown_oracle_still_scores_real_throughput_claim() {
++    let (p, mut i, mut ts) = fixture();
++    fs::write(p.join("docs/latest.md"), "生产吞吐量：100 requests/s\n").unwrap();
++    ts[3].question = "生产吞吐量是多少？".into();
++    i.documents[1].keywords = vec!["生产".into(), "吞吐量".into()];
++    let r = run(&i, &ts[3], "retrieval", &p, None).await;
++    let a = r.answer.unwrap();
++    assert!(a.claims.iter().any(|c| c.value == "100 requests/s") && !a.insufficient_evidence);
++    assert_eq!(r.quality, Some(0.0));
++}
++
++#[tokio::test]
++async fn duplicate_bodies_keep_document_identity_and_retrieval_changes_with_body() {
++    let (p, mut i, mut ts) = fixture();
++    i.documents.truncate(2);
++    ts[0].rules = vec!["r".into()];
++    ts[0].question = "common".into();
++    fs::write(p.join("docs/early.md"), "common\n").unwrap();
++    fs::write(p.join("docs/latest.md"), "common\n").unwrap();
++    i.documents.reverse();
++    let window = run(&i, &ts[0], "window", &p, None).await;
++    let window_ids = window
++        .messages
++        .iter()
++        .filter(|m| m.content.starts_with("[来源:"))
++        .map(|m| m.content.clone())
++        .collect::<Vec<_>>();
++    assert_eq!(
++        window_ids,
++        vec!["[来源:early]\ncommon\n", "[来源:latest]\ncommon\n"]
++    );
++    let r = run(&i, &ts[0], "retrieval", &p, None).await;
++    let ids = r
++        .operations
++        .iter()
++        .filter(|o| o["type"] == "retrieval" && o["selected"] == true)
++        .map(|o| o["source"].as_str().unwrap())
++        .collect::<Vec<_>>();
++    assert_eq!(ids, vec!["early", "latest"]);
++    assert!(r
++        .operations
++        .iter()
++        .filter(|o| o["type"] == "retrieval" && o["selected"] == true)
++        .all(|o| o["score"] == 1));
++    fs::write(p.join("docs/early.md"), "changed\n").unwrap();
++    let changed = run(&i, &ts[0], "retrieval", &p, None).await;
++    let early = changed
++        .operations
++        .iter()
++        .find(|o| o["type"] == "retrieval" && o["source"] == "early")
++        .unwrap();
++    assert_eq!(early["score"], 0);
++}
++
++#[test]
++fn metadata_and_native_api_reject_unsafe_inputs() {
++    let (_, mut i, ts) = fixture();
++    i.documents[1].id = i.documents[0].id.clone();
++    assert!(validate(&i, &Tasks { tasks: ts.clone() }, Path::new("/tmp")).is_err());
++    let (_, mut i, ts) = fixture();
++    i.documents[0].path = "../escape.md".into();
++    assert!(validate(&i, &Tasks { tasks: ts }, Path::new("/tmp")).is_err());
++    let r = Command::new("cargo")
++        .args([
++            "run",
++            "--quiet",
++            "--locked",
++            "--manifest-path",
++            book().join("rust/Cargo.toml").to_str().unwrap(),
++            "--example",
++            "ch08_context",
++            "--",
++            "fixtures/ch08-context",
++            "--budget=9007199254740992",
++        ])
++        .current_dir(book())
++        .output()
++        .unwrap();
++    assert!(!r.status.success());
++    assert!(String::from_utf8_lossy(&r.stderr).contains("MAX_SAFE_INTEGER"));
++}
++
++#[tokio::test]
++async fn node_faults_and_missing_files_keep_real_records() {
++    let (p, i, mut ts) = fixture();
++    ts[0].question = "early 传输方式和协议版本是什么？".into();
++    for mode in ["invalid_json", "crash_after_invoke", "wrong_id"] {
++        let r = run_one_with_executor(&i, &ts[0], "on-demand", &p, None, executor(&p, Some(mode)))
++            .await;
++        assert_eq!(r.status, "error");
++        assert!(r.answer.is_none() && r.model_calls == 0 && !r.call_records.is_empty());
++        let c = r.call_records.last().unwrap();
++        assert!(c.dispatched && c.child_pid.is_some() && c.reaped && c.terminal.is_some());
++        println!("fault {mode}: {c:?}");
++        if mode == "crash_after_invoke" {
++            assert_eq!(c.exit_code, Some(17));
++        }
++        assert_eq!(c.terminal.as_deref(), Some("unknown"));
++    }
++    fs::remove_file(p.join("docs/early.md")).unwrap();
++    let r = run(&i, &ts[0], "on-demand", &p, None).await;
++    assert_eq!(r.status, "error");
++    assert!(r.selected_sources.is_empty());
++    let c = r.call_records.last().unwrap();
++    assert!(c.prepared && !c.dispatched && c.child_pid.is_none());
++}
++
++#[tokio::test]
++async fn oracle_errors_are_explicit_after_answering() {
++    let (p, i, ts) = fixture();
++    for contents in [
++        r#"{"tasks":[{"id":"task-01","expectedFacts":[],"unknown":false}]}"#,
++        "{invalid json",
++    ] {
++        fs::write(p.join("tasks.json"), contents).unwrap();
++        let r = run(&i, &ts[0], "on-demand", &p, None).await;
++        assert_eq!(r.status, "error");
++        assert!(r.answer.is_some());
++        assert_eq!(r.model_calls, 1);
++        assert_eq!(r.quality, None);
++        assert!(!r.unsupported_claims.is_empty());
++    }
++}
++
++#[tokio::test]
++async fn direct_max_budget_and_zero_budget_skip_deleted_selected_file() {
++    let (p, mut i, ts) = fixture();
++    let r = run(&i, &ts[0], "on-demand", &p, Some(usize::MAX)).await;
++    assert_eq!(r.status, "error");
++    assert!(r.answer.is_none() && r.model_calls == 0 && r.call_records.is_empty());
++    i.documents[0].keywords = vec!["传输".into()];
++    fs::remove_file(p.join("docs/early.md")).unwrap();
++    let r = run(&i, &ts[0], "on-demand", &p, None).await;
++    assert_eq!(r.status, "error");
++    assert!(!r.call_records.is_empty());
++    let r = run(&i, &ts[0], "on-demand", &p, Some(0)).await;
++    assert_eq!(r.status, "context_budget_exhausted");
++    assert!(r.call_records.is_empty() && r.operations.is_empty());
++}
++
++#[cfg(unix)]
++#[tokio::test]
++async fn symlink_escape_is_pre_dispatch_with_prepared_record() {
++    let (p, mut i, ts) = fixture();
++    std::os::unix::fs::symlink("/etc/hosts", p.join("docs/link.md")).unwrap();
++    i.documents[0].path = "docs/link.md".into();
++    i.documents[0].keywords = vec!["传输".into()];
++    let r = run(&i, &ts[0], "on-demand", &p, None).await;
++    assert_eq!(r.status, "error");
++    let c = r.call_records.first().unwrap();
++    assert!(c.prepared && !c.dispatched && c.child_pid.is_none());
++}
++
++#[tokio::test]
++async fn missing_oracle_id_and_ascii_word_boundaries() {
++    let (p, mut i, mut ts) = fixture();
++    ts[0].id = "renamed".into();
++    let r = run(&i, &ts[0], "on-demand", &p, None).await;
++    assert_eq!(r.status, "error");
++    assert!(r.answer.is_some() && r.model_calls == 1 && r.quality.is_none());
++    let mut oracle = serde_json::from_str::<serde_json::Value>(
++        &fs::read_to_string(p.join("tasks.json")).unwrap(),
++    )
++    .unwrap();
++    oracle["tasks"][0]["id"] = serde_json::json!("renamed");
++    fs::write(p.join("tasks.json"), serde_json::to_vec(&oracle).unwrap()).unwrap();
++    i.documents[0].keywords = vec!["传输".into()];
++    let r = run(&i, &ts[0], "on-demand", &p, None).await;
++    assert_eq!(r.status, "completed");
++    assert!(r.answer.unwrap().raw_answer.contains("JSON Lines"));
++    assert_eq!(r.quality, Some(1.0));
++    ts[3].question = "at".into();
++    fs::write(p.join("docs/early.md"), "metadata\n\ncat\n").unwrap();
++    i.documents[0].keywords = vec!["metadata".into()];
++    let r = run(&i, &ts[3], "retrieval", &p, None).await;
++    let ops = r
++        .operations
++        .iter()
++        .filter(|o| o["type"] == "retrieval")
++        .collect::<Vec<_>>();
++    let scores = ops
++        .iter()
++        .filter(|o| o["source"] == "early")
++        .map(|o| o["score"].as_u64().unwrap())
++        .collect::<Vec<_>>();
++    assert_eq!(scores, vec![0, 0]);
++    ts[3].question = "metadata".into();
++    let changed = run(&i, &ts[3], "retrieval", &p, None).await;
++    assert!(changed
++        .operations
++        .iter()
++        .any(|o| o["type"] == "retrieval" && o["score"] == 1));
++}
++
++#[test]
++fn metadata_rejects_task_duplicates_orders_absolute_and_unsafe_budget() {
++    let (_, i, mut ts) = fixture();
++    ts.push(ts[0].clone());
++    assert!(validate(&i, &Tasks { tasks: ts }, Path::new("/tmp")).is_err());
++    let (_, mut i, ts) = fixture();
++    i.documents[1].order = i.documents[0].order;
++    assert!(validate(&i, &Tasks { tasks: ts }, Path::new("/tmp")).is_err());
++    let (_, mut i, ts) = fixture();
++    i.documents[0].path = "/tmp/x.md".into();
++    assert!(validate(&i, &Tasks { tasks: ts }, Path::new("/tmp")).is_err());
++    let (_, mut i, ts) = fixture();
++    i.budget = usize::MAX;
++    assert!(validate(&i, &Tasks { tasks: ts }, Path::new("/tmp")).is_err());
++}
+--- common/scripts/ch08-compare.mjs
++++ production/scripts/ch08-compare.mjs
+@@ -0,0 +1,22 @@
++import { spawnSync } from 'node:child_process'
++import { resolve } from 'node:path'
++import { fileURLToPath } from 'node:url'
++const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
++const args = process.argv.slice(2)
++let data = resolve(root, 'fixtures/ch08-context'); let budget = null; let strategy = null
++const seen = new Set()
++for (let i = 0; i < args.length; i += 1) {
++  const key = args[i]; const value = args[i + 1]
++  if (!['--data-root', '--budget', '--strategy'].includes(key) || value === undefined || value.startsWith('--')) throw new Error(`invalid argument: ${key}`)
++  if (seen.has(key)) throw new Error(`duplicate ${key}`); seen.add(key)
++  if (key === '--data-root') data = resolve(value)
++  if (key === '--budget') { if (!/^\d+$/.test(value) || Number(value) > Number.MAX_SAFE_INTEGER) throw new Error('invalid --budget'); budget = value }
++  if (key === '--strategy') { if (!['on-demand','window','summary','retrieval'].includes(value)) throw new Error('invalid --strategy'); strategy = value }
++  i += 1
++}
++const rustArgs = [ 'run', '--quiet', '--locked', '--manifest-path', resolve(root, 'rust/Cargo.toml'), '--example', 'ch08_context', '--', data ]
++if (budget !== null) rustArgs.push(`--budget=${budget}`)
++if (strategy !== null) rustArgs.push(`--strategy=${strategy}`)
++const result = spawnSync('cargo', rustArgs, { cwd: root, encoding: 'utf8' })
++if (result.status !== 0) { process.stderr.write(result.stderr); process.exit(result.status ?? 1) }
++process.stdout.write(result.stdout)
+--- common/scripts/ch08-verify.mjs
++++ production/scripts/ch08-verify.mjs
+@@ -0,0 +1,53 @@
++import { cpSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
++import { tmpdir } from 'node:os'
++import { resolve } from 'node:path'
++import { fileURLToPath } from 'node:url'
++import { spawnSync } from 'node:child_process'
++
++const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
++const target = process.env.CARGO_TARGET_DIR || resolve(root, 'rust/target')
++const run = (cmd, args, extra = {}) => spawnSync(cmd, args, { cwd: root, encoding: 'utf8', env: { ...process.env, CARGO_TARGET_DIR: target, CARGO_INCREMENTAL: '0', ...extra } })
++const fail = (message) => { throw new Error(message) }
++const compare = (args = []) => { const r = run('node', ['scripts/ch08-compare.mjs', ...args]); if (r.status !== 0) fail(r.stderr || `compare exited ${r.status}`); return JSON.parse(r.stdout) }
++const base = compare()
++if (base.unit !== 'estimated-bytes-v1' || base.results.length !== 16) fail('default compare must produce exactly 16 rows')
++const keys = new Set(base.results.map(r => `${r.taskId}/${r.strategy}`))
++if (keys.size !== 16) fail('task/strategy combinations are not unique')
++for (const r of base.results) {
++  if (!r.taskId || !r.strategy || !Array.isArray(r.messages) || r.serviceTokens !== null) fail('row schema contract failed')
++  if (r.estimatedUnits !== r.messages.reduce((n, m) => n + 8 + Buffer.byteLength(m.role) + Buffer.byteLength(m.content), 0)) fail(`estimated units mismatch: ${r.taskId}/${r.strategy}`)
++  if (r.status === 'completed' && r.modelCalls !== 1) fail(`model call count: ${r.taskId}/${r.strategy}`)
++  if (r.taskId === 'task-04' && (r.quality !== 1 || r.answer?.claims?.length !== 0 || !r.answer?.insufficientEvidence)) fail('unknown task must be explicitly insufficient')
++}
++const filtered = compare(['--strategy', 'retrieval'])
++if (filtered.results.length !== 4 || filtered.results.some(r => r.strategy !== 'retrieval')) fail('strategy filter contract failed')
++
++// Exercise a copied data root: changing a fact must change the answer.
++const mutation = mkdtempSync(resolve(tmpdir(), 'rein-ch08-verify-'))
++cpSync(resolve(root, 'fixtures/ch08-context'), mutation, { recursive: true })
++const idxPath = resolve(mutation, 'index.json'); const taskPath = resolve(mutation, 'tasks.json')
++const idx = JSON.parse(readFileSync(idxPath, 'utf8')); const tasks = JSON.parse(readFileSync(taskPath, 'utf8')); const oracleBytes = readFileSync(taskPath)
++const early = idx.documents.find(d => d.id === 'doc-01'); if (!early) fail('fixture early document missing'); early.keywords = ['传输', '协议'];
++const originalEarly = readFileSync(resolve(mutation, early.path), 'utf8')
++writeFileSync(resolve(mutation, early.path), originalEarly.replace('传输方式：JSON Lines', '传输方式：HTTP'))
++const changed = compare(['--data-root', mutation, '--strategy', 'summary'])
++const changedRow = changed.results.find(r => r.taskId === tasks.tasks[0].id)
++if (!changedRow?.answer?.rawAnswer.includes('HTTP') || changedRow.quality !== 0.5 || changedRow.answer.claims.find(c => c.field === '传输方式')?.source !== 'doc-01') fail('mutation did not flow through answer/source/quality')
++if (!Buffer.from(readFileSync(taskPath)).equals(oracleBytes)) fail('mutation changed tasks.json bytes')
++const zero = compare(['--data-root', mutation, '--budget', '0'])
++if (zero.results.some(r => r.status !== 'context_budget_exhausted' || r.modelCalls !== 0 || r.operations.length !== 0 || r.answer !== null)) fail('zero budget contract failed')
++
++// Argument and metadata failures must stay explicit process failures.
++for (const args of [['--budget', '-1'], ['--budget', '1.2'], ['--budget', 'NaN'], ['--budget', '9007199254740992'], ['--budget'], ['--strategy', 'bad'], ['--strategy', 'window', '--strategy', 'summary']]) {
++  const r = run('node', ['scripts/ch08-compare.mjs', ...args]); if (r.status === 0 || !/(invalid|duplicate)/i.test(r.stderr || '')) fail(`invalid CLI accepted: ${args.join(' ')}`)
++}
++const duplicate = mkdtempSync(resolve(tmpdir(), 'rein-ch08-meta-')); cpSync(resolve(root, 'fixtures/ch08-context'), duplicate, { recursive: true })
++const bad = JSON.parse(readFileSync(resolve(duplicate, 'index.json'), 'utf8')); bad.documents[1].id = bad.documents[0].id; writeFileSync(resolve(duplicate, 'index.json'), JSON.stringify(bad))
++const badRun = run('node', ['scripts/ch08-compare.mjs', '--data-root', duplicate]); if (badRun.status === 0 || !/duplicate|invalid/i.test(badRun.stderr || '')) fail('duplicate metadata accepted')
++
++// The public example is always executed through its real independent entry.
++const example = run('node', ['examples/ch08-context-methods/entry.mjs'])
++if (example.status !== 0 || !/"rows":4/.test(example.stdout)) fail(example.stderr || 'independent example failed')
++const rust = run('cargo', ['test', '--quiet', '--locked', '--manifest-path', resolve(root, 'rust/Cargo.toml'), '--test', 'ch08_context'])
++if (rust.status !== 0) fail(rust.stderr || 'Rust contract tests failed')
++process.stdout.write(JSON.stringify({ unit: base.unit, rows: base.results.length, filteredRows: filtered.results.length, checks: ['default', 'filter', 'mutation', 'zero-budget', 'cli', 'metadata', 'example', 'rust-contract-tests'] }) + '\n')

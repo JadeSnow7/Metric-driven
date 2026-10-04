@@ -1,0 +1,18 @@
+12:28:54.426572 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:28:54.427132 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:28:54.428502 git.c:476               trace: built-in: git status --short
+12:29:04.962053 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:29:04.962620 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:29:04.963423 git.c:476               trace: built-in: git log --oneline -5
+12:29:38.117167 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:29:38.117881 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:29:38.118970 git.c:476               trace: built-in: git diff -- inventory.py tests/test_inventory.py
+12:29:38.143979 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:29:38.144404 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:29:38.145213 git.c:476               trace: built-in: git status --short
+12:30:04.748875 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:30:04.749652 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:30:04.751095 git.c:476               trace: built-in: git status --short
+12:30:04.775288 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:30:04.775692 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:30:04.776163 git.c:476               trace: built-in: git diff --check

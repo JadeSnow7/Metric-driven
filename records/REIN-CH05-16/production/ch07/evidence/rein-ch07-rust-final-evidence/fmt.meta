@@ -1,0 +1,7 @@
+argv=cargo fmt --check
+cwd=/private/tmp/rein-production-candidate-03/rust
+start=2026-09-14T14:56:32Z
+end=2026-09-14T14:56:32Z
+exit=0
+stdout=/private/tmp/rein-ch07-rust-final-evidence/fmt.stdout
+stderr=/private/tmp/rein-ch07-rust-final-evidence/fmt.stderr

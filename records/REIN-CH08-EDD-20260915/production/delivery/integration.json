@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "operation": "bounded_local_integration",
+  "tool": "skill/evidence-driven-development/scripts/integrate_boundary.py",
+  "tool_sha256": "67250905b53d4381a89105facc3a3d8cc07bfb69de784d88ef272da88671a5cf",
+  "argv": ["python3", "skill/evidence-driven-development/scripts/integrate_boundary.py", "--source-root", "/private/tmp/rein-ch08-production-20260915/book", "--target-root", "/Users/huaodong/workspace/Agent-Learning", "--manifest", "records/REIN-CH08-EDD-20260915/production/delivery/manifest.json", "--source-revision", "1dfa82b9d90196c2294f61914d2017449e5548e3", "--target-base", "1dfa82b9d90196c2294f61914d2017449e5548e3", "--allowed-path", "MIGRATIONS.md", "--allowed-path", "README.md", "--allowed-path", "docs/.vitepress/config.mts", "--allowed-path", "docs/chapters/08.md", "--allowed-path", "docs/index.md", "--allowed-path", "docs/toc.md", "--allowed-path", "examples/ch08-context-methods/README.md", "--allowed-path", "examples/ch08-context-methods/docs/demo.md", "--allowed-path", "examples/ch08-context-methods/entry.mjs", "--allowed-path", "examples/ch08-context-methods/input/index.json", "--allowed-path", "examples/ch08-context-methods/input/tasks.json", "--allowed-path", "package.json", "--allowed-path", "rust/examples/ch08_context.rs", "--allowed-path", "rust/src/rein/context_methods.rs", "--allowed-path", "rust/src/rein/mod.rs", "--allowed-path", "rust/tests/ch08_context.rs", "--allowed-path", "scripts/ch08-compare.mjs", "--allowed-path", "scripts/ch08-verify.mjs", "--allowed-path", "fixtures/ch08-context/docs/approval.md", "--allowed-path", "fixtures/ch08-context/docs/cache.md", "--allowed-path", "fixtures/ch08-context/docs/early-runtime.md", "--allowed-path", "fixtures/ch08-context/docs/failure.md", "--allowed-path", "fixtures/ch08-context/docs/indexing.md", "--allowed-path", "fixtures/ch08-context/docs/release.md", "--allowed-path", "fixtures/ch08-context/index.json", "--allowed-path", "fixtures/ch08-context/tasks.json"],
+  "source_root": "/private/tmp/rein-ch08-production-20260915/book",
+  "target_root": "/Users/huaodong/workspace/Agent-Learning",
+  "source_revision": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "target_base": "1dfa82b9d90196c2294f61914d2017449e5548e3",
+  "started_at": null,
+  "ended_at": null,
+  "timing_note": "The orchestration result exposed elapsed wall time but not UTC start/end fields; timestamps are intentionally null rather than reconstructed.",
+  "elapsed_wall_seconds": 12.2,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {"captured": true, "raw_record": "integration-tool-call-output.json", "raw_sha256": "effcd8d05934402245443d730e1a9087d7e7c81aefb41cb0d00f2a7af8994fd4"},
+  "copied_count": 26,
+  "copied_paths": [
+    "MIGRATIONS.md", "README.md", "docs/.vitepress/config.mts", "docs/chapters/08.md", "docs/index.md", "docs/toc.md",
+    "examples/ch08-context-methods/README.md", "examples/ch08-context-methods/docs/demo.md", "examples/ch08-context-methods/entry.mjs", "examples/ch08-context-methods/input/index.json", "examples/ch08-context-methods/input/tasks.json", "package.json",
+    "rust/examples/ch08_context.rs", "rust/src/rein/context_methods.rs", "rust/src/rein/mod.rs", "rust/tests/ch08_context.rs", "scripts/ch08-compare.mjs", "scripts/ch08-verify.mjs",
+    "fixtures/ch08-context/docs/approval.md", "fixtures/ch08-context/docs/cache.md", "fixtures/ch08-context/docs/early-runtime.md", "fixtures/ch08-context/docs/failure.md", "fixtures/ch08-context/docs/indexing.md", "fixtures/ch08-context/docs/release.md", "fixtures/ch08-context/index.json", "fixtures/ch08-context/tasks.json"
+  ],
+  "readback": {
+    "status": "passed",
+    "files": 26,
+    "source_target_sha_equal": true,
+    "unaffected_checkpoint_paths_preserved": true,
+    "ch01_unchanged": true,
+    "target_head": "1dfa82b9d90196c2294f61914d2017449e5548e3"
+  },
+  "file_count_reconciliation": {"original_baseline": 161, "modified_existing_in_scope": 8, "new_in_scope": 18, "unaffected_original_baseline": 153},
+  "authorization": "user-authorized bounded local write; no commit, push, merge, or deploy",
+  "limitations": ["No .git files were written.", "No directory replacement was used."]
+}

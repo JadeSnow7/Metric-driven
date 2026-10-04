@@ -1,0 +1,27 @@
+"""In-memory stock tracking."""
+
+import config
+
+
+class Inventory:
+    def __init__(self) -> None:
+        self._items: dict[str, int] = {}
+
+    def add_item(self, name: str, quantity: int) -> None:
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
+        self._items[name] = self._items.get(name, 0) + quantity
+
+    def count(self, name: str) -> int:
+        return self._items.get(name, 0)
+
+    def names(self) -> list[str]:
+        """Return item names in alphabetical order."""
+        return sorted(self._items)
+
+    def low_stock_items(self) -> list[str]:
+        """Return item names whose stock is strictly below the configured threshold."""
+        return sorted(
+            name for name, quantity in self._items.items()
+            if quantity < config.LOW_STOCK_THRESHOLD
+        )

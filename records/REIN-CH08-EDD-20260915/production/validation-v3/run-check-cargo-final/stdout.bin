@@ -1,0 +1,8 @@
+
+running 14 tests
+.....fault invalid_json: CallRecord { task_id: "task-57674-12-1789456372829595000", request_id: "request-1", call_id: "call-1", prepared: true, dispatched: true, terminal: Some("unknown"), reason: Some("unknown"), child_pid: Some(57776), exit_code: None, reaped: true }
+.fault crash_after_invoke: CallRecord { task_id: "task-57674-23-1789456372940344000", request_id: "request-1", call_id: "call-1", prepared: true, dispatched: true, terminal: Some("unknown"), reason: Some("unknown"), child_pid: Some(57880), exit_code: Some(17), reaped: true }
+fault wrong_id: CallRecord { task_id: "task-57674-25-1789456373010937000", request_id: "request-1", call_id: "call-1", prepared: true, dispatched: true, terminal: Some("unknown"), reason: Some("unknown"), child_pid: Some(57929), exit_code: None, reaped: true }
+........
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.84s
+

@@ -1,0 +1,11 @@
+"""Price calculations for the inventory service."""
+
+from decimal import ROUND_HALF_UP, Decimal
+
+
+def apply_discount(price: float, rate: float) -> float:
+    """Return the discounted price rounded to whole cents (half a cent rounds up)."""
+    if not 0 <= rate <= 1:
+        raise ValueError("rate must be between 0 and 1")
+    discounted = Decimal(str(price)) * (Decimal(1) - Decimal(str(rate)))
+    return float(discounted.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))

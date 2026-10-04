@@ -1,0 +1,17 @@
+test_plugin_links_must_point_at_the_shipped_skill (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_reviewer_is_read_only_and_agents_do_not_delegate (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_shipped_definitions_pass (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_skill_description_limit_and_malformed_frontmatter (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_subagent_must_be_pinned_to_sonnet (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_valid_fixture_passes (tools.tests.test_validate_repository.ClaudeCodeDefinitionTests) ... ok
+test_archived_product_copies_are_excluded_but_live_summaries_are_checked (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+test_code_examples_are_not_scanned_but_real_links_remain_visible (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+test_local_links_reject_absolute_and_escape_paths (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+test_main_link_scan_skips_external_fragments_and_parses_angles (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+test_only_sealed_c_final_is_archived (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+test_only_task_experiment_and_snapshot_trees_are_excluded (tools.tests.test_validate_repository.ValidateRepositoryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.108s
+
+OK

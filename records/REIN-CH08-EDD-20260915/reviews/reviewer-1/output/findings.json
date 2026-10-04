@@ -1,0 +1,98 @@
+[
+  {
+    "artifact": "Quartz",
+    "axis": "完整性",
+    "requirement": "完整正文、Rust/Node入口、独立README/数据、导航状态与独立练习",
+    "status": "fail",
+    "evidence": ["products/Quartz/docs/chapters/08.md:1-73", "products/Quartz/README.md:80", "products/Quartz/docs/toc.md:114-124", "output/Quartz/independent-1", "output/Quartz/evaluator-clean-result-1/summary.json"],
+    "detail": "正文和独立示例存在，但 README 状态未同步；clean evaluator 实际因独占构建缓存 ENOSPC 无 stdout，外层才显示 CHECK_ROOT_UNIT。"
+  },
+  {
+    "artifact": "Quartz",
+    "axis": "功能/回归",
+    "requirement": "16组合、估算、预算、变更、错误、05/06/07、混合故障",
+    "status": "fail",
+    "evidence": ["output/Quartz/audit-summary-2", "output/Quartz/recheck-ch06-3", "output/Quartz/recheck-ch07-3", "output/Quartz/practice-change-1", "output/Quartz/hybrid-crash-1"],
+    "detail": "15/16正常行估算不等于冻结 evaluator 估算；其余专项与故障路径已实际运行。"
+  },
+  {
+    "artifact": "Quartz",
+    "axis": "架构",
+    "requirement": "Rust权威、真实Rust→Node读取、按正文策略评分与window裁剪",
+    "status": "pass",
+    "evidence": ["products/Quartz/rust/src/rein/context_methods.rs:187-360", "products/Quartz/rust/examples/ch08_context.rs:1-42", "output/Quartz/hybrid-normal-1"],
+    "detail": "Rust/StdioExecutor/真实records成立；retrieval正文评分和严格suffix裁剪的策略细节另有实现缺口，但核心边界通过。"
+  },
+  {
+    "artifact": "Quartz",
+    "axis": "正文复现",
+    "requirement": "最终Markdown命令、练习、build/link/navigation",
+    "status": "fail",
+    "evidence": ["products/Quartz/docs/chapters/08.md:25,47-73", "output/Quartz/docs-shell-extract-1", "output/Quartz/recheck-docs-build-2", "output/Quartz/recheck-links-2"],
+    "detail": "build/link和可执行命令通过，但正文对retrieval/window及默认cwd可复现性描述与实际实现不完全一致。"
+  },
+  {
+    "artifact": "Larch",
+    "axis": "完整性",
+    "requirement": "完整正文、Rust/Node入口、README/MIGRATIONS、导航与独立练习",
+    "status": "fail",
+    "evidence": ["products/Larch/docs/chapters/08.md:1-66", "products/Larch/README.md:80", "output/Larch/evaluator-clean-result-1/summary.json", "output/Larch/independent-1"],
+    "detail": "正文/入口/练习存在，但 README 状态未同步，clean evaluator 首错 CHECK_ESTIMATE。"
+  },
+  {
+    "artifact": "Larch",
+    "axis": "功能/回归",
+    "requirement": "16组合、估算、预算、变更、错误、05/06/07、混合故障",
+    "status": "fail",
+    "evidence": ["output/Larch/audit-summary-2", "output/Larch/clean-ch05-1", "output/Larch/clean-ch08-1", "output/Larch/missing-1", "output/Larch/hybrid-crash-1"],
+    "detail": "所有正常行有估算偏差；retrieval缺score，task-04 unknown quality为0；读取失败实际代码仍完成成功。"
+  },
+  {
+    "artifact": "Larch",
+    "axis": "架构",
+    "requirement": "Rust权威、真实Rust→Node读取、error终态、正文检索/窗口策略",
+    "status": "fail",
+    "evidence": ["products/Larch/rust/src/rein/context_methods.rs:179-273", "products/Larch/rust/src/rein/context_methods.rs:241-272", "output/Larch/audit-summary-2"],
+    "detail": "Rust/Node边界存在，但 read failure 只 break 后仍输出 completed/modelCalls=1；retrieval只看index，window无严格suffix，估算缺tool字段。"
+  },
+  {
+    "artifact": "Larch",
+    "axis": "正文复现",
+    "requirement": "最终Markdown命令、练习、build/link/navigation",
+    "status": "fail",
+    "evidence": ["products/Larch/docs/chapters/08.md:21-64", "output/Larch/docs-shell-extract-1", "output/Larch/clean-docs-build-1", "output/Larch/clean-links-1"],
+    "detail": "build/link通过，但正文声称的正文检索和缺失文件error与源码不符，独立/缺失练习命令覆盖也不完整。"
+  },
+  {
+    "artifact": "Slate",
+    "axis": "完整性",
+    "requirement": "完整正文、Rust/Node入口、独立README/数据、导航状态与独立练习",
+    "status": "pass",
+    "evidence": ["products/Slate/docs/chapters/08.md:1-69", "products/Slate/README.md:80", "products/Slate/docs/toc.md:114-124", "output/Slate/independent-1"],
+    "detail": "正文、8 anchors、3练习、README/input/run.mjs、导航与状态均存在并可运行。"
+  },
+  {
+    "artifact": "Slate",
+    "axis": "功能/回归",
+    "requirement": "16组合、估算、预算、变更、错误、05/06/07、混合故障",
+    "status": "pass",
+    "evidence": ["output/Slate/audit-summary-2", "output/Slate/clean-ch05-1", "output/Slate/clean-ch08-1", "output/Slate/practice-zero-1", "output/Slate/duplicate-1", "output/Slate/escape-1", "output/Slate/hybrid-crash-1"],
+    "detail": "正常16行且估算一致；三练习、缺失、重复ID、path escape、05/06/07和normal/cancel/crash均有实际结果。全量测试仅受listen EPERM环境阻塞。"
+  },
+  {
+    "artifact": "Slate",
+    "axis": "架构",
+    "requirement": "Rust权威、真实Rust→Node读取、预算/错误/records、最终messages回答",
+    "status": "pass",
+    "evidence": ["products/Slate/rust/src/rein/context_methods.rs:101-402", "products/Slate/rust/examples/ch08_context.rs:1-49", "output/Slate/hybrid-normal-1", "output/Slate/audit-summary-2"],
+    "detail": "Rust authority、StdioExecutor、真实records、校验、错误终态、最终messages取证和策略score均通过实测。冻结 evaluator 的 grounded 检查角色条件与产品tool消息角色冲突，单列保留。"
+  },
+  {
+    "artifact": "Slate",
+    "axis": "正文复现",
+    "requirement": "最终Markdown命令、练习、build/link/navigation",
+    "status": "pass",
+    "evidence": ["products/Slate/docs/chapters/08.md:21-67", "output/Slate/docs-shell-extract-1", "output/Slate/clean-docs-build-1", "output/Slate/clean-links-1"],
+    "detail": "Markdown shell块已原样提取；可执行命令、三练习、docs build/link和静态导航均通过。浏览器GUI未验证。"
+  }
+]

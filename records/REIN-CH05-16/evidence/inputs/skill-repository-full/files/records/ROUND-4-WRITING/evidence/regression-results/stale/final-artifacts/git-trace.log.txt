@@ -1,0 +1,27 @@
+12:31:17.821947 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:31:17.822304 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:31:17.823678 git.c:476               trace: built-in: git status --short --branch
+12:31:32.351839 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:31:32.352368 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:31:32.353658 git.c:476               trace: built-in: git log --oneline -5
+12:31:32.375481 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:31:32.375853 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:31:32.376317 git.c:476               trace: built-in: git diff --stat
+12:31:32.398401 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:31:32.398773 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:31:32.399237 git.c:476               trace: built-in: git diff -- inventory.py tests/test_inventory.py tests/test_pricing.py
+12:33:18.761090 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:33:18.762029 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:33:18.763468 git.c:476               trace: built-in: git status --short
+12:33:34.960610 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:33:34.960943 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:33:34.961454 git.c:476               trace: built-in: git diff --name-only
+12:33:34.981853 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:33:34.982178 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:33:34.982938 git.c:476               trace: built-in: git ls-files --others --exclude-standard
+12:34:27.198533 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:34:27.198913 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:34:27.199616 git.c:476               trace: built-in: git status --short --branch
+12:34:27.218266 exec-cmd.c:145          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+12:34:27.218503 exec-cmd.c:267          trace: resolved executable dir: /Applications/Xcode.app/Contents/Developer/usr/bin
+12:34:27.218861 git.c:476               trace: built-in: git diff -- inventory.py tests/test_inventory.py tests/test_pricing.py

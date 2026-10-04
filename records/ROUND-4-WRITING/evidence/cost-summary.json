@@ -1,0 +1,213 @@
+{
+  "completed_attempts": [
+    {
+      "phase": "generation",
+      "case": 1,
+      "configuration": "current",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 89.806845,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 1,
+      "configuration": "candidate-v1",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 114.203633,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 2,
+      "configuration": "current",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 88.574576,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 2,
+      "configuration": "candidate-v1",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 83.996273,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 6,
+      "configuration": "current",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 126.752738,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 6,
+      "configuration": "candidate-v1",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 106.935907,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 10,
+      "configuration": "candidate-v1",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 317.7234,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "generation",
+      "case": 10,
+      "configuration": "current",
+      "reviewer": null,
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 409.817618,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "review",
+      "case": null,
+      "configuration": null,
+      "reviewer": "reviewer-1",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 283.420543,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "review",
+      "case": null,
+      "configuration": null,
+      "reviewer": "reviewer-2",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 561.512492,
+      "tokens": null,
+      "usage_note": "无数据；时间包含排队/工具和主线程接收延迟，不是模型净生成耗时"
+    },
+    {
+      "phase": "regression",
+      "case": "permission",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 133.644599,
+      "tokens": null,
+      "usage_note": "无数据；时间含排队、工具及接收延迟"
+    },
+    {
+      "phase": "regression",
+      "case": "dirty",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 195.381682,
+      "tokens": null,
+      "usage_note": "无数据；时间含排队、工具及接收延迟"
+    },
+    {
+      "phase": "regression",
+      "case": "stale",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 313.628504,
+      "tokens": null,
+      "usage_note": "无数据；时间含排队、工具及接收延迟"
+    },
+    {
+      "phase": "regression",
+      "case": "complex",
+      "attempt": 1,
+      "dispatch_to_notice_seconds": 335.382742,
+      "tokens": null,
+      "usage_note": "无数据；时间含排队、工具及接收延迟"
+    }
+  ],
+  "known_report_generation_attempts": 8,
+  "report_generation_retries": 0,
+  "known_independent_reviews": 2,
+  "notes": [
+    "No per-agent token/cost API available, cannot compute token/currency improvement.",
+    "Failed preflight checks and rejected harness preparation are recorded separately in attempts.jsonl; they are not report-generation retries.",
+    "Fixture setup, review, and static checks must not be mixed into historical development cost."
+  ],
+  "targeted_report_corrections": [
+    {
+      "case": "dirty",
+      "attempt": 2,
+      "elapsed_seconds": null,
+      "tokens": null,
+      "note": "No separately recorded start timestamp; cannot calculate duration. First failed report retained."
+    }
+  ],
+  "known_regression_runs": 4,
+  "failed_and_rejected_attempt_events": [
+    {
+      "event": "preflight",
+      "at": "2026-09-14T03:56:58.415893+00:00",
+      "checks": [
+        {
+          "name": "system-python quick_validate",
+          "status": "failed",
+          "reason": "ModuleNotFoundError: yaml"
+        },
+        {
+          "name": "bundled-python quick_validate",
+          "status": "failed",
+          "reason": "ModuleNotFoundError: yaml"
+        }
+      ],
+      "tokens": null,
+      "usage_note": "工具未提供用量；将离线使用已存在的PyYAML缓存"
+    },
+    {
+      "event": "harness-pre-freeze-review",
+      "at": "2026-09-14T04:13:00.889992+00:00",
+      "status": "rejected",
+      "reason": "Test functions not executed; task states not schema-valid; missing logs incorrectly counted passed; dependency fixture not absent from baseline. Not used for acceptance.",
+      "source_observations": [
+        "test_inventory.py contained def test_zero_quantity_is_removed without invocation; oracle ran python test_inventory.py",
+        "--skill was accepted but not used",
+        "initial_files_preserved ignored deleted files and disallowed authorized implementation edits"
+      ],
+      "archive_note": "Attempt to copy initial script encountered FileNotFoundError during coder replacement; original tool read is in task history, this note preserves the observed defects, not a claimed full source snapshot.",
+      "tokens": null,
+      "usage_note": "无数据"
+    },
+    {
+      "event": "harness-pre-freeze-review-2",
+      "at": "2026-09-14T04:18:36.448693+00:00",
+      "status": "rejected",
+      "reason": "Second version still lacks real Inventory CSV contract, independent abnormal-input assertions and valid revision binding. Archived rejected v1. Replace helper with directly prepared isolated fixtures and explicit independent commands; frozen semantic acceptance unchanged.",
+      "tokens": null,
+      "usage_note": "无数据"
+    },
+    {
+      "event": "artifact-location-correction",
+      "case": "dirty",
+      "at": "2026-09-14T04:33:42.988655+00:00",
+      "observation": "Agent wrote final_reply.md and run-evidence one level above its assigned fixture directory. Main thread archived originals and moved them into dirty/. No report wording or product source was changed.",
+      "validation_limit": "Output-path adherence was not clean on first attempt; not evidence of perfect scope control.",
+      "tokens": null
+    },
+    {
+      "event": "report-correction-end",
+      "case": "dirty",
+      "attempt": 2,
+      "status": "only-report-updated-after-specific-feedback; original failed assessment preserved",
+      "at": "2026-09-14T04:37:14.442442+00:00",
+      "tokens": null,
+      "usage_note": "无数据"
+    }
+  ]
+}

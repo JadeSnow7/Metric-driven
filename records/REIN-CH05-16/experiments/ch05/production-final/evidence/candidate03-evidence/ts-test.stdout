@@ -1,0 +1,14 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests --run tests/loop.test.ts
+
+
+ RUN  v2.1.9 /private/tmp/rein-production-candidate-03/ts
+
+ ✓ tests/loop.test.ts (7 tests) 14ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  20:22:24
+   Duration  162ms (transform 27ms, setup 0ms, collect 22ms, tests 14ms, environment 0ms, prepare 36ms)
+

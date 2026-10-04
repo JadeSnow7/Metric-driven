@@ -1,0 +1,49 @@
+[
+  {
+    "argv": [
+      "/Users/huaodong/.local/bin/python3.11",
+      "tools/validate_repository.py"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "status": "timeout",
+    "timeout_seconds": 30,
+    "exit_code": null,
+    "provenance": "tool-observed TimeoutExpired from post-integration command; wrapper did not persist per-command timestamp before raising; not a successful validation"
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "README.md",
+      "skill/veriflow"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at_epoch": 1789561725.4615161,
+    "ended_at_epoch": 1789561725.490061,
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "status",
+      "--short",
+      "--untracked-files=normal",
+      "--",
+      "README.md",
+      "skill/veriflow",
+      "tools/validate_repository.py",
+      "tools/tests/test_validate_repository.py",
+      "records/VERIFLOW-SPEC-20260916"
+    ],
+    "cwd": "/Users/huaodong/Documents/evidence-driven-development",
+    "started_at_epoch": 1789561725.490082,
+    "ended_at_epoch": 1789561725.506999,
+    "exit_code": 0,
+    "stdout": " M README.md\n M skill/veriflow/SKILL.md\n M skill/veriflow/agents/claude-code/veriflow-coder.md\n M skill/veriflow/agents/claude-code/veriflow-reviewer.md\n M skill/veriflow/assets/templates/handoff.md\n M skill/veriflow/assets/templates/task-state.example.json\n M skill/veriflow/assets/templates/task-summary.md\n M skill/veriflow/assets/templates/work-log.md\n M skill/veriflow/assets/templates/writing-handoff.md\n M skill/veriflow/references/claude-code.md\n M skill/veriflow/references/delegation-and-handoffs.md\n M skill/veriflow/references/design.md\n M skill/veriflow/references/examples.md\n M skill/veriflow/references/metrics-and-evidence.md\n M skill/veriflow/references/records.md\n M skill/veriflow/references/workflow.md\n M skill/veriflow/references/writing.md\n M skill/veriflow/scripts/record_execution.py\n M skill/veriflow/scripts/validate_task.py\n M skill/veriflow/tests/test_scenarios.py\n M tools/tests/test_validate_repository.py\n M tools/validate_repository.py\n?? records/VERIFLOW-SPEC-20260916/\n?? skill/veriflow/scripts/authorization_snapshot.py\n?? skill/veriflow/scripts/spec_contract.py\n?? skill/veriflow/tests/test_authorization_snapshot.py\n?? skill/veriflow/tests/test_evidence_history.py\n?? skill/veriflow/tests/test_spec_binding.py\n?? skill/veriflow/tests/test_spec_model.py\n?? skill/veriflow/tests/test_temporal_chain.py\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,4 @@
+   Compiling rein-ch01-helloworld v0.1.0 (/private/tmp/rein-production-candidate-03/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.32s
+     Running unittests src/lib.rs (/private/tmp/rein-candidate03-build/debug/deps/rein_ch01_helloworld-79a64cf03df90bc6)
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,47 @@
+{
+  "decided_at": "2026-09-14T04:24:54.085667+00:00",
+  "spec": "evaluation-spec.json",
+  "status": "passed",
+  "decided_by": "main-thread after reading both complete original reviews and report artifacts",
+  "cases": [
+    {
+      "case": 1,
+      "reviewer_1_preferred": "candidate-v1",
+      "reviewer_2_preferred": "candidate-v1",
+      "substantive_disagreement": false
+    },
+    {
+      "case": 2,
+      "reviewer_1_preferred": "candidate-v1",
+      "reviewer_2_preferred": "candidate-v1",
+      "substantive_disagreement": false
+    },
+    {
+      "case": 6,
+      "reviewer_1_preferred": "candidate-v1",
+      "reviewer_2_preferred": "candidate-v1",
+      "substantive_disagreement": false
+    },
+    {
+      "case": 10,
+      "reviewer_1_preferred": "candidate-v1",
+      "reviewer_2_preferred": "candidate-v1",
+      "substantive_disagreement": false
+    }
+  ],
+  "accuracy_completeness": "Both reviewers mark all 64 required fact checks (32 per configuration) present; all eight report combinations pass accuracy/evidence boundary/understanding.",
+  "quote_verification": {
+    "reviewer_1_exact_quotes_found": 174,
+    "reviewer_2_exact_quotes_found": 134,
+    "unmatched_quotes": 0
+  },
+  "understanding_or_burden_regressions_unresolved": [],
+  "residual_limitations": [
+    "Candidate retains some cross-file overview duplication and some optional detail in complex reports.",
+    "Case2 candidate has 103 more Unicode characters but adjacent question/default mapping and explained count/names aid reading; both reviewers judge no burden regression.",
+    "Case10 candidate record lines increase 45 to57 while combined characters fall; neither line count nor shorter final alone demonstrates lower development record cost.",
+    "One generation per configuration/case, same inherited model route, two reviewers from same model family; style may reveal configuration. No inter-model or repeated-run evidence."
+  ],
+  "retry_policy": "No report regeneration or rubric edits were needed. Residual duplicate wording is disclosed rather than silently editing frozen outputs.",
+  "behavior_evidence": "Report comparison only; four process regressions still pending."
+}

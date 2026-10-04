@@ -1,0 +1,9 @@
+
+running 4 tests
+test loop_wire_values_are_snake_case_and_fields_camel_case ... ok
+test unknown_badargs_missing_file_are_feedback_and_can_recover ... ok
+test model_error_empty_final_max_turns_and_replay_exhaustion_are_structured ... ok
+test two_workspaces_search_then_read_and_pair_multiple_calls ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,21 @@
+
+> @rein/ts@0.0.0 test
+> vitest run --passWithNoTests
+
+
+ RUN  v2.1.9 /private/tmp/rein-production-candidate-03/ts
+
+ ✓ tests/chat.test.ts (17 tests) 5ms
+ ✓ tests/config.test.ts (13 tests) 5ms
+ ✓ tests/record.test.ts (6 tests) 2ms
+ ✓ tests/recorded.test.ts (3 tests) 7ms
+ ✓ tests/rein-prerequisites.test.ts (7 tests) 20ms
+ ✓ tests/hello.test.ts (18 tests) 29ms
+ ✓ tests/loop.test.ts (15 tests) 146ms
+ ✓ tests/transport.test.ts (8 tests) 278ms
+
+ Test Files  8 passed (8)
+      Tests  87 passed (87)
+   Start at  21:42:47
+   Duration  577ms (transform 265ms, setup 0ms, collect 553ms, tests 492ms, environment 1ms, prepare 467ms)
+

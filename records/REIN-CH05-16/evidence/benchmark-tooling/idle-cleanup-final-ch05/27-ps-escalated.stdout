@@ -1,0 +1,3 @@
+55974 28092 huaodong         Ss   Mon Sep 14 21:06:21 2026     /bin/zsh records/REIN-CH05-16/evidence/benchmark-tooling/idle-cleanup-final-ch05/run_checks.sh 27-ps-escalated zsh -lc ps -axo pid=,ppid=,user=,stat=,lstart=,command= | awk /'rein-production-build-20260914|rein-production-rereview-build|rein-ch05-final-text-evidence|cargo-target'/
+55985 55974 huaodong         S    Mon Sep 14 21:06:21 2026     zsh -lc ps -axo pid=,ppid=,user=,stat=,lstart=,command= | awk /'rein-production-build-20260914|rein-production-rereview-build|rein-ch05-final-text-evidence|cargo-target'/
+55988 55985 huaodong         R    Mon Sep 14 21:06:21 2026     awk /rein-production-build-20260914|rein-production-rereview-build|rein-ch05-final-text-evidence|cargo-target/

@@ -1,0 +1,13 @@
+{
+  "label": "repository-static",
+  "argv": [
+    "/Users/huaodong/.local/bin/python3.11",
+    "tools/validate_repository.py"
+  ],
+  "cwd": "/private/tmp/veriflow-spec-20260916",
+  "started_at_epoch": 1789554439.097646,
+  "ended_at_epoch": 1789554439.142984,
+  "exit_code": 0,
+  "stdout": "repository validation passed (25 required files, local links and Claude Code definitions checked)\nnote: this proves repository consistency, not workflow behavior or delivery authorization\n",
+  "stderr": ""
+}

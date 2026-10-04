@@ -1,0 +1,15 @@
+a ts_versions
+@types/node ^22.10.2 22.20.2
+openai 4.104.0 4.104.0
+tsx ^4.19.2 4.23.13
+typescript ^5.7.2 5.9.3
+vitest ^2.1.8 2.1.9
+a cargo_lock_bytes 45445 has_serde True has_async_openai True
+b ts_versions
+@types/node ^22.10.2 22.20.2
+openai 4.104.0 4.104.0
+tsx ^4.19.2 4.23.13
+typescript ^5.7.2 5.9.3
+vitest ^2.1.8 2.1.9
+b cargo_lock_bytes 45445 has_serde True has_async_openai True
+node_modules_tree_independent True

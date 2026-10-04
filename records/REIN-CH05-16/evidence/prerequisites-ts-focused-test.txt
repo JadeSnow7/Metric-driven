@@ -1,0 +1,10 @@
+
+ RUN  v2.1.9 /Users/huaodong/Documents/evidence-driven-development/records/REIN-CH05-16/work/production/ts
+
+ ✓ tests/rein-prerequisites.test.ts (2 tests) 2ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  17:57:14
+   Duration  176ms (transform 26ms, setup 0ms, collect 20ms, tests 2ms, environment 0ms, prepare 45ms)
+

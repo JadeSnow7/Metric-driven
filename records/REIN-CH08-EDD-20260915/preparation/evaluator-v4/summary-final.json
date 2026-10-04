@@ -1,0 +1,28 @@
+{
+  "scenarios": [
+    {
+      "name": "default",
+      "rows": 16
+    },
+    {
+      "name": "budget0",
+      "rows": 16
+    },
+    {
+      "name": "mutated",
+      "rows": 16
+    },
+    {
+      "name": "duplicate",
+      "exit_code": 1
+    },
+    {
+      "name": "missing",
+      "rows": 4
+    },
+    {
+      "name": "path-escape",
+      "exit_code": 1
+    }
+  ]
+}

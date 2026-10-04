@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/loop.test.ts",
+    "tests/ch07-context.test.ts"
+  ],
+  "cwd": "/private/tmp/rein-production-candidate-03/ts",
+  "start": "2026-09-14T14:29:27.361Z",
+  "end": "2026-09-14T14:29:27.362Z",
+  "exit": 1,
+  "stdout": "\n RUN  v2.1.9 /private/tmp/rein-production-candidate-03/ts\n\n ❯ tests/ch07-context.test.ts (4 tests | 1 failed) 6ms\n   × ch07 context management > keeps rules, goal, and the complete latest multi-tool group while removing old groups 5ms\n     → expected { type: 'context_prepared', …(10) } to match object { removedGroups: [ 'g0' ], …(1) }\n(9 matching properties omitted from actual)\n ✓ tests/loop.test.ts (16 tests) 128ms\n\n Test Files  1 failed | 1 passed (2)\n      Tests  1 failed | 19 passed (20)\n   Start at  22:29:26\n   Duration  322ms (transform 55ms, setup 0ms, collect 89ms, tests 134ms, environment 0ms, prepare 52ms)\n\n",
+  "stderr": "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/ch07-context.test.ts > ch07 context management > keeps rules, goal, and the complete latest multi-tool group while removing old groups\nAssertionError: expected { type: 'context_prepared', …(10) } to match object { removedGroups: [ 'g0' ], …(1) }\n(9 matching properties omitted from actual)\n\n- Expected\n+ Received\n\n  Object {\n-   \"removedGroups\": Array [\n-     \"g0\",\n-   ],\n+   \"removedGroups\": Array [],\n    \"requiredGroups\": Array [\n      \"g1\",\n      \"g4\",\n    ],\n  }\n\n ❯ tests/ch07-context.test.ts:21:68\n     19|     expect(received.filter(m => m.role === 'tool').map(m => m.toolCall…\n     20|     expect(result.messages).toHaveLength(history.length + 2)\n     21|     expect(result.events.find(e => e.type === 'context_prepared')).toM…\n       |                                                                    ^\n     22|   })\n     23| \n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n"
+}

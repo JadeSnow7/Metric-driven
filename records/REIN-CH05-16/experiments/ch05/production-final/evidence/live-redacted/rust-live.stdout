@@ -1,0 +1,62 @@
+{
+  "state": "failed",
+  "reason": "model_error",
+  "messages": [
+    {
+      "role": "user",
+      "content": "请搜索 marker:，读取命中的两个文件，并给出事实A、事实B及各自来源文件。"
+    }
+  ],
+  "events": [
+    {
+      "type": "model_requested",
+      "turn": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "请搜索 marker:，读取命中的两个文件，并给出事实A、事实B及各自来源文件。"
+        }
+      ],
+      "tools": [
+        {
+          "name": "search_files",
+          "description": "Search text in workspace files.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "needle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "needle"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "read_file",
+          "description": "Read one UTF-8 file in the workspace.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          }
+        }
+      ]
+    },
+    {
+      "type": "stopped",
+      "state": "failed",
+      "reason": "model_error"
+    }
+  ],
+  "error": "OpenAI HTTP request failed"
+}
