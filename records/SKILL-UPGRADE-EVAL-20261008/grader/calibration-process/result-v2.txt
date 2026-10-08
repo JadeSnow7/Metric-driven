@@ -1,0 +1,4 @@
+bash-heredoc-test-then-product.jsonl True True False 2
+bash-read-with-stderr-redirect.jsonl True False False 1
+edit-then-run.jsonl False False True 1
+run-test-then-edit.jsonl True True False 3

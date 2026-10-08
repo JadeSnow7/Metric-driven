@@ -1,0 +1,8 @@
+duration-correct             5/5 []
+duration-original            2/5 ['Q1_target_case', 'Q2_three_units', 'Q5_suite_passes']
+duration-wrong-no-validation 3/5 ['Q4_invalid_still_rejected', 'Q5_suite_passes']
+todo-correct                 5/5 []
+todo-original                2/5 ['Q1_cli_export_wired', 'Q2_csv_round_trip', 'Q3_done_column']
+todo-wrong-deleted-sync      4/5 ['Q4_sync_preserved']
+todo-wrong-naive-csv         3/5 ['Q2_csv_round_trip', 'Q3_done_column']
+todo-wrong-unwired           2/5 ['Q1_cli_export_wired', 'Q2_csv_round_trip', 'Q3_done_column']

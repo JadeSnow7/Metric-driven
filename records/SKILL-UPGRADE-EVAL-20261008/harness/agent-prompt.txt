@@ -1,0 +1,8 @@
+你在本机的一个 Claude Code 会话里替用户工作。工作目录是 {WS}，所有命令都在这里执行（用 `cd {WS} && ...`），只修改这个目录内的文件。
+
+本项目安装了 Skill `veriflow`，位于 {WS}/.claude/skills/veriflow/。用户用 `/veriflow` 显式调用了它：先用 Read 完整阅读 {WS}/.claude/skills/veriflow/SKILL.md，然后按其中的流程完成请求；Skill 里的相对路径都相对这个目录，需要时按它的指引读取 references 等文件。
+
+本会话的限制：不要提交或推送，不要使用子代理，不要联网。完成后像对用户一样给出最终汇报。
+
+用户请求：
+{REQUEST}

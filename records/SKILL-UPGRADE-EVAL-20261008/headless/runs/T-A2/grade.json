@@ -1,0 +1,1 @@
+{"task": "todo", "workspace": "/private/tmp/claude-501/-Users-huaodong-workspace-Veriflow/55a80e45-cbb6-41ae-9888-8b9c8170841d/scratchpad/eval-headless/T-A2/ws", "checks": {"Q1_cli_export_wired": true, "Q2_csv_round_trip": true, "Q3_done_column": true, "Q4_sync_preserved": true, "Q5_existing_commands_and_suite": true}, "passed": 5, "total": 5}

@@ -1,0 +1,143 @@
+ README.md               |  3 +++
+ tests/test_export.py    | 67 ++++++++++++++++++++++++++++++++++++++++++++++---
+ todo/commands/export.py | 19 ++++++++++++--
+ todo/plugins.cfg        |  1 +
+ 4 files changed, 84 insertions(+), 6 deletions(-)
+
+diff --git a/README.md b/README.md
+index b074444..454bf7d 100644
+--- a/README.md
++++ b/README.md
+@@ -5,8 +5,11 @@
+ ```bash
+ python3 -m todo add 买牛奶
+ python3 -m todo list
++python3 -m todo export todos.csv
+ ```
+ 
++`export <路径>` 把所有待办写成 UTF-8 CSV，表头为 `title,done`，`done` 取值 `true`/`false`；标题中的逗号、引号、换行按 CSV 规则转义。目标文件已存在时会被覆盖。
++
+ 数据文件默认是当前目录的 `todo.json`，可用环境变量 `TODO_FILE` 指定。命令模块列在 `todo/plugins.cfg`，启动时按行导入。
+ 
+ 运行测试：`python3 -m unittest discover -s tests -v`
+diff --git a/tests/test_export.py b/tests/test_export.py
+index 50d0c16..65a102e 100644
+--- a/tests/test_export.py
++++ b/tests/test_export.py
+@@ -1,14 +1,73 @@
++import csv
++import io
++import os
+ import tempfile
+ import unittest
++from contextlib import redirect_stdout
+ from pathlib import Path
+ 
+-from todo.commands import export
++from todo.cli import main
++from todo.store import save
+ 
+ 
+ class ExportTests(unittest.TestCase):
+-    def test_export_runs(self):
+-        with tempfile.TemporaryDirectory() as directory:
+-            self.assertEqual(export.run([str(Path(directory) / "out.csv")]), 0)
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory()
++        self.root = Path(self.directory.name)
++        os.environ["TODO_FILE"] = str(self.root / "todo.json")
++
++    def tearDown(self):
++        os.environ.pop("TODO_FILE", None)
++        self.directory.cleanup()
++
++    def run_cli(self, *argv):
++        output = io.StringIO()
++        with redirect_stdout(output):
++            code = main(list(argv))
++        return code, output.getvalue()
++
++    def read_rows(self, path):
++        with open(path, encoding="utf-8", newline="") as handle:
++            return list(csv.reader(handle))
++
++    def test_export_through_cli_with_commas_and_quotes(self):
++        titles = [
++            "buy milk, eggs",
++            'say "hi"',
++            'both, "mixed"',
++            'unclosed " quote',
++            "multi\nline",
++            "中文, 标题",
++            "",
++        ]
++        save([{"title": t, "done": i % 2 == 1} for i, t in enumerate(titles)])
++        out = self.root / "out.csv"
++        code, _ = self.run_cli("export", str(out))
++        self.assertEqual(code, 0)
++        rows = self.read_rows(out)
++        self.assertEqual(rows[0], ["title", "done"])
++        self.assertEqual([r[0] for r in rows[1:]], titles)
++        self.assertEqual([r[1] for r in rows[1:]], ["false", "true"] * 3 + ["false"])
++
++    def test_export_empty_list_writes_header_only(self):
++        out = self.root / "out.csv"
++        self.assertEqual(self.run_cli("export", str(out))[0], 0)
++        self.assertEqual(self.read_rows(out), [["title", "done"]])
++
++    def test_export_overwrites_existing_file(self):
++        out = self.root / "out.csv"
++        out.write_text("stale,data\n" * 10, encoding="utf-8")
++        save([{"title": "a", "done": False}])
++        self.run_cli("export", str(out))
++        self.assertEqual(self.read_rows(out), [["title", "done"], ["a", "false"]])
++
++    def test_missing_path_is_usage_error(self):
++        self.assertEqual(self.run_cli("export")[0], 2)
++
++    def test_unwritable_path_reports_error(self):
++        code, output = self.run_cli("export", str(self.root / "no" / "dir" / "out.csv"))
++        self.assertEqual(code, 1)
++        self.assertIn("cannot write", output)
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/todo/commands/export.py b/todo/commands/export.py
+index 5c7658e..d576d65 100644
+--- a/todo/commands/export.py
++++ b/todo/commands/export.py
+@@ -1,8 +1,23 @@
++import csv
++
+ from todo.registry import command
++from todo.store import load
+ 
+ 
+ @command("export")
+ def run(args):
+-    # TODO: write the CSV file
+-    print("exported")
++    if len(args) != 1:
++        print("export: usage: todo export <path>")
++        return 2
++    items = load()
++    try:
++        with open(args[0], "w", encoding="utf-8", newline="") as handle:
++            writer = csv.writer(handle)
++            writer.writerow(["title", "done"])
++            for item in items:
++                writer.writerow([item["title"], "true" if item["done"] else "false"])
++    except OSError as error:
++        print(f"export: cannot write {args[0]}: {error.strerror}")
++        return 1
++    print(f"exported {len(items)} items to {args[0]}")
+     return 0
+diff --git a/todo/plugins.cfg b/todo/plugins.cfg
+index 6b59ef7..6e14fc9 100644
+--- a/todo/plugins.cfg
++++ b/todo/plugins.cfg
+@@ -1,3 +1,4 @@
+ add
++export
+ list_items
+ sync
