@@ -9,7 +9,7 @@
     "constraints": ["preserve existing response and error semantics"],
     "exceptions": [],
     "conditions": [
-      {"id": "SC-EXAMPLE", "metric_ids": ["MET-001", "MET-002"], "deliverables": ["app.txt", "feature.txt"]}
+      {"id": "SC-EXAMPLE", "metric_ids": ["MET-001"], "deliverables": ["app.txt", "feature.txt"]}
     ],
     "contracts": [],
     "open_items": []
@@ -74,7 +74,7 @@
       "main_task_id": "MT-001",
       "kind": "mandatory_gate",
       "name": "缓存命中、失效和旁路行为正确",
-      "baseline": "现有实现无缓存；先保存固定 fixture 的响应",
+      "baseline": "现有实现无缓存；实现前用同一缓存行为测试保存固定 fixture 的响应，登记为实现前证据，不列入 evidence_ids",
       "target": "固定 fixture 下响应与基线一致，失效后读取新值",
       "method": "运行缓存行为测试并检查原始报告",
       "environment_data": "固定测试配置与仓库 fixture",

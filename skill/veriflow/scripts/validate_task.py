@@ -1493,7 +1493,11 @@ def add_gate_errors(
         for evidence_id in id_list(metric.get("evidence_ids")):
             item = evidence.get(evidence_id, {})
             if not current(evidence_id):
-                add_issue(errors, "METRIC_EVIDENCE_NOT_CURRENT", f"{metric_id} evidence {evidence_id} is not current")
+                hint = (
+                    "; keep stale or pre-implementation records in evidence[] with supports, but out of evidence_ids"
+                    if item.get("status") == "stale" else ""
+                )
+                add_issue(errors, "METRIC_EVIDENCE_NOT_CURRENT", f"{metric_id} evidence {evidence_id} is not current{hint}")
             if status == "passed" and item.get("result") != "passed":
                 add_issue(errors, "METRIC_EVIDENCE_RESULT", f"{metric_id} is passed but {evidence_id} is not")
         if (
@@ -1568,6 +1572,16 @@ def add_gate_errors(
                     add_issue(errors, "SPEC_DELIVERABLE_UNREVIEWED", f"{condition.get('id', '?')} deliverable is not covered by a reviewed CHG-*: {deliverable}")
     if overall.get("status") != "passed":
         add_issue(errors, "OVERALL_NOT_PASSED", "overall end-to-end acceptance is not passed")
+    if state.get("schema_version") == SCHEMA_VERSION:
+        # A deferred metric is unverified, so the overall scenario cannot pass
+        # through it; 1.1/1.2 records keep their original audit semantics.
+        for metric_id in id_list(overall.get("metric_ids")):
+            if as_dict(metrics.get(metric_id)).get("status") == "deferred":
+                add_issue(
+                    errors,
+                    "OVERALL_METRIC_DEFERRED",
+                    f"overall acceptance cannot rely on deferred {metric_id}; keep deferred metrics out of overall_acceptance.metric_ids",
+                )
     if not id_list(overall.get("evidence_ids")):
         add_issue(errors, "OVERALL_EVIDENCE_MISSING", "overall acceptance needs evidence")
     for evidence_id in id_list(overall.get("evidence_ids")):
