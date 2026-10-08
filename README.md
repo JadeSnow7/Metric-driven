@@ -152,7 +152,7 @@ python3 skill/veriflow/scripts/validate_task.py records/TASK-001/task-state.json
 - 授权来源、授权范围、已执行动作是否获授权；结果不明的动作和同一版本的重复动作会被阻断；
 - 延后验证的指标是否有用户决策，强制与非退化指标在合并、部署及自定义动作前阻断；schema 1.3 的整体验收不能引用延期指标。
 
-输出为 JSON，退出码 `0` 无错误、`1` 记录或门槛错误、`2` 运行错误；git 调用设有超时。主线程进一步核查需求、指标依据、测试覆盖、授权来源、远程 CI 和产品实际行为；模板占位检查不分析产品代码空实现。完整完成与部分验收的判定见 [metrics-and-evidence.md](skill/veriflow/references/metrics-and-evidence.md)。
+输出为 JSON，退出码 `0` 无错误、`1` 记录或门槛错误、`2` 运行错误；git 调用设有超时。主线程进一步核查需求、指标依据、测试覆盖、授权来源、远程 CI 和产品实际行为。完整完成与部分验收的判定见 [metrics-and-evidence.md](skill/veriflow/references/metrics-and-evidence.md)。
 
 ## 记录格式版本
 

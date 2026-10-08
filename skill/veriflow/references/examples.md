@@ -80,7 +80,7 @@
 
 ## 实现完整性与部分验收的判定例
 
-以下是规范解释用例，不是实际 Agent 实验或执行效果证据。规则见 [design.md](design.md) 与 [metrics-and-evidence.md](metrics-and-evidence.md)。
+规则见 [design.md](design.md) 与 [metrics-and-evidence.md](metrics-and-evidence.md)。
 
 | 情形 | 判定与核查 |
 | --- | --- |
