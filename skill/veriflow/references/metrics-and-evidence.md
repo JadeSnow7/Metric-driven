@@ -22,7 +22,24 @@
 
 ### 过程与边界证据
 
-测试基准在产品实现前建立，具体步骤见 [workflow.md](workflow.md) 的“先写测试基准”。实现前后分别保存原始记录，关联相同的 Spec 条目、用例和测量口径；实现前的失败是现状证据，不能充当实现后的通过证据。产品变化后，旧记录按既有规则标为 `stale` 并保留用于比较，不刷新其 revision 冒充当前验收。只有真实需求变化或已证实的测试方法缺陷才调整预期、断言或阈值，记录原因、影响并重验；不能为让实现通过而降低标准。性能比较还须保持环境、数据和采样方法可比，无法保持时明确比较限制。
+验收检查在产品实现前写好并运行，步骤见 [workflow.md](workflow.md) 的“先写验收检查”。实现前后分别保存原始记录，关联相同的 Spec 条目、用例和测量口径；实现前的失败是现状证据，不能充当实现后的通过证据。产品变化后，旧记录按既有规则标为 `stale` 并保留用于比较，不刷新其 revision 冒充当前验收。只有真实需求变化或已证实的测试方法缺陷才调整预期、断言或阈值，记录原因、影响并重验；不能为让实现通过而降低标准。性能比较还须保持环境、数据和采样方法可比，无法保持时明确比较限制。
+
+#### L2 实现前证据的记录方式
+
+`MET-*.baseline` 只写起点描述，可引用实现前证据的 `EVD-*`；原始结果放在执行证据里，不另建字段或状态体系：
+
+1. 在未修改的产品上用 `record_execution.py --state` 运行验收检查，把记录登记为 `evidence` 条目：`supports` 指向对应指标，`result` 按实测填写（缺陷复现通常是 `failed`）。
+2. 实现前证据**不放进**指标、`IT-*`、`CHG-*` 或 `overall_acceptance` 的 `evidence_ids`。这些列表只引用支持当前判定的证据。
+3. 产品改动后，把该条目改为 `status: stale`，`stale_reason` 写明“实现前结果”，原文件与 sha256 保持不变。
+4. 实现后用同一命令重新记录，新证据进入 `evidence_ids` 并支持判定。
+
+把实现前证据列入 `evidence_ids` 会触发 `METRIC_EVIDENCE_NOT_CURRENT`，指标已判 `passed` 时还会触发 `METRIC_EVIDENCE_RESULT`。校验器不判断验收检查是否先于实现运行；审查者对比实现前证据的 revision 与产品改动，确认预期、断言和阈值没有在实现后放宽。
+
+```json
+{"id": "EVD-PRE-001", "path": "records/TASK-001/evidence/pre-met-001.json", "kind": "execution",
+ "supports": ["MET-001"], "status": "stale", "stale_reason": "实现前结果；产品已修改",
+ "result": "failed", "observed_at": "2026-01-01T00:00:00Z", "sha256": "<记录文件的 sha256>"}
+```
 
 当成功条件涉及“触发、拒绝、隔离、回退”或流程质量时，先证明输入到达被测入口，再证明实际走过的分支；只看到最终产物或提示文本不能反推过程。转录可以作为来源明确的二手过程材料，但不能冒充原始日志，结论按证据强度限缩。记录观察对象（调用、事件、日志、状态或资源）、样本是否非空且有效，并把执行者主动运行、主线程补做和系统自动触发分开标注。对高风险或复杂行为，正向样本应配合负向对照或反例；拒绝/隔离检查要覆盖异常残余之后紧接的合法记录，避免残余被误当成下一条输入。缺少这些材料时限缩结论或记为 `undetermined`，不补造时序或工具日志。
 
@@ -45,7 +62,17 @@
 | `acceptance`、`local-commit`、`push` | 警告 `METRIC_DEFERRED`，不阻断 | 警告 |
 | `merge`、`deploy`、`action` | 错误 `METRIC_DEFERRED_BLOCKS` | 警告 |
 
-整体端到端验收不能延后。报告里必须把延后的指标列为“未验证”，写明原因和计划在哪里验证。
+`action` 门槛用于可能先于验收发生的自定义动作（例如为验证而做的预发布迁移），因此不检查指标是否已通过，`undetermined` 或 `failed` 的强制指标不阻断它。`deferred` 表示用户已决定在验证前交付，所以强制和非退化指标一旦延期，就阻断这类难以撤销的动作，直到补验完成。
+
+## 完整完成与部分验收
+
+本节是整体验收、部分验收与完整完成判定的权威说明，其他文件只引用这里。
+
+- **整体验收不能延期。** `overall_acceptance` 只用 `passed`、`failed`、`undetermined`。原定整体端到端场景须有当前通过证据；无法验证时保持 `undetermined` 并阻断验收，不能借延期指标、隐藏场景或缩小 Spec 填为 `passed`。schema 1.3 的 `overall_acceptance.metric_ids` 只列整体场景实际依赖的指标，引用 `deferred` 指标时报 `OVERALL_METRIC_DEFERRED`。
+- **部分验收。** 整体场景通过、另有经用户决定延期的指标时，报告为部分验收；延期指标仍是“未验证”，写明原因与验证计划。
+- **范围调整。** 用户真实调整范围时，记录决定、更新 Spec 与绑定并重验受影响内容，不追认旧证据。
+- **机械判定（schema 1.3）。** `--gate acceptance` 无错误时才评估 `spec_satisfaction`：条件关联指标全部 `passed` 为 `satisfied`；未通过的条件关联指标全部为关联有效决定的 `deferred` 时为 `partial`；其他未满足情况为 `unsatisfied`。有错误或使用其他 gate 时为 `not_assessed`。条件关联的每个未延期指标都须有当前通过证据，否则报 `SPEC_METRIC_EVIDENCE_MISSING`，因此 `ok=true` 时实际只会得到 `satisfied` 或 `partial`。这条要求也适用于 `improvement_target`：即使未达成已有决定，只要它绑定在 Spec 条件上，验收仍会阻断。允许未达成的改善目标不要绑进条件，或经用户决定改为 `deferred`。
+- **完整完成。** L2 任务声明完整完成须同时取得 `--gate acceptance` 的 `ok=true` 与 `spec_satisfaction=satisfied`，再由主线程逐项核对实际行为、证据支持关系和交付物内容。仍有约定未满足项时不能宣称完整完成；模板占位检查和机械字段、引用、路径放行都不替代语义验收。
 
 ## 证据要求
 
@@ -99,8 +126,6 @@ python3 scripts/record_execution.py \
 
 `verification: execution` 的强制门槛标为 `passed` 时，必须至少有一项当前、通过的执行记录，否则 `METRIC_EVIDENCE_UNVERIFIED`。
 
-`spec_satisfaction` 只表示校验器完成了机械字段、引用和路径门槛；它不能替代主线程对 Spec 条件、证据支持关系、交付物内容和用户语义的逐项审查。
-
 ## Revision token
 
 对 1.1/1.2，`validate_task.py --print-revision` 从任务基线到当前工作树计算只读基础内容指纹（`revision-v2`）。1.3 在该产品指纹之外增加 Spec digest 和显式路径绑定；不能用旧的 ignored/记录目录排除规则绕过显式交付物或契约。因此：
@@ -153,6 +178,8 @@ python3 scripts/validate_task.py records/TASK-001/task-state.json --repo . --gat
 | `action` | 自定义动作（如 `migrate`）的授权与范围、恢复策略、未决与重复动作；不要求产品验收，因为预发布环境的迁移可能是验收的前提 |
 
 `local-commit` 的覆盖检查把基线以来的实际变更路径（排除 foreign 路径）与所有 `reviewed` 的 `CHG-*.paths` 对照；重命名的原路径和新路径都必须被覆盖。`paths` 使用仓库相对的精确文件或目录，不支持 glob。有 foreign 改动时给出警告 `FOREIGN_CHANGES_PRESENT`，报告要说明检查时这些改动存在。
+
+`find_placeholders` / `PLACEHOLDER_VALUE` 只检查任务记录中的模板占位值，不分析产品代码是否为空实现或实际接入。主线程按 [design.md](design.md) 审查实际路径与契约效果，并核对区分性证据。
 
 ### 副作用防重
 

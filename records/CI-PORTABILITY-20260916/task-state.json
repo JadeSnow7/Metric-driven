@@ -4,7 +4,7 @@
     "id": "CI-PORTABILITY-20260916",
     "title": "修复 PR #3 的仓库链接可移植性并核验远程 CI",
     "mode": "new",
-    "status": "verified",
+    "status": "completed",
     "source_ids": [
       "SRC-001"
     ]
@@ -248,8 +248,8 @@
   },
   "delivery": {
     "local_validation": "passed",
-    "remote_ci": "not_started",
-    "remote_ci_revision": null
+    "remote_ci": "passed",
+    "remote_ci_revision": "a4e841ff5dbe6ac40ff13a495792854e26fbe973"
   },
   "actions": [
     {
@@ -258,9 +258,19 @@
       "kind": "git-commit",
       "target": "local",
       "revision": "patch:fd7f0a618720e7682621207d4df28411327004ef:f00d5e327909ab87f72dc3c3503bba87b7193c37dab8d0088afd35f0eeb363dc",
-      "status": "in_progress",
+      "status": "completed",
       "idempotency_key": "ci-portability-20260916-commit-1",
-      "receipt": null
+      "receipt": "a4e841ff5dbe6ac40ff13a495792854e26fbe973"
+    },
+    {
+      "id": "ACT-002",
+      "authorization_action": "push",
+      "kind": "git-push",
+      "target": "origin/feat/skill-entry-round-2",
+      "revision": "a4e841ff5dbe6ac40ff13a495792854e26fbe973",
+      "status": "completed",
+      "receipt": "origin/feat/skill-entry-round-2 -> a4e841ff5dbe6ac40ff13a495792854e26fbe973",
+      "idempotency_key": "ci-portability-20260916-push-1"
     }
   ],
   "decisions": [],

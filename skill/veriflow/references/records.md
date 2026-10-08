@@ -64,7 +64,7 @@
 - `passed`：当前证据支持门槛通过。
 - `failed`：当前证据表明门槛未通过。
 - `undetermined`：缺证据、环境不可用或结果无法判定；永远不算通过。
-- `deferred`（仅指标，1.2）：用户决定先交付、稍后验证；必须用 `decision_id` 关联决策。可以通过本地提交和推送，不能通过合并、部署或自定义动作门槛；整体验收不能延后。
+- `deferred`（仅指标，1.2 起）：用户决定先交付、稍后验证；必须用 `decision_id` 关联决策，仍属未验证。各门槛的处理见 [metrics-and-evidence.md](metrics-and-evidence.md) 的“环境不可用与延后验证”；整体验收只用 `passed`、`failed`、`undetermined`。
 
 证据时效另用 `current` / `stale`。验证后内容又变了，校验器会直接报出过期证据（`EVIDENCE_STALE` 或 `EXECUTION_REVISION_STALE`），不需要手工逐项回退状态。处理方式是重跑受影响检查、换上新证据；旧证据改为 `stale` 保留。只有实现被撤销或已知失败时，才相应把 `IT-*`、`CHG-*`、指标改为 `cancelled`、`reverted` 或 `failed`。
 
@@ -131,11 +131,11 @@
 
 `state.spec` 是当前 Spec 的结构化索引：`version` 必须非空，`authority` 为 `state.spec` 或仓库内契约文件（后者必须同时列在 `spec.contracts`）。`source_ids` 必须指向 `sources` 中 `adoption: accepted` 的来源；`goal_ref` 与 `scope_ref` 分别复用 `discovery.expected_outcome` 和 `discovery.scope` 等现有字段。`constraints`、`exceptions`、`open_items` 必须是列表，未决项存在时实现门槛不能就绪。
 
-每个 `conditions` 条目都必须独立列出非空 `metric_ids`、至少一个强制或非退化指标，以及具体仓库相对交付文件。`contracts` 是必须存在的精确文件，按字节计算哈希；交付物可以在实现前缺失。运行回执只放在顶层 `state.binding.receipt_paths`，必须是精确文件路径，并且不得与交付物或契约冲突；`baseline.foreign_paths` 也不得覆盖交付物或契约。
+每个 `conditions` 条目都必须独立列出非空 `metric_ids`、至少一个强制或非退化指标，以及具体仓库相对交付文件。`contracts` 是必须存在的精确文件，按整文件字节计算哈希；交付物可以在实现前缺失。L2 的稳定入口约束、状态契约和占位边界复用 `spec.contracts` 引用其权威文件；持续更新的摘要、进度和运行回执不直接作为稳定契约，避免普通状态更新使证据失效。运行回执只放在顶层 `state.binding.receipt_paths`，必须是精确文件路径，并且不得与交付物或契约冲突；`baseline.foreign_paths` 也不得覆盖交付物或契约。
 
 1.3 的 revision 是产品指纹与 Spec digest 的组合。digest 包含完整 Spec、全部 `main_tasks` 和 `metrics` 的规范字段、契约字节哈希、discovery 引用值、回执分类及 foreign/external 输入声明；只在对象自身的精确位置排除 `status`、`evidence_ids` 和 `implementation_task_ids`。旧 1.1/1.2 记录继续按旧语义审计，缺少绑定时不能通过修改外层字段冒充 1.3 重跑。
 
-1.3 仍保留 1.2 的 `deferred` 指标语义：它表示用户明确决定稍后验证，不能作为当前 Spec 已满足或整体验收通过的证据。历史记录迁移只保留原始 raw 和 `stale_reason`，缺少绑定、快照或当前支持关系时记为未知/过期，不补造历史 Spec 或授权快照。
+1.3 仍保留 1.2 的 `deferred` 指标语义：它表示用户明确决定稍后验证，不能作为当前 Spec 已满足或整体验收通过的证据。部分验收与完整完成的判定见 [metrics-and-evidence.md](metrics-and-evidence.md) 的“完整完成与部分验收”。历史记录迁移只保留原始 raw 和 `stale_reason`，缺少绑定、快照或当前支持关系时记为未知/过期，不补造历史 Spec 或授权快照。
 
 ```text
 records/<TASK-ID>/

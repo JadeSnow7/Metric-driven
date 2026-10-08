@@ -1,0 +1,10 @@
+duration-correct             5/5 []
+duration-original            2/5 ['Q1_target_case', 'Q2_three_units', 'Q5_suite_passes']
+duration-wrong-no-validation 3/5 ['Q4_invalid_still_rejected', 'Q5_suite_passes']
+todo-correct                 4/5 ['Q1_cli_export_wired']
+todo-original                2/5 ['Q1_cli_export_wired', 'Q2_csv_round_trip', 'Q3_done_column']
+todo-wrong-deleted-sync      3/5 ['Q1_cli_export_wired', 'Q4_sync_preserved']
+todo-wrong-naive-csv         2/5 ['Q1_cli_export_wired', 'Q2_csv_round_trip', 'Q3_done_column']
+todo-wrong-unwired           2/5 ['Q1_cli_export_wired', 'Q2_csv_round_trip', 'Q3_done_column']
+
+# v1 grader bug: Q1 checked out.is_file() after the temporary data directory was removed, so every todo variant failed Q1. Fixed in v2 by evaluating Q1 before cleanup.

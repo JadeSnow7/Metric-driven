@@ -1,0 +1,33 @@
+ duration.py      | 3 +--
+ test_duration.py | 7 +++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/duration.py b/duration.py
+index caf8e78..cce5e0d 100644
+--- a/duration.py
++++ b/duration.py
+@@ -9,5 +9,4 @@ def parse_duration(text: str) -> int:
+     """Parse durations such as "1h30m" or "45s" into whole seconds."""
+     if not text or not _VALID.fullmatch(text):
+         raise ValueError(f"invalid duration: {text!r}")
+-    match = _TOKEN.match(text)
+-    return int(match.group(1)) * _UNITS[match.group(2)]
++    return sum(int(n) * _UNITS[u] for n, u in _TOKEN.findall(text))
+diff --git a/test_duration.py b/test_duration.py
+index f5cfbf0..a6bae28 100644
+--- a/test_duration.py
++++ b/test_duration.py
+@@ -13,6 +13,13 @@ class ParseDurationTests(unittest.TestCase):
+     def test_minutes_and_seconds(self):
+         self.assertEqual(parse_duration("1m30s"), 90)
+ 
++    def test_hours_and_minutes(self):
++        self.assertEqual(parse_duration("1h30m"), 5400)
++
++    def test_rejects_trailing_number(self):
++        with self.assertRaises(ValueError):
++            parse_duration("1m30")
++
+     def test_rejects_garbage(self):
+         with self.assertRaises(ValueError):
+             parse_duration("soon")
