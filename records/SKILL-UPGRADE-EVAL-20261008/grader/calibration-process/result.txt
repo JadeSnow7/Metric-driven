@@ -1,0 +1,2 @@
+edit-then-run.jsonl {'P1_ran_before_product_edit': False, 'P2_wrote_and_ran_check_before_product_edit': False, 'P3_record_artifacts': True, 'first_product_edit_step': 1}
+run-test-then-edit.jsonl {'P1_ran_before_product_edit': True, 'P2_wrote_and_ran_check_before_product_edit': True, 'P3_record_artifacts': False, 'first_product_edit_step': 3}

@@ -1,0 +1,4 @@
+{
+  "duration": "`parse_duration(\"1m30s\")` 返回 60 而不是 90，`test_duration.py` 里的 `test_minutes_and_seconds` 挂了，帮我修一下。不用提交；需要决定的细节按你的判断处理并在汇报里说明。",
+  "todo": "给 todo 工具加上 export 命令：`python3 -m todo export <路径>` 把所有待办导出成 CSV，列为 title,done；标题里可能有逗号和引号。不用提交；需要决定的细节按你的判断处理并在汇报里说明。"
+}

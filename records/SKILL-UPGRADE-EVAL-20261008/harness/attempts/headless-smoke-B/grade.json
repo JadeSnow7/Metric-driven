@@ -1,0 +1,1 @@
+{"task": "duration", "workspace": "/private/tmp/claude-501/-Users-huaodong-workspace-Veriflow/55a80e45-cbb6-41ae-9888-8b9c8170841d/scratchpad/eval/SMOKE-B/ws", "checks": {"Q1_target_case": false, "Q2_three_units": false, "Q3_single_units": true, "Q4_invalid_still_rejected": true, "Q5_suite_passes": false}, "passed": 2, "total": 5}

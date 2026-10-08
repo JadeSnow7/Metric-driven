@@ -1,0 +1,177 @@
+ README.md               |  3 ++
+ tests/test_export.py    | 98 +++++++++++++++++++++++++++++++++++++++++++++++--
+ todo/commands/export.py | 22 ++++++++++-
+ todo/plugins.cfg        |  1 +
+ 4 files changed, 118 insertions(+), 6 deletions(-)
+
+diff --git a/README.md b/README.md
+index b074444..8d7326e 100644
+--- a/README.md
++++ b/README.md
+@@ -5,8 +5,11 @@
+ ```bash
+ python3 -m todo add 买牛奶
+ python3 -m todo list
++python3 -m todo export 待办.csv
+ ```
+ 
++`export <路径>` 把所有待办写成 UTF-8 CSV，表头为 `title,done`，`done` 取 `true` 或 `false`；含逗号、引号、换行的标题按 CSV 规则加引号转义。目标文件已存在时会被覆盖；路径缺失或多余返回 2，无法写入时向 stderr 报错并返回 1。
++
+ 数据文件默认是当前目录的 `todo.json`，可用环境变量 `TODO_FILE` 指定。命令模块列在 `todo/plugins.cfg`，启动时按行导入。
+ 
+ 运行测试：`python3 -m unittest discover -s tests -v`
+diff --git a/tests/test_export.py b/tests/test_export.py
+index 50d0c16..aeeec4b 100644
+--- a/tests/test_export.py
++++ b/tests/test_export.py
+@@ -1,14 +1,104 @@
++import csv
++import io
++import os
+ import tempfile
+ import unittest
++from contextlib import redirect_stderr, redirect_stdout
+ from pathlib import Path
+ 
+-from todo.commands import export
++from todo.cli import main
++from todo.store import save
+ 
+ 
+ class ExportTests(unittest.TestCase):
+-    def test_export_runs(self):
+-        with tempfile.TemporaryDirectory() as directory:
+-            self.assertEqual(export.run([str(Path(directory) / "out.csv")]), 0)
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory()
++        self.dir = Path(self.directory.name)
++        os.environ["TODO_FILE"] = str(self.dir / "todo.json")
++
++    def tearDown(self):
++        os.environ.pop("TODO_FILE", None)
++        self.directory.cleanup()
++
++    def export(self, *args):
++        out, err = io.StringIO(), io.StringIO()
++        with redirect_stdout(out), redirect_stderr(err):
++            code = main(["export", *args])
++        return code, out.getvalue(), err.getvalue()
++
++    def read_rows(self, path):
++        # newline="" so embedded newlines in quoted fields are preserved
++        with open(path, encoding="utf-8", newline="") as f:
++            return list(csv.reader(f))
++
++    def test_export_writes_header_and_rows(self):
++        save([{"title": "buy milk", "done": False}, {"title": "call mom", "done": True}])
++        target = self.dir / "out.csv"
++        code, _, _ = self.export(str(target))
++        self.assertEqual(code, 0)
++        self.assertEqual(
++            self.read_rows(target),
++            [["title", "done"], ["buy milk", "false"], ["call mom", "true"]],
++        )
++
++    def test_titles_with_commas_quotes_newlines_and_unicode_round_trip(self):
++        titles = [
++            'a,b',
++            'say "hi"',
++            '"leading quote',
++            'unclosed " quote, and comma',
++            'two\nlines',
++            '买牛奶,面包',
++            ' padded ',
++            ',',
++            '',
++        ]
++        save([{"title": t, "done": i % 2 == 0} for i, t in enumerate(titles)])
++        target = self.dir / "out.csv"
++        self.assertEqual(self.export(str(target))[0], 0)
++        rows = self.read_rows(target)
++        self.assertEqual(rows[0], ["title", "done"])
++        self.assertEqual([r[0] for r in rows[1:]], titles)
++        self.assertEqual([r[1] for r in rows[1:]], ["true" if i % 2 == 0 else "false" for i in range(len(titles))])
++
++    def test_empty_list_writes_header_only(self):
++        target = self.dir / "out.csv"
++        self.assertEqual(self.export(str(target))[0], 0)
++        self.assertEqual(self.read_rows(target), [["title", "done"]])
++
++    def test_existing_file_is_overwritten(self):
++        target = self.dir / "out.csv"
++        target.write_text("old,stuff\n" * 10, encoding="utf-8")
++        save([{"title": "x", "done": False}])
++        self.assertEqual(self.export(str(target))[0], 0)
++        self.assertEqual(self.read_rows(target), [["title", "done"], ["x", "false"]])
++
++    def test_does_not_modify_todo_data(self):
++        save([{"title": "x", "done": False}])
++        before = (self.dir / "todo.json").read_bytes()
++        self.export(str(self.dir / "out.csv"))
++        self.assertEqual((self.dir / "todo.json").read_bytes(), before)
++
++    def test_missing_path_is_usage_error(self):
++        code, _, err = self.export()
++        self.assertEqual(code, 2)
++        self.assertIn("export", err)
++
++    def test_extra_arguments_are_usage_error(self):
++        code, _, _ = self.export(str(self.dir / "a.csv"), str(self.dir / "b.csv"))
++        self.assertEqual(code, 2)
++        self.assertFalse((self.dir / "a.csv").exists())
++
++    def test_unwritable_path_reports_error_without_traceback(self):
++        save([{"title": "x", "done": False}])
++        code, _, err = self.export(str(self.dir / "no_such_dir" / "out.csv"))
++        self.assertEqual(code, 1)
++        self.assertIn("export:", err)
++
++    def test_directory_as_path_reports_error(self):
++        code, _, err = self.export(str(self.dir))
++        self.assertEqual(code, 1)
++        self.assertIn("export:", err)
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/todo/commands/export.py b/todo/commands/export.py
+index 5c7658e..a6bd078 100644
+--- a/todo/commands/export.py
++++ b/todo/commands/export.py
+@@ -1,8 +1,26 @@
++import csv
++import sys
++
+ from todo.registry import command
++from todo.store import load
+ 
+ 
+ @command("export")
+ def run(args):
+-    # TODO: write the CSV file
+-    print("exported")
++    if len(args) != 1:
++        print("usage: todo export <path>", file=sys.stderr)
++        return 2
++    items = load()
++    try:
++        # newline="" lets the csv module control line endings, so newlines
++        # inside quoted titles are written and read back unchanged.
++        with open(args[0], "w", encoding="utf-8", newline="") as f:
++            writer = csv.writer(f)
++            writer.writerow(["title", "done"])
++            for item in items:
++                writer.writerow([item["title"], "true" if item["done"] else "false"])
++    except OSError as error:
++        print(f"export: {error}", file=sys.stderr)
++        return 1
++    print(f"exported {len(items)} item(s) to {args[0]}")
+     return 0
+diff --git a/todo/plugins.cfg b/todo/plugins.cfg
+index 6b59ef7..e17efea 100644
+--- a/todo/plugins.cfg
++++ b/todo/plugins.cfg
+@@ -1,3 +1,4 @@
+ add
+ list_items
+ sync
++export
