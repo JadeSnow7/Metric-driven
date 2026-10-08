@@ -22,22 +22,22 @@
 
 ### 过程与边界证据
 
-测试基准在产品实现前建立，具体步骤见 [workflow.md](workflow.md) 的“先写测试基准”。实现前后分别保存原始记录，关联相同的 Spec 条目、用例和测量口径；实现前的失败是现状证据，不能充当实现后的通过证据。产品变化后，旧记录按既有规则标为 `stale` 并保留用于比较，不刷新其 revision 冒充当前验收。只有真实需求变化或已证实的测试方法缺陷才调整预期、断言或阈值，记录原因、影响并重验；不能为让实现通过而降低标准。性能比较还须保持环境、数据和采样方法可比，无法保持时明确比较限制。
+验收检查在产品实现前写好并运行，步骤见 [workflow.md](workflow.md) 的“先写验收检查”。实现前后分别保存原始记录，关联相同的 Spec 条目、用例和测量口径；实现前的失败是现状证据，不能充当实现后的通过证据。产品变化后，旧记录按既有规则标为 `stale` 并保留用于比较，不刷新其 revision 冒充当前验收。只有真实需求变化或已证实的测试方法缺陷才调整预期、断言或阈值，记录原因、影响并重验；不能为让实现通过而降低标准。性能比较还须保持环境、数据和采样方法可比，无法保持时明确比较限制。
 
 #### L2 实现前证据的记录方式
 
 `MET-*.baseline` 只写起点描述，可引用实现前证据的 `EVD-*`；原始结果放在执行证据里，不另建字段或状态体系：
 
-1. 在未修改的产品上用 `record_execution.py --state` 运行基准，把记录登记为 `evidence` 条目：`supports` 指向对应指标，`result` 按实测填写（缺陷复现通常是 `failed`）。
+1. 在未修改的产品上用 `record_execution.py --state` 运行验收检查，把记录登记为 `evidence` 条目：`supports` 指向对应指标，`result` 按实测填写（缺陷复现通常是 `failed`）。
 2. 实现前证据**不放进**指标、`IT-*`、`CHG-*` 或 `overall_acceptance` 的 `evidence_ids`。这些列表只引用支持当前判定的证据。
-3. 产品改动后，把该条目改为 `status: stale`，`stale_reason` 写明“实现前基准”，原文件与 sha256 保持不变。
+3. 产品改动后，把该条目改为 `status: stale`，`stale_reason` 写明“实现前结果”，原文件与 sha256 保持不变。
 4. 实现后用同一命令重新记录，新证据进入 `evidence_ids` 并支持判定。
 
-把实现前证据列入 `evidence_ids` 会触发 `METRIC_EVIDENCE_NOT_CURRENT`，指标已判 `passed` 时还会触发 `METRIC_EVIDENCE_RESULT`。校验器不判断基准是否早于实现；审查者对比实现前证据的 revision 与产品改动，确认预期、断言和阈值没有在实现后放宽。
+把实现前证据列入 `evidence_ids` 会触发 `METRIC_EVIDENCE_NOT_CURRENT`，指标已判 `passed` 时还会触发 `METRIC_EVIDENCE_RESULT`。校验器不判断验收检查是否先于实现运行；审查者对比实现前证据的 revision 与产品改动，确认预期、断言和阈值没有在实现后放宽。
 
 ```json
 {"id": "EVD-PRE-001", "path": "records/TASK-001/evidence/pre-met-001.json", "kind": "execution",
- "supports": ["MET-001"], "status": "stale", "stale_reason": "实现前基准；产品已修改",
+ "supports": ["MET-001"], "status": "stale", "stale_reason": "实现前结果；产品已修改",
  "result": "failed", "observed_at": "2026-01-01T00:00:00Z", "sha256": "<记录文件的 sha256>"}
 ```
 
