@@ -1,0 +1,1 @@
+{"task": "duration", "workspace": "/private/tmp/claude-501/-Users-huaodong-workspace-Veriflow/55a80e45-cbb6-41ae-9888-8b9c8170841d/scratchpad/eval-headless/D-B5/ws", "checks": {"Q1_target_case": true, "Q2_three_units": true, "Q3_single_units": true, "Q4_invalid_still_rejected": true, "Q5_suite_passes": true}, "passed": 5, "total": 5}

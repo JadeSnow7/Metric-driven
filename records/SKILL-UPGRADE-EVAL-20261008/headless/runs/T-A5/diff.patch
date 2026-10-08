@@ -1,0 +1,130 @@
+ tests/test_export.py    | 71 ++++++++++++++++++++++++++++++++++++++++++++++---
+ todo/commands/export.py | 19 +++++++++++--
+ todo/plugins.cfg        |  1 +
+ 3 files changed, 85 insertions(+), 6 deletions(-)
+
+diff --git a/tests/test_export.py b/tests/test_export.py
+index 50d0c16..f0cb448 100644
+--- a/tests/test_export.py
++++ b/tests/test_export.py
+@@ -1,14 +1,77 @@
++import csv
++import io
++import os
+ import tempfile
+ import unittest
++from contextlib import redirect_stdout
+ from pathlib import Path
+ 
+-from todo.commands import export
++from todo.cli import main
++from todo.store import save
+ 
+ 
+ class ExportTests(unittest.TestCase):
+-    def test_export_runs(self):
+-        with tempfile.TemporaryDirectory() as directory:
+-            self.assertEqual(export.run([str(Path(directory) / "out.csv")]), 0)
++    def setUp(self):
++        self.directory = tempfile.TemporaryDirectory()
++        self.root = Path(self.directory.name)
++        os.environ["TODO_FILE"] = str(self.root / "todo.json")
++
++    def tearDown(self):
++        os.environ.pop("TODO_FILE", None)
++        self.directory.cleanup()
++
++    def run_cli(self, *argv):
++        output = io.StringIO()
++        with redirect_stdout(output):
++            code = main(list(argv))
++        return code, output.getvalue()
++
++    def read_rows(self, path):
++        with open(path, encoding="utf-8", newline="") as handle:
++            return list(csv.reader(handle))
++
++    def test_export_roundtrips_awkward_titles(self):
++        titles = [
++            "plain",
++            "a, b, c",
++            'say "hi"',
++            '"quoted, and comma"',
++            "multi\nline",
++            'unclosed " quote',
++            "买牛奶，加冰",
++            "",
++        ]
++        save([{"title": t, "done": i % 2 == 1} for i, t in enumerate(titles)])
++        out = self.root / "out.csv"
++        code, _ = self.run_cli("export", str(out))
++        self.assertEqual(code, 0)
++        rows = self.read_rows(out)
++        self.assertEqual(rows[0], ["title", "done"])
++        self.assertEqual(
++            rows[1:],
++            [[t, "true" if i % 2 == 1 else "false"] for i, t in enumerate(titles)],
++        )
++
++    def test_export_empty_list_writes_header_only(self):
++        out = self.root / "out.csv"
++        self.assertEqual(self.run_cli("export", str(out))[0], 0)
++        self.assertEqual(self.read_rows(out), [["title", "done"]])
++
++    def test_export_overwrites_existing_file(self):
++        out = self.root / "out.csv"
++        out.write_text("stale,junk\n" * 5, encoding="utf-8")
++        save([{"title": "x", "done": False}])
++        self.run_cli("export", str(out))
++        self.assertEqual(self.read_rows(out), [["title", "done"], ["x", "false"]])
++
++    def test_export_requires_exactly_one_path(self):
++        self.assertEqual(self.run_cli("export")[0], 2)
++        self.assertEqual(self.run_cli("export", "a", "b")[0], 2)
++
++    def test_export_unwritable_path_fails_cleanly(self):
++        code, output = self.run_cli("export", str(self.root / "missing" / "out.csv"))
++        self.assertEqual(code, 1)
++        self.assertIn("cannot write", output)
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/todo/commands/export.py b/todo/commands/export.py
+index 5c7658e..4c4f9a9 100644
+--- a/todo/commands/export.py
++++ b/todo/commands/export.py
+@@ -1,8 +1,23 @@
++import csv
++
+ from todo.registry import command
++from todo.store import load
+ 
+ 
+ @command("export")
+ def run(args):
+-    # TODO: write the CSV file
+-    print("exported")
++    if len(args) != 1:
++        print("export: usage: todo export <path>")
++        return 2
++    items = load()
++    try:
++        with open(args[0], "w", encoding="utf-8", newline="") as handle:
++            writer = csv.writer(handle)
++            writer.writerow(["title", "done"])
++            for item in items:
++                writer.writerow([item["title"], "true" if item["done"] else "false"])
++    except OSError as error:
++        print(f"export: cannot write {args[0]}: {error.strerror or error}")
++        return 1
++    print(f"exported {len(items)} items to {args[0]}")
+     return 0
+diff --git a/todo/plugins.cfg b/todo/plugins.cfg
+index 6b59ef7..e17efea 100644
+--- a/todo/plugins.cfg
++++ b/todo/plugins.cfg
+@@ -1,3 +1,4 @@
+ add
+ list_items
+ sync
++export
